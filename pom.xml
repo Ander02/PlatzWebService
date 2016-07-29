@@ -24,7 +24,32 @@
             <url>https://maven.java.net/content/repositories/snapshots/</url>
             <layout>default</layout>
         </repository>
+        <repository>
+            <id>central</id>
+            <name>Maven Repository Switchboard</name>
+            <layout>default</layout>
+            <url>http://repo1.maven.org/maven2</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
     </repositories>
+    
+    <!--Plugin do Repositório-->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>central</id>
+            <name>Maven Plugin Repository</name>
+            <url>http://repo1.maven.org/maven2</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+        </pluginRepository>
+    </pluginRepositories>
 
     <!-- Dependências -->
     <dependencyManagement>
@@ -36,10 +61,25 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>org.hibernate.ogm</groupId>
+                <artifactId>hibernate-ogm-bom</artifactId>
+                <version>5.0.1.Final</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+           
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
+        <!--MongoDB para trabalhar com base de dados mongoDB--> 
+        <!-- https://mvnrepository.com/artifact/org.hibernate.ogm/hibernate-ogm-mongodb -->
+        <dependency>
+            <groupId>org.hibernate.ogm</groupId>
+            <artifactId>hibernate-ogm-mongodb</artifactId>
+        </dependency>
+        
         <!--Java EE Web API -->
         <dependency>
             <groupId>javax</groupId>
