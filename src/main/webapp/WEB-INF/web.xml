@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         id="WebApp_ID" version="3.0">
+		
+    <!-- Web Service Servlet Config -->
+    <servlet>
+        <servlet-name>Jersey REST Service</servlet-name>
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        
+        <!-- Desabilitando MoxyJson -->
+        <init-param>
+            <param-name>jersey.config.disableMoxyJson.server</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <!-- Definindo o Pacote que contém as controllers -->       
+        <init-param>
+            <param-name>jersey.config.server.provider.packages</param-name>
+            <param-value>com.platz.controller;org.codehaus.jackson.jaxrs</param-value>
+        </init-param>
+           
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Jersey REST Service</servlet-name>
+        <url-pattern>/platz/*</url-pattern>
+    </servlet-mapping>
+
+</web-app>  
