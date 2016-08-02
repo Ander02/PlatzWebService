@@ -4,7 +4,7 @@ import com.platz.controller.CategoriaController;
 import com.platz.http.categoria.CategoriaCadastro;
 import com.platz.http.categoria.CategoriaEdicao;
 import com.platz.http.categoria.CategoriaLeitura;
-import com.platz.model.Categoria;
+import com.platz.model.CategoriaModel;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -33,17 +33,17 @@ public class CategoriaService {
     public Response cadastrar(CategoriaCadastro categoria) {
 
         // Instanciar Entity
-        Categoria entity = new Categoria();
+        CategoriaModel model = new CategoriaModel();
 
         try {
             // Settar o nome da entity baseado no nome da categoria passada
-            entity.setNome(categoria.getNome());
+            model.setNome(categoria.getNome());
 
             // Cadastrar categoria
-            categoriaController.cadastrar(entity);
+            categoriaController.cadastrar(model);
 
             // Retorna a resposta para o cliente com o Status Code CREATED e a Categoria de Leitura     
-            return Response.status(Response.Status.CREATED).entity(new CategoriaLeitura(entity)).build();
+            return Response.status(Response.Status.CREATED).entity(new CategoriaLeitura(model)).build();
 
         } catch (Exception e) {
             // Envia erro pelo console
@@ -59,10 +59,10 @@ public class CategoriaService {
     public Response listarTodos() {
         try {
             //Lista com todas as CategoriaEntity cadastradas
-            List<Categoria> entidades = categoriaController.listarTodos();
+            List<CategoriaModel> models = categoriaController.listarTodos();
 
             //Lista de Categorias de Leitura baseado na lista de entidades
-            List<CategoriaLeitura> listaDeCategorias = new CategoriaLeitura().converterLista(entidades);
+            List<CategoriaLeitura> listaDeCategorias = new CategoriaLeitura().converterLista(models);
 
             //Retorna a lista com um Status Code OK
             return Response.ok(listaDeCategorias).build();
@@ -80,13 +80,13 @@ public class CategoriaService {
     public Response buscarPeloId(@PathParam("id") String id) {
 
         //Busca uma entidade baseado pelo id
-        Categoria entity = categoriaController.buscarPorId(id);
+        CategoriaModel model = categoriaController.buscarPorId(id);
 
         //Verifica se a entidade returnada não é nula
-        if (entity != null) {
+        if (model != null) {
 
             //Retorna um Status Code OK com a categoria de leitura
-            return Response.ok(new CategoriaLeitura(entity)).build();
+            return Response.ok(new CategoriaLeitura(model)).build();
 
         }
 
@@ -102,10 +102,10 @@ public class CategoriaService {
         try {
 
             //Buscar Entitys pelo nome
-            List<Categoria> entidades = categoriaController.buscarPeloNome(nome);
+            List<CategoriaModel> models = categoriaController.buscarPeloNome(nome);
 
             //Lista de Categorias de Leitura baseado na lista de entidades
-            List<CategoriaLeitura> listaDeCategorias = new CategoriaLeitura().converterLista(entidades);
+            List<CategoriaLeitura> listaDeCategorias = new CategoriaLeitura().converterLista(models);
 
             //Retorna a lista com um Status Code OK
             return Response.ok(listaDeCategorias).build();
@@ -123,19 +123,19 @@ public class CategoriaService {
     @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response alterar(@PathParam("id") String id, CategoriaEdicao categoria) {
 
-        Categoria entity = new Categoria();
+        CategoriaModel model = new CategoriaModel();
 
         try {
 
             //Settar informações na entity
-            entity.setId(id);
-            entity.setNome(categoria.getNome());
+            //model.setId(id);
+            model.setNome(categoria.getNome());
 
             //Alterar registro
-            categoriaController.alterar(entity);
+            categoriaController.alterar(model);
 
             //Retorna Status Code OK com a entity de leitura com a modificação
-            return Response.status(Response.Status.OK).entity(new CategoriaLeitura(entity)).build();
+            return Response.status(Response.Status.OK).entity(new CategoriaLeitura(model)).build();
 
         } catch (Exception e) {
             System.out.println("Erro" + e.getMessage());
@@ -150,9 +150,9 @@ public class CategoriaService {
 
         try {
 
-            Categoria entity = categoriaController.buscarPorId(id);
+            CategoriaModel model = categoriaController.buscarPorId(id);
 
-            categoriaController.excluir(entity);
+            categoriaController.excluir(model);
 
             return Response.status(Response.Status.NO_CONTENT).build();
 

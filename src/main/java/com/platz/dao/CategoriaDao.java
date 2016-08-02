@@ -1,6 +1,6 @@
 package com.platz.dao;
 
-import com.platz.model.Categoria;
+import com.platz.model.CategoriaModel;
 import java.util.List;
 import javax.persistence.EntityManager;
 
@@ -8,12 +8,12 @@ import javax.persistence.EntityManager;
  *
  * @author Anderson
  */
-public class CategoriaDao extends GenericDao<Categoria> {
+public class CategoriaDao extends GenericDao<CategoriaModel> {
 
     @SuppressWarnings("unchecked")
-    public List<Categoria> buscarPeloNome(String nome) {
+    public List<CategoriaModel> buscarPeloNome(String nome) {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
-        List<Categoria> lista = entityManager.createQuery("from Categoria where nome like :nome")
+        List<CategoriaModel> lista = entityManager.createQuery("from CategoriaModel where nome like :nome")
                 .setParameter("nome", nome + "%").getResultList();
         entityManager.close();
         return lista;

@@ -1,10 +1,12 @@
 package com.platz.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import org.bson.types.ObjectId;
 
 /**
@@ -13,6 +15,7 @@ import org.bson.types.ObjectId;
  */
 
 @Entity
+@Table(name = "categoria")
 public class CategoriaModel {
     
     @Id    
@@ -20,6 +23,7 @@ public class CategoriaModel {
     private ObjectId id;
     private String nome;
 
+    //Contrutores
     public CategoriaModel() {
     }
 
@@ -27,8 +31,13 @@ public class CategoriaModel {
         this.nome = nome;
     }      
     
+    //get e setter
     public String getId() {
-        return id.toString(); 
+        return id.toHexString();
+    }
+    
+    public ObjectId getObjectId() {
+        return this.id;
     }
     
     public String getNome() {
@@ -38,4 +47,9 @@ public class CategoriaModel {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public Date getDataCadatro() {
+        return id.getDate();
+    }
+    
 }

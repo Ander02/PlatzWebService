@@ -1,7 +1,7 @@
 package com.platz.controller;
 
 import com.platz.dao.CategoriaDao;
-import com.platz.model.Categoria;
+import com.platz.model.CategoriaModel;
 import java.util.List;
 
 /**
@@ -12,28 +12,28 @@ public class CategoriaController {
 
     private final CategoriaDao categoriaDao = new CategoriaDao();
 
-    public void cadastrar(Categoria entity) {
-        categoriaDao.cadastrar(entity);
+    public void cadastrar(CategoriaModel model) {
+        categoriaDao.cadastrar(model);
     }
 
-    public List<Categoria> listarTodos() {
-        return categoriaDao.listarTodos(Categoria.class);
+    public List<CategoriaModel> listarTodos() {
+        return categoriaDao.listarTodos(CategoriaModel.class);
     }
 
-    public Categoria buscarPorId(String id) {
-        return categoriaDao.buscarPorId(Categoria.class, id);
+    public CategoriaModel buscarPorId(String id) {
+        return categoriaDao.buscarPorId(CategoriaModel.class, id);
     }
 
-    public List<Categoria> buscarPeloNome(String nome) {
+    public List<CategoriaModel> buscarPeloNome(String nome) {
         return categoriaDao.buscarPeloNome(nome);
     }
 
-    public void alterar(Categoria entity) {
-        categoriaDao.alterar(entity);
+    public void alterar(CategoriaModel model) {
+        categoriaDao.alterar(model);
     }
 
-    public void excluir(Categoria entity) {
-        categoriaDao.excluir(entity);
+    public void excluir(CategoriaModel model) {
+        categoriaDao.excluir(model);
     }
 
 }
