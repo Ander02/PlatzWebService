@@ -5,7 +5,7 @@
  */
 package com.platz.http.categoria;
 
-import com.platz.model.Categoria;
+import com.platz.model.CategoriaModel;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -25,8 +25,8 @@ public class CategoriaCadastro {
         this.nome = nome;
     }
 
-    public CategoriaCadastro(Categoria entity) {
-        this.nome = entity.getNome();
+    public CategoriaCadastro(CategoriaModel model) {
+        this.nome = model.getNome();
     }
     
     public CategoriaCadastro(CategoriaLeitura categoria) {

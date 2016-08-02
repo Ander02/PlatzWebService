@@ -1,6 +1,6 @@
 package com.platz.http.categoria;
 
-import com.platz.model.Categoria;
+import com.platz.model.CategoriaModel;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -25,9 +25,9 @@ public class CategoriaLeitura {
         this.nome = nome;
     }
 
-    public CategoriaLeitura(Categoria categoriaEntity) {
-        this.id = categoriaEntity.getId();
-        this.nome = categoriaEntity.getNome();
+    public CategoriaLeitura(CategoriaModel model) {
+        this.id = model.getId();
+        this.nome = model.getNome();
     }
 
     public String getId() {
@@ -47,13 +47,13 @@ public class CategoriaLeitura {
     }
 
     //Métodos
-    public List<CategoriaLeitura> converterLista(List<Categoria> entityList) {
+    public List<CategoriaLeitura> converterLista(List<CategoriaModel> modelList) {
 
         List<CategoriaLeitura> lista = new ArrayList<>();
 
-        for (Categoria entity : entityList) {
+        for (CategoriaModel model : modelList) {
 
-            CategoriaLeitura categoria = new CategoriaLeitura(entity);
+            CategoriaLeitura categoria = new CategoriaLeitura(model);
             lista.add(categoria);
         }
         return lista;
