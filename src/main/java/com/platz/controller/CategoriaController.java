@@ -20,7 +20,7 @@ public class CategoriaController {
         return categoriaDao.listarTodos(Categoria.class);
     }
 
-    public Categoria buscarPorId(Integer id) {
+    public Categoria buscarPorId(String id) {
         return categoriaDao.buscarPorId(Categoria.class, id);
     }
 
