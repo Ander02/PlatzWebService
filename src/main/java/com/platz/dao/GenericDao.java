@@ -43,7 +43,7 @@ public abstract class GenericDao<T> {
         return lista;
     }
 
-    public T buscarPorId(Class<T> entity, Integer id) {
+    public T buscarPorId(Class<T> entity, String id) {
 
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
         T resultado = entityManager.find(entity, id);
