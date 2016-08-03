@@ -28,6 +28,20 @@ public class CategoriaLeitura {
         this.dataCadastro = model.getDataCadatro();
     }
 
+    //Métodos
+    public List<CategoriaLeitura> converterLista(List<CategoriaModel> modelList) {
+
+        List<CategoriaLeitura> lista = new ArrayList<>();
+
+        for (CategoriaModel model : modelList) {
+
+            CategoriaLeitura categoria = new CategoriaLeitura(model);
+            lista.add(categoria);
+        }
+        return lista;
+    }
+
+    //Getters and Setters
     public String getId() {
         return id;
     }
@@ -44,17 +58,12 @@ public class CategoriaLeitura {
         this.nome = nome;
     }
 
-    //Métodos
-    public List<CategoriaLeitura> converterLista(List<CategoriaModel> modelList) {
+    public Date getDataCadastro() {
+        return dataCadastro;
+    }
 
-        List<CategoriaLeitura> lista = new ArrayList<>();
-
-        for (CategoriaModel model : modelList) {
-
-            CategoriaLeitura categoria = new CategoriaLeitura(model);
-            lista.add(categoria);
-        }
-        return lista;
+    public void setDataCadastro(Date dataCadastro) {
+        this.dataCadastro = dataCadastro;
     }
 
 }
