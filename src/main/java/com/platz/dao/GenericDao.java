@@ -2,6 +2,7 @@ package com.platz.dao;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import org.bson.types.ObjectId;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -46,7 +47,7 @@ public abstract class GenericDao<T> {
     public T buscarPorId(Class<T> entity, String id) {
 
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
-        T resultado = entityManager.find(entity, id);
+        T resultado = entityManager.find(entity, new ObjectId(id));
         entityManager.close();
 
         return resultado;

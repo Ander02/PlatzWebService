@@ -12,12 +12,11 @@ import org.bson.types.ObjectId;
  *
  * @author Anderson
  */
-
 @Entity
 @Table(name = "categoria")
 public class CategoriaModel {
-    
-    @Id    
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private ObjectId id;
     private String nome;
@@ -28,17 +27,21 @@ public class CategoriaModel {
 
     public CategoriaModel(String nome) {
         this.nome = nome;
-    }      
-    
+    }
+
     //get e setter
     public String getId() {
         return id.toHexString();
     }
-    
+
+    public void setId(String id) {
+        this.id = new ObjectId(id);
+    }
+
     public ObjectId getObjectId() {
         return this.id;
     }
-    
+
     public String getNome() {
         return nome;
     }
@@ -50,5 +53,5 @@ public class CategoriaModel {
     public Date getDataCadatro() {
         return id.getDate();
     }
-    
+
 }
