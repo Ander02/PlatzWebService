@@ -13,8 +13,8 @@ import org.bson.types.ObjectId;
  * @author Anderson
  */
 @Entity
-@Table(name = "categoria")
-public class CategoriaModel {
+@Table(name = "assunto")
+public class AssuntoModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,14 +22,15 @@ public class CategoriaModel {
     private String nome;
 
     //Contrutores
-    public CategoriaModel() {
+    public AssuntoModel() {
     }
 
-    public CategoriaModel(String nome) {
+    public AssuntoModel(ObjectId id, String nome) {
+        this.id = id;
         this.nome = nome;
     }
 
-    //getters and setters
+    //getters and setter
     public String getId() {
         return id.toHexString();
     }

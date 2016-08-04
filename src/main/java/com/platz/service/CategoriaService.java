@@ -16,7 +16,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import org.bson.types.ObjectId;
 
 /**
  *
@@ -33,11 +32,11 @@ public class CategoriaService {
     @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(CategoriaCadastro categoria) {
 
-        // Instanciar Entity
+        // Instanciar model
         CategoriaModel model = new CategoriaModel();
 
         try {
-            // Settar o nome da entity baseado no nome da categoria passada
+            // Settar o nome da model baseado no nome da categoria passada
             model.setNome(categoria.getNome());
 
             // Cadastrar categoria
@@ -62,7 +61,7 @@ public class CategoriaService {
             //Lista com todas as CategoriaEntity cadastradas
             List<CategoriaModel> models = categoriaController.listarTodos();
 
-            //Lista de Categorias de Leitura baseado na lista de entidades
+            //Lista de Categorias de Leitura baseado na lista de models
             List<CategoriaLeitura> listaDeCategorias = new CategoriaLeitura().converterLista(models);
 
             //Retorna a lista com um Status Code OK
@@ -83,7 +82,7 @@ public class CategoriaService {
         //Busca uma entidade baseado pelo id
         CategoriaModel model = categoriaController.buscarPorId(id);
 
-        //Verifica se a entidade returnada não é nula
+        //Verifica se a entidade retornada não é nula
         if (model != null) {
 
             //Retorna um Status Code OK com a categoria de leitura
@@ -102,7 +101,7 @@ public class CategoriaService {
 
         try {
 
-            //Buscar Entitys pelo nome
+            //Buscar Models pelo nome
             List<CategoriaModel> models = categoriaController.buscarPeloNome(nome);
 
             //Lista de Categorias de Leitura baseado na lista de entidades
