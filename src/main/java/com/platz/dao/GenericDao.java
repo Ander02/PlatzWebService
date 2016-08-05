@@ -2,13 +2,13 @@ package com.platz.dao;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import org.bson.types.ObjectId;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
- 
 /**
  *
  * @author Anderson
@@ -45,11 +45,18 @@ public abstract class GenericDao<T> {
 
     public T buscarPorId(Class<T> entity, String id) {
 
-        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
-        T resultado = entityManager.find(entity, id);
-        entityManager.close();
+        try {
 
-        return resultado;
+            EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
+            T resultado = entityManager.find(entity, new ObjectId(id));
+            entityManager.close();
+
+            return resultado;
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            return null;
+        }
 
     }
 
