@@ -6,6 +6,7 @@ import com.platz.http.categoria.CategoriaEdicao;
 import com.platz.http.categoria.CategoriaLeitura;
 import com.platz.model.CategoriaModel;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -14,6 +15,8 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.container.AsyncResponse;
+import javax.ws.rs.container.Suspended;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -26,13 +29,22 @@ public class CategoriaService {
 
     private final CategoriaController categoriaController = new CategoriaController();
 
-    @POST
-    @Path("/categoria")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public Response cadastrar(CategoriaCadastro categoria) {
+    private final ExecutorService executorService = java.util.concurrent.Executors.newCachedThreadPool();
 
-        // Instanciar model
+    @POST
+    @Path(value = "/categoria")
+    @Consumes(value = MediaType.APPLICATION_JSON)
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public void cadastrar(@Suspended final AsyncResponse asyncResponse, final CategoriaCadastro categoria) {
+        executorService.submit(new Runnable() {
+            @Override
+            public void run() {
+                asyncResponse.resume(doCadastrar(categoria));
+            }
+        });
+    }
+
+    private Response doCadastrar(CategoriaCadastro categoria) {
         CategoriaModel model = new CategoriaModel();
 
         try {
@@ -42,7 +54,7 @@ public class CategoriaService {
             // Cadastrar categoria
             categoriaController.cadastrar(model);
 
-            // Retorna a resposta para o cliente com o Status Code CREATED e a Categoria de Leitura     
+            // Retorna a resposta para o cliente com o Status Code CREATED e a Categoria de Leitura
             return Response.status(Response.Status.CREATED).entity(new CategoriaLeitura(model)).build();
 
         } catch (Exception e) {
@@ -54,9 +66,18 @@ public class CategoriaService {
     }
 
     @GET
-    @Path("/categorias")
-    @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public Response listarTodos() {
+    @Path(value = "/categorias")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public void listarTodos(@Suspended final AsyncResponse asyncResponse) {
+        executorService.submit(new Runnable() {
+            @Override
+            public void run() {
+                asyncResponse.resume(doListarTodos());
+            }
+        });
+    }
+
+    private Response doListarTodos() {
         try {
             //Lista com todas as CategoriaEntity cadastradas
             List<CategoriaModel> models = categoriaController.listarTodos();
@@ -75,11 +96,18 @@ public class CategoriaService {
     }
 
     @GET
-    @Path("/categoria/{id}")
-    @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public Response buscarPeloId(@PathParam("id") String id) {
+    @Path(value = "/categoria/{id}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public void buscarPeloId(@Suspended final AsyncResponse asyncResponse, @PathParam(value = "id") final String id) {
+        executorService.submit(new Runnable() {
+            @Override
+            public void run() {
+                asyncResponse.resume(doBuscarPeloId(id));
+            }
+        });
+    }
 
-        //Busca uma entidade baseado pelo id
+    private Response doBuscarPeloId(@PathParam("id") String id) {
         CategoriaModel model = categoriaController.buscarPorId(id);
 
         //Verifica se a entidade retornada não é nula
@@ -90,15 +118,23 @@ public class CategoriaService {
 
         }
 
-        //Se a entity for nula retorna um Status Code Not Found 
+        //Se a entity for nula retorna um Status Code Not Found
         return Response.status(Response.Status.NOT_FOUND).entity("Categoria não encontrada").build();
     }
 
     @GET
-    @Path("/categorias/{nome}")
-    @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public Response buscarPeloNome(@PathParam("nome") String nome) {
+    @Path(value = "/categorias/{nome}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public void buscarPeloNome(@Suspended final AsyncResponse asyncResponse, @PathParam(value = "nome") final String nome) {
+        executorService.submit(new Runnable() {
+            @Override
+            public void run() {
+                asyncResponse.resume(doBuscarPeloNome(nome));
+            }
+        });
+    }
 
+    private Response doBuscarPeloNome(@PathParam("nome") String nome) {
         try {
 
             //Buscar Models pelo nome
@@ -118,11 +154,19 @@ public class CategoriaService {
     }
 
     @PUT
-    @Path("/categoria/{id}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public Response alterar(@PathParam("id") String id, CategoriaEdicao categoria) {
+    @Path(value = "/categoria/{id}")
+    @Consumes(value = MediaType.APPLICATION_JSON)
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public void alterar(@Suspended final AsyncResponse asyncResponse, @PathParam(value = "id") final String id, final CategoriaEdicao categoria) {
+        executorService.submit(new Runnable() {
+            @Override
+            public void run() {
+                asyncResponse.resume(doAlterar(id, categoria));
+            }
+        });
+    }
 
+    private Response doAlterar(@PathParam("id") String id, CategoriaEdicao categoria) {
         CategoriaModel model = new CategoriaModel();
 
         try {
@@ -144,10 +188,18 @@ public class CategoriaService {
     }
 
     @DELETE
-    @Path("/categoria/{id}")
-    @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public Response deletar(@PathParam("id") String id) {
+    @Path(value = "/categoria/{id}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public void deletar(@Suspended final AsyncResponse asyncResponse, @PathParam(value = "id") final String id) {
+        executorService.submit(new Runnable() {
+            @Override
+            public void run() {
+                asyncResponse.resume(doDeletar(id));
+            }
+        });
+    }
 
+    private Response doDeletar(@PathParam("id") String id) {
         try {
 
             CategoriaModel model = categoriaController.buscarPorId(id);
@@ -160,7 +212,6 @@ public class CategoriaService {
             System.out.println("Erro" + e.getMessage());
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar categoria").build();
         }
-
     }
 
 }
