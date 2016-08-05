@@ -34,6 +34,9 @@ public class CategoriaModel {
     public String getId() {
         return id.toHexString();
     }
+    public void setId(String id){
+        this.id = new ObjectId(id);
+    }
     
     public ObjectId getObjectId() {
         return this.id;
@@ -47,7 +50,7 @@ public class CategoriaModel {
         this.nome = nome;
     }
 
-    public Date getDataCadatro() {
+    public Date getDataCadatro() {        
         return id.getDate();
     }
     
