@@ -10,7 +10,6 @@ import javax.persistence.EntityManager;
  */
 public class CategoriaDao extends GenericDao<CategoriaModel> {
 
-    @SuppressWarnings("unchecked")
     public List<CategoriaModel> buscarPeloNome(String nome) {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
         List<CategoriaModel> lista = entityManager.createQuery("from CategoriaModel where nome like :nome")

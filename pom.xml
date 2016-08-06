@@ -79,6 +79,13 @@
             <artifactId>hibernate-ogm-mongodb</artifactId>
         </dependency>
         
+        <!--Hibernate Validator-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>5.2.4.Final</version>
+        </dependency>
+        
         <!--Java EE Web API -->
         <dependency>
             <groupId>javax</groupId>

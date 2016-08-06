@@ -6,13 +6,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import org.bson.types.ObjectId;
+import org.hibernate.validator.constraints.Length;
 
 /**
  *
  * @author Anderson
  */
-
 @Entity
 @Table(name = "categoria")
 public class CategoriaModel {
@@ -20,6 +21,9 @@ public class CategoriaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private ObjectId id;
+
+    @Length(max = 30, message = "O nome deve ter no máximo 30 caracteres")
+    @NotNull(message = "O nome não pode ser nulo")
     private String nome;
 
     //Contrutores
@@ -35,7 +39,7 @@ public class CategoriaModel {
         return id.toHexString();
     }
 
-    public void setId(String id){
+    public void setId(String id) {
         this.id = new ObjectId(id);
     }
 
@@ -51,7 +55,7 @@ public class CategoriaModel {
         this.nome = nome;
     }
 
-    public Date getDataCadatro() {        
+    public Date getDataCadatro() {
         return id.getDate();
     }
 
