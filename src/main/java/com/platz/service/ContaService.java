@@ -1,0 +1,49 @@
+package com.platz.service;
+
+import com.platz.controller.ContaController;
+import com.platz.http.conta.ContaCadastro;
+import com.platz.http.conta.ContaLeitura;
+import com.platz.model.ContaModel;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+/**
+ *
+ * @author Anderson
+ */
+@Path("")
+public class ContaService {
+
+    private final ContaController contaController = new ContaController();
+
+    @POST
+    @Path(value = "/conta")
+    @Consumes(value = MediaType.APPLICATION_JSON)
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response cadastrar(ContaCadastro conta) {
+        //Instanciar uma nova model
+        ContaModel model = new ContaModel();
+
+        try {
+            //Settar informações na model baseado na Conta de Cadastro passada
+            model.setEmail(conta.getEmail());
+            model.setSenha(conta.getSenha());
+
+            contaController.cadastrar(model);
+
+            // Retorna a resposta para o cliente com o Status Code CREATED e a Conta de Leitura
+            return Response.status(Response.Status.CREATED).entity(new ContaLeitura(model)).build();
+
+        } catch (Exception e) {
+
+            // Envia erro pelo console
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao cadastrar categoria").build();
+        }
+    }
+}

@@ -36,16 +36,14 @@ public class ContaController {
         model.setAtivo(!model.getAtivo());
         contaDao.alterar(model);
     }
-    
-    public void bloquear(ContaModel model){
+
+    public void bloquear(ContaModel model) {
         model.setBloqueado(true);
         contaDao.alterar(model);
     }
-    
-    public void alterar(ContaModel model){
+
+    public void alterar(ContaModel model) {
         contaDao.alterar(model);
     }
-    
-    
 
 }
