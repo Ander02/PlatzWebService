@@ -6,7 +6,6 @@ import com.platz.http.categoria.CategoriaEdicao;
 import com.platz.http.categoria.CategoriaLeitura;
 import com.platz.model.CategoriaModel;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -15,8 +14,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.container.AsyncResponse;
-import javax.ws.rs.container.Suspended;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -29,22 +26,11 @@ public class CategoriaService {
 
     private final CategoriaController categoriaController = new CategoriaController();
 
-    private final ExecutorService executorService = java.util.concurrent.Executors.newCachedThreadPool();
-
     @POST
     @Path(value = "/categoria")
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public void cadastrar(@Suspended final AsyncResponse asyncResponse, final CategoriaCadastro categoria) {
-        executorService.submit(new Runnable() {
-            @Override
-            public void run() {
-                asyncResponse.resume(doCadastrar(categoria));
-            }
-        });
-    }
-
-    private Response doCadastrar(CategoriaCadastro categoria) {
+    public Response cadastrar(CategoriaCadastro categoria) {
         CategoriaModel model = new CategoriaModel();
 
         try {
@@ -68,16 +54,7 @@ public class CategoriaService {
     @GET
     @Path(value = "/categorias")
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public void listarTodos(@Suspended final AsyncResponse asyncResponse) {
-        executorService.submit(new Runnable() {
-            @Override
-            public void run() {
-                asyncResponse.resume(doListarTodos());
-            }
-        });
-    }
-
-    private Response doListarTodos() {
+    public Response listarTodos() {
         try {
             //Lista com todas as CategoriaModels cadastradas
             List<CategoriaModel> models = categoriaController.listarTodos();
@@ -98,16 +75,7 @@ public class CategoriaService {
     @GET
     @Path(value = "/categoria/{id}")
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public void buscarPeloId(@Suspended final AsyncResponse asyncResponse, @PathParam(value = "id") final String id) {
-        executorService.submit(new Runnable() {
-            @Override
-            public void run() {
-                asyncResponse.resume(doBuscarPeloId(id));
-            }
-        });
-    }
-
-    private Response doBuscarPeloId(@PathParam("id") String id) {
+    public Response buscarPeloId(@PathParam("id") String id) {
         CategoriaModel model = categoriaController.buscarPorId(id);
 
         //Verifica se a entidade retornada não é nula
@@ -125,16 +93,7 @@ public class CategoriaService {
     @GET
     @Path(value = "/categorias/{nome}")
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public void buscarPeloNome(@Suspended final AsyncResponse asyncResponse, @PathParam(value = "nome") final String nome) {
-        executorService.submit(new Runnable() {
-            @Override
-            public void run() {
-                asyncResponse.resume(doBuscarPeloNome(nome));
-            }
-        });
-    }
-
-    private Response doBuscarPeloNome(@PathParam("nome") String nome) {
+    public Response buscarPeloNome(@PathParam("nome") String nome) {
         try {
 
             //Buscar Models pelo nome
@@ -157,16 +116,7 @@ public class CategoriaService {
     @Path(value = "/categoria/{id}")
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public void alterar(@Suspended final AsyncResponse asyncResponse, @PathParam(value = "id") final String id, final CategoriaEdicao categoria) {
-        executorService.submit(new Runnable() {
-            @Override
-            public void run() {
-                asyncResponse.resume(doAlterar(id, categoria));
-            }
-        });
-    }
-
-    private Response doAlterar(@PathParam("id") String id, CategoriaEdicao categoria) {
+    public Response alterar(@PathParam("id") String id, CategoriaEdicao categoria) {
         CategoriaModel model = new CategoriaModel();
 
         try {
@@ -190,16 +140,7 @@ public class CategoriaService {
     @DELETE
     @Path(value = "/categoria/{id}")
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public void deletar(@Suspended final AsyncResponse asyncResponse, @PathParam(value = "id") final String id) {
-        executorService.submit(new Runnable() {
-            @Override
-            public void run() {
-                asyncResponse.resume(doDeletar(id));
-            }
-        });
-    }
-
-    private Response doDeletar(@PathParam("id") String id) {
+    public Response deletar(@PathParam("id") String id) {
         try {
 
             CategoriaModel model = categoriaController.buscarPorId(id);
