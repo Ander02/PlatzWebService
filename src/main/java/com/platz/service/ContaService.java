@@ -4,7 +4,9 @@ import com.platz.controller.ContaController;
 import com.platz.http.conta.ContaCadastro;
 import com.platz.http.conta.ContaLeitura;
 import com.platz.model.ContaModel;
+import java.util.List;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -46,4 +48,26 @@ public class ContaService {
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao cadastrar categoria").build();
         }
     }
+
+    @GET
+    @Path(value = "/contas")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response listarTodos() {
+
+        try {
+            //Lista com todas as ContasaModels cadastradas
+            List<ContaModel> models = contaController.listarTodos();
+            //Converter a lista de models para uma lista de leitura
+            List<ContaLeitura> listaDeContas = new ContaLeitura().converterLista(models);
+            //Retorna a lista com um Status Code OK
+            return Response.ok(listaDeContas).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar contas").build();
+        }
+
+    }
+
 }

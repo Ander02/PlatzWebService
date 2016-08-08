@@ -79,7 +79,7 @@ public class CategoriaService {
 
     private Response doListarTodos() {
         try {
-            //Lista com todas as CategoriaEntity cadastradas
+            //Lista com todas as CategoriaModels cadastradas
             List<CategoriaModel> models = categoriaController.listarTodos();
 
             //Lista de Categorias de Leitura baseado na lista de models

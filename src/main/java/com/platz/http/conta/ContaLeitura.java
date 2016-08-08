@@ -1,7 +1,11 @@
 package com.platz.http.conta;
 
+import com.platz.http.categoria.CategoriaLeitura;
+import com.platz.model.CategoriaModel;
 import com.platz.model.ContaModel;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -40,7 +44,20 @@ public class ContaLeitura {
         this.dataCadastro = model.getDataCadatro();
 
     }
-    
+
+    //Métodos
+    public List<ContaLeitura> converterLista(List<ContaModel> modelList) {
+
+        List<ContaLeitura> lista = new ArrayList<>();
+
+        for (ContaModel model : modelList) {
+
+            ContaLeitura conta = new ContaLeitura(model);
+            lista.add(conta);
+        }
+        return lista;
+    }
+
     //Getters and Setters
     public String getId() {
         return id;
@@ -89,6 +106,5 @@ public class ContaLeitura {
     public void setDataCadastro(Date dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
-    
 
 }
