@@ -2,7 +2,6 @@ package com.platz.http.categoria;
 
 import com.platz.model.CategoriaModel;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -15,7 +14,7 @@ public class CategoriaLeitura {
 
     private String id;
     private String nome;
-    private Date dataCadastro;
+    private String dataCadastro;
 
     //Construtores
     public CategoriaLeitura() {
@@ -58,11 +57,11 @@ public class CategoriaLeitura {
         this.nome = nome;
     }
 
-    public Date getDataCadastro() {
+    public String getDataCadastro() {
         return dataCadastro;
     }
 
-    public void setDataCadastro(Date dataCadastro) {
+    public void setDataCadastro(String dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
 

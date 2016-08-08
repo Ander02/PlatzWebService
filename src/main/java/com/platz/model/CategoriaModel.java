@@ -1,5 +1,6 @@
 package com.platz.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,6 +29,7 @@ public class CategoriaModel {
 
     //Contrutores
     public CategoriaModel() {
+        //id = new ObjectId(new Date());
     }
 
     public CategoriaModel(String nome) {
@@ -55,8 +57,10 @@ public class CategoriaModel {
         this.nome = nome;
     }
 
-    public Date getDataCadatro() {
-        return id.getDate();
+    public String getDataCadatro() {
+        Date date = id.getDate();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        return dateFormat.format(date);        
     }
 
 }
