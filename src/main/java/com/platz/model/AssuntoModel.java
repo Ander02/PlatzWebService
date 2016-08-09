@@ -1,5 +1,6 @@
 package com.platz.model;
 
+import com.platz.util.Util;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -56,8 +57,8 @@ public class AssuntoModel {
         this.nome = nome;
     }
 
-    public Date getDataCadatro() {
-        return id.getDate();
+    public String getDataCadatro() {
+        return new Util().converterData(id);
     }
 
 }

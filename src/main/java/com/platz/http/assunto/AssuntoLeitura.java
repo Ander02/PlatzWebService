@@ -15,13 +15,13 @@ public class AssuntoLeitura {
 
     private String id;
     private String nome;
-    private Date dataCadastro;
+    private String dataCadastro;
 
     //Construtores
     public AssuntoLeitura() {
     }
 
-    public AssuntoLeitura(String id, String nome, Date dataCadastro) {
+    public AssuntoLeitura(String id, String nome, String dataCadastro) {
         this.id = id;
         this.nome = nome;
         this.dataCadastro = dataCadastro;
@@ -63,11 +63,11 @@ public class AssuntoLeitura {
         this.nome = nome;
     }
 
-    public Date getDataCadastro() {
+    public String getDataCadastro() {
         return dataCadastro;
     }
 
-    public void setDataCadastro(Date dataCadastro) {
+    public void setDataCadastro(String dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
 

@@ -20,13 +20,13 @@ public class ContaLeitura {
     private Boolean ativo;
     private Boolean bloqueado;
     private Date ultimoAcesso;
-    private Date dataCadastro;
+    private String dataCadastro;
 
     //Construtores
     public ContaLeitura() {
     }
 
-    public ContaLeitura(String id, String email, Boolean ativo, Boolean bloqueado, Date ultimoAcesso, Date dataCadastro) {
+    public ContaLeitura(String id, String email, Boolean ativo, Boolean bloqueado, Date ultimoAcesso, String dataCadastro) {
         this.id = id;
         this.email = email;
         this.ativo = ativo;
@@ -99,11 +99,11 @@ public class ContaLeitura {
         this.ultimoAcesso = ultimoAcesso;
     }
 
-    public Date getDataCadastro() {
+    public String getDataCadastro() {
         return dataCadastro;
     }
 
-    public void setDataCadastro(Date dataCadastro) {
+    public void setDataCadastro(String dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
 
