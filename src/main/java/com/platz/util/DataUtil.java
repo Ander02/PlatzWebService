@@ -8,10 +8,9 @@ import org.bson.types.ObjectId;
  *
  * @author Anderson
  */
-public class Util {
+public class DataUtil {
 
-    public String converterData(ObjectId id) {
-        Date date = id.getDate();
+    public String converterData(Date date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         return dateFormat.format(date);
     }

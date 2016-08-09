@@ -1,6 +1,6 @@
 package com.platz.model;
 
-import com.platz.util.Util;
+import com.platz.util.DataUtil;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -58,7 +58,7 @@ public class CategoriaModel {
     }
 
     public String getDataCadatro() {
-        return new Util().converterData(id);
+        return new DataUtil().converterData(id.getDate());
     }
 
 }
