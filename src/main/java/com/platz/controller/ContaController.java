@@ -32,7 +32,7 @@ public class ContaController {
         return contaDao.buscarPelaAtividade(atividade);
     }
 
-    public void inverterAtividade(ContaModel model) {
+   /* public void inverterAtividade(ContaModel model) {
         model.setAtivo(!model.getAtivo());
         contaDao.alterar(model);
     }
@@ -41,7 +41,7 @@ public class ContaController {
         model.setBloqueado(true);
         contaDao.alterar(model);
     }
-
+*/
     public void alterar(ContaModel model) {
         contaDao.alterar(model);
     }

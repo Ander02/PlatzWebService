@@ -32,23 +32,15 @@ public class ContaModel {
     @NotNull(message = "A senha não pode ser nula")
     private String senha;
 
-    private Boolean ativo = true;
-    private Boolean bloqueado = false;
-
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date inativo;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date bloqueado;
     @Temporal(TemporalType.TIMESTAMP)
     private Date ultimoAcesso;
 
     //Construtores
     public ContaModel() {
-    }
-
-    public ContaModel(ObjectId id, String email, String senha, Boolean ativo, Boolean bloqueado, Date ultimoAcesso) {
-        this.id = id;
-        this.email = email;
-        this.senha = senha;
-        this.ativo = ativo;
-        this.bloqueado = bloqueado;
-        this.ultimoAcesso = ultimoAcesso;
     }
 
     //Getters and setters
@@ -80,22 +72,6 @@ public class ContaModel {
         this.senha = senha;
     }
 
-    public Boolean getAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(Boolean ativo) {
-        this.ativo = ativo;
-    }
-
-    public Boolean getBloqueado() {
-        return bloqueado;
-    }
-
-    public void setBloqueado(Boolean bloqueado) {
-        this.bloqueado = bloqueado;
-    }
-
     public Date getUltimoAcesso() {
         return ultimoAcesso;
     }
@@ -106,6 +82,22 @@ public class ContaModel {
 
     public String getDataCadatro() {
         return new DataUtil().converterData(id.getDate());
+    }
+
+    public Date getInativo() {
+        return inativo;
+    }
+
+    public void setInativo(Date inativo) {
+        this.inativo = inativo;
+    }
+
+    public Date getBloqueado() {
+        return bloqueado;
+    }
+
+    public void setBloqueado(Date bloqueado) {
+        this.bloqueado = bloqueado;
     }
 
 }
