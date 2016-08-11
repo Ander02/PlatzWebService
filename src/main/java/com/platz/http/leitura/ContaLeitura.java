@@ -37,9 +37,7 @@ public class ContaLeitura {
 
     public ContaLeitura(ContaModel model) {
         this.id = model.getId();
-        this.email = model.getEmail();
-        this.ativo = model.getAtivo();
-        this.bloqueado = model.getBloqueado();
+        this.email = model.getEmail();        
         this.ultimoAcesso = model.getUltimoAcesso();
         this.dataCadastro = model.getDataCadatro();
 

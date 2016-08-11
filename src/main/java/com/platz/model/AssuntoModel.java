@@ -1,11 +1,14 @@
 package com.platz.model;
 
 import com.platz.util.DataUtil;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import org.bson.types.ObjectId;
 import org.hibernate.validator.constraints.Length;
@@ -25,6 +28,9 @@ public class AssuntoModel {
     @Length(max = 30, message = "O nome deve ter no máximo 30 caracteres")
     @NotNull(message = "O nome não pode ser nulo")
     private String nome;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date deletado;
 
     //Contrutores
     public AssuntoModel() {
@@ -58,6 +64,14 @@ public class AssuntoModel {
 
     public String getDataCadatro() {
         return new DataUtil().converterData(id.getDate());
+    }
+    
+    public Date getDeletado() {
+        return deletado;
+    }
+
+     public void setDeletado(Date deletado) {
+        this.deletado = deletado;
     }
 
 }
