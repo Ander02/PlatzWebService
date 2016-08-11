@@ -1,4 +1,4 @@
-package com.platz.http.assunto;
+package com.platz.http.cadastro;
 
 import com.platz.model.AssuntoModel;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -8,19 +8,19 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Anderson
  */
 @XmlRootElement
-public class AssuntoEdicao {
+public class AssuntoCadastro {
 
     private String nome;
 
     //Construtores
-    public AssuntoEdicao() {
+    public AssuntoCadastro() {
     }
 
-    public AssuntoEdicao(String nome) {
+    public AssuntoCadastro(String nome) {
         this.nome = nome;
     }
 
-    public AssuntoEdicao(AssuntoModel model) {
+    public AssuntoCadastro(AssuntoModel model) {
         this.nome = model.getNome();
     }
 

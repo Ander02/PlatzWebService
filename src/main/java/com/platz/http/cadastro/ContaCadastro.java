@@ -1,4 +1,4 @@
-package com.platz.http.conta;
+package com.platz.http.cadastro;
 
 import com.platz.model.ContaModel;
 import javax.xml.bind.annotation.XmlRootElement;

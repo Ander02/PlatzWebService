@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.platz.http.categoria;
+package com.platz.http.cadastro;
 
+import com.platz.http.leitura.CategoriaLeitura;
 import com.platz.model.CategoriaModel;
 import javax.xml.bind.annotation.XmlRootElement;
 

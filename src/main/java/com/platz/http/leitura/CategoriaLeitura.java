@@ -1,8 +1,7 @@
-package com.platz.http.assunto;
+package com.platz.http.leitura;
 
-import com.platz.model.AssuntoModel;
+import com.platz.model.CategoriaModel;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -11,42 +10,37 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Anderson
  */
 @XmlRootElement
-public class AssuntoLeitura {
+public class CategoriaLeitura {
 
     private String id;
     private String nome;
     private String dataCadastro;
 
     //Construtores
-    public AssuntoLeitura() {
+    public CategoriaLeitura() {
+
     }
 
-    public AssuntoLeitura(String id, String nome, String dataCadastro) {
-        this.id = id;
-        this.nome = nome;
-        this.dataCadastro = dataCadastro;
-    }
-
-    public AssuntoLeitura(AssuntoModel model) {
+    public CategoriaLeitura(CategoriaModel model) {
         this.id = model.getId();
         this.nome = model.getNome();
         this.dataCadastro = model.getDataCadatro();
     }
 
     //Métodos
-    public List<AssuntoLeitura> converterLista(List<AssuntoModel> modelList) {
+    public List<CategoriaLeitura> converterLista(List<CategoriaModel> modelList) {
 
-        List<AssuntoLeitura> lista = new ArrayList<>();
+        List<CategoriaLeitura> lista = new ArrayList<>();
 
-        for (AssuntoModel model : modelList) {
+        for (CategoriaModel model : modelList) {
 
-            AssuntoLeitura categoria = new AssuntoLeitura(model);
+            CategoriaLeitura categoria = new CategoriaLeitura(model);
             lista.add(categoria);
         }
         return lista;
     }
 
-    //Getters and setters
+    //Getters and Setters
     public String getId() {
         return id;
     }
