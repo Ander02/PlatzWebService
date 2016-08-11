@@ -2,6 +2,7 @@ package com.platz.controller;
 
 import com.platz.dao.CategoriaDao;
 import com.platz.model.CategoriaModel;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,7 +34,9 @@ public class CategoriaController {
     }
 
     public void excluir(CategoriaModel model) {
-        categoriaDao.excluir(model);
+        model.setDeletado(new Date());
+        categoriaDao.alterar(model);
     }
+    
 
 }

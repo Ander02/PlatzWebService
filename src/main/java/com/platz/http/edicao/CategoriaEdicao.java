@@ -6,6 +6,7 @@
 package com.platz.http.edicao;
 
 import com.platz.model.CategoriaModel;
+import java.util.Date;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -16,17 +17,25 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class CategoriaEdicao {
 
     private String nome;
+    private String caminhoIcone;
+    private Date deletado;
 
     //Construtores
     public CategoriaEdicao() {
     }
 
-    public CategoriaEdicao(String nome) {
+    public CategoriaEdicao(String nome, String caminhoIcone, Date deletado) {
         this.nome = nome;
+        this.caminhoIcone = caminhoIcone;
+        this.deletado = deletado;
     }
 
     public CategoriaEdicao(CategoriaModel model) {
         this.nome = model.getNome();
+        this.caminhoIcone = model.getCaminhoIcone();
+        if (model.getDeletado() != null) {
+            this.deletado = model.getDeletado();
+        }
     }
 
     //Getters and Setters
@@ -38,4 +47,22 @@ public class CategoriaEdicao {
         this.nome = nome;
     }
 
+    public String getCaminhoIcone() {
+        return caminhoIcone;
+    }
+
+    public void setCaminhoIcone(String caminhoIcone) {
+        this.caminhoIcone = caminhoIcone;
+    }
+
+    public Date getDeletado() {
+        return deletado;
+    }
+
+    public void setDeletado(Date deletado) {
+        this.deletado = deletado;
+    }
+
+    
+    
 }

@@ -47,7 +47,7 @@ public class CategoriaModel {
         this.caminhoIcone = caminhoIcone;
         this.deletado = deletado;
     }
-    
+     
     //getters and setters
     public String getId() {
         return id.toHexString();

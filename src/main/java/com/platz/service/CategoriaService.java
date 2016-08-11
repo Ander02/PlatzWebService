@@ -125,10 +125,12 @@ public class CategoriaService {
 
         try {
 
-            //Settar informações na entity
+            //Settar informações na model
             model.setId(id);
             model.setNome(categoria.getNome());
+            model.setCaminhoIcone(categoria.getCaminhoIcone());
 
+            
             //Alterar registro
             categoriaController.alterar(model);
 
