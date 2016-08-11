@@ -1,6 +1,7 @@
 package com.platz.http.leitura;
 
 import com.platz.model.AssuntoModel;
+import com.platz.util.DataUtil;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -15,6 +16,7 @@ public class AssuntoLeitura {
     private String id;
     private String nome;
     private String dataCadastro;
+    private String deletado;
 
     //Construtores
     public AssuntoLeitura() {
@@ -30,6 +32,9 @@ public class AssuntoLeitura {
         this.id = model.getId();
         this.nome = model.getNome();
         this.dataCadastro = model.getDataCadatro();
+        if (model.getDeletado() != null) {
+            this.deletado = new DataUtil().converterData(model.getDeletado());
+        }
     }
 
     //Métodos
@@ -39,8 +44,8 @@ public class AssuntoLeitura {
 
         for (AssuntoModel model : modelList) {
 
-            AssuntoLeitura categoria = new AssuntoLeitura(model);
-            lista.add(categoria);
+            AssuntoLeitura assunto = new AssuntoLeitura(model);
+            lista.add(assunto);
         }
         return lista;
     }
@@ -68,6 +73,14 @@ public class AssuntoLeitura {
 
     public void setDataCadastro(String dataCadastro) {
         this.dataCadastro = dataCadastro;
+    }
+
+    public String getDeletado() {
+        return deletado;
+    }
+
+    public void setDeletado(String deletado) {
+        this.deletado = deletado;
     }
 
 }

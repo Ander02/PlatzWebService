@@ -1,4 +1,4 @@
-package com.platz.model;
+ package com.platz.model;
 
 import com.platz.util.DataUtil;
 import java.util.Date;
@@ -30,7 +30,7 @@ public class AssuntoModel {
     private String nome;
     
     @Temporal(TemporalType.TIMESTAMP)
-    private Date deletado;
+    private Date deletado; 
 
     //Contrutores
     public AssuntoModel() {

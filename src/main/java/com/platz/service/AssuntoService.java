@@ -124,7 +124,7 @@ public class AssuntoService {
             //Settar informações na model
             model.setId(id);
             model.setNome(assunto.getNome());
-
+            
             //Alterar registro
             assuntoController.alterar(model);
 

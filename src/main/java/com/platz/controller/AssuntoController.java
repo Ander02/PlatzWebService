@@ -2,6 +2,7 @@ package com.platz.controller;
 
 import com.platz.dao.AssuntoDao;
 import com.platz.model.AssuntoModel;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,7 +34,8 @@ public class AssuntoController {
     }
 
     public void excluir(AssuntoModel model) {
-        assuntoDao.excluir(model);
+        model.setDeletado(new Date());
+        assuntoDao.alterar(model);
     }
 
 }
