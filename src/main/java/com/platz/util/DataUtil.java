@@ -2,7 +2,6 @@ package com.platz.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import org.bson.types.ObjectId;
 
 /**
  *
