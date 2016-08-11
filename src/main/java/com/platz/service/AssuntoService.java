@@ -1,9 +1,9 @@
 package com.platz.service;
 
 import com.platz.controller.AssuntoController;
-import com.platz.http.assunto.AssuntoCadastro;
-import com.platz.http.assunto.AssuntoEdicao;
-import com.platz.http.assunto.AssuntoLeitura;
+import com.platz.http.cadastro.AssuntoCadastro;
+import com.platz.http.edicao.AssuntoEdicao;
+import com.platz.http.leitura.AssuntoLeitura;
 import com.platz.model.AssuntoModel;
 import java.util.List;
 import javax.ws.rs.Consumes;

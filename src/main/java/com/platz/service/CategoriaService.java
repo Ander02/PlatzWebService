@@ -1,9 +1,9 @@
 package com.platz.service;
 
 import com.platz.controller.CategoriaController;
-import com.platz.http.categoria.CategoriaCadastro;
-import com.platz.http.categoria.CategoriaEdicao;
-import com.platz.http.categoria.CategoriaLeitura;
+import com.platz.http.cadastro.CategoriaCadastro;
+import com.platz.http.edicao.CategoriaEdicao;
+import com.platz.http.leitura.CategoriaLeitura;
 import com.platz.model.CategoriaModel;
 import java.util.List;
 import javax.ws.rs.Consumes;
@@ -18,7 +18,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
- *
+ * 
  * @author Anderson
  */
 @Path("")

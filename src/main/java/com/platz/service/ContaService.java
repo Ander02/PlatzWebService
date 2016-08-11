@@ -1,8 +1,8 @@
 package com.platz.service;
 
 import com.platz.controller.ContaController;
-import com.platz.http.conta.ContaCadastro;
-import com.platz.http.conta.ContaLeitura;
+import com.platz.http.cadastro.ContaCadastro;
+import com.platz.http.leitura.ContaLeitura;
 import com.platz.model.ContaModel;
 import java.util.List;
 import javax.ws.rs.Consumes;
