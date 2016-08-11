@@ -1,5 +1,6 @@
 package com.platz.model;
 
+import com.platz.http.cadastro.CategoriaCadastro;
 import com.platz.util.DataUtil;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -40,10 +41,13 @@ public class CategoriaModel {
     public CategoriaModel() {
     }
 
-    public CategoriaModel(String nome) {
+    public CategoriaModel(ObjectId id, String nome, String caminhoIcone, Date deletado) {
+        this.id = id;
         this.nome = nome;
+        this.caminhoIcone = caminhoIcone;
+        this.deletado = deletado;
     }
-
+    
     //getters and setters
     public String getId() {
         return id.toHexString();

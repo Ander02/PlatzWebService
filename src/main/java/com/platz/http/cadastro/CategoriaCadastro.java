@@ -6,7 +6,6 @@
 package com.platz.http.cadastro;
 
 import com.platz.http.leitura.CategoriaLeitura;
-import com.platz.model.CategoriaModel;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -17,22 +16,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class CategoriaCadastro {
 
     private String nome;
+    private String caminhoIcone;
 
     //Construtores
     public CategoriaCadastro() {
     }
 
-    public CategoriaCadastro(String nome) {
-        this.nome = nome;
-    }
-
-    public CategoriaCadastro(CategoriaModel model) {
-        this.nome = model.getNome();
-    }
-    
     public CategoriaCadastro(CategoriaLeitura categoria) {
-
         this.nome = categoria.getNome();
+        this.caminhoIcone = categoria.getCaminhoIcone();
 
     }
 
@@ -44,5 +36,15 @@ public class CategoriaCadastro {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public String getCaminhoIcone() {
+        return caminhoIcone;
+    }
+
+    public void setCaminhoIcone(String caminhoIcone) {
+        this.caminhoIcone = caminhoIcone;
+    }
+    
+    
 
 }

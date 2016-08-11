@@ -1,7 +1,5 @@
 package com.platz.http.leitura;
 
-import com.platz.http.leitura.CategoriaLeitura;
-import com.platz.model.CategoriaModel;
 import com.platz.model.ContaModel;
 import java.util.ArrayList;
 import java.util.Date;

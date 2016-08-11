@@ -34,8 +34,11 @@ public class CategoriaService {
         CategoriaModel model = new CategoriaModel();
 
         try {
-            // Settar o nome da model baseado no nome da categoria passada
+            // Settar o nome na model baseado no nome da categoria passada
             model.setNome(categoria.getNome());
+            
+            /*Fazer o upload e retornar o nome para em seguida dar o setCarminhoIcone*/
+            model.setCaminhoIcone(categoria.getCaminhoIcone());
 
             // Cadastrar categoria
             categoriaController.cadastrar(model);
@@ -55,7 +58,7 @@ public class CategoriaService {
     @Path(value = "/categorias")
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
-        try {
+        //try {
             //Lista com todas as CategoriaModels cadastradas
             List<CategoriaModel> models = categoriaController.listarTodos();
 
@@ -65,11 +68,12 @@ public class CategoriaService {
             //Retorna a lista com um Status Code OK
             return Response.ok(listaDeCategorias).build();
 
-        } catch (Exception e) {
-            System.out.println("Erro: " + e.getMessage());
-            //Retorna uma BadRequest ao usuário
-            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar categorias").build();
-        }
+//        } catch (Exception e) {
+//            System.out.println("Erro: " + e.getMessage());
+//
+//            //Retorna uma BadRequest ao usuário
+//            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar categorias").build();
+//        }
     }
 
     @GET
