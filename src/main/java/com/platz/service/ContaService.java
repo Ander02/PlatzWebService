@@ -34,6 +34,7 @@ public class ContaService {
             //Settar informações na model baseado na Conta de Cadastro passada
             model.setEmail(conta.getEmail());
             model.setSenha(conta.getSenha());
+            model.setPerfil(conta.getPerfil());
 
             contaController.cadastrar(model);
 
@@ -45,7 +46,7 @@ public class ContaService {
             // Envia erro pelo console
             System.out.println("Erro: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
-            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao cadastrar categoria").build();
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao cadastrar conta").build();
         }
     }
 

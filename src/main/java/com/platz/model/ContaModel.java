@@ -117,9 +117,21 @@ public class ContaModel {
         return perfil;
     }
 
-    public void setPerfil(Perfil perfil) {
-        this.perfil = perfil;
-    }
+    public void setPerfil(int perfil) {
+        switch (perfil) {
+            case 0:
+                this.perfil = Perfil.ADMINISTRADOR;
+                break;
+            case 1:
+                this.perfil = Perfil.EMPRESA;
+                break;
+            case 2:
+                this.perfil = Perfil.USUARIO;
+                break;
+            default:
+                this.perfil = Perfil.USUARIO;
+                break;
+        }    }
 
     public void setId(ObjectId id) {
         this.id = id;

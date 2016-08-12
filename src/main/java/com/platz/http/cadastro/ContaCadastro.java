@@ -1,5 +1,6 @@
 package com.platz.http.cadastro;
 
+import com.platz.model.Perfil;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -11,7 +12,8 @@ public class ContaCadastro {
 
     private String email;
     private String senha;
-    
+    private int perfil;
+
     //Construtores
     public ContaCadastro() {
     }
@@ -38,4 +40,14 @@ public class ContaCadastro {
         this.senha = senha;
     }
 
+    public int getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(int perfil) {
+        this.perfil = perfil;
+    }
+
+ 
+ 
 }
