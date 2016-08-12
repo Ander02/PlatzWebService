@@ -26,7 +26,7 @@ public class AssuntoModel {
     private ObjectId id;
     
     @Length(max = 30, message = "O nome deve ter no máximo 30 caracteres")
-    @NotNull(message = "O nome não pode ser nulo")
+  //  @NotNull(message = "O nome não pode ser nulo")
     private String nome;
     
     @Temporal(TemporalType.TIMESTAMP)

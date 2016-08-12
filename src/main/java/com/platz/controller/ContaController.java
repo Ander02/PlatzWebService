@@ -2,6 +2,7 @@ package com.platz.controller;
 
 import com.platz.dao.ContaDao;
 import com.platz.model.ContaModel;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,24 +25,28 @@ public class ContaController {
         return contaDao.buscarPorId(ContaModel.class, id);
     }
 
-    public List<ContaModel> buscarPeloEmail(String email) {
+    public ContaModel buscarPeloEmail(String email) {
         return contaDao.buscarPeloEmail(email);
     }
 
-    public List<ContaModel> buscarPelaAtividade(Boolean atividade) {
-        return contaDao.buscarPelaAtividade(atividade);
-    }
+    public void inverterAtividade(ContaModel model) {
 
-   /* public void inverterAtividade(ContaModel model) {
-        model.setAtivo(!model.getAtivo());
+        if (model.getInativo() == null) {
+            model.setInativo(new Date());
+        } else {
+            model.setInativo(null);
+        }
         contaDao.alterar(model);
     }
 
-    public void bloquear(ContaModel model) {
-        model.setBloqueado(true);
-        contaDao.alterar(model);
+    public List<ContaModel> buscarAtivos() {
+        return contaDao.buscarAtivos();
     }
-*/
+
+    public List<ContaModel> buscarInativos() {
+        return contaDao.buscarInativos();
+    }
+
     public void alterar(ContaModel model) {
         contaDao.alterar(model);
     }

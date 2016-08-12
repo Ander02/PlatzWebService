@@ -32,10 +32,14 @@ public class ContaModel {
     @NotNull(message = "A senha não pode ser nula")
     private String senha;
 
+    private Perfil perfil = Perfil.ADMINISTRADOR;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date inativo;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date bloqueado;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date ultimoAcesso;
 
@@ -49,7 +53,7 @@ public class ContaModel {
     }
 
     public void setId(String id) {
-        this.id = new ObjectId(id);
+        this.setId(new ObjectId(id));
     }
 
     public ObjectId getObjectId() {
@@ -72,8 +76,11 @@ public class ContaModel {
         this.senha = senha;
     }
 
-    public Date getUltimoAcesso() {
-        return ultimoAcesso;
+    public String getUltimoAcesso() {
+        if (this.ultimoAcesso != null) {
+            return new DataUtil().converterData(this.ultimoAcesso);
+        }
+        return null;
     }
 
     public void setUltimoAcesso(Date ultimoAcesso) {
@@ -84,20 +91,38 @@ public class ContaModel {
         return new DataUtil().converterData(id.getDate());
     }
 
-    public Date getInativo() {
-        return inativo;
+    public String getInativo() {
+        if (this.inativo != null) {
+            return new DataUtil().converterData(this.inativo);
+        }
+        return null;
     }
 
     public void setInativo(Date inativo) {
         this.inativo = inativo;
     }
 
-    public Date getBloqueado() {
-        return bloqueado;
+    public String getBloqueado() {
+        if (this.bloqueado != null) {
+            return new DataUtil().converterData(this.bloqueado);
+        }
+        return null;
     }
 
     public void setBloqueado(Date bloqueado) {
         this.bloqueado = bloqueado;
+    }
+
+    public Perfil getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 
 }

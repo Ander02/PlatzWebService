@@ -1,6 +1,5 @@
 package com.platz.model;
 
-import com.platz.http.cadastro.CategoriaCadastro;
 import com.platz.util.DataUtil;
 import java.util.Date;
 import javax.persistence.Entity;

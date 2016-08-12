@@ -14,34 +14,43 @@ public class ContaDao extends GenericDao<ContaModel> {
 
         try {
             EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
-            ContaModel conta = (ContaModel) entityManager.createQuery("from ContaModel where email=:email and senha=:senha")
+            ContaModel model = (ContaModel) entityManager.createQuery("from ContaModel where email=:email and senha=:senha")
                     .setParameter("email", email).setParameter("senha", senha).getSingleResult();
             entityManager.close();
-            return conta;
-
+            if (model == null) {
+                System.out.println("Conta não Encontrada");
+                return null;
+            } else {
+                return model;
+            }
         } catch (Exception e) {
             System.out.println("Erro ao buscar conta");
             return null;
         }
-
     }
 
-    public List<ContaModel> buscarPeloEmail(String email) {
+    public ContaModel buscarPeloEmail(String email) {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
-        List<ContaModel> lista = entityManager.createQuery("from ContaModel where email like :email")
-                .setParameter("email", email + "%").getResultList();
+        ContaModel model = (ContaModel) entityManager.createQuery("from ContaModel where email =:email")
+                .setParameter("email", email).getSingleResult();
         entityManager.close();
+        return model;
+    }
+
+    public List<ContaModel> buscarInativos() {
+        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
+        List<ContaModel> lista = entityManager.createQuery("from ContaModel where inativo !=:atividade").setParameter("atividade", null).getResultList();
+        entityManager.close();
+
         return lista;
     }
 
-    public List<ContaModel> buscarPelaAtividade(Boolean atividade) {
-
+    public List<ContaModel> buscarAtivos() {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
-        List<ContaModel> lista = entityManager.createQuery("from ContaModel where ativo=:atividade")
-                .setParameter("status", atividade).getResultList();
+        List<ContaModel> lista = entityManager.createQuery("from ContaModel where inativo =:atividade").setParameter("atividade", null).getResultList();
         entityManager.close();
-        return lista;
 
+        return lista;
     }
 
 }

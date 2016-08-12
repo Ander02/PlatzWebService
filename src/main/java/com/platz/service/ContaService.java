@@ -70,4 +70,46 @@ public class ContaService {
 
     }
 
+    @GET
+    @Path(value = "/contas/inativos")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarInativos() {
+
+        try {
+            //Lista com todas as ContasaModels cadastradas
+            List<ContaModel> models = contaController.buscarInativos();
+            //Converter a lista de models para uma lista de leitura
+            List<ContaLeitura> listaDeContas = new ContaLeitura().converterLista(models);
+            //Retorna a lista com um Status Code OK
+            return Response.ok(listaDeContas).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar contas").build();
+        }
+
+    }
+
+    @GET
+    @Path(value = "/contas/ativos")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarAtivos() {
+
+        try {
+            //Lista com todas as ContasaModels cadastradas
+            List<ContaModel> models = contaController.buscarAtivos();
+            //Converter a lista de models para uma lista de leitura
+            List<ContaLeitura> listaDeContas = new ContaLeitura().converterLista(models);
+            //Retorna a lista com um Status Code OK
+            return Response.ok(listaDeContas).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar contas").build();
+        }
+
+    }
+
 }

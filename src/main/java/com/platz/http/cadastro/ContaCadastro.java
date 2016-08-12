@@ -11,7 +11,7 @@ public class ContaCadastro {
 
     private String email;
     private String senha;
-
+    
     //Construtores
     public ContaCadastro() {
     }

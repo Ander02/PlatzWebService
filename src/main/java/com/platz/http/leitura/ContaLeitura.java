@@ -2,7 +2,6 @@ package com.platz.http.leitura;
 
 import com.platz.model.ContaModel;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -15,30 +14,24 @@ public class ContaLeitura {
 
     private String id;
     private String email;
-    private Boolean ativo;
-    private Boolean bloqueado;
-    private Date ultimoAcesso;
+    private String inativo;
+    private String perfil;
+    private String bloqueado;
+    private String ultimoAcesso;
     private String dataCadastro;
 
     //Construtores
     public ContaLeitura() {
     }
 
-    public ContaLeitura(String id, String email, Boolean ativo, Boolean bloqueado, Date ultimoAcesso, String dataCadastro) {
-        this.id = id;
-        this.email = email;
-        this.ativo = ativo;
-        this.bloqueado = bloqueado;
-        this.ultimoAcesso = ultimoAcesso;
-        this.dataCadastro = dataCadastro;
-    }
-
     public ContaLeitura(ContaModel model) {
         this.id = model.getId();
-        this.email = model.getEmail();        
-        this.ultimoAcesso = model.getUltimoAcesso();
+        this.email = model.getEmail();
         this.dataCadastro = model.getDataCadatro();
-
+        this.perfil = model.getPerfil().getLabel();
+        this.inativo = model.getInativo();
+        this.bloqueado = model.getBloqueado();
+        this.ultimoAcesso = model.getUltimoAcesso();
     }
 
     //Métodos
@@ -71,36 +64,44 @@ public class ContaLeitura {
         this.email = email;
     }
 
-    public Boolean getAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(Boolean ativo) {
-        this.ativo = ativo;
-    }
-
-    public Boolean getBloqueado() {
-        return bloqueado;
-    }
-
-    public void setBloqueado(Boolean bloqueado) {
-        this.bloqueado = bloqueado;
-    }
-
-    public Date getUltimoAcesso() {
-        return ultimoAcesso;
-    }
-
-    public void setUltimoAcesso(Date ultimoAcesso) {
-        this.ultimoAcesso = ultimoAcesso;
-    }
-
     public String getDataCadastro() {
         return dataCadastro;
     }
 
     public void setDataCadastro(String dataCadastro) {
         this.dataCadastro = dataCadastro;
+    }
+
+    public String getInativo() {
+        return inativo;
+    }
+
+    public void setInativo(String inativo) {
+        this.inativo = inativo;
+    }
+
+    public String getBloqueado() {
+        return bloqueado;
+    }
+
+    public void setBloqueado(String bloqueado) {
+        this.bloqueado = bloqueado;
+    }
+
+    public String getUltimoAcesso() {
+        return ultimoAcesso;
+    }
+
+    public void setUltimoAcesso(String ultimoAcesso) {
+        this.ultimoAcesso = ultimoAcesso;
+    }
+
+    public String getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(String perfil) {
+        this.perfil = perfil;
     }
 
 }
