@@ -32,7 +32,8 @@ public class ContaModel {
     @NotNull(message = "A senha não pode ser nula")
     private String senha;
 
-    private Perfil perfil = Perfil.ADMINISTRADOR;
+    @NotNull(message = "O perfil não pode ser nulo")
+    private Perfil perfil;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date inativo;
