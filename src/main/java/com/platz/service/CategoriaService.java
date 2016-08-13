@@ -82,7 +82,7 @@ public class CategoriaService {
     public Response buscarPeloId(@PathParam("id") String id) {
         CategoriaModel model = categoriaController.buscarPorId(id);
 
-        //Verifica se a entidade retornada não é nula
+        //Verifica se a model retornada não é nula
         if (model != null) {
 
             //Retorna um Status Code OK com a categoria de leitura
@@ -90,7 +90,7 @@ public class CategoriaService {
 
         }
 
-        //Se a entity for nula retorna um Status Code Not Found
+        //Se a model for nula retorna um Status Code Not Found
         return Response.status(Response.Status.NOT_FOUND).entity("Categoria não encontrada").build();
     }
 

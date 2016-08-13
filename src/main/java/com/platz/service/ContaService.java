@@ -9,6 +9,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -72,6 +73,24 @@ public class ContaService {
     }
 
     @GET
+    @Path(value = "/conta/{id}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarPeloId(@PathParam("id") String id) {
+        ContaModel model = contaController.buscarPorId(id);
+
+        //Verifica se a model retornada não é nula
+        if (model != null) {
+
+            //Retorna um Status Code OK com a conta de leitura
+            return Response.ok(new ContaLeitura(model)).build();
+
+        }
+
+        //Se a model for nula retorna um Status Code Not Found
+        return Response.status(Response.Status.NOT_FOUND).entity("Conta não encontrada").build();
+    }
+
+    @GET
     @Path(value = "/contas/inativos")
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarInativos() {
@@ -110,7 +129,6 @@ public class ContaService {
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar contas").build();
         }
-
     }
 
 }
