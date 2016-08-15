@@ -8,6 +8,7 @@ import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -88,6 +89,22 @@ public class ContaService {
 
         //Se a model for nula retorna um Status Code Not Found
         return Response.status(Response.Status.NOT_FOUND).entity("Conta não encontrada").build();
+    }
+
+    @GET
+    @Path(value = "/conta/email/{email}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarPeloEmail(@PathParam("email") String email) {
+        ContaModel model = contaController.buscarPeloEmail(email);
+
+        if (model != null) {
+
+            //Retorna um Status Code OK com a conta de leitura
+            return Response.ok(new ContaLeitura(model)).build();
+        }
+        //Se a model for nula retorna um Status Code Not Found
+        return Response.status(Response.Status.NOT_FOUND).entity("Conta não encontrada").build();
+
     }
 
     @GET
