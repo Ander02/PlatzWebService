@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -24,6 +25,7 @@ import org.hibernate.validator.constraints.Length;
  * @author 15153770
  */
 @Entity
+@Table(name = "mensagem")
 public class MensagemModel {
 
     @Id
@@ -40,6 +42,10 @@ public class MensagemModel {
     @Length(min = 8, max = 512, message = "A mensagem deve ter entre 8 e 512 caracteres")
     private String conteudo;
 
+    public MensagemModel() {
+    }
+    
+    //getters and setters
     public String getId() {
         return id.toHexString();
     }
