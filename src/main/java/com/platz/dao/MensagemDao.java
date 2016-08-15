@@ -6,7 +6,6 @@
 package com.platz.dao;
 
 import com.platz.model.MensagemModel;
-import java.util.List;
 
 /**
  *

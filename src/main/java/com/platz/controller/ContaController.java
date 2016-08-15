@@ -29,16 +29,6 @@ public class ContaController {
         return contaDao.buscarPeloEmail(email);
     }
 
-    public void inverterAtividade(ContaModel model) {
-
-        if (model.getInativo() == null) {
-            model.setInativo(new Date());
-        } else {
-            model.setInativo(null);
-        }
-        contaDao.alterar(model);
-    }
-
     public List<ContaModel> buscarAtivos() {
         return contaDao.buscarAtivos();
     }
@@ -49,6 +39,43 @@ public class ContaController {
 
     public void alterar(ContaModel model) {
         contaDao.alterar(model);
+    }
+
+    public void inativar(ContaModel model) {
+
+        if (model.getInativo() == null) {
+            model.setInativo(new Date());
+        }
+
+        contaDao.alterar(model);
+    }
+
+    public void bloquear(ContaModel model) {
+        if (model.getBloqueado() == null) {
+            model.setBloqueado(new Date());
+        }
+
+        contaDao.alterar(model);
+
+    }
+
+    public void ativar(ContaModel model) {
+
+        if (model.getInativo() != null) {
+            model.setInativo(null);
+        }
+
+        contaDao.alterar(model);
+
+    }
+
+    public void desbloquear(ContaModel model) {
+        if (model.getBloqueado() != null) {
+            model.setBloqueado(null);
+        }
+
+        contaDao.alterar(model);
+
     }
 
 }
