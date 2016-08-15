@@ -54,7 +54,7 @@ public class ContaModel {
     }
 
     public void setId(String id) {
-        this.setId(new ObjectId(id));
+        this.id = new ObjectId(id);
     }
 
     public ObjectId getObjectId() {
