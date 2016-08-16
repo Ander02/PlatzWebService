@@ -6,9 +6,12 @@
 package com.platz.model;
 
 import com.platz.util.DataUtil;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import org.bson.types.ObjectId;
 import org.hibernate.validator.constraints.Length;
@@ -18,12 +21,15 @@ import org.hibernate.validator.constraints.br.CNPJ;
  *
  * @author 15153770
  */
+@Entity
+@Table(name = "empresa")
 public class EmpresaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private ObjectId id;
     @NotNull(message = "O nome deve ser informado")
+    @OneToOne
     private ContaModel conta;
     @CNPJ
     @NotNull(message = "O CNPJ deve ser informado")

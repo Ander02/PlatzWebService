@@ -10,29 +10,28 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import org.bson.types.ObjectId;
-import org.hibernate.validator.constraints.Length;
 
 /**
  *
  * @author 15153770
  */
 @Entity
-@Table(name = "estado")
-public class EstadoModel {
-
+@Table(name = "cidade")
+public class CidadeModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private ObjectId id;
-    @NotNull(message = "O nome do estado deve ser informado")
+    private ObjectId id;    
+    @NotNull(message = "O nome da cidade deve ser informada")
     private String nome;
-    @NotNull(message = "A uf deve ser informado")
-    @Length(min = 2, max = 2)
-    private String uf;
+    @NotNull(message = "O estado deve ser informado")
+    @ManyToOne
+    private EstadoModel estado;
 
-     //getters and setter
+    //getters and setters
     public String getId() {
         return id.toHexString();
     }
@@ -44,7 +43,6 @@ public class EstadoModel {
     public ObjectId getObjectId() {
         return this.id;
     }
-
     public String getNome() {
         return nome;
     }
@@ -53,16 +51,15 @@ public class EstadoModel {
         this.nome = nome;
     }
 
-    public String getUf() {
-        return uf;
+    public EstadoModel getEstado() {
+        return estado;
     }
 
-    public void setUf(String uf) {
-        this.uf = uf;
+    public void setEstado(EstadoModel estado) {
+        this.estado = estado;
     }
-
     public String getDataCadatro() {
         return new DataUtil().converterData(id.getDate());
     }
-
+    
 }

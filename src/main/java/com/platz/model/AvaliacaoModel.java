@@ -10,29 +10,35 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import org.bson.types.ObjectId;
-import org.hibernate.validator.constraints.Length;
 
 /**
  *
  * @author 15153770
  */
 @Entity
-@Table(name = "estado")
-public class EstadoModel {
+@Table(name = "avaliacao")
+public class AvaliacaoModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private ObjectId id;
-    @NotNull(message = "O nome do estado deve ser informado")
-    private String nome;
-    @NotNull(message = "A uf deve ser informado")
-    @Length(min = 2, max = 2)
-    private String uf;
+    @Max(5)
+    @Min(1)
+    private Integer nota = null;
+    @ManyToOne
+    @NotNull(message = "indique o evento que sera avaliado")
+    private EventoModel evento;
+    @ManyToOne
+    @NotNull(message = "indique o usuario que esta avaliando")
+    private UsuarioModel usuario;
 
-     //getters and setter
+    //getters and setters
     public String getId() {
         return id.toHexString();
     }
@@ -45,20 +51,28 @@ public class EstadoModel {
         return this.id;
     }
 
-    public String getNome() {
-        return nome;
+    public Integer getNota() {
+        return nota;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNota(Integer nota) {
+        this.nota = nota;
     }
 
-    public String getUf() {
-        return uf;
+    public EventoModel getEvento() {
+        return evento;
     }
 
-    public void setUf(String uf) {
-        this.uf = uf;
+    public void setEvento(EventoModel evento) {
+        this.evento = evento;
+    }
+
+    public UsuarioModel getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioModel usuario) {
+        this.usuario = usuario;
     }
 
     public String getDataCadatro() {

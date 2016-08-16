@@ -6,33 +6,35 @@
 package com.platz.model;
 
 import com.platz.util.DataUtil;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import org.bson.types.ObjectId;
-import org.hibernate.validator.constraints.Length;
 
 /**
  *
  * @author 15153770
  */
 @Entity
-@Table(name = "estado")
-public class EstadoModel {
+@Table(name = "imagem")
+public class ImagemModel {
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private ObjectId id;
+   
+   @NotNull(message = "Insira uma imagem")
+   private String url;
+   
+   @Temporal(TemporalType.TIMESTAMP)
+   private Date deletado;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private ObjectId id;
-    @NotNull(message = "O nome do estado deve ser informado")
-    private String nome;
-    @NotNull(message = "A uf deve ser informado")
-    @Length(min = 2, max = 2)
-    private String uf;
-
-     //getters and setter
+    //getters and setters
     public String getId() {
         return id.toHexString();
     }
@@ -45,24 +47,26 @@ public class EstadoModel {
         return this.id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getUrl() {
+        return url;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    public String getUf() {
-        return uf;
+    public String getDeletado() {
+        return new DataUtil().converterData(this.deletado);
     }
 
-    public void setUf(String uf) {
-        this.uf = uf;
+    public void setDeletado(Date deletado) {
+        this.deletado = deletado;
     }
-
     public String getDataCadatro() {
         return new DataUtil().converterData(id.getDate());
     }
 
+
+   
+   
 }
