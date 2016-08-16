@@ -42,8 +42,8 @@ public class CategoriaModel {
     public CategoriaModel() {
     }
     
-    public CategoriaModel(String id, CategoriaEdicao categoria) {        
-        
+    public CategoriaModel(String id, CategoriaEdicao categoria) {    
+        this.id = new ObjectId(id);
     }        
 
     public CategoriaModel(ObjectId id, String nome, String caminhoIcone, Date deletado) {

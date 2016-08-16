@@ -1,5 +1,6 @@
 package com.platz.model;
 
+import com.platz.http.edicao.ContaEdicao;
 import com.platz.util.DataUtil;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -48,7 +49,33 @@ public class ContaModel {
     public ContaModel() {
     }
 
+    public ContaModel(ObjectId id, String email, String senha, Perfil perfil, Date inativo, Date bloqueado, Date ultimoAcesso) {
+        this.id = id;
+        this.email = email;
+        this.senha = senha;
+        this.perfil = perfil;
+        this.inativo = inativo;
+        this.bloqueado = bloqueado;
+        this.ultimoAcesso = ultimoAcesso;
+    }
+
+    public ContaModel(String id, ContaEdicao conta) {
+        this.id = new ObjectId(id);
+        if (conta.getEmail() != null || !conta.getEmail().equals("")) {
+            this.email = conta.getEmail();
+        }
+        if (conta.getSenha() != null || !conta.getSenha().equals("")) {
+            this.senha = conta.getSenha();
+        }
+        if (conta.getInativo() != null) {
+            this.inativo = conta.getInativo();
+        }
+        this.inativo = conta.getInativo();
+        this.bloqueado = conta.getBloqueado();
+        this.ultimoAcesso = conta.getBloqueado();
+    }
     //Getters and setters
+
     public String getId() {
         return id.toHexString();
     }
@@ -132,7 +159,8 @@ public class ContaModel {
             default:
                 this.perfil = Perfil.USUARIO;
                 break;
-        }    }
+        }
+    }
 
     public void setId(ObjectId id) {
         this.id = id;

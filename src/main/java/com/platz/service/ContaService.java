@@ -2,6 +2,7 @@ package com.platz.service;
 
 import com.platz.controller.ContaController;
 import com.platz.http.cadastro.ContaCadastro;
+import com.platz.http.edicao.ContaEdicao;
 import com.platz.http.leitura.ContaLeitura;
 import com.platz.model.ContaModel;
 import java.util.List;
@@ -148,4 +149,34 @@ public class ContaService {
         }
     }
 
+    @PUT
+    @Path(value = "/conta/{id}")
+    @Consumes(value = MediaType.APPLICATION_JSON)
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response alterar(@PathParam("id") String id, ContaEdicao conta) {
+        ContaModel model = new ContaModel();
+
+        try {
+
+            //Settar informações na model
+            model.setId(id);
+            if (conta.getEmail() != null || !conta.getEmail().equals("")) {
+                model.setEmail(conta.getEmail());
+            }
+            model.setSenha(conta.getSenha());
+            model.setInativo(conta.getInativo());
+            model.setBloqueado(conta.getBloqueado());
+            model.setUltimoAcesso(conta.getBloqueado());
+
+            //Alterar registro
+            contaController.alterar(model);
+
+            //Retorna Status Code OK com a entity de leitura com a modificação
+            return Response.status(Response.Status.OK).entity(new ContaLeitura(model)).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro" + e.getMessage());
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar categoria").build();
+        }
+    }
 }
