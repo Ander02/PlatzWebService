@@ -1,6 +1,5 @@
  package com.platz.model;
 
-import com.platz.http.edicao.AssuntoEdicao;
 import com.platz.util.DataUtil;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -10,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import org.bson.types.ObjectId;
 import org.hibernate.validator.constraints.Length;
 
@@ -36,16 +34,7 @@ public class AssuntoModel {
     //Contrutores
     public AssuntoModel() {
     }
-
-    public AssuntoModel(ObjectId id, String nome, Date deletado) {
-        this.id = id;
-        this.nome = nome;
-        this.deletado = deletado;
-    }
-     public AssuntoModel(String id, AssuntoEdicao assunto) {
-    }
-
-    
+   
     //getters and setter
     public String getId() {
         return id.toHexString();
