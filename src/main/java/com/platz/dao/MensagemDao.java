@@ -30,7 +30,6 @@ public class MensagemDao extends GenericDao<MensagemModel> {
         entityManager.close();
 
         return lista;
-
     }
 
     public List<MensagemModel> buscarMarcadas() {
@@ -41,10 +40,9 @@ public class MensagemDao extends GenericDao<MensagemModel> {
         entityManager.close();
 
         return lista;
-
     }
     
-        public List<MensagemModel> buscarExcluidos() {
+        public List<MensagemModel> buscarExcluidas() {
 
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
 
@@ -52,7 +50,6 @@ public class MensagemDao extends GenericDao<MensagemModel> {
         entityManager.close();
 
         return lista;
-
     }
 
 }

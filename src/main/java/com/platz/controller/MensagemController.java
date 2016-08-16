@@ -44,4 +44,7 @@ public class MensagemController {
     public List<MensagemModel> buscarMarcadas() {
         return mensagemDao.buscarMarcadas();
     }
+      public List<MensagemModel> buscarExluidas() {
+        return mensagemDao.buscarExcluidas();
+    }
 }
