@@ -2,8 +2,10 @@ package com.platz.service;
 
 import com.platz.controller.ContaController;
 import com.platz.http.cadastro.ContaCadastro;
+import com.platz.http.edicao.ContaEdicao;
 import com.platz.http.leitura.ContaLeitura;
 import com.platz.model.ContaModel;
+import java.util.Date;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -146,6 +148,122 @@ public class ContaService {
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar contas").build();
         }
+    }
+
+    @PUT
+    @Path(value = "/conta/senha/{id}")
+    @Consumes(value = MediaType.APPLICATION_JSON)
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response alterarSenha(@PathParam("id") String id, ContaEdicao conta) {
+        try {
+            //Buscar model pelo id
+            ContaModel model = contaController.buscarPorId(id);
+
+            //Settar informações na model
+            model.setSenha(conta.getSenha());
+
+            //Alterar registro
+            contaController.alterar(model);
+
+            //Retorna Status Code OK com a entity de leitura com a modificação
+            return Response.status(Response.Status.OK).entity(new ContaLeitura(model)).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro" + e.getMessage());
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar conta").build();
+        }
+    }
+
+    @PUT
+    @Path(value = "/conta/bloquear/{id}")
+    @Consumes(value = MediaType.APPLICATION_JSON)
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response bloquear(@PathParam("id") String id) {
+        try {
+
+            //Buscar model pelo id
+            ContaModel model = contaController.buscarPorId(id);
+
+            //Bloquear model
+            contaController.bloquear(model);
+
+            //Retorna Status Code OK com a entity de leitura com a modificação
+            return Response.status(Response.Status.OK).entity(new ContaLeitura(model)).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro" + e.getMessage());
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar conta").build();
+        }
+
+    }
+
+    @PUT
+    @Path(value = "/conta/desbloquear/{id}")
+    @Consumes(value = MediaType.APPLICATION_JSON)
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response desbloquear(@PathParam("id") String id) {
+        try {
+
+            //Buscar model pelo id
+            ContaModel model = contaController.buscarPorId(id);
+
+            //Bloquear model
+            contaController.desbloquear(model);
+
+            //Retorna Status Code OK com a entity de leitura com a modificação
+            return Response.status(Response.Status.OK).entity(new ContaLeitura(model)).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro" + e.getMessage());
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar conta").build();
+        }
+
+    }
+
+    @PUT
+    @Path(value = "/conta/inativar/{id}")
+    @Consumes(value = MediaType.APPLICATION_JSON)
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response inativar(@PathParam("id") String id) {
+        try {
+
+            //Buscar model pelo id
+            ContaModel model = contaController.buscarPorId(id);
+
+            //Bloquear model
+            contaController.inativar(model);
+
+            //Retorna Status Code OK com a entity de leitura com a modificação
+            return Response.status(Response.Status.OK).entity(new ContaLeitura(model)).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro" + e.getMessage());
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar conta").build();
+        }
+
+    }
+
+    @PUT
+    @Path(value = "/conta/ativar/{id}")
+    @Consumes(value = MediaType.APPLICATION_JSON)
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response ativar(@PathParam("id") String id) {
+        try {
+
+            //Buscar model pelo id
+            ContaModel model = contaController.buscarPorId(id);
+
+            //Bloquear model
+            contaController.ativar(model);
+
+            //Retorna Status Code OK com a entity de leitura com a modificação
+            return Response.status(Response.Status.OK).entity(new ContaLeitura(model)).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro" + e.getMessage());
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar conta").build();
+        }
+
     }
 
 }

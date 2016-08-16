@@ -34,17 +34,13 @@ public class CategoriaModel {
     @NotNull(message = "Adicione um icone")
     @Length(max = 255, message = "O nome da imagem é muito longo")
     private String caminhoIcone;
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletado;
 
     //Contrutores
     public CategoriaModel() {
     }
-    
-    public CategoriaModel(String id, CategoriaEdicao categoria) {        
-        
-    }        
 
     public CategoriaModel(ObjectId id, String nome, String caminhoIcone, Date deletado) {
         this.id = id;
@@ -52,8 +48,7 @@ public class CategoriaModel {
         this.caminhoIcone = caminhoIcone;
         this.deletado = deletado;
     }
-    
-     
+
     //getters and setters
     public String getId() {
         return id.toHexString();

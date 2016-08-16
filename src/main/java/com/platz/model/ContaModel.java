@@ -47,7 +47,7 @@ public class ContaModel {
     //Construtores
     public ContaModel() {
     }
-
+    
     //Getters and setters
     public String getId() {
         return id.toHexString();
@@ -132,7 +132,8 @@ public class ContaModel {
             default:
                 this.perfil = Perfil.USUARIO;
                 break;
-        }    }
+        }
+    }
 
     public void setId(ObjectId id) {
         this.id = id;
