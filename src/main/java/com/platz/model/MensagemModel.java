@@ -32,7 +32,7 @@ public class MensagemModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private ObjectId id;
     @ManyToOne
-    @NotNull
+    @NotNull(message = "Assunto não pode ser nulo")
     private AssuntoModel assunto;
     @Email(message = "Email inválido")
     private String email;
