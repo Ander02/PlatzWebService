@@ -34,7 +34,7 @@ public class MensagemService {
             //Settar informações na model baseado na Conta de Cadastro passada
             model.setEmail(mensagem.getEmail());
             model.setConteudo(mensagem.getConteudo());
-            model.setAssunto(assuntoController.buscarPorId("57ae0be205b39817ac7c5813"));
+            model.setAssunto(assuntoController.buscarPorId(mensagem.getAssuntoId()));
             
             mensagemController.cadastrar(model);
 
