@@ -5,6 +5,7 @@
  */
 package com.platz.model;
 
+import com.platz.util.DataUtil;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,15 +25,57 @@ public class PresencaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    ObjectId id;
+    private ObjectId id;
 
     @ManyToOne
     @NotNull(message = "Selecione o evento no qual marcarar a presença")
-    EventoModel evento;
+    private EventoModel evento;
     @ManyToOne
     @NotNull(message = "Selecione a conta na qual marcarar a presença")
-    ContaModel conta;
+    private ContaModel conta;
     @NotNull(message = "Selecione o o tipo de presença")
-    TipoPresenca presenca;
+    private TipoPresenca presenca;
+
+   //getters and setters
+    public String getId() {
+        return id.toHexString();
+    }
+
+    public void setId(String id) {
+        this.id = new ObjectId(id);
+    }
+
+    public ObjectId getObjectId() {
+        return this.id;
+    }
+
+    public EventoModel getEvento() {
+        return evento;
+    }
+
+    public void setEvento(EventoModel evento) {
+        this.evento = evento;
+    }
+
+    public ContaModel getConta() {
+        return conta;
+    }
+
+    public void setConta(ContaModel conta) {
+        this.conta = conta;
+    }
+
+    public TipoPresenca getPresenca() {
+        return presenca;
+    }
+
+    public void setPresenca(TipoPresenca presenca) {
+        this.presenca = presenca;
+    }
+     public String getDataCadatro() {
+        return new DataUtil().converterData(id.getDate());
+    }
+    
+    
 
 }
