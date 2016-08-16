@@ -1,5 +1,6 @@
  package com.platz.model;
 
+import com.platz.http.edicao.AssuntoEdicao;
 import com.platz.util.DataUtil;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -36,11 +37,15 @@ public class AssuntoModel {
     public AssuntoModel() {
     }
 
-    public AssuntoModel(ObjectId id, String nome) {
+    public AssuntoModel(ObjectId id, String nome, Date deletado) {
         this.id = id;
         this.nome = nome;
+        this.deletado = deletado;
+    }
+     public AssuntoModel(String id, AssuntoEdicao assunto) {
     }
 
+    
     //getters and setter
     public String getId() {
         return id.toHexString();

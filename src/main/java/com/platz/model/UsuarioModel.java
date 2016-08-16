@@ -32,22 +32,26 @@ public class UsuarioModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private ObjectId id;
     @OneToOne
-    @NotNull
+    @NotNull(message = "A conta deve ser informada")
     private ContaModel conta;
-    @NotNull
+    @NotNull(message = "O nome deve ser informado")
     @Length(min = 8, max = 64)    
     private String nome;
     @Temporal(TemporalType.TIMESTAMP)
-    private Date dataNascimento;
-    @NotNull
+    @NotNull(message = "A data de nascimento deve ser informada")
+    private Date dataNascimento;    
     @Length(min = 10, max = 11)
     private String telefone;
     @CPF
-    @NotNull
+    @NotNull(message = "O CPF deve ser informado")
     private String cpf;
-    private String caminhoImagem;
+    private String caminhoImagem;    
     //Endereco endereco
 
+    public UsuarioModel() {
+        
+    }
+        
     public String getId() {
         return id.toHexString();
     }
@@ -107,7 +111,7 @@ public class UsuarioModel {
     public void setCaminhoImagem(String caminhoImagem) {
         this.caminhoImagem = caminhoImagem;
     }
-     public String getDataCadatro() {
+    public String getDataCadatro() {
         return new DataUtil().converterData(id.getDate());
     }
 
