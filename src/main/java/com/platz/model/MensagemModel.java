@@ -48,7 +48,7 @@ public class MensagemModel {
     //Construtores
     public MensagemModel() {
     }
-    
+
     //getters and setters
     public String getId() {
         return id.toHexString();
@@ -78,8 +78,8 @@ public class MensagemModel {
         this.email = email;
     }
 
-    public Date getVisualizado() {
-        return visualizado;
+    public String getVisualizado() {
+        return new DataUtil().converterData(this.visualizado);
     }
 
     public void setVisualizado(Date visualizado) {
@@ -107,7 +107,7 @@ public class MensagemModel {
     }
 
     public String getDeletado() {
-          return new DataUtil().converterData(this.deletado);
+        return new DataUtil().converterData(this.deletado);
     }
 
     public void setDeletado(Date deletado) {
