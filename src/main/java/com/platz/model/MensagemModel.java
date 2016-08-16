@@ -42,7 +42,7 @@ public class MensagemModel {
     @NotNull
     @Length(min = 8, max = 512, message = "A mensagem deve ter entre 8 e 512 caracteres")
     private String conteudo;
-
+        
     public MensagemModel() {
     }
     
