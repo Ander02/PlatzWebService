@@ -38,11 +38,14 @@ public class MensagemModel {
     private String email;
     @Temporal(TemporalType.TIMESTAMP)
     private Date visualizado;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date deletado = null;
     private boolean marcado = false;
     @NotNull
     @Length(min = 8, max = 512, message = "A mensagem deve ter entre 8 e 512 caracteres")
     private String conteudo;
-        
+
+    //Construtores
     public MensagemModel() {
     }
     
@@ -101,6 +104,14 @@ public class MensagemModel {
 
     public String getDataCadatro() {
         return new DataUtil().converterData(id.getDate());
+    }
+
+    public String getDeletado() {
+          return new DataUtil().converterData(this.deletado);
+    }
+
+    public void setDeletado(Date deletado) {
+        this.deletado = deletado;
     }
 
 }

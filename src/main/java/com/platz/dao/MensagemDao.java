@@ -43,5 +43,16 @@ public class MensagemDao extends GenericDao<MensagemModel> {
         return lista;
 
     }
+    
+        public List<MensagemModel> buscarExcluidos() {
+
+        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
+
+        List<MensagemModel> lista = entityManager.createQuery("from MensagemModel where excluido !=:null").setParameter("null", null).getResultList();
+        entityManager.close();
+
+        return lista;
+
+    }
 
 }
