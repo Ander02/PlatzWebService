@@ -36,7 +36,7 @@ public class MensagemDao extends GenericDao<MensagemModel> {
 
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
 
-        List<MensagemModel> lista = entityManager.createQuery("from MensagemModel where marcado=:true").getResultList();
+        List<MensagemModel> lista = entityManager.createQuery("from MensagemModel where marcado=true").getResultList();
         entityManager.close();
 
         return lista;
