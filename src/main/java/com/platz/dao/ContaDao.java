@@ -1,6 +1,7 @@
 package com.platz.dao;
 
 import com.platz.model.ContaModel;
+import com.platz.model.EmpresaModel;
 import java.util.List;
 import javax.persistence.EntityManager;
 
@@ -51,6 +52,6 @@ public class ContaDao extends GenericDao<ContaModel> {
         entityManager.close();
 
         return lista;
-    }
+    }    
 
 }
