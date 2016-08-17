@@ -64,10 +64,6 @@ public class MensagemController {
         mensagemDao.alterar(model);
     }
 
-    public void alterar(MensagemModel model) {
-        mensagemDao.alterar(model);
-    }
-
     //Apagar do Banco
     public void excluir(MensagemModel model) {
         mensagemDao.excluir(model);

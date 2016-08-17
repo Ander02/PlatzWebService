@@ -109,7 +109,6 @@ public class MensagemService {
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar mensagens").build();
         }
-
     }
 
     @GET
@@ -130,7 +129,46 @@ public class MensagemService {
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar mensagens").build();
         }
+    }
 
+    @GET
+    @Path(value = "/mensagens/excluidas")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarExcluidas() {
+
+        try {
+            //Lista com todas as Models cadastradas
+            List<MensagemModel> models = mensagemController.buscarExluidas();
+            //Converter a lista de models para uma lista de leitura
+            List<MensagemLeitura> listaDeContas = new MensagemLeitura().converterLista(models);
+            //Retorna a lista com um Status Code OK
+            return Response.ok(listaDeContas).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar mensagens").build();
+        }
+    }
+
+    @GET
+    @Path(value = "/mensagens/assunto/{id}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarPeloAssunto(@PathParam("id") String id) {
+
+        try {
+            //Lista com todas as Models cadastradas
+            List<MensagemModel> models = mensagemController.buscarExluidas();
+            //Converter a lista de models para uma lista de leitura
+            List<MensagemLeitura> listaDeContas = new MensagemLeitura().converterLista(models);
+            //Retorna a lista com um Status Code OK
+            return Response.ok(listaDeContas).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar mensagens").build();
+        }
     }
 
 }
