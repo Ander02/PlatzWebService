@@ -4,6 +4,7 @@ import com.platz.controller.AssuntoController;
 import com.platz.controller.MensagemController;
 import com.platz.http.cadastro.MensagemCadastro;
 import com.platz.http.leitura.MensagemLeitura;
+import com.platz.model.AssuntoModel;
 import com.platz.model.MensagemModel;
 import java.util.List;
 import javax.ws.rs.Consumes;
@@ -157,8 +158,10 @@ public class MensagemService {
     public Response buscarPeloAssunto(@PathParam("id") String id) {
 
         try {
+            AssuntoModel assunto = new AssuntoController().buscarPorId(id);
+            
             //Lista com todas as Models cadastradas
-            List<MensagemModel> models = mensagemController.buscarExluidas();
+            List<MensagemModel> models = mensagemController.buscarPeloAssunto(assunto);
             //Converter a lista de models para uma lista de leitura
             List<MensagemLeitura> listaDeContas = new MensagemLeitura().converterLista(models);
             //Retorna a lista com um Status Code OK
