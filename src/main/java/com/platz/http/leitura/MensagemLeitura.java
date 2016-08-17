@@ -1,6 +1,9 @@
 package com.platz.http.leitura;
 
 import com.platz.model.MensagemModel;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -36,6 +39,19 @@ public class MensagemLeitura {
         }
         this.assunto = new AssuntoLeitura(model.getAssunto());
     }
+    
+    //Métodos
+    public List<MensagemLeitura> converterLista(List<MensagemModel> modelList) {
+
+        List<MensagemLeitura> lista = new ArrayList<>();
+
+        for (MensagemModel model : modelList) {
+            MensagemLeitura mensagem = new MensagemLeitura(model);
+            lista.add(mensagem);
+        }
+        return lista;
+    }
+
 
     //Getters and Setters
     public String getId() {

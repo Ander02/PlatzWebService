@@ -5,7 +5,9 @@ import com.platz.controller.MensagemController;
 import com.platz.http.cadastro.MensagemCadastro;
 import com.platz.http.leitura.MensagemLeitura;
 import com.platz.model.MensagemModel;
+import java.util.List;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -48,5 +50,27 @@ public class MensagemService {
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao cadastrar mensagem").build();
         }
     }
+    
+    @GET
+    @Path(value = "/mensagens")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response listarTodos() {
+
+        try {
+            //Lista com todas as ContasaModels cadastradas
+            List<MensagemModel> models = mensagemController.listarTodos();
+            //Converter a lista de models para uma lista de leitura
+            List<MensagemLeitura> listaDeContas = new MensagemLeitura().converterLista(models);
+            //Retorna a lista com um Status Code OK
+            return Response.ok(listaDeContas).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar contas").build();
+        }
+
+    }
+
 
 }
