@@ -25,14 +25,6 @@ public class MensagemController {
         return mensagemDao.buscarPorId(MensagemModel.class, id);
     }
 
-    public void alterar(MensagemModel model) {
-        mensagemDao.alterar(model);
-    }
-
-    public void excluir(MensagemModel model) {
-        mensagemDao.excluir(model);
-    }
-
     public List<MensagemModel> buscarPeloEmail(String email) {
         return mensagemDao.buscarPeloEmail(email);
     }
@@ -44,7 +36,17 @@ public class MensagemController {
     public List<MensagemModel> buscarMarcadas() {
         return mensagemDao.buscarMarcadas();
     }
-      public List<MensagemModel> buscarExluidas() {
+
+    public List<MensagemModel> buscarExluidas() {
         return mensagemDao.buscarExcluidas();
     }
+
+    public void alterar(MensagemModel model) {
+        mensagemDao.alterar(model);
+    }
+
+    public void excluir(MensagemModel model) {
+        mensagemDao.excluir(model);
+    }
+
 }

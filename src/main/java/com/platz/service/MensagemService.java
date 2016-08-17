@@ -10,6 +10,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -71,6 +72,26 @@ public class MensagemService {
         }
 
     }
+    
+    @GET
+    @Path(value = "/mensagem/{id}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarPeloId(@PathParam("id") String id) {
+        MensagemModel model = mensagemController.buscarPorId(id);
+
+        //Verifica se a model retornada não é nula
+        if (model != null) {
+
+            //Retorna um Status Code OK com a conta de leitura
+            return Response.ok(new MensagemLeitura(model)).build();
+
+        }
+
+        //Se a model for nula retorna um Status Code Not Found
+        return Response.status(Response.Status.NOT_FOUND).entity("Conta não encontrada").build();
+    }
+    
+
 
 
 }
