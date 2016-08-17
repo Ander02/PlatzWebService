@@ -37,7 +37,7 @@ public class MensagemModel {
     @Email(message = "Email inválido")
     private String email;
     @Temporal(TemporalType.TIMESTAMP)
-    private Date visualizado;
+    private Date visualizado = null;
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletado = null;
     private boolean marcado = false;

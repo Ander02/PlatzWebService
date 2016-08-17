@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class MensagemLeitura {
-    
+
     private String id;
     private String email;
     private String conteudo;
@@ -26,13 +26,17 @@ public class MensagemLeitura {
         this.id = model.getId();
         this.email = model.getEmail();
         this.conteudo = model.getConteudo();
-        this.visualizado = model.getVisualizado();
         this.marcado = model.isMarcado();
         this.dataCadastro = model.getDataCadatro();
-        this.deletado = model.getDeletado();
+        if (model.getVisualizado() != null) {
+            this.visualizado = model.getVisualizado();
+        }
+        if (model.getDeletado() != null) {
+            this.deletado = model.getDeletado();
+        }
         this.assunto = new AssuntoLeitura(model.getAssunto());
-    }  
-    
+    }
+
     //Getters and Setters
     public String getId() {
         return id;
@@ -98,8 +102,4 @@ public class MensagemLeitura {
         this.marcado = marcado;
     }
 
-    
-    
-    
-        
 }

@@ -10,8 +10,13 @@ import java.util.Date;
 public class DataUtil {
 
     public String converterData(Date date) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        return dateFormat.format(date);
+        if (date != null) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+            return dateFormat.format(date);
+        } else {
+            return null;
+        }
+
     }
 
 }
