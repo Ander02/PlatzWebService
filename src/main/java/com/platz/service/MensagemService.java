@@ -213,4 +213,42 @@ public class MensagemService {
         }
     }
 
+    @PUT
+    @Path(value = "/mensagem/excluir/{id}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response marcarExcluida(@PathParam("id") String id) {
+
+        try {
+            MensagemModel model = mensagemController.buscarPorId(id);
+
+            mensagemController.marcarExcluida(model);
+
+            return Response.ok(new MensagemLeitura(model)).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar mensagens").build();
+        }
+    }
+
+    @PUT
+    @Path(value = "/mensagem/restaurar/{id}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response restaurar(@PathParam("id") String id) {
+
+        try {
+            MensagemModel model = mensagemController.buscarPorId(id);
+
+            mensagemController.restaurar(model);
+
+            return Response.ok(new MensagemLeitura(model)).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar mensagens").build();
+        }
+    }
+
 }
