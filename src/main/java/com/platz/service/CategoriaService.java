@@ -24,7 +24,7 @@ import javax.ws.rs.core.Response;
 @Path("")
 public class CategoriaService {
 
-    private final CategoriaController categoriaController = new CategoriaController();
+    private final CategoriaController categoriaController = new CategoriaController(); 
 
     @POST
     @Path(value = "/categoria")
