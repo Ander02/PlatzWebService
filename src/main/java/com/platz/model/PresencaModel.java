@@ -34,7 +34,7 @@ public class PresencaModel {
     @NotNull(message = "Selecione a conta na qual marcarar a presença")
     private ContaModel conta;
     @NotNull(message = "Selecione o o tipo de presença")
-    private TipoPresenca presenca;
+    private TipoPresenca tipoPresenca;
 
    //getters and setters
     public String getId() {
@@ -65,12 +65,12 @@ public class PresencaModel {
         this.conta = conta;
     }
 
-    public TipoPresenca getPresenca() {
-        return presenca;
+    public TipoPresenca getTipoPresenca() {
+        return tipoPresenca;
     }
 
-    public void setPresenca(TipoPresenca presenca) {
-        this.presenca = presenca;
+    public void setTipoPresenca(TipoPresenca tipoPresenca) {
+        this.tipoPresenca = tipoPresenca;
     }
      public String getDataCadatro() {
         return new DataUtil().converterData(id.getDate());
