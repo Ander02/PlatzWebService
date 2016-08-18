@@ -53,13 +53,13 @@ public class MensagemController {
     }
 
     //Marcar como apagada
-    public void deletar(MensagemModel model) {
+    public void marcarExcluida(MensagemModel model) {
         model.setDeletado(new Date());
         mensagemDao.alterar(model);
     }
 
     //Recupera a mensagem sinalizada como apagada
-    public void recuperar(MensagemModel model) {
+    public void restaurar(MensagemModel model) {
         model.setDeletado(null);
         mensagemDao.alterar(model);
     }

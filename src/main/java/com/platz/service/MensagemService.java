@@ -4,11 +4,13 @@ import com.platz.controller.AssuntoController;
 import com.platz.controller.MensagemController;
 import com.platz.http.cadastro.MensagemCadastro;
 import com.platz.http.leitura.MensagemLeitura;
+import com.platz.model.AssuntoModel;
 import com.platz.model.MensagemModel;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -157,12 +159,90 @@ public class MensagemService {
     public Response buscarPeloAssunto(@PathParam("id") String id) {
 
         try {
+            AssuntoModel assunto = new AssuntoController().buscarPorId(id);
+
             //Lista com todas as Models cadastradas
-            List<MensagemModel> models = mensagemController.buscarExluidas();
+            List<MensagemModel> models = mensagemController.buscarPeloAssunto(assunto);
             //Converter a lista de models para uma lista de leitura
             List<MensagemLeitura> listaDeContas = new MensagemLeitura().converterLista(models);
             //Retorna a lista com um Status Code OK
             return Response.ok(listaDeContas).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar mensagens").build();
+        }
+    }
+
+    @PUT
+    @Path(value = "/mensagem/marcar/{id}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response marcar(@PathParam("id") String id) {
+
+        try {
+            MensagemModel model = mensagemController.buscarPorId(id);
+
+            mensagemController.marcar(model);
+
+            return Response.ok(new MensagemLeitura(model)).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar mensagens").build();
+        }
+    }
+
+    @PUT
+    @Path(value = "/mensagem/desmarcar/{id}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response desmarcar(@PathParam("id") String id) {
+
+        try {
+            MensagemModel model = mensagemController.buscarPorId(id);
+
+            mensagemController.desmarcar(model);
+
+            return Response.ok(new MensagemLeitura(model)).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar mensagens").build();
+        }
+    }
+
+    @PUT
+    @Path(value = "/mensagem/excluir/{id}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response marcarExcluida(@PathParam("id") String id) {
+
+        try {
+            MensagemModel model = mensagemController.buscarPorId(id);
+
+            mensagemController.marcarExcluida(model);
+
+            return Response.ok(new MensagemLeitura(model)).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar mensagens").build();
+        }
+    }
+
+    @PUT
+    @Path(value = "/mensagem/restaurar/{id}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response restaurar(@PathParam("id") String id) {
+
+        try {
+            MensagemModel model = mensagemController.buscarPorId(id);
+
+            mensagemController.restaurar(model);
+
+            return Response.ok(new MensagemLeitura(model)).build();
 
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
