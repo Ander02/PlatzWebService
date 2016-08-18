@@ -8,6 +8,7 @@ import com.platz.model.AssuntoModel;
 import com.platz.model.MensagemModel;
 import java.util.List;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -248,6 +249,26 @@ public class MensagemService {
             System.out.println("Erro: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar mensagens").build();
+        }
+    }
+
+    @DELETE
+    @Path(value = "/mensagem/{id}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response deletar(@PathParam("id") String id) {
+        try {
+
+            MensagemModel model = mensagemController.buscarPorId(id);
+
+            mensagemController.excluir(model);
+
+            return Response.status(Response.Status.NO_CONTENT).build();
+
+        } catch (Exception e) {
+
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao excluir mensagens").build();
         }
     }
 
