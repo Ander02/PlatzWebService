@@ -64,9 +64,9 @@ public class MensagemService {
             //Lista com todas as Models cadastradas
             List<MensagemModel> models = mensagemController.listarTodos();
             //Converter a lista de models para uma lista de leitura
-            List<MensagemLeitura> listaDeContas = new MensagemLeitura().converterLista(models);
+            List<MensagemLeitura> listaDeMensagens = new MensagemLeitura().converterLista(models);
             //Retorna a lista com um Status Code OK
-            return Response.ok(listaDeContas).build();
+            return Response.ok(listaDeMensagens).build();
 
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
@@ -103,9 +103,9 @@ public class MensagemService {
             //Lista com todas as Models cadastradas
             List<MensagemModel> models = mensagemController.buscarPeloEmail(email);
             //Converter a lista de models para uma lista de leitura
-            List<MensagemLeitura> listaDeContas = new MensagemLeitura().converterLista(models);
+            List<MensagemLeitura> listaDeMensagens = new MensagemLeitura().converterLista(models);
             //Retorna a lista com um Status Code OK
-            return Response.ok(listaDeContas).build();
+            return Response.ok(listaDeMensagens).build();
 
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
@@ -123,9 +123,9 @@ public class MensagemService {
             //Lista com todas as Models cadastradas
             List<MensagemModel> models = mensagemController.buscarMarcadas();
             //Converter a lista de models para uma lista de leitura
-            List<MensagemLeitura> listaDeContas = new MensagemLeitura().converterLista(models);
+            List<MensagemLeitura> listaDeMensagens = new MensagemLeitura().converterLista(models);
             //Retorna a lista com um Status Code OK
-            return Response.ok(listaDeContas).build();
+            return Response.ok(listaDeMensagens).build();
 
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
@@ -143,9 +143,9 @@ public class MensagemService {
             //Lista com todas as Models cadastradas
             List<MensagemModel> models = mensagemController.buscarExluidas();
             //Converter a lista de models para uma lista de leitura
-            List<MensagemLeitura> listaDeContas = new MensagemLeitura().converterLista(models);
+            List<MensagemLeitura> listaDeMensagens = new MensagemLeitura().converterLista(models);
             //Retorna a lista com um Status Code OK
-            return Response.ok(listaDeContas).build();
+            return Response.ok(listaDeMensagens).build();
 
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
@@ -165,9 +165,9 @@ public class MensagemService {
             //Lista com todas as Models cadastradas
             List<MensagemModel> models = mensagemController.buscarPeloAssunto(assunto);
             //Converter a lista de models para uma lista de leitura
-            List<MensagemLeitura> listaDeContas = new MensagemLeitura().converterLista(models);
+            List<MensagemLeitura> listaDeMensagens = new MensagemLeitura().converterLista(models);
             //Retorna a lista com um Status Code OK
-            return Response.ok(listaDeContas).build();
+            return Response.ok(listaDeMensagens).build();
 
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());

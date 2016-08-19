@@ -6,6 +6,7 @@
 package com.platz.model;
 
 import com.platz.util.DataUtil;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,8 +29,7 @@ public class EmpresaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private ObjectId id;
-    @NotNull(message = "O nome deve ser informado")
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private ContaModel conta;
     @CNPJ
     @NotNull(message = "O CNPJ deve ser informado")

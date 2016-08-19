@@ -34,21 +34,21 @@ public abstract class GenericDao<T> {
     }
 
     @SuppressWarnings("unchecked")
-    public List<T> listarTodos(Class<T> entity) {
+    public List<T> listarTodos(Class<T> model) {
 
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
-        List<T> lista = entityManager.createQuery("from " + entity.getSimpleName()).getResultList();
+        List<T> lista = entityManager.createQuery("from " + model.getSimpleName()).getResultList();
         entityManager.close();
 
         return lista;
     }
 
-    public T buscarPorId(Class<T> entity, String id) {
+    public T buscarPorId(Class<T> model, String id) {
 
         try {
 
             EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
-            T resultado = entityManager.find(entity, new ObjectId(id));
+            T resultado = entityManager.find(model, new ObjectId(id));
             entityManager.close();
 
             return resultado;
