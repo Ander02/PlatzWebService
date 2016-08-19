@@ -7,6 +7,7 @@ package com.platz.model;
 
 import com.platz.util.DataUtil;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,8 +32,8 @@ public class UsuarioModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private ObjectId id;
-    @OneToOne
-    @NotNull(message = "A conta deve ser informada")
+    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REFRESH})
+    @NotNull(message = "A conta deve ser informada")    
     private ContaModel conta;
     @NotNull(message = "O nome deve ser informado")
     @Length(min = 8, max = 64)    
