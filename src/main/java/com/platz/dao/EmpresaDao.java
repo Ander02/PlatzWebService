@@ -31,7 +31,7 @@ public class EmpresaDao extends GenericDao<EmpresaModel> {
     }
     public EmpresaModel buscarPelaConta(ContaModel conta){
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
-        EmpresaModel model = (EmpresaModel) entityManager.createQuery("form EmpresaModel where conta = :conta").setParameter("conta", conta).getSingleResult();
+        EmpresaModel model = (EmpresaModel) entityManager.createQuery("from EmpresaModel where conta = :conta").setParameter("conta", conta).getSingleResult();
         return model;
     }
 }

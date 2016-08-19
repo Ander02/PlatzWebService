@@ -5,7 +5,6 @@
  */
 package com.platz.model;
 
-import com.platz.http.cadastro.ContaCadastro;
 import com.platz.http.cadastro.EmpresaCadastro;
 import com.platz.util.DataUtil;
 import javax.persistence.CascadeType;
