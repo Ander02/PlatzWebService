@@ -23,7 +23,7 @@ public class UsuarioDao extends GenericDao<UsuarioModel>{
         return lista;
     }
 
-    public UsuarioModel bucarCPF(String cpf){
+    public UsuarioModel buscarPeloCPF(String cpf){
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
         UsuarioModel model = (UsuarioModel) entityManager.createQuery("from UsuarioModel where cpf = :cpf").setParameter("cpf", cpf).getSingleResult();
         entityManager.close();

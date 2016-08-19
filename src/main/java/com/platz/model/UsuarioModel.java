@@ -45,7 +45,7 @@ public class UsuarioModel {
     @CPF
     @NotNull(message = "O CPF deve ser informado")
     private String cpf;
-    private String caminhoImagem;    
+    private String imagemPerfil;    
     //Endereco endereco
 
     public UsuarioModel() {
@@ -104,12 +104,12 @@ public class UsuarioModel {
         this.cpf = cpf;
     }
 
-    public String getCaminhoImagem() {
-        return caminhoImagem;
+    public String getImagemPerfil() {
+        return imagemPerfil;
     }
 
-    public void setCaminhoImagem(String caminhoImagem) {
-        this.caminhoImagem = caminhoImagem;
+    public void setImagemPerfil(String imagemPerfil) {
+        this.imagemPerfil = imagemPerfil;
     }
     public String getDataCadatro() {
         return new DataUtil().converterData(id.getDate());
