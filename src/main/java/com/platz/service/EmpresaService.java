@@ -45,7 +45,7 @@ public class EmpresaService {
             //Envia erro pelo console
             System.out.println("Erro: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
-            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao cadastrar mensagem").build();
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao cadastrar empresa").build();
         }
     }
 
