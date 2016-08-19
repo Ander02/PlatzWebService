@@ -1,5 +1,6 @@
 package com.platz.service;
 
+import com.platz.controller.ContaController;
 import com.platz.controller.EmpresaController;
 import com.platz.http.cadastro.EmpresaCadastro;
 import com.platz.http.leitura.EmpresaLeitura;
@@ -29,19 +30,10 @@ public class EmpresaService {
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(EmpresaCadastro empresa) {
-        //Instanciar uma nova model
-        EmpresaModel model = new EmpresaModel();
 
         try {
-            //Settar informações na model baseado na Empresa de Cadastro passada
-            model.setCnpj(empresa.getCnpj());
-            model.setNomeFantasia(empresa.getNomeFantasia());
-            model.setRazaoSocial(empresa.getRazaoSocial());
-            model.setTelefone(empresa.getTelefone());
-            model.setTelefone2(empresa.getTelefone2());
-            model.setImagemPerfil(empresa.getImagemPerfil());
-
-            model.setConta(new ContaModel(empresa.getConta()));
+            //Instanciar uma nova model, passando o http de cadastro
+           EmpresaModel model = new EmpresaModel(empresa);
 
             empresaController.cadastrar(model);
 
@@ -76,7 +68,64 @@ public class EmpresaService {
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar empresas").build();
         }
     }
-    
+
+    @GET
+    @Path(value = "/empresa/{id}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarPeloId(@PathParam("id") String id) {
+        EmpresaModel model = empresaController.buscarPorId(id);
+
+        //Verifica se a model retornada não é nula
+        if (model != null) {
+
+            //Retorna um Status Code OK com a conta de leitura
+            return Response.ok(new EmpresaLeitura(model)).build();
+
+        }
+
+        //Se a model for nula retorna um Status Code Not Found
+        return Response.status(Response.Status.NOT_FOUND).entity("Conta não encontrada").build();
+    }
+
+    @GET
+    @Path(value = "/empresa/cnpj/{cnpj}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarPeloCNPJ(@PathParam("cnpj") String cnpj) {
+        EmpresaModel model = empresaController.buscarPeloCNPJ(cnpj);
+
+        //Verifica se a model retornada não é nula
+        if (model != null) {
+
+            //Retorna um Status Code OK com a conta de leitura
+            return Response.ok(new EmpresaLeitura(model)).build();
+
+        }
+
+        //Se a model for nula retorna um Status Code Not Found
+        return Response.status(Response.Status.NOT_FOUND).entity("Conta não encontrada").build();
+    }
+
+    @GET
+    @Path(value = "/empresa/conta/{id}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarPelaConta(@PathParam("id") String id) {
+        
+        ContaModel conta = new ContaController().buscarPorId(id);
+        
+        EmpresaModel model = empresaController.buscarPelaConta(conta);
+
+        //Verifica se a model retornada não é nula
+        if (model != null) {
+
+            //Retorna um Status Code OK com a conta de leitura
+            return Response.ok(new EmpresaLeitura(model)).build();
+
+        }
+
+        //Se a model for nula retorna um Status Code Not Found
+        return Response.status(Response.Status.NOT_FOUND).entity("Conta não encontrada").build();
+    }
+
     @GET
     @Path(value = "/empresas/{nome}")
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
