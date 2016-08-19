@@ -5,6 +5,7 @@
  */
 package com.platz.model;
 
+import com.platz.http.cadastro.EstadoCadastro;
 import com.platz.util.DataUtil;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,7 +33,15 @@ public class EstadoModel {
     @Length(min = 2, max = 2)
     private String uf;
 
-     //getters and setter
+    public EstadoModel() {
+    }
+
+    public EstadoModel(EstadoCadastro estado) {
+        this.nome = estado.getNome();
+        this.uf = estado.getUf();
+    }
+
+    //getters and setter
     public String getId() {
         return id.toHexString();
     }

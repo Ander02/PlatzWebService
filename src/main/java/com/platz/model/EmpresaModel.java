@@ -5,6 +5,8 @@
  */
 package com.platz.model;
 
+import com.platz.http.cadastro.ContaCadastro;
+import com.platz.http.cadastro.EmpresaCadastro;
 import com.platz.util.DataUtil;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -29,7 +31,7 @@ public class EmpresaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private ObjectId id;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     private ContaModel conta;
     @CNPJ
     @NotNull(message = "O CNPJ deve ser informado")
@@ -47,6 +49,16 @@ public class EmpresaModel {
     //Endereco endereco
 
     public EmpresaModel() {
+    }
+
+    public EmpresaModel(EmpresaCadastro empresa) {
+        this.cnpj = empresa.getCnpj();
+        this.nomeFantasia = empresa.getNomeFantasia();
+        this.razaoSocial = empresa.getRazaoSocial();
+        this.telefone = empresa.getTelefone();
+        this.telefone2 = empresa.getTelefone2();
+        this.imagemPerfil = empresa.getImagemPerfil();
+        this.conta = new ContaModel(empresa.getConta());
     }
 
     public String getId() {

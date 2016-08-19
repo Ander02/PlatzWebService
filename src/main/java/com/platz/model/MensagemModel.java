@@ -5,6 +5,8 @@
  */
 package com.platz.model;
 
+import com.platz.dao.AssuntoDao;
+import com.platz.http.cadastro.MensagemCadastro;
 import com.platz.util.DataUtil;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -47,6 +49,11 @@ public class MensagemModel {
 
     //Construtores
     public MensagemModel() {
+    }
+    public MensagemModel(MensagemCadastro mensagem) {
+        this.assunto = new AssuntoDao().buscarPorId(AssuntoModel.class, mensagem.getAssuntoId());
+        this.email = mensagem.getEmail();
+        this.conteudo = mensagem.getConteudo();
     }
 
     //getters and setters

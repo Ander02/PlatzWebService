@@ -1,5 +1,6 @@
- package com.platz.model;
+package com.platz.model;
 
+import com.platz.http.cadastro.AssuntoCadastro;
 import com.platz.util.DataUtil;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -23,18 +24,22 @@ public class AssuntoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private ObjectId id;
-    
+
     @Length(max = 30, message = "O nome deve ter no máximo 30 caracteres")
-  //  @NotNull(message = "O nome não pode ser nulo")
+    //  @NotNull(message = "O nome não pode ser nulo")
     private String nome;
-    
+
     @Temporal(TemporalType.TIMESTAMP)
-    private Date deletado; 
+    private Date deletado;
 
     //Contrutores
     public AssuntoModel() {
     }
-   
+
+    public AssuntoModel(AssuntoCadastro assunto) {
+        this.nome = assunto.getNome();
+    }
+
     //getters and setter
     public String getId() {
         return id.toHexString();
@@ -59,12 +64,12 @@ public class AssuntoModel {
     public String getDataCadatro() {
         return new DataUtil().converterData(id.getDate());
     }
-    
+
     public Date getDeletado() {
         return deletado;
     }
 
-     public void setDeletado(Date deletado) {
+    public void setDeletado(Date deletado) {
         this.deletado = deletado;
     }
 

@@ -5,6 +5,7 @@
  */
 package com.platz.model;
 
+import com.platz.http.cadastro.UsuarioCadastro;
 import com.platz.util.DataUtil;
 import java.util.Date;
 import javax.persistence.CascadeType;
@@ -51,6 +52,14 @@ public class UsuarioModel {
 
     public UsuarioModel() {
         
+    }
+    public UsuarioModel(UsuarioCadastro usuario) {
+        this.conta = new ContaModel(usuario.getConta());
+        this.cpf = usuario.getCpf();
+        this.dataNascimento = usuario.getDataNascimento();
+        this.imagemPerfil = usuario.getImagemPerfil();
+        this.telefone = usuario.getTelefone();
+        this.nome = usuario.getNome();
     }
         
     public String getId() {

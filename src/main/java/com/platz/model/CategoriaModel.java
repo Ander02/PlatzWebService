@@ -1,7 +1,6 @@
 package com.platz.model;
 
-import com.platz.dao.CategoriaDao;
-import com.platz.http.edicao.CategoriaEdicao;
+import com.platz.http.cadastro.CategoriaCadastro;
 import com.platz.util.DataUtil;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -40,6 +39,11 @@ public class CategoriaModel {
 
     //Contrutores
     public CategoriaModel() {
+    }
+
+    public CategoriaModel(CategoriaCadastro categoria) {
+        this.nome = categoria.getNome();
+        this.caminhoIcone = categoria.getCaminhoIcone();
     }
 
     public CategoriaModel(ObjectId id, String nome, String caminhoIcone, Date deletado) {
