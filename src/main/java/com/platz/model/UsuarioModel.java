@@ -40,7 +40,7 @@ public class UsuarioModel {
     @Length(min = 8, max = 64)    
     private String nome;
     @Temporal(TemporalType.TIMESTAMP)
-    @NotNull(message = "A data de nascimento deve ser informada")
+    //@NotNull(message = "A data de nascimento deve ser informada")
     private Date dataNascimento;    
     @Length(min = 10, max = 11)
     private String telefone;
