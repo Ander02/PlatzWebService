@@ -1,6 +1,5 @@
 package com.platz.http.cadastro;
 
-import com.platz.model.Perfil;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
