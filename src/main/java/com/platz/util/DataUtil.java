@@ -1,5 +1,6 @@
 package com.platz.util;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -16,7 +17,16 @@ public class DataUtil {
         } else {
             return null;
         }
+    }
 
+    public Date converterData(String data) {
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+            return dateFormat.parse(data);
+        } catch (ParseException ex) {
+            System.out.println("Erro de Conversão: " + ex.getMessage());
+            return null;
+        }
     }
 
 }
