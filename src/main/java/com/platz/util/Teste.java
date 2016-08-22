@@ -9,7 +9,7 @@ import java.util.Date;
 public class Teste {
 
     public static void main(String[] args) {
-        String dataString = "02/12/2000 20:50";
+        String dataString = "14/05/1999 20:50";
         
         Date dataDate = new DataUtil().converterData(dataString);
         
