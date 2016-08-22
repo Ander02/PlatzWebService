@@ -5,9 +5,11 @@
  */
 package com.platz.service;
 
+import com.platz.controller.ContaController;
 import com.platz.controller.UsuarioController;
 import com.platz.http.cadastro.UsuarioCadastro;
 import com.platz.http.leitura.UsuarioLeitura;
+import com.platz.model.ContaModel;
 import com.platz.model.UsuarioModel;
 import java.util.List;
 import javax.ws.rs.Consumes;
@@ -125,6 +127,27 @@ public class UsuarioService {
 
         //Se a model for nula retorna um Status Code Not Found
         return Response.status(Response.Status.NOT_FOUND).entity("Usuário não encontrada").build();
+    }
+
+    @GET
+    @Path(value = "/usuario/conta/{id}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarPelaConta(@PathParam("id") String id) {
+
+        ContaModel conta = new ContaController().buscarPorId(id);
+
+        UsuarioModel model = usuarioController.buscarPelaConta(conta);
+
+        //Verifica se a model retornada não é nula
+        if (model != null) {
+
+            //Retorna um Status Code OK com a conta de leitura
+            return Response.ok(new UsuarioLeitura(model)).build();
+
+        }
+
+        //Se a model for nula retorna um Status Code Not Found
+        return Response.status(Response.Status.NOT_FOUND).entity("Conta não encontrada").build();
     }
 
 }

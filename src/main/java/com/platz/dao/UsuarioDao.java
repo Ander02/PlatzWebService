@@ -31,7 +31,7 @@ public class UsuarioDao extends GenericDao<UsuarioModel>{
     }
       public UsuarioModel buscarPelaConta(ContaModel conta){
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
-        UsuarioModel model = (UsuarioModel) entityManager.createQuery("form UsuarioModel where conta = :conta").setParameter("conta", conta).getSingleResult();
+        UsuarioModel model = (UsuarioModel) entityManager.createQuery("from UsuarioModel where conta = :conta").setParameter("conta", conta).getSingleResult();
         return model;
     }
 }
