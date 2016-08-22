@@ -17,7 +17,7 @@ public class UsuarioCadastro {
 
     private ContaCadastro conta;
     private String nome;
-    private Date dataNascimento;
+    private String dataNascimento;
     private String telefone;
     private String cpf;
     private String imagemPerfil;
@@ -25,7 +25,7 @@ public class UsuarioCadastro {
     public UsuarioCadastro() {
     }
 
-    public UsuarioCadastro(ContaCadastro conta, String nome, Date dataNascimento, String telefone, String cpf, String imagemPerfil) {
+    public UsuarioCadastro(ContaCadastro conta, String nome, String dataNascimento, String telefone, String cpf, String imagemPerfil) {
         this.conta = conta;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
@@ -50,11 +50,11 @@ public class UsuarioCadastro {
         this.nome = nome;
     }
 
-    public Date getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
