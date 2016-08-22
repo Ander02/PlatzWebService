@@ -1,6 +1,7 @@
 package com.platz.model;
 
 import com.platz.http.cadastro.ContaCadastro;
+import com.platz.http.edicao.ContaEdicao;
 import com.platz.util.DataUtil;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -54,7 +55,11 @@ public class ContaModel {
         this.senha = conta.getSenha();
         this.setPerfil(conta.getPerfil());
     }
-    
+
+    public ContaModel(ContaEdicao conta) {
+        this.senha = conta.getSenha();
+    }
+
     //Getters and setters
     public String getId() {
         return id.toHexString();

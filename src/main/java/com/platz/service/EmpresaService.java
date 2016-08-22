@@ -3,6 +3,7 @@ package com.platz.service;
 import com.platz.controller.ContaController;
 import com.platz.controller.EmpresaController;
 import com.platz.http.cadastro.EmpresaCadastro;
+import com.platz.http.edicao.EmpresaEdicao;
 import com.platz.http.leitura.EmpresaLeitura;
 import com.platz.model.ContaModel;
 import com.platz.model.EmpresaModel;
@@ -10,6 +11,7 @@ import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -144,6 +146,36 @@ public class EmpresaService {
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar empresas").build();
         }
+    }
+    
+    @PUT
+    @Path(value = "/empresa/{id}")
+    @Consumes(value = MediaType.APPLICATION_JSON)
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response alterar(@PathParam("id") String id, EmpresaEdicao empresa) {
+
+       // try {
+
+            //Settar informações na model
+            EmpresaModel model = empresaController.buscarPorId(id);
+            
+            model.setCnpj(empresa.getCnpj());
+            model.setConta(new ContaModel(empresa.getConta()));
+            model.setImagemPerfil(empresa.getImagemPerfil());
+            model.setNomeFantasia(empresa.getNomeFantasia());
+            model.setRazaoSocial(empresa.getRazaoSocial());
+            model.setTelefone(empresa.getTelefone());
+            
+            //Alterar registro
+            empresaController.alterar(model);
+
+            //Retorna Status Code OK com a entity de leitura com a modificação
+            return Response.status(Response.Status.OK).entity(new EmpresaLeitura(model)).build();
+
+      /*  } catch (Exception e) {
+            System.out.println("Erro" + e.getMessage());
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar empresa").build();
+        }*/
     }
 
 }
