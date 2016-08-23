@@ -1,6 +1,7 @@
 package com.platz.controller;
 
 import com.platz.dao.EmpresaDao;
+import com.platz.http.edicao.EmpresaEdicao;
 import com.platz.model.ContaModel;
 import com.platz.model.EmpresaModel;
 import java.util.List;
@@ -37,7 +38,14 @@ public class EmpresaController {
         return empresaDao.buscarPelaConta(conta);
     }
 
-    public void alterar(EmpresaModel model) {
+    public void alterar(EmpresaModel model, EmpresaEdicao empresa) {
+        model.setCnpj(empresa.getCnpj());
+        model.setImagemPerfil(empresa.getImagemPerfil());
+        model.setNomeFantasia(empresa.getNomeFantasia());
+        model.setRazaoSocial(empresa.getRazaoSocial());
+        model.setTelefone(empresa.getTelefone());
+        model.setTelefone2(empresa.getTelefone2());
+
         empresaDao.alterar(model);
     }
 

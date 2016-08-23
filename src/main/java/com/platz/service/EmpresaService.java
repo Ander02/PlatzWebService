@@ -159,15 +159,8 @@ public class EmpresaService {
             //Settar informações na model
             EmpresaModel model = empresaController.buscarPorId(id);
             
-            model.setCnpj(empresa.getCnpj());
-            model.setImagemPerfil(empresa.getImagemPerfil());
-            model.setNomeFantasia(empresa.getNomeFantasia());
-            model.setRazaoSocial(empresa.getRazaoSocial());
-            model.setTelefone(empresa.getTelefone());
-            model.setTelefone2(empresa.getTelefone2());
-            
             //Alterar registro
-            empresaController.alterar(model);
+            empresaController.alterar(model, empresa);
 
             //Retorna Status Code OK com a entity de leitura com a modificação
             return Response.status(Response.Status.OK).entity(new EmpresaLeitura(model)).build();
