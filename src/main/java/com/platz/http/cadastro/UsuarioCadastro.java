@@ -5,7 +5,6 @@
  */
 package com.platz.http.cadastro;
 
-import java.util.Date;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
