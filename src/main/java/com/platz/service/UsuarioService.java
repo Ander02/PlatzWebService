@@ -8,6 +8,7 @@ package com.platz.service;
 import com.platz.controller.ContaController;
 import com.platz.controller.UsuarioController;
 import com.platz.http.cadastro.UsuarioCadastro;
+import com.platz.http.edicao.UsuarioEdicao;
 import com.platz.http.leitura.UsuarioLeitura;
 import com.platz.model.ContaModel;
 import com.platz.model.UsuarioModel;
@@ -15,6 +16,7 @@ import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -150,4 +152,25 @@ public class UsuarioService {
         return Response.status(Response.Status.NOT_FOUND).entity("Conta não encontrada").build();
     }
 
+    @PUT
+    @Path(value = "/usuario/{id}")
+    @Consumes(value = MediaType.APPLICATION_JSON)
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response alterar(@PathParam("id") String id, UsuarioEdicao usuario) {
+
+        // try {
+        //Settar informações na model
+        UsuarioModel model = usuarioController.buscarPorId(id);
+
+        //Alterar registro
+        usuarioController.alterar(model, usuario);
+
+        //Retorna Status Code OK com a entity de leitura com a modificação
+        return Response.status(Response.Status.OK).entity(new UsuarioLeitura(model)).build();
+
+        /*  } catch (Exception e) {
+            System.out.println("Erro" + e.getMessage());
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar empresa").build();
+        }*/
+    }
 }

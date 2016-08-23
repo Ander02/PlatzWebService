@@ -6,15 +6,17 @@
 package com.platz.http.edicao;
 
 import java.util.Date;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author 15153770
  */
+@XmlRootElement
 public class UsuarioEdicao {
 
     private String nome;
-    private Date dataNascimento;
+    private String dataNascimento;
     private String telefone;
     private String cpf;
     private String imagemPerfil;
@@ -22,7 +24,7 @@ public class UsuarioEdicao {
     public UsuarioEdicao() {
     }
 
-    public UsuarioEdicao(String nome, Date dataNascimento, String telefone, String cpf, String imagemPerfil) {
+    public UsuarioEdicao(String nome, String dataNascimento, String telefone, String cpf, String imagemPerfil) {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.telefone = telefone;
@@ -38,11 +40,11 @@ public class UsuarioEdicao {
         this.nome = nome;
     }
 
-    public Date getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 

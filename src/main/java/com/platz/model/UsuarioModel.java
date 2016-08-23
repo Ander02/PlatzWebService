@@ -94,8 +94,8 @@ public class UsuarioModel {
         return new DataUtil().converterData(dataNascimento);
     }
 
-    public void setDataNascimento(Date dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    public void setDataNascimento(String dataNascimento) {
+        this.dataNascimento = new DataUtil().converterData(dataNascimento);
     }
 
     public String getTelefone() {

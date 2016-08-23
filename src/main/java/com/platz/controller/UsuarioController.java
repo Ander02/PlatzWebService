@@ -6,6 +6,7 @@
 package com.platz.controller;
 
 import com.platz.dao.UsuarioDao;
+import com.platz.http.edicao.UsuarioEdicao;
 import com.platz.model.ContaModel;
 import com.platz.model.UsuarioModel;
 import java.util.List;
@@ -30,10 +31,6 @@ public class UsuarioController {
         return usuarioDao.buscarPorId(UsuarioModel.class, id);
     }
 
-    public void alterar(UsuarioModel model) {
-        usuarioDao.alterar(model);
-    }
-
     public UsuarioModel buscarPeloCPF(String cpf) {
         return usuarioDao.buscarPeloCPF(cpf);
     }
@@ -45,4 +42,16 @@ public class UsuarioController {
     public UsuarioModel buscarPelaConta(ContaModel model) {
         return usuarioDao.buscarPelaConta(model);
     }
+
+    public void alterar(UsuarioModel model, UsuarioEdicao usuario) {
+        
+        model.setCpf(usuario.getCpf());
+        model.setDataNascimento(usuario.getDataNascimento());
+        model.setImagemPerfil(usuario.getImagemPerfil());
+        model.setNome(usuario.getNome());
+        model.setTelefone(usuario.getTelefone());
+                
+        usuarioDao.alterar(model);
+    } 
+
 }
