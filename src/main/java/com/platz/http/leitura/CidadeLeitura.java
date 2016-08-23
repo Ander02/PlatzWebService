@@ -44,7 +44,7 @@ public class CidadeLeitura {
         List<CidadeLeitura> lista = new ArrayList<>();
 
         for (CidadeModel model : modelList) {
-
+            
             CidadeLeitura cidade = new CidadeLeitura(model);
             lista.add(cidade);
         }
