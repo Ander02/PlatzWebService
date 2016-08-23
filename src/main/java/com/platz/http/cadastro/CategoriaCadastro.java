@@ -5,7 +5,6 @@
  */
 package com.platz.http.cadastro;
 
-import com.platz.http.leitura.CategoriaLeitura;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -22,10 +21,9 @@ public class CategoriaCadastro {
     public CategoriaCadastro() {
     }
 
-    public CategoriaCadastro(CategoriaLeitura categoria) {
-        this.nome = categoria.getNome();
-        this.caminhoIcone = categoria.getCaminhoIcone();
-
+    public CategoriaCadastro(String nome, String caminhoIcone) {
+        setNome(nome);
+        setCaminhoIcone(caminhoIcone);
     }
 
     //Getters and Setters

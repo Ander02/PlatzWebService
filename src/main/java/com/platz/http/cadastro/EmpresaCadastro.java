@@ -19,6 +19,17 @@ public class EmpresaCadastro {
 
     public EmpresaCadastro() {
     }
+
+    public EmpresaCadastro(String cnpj, String nomeFantasia, String razaoSocial, String telefone, String telefone2, String imagemPerfil, ContaCadastro conta) {
+        setCnpj(cnpj);
+        setNomeFantasia(nomeFantasia);
+        setRazaoSocial(razaoSocial);
+        setTelefone(telefone);
+        setTelefone2(telefone2);
+        setImagemPerfil(imagemPerfil);
+        setConta(conta);
+    }
+    
    
     //Getters and Setters
     public String getCnpj() {

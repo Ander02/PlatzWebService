@@ -22,13 +22,13 @@ public class EstadoCadastro {
     }
 
     public EstadoCadastro(String nome, String uf) {
-        this.nome = nome;
-        this.uf = uf;
+        setNome(nome);
+        setUf(uf);
     }
 
     public EstadoCadastro(EstadoModel model) {
-        this.nome = model.getNome();
-        this.uf = model.getUf();
+        setNome(model.getNome());
+        setUf(model.getUf());
     }
 
     public String getNome() {

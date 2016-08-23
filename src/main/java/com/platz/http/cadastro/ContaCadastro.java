@@ -18,8 +18,8 @@ public class ContaCadastro {
     }
 
     public ContaCadastro(String email, String senha) {
-        this.email = email;
-        this.senha = senha;
+        setEmail(email);
+        setSenha(senha);
     }
 
     //Getters and Setters

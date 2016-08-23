@@ -57,7 +57,7 @@ public class UsuarioModel {
     public UsuarioModel(UsuarioCadastro usuario) {
         setConta(new ContaModel(usuario.getConta()));
         setCpf(usuario.getCpf());
-        setDataNascimento(new DataUtil().converterData(usuario.getDataNascimento()));
+        setDataNascimento(usuario.getDataNascimento());
         setImagemPerfil(usuario.getImagemPerfil());
         setTelefone(usuario.getTelefone());
         setNome(usuario.getNome());

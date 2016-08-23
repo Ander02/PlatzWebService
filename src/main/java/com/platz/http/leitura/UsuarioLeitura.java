@@ -28,25 +28,25 @@ public class UsuarioLeitura {
     }
 
     public UsuarioLeitura(UsuarioModel model) {
-        this.id = model.getId();
-        this.nome = model.getNome();
-        this.cpf = model.getCpf();
-        this.imagemPerfil = model.getImagemPerfil();
-        this.telefone = model.getTelefone();
-        this.dataNascimento = model.getDataNascimento();
-        this.dataCadastro = model.getDataCadatro();
-        this.conta = new ContaLeitura(model.getConta());
+        setId(model.getId());
+        setNome(model.getNome());
+        setCpf(model.getCpf());
+        setImagemPerfil(model.getImagemPerfil());
+        setTelefone(model.getTelefone());
+        setDataNascimento(model.getDataNascimento());
+        setDataCadastro(model.getDataCadatro());
+        setConta(new ContaLeitura(model.getConta()));
     }
 
     public UsuarioLeitura(String id, String nome, String cpf, String imagemPerfil, String telefone, String dataNascimento, String dataCadastro, ContaLeitura conta) {
-        this.id = id;
-        this.nome = nome;
-        this.cpf = cpf;
-        this.imagemPerfil = imagemPerfil;
-        this.telefone = telefone;
-        this.dataNascimento = dataNascimento;
-        this.dataCadastro = dataCadastro;
-        this.conta = conta;
+        setId(id);
+        setNome(nome);
+        setCpf(cpf);
+        setImagemPerfil(imagemPerfil);
+        setTelefone(telefone);
+        setDataNascimento(dataNascimento);
+        setDataNascimento(dataNascimento);
+        setConta(conta);
     }
 
     //Métodos

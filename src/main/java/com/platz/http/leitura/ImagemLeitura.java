@@ -33,10 +33,10 @@ public class ImagemLeitura {
     }
 
     public ImagemLeitura(String id, String url, String deletado, String dataCadastro) {
-        this.id = id;
-        this.url = url;
-        this.deletado = deletado;
-        this.dataCadastro = dataCadastro;
+        setId(id);
+        setUrl(url);
+        setDeletado(deletado);
+        setDataCadastro(dataCadastro);
     }
 
     //Métodos

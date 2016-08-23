@@ -25,12 +25,12 @@ public class UsuarioCadastro {
     }
 
     public UsuarioCadastro(ContaCadastro conta, String nome, String dataNascimento, String telefone, String cpf, String imagemPerfil) {
-        this.conta = conta;
-        this.nome = nome;
-        this.dataNascimento = dataNascimento;
-        this.telefone = telefone;
-        this.cpf = cpf;
-        this.imagemPerfil = imagemPerfil;
+        setConta(conta);
+        setCpf(cpf);
+        setDataNascimento(dataNascimento);
+        setTelefone(telefone);
+        setTelefone(telefone);
+        setImagemPerfil(imagemPerfil);
     }
 
     public ContaCadastro getConta() {

@@ -5,10 +5,18 @@
  */
 package com.platz.http.leitura;
 
+import com.platz.model.EventoModel;
+
 /**
  *
  * @author 15153770
  */
 public class EventoLeitura {
-    
+
+    public EventoLeitura() {
+    }
+
+    public EventoLeitura(EventoModel model) {
+    }
+
 }

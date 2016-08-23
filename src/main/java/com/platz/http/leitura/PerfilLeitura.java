@@ -20,9 +20,10 @@ public class PerfilLeitura {
     }
     
     public PerfilLeitura(Perfil perfil) {
-        this.codigo = perfil.ordinal();
-        this.nome = perfil.getLabel();
+        setCodigo(perfil.ordinal());
+        setNome(perfil.getLabel());
     }
+    
     
         //Métodos
     public List<PerfilLeitura> converterLista(List<Perfil> enumList) {

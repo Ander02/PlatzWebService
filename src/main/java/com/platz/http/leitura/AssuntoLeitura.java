@@ -22,18 +22,20 @@ public class AssuntoLeitura {
     public AssuntoLeitura() {
     }
 
-    public AssuntoLeitura(String id, String nome, String dataCadastro) {
-        this.id = id;
-        this.nome = nome;
-        this.dataCadastro = dataCadastro;
+    public AssuntoLeitura(String id, String nome, String dataCadastro, String deletado) {
+        setId(id);
+        setNome(nome);
+        setDataCadastro(dataCadastro);
+        setDeletado(deletado);
     }
 
     public AssuntoLeitura(AssuntoModel model) {
-        this.id = model.getId();
-        this.nome = model.getNome();
-        this.dataCadastro = model.getDataCadatro();
+        setId(model.getId());
+        setNome(model.getNome());
+        setDataCadastro(model.getDataCadatro());
         if (model.getDeletado() != null) {
             this.deletado = new DataUtil().converterData(model.getDeletado());
+            System.out.println("editar assuntoLeitura linha 37");
         }
     }
 

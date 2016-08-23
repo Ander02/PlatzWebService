@@ -5,6 +5,7 @@
  */
 package com.platz.http.edicao;
 
+import com.platz.model.AvaliacaoModel;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -17,6 +18,7 @@ public class AvaliacaoEdicao {
 
     public AvaliacaoEdicao() {
     }
+
 
     public AvaliacaoEdicao(Integer nota) {
         setNota(nota);
