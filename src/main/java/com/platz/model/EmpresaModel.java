@@ -31,6 +31,7 @@ public class EmpresaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private ObjectId id;
+    @NotNull
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     private ContaModel conta;
     @CNPJ
@@ -61,15 +62,15 @@ public class EmpresaModel {
         this.conta = new ContaModel(empresa.getConta());
     }
     
-    public EmpresaModel(EmpresaEdicao empresa){
+   /* public EmpresaModel(String id, EmpresaEdicao empresa){
+        this.id = new ObjectId(id);
         this.cnpj = empresa.getCnpj();
         this.nomeFantasia = empresa.getNomeFantasia();
         this.razaoSocial = empresa.getRazaoSocial();
         this.telefone = empresa.getTelefone();
         this.telefone2 = empresa.getTelefone2();
         this.imagemPerfil = empresa.getImagemPerfil();
-        this.conta = new ContaModel(empresa.getConta());
-    }
+    }*/
 
     public String getId() {
         return id.toHexString();

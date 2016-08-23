@@ -56,7 +56,7 @@ public class EmpresaService {
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
 
-        try {
+       // try {
             //Lista com todas as Models cadastradas
             List<EmpresaModel> models = empresaController.listarTodos();
             //Converter a lista de models para uma lista de leitura
@@ -64,11 +64,11 @@ public class EmpresaService {
             //Retorna a lista com um Status Code OK
             return Response.ok(listaDeEmpresas).build();
 
-        } catch (Exception e) {
+    /*    } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar empresas").build();
-        }
+        }*/
     }
 
     @GET
@@ -160,11 +160,11 @@ public class EmpresaService {
             EmpresaModel model = empresaController.buscarPorId(id);
             
             model.setCnpj(empresa.getCnpj());
-            model.setConta(new ContaModel(empresa.getConta()));
             model.setImagemPerfil(empresa.getImagemPerfil());
             model.setNomeFantasia(empresa.getNomeFantasia());
             model.setRazaoSocial(empresa.getRazaoSocial());
             model.setTelefone(empresa.getTelefone());
+            model.setTelefone2(empresa.getTelefone2());
             
             //Alterar registro
             empresaController.alterar(model);

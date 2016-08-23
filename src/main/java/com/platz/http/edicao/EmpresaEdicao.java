@@ -15,7 +15,6 @@ public class EmpresaEdicao {
     private String telefone;
     private String telefone2;
     private String imagemPerfil;
-    private ContaEdicao conta;
     
     public String getCnpj() {
         return cnpj;
@@ -63,16 +62,6 @@ public class EmpresaEdicao {
 
     public void setImagemPerfil(String imagemPerfil) {
         this.imagemPerfil = imagemPerfil;
-    }
-
-    public ContaEdicao getConta() {
-        return conta;
-    }
-
-    public void setConta(ContaEdicao conta) {
-        this.conta = conta;
-    }
-    
-    
+    }   
     
 }
