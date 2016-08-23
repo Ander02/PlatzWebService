@@ -1,6 +1,5 @@
 package com.platz.http.edicao;
 
-import com.platz.model.AssuntoModel;
 import java.util.Date;
 import javax.xml.bind.annotation.XmlRootElement;
 
