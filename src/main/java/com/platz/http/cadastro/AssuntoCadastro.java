@@ -17,11 +17,11 @@ public class AssuntoCadastro {
     }
 
     public AssuntoCadastro(String nome) {
-        this.nome = nome;
+        setNome(nome);
     }
 
     public AssuntoCadastro(AssuntoModel model) {
-        this.nome = model.getNome();
+        setNome(model.getNome());
     }
 
     //Getters and setters

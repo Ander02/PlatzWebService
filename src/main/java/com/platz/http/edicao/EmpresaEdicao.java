@@ -15,6 +15,20 @@ public class EmpresaEdicao {
     private String telefone;
     private String telefone2;
     private String imagemPerfil;
+
+    public EmpresaEdicao() {
+    }
+
+    public EmpresaEdicao(String cnpj, String nomeFantasia, String razaoSocial, String telefone, String telefone2, String imagemPerfil) {
+        setCnpj(cnpj);
+        setNomeFantasia(nomeFantasia);
+        setRazaoSocial(razaoSocial);
+        setTelefone(telefone);
+        setTelefone2(telefone2);
+        setImagemPerfil(imagemPerfil);
+    }
+    
+    
     
     public String getCnpj() {
         return cnpj;

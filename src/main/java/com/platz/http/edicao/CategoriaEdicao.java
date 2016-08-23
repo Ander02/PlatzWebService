@@ -25,17 +25,9 @@ public class CategoriaEdicao {
     }
 
     public CategoriaEdicao(String nome, String caminhoIcone, Date deletado) {
-        this.nome = nome;
-        this.caminhoIcone = caminhoIcone;
-        this.deletado = deletado;
-    }
-
-    public CategoriaEdicao(CategoriaModel model) {
-        this.nome = model.getNome();
-        this.caminhoIcone = model.getCaminhoIcone();
-        if (model.getDeletado() != null) {
-            this.deletado = model.getDeletado();
-        }
+        setNome(nome);
+        setCaminhoIcone(caminhoIcone);
+        setDeletado(deletado);
     }
 
     //Getters and Setters
@@ -63,6 +55,4 @@ public class CategoriaEdicao {
         this.deletado = deletado;
     }
 
-    
-    
 }

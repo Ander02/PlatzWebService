@@ -15,6 +15,12 @@ public class MensagemCadastro {
 
     public MensagemCadastro() {
     }  
+
+    public MensagemCadastro(String assuntoId, String email, String conteudo) {
+        setAssuntoId(assuntoId);
+        setEmail(email);
+        setConteudo(conteudo);
+    }
     
     //getters and Setters
     public String getAssuntoId() {

@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.platz.http.cadastro;
+package com.platz.http.leitura;
 
-import com.platz.model.EstadoModel;
+import com.platz.model.TipoPresenca;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -13,22 +13,25 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author 15153770
  */
 @XmlRootElement
-public class EstadoCadastro {
+public class TipoPresencaLeitura {
 
+    private int codigo;
     private String nome;
-    private String uf;
 
-    public EstadoCadastro() {
+    public TipoPresencaLeitura() {
     }
 
-    public EstadoCadastro(String nome, String uf) {
-        setNome(nome);
-        setUf(uf);
+    public TipoPresencaLeitura(TipoPresenca tipoPresenca) {
+        setCodigo(tipoPresenca.ordinal());
+        setNome(tipoPresenca.getLabel());
     }
 
-    public EstadoCadastro(EstadoModel model) {
-        setNome(model.getNome());
-        setUf(model.getUf());
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
     public String getNome() {
@@ -37,14 +40,6 @@ public class EstadoCadastro {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getUf() {
-        return uf;
-    }
-
-    public void setUf(String uf) {
-        this.uf = uf;
     }
 
 }

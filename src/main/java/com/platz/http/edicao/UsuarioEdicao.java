@@ -25,11 +25,11 @@ public class UsuarioEdicao {
     }
 
     public UsuarioEdicao(String nome, String dataNascimento, String telefone, String cpf, String imagemPerfil) {
-        this.nome = nome;
-        this.dataNascimento = dataNascimento;
-        this.telefone = telefone;
-        this.cpf = cpf;
-        this.imagemPerfil = imagemPerfil;
+        setNome(nome);
+        setDataNascimento(dataNascimento);
+        setTelefone(telefone);
+        setCpf(cpf);
+        setImagemPerfil(imagemPerfil);
     }
 
     public String getNome() {

@@ -51,9 +51,9 @@ public class MensagemModel {
     public MensagemModel() {
     }
     public MensagemModel(MensagemCadastro mensagem) {
-        this.assunto = new AssuntoDao().buscarPorId(AssuntoModel.class, mensagem.getAssuntoId());
-        this.email = mensagem.getEmail();
-        this.conteudo = mensagem.getConteudo();
+        setAssunto(new AssuntoDao().buscarPorId(AssuntoModel.class, mensagem.getAssuntoId()));
+        setEmail(mensagem.getEmail());
+        setConteudo(mensagem.getConteudo());
     }
 
     //getters and setters

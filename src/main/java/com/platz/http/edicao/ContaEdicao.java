@@ -19,6 +19,11 @@ public class ContaEdicao {
     public ContaEdicao() {
     }
 
+    public ContaEdicao(String senha) {
+        setSenha(senha);
+    }
+    
+
     public String getSenha() {
         return senha;
     }

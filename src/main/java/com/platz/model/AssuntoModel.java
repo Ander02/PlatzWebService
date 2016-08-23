@@ -37,7 +37,7 @@ public class AssuntoModel {
     }
 
     public AssuntoModel(AssuntoCadastro assunto) {
-        this.nome = assunto.getNome();
+        setNome(assunto.getNome());
     }
 
     //getters and setter

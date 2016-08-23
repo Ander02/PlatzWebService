@@ -9,24 +9,29 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author 15153766
+ * @author 15153770
  */
 @XmlRootElement
-public class CategoriaCadastro {
-
+public class CidadeCadastro {
+    private String estadoId;
     private String nome;
-    private String caminhoIcone;
 
-    //Construtores
-    public CategoriaCadastro() {
+    public CidadeCadastro() {
     }
 
-    public CategoriaCadastro(String nome, String caminhoIcone) {
+    public CidadeCadastro(String estadoId, String nome) {
+        setEstadoId(estadoId);
         setNome(nome);
-        setCaminhoIcone(caminhoIcone);
+    }    
+    
+    public String getEstadoId() {
+        return estadoId;
     }
 
-    //Getters and Setters
+    public void setEstadoId(String estadoId) {
+        this.estadoId = estadoId;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -34,15 +39,6 @@ public class CategoriaCadastro {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    public String getCaminhoIcone() {
-        return caminhoIcone;
-    }
-
-    public void setCaminhoIcone(String caminhoIcone) {
-        this.caminhoIcone = caminhoIcone;
-    }
     
     
-
 }

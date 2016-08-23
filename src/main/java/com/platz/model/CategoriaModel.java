@@ -42,15 +42,8 @@ public class CategoriaModel {
     }
 
     public CategoriaModel(CategoriaCadastro categoria) {
-        this.nome = categoria.getNome();
-        this.caminhoIcone = categoria.getCaminhoIcone();
-    }
-
-    public CategoriaModel(ObjectId id, String nome, String caminhoIcone, Date deletado) {
-        this.id = id;
-        this.nome = nome;
-        this.caminhoIcone = caminhoIcone;
-        this.deletado = deletado;
+        setNome(categoria.getNome());
+        setCaminhoIcone(categoria.getCaminhoIcone());
     }
 
     //getters and setters

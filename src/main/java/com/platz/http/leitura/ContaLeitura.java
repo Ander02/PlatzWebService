@@ -25,14 +25,25 @@ public class ContaLeitura {
     }
 
     public ContaLeitura(ContaModel model) {
-        this.id = model.getId();
-        this.email = model.getEmail();
-        this.dataCadastro = model.getDataCadatro();
-        this.perfil = model.getPerfil().getLabel();
-        this.inativo = model.getInativo();
-        this.bloqueado = model.getBloqueado();
-        this.ultimoAcesso = model.getUltimoAcesso();
+        setId(model.getId());
+        setEmail(model.getEmail());
+        setDataCadastro(model.getDataCadatro());
+        setPerfil(model.getPerfil().getLabel());
+        setInativo(model.getInativo());
+        setBloqueado(model.getBloqueado());
+        setUltimoAcesso(model.getUltimoAcesso());
     }
+
+    public ContaLeitura(String id, String email, String inativo, String perfil, String bloqueado, String ultimoAcesso, String dataCadastro) {
+        setId(id);
+        setEmail(email);
+        setInativo(inativo);
+        setPerfil(perfil);
+        setBloqueado(bloqueado);
+        setUltimoAcesso(ultimoAcesso);
+        setDataCadastro(dataCadastro);
+    }
+    
 
     //Métodos
     public List<ContaLeitura> converterLista(List<ContaModel> modelList) {

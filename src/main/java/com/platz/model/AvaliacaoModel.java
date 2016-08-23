@@ -38,6 +38,9 @@ public class AvaliacaoModel {
     @NotNull(message = "indique o usuario que esta avaliando")
     private UsuarioModel usuario;
 
+    public AvaliacaoModel() {
+    }
+
     //getters and setters
     public String getId() {
         return id.toHexString();

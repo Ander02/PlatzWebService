@@ -27,17 +27,17 @@ public class EstadoLeitura {
     }
 
     public EstadoLeitura(String id, String nome, String uf, String dataCadastro) {
-        this.id = id;
-        this.nome = nome;
-        this.uf = uf;
-        this.dataCadastro = dataCadastro;
+        setId(id);
+        setNome(nome);
+        setUf(uf);
+        setDataCadastro(dataCadastro);
     }
 
     public EstadoLeitura(EstadoModel model) {
-        this.id = model.getId();
-        this.nome = model.getNome();
-        this.uf = model.getUf();
-        this.dataCadastro = model.getDataCadatro();
+        setId(model.getId());
+        setNome(model.getNome());
+        setUf(model.getUf());
+        setDataCadastro(model.getDataCadatro());
     }
 
     public String getId() {

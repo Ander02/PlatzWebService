@@ -2,7 +2,6 @@ package com.platz.http.leitura;
 
 import com.platz.model.MensagemModel;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -26,19 +25,31 @@ public class MensagemLeitura {
     }
 
     public MensagemLeitura(MensagemModel model) {
-        this.id = model.getId();
-        this.email = model.getEmail();
-        this.conteudo = model.getConteudo();
-        this.marcado = model.isMarcado();
-        this.dataCadastro = model.getDataCadatro();
-        if (model.getVisualizado() != null) {
-            this.visualizado = model.getVisualizado();
+        setId(model.getId());
+        setEmail(model.getEmail());
+        setConteudo(model.getConteudo());
+        setMarcado(model.isMarcado());
+        setDataCadastro(model.getDataCadatro());
+        if (model.getVisualizado() != null) {            
+            setVisualizado(model.getVisualizado());
         }
         if (model.getDeletado() != null) {
-            this.deletado = model.getDeletado();
+            setDeletado(model.getDeletado());
         }
-        this.assunto = new AssuntoLeitura(model.getAssunto());
+        setAssunto(new AssuntoLeitura(model.getAssunto()));
     }
+
+    public MensagemLeitura(String id, String email, String conteudo, String visualizado, boolean marcado, String dataCadastro, String deletado, AssuntoLeitura assunto) {
+        setId(id);
+        setEmail(email);
+        setConteudo(conteudo);
+        setVisualizado(visualizado);
+        setMarcado(marcado);
+        setDataCadastro(dataCadastro);
+        setDeletado(deletado);
+        setAssunto(assunto);
+    }
+    
     
     //Métodos
     public List<MensagemLeitura> converterLista(List<MensagemModel> modelList) {

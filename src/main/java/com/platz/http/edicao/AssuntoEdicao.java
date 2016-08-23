@@ -18,11 +18,9 @@ public class AssuntoEdicao {
     public AssuntoEdicao() {
     }
 
-    public AssuntoEdicao(AssuntoModel model) {
-        this.nome = model.getNome();
-        if (model.getDeletado() != null) {
-            this.deletado = model.getDeletado();
-        }
+    public AssuntoEdicao(String nome, Date deletado) {
+        setNome(nome);
+        setDeletado(deletado);
     }
 
     //Getters and setters

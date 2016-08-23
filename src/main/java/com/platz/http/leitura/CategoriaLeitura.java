@@ -24,13 +24,23 @@ public class CategoriaLeitura {
 
     }
 
+    public CategoriaLeitura(String id, String nome, String dataCadastro, String caminhoIcone, String deletado) {
+        setId(id);
+        setNome(nome);
+        setDataCadastro(dataCadastro);
+        setCaminhoIcone(caminhoIcone);
+        //this.deletado = deletado;
+    }
+    
+
     public CategoriaLeitura(CategoriaModel model) {
-        this.id = model.getId();
-        this.nome = model.getNome();
-        this.dataCadastro = model.getDataCadatro();
-        this.caminhoIcone = model.getCaminhoIcone();
+        setId(model.getId());
+        setNome(model.getNome());
+        setDataCadastro(model.getDataCadatro());
+        setCaminhoIcone(model.getCaminhoIcone());
         if (model.getDeletado() != null) {
             this.deletado = new DataUtil().converterData(model.getDeletado());
+            System.out.println("editar categorialeitura linha 33");
         }
     }
 

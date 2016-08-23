@@ -51,13 +51,13 @@ public class ContaModel {
     }
 
     public ContaModel(ContaCadastro conta) {
-        this.email = conta.getEmail();
-        this.senha = conta.getSenha();
-        this.setPerfil(conta.getPerfil());
+        setEmail(conta.getEmail());
+        setSenha(conta.getSenha());
+        setPerfil(conta.getPerfil());
     }
 
     public ContaModel(ContaEdicao conta) {
-        this.senha = conta.getSenha();
+        setSenha(conta.getSenha());
     }
 
     //Getters and setters

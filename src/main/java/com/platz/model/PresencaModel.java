@@ -36,6 +36,11 @@ public class PresencaModel {
     @NotNull(message = "Selecione o o tipo de presença")
     private TipoPresenca tipoPresenca;
 
+    public PresencaModel() {
+    }
+
+    
+    
    //getters and setters
     public String getId() {
         return id.toHexString();

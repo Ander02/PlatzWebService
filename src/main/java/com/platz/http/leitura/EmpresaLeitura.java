@@ -27,16 +27,29 @@ public class EmpresaLeitura {
     }
 
     public EmpresaLeitura(EmpresaModel model) {
-        this.id = model.getId();
-        this.cnpj = model.getCnpj();
-        this.nomeFantasia = model.getNomeFantasia();
-        this.razaoSocial = model.getRazaoSocial();
-        this.telefone = model.getTelefone();
-        this.telefone2 = model.getTelefone2();
-        this.imagemPerfil = model.getImagemPerfil();
-        this.dataCadastro = model.getDataCadatro();
-        this.conta = new ContaLeitura(model.getConta());
+        setId(model.getId());
+        setCnpj(model.getCnpj());
+        setNomeFantasia(model.getNomeFantasia());
+        setRazaoSocial(model.getRazaoSocial());
+        setTelefone(model.getTelefone());
+        setTelefone2(model.getTelefone2());
+        setImagemPerfil(model.getImagemPerfil());
+        setDataCadastro(model.getDataCadatro());
+        setConta(new ContaLeitura(model.getConta()));
     }
+
+    public EmpresaLeitura(String id, String cnpj, String nomeFantasia, String razaoSocial, String telefone, String telefone2, String imagemPerfil, String dataCadastro, ContaLeitura conta) {
+        setId(id);
+        setCnpj(cnpj);
+        setNomeFantasia(nomeFantasia);
+        setRazaoSocial(razaoSocial);
+        setTelefone(telefone);
+        setTelefone2(telefone2);
+        setImagemPerfil(imagemPerfil);
+        setDataCadastro(dataCadastro);
+        setConta(conta);
+    }
+    
 
     //Métodos
     public List<EmpresaLeitura> converterLista(List<EmpresaModel> modelList) {
