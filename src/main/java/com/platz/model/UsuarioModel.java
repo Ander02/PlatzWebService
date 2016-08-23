@@ -33,35 +33,36 @@ public class UsuarioModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private ObjectId id;
-    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REFRESH})
-    @NotNull(message = "A conta deve ser informada")    
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
+    @NotNull(message = "A conta deve ser informada")
     private ContaModel conta;
     @NotNull(message = "O nome deve ser informado")
-    @Length(min = 8, max = 64)    
+    @Length(min = 8, max = 64)
     private String nome;
     @Temporal(TemporalType.TIMESTAMP)
     @NotNull(message = "A data de nascimento deve ser informada")
-    private Date dataNascimento;    
+    private Date dataNascimento;
     @Length(min = 10, max = 11)
     private String telefone;
     @CPF
     @NotNull(message = "O CPF deve ser informado")
     private String cpf;
-    private String imagemPerfil;    
+    private String imagemPerfil;
     //Endereco endereco
 
     public UsuarioModel() {
-        
+
     }
+
     public UsuarioModel(UsuarioCadastro usuario) {
-        this.conta = new ContaModel(usuario.getConta());
-        this.cpf = usuario.getCpf();
-        this.dataNascimento = new DataUtil().converterData(usuario.getDataNascimento());
-        this.imagemPerfil = usuario.getImagemPerfil();
-        this.telefone = usuario.getTelefone();
-        this.nome = usuario.getNome();
+        setConta(new ContaModel(usuario.getConta()));
+        setCpf(usuario.getCpf());
+        setDataNascimento(new DataUtil().converterData(usuario.getDataNascimento()));
+        setImagemPerfil(usuario.getImagemPerfil());
+        setTelefone(usuario.getTelefone());
+        setNome(usuario.getNome());
     }
-        
+
     public String getId() {
         return id.toHexString();
     }
@@ -121,9 +122,9 @@ public class UsuarioModel {
     public void setImagemPerfil(String imagemPerfil) {
         this.imagemPerfil = imagemPerfil;
     }
+
     public String getDataCadatro() {
         return new DataUtil().converterData(id.getDate());
     }
 
-    
 }

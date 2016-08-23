@@ -65,6 +65,9 @@ public class EventoModel {
     private Boolean destaque = false;
     //Endereco endereco
 
+    public EventoModel() {
+    }
+
     
     
     //getters and setters

@@ -47,6 +47,11 @@ public class PostagemModel {
     private Date deletado = null;
     @OneToMany
     private List<ImagemModel> imagens;
+
+    public PostagemModel() {
+    }
+    
+    
     
     //getters and setters
     public String getId() {

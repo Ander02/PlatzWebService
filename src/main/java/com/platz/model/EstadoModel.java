@@ -37,8 +37,8 @@ public class EstadoModel {
     }
 
     public EstadoModel(EstadoCadastro estado) {
-        this.nome = estado.getNome();
-        this.uf = estado.getUf();
+        setNome(estado.getNome());
+        setUf(estado.getUf());
     }
 
     //getters and setter

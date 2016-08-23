@@ -34,6 +34,11 @@ public class ImagemModel {
    @Temporal(TemporalType.TIMESTAMP)
    private Date deletado;
 
+    public ImagemModel() {
+    }
+
+   
+   
     //getters and setters
     public String getId() {
         return id.toHexString();

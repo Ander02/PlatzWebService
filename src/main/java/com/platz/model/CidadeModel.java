@@ -31,6 +31,11 @@ public class CidadeModel {
     @ManyToOne
     private EstadoModel estado;
 
+    public CidadeModel() {
+    }
+
+    
+    
     //getters and setters
     public String getId() {
         return id.toHexString();

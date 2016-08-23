@@ -6,7 +6,6 @@
 package com.platz.model;
 
 import com.platz.http.cadastro.EmpresaCadastro;
-import com.platz.http.edicao.EmpresaEdicao;
 import com.platz.util.DataUtil;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -53,24 +52,15 @@ public class EmpresaModel {
     }
 
     public EmpresaModel(EmpresaCadastro empresa) {
-        this.cnpj = empresa.getCnpj();
-        this.nomeFantasia = empresa.getNomeFantasia();
-        this.razaoSocial = empresa.getRazaoSocial();
-        this.telefone = empresa.getTelefone();
-        this.telefone2 = empresa.getTelefone2();
-        this.imagemPerfil = empresa.getImagemPerfil();
-        this.conta = new ContaModel(empresa.getConta());
+        setCnpj( empresa.getCnpj());
+        setNomeFantasia( empresa.getNomeFantasia());
+        setRazaoSocial(empresa.getRazaoSocial());
+        setTelefone(empresa.getTelefone());
+        setTelefone2( empresa.getTelefone2());
+        setImagemPerfil(empresa.getImagemPerfil());
+        setConta(new ContaModel(empresa.getConta()));
     }
     
-   /* public EmpresaModel(String id, EmpresaEdicao empresa){
-        this.id = new ObjectId(id);
-        this.cnpj = empresa.getCnpj();
-        this.nomeFantasia = empresa.getNomeFantasia();
-        this.razaoSocial = empresa.getRazaoSocial();
-        this.telefone = empresa.getTelefone();
-        this.telefone2 = empresa.getTelefone2();
-        this.imagemPerfil = empresa.getImagemPerfil();
-    }*/
 
     public String getId() {
         return id.toHexString();
