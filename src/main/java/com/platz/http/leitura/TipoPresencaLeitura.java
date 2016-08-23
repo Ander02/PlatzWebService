@@ -6,11 +6,13 @@
 package com.platz.http.leitura;
 
 import com.platz.model.TipoPresenca;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author 15153770
  */
+@XmlRootElement
 public class TipoPresencaLeitura {
 
     private int codigo;

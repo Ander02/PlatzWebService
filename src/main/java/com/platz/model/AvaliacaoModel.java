@@ -41,7 +41,7 @@ public class AvaliacaoModel {
     public AvaliacaoModel() {
     }
 
-        //getters and setters
+    //getters and setters
     public String getId() {
         return id.toHexString();
     }
