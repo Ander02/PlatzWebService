@@ -1,5 +1,6 @@
 package com.platz.util;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -9,10 +10,11 @@ import java.util.Date;
 public class Teste {
 
     public static void main(String[] args) {
-        String dataString =new DataUtil().converterData(new Date());
-        System.out.println(dataString);
-        Date dataDate = new DataUtil().converterData(dataString);        
-        System.out.println(dataDate.toString());
-        
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.add(Calendar.DAY_OF_MONTH, 7);
+
+        Date dataProximaSemana = calendar.getTime();
+        System.out.println(dataProximaSemana.toString());
     }
 }
