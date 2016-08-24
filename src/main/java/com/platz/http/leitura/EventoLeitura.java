@@ -14,6 +14,7 @@ public class EventoLeitura {
     }
 
     public EventoLeitura(EventoModel model) {
+
     }
 
 }

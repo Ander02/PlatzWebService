@@ -130,7 +130,7 @@ public class EmpresaModel {
         this.imagemPerfil = imagemPerfil;
     }
 
-    public String getDataCadatro() {
+    public String getDataCadastro() {
         return new DataUtil().converterData(id.getDate());
     }
 

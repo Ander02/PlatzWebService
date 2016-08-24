@@ -109,7 +109,7 @@ public class MensagemModel {
         this.conteudo = conteudo;
     }
 
-    public String getDataCadatro() {
+    public String getDataCadastro() {
         return new DataUtil().converterData(id.getDate());
     }
 

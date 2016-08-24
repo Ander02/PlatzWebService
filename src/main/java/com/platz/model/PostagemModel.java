@@ -25,14 +25,14 @@ import org.hibernate.validator.constraints.Length;
  *
  * @author 15153770
  */
-
 @Entity
 @Table(name = "postagem")
 public class PostagemModel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     ObjectId id;
-    
+
     @Length(max = 512, message = "O conteudo pode ter no maximo 512 caracteres")
     private String conteudo;
     @NotNull(message = "Indique a conta")
@@ -50,9 +50,7 @@ public class PostagemModel {
 
     public PostagemModel() {
     }
-    
-    
-    
+
     //getters and setters
     public String getId() {
         return id.toHexString();
@@ -90,16 +88,16 @@ public class PostagemModel {
         this.evento = evento;
     }
 
-    public Date getCensurado() {
-        return censurado;
+    public String getCensurado() {
+        return new DataUtil().converterData(this.censurado);
     }
 
     public void setCensurado(Date censurado) {
         this.censurado = censurado;
     }
 
-    public Date getDeletado() {
-        return deletado;
+    public String getDeletado() {
+        return new DataUtil().converterData(this.deletado);
     }
 
     public void setDeletado(Date deletado) {
@@ -113,8 +111,9 @@ public class PostagemModel {
     public void setImagens(List<ImagemModel> imagens) {
         this.imagens = imagens;
     }
-     public String getDataCadatro() {
+
+    public String getDataCadastro() {
         return new DataUtil().converterData(id.getDate());
     }
-    
+
 }

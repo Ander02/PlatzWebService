@@ -83,7 +83,7 @@ public class CategoriaModel {
         this.deletado = deletado;
     }
 
-    public String getDataCadatro() {
+    public String getDataCadastro() {
         return new DataUtil().converterData(id.getDate());
     }
 }

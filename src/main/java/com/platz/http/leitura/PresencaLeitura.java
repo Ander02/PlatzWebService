@@ -26,7 +26,7 @@ public class PresencaLeitura {
         //setEvento(new EventoLeitura(model.getEvento()));
         setConta(new ContaLeitura(model.getConta()));
         setTipoPresenca(model.getTipoPresenca().getLabel());
-        setDataCadastro(model.getDataCadatro());
+        setDataCadastro(model.getDataCadastro());
     }
 
     public PresencaLeitura(String id, EventoLeitura evento, ContaLeitura conta, String tipoPresenca, String dataCadastro) {

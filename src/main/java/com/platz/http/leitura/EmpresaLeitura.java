@@ -34,7 +34,7 @@ public class EmpresaLeitura {
         setTelefone(model.getTelefone());
         setTelefone2(model.getTelefone2());
         setImagemPerfil(model.getImagemPerfil());
-        setDataCadastro(model.getDataCadatro());
+        setDataCadastro(model.getDataCadastro());
         setConta(new ContaLeitura(model.getConta()));
     }
 

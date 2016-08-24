@@ -1,7 +1,6 @@
 package com.platz.http.leitura;
 
 import com.platz.model.AssuntoModel;
-import com.platz.util.DataUtil;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -34,8 +33,7 @@ public class AssuntoLeitura {
         setNome(model.getNome());
         setDataCadastro(model.getDataCadatro());
         if (model.getDeletado() != null) {
-            this.deletado = new DataUtil().converterData(model.getDeletado());
-            System.out.println("editar assuntoLeitura linha 37");
+            this.deletado = model.getDeletado();
         }
     }
 

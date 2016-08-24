@@ -27,7 +27,7 @@ public class ContaLeitura {
     public ContaLeitura(ContaModel model) {
         setId(model.getId());
         setEmail(model.getEmail());
-        setDataCadastro(model.getDataCadatro());
+        setDataCadastro(model.getDataCadastro());
         setPerfil(model.getPerfil().getLabel());
         setInativo(model.getInativo());
         setBloqueado(model.getBloqueado());

@@ -23,7 +23,7 @@ public class CidadeLeitura {
         setId(model.getId());
         setNome(model.getNome());
         setEstadoLeitura(new EstadoLeitura(model.getEstado()));
-        setDataCadastro(model.getDataCadatro());
+        setDataCadastro(model.getDataCadastro());
     }
 
     public CidadeLeitura(String id, String nome, EstadoLeitura estadoLeitura, String dataCadastro) {        

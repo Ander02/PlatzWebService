@@ -100,15 +100,12 @@ public class ContaModel {
         this.ultimoAcesso = ultimoAcesso;
     }
 
-    public String getDataCadatro() {
+    public String getDataCadastro() {
         return new DataUtil().converterData(id.getDate());
     }
 
     public String getInativo() {
-        if (this.inativo != null) {
-            return new DataUtil().converterData(this.inativo);
-        }
-        return null;
+        return new DataUtil().converterData(this.inativo);
     }
 
     public void setInativo(Date inativo) {
@@ -116,10 +113,7 @@ public class ContaModel {
     }
 
     public String getBloqueado() {
-        if (this.bloqueado != null) {
-            return new DataUtil().converterData(this.bloqueado);
-        }
-        return null;
+        return new DataUtil().converterData(this.bloqueado);
     }
 
     public void setBloqueado(Date bloqueado) {

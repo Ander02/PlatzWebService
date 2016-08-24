@@ -37,7 +37,7 @@ public class EstadoLeitura {
         setId(model.getId());
         setNome(model.getNome());
         setUf(model.getUf());
-        setDataCadastro(model.getDataCadatro());
+        setDataCadastro(model.getDataCadastro());
     }
 
     public String getId() {

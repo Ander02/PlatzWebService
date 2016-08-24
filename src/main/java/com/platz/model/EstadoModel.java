@@ -70,7 +70,7 @@ public class EstadoModel {
         this.uf = uf;
     }
 
-    public String getDataCadatro() {
+    public String getDataCadastro() {
         return new DataUtil().converterData(id.getDate());
     }
 

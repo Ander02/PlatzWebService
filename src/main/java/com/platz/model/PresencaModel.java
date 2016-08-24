@@ -77,7 +77,7 @@ public class PresencaModel {
     public void setTipoPresenca(TipoPresenca tipoPresenca) {
         this.tipoPresenca = tipoPresenca;
     }
-     public String getDataCadatro() {
+     public String getDataCadastro() {
         return new DataUtil().converterData(id.getDate());
     }
     

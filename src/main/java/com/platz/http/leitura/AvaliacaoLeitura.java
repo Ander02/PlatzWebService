@@ -35,7 +35,7 @@ public class AvaliacaoLeitura {
         }
         setUsuario(new UsuarioLeitura(model.getUsuario()));
         //setEvento(new EventoLeitura(model.getEvento()));
-        setDataCadastro(model.getDataCadatro());
+        setDataCadastro(model.getDataCadastro());
     }
     
     public List<AvaliacaoLeitura> converterLista(List<AvaliacaoModel> modelList) {

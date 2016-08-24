@@ -181,7 +181,7 @@ public class EventoModel {
     public void setDestaque(Boolean destaque) {
         this.destaque = destaque;
     }
-    public String getDataCadatro() {
+    public String getDataCadastro() {
         return new DataUtil().converterData(id.getDate());
     }
 

@@ -123,7 +123,7 @@ public class UsuarioModel {
         this.imagemPerfil = imagemPerfil;
     }
 
-    public String getDataCadatro() {
+    public String getDataCadastro() {
         return new DataUtil().converterData(id.getDate());
     }
 

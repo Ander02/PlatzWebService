@@ -24,7 +24,7 @@ public class ImagemLeitura {
         setUrl(model.getUrl());
         setId(model.getId());
         setDeletado(model.getDeletado());
-        setDataCadastro(model.getDataCadatro());
+        setDataCadastro(model.getDataCadastro());
     }
 
     public ImagemLeitura(String id, String url, String deletado, String dataCadastro) {
