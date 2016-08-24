@@ -111,7 +111,7 @@ public class EventoDao extends GenericDao<EventoDao> {
     }
 
     @SuppressWarnings("unchecked")
-    public List<EventoModel> buscarPeloEventosPassados(int idade) {
+    public List<EventoModel> buscarPeloEventosPassados() {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
         List<EventoModel> lista = entityManager.createQuery("from EventoModel where dataFim < :dataFim").setParameter("dataFim", new Date()).getResultList();
         entityManager.close();
@@ -119,7 +119,7 @@ public class EventoDao extends GenericDao<EventoDao> {
     }
 
     @SuppressWarnings("unchecked")
-    public List<EventoModel> buscarPeloEventosFuturos(int idade) {
+    public List<EventoModel> buscarPeloEventosFuturos() {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
         List<EventoModel> lista = entityManager.createQuery("from EventoModel where dataInicio > :dataInicio").setParameter("dataInicio", new Date()).getResultList();
         entityManager.close();
@@ -127,9 +127,9 @@ public class EventoDao extends GenericDao<EventoDao> {
     }
 
     @SuppressWarnings("unchecked")
-    public List<EventoModel> buscarEventosDaSemana(int idade) {
+    public List<EventoModel> buscarEventosDaSemana() {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
-        
+
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
         calendar.add(Calendar.DAY_OF_MONTH, 7);
@@ -139,7 +139,7 @@ public class EventoDao extends GenericDao<EventoDao> {
         entityManager.close();
         return lista;
     }
-    
+
     @SuppressWarnings("unchecked")
     public List<EventoModel> buscarPeloValorMaximo(Double valor) {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
@@ -147,7 +147,8 @@ public class EventoDao extends GenericDao<EventoDao> {
         entityManager.close();
         return lista;
     }
-     @SuppressWarnings("unchecked")
+
+    @SuppressWarnings("unchecked")
     public List<EventoModel> buscarGratuitos() {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
         List<EventoModel> lista = entityManager.createQuery("from EventoModel where preco = 0.0").getResultList();
