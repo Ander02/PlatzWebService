@@ -34,6 +34,7 @@ public class EventoModel {
     private String nome;
     @Length(max = 512, message = "Detalhes deve ter no maximo 512 caracteres")
     private String detalhes;
+    private int idade = 0;
     @Temporal(TemporalType.TIMESTAMP)
     @Future
     @NotNull(message = "A data e/ou hora de inicio deve ser informada")
@@ -104,9 +105,10 @@ public class EventoModel {
         this.dataInicio = dataInicio;
     }
 
-     public Date getDataFimDate() {
+    public Date getDataFimDate() {
         return this.dataFim;
     }
+
     public String getDataFim() {
         return new DataUtil().converterData(this.dataFim);
     }
@@ -166,7 +168,7 @@ public class EventoModel {
     public Date getCanceladoDate() {
         return this.cancelado;
     }
-      
+
     public String getCancelado() {
         return new DataUtil().converterData(this.cancelado);
     }
@@ -198,4 +200,13 @@ public class EventoModel {
     public String getDataCadastro() {
         return new DataUtil().converterData(id.getDate());
     }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
+
 }
