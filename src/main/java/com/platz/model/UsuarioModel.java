@@ -9,6 +9,7 @@ import com.platz.http.cadastro.UsuarioCadastro;
 import com.platz.util.DataUtil;
 import java.util.Date;
 import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -47,8 +48,9 @@ public class UsuarioModel {
     @CPF
     @NotNull(message = "O CPF deve ser informado")
     private String cpf;
-    private String imagemPerfil;
-    //Endereco endereco
+    private String imagemPerfil;    
+    @Embedded            
+    EnderecoModel endereco;
 
     public UsuarioModel() {
 
