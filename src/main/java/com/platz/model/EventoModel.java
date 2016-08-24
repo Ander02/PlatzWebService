@@ -14,6 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import org.bson.types.ObjectId;
 import org.hibernate.validator.constraints.Length;
 
@@ -34,6 +35,7 @@ public class EventoModel {
     private String nome;
     @Length(max = 512, message = "Detalhes deve ter no maximo 512 caracteres")
     private String detalhes;
+    private int idade = 0;
     @Temporal(TemporalType.TIMESTAMP)
     @Future
     @NotNull(message = "A data e/ou hora de inicio deve ser informada")
@@ -45,7 +47,7 @@ public class EventoModel {
     private Integer lotacaoMin = 0;
     private Integer lotacaoMax;
     private Double preco = 0.0;
-    @NotNull(message = "A empresa deve ser informada")   
+    @NotNull(message = "A empresa deve ser informada")
     @ManyToOne
     private EmpresaModel empresa;
     @OneToMany
@@ -63,8 +65,6 @@ public class EventoModel {
     public EventoModel() {
     }
 
-    
-    
     //getters and setters
     public String getId() {
         return id.toHexString();
@@ -77,7 +77,7 @@ public class EventoModel {
     public ObjectId getObjectId() {
         return this.id;
     }
-    
+
     public String getNome() {
         return nome;
     }
@@ -103,7 +103,7 @@ public class EventoModel {
     }
 
     public String getDataFim() {
-        return new DataUtil().converterData(this.dataFim);    
+        return new DataUtil().converterData(this.dataFim);
     }
 
     public void setDataFim(Date dataFim) {
@@ -167,7 +167,7 @@ public class EventoModel {
     }
 
     public String getCensurado() {
-         return new DataUtil().converterData(this.censurado);
+        return new DataUtil().converterData(this.censurado);
     }
 
     public void setCensurado(Date censurado) {
@@ -181,9 +181,17 @@ public class EventoModel {
     public void setDestaque(Boolean destaque) {
         this.destaque = destaque;
     }
-    public String getDataCadatro() {
+
+    public String getDataCadastro() {
         return new DataUtil().converterData(id.getDate());
     }
 
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
 
 }
