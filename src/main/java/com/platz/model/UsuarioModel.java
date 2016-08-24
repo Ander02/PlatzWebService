@@ -91,6 +91,10 @@ public class UsuarioModel {
         this.nome = nome;
     }
 
+    public Date getDataNascimentoDate() {
+        return dataNascimento;
+    }
+
     public String getDataNascimento() {
         return new DataUtil().converterData(dataNascimento);
     }

@@ -45,7 +45,7 @@ public class EventoModel {
     private Integer lotacaoMin = 0;
     private Integer lotacaoMax;
     private Double preco = 0.0;
-    @NotNull(message = "A empresa deve ser informada")   
+    @NotNull(message = "A empresa deve ser informada")
     @ManyToOne
     private EmpresaModel empresa;
     @OneToMany
@@ -63,8 +63,6 @@ public class EventoModel {
     public EventoModel() {
     }
 
-    
-    
     //getters and setters
     public String getId() {
         return id.toHexString();
@@ -77,7 +75,7 @@ public class EventoModel {
     public ObjectId getObjectId() {
         return this.id;
     }
-    
+
     public String getNome() {
         return nome;
     }
@@ -94,6 +92,10 @@ public class EventoModel {
         this.detalhes = detalhes;
     }
 
+    public Date getDataInicioDate() {
+        return this.dataInicio;
+    }
+
     public String getDataInicio() {
         return new DataUtil().converterData(this.dataInicio);
     }
@@ -102,8 +104,11 @@ public class EventoModel {
         this.dataInicio = dataInicio;
     }
 
+     public Date getDataFimDate() {
+        return this.dataFim;
+    }
     public String getDataFim() {
-        return new DataUtil().converterData(this.dataFim);    
+        return new DataUtil().converterData(this.dataFim);
     }
 
     public void setDataFim(Date dataFim) {
@@ -158,6 +163,10 @@ public class EventoModel {
         this.imagens = imagens;
     }
 
+    public Date getCanceladoDate() {
+        return this.cancelado;
+    }
+      
     public String getCancelado() {
         return new DataUtil().converterData(this.cancelado);
     }
@@ -166,8 +175,12 @@ public class EventoModel {
         this.cancelado = cancelado;
     }
 
+    public Date getCensuradoDate() {
+        return this.censurado;
+    }
+
     public String getCensurado() {
-         return new DataUtil().converterData(this.censurado);
+        return new DataUtil().converterData(this.censurado);
     }
 
     public void setCensurado(Date censurado) {
@@ -181,9 +194,8 @@ public class EventoModel {
     public void setDestaque(Boolean destaque) {
         this.destaque = destaque;
     }
+
     public String getDataCadastro() {
         return new DataUtil().converterData(id.getDate());
     }
-
-
 }

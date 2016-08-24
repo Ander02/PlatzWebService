@@ -88,6 +88,10 @@ public class PostagemModel {
         this.evento = evento;
     }
 
+    public Date getCensuradoDate() {
+        return censurado;
+    }
+
     public String getCensurado() {
         return new DataUtil().converterData(this.censurado);
     }
@@ -96,6 +100,9 @@ public class PostagemModel {
         this.censurado = censurado;
     }
 
+    public Date getDeletadoDate() {
+        return deletado;
+    }
     public String getDeletado() {
         return new DataUtil().converterData(this.deletado);
     }

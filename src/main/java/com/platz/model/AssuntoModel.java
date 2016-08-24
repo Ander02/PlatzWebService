@@ -65,7 +65,7 @@ public class AssuntoModel {
         return new DataUtil().converterData(id.getDate());
     }
 
-    public Date getDateDeletado() {
+    public Date getDeletadoDate() {
         return deletado;
     }
     

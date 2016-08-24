@@ -33,7 +33,7 @@ public class AssuntoLeitura {
         setNome(model.getNome());
         setDataCadastro(model.getDataCadatro());
         if (model.getDeletado() != null) {
-            this.deletado = model.getDeletado();
+            setDeletado(model.getDeletado());
         }
     }
 
