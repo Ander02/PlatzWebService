@@ -27,10 +27,10 @@ public class PostagemLeitura {
         setId(model.getId());
         setConteudo(model.getConteudo());
         setConta(new ContaLeitura(model.getConta()));
-        setEvento(evento);
-        setDataCadastro(dataCadastro);
-        setDeletado(deletado);
-        setCensurado(censurado);
+        setEvento(new EventoLeitura(model.getEvento()));
+        setDataCadastro(model.getDataCadastro());
+        setDeletado(model.getDeletado());
+        setCensurado(model.getCensurado());
     }
 
     public PostagemLeitura(String id, String conteudo,ContaLeitura contaLeitura, EventoLeitura evento, String dataCadastro, String deletado, String censurado) {

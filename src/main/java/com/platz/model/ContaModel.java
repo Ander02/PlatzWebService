@@ -61,16 +61,16 @@ public class ContaModel {
     }
 
     //Getters and setters
+    public ObjectId getObjectId() {
+        return this.id;
+    }
+
     public String getId() {
         return id.toHexString();
     }
 
     public void setId(String id) {
         this.id = new ObjectId(id);
-    }
-
-    public ObjectId getObjectId() {
-        return this.id;
     }
 
     public String getEmail() {
@@ -100,26 +100,28 @@ public class ContaModel {
         this.ultimoAcesso = ultimoAcesso;
     }
 
-    public String getDataCadatro() {
+    public String getDataCadastro() {
         return new DataUtil().converterData(id.getDate());
     }
 
+    public Date getInativoDate() {
+        return inativo;
+    }
+
     public String getInativo() {
-        if (this.inativo != null) {
-            return new DataUtil().converterData(this.inativo);
-        }
-        return null;
+        return new DataUtil().converterData(this.inativo);
     }
 
     public void setInativo(Date inativo) {
         this.inativo = inativo;
     }
 
+    public Date getBloqueadoDate() {
+        return bloqueado;
+    }
+
     public String getBloqueado() {
-        if (this.bloqueado != null) {
-            return new DataUtil().converterData(this.bloqueado);
-        }
-        return null;
+        return new DataUtil().converterData(this.bloqueado);
     }
 
     public void setBloqueado(Date bloqueado) {
@@ -146,9 +148,4 @@ public class ContaModel {
                 break;
         }
     }
-
-    public void setId(ObjectId id) {
-        this.id = id;
-    }
-
 }

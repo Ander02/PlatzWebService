@@ -36,12 +36,11 @@ public class CategoriaLeitura {
     public CategoriaLeitura(CategoriaModel model) {
         setId(model.getId());
         setNome(model.getNome());
-        setDataCadastro(model.getDataCadatro());
+        setDataCadastro(model.getDataCadastro());
         setCaminhoIcone(model.getCaminhoIcone());
         if (model.getDeletado() != null) {
-            this.deletado = new DataUtil().converterData(model.getDeletado());
-            System.out.println("editar categorialeitura linha 33");
-        }
+            setDeletado(model.getDeletado());
+              }
     }
 
     //Métodos

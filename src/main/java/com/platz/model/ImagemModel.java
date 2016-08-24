@@ -59,7 +59,9 @@ public class ImagemModel {
     public void setUrl(String url) {
         this.url = url;
     }
-
+    public Date getDeletadoDate() {
+        return deletado;
+    }
     public String getDeletado() {
         return new DataUtil().converterData(this.deletado);
     }
@@ -67,7 +69,7 @@ public class ImagemModel {
     public void setDeletado(Date deletado) {
         this.deletado = deletado;
     }
-    public String getDataCadatro() {
+    public String getDataCadastro() {
         return new DataUtil().converterData(id.getDate());
     }
 

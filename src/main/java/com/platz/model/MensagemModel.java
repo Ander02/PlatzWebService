@@ -50,6 +50,7 @@ public class MensagemModel {
     //Construtores
     public MensagemModel() {
     }
+
     public MensagemModel(MensagemCadastro mensagem) {
         setAssunto(new AssuntoDao().buscarPorId(AssuntoModel.class, mensagem.getAssuntoId()));
         setEmail(mensagem.getEmail());
@@ -85,6 +86,10 @@ public class MensagemModel {
         this.email = email;
     }
 
+    public Date getVisualizadoDate() {
+        return visualizado;
+    }
+
     public String getVisualizado() {
         return new DataUtil().converterData(this.visualizado);
     }
@@ -109,8 +114,12 @@ public class MensagemModel {
         this.conteudo = conteudo;
     }
 
-    public String getDataCadatro() {
+    public String getDataCadastro() {
         return new DataUtil().converterData(id.getDate());
+    }
+
+    public Date getDeletadoDate() {
+        return deletado;
     }
 
     public String getDeletado() {

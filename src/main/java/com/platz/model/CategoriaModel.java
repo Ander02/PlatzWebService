@@ -75,15 +75,19 @@ public class CategoriaModel {
         this.caminhoIcone = caminhoIcone;
     }
 
-    public Date getDeletado() {
+    public Date getDeletadoDate() {
         return deletado;
+    }
+
+    public String getDeletado() {
+        return new DataUtil().converterData(deletado);
     }
 
     public void setDeletado(Date deletado) {
         this.deletado = deletado;
     }
 
-    public String getDataCadatro() {
+    public String getDataCadastro() {
         return new DataUtil().converterData(id.getDate());
     }
 }

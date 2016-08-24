@@ -180,6 +180,7 @@ public class EventoLeitura {
 
     public void setLotacaoMax(int lotacaoMax) {
         this.lotacaoMax = lotacaoMax;
+
     }
 
 }

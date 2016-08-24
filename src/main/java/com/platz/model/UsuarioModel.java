@@ -91,6 +91,10 @@ public class UsuarioModel {
         this.nome = nome;
     }
 
+    public Date getDataNascimentoDate() {
+        return dataNascimento;
+    }
+
     public String getDataNascimento() {
         return new DataUtil().converterData(dataNascimento);
     }
@@ -123,7 +127,7 @@ public class UsuarioModel {
         this.imagemPerfil = imagemPerfil;
     }
 
-    public String getDataCadatro() {
+    public String getDataCadastro() {
         return new DataUtil().converterData(id.getDate());
     }
 

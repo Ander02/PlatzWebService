@@ -63,7 +63,7 @@ public class CidadeModel {
     public void setEstado(EstadoModel estado) {
         this.estado = estado;
     }
-    public String getDataCadatro() {
+    public String getDataCadastro() {
         return new DataUtil().converterData(id.getDate());
     }
     

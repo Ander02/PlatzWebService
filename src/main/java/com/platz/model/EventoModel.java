@@ -14,7 +14,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import org.bson.types.ObjectId;
 import org.hibernate.validator.constraints.Length;
 
@@ -94,12 +93,20 @@ public class EventoModel {
         this.detalhes = detalhes;
     }
 
+    public Date getDataInicioDate() {
+        return this.dataInicio;
+    }
+
     public String getDataInicio() {
         return new DataUtil().converterData(this.dataInicio);
     }
 
     public void setDataInicio(Date dataInicio) {
         this.dataInicio = dataInicio;
+    }
+
+    public Date getDataFimDate() {
+        return this.dataFim;
     }
 
     public String getDataFim() {
@@ -158,12 +165,20 @@ public class EventoModel {
         this.imagens = imagens;
     }
 
+    public Date getCanceladoDate() {
+        return this.cancelado;
+    }
+
     public String getCancelado() {
         return new DataUtil().converterData(this.cancelado);
     }
 
     public void setCancelado(Date cancelado) {
         this.cancelado = cancelado;
+    }
+
+    public Date getCensuradoDate() {
+        return this.censurado;
     }
 
     public String getCensurado() {

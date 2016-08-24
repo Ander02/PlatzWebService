@@ -29,7 +29,7 @@ public class UsuarioLeitura {
         setImagemPerfil(model.getImagemPerfil());
         setTelefone(model.getTelefone());
         setDataNascimento(model.getDataNascimento());
-        setDataCadastro(model.getDataCadatro());
+        setDataCadastro(model.getDataCadastro());
         setConta(new ContaLeitura(model.getConta()));
     }
 

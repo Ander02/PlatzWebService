@@ -78,7 +78,7 @@ public class AvaliacaoModel {
         this.usuario = usuario;
     }
 
-    public String getDataCadatro() {
+    public String getDataCadastro() {
         return new DataUtil().converterData(id.getDate());
     }
 

@@ -29,7 +29,7 @@ public class MensagemLeitura {
         setEmail(model.getEmail());
         setConteudo(model.getConteudo());
         setMarcado(model.isMarcado());
-        setDataCadastro(model.getDataCadatro());
+        setDataCadastro(model.getDataCadastro());
         if (model.getVisualizado() != null) {            
             setVisualizado(model.getVisualizado());
         }
