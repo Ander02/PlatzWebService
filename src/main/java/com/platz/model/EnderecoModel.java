@@ -5,6 +5,8 @@
  */
 package com.platz.model;
 
+import com.platz.dao.CidadeDao;
+import com.platz.http.cadastro.EnderecoCadastro;
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
@@ -21,13 +23,21 @@ public class EnderecoModel {
     @Length(min = 8, max = 9, message = "CEP invalido")
     private String cep;
     private String rua;
-    private String bairro;    
+    private String bairro;
     private String numero;
     private String complemento = null;
     @ManyToOne
     private CidadeModel cidade;
 
     public EnderecoModel() {
+    }
+
+    public EnderecoModel(EnderecoCadastro endereco) {
+        setCep(endereco.getCep());
+        setRua(endereco.getRua());
+        setBairro(endereco.getBairro());
+        setNumero(endereco.getNumero());
+     //   setCidade(new CidadeDao().buscarPorId(CidadeModel.class, endereco.getCidadeId()));
     }
 
     public String getCep() {

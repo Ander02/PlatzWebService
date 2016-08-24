@@ -1,6 +1,7 @@
 package com.platz.http.leitura;
 
 import com.platz.model.EventoModel;
+import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -51,8 +52,18 @@ public class EventoLeitura {
     }
 
     //Métodos
-    
-    
+    public List<EventoLeitura> converterLista(List<EventoModel> modelList) {
+
+        List<EventoLeitura> lista = new ArrayList<>();
+
+        for (EventoModel model : modelList) {
+
+            EventoLeitura evento = new EventoLeitura(model);
+            lista.add(evento);
+        }
+        return lista;
+    }
+
     //Getters and Setters
     public String getId() {
         return id;

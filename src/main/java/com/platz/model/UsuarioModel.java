@@ -48,9 +48,9 @@ public class UsuarioModel {
     @CPF
     @NotNull(message = "O CPF deve ser informado")
     private String cpf;
-    private String imagemPerfil;    
-    @Embedded            
-    EnderecoModel endereco;
+    private String imagemPerfil;
+    @Embedded
+    private EnderecoModel endereco;
 
     public UsuarioModel() {
 
@@ -63,6 +63,7 @@ public class UsuarioModel {
         setImagemPerfil(usuario.getImagemPerfil());
         setTelefone(usuario.getTelefone());
         setNome(usuario.getNome());
+        setEndereco(new EnderecoModel(usuario.getEndereco()));
     }
 
     public String getId() {
@@ -131,6 +132,14 @@ public class UsuarioModel {
 
     public String getDataCadastro() {
         return new DataUtil().converterData(id.getDate());
+    }
+
+    public EnderecoModel getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(EnderecoModel endereco) {
+        this.endereco = endereco;
     }
 
 }

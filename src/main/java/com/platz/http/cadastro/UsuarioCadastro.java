@@ -20,6 +20,7 @@ public class UsuarioCadastro {
     private String telefone;
     private String cpf;
     private String imagemPerfil;
+    private EnderecoCadastro endereco;
 
     public UsuarioCadastro() {
     }
@@ -79,6 +80,14 @@ public class UsuarioCadastro {
 
     public void setImagemPerfil(String imagemPerfil) {
         this.imagemPerfil = imagemPerfil;
+    }
+
+    public EnderecoCadastro getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(EnderecoCadastro endereco) {
+        this.endereco = endereco;
     }
 
    
