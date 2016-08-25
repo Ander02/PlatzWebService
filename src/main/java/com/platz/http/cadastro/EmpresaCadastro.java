@@ -18,7 +18,7 @@ public class EmpresaCadastro {
     private ContaCadastro conta;
     private EnderecoCadastro endereco;
 
-    public EmpresaCadastro() {
+    public EmpresaCadastro() { 
     }
 
     public EmpresaCadastro(String cnpj, String nomeFantasia, String razaoSocial, String telefone, String telefone2, String imagemPerfil, ContaCadastro conta) {
