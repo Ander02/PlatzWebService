@@ -1,14 +1,15 @@
 package com.platz.model;
 
 import com.platz.util.DataUtil;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -49,11 +50,11 @@ public class EventoModel {
     @NotNull(message = "A empresa deve ser informada")
     @ManyToOne
     private EmpresaModel empresa;
-    @OneToMany
+    @ManyToMany
     @NotNull(message = "Informe ao menos uma categoria")
-    private List<CategoriaModel> categorias;
-    @OneToMany
-    private List<ImagemModel> imagens;
+    private List<CategoriaModel> categorias = new ArrayList<CategoriaModel>();
+    @ManyToMany
+    private List<ImagemModel> imagens = new ArrayList<ImagemModel>();
     @Temporal(TemporalType.TIMESTAMP)
     private Date cancelado = null;
     @Temporal(TemporalType.TIMESTAMP)

@@ -6,6 +6,7 @@
 package com.platz.model;
 
 import com.platz.util.DataUtil;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -46,7 +47,7 @@ public class PostagemModel {
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletado = null;
     @OneToMany
-    private List<ImagemModel> imagens;
+    private List<ImagemModel> imagens = new ArrayList<ImagemModel>();
 
     public PostagemModel() {
     }
@@ -103,6 +104,7 @@ public class PostagemModel {
     public Date getDeletadoDate() {
         return deletado;
     }
+
     public String getDeletado() {
         return new DataUtil().converterData(this.deletado);
     }
