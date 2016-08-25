@@ -46,7 +46,7 @@ public class EmpresaModel {
     @Length(min = 10, max = 11, message = "O telefone deve ter entre 10 e 11 caracteres")
     private String telefone2;
     private String imagemPerfil;
-    //Endereco endereco
+    private EnderecoModel endereco;
 
     public EmpresaModel() {
     }
@@ -134,4 +134,11 @@ public class EmpresaModel {
         return new DataUtil().converterData(id.getDate());
     }
 
+    public EnderecoModel getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(EnderecoModel endereco) {
+        this.endereco = endereco;
+    }
 }
