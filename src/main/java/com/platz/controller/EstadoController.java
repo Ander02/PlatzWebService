@@ -14,6 +14,7 @@ import java.util.List;
  * @author 15153770
  */
 public class EstadoController {
+    
     private final EstadoDao estadoDao = new EstadoDao();
     
     public void cadastrar(EstadoModel model){

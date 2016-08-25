@@ -25,13 +25,14 @@ public class UsuarioCadastro {
     public UsuarioCadastro() {
     }
 
-    public UsuarioCadastro(ContaCadastro conta, String nome, String dataNascimento, String telefone, String cpf, String imagemPerfil) {
+    public UsuarioCadastro(ContaCadastro conta, String nome, String dataNascimento, String telefone, String cpf, String imagemPerfil, EnderecoCadastro endereco) {
         setConta(conta);
         setCpf(cpf);
         setDataNascimento(dataNascimento);
         setTelefone(telefone);
         setTelefone(telefone);
         setImagemPerfil(imagemPerfil);
+        setEndereco(endereco);
     }
 
     public ContaCadastro getConta() {

@@ -5,7 +5,6 @@ import com.platz.http.cadastro.ContaCadastro;
 import com.platz.http.edicao.ContaEdicao;
 import com.platz.http.leitura.ContaLeitura;
 import com.platz.model.ContaModel;
-import java.util.Date;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
