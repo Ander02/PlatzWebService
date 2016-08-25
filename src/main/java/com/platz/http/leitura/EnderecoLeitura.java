@@ -5,10 +5,13 @@
  */
 package com.platz.http.leitura;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author 15153766
  */
+@XmlRootElement
 public class EnderecoLeitura {
     
 }
