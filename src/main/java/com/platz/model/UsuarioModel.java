@@ -19,6 +19,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import org.bson.types.ObjectId;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
@@ -40,7 +41,8 @@ public class UsuarioModel {
     @NotNull(message = "O nome deve ser informado")
     @Length(min = 3, max = 64)
     private String nome;
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
+    @Past(message = "A data de nascimento é de uma data do futuro")
     @NotNull(message = "A data de nascimento deve ser informada")
     private Date dataNascimento;
     @Length(min = 10, max = 11)

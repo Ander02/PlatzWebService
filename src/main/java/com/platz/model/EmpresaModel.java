@@ -47,7 +47,7 @@ public class EmpresaModel {
     private String telefone2;
     private String imagemPerfil;
     private EnderecoModel endereco;
-    
+
     public EmpresaModel() {
     }
     
@@ -141,5 +141,5 @@ public class EmpresaModel {
     public void setEndereco(EnderecoModel endereco) {
         this.endereco = endereco;
     }
-    
+
 }
