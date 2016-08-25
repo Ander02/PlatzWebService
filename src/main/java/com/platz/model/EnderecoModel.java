@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.platz.model;
 
 import com.platz.dao.CidadeDao;
@@ -37,7 +32,7 @@ public class EnderecoModel {
         setRua(endereco.getRua());
         setBairro(endereco.getBairro());
         setNumero(endereco.getNumero());
-     //   setCidade(new CidadeDao().buscarPorId(CidadeModel.class, endereco.getCidadeId()));
+        setCidade(new CidadeDao().buscarPorId(CidadeModel.class, endereco.getCidadeId()));
     }
 
     public String getCep() {

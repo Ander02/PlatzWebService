@@ -38,7 +38,7 @@ public class UsuarioModel {
     @NotNull(message = "A conta deve ser informada")
     private ContaModel conta;
     @NotNull(message = "O nome deve ser informado")
-    @Length(min = 8, max = 64)
+    @Length(min = 3, max = 64)
     private String nome;
     @Temporal(TemporalType.DATE)
     @NotNull(message = "A data de nascimento deve ser informada")

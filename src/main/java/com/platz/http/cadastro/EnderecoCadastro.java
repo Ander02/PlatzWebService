@@ -14,8 +14,7 @@ public class EnderecoCadastro {
     private String bairro;
     private String numero;
     private String complemento;
-   // private String cidadeId;
-
+    private String cidadeId;
     
     //Getters and Setters
     public String getCep() {
@@ -57,7 +56,7 @@ public class EnderecoCadastro {
     public void setComplemento(String complemento) {
         this.complemento = complemento;
     }
-/*
+    
     public String getCidadeId() {
         return cidadeId;
     }
@@ -65,7 +64,7 @@ public class EnderecoCadastro {
     public void setCidadeId(String cidadeId) {
         this.cidadeId = cidadeId;
     }
-    */
+    
     
     
 }

@@ -2,7 +2,6 @@ package com.platz.service;
 
 import com.platz.controller.CidadeController;
 import com.platz.controller.EstadoController;
-import com.platz.dao.EstadoDao;
 import com.platz.http.cadastro.CidadeCadastro;
 import com.platz.http.leitura.CidadeLeitura;
 import com.platz.model.CidadeModel;
@@ -34,7 +33,7 @@ public class CidadeService {
 
         try {
             // Settar o nome da model baseado no nome do assunto passado
-            CidadeModel model = new CidadeModel();
+            CidadeModel model = new CidadeModel(cidade);
 
             // Cadastrar assunto
             cidadeController.cadastrar(model);
