@@ -26,7 +26,7 @@ import org.hibernate.validator.constraints.br.CNPJ;
 @Entity
 @Table(name = "empresa")
 public class EmpresaModel {
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private ObjectId id;
@@ -46,92 +46,100 @@ public class EmpresaModel {
     @Length(min = 10, max = 11, message = "O telefone deve ter entre 10 e 11 caracteres")
     private String telefone2;
     private String imagemPerfil;
-    //Endereco endereco
-
+    private EnderecoModel endereco;
+    
     public EmpresaModel() {
     }
-
+    
     public EmpresaModel(EmpresaCadastro empresa) {
-        setCnpj( empresa.getCnpj());
-        setNomeFantasia( empresa.getNomeFantasia());
+        setCnpj(empresa.getCnpj());
+        setNomeFantasia(empresa.getNomeFantasia());
         setRazaoSocial(empresa.getRazaoSocial());
         setTelefone(empresa.getTelefone());
-        setTelefone2( empresa.getTelefone2());
+        setTelefone2(empresa.getTelefone2());
         setImagemPerfil(empresa.getImagemPerfil());
         setConta(new ContaModel(empresa.getConta()));
+        setEndereco(new EnderecoModel(empresa.getEndereco()));
     }
     
-
     public String getId() {
         return id.toHexString();
     }
-
+    
     public void setId(String id) {
         this.id = new ObjectId(id);
     }
-
+    
     public ObjectId getObjectId() {
         return this.id;
     }
-
+    
     public ContaModel getConta() {
         return conta;
     }
-
+    
     public void setConta(ContaModel conta) {
         this.conta = conta;
     }
-
+    
     public String getCnpj() {
         return cnpj;
     }
-
+    
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
-
+    
     public String getNomeFantasia() {
         return nomeFantasia;
     }
-
+    
     public void setNomeFantasia(String nomeFantasia) {
         this.nomeFantasia = nomeFantasia;
     }
-
+    
     public String getRazaoSocial() {
         return razaoSocial;
     }
-
+    
     public void setRazaoSocial(String razaoSocial) {
         this.razaoSocial = razaoSocial;
     }
-
+    
     public String getTelefone() {
         return telefone;
     }
-
+    
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-
+    
     public String getTelefone2() {
         return telefone2;
     }
-
+    
     public void setTelefone2(String telefone2) {
         this.telefone2 = telefone2;
     }
-
+    
     public String getImagemPerfil() {
         return imagemPerfil;
     }
-
+    
     public void setImagemPerfil(String imagemPerfil) {
         this.imagemPerfil = imagemPerfil;
     }
-
+    
     public String getDataCadastro() {
         return new DataUtil().converterData(id.getDate());
     }
-
+    
+    public EnderecoModel getEndereco() {
+        return endereco;
+    }
+    
+    public void setEndereco(EnderecoModel endereco) {
+        this.endereco = endereco;
+    }
+    
 }

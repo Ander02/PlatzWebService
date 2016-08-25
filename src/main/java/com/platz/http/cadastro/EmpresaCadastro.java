@@ -16,6 +16,7 @@ public class EmpresaCadastro {
     private String telefone2;
     private String imagemPerfil;
     private ContaCadastro conta;
+    private EnderecoCadastro endereco;
 
     public EmpresaCadastro() {
     }
@@ -86,6 +87,14 @@ public class EmpresaCadastro {
 
     public void setImagemPerfil(String imagemPerfil) {
         this.imagemPerfil = imagemPerfil;
+    }
+
+    public EnderecoCadastro getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(EnderecoCadastro endereco) {
+        this.endereco = endereco;
     }
 
     
