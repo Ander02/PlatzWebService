@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class EmpresaCadastro {
-    
+     
     private String cnpj;
     private String nomeFantasia;
     private String razaoSocial;
@@ -16,8 +16,9 @@ public class EmpresaCadastro {
     private String telefone2;
     private String imagemPerfil;
     private ContaCadastro conta;
+    private EnderecoCadastro endereco;
 
-    public EmpresaCadastro() {
+    public EmpresaCadastro() { 
     }
 
     public EmpresaCadastro(String cnpj, String nomeFantasia, String razaoSocial, String telefone, String telefone2, String imagemPerfil, ContaCadastro conta) {
@@ -86,6 +87,14 @@ public class EmpresaCadastro {
 
     public void setImagemPerfil(String imagemPerfil) {
         this.imagemPerfil = imagemPerfil;
+    }
+
+    public EnderecoCadastro getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(EnderecoCadastro endereco) {
+        this.endereco = endereco;
     }
 
     
