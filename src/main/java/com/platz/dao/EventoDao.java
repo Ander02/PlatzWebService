@@ -3,10 +3,12 @@ package com.platz.dao;
 import com.platz.model.CategoriaModel;
 import com.platz.model.EmpresaModel;
 import com.platz.model.EventoModel;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Parameter;
 
 /**
  *
@@ -33,7 +35,7 @@ public class EventoDao extends GenericDao<EventoDao> {
     @SuppressWarnings("unchecked")
     public List<EventoModel> buscarPelaCategoria(CategoriaModel categoria) {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
-        List<EventoModel> lista = entityManager.createQuery("from EventoModel where categorias= :categoria").setParameter("categoria", categoria).getResultList();
+        List<EventoModel> lista = entityManager.createQuery("from EventoModel where categorias = :categoria").setParameter("categoria", categoria).getResultList();
         entityManager.close();
         return lista;
     }
