@@ -1,6 +1,8 @@
 package com.platz.model;
 
 import com.platz.dao.CidadeDao;
+import com.platz.dao.EstadoDao;
+import com.platz.http.cadastro.CidadeCadastro;
 import com.platz.http.cadastro.EnderecoCadastro;
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
@@ -32,7 +34,18 @@ public class EnderecoModel {
         setRua(endereco.getRua());
         setBairro(endereco.getBairro());
         setNumero(endereco.getNumero());
-        setCidade(new CidadeDao().buscarPorId(CidadeModel.class, endereco.getCidadeId()));
+
+        CidadeModel cidade = new CidadeDao().buscarPeloNomeEUf(endereco.getCidade(), endereco.getUf());
+        if (cidade != null) {
+            setCidade(cidade);
+        } else {
+            //cadastro de cidade nao existente
+            CidadeCadastro cidadeCadastro = new CidadeCadastro(new EstadoDao().buscarPelaUf(endereco.getUf()).getId(), endereco.getCidade());
+            CidadeModel novaCidade = new CidadeModel(cidadeCadastro);
+            new CidadeDao().cadastrar(novaCidade);
+            setCidade(novaCidade);
+        }
+
     }
 
     public String getCep() {

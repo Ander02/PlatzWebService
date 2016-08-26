@@ -14,7 +14,8 @@ public class EnderecoCadastro {
     private String bairro;
     private String numero;
     private String complemento;
-    private String cidadeId;
+    private String cidade;    
+    private String uf;
     
     //Getters and Setters
     public String getCep() {
@@ -56,15 +57,21 @@ public class EnderecoCadastro {
     public void setComplemento(String complemento) {
         this.complemento = complemento;
     }
-    
-    public String getCidadeId() {
-        return cidadeId;
+
+    public String getCidade() {
+        return cidade;
     }
 
-    public void setCidadeId(String cidadeId) {
-        this.cidadeId = cidadeId;
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
-    
-    
-    
+
+    public String getUf() {
+        return uf;
+    }
+
+    public void setUf(String uf) {
+        this.uf = uf;
+    }
+      
 }

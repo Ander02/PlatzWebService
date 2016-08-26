@@ -19,7 +19,7 @@ public class UsuarioController {
 
     private final UsuarioDao usuarioDao = new UsuarioDao();
 
-    public void cadastrar(UsuarioModel model) {
+    public void cadastrar(UsuarioModel model) {        
         usuarioDao.cadastrar(model);
     }
 
@@ -44,14 +44,14 @@ public class UsuarioController {
     }
 
     public void alterar(UsuarioModel model, UsuarioEdicao usuario) {
-        
+
         model.setCpf(usuario.getCpf());
         model.setDataNascimento(usuario.getDataNascimento());
         model.setImagemPerfil(usuario.getImagemPerfil());
         model.setNome(usuario.getNome());
         model.setTelefone(usuario.getTelefone());
-                
+
         usuarioDao.alterar(model);
-    } 
+    }
 
 }

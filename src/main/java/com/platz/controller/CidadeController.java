@@ -29,12 +29,12 @@ public class CidadeController {
         return cidadeDao.buscarPorEstado(estado);
     }
 
-    public CidadeModel buscarPeloNomeEUf(String nome, String uf){
+    public CidadeModel buscarPeloNomeEUf(String nome, String uf) {
         return cidadeDao.buscarPeloNomeEUf(nome, uf);
     }
-    
-    public List<CidadeModel> buscarPeloNome(String nome){
+
+    public List<CidadeModel> buscarPeloNome(String nome) {
         return cidadeDao.buscarPorNome(nome);
     }
-    
+
 }

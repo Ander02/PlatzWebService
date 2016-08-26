@@ -35,7 +35,7 @@ public class CidadeService {
             // Settar o nome da model baseado no nome do assunto passado
             CidadeModel model = new CidadeModel(cidade);
 
-            // Cadastrar assunto
+            // Cadastrar cidade
             cidadeController.cadastrar(model);
 
             // Retorna a resposta para o cliente com o Status Code CREATED e o Assunto de Leitura
