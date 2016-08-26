@@ -35,17 +35,15 @@ public class EnderecoModel {
         setBairro(endereco.getBairro());
         setNumero(endereco.getNumero());
 
-        CidadeModel cidade = new CidadeDao().buscarPeloNomeEUf(endereco.getCidade(), endereco.getUf());
-        if (cidade != null) {
-            setCidade(cidade);
+        CidadeModel cidadeModel = new CidadeDao().buscarPeloNomeEUf(endereco.getCidade(), endereco.getUf());
+        if (cidadeModel != null) {
+            setCidade(cidadeModel);
         } else {
-            //cadastro de cidade nao existente
-            CidadeCadastro cidadeCadastro = new CidadeCadastro(new EstadoDao().buscarPelaUf(endereco.getUf()).getId(), endereco.getCidade());
-            CidadeModel novaCidade = new CidadeModel(cidadeCadastro);
+            //cadastro de cidade nao existente            
+            CidadeModel novaCidade = new CidadeModel(new CidadeCadastro(new EstadoDao().buscarPelaUf(endereco.getUf()).getId(),endereco.getCidade()));
             new CidadeDao().cadastrar(novaCidade);
             setCidade(novaCidade);
         }
-
     }
 
     public String getCep() {
