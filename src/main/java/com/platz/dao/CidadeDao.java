@@ -32,7 +32,7 @@ public class CidadeDao extends GenericDao<CidadeModel> {
 
     public CidadeModel buscarPeloNomeEUf(String nome, String uf) {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
-        CidadeModel model = (CidadeModel) entityManager.createQuery("from CidadeModel where nome = :nome and estado.uf = :uf").setParameter("nome", nome).setParameter("uf", uf).getSingleResult();
+        CidadeModel model = (CidadeModel) entityManager.createQuery("select c from CidadeModel c where c.nome = :nome and c.estado.uf = :uf").setParameter("nome", nome).setParameter("uf", uf).getSingleResult();
         entityManager.close();
         return model;
     }
