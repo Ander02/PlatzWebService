@@ -22,4 +22,18 @@ public class CidadeDao extends GenericDao<CidadeModel> {
         entityManager.close();
         return lista;
     }
+
+    public List<CidadeModel> buscarPorNome(String nome) {
+        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
+        List<CidadeModel> lista = entityManager.createQuery("from CidadeModel where nome like :nome").setParameter("nome", nome + "%").getResultList();
+        entityManager.close();
+        return lista;
+    }
+
+    public CidadeModel buscarPeloNomeEUf(String nome, String uf) {
+        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
+        CidadeModel model = (CidadeModel) entityManager.createQuery("from CidadeModel where nome = :nome and estado.uf = :uf").setParameter("nome", nome).setParameter("uf", uf).getSingleResult();
+        entityManager.close();
+        return model;
+    }
 }
