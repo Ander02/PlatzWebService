@@ -1,5 +1,8 @@
 package com.platz.model;
 
+import com.platz.dao.CategoriaDao;
+import com.platz.dao.EmpresaDao;
+import com.platz.http.cadastro.EventoCadastro;
 import com.platz.util.DataUtil;
 import java.util.ArrayList;
 import java.util.Date;
@@ -52,17 +55,39 @@ public class EventoModel {
     private EmpresaModel empresa;
     @ManyToMany
     @NotNull(message = "Informe ao menos uma categoria")
-    private List<CategoriaModel> categorias = new ArrayList<CategoriaModel>();
+    private List<CategoriaModel> categorias = new ArrayList<>();
     @ManyToMany
-    private List<ImagemModel> imagens = new ArrayList<ImagemModel>();
+    private List<ImagemModel> imagens = new ArrayList<>();
     @Temporal(TemporalType.TIMESTAMP)
     private Date cancelado = null;
     @Temporal(TemporalType.TIMESTAMP)
     private Date censurado = null;
     private Boolean destaque = false;
-    //Endereco endereco
+    private EnderecoModel endereco;
 
     public EventoModel() {
+    }
+
+    public EventoModel(EventoCadastro evento) {
+        setNome(evento.getNome());
+        setDetalhes(evento.getDetalhes());
+        setIdade(evento.getIdade());
+        setDataInicio(evento.getDataInicio());
+        setDataFim(evento.getDataFim());
+        setLotacaoMin(evento.getLotacaoMin());
+        setLotacaoMax(evento.getLotacaoMax());
+        setPreco(evento.getPreco());
+        setEmpresa(new EmpresaDao().buscarPorId(EmpresaModel.class, evento.getEmpresaId()));
+
+        for (String categoriaId : evento.getCategoriasId()) {
+            CategoriaModel categoria = new CategoriaDao().buscarPorId(CategoriaModel.class, categoriaId);
+
+            categorias.add(categoria);
+        }
+
+        setDestaque(evento.getDestaque());
+        setEndereco(new EnderecoModel(evento.getEndereco()));
+
     }
 
     //getters and setters
@@ -106,6 +131,10 @@ public class EventoModel {
         this.dataInicio = dataInicio;
     }
 
+    public void setDataInicio(String dataInicio) {
+        this.dataInicio = new DataUtil().converterData(dataInicio);
+    }
+
     public Date getDataFimDate() {
         return this.dataFim;
     }
@@ -116,6 +145,10 @@ public class EventoModel {
 
     public void setDataFim(Date dataFim) {
         this.dataFim = dataFim;
+    }
+
+    public void setDataFim(String dataFim) {
+        this.dataFim = new DataUtil().converterData(dataFim);
     }
 
     public Integer getLotacaoMin() {
@@ -178,6 +211,10 @@ public class EventoModel {
         this.cancelado = cancelado;
     }
 
+    public void setCancelado(String cancelado) {
+        this.cancelado = new DataUtil().converterData(cancelado);
+    }
+
     public Date getCensuradoDate() {
         return this.censurado;
     }
@@ -188,6 +225,10 @@ public class EventoModel {
 
     public void setCensurado(Date censurado) {
         this.censurado = censurado;
+    }
+
+    public void setCensurado(String censurado) {
+        this.censurado = new DataUtil().converterData(censurado);
     }
 
     public Boolean getDestaque() {
@@ -208,6 +249,14 @@ public class EventoModel {
 
     public void setIdade(int idade) {
         this.idade = idade;
+    }
+
+    public EnderecoModel getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(EnderecoModel endereco) {
+        this.endereco = endereco;
     }
 
 }

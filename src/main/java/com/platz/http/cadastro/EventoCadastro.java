@@ -21,8 +21,6 @@ public class EventoCadastro {
     private String empresaId;
     private List<String> categoriasId;
     private List<String> imagensId;
-    private String cancelado;
-    private String censurado;
     private Boolean destaque;
     private EnderecoCadastro endereco;
 
@@ -42,8 +40,6 @@ public class EventoCadastro {
         setEmpresaId(empresaId);
         setCategoriasId(categoriasId);
         setImagensId(imagensId);
-        setCancelado(cancelado);
-        setCensurado(censurado);
         setEndereco(endereco);
     }
 
@@ -133,22 +129,6 @@ public class EventoCadastro {
 
     public void setImagensId(List<String> imagensId) {
         this.imagensId = imagensId;
-    }
-
-    public String getCancelado() {
-        return cancelado;
-    }
-
-    public void setCancelado(String cancelado) {
-        this.cancelado = cancelado;
-    }
-
-    public String getCensurado() {
-        return censurado;
-    }
-
-    public void setCensurado(String censurado) {
-        this.censurado = censurado;
     }
 
     public Boolean getDestaque() {
