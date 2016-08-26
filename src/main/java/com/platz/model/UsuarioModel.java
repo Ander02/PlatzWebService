@@ -48,8 +48,7 @@ public class UsuarioModel {
     @Length(min = 10, max = 11)
     private String telefone;
     @CPF
-    @NotNull(message = "O CPF deve ser informado")
-    private String cpf;
+    private String cpf = null;
     private String imagemPerfil;
     @Embedded
     private EnderecoModel endereco;
