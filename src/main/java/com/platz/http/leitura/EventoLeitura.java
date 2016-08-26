@@ -1,5 +1,6 @@
 package com.platz.http.leitura;
 
+import com.platz.model.CategoriaModel;
 import com.platz.model.EventoModel;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +44,13 @@ public class EventoLeitura {
         setLotacaoMax(model.getLotacaoMax());
         setPreco(model.getPreco());
         setEmpresa(new EmpresaLeitura(model.getEmpresa()));
-        setCategorias(new CategoriaLeitura().converterLista(model.getCategorias()));
+
+        for (CategoriaModel categoriaModel : model.getCategorias()) {
+
+            CategoriaLeitura categoriaLeitura = new CategoriaLeitura(categoriaModel);
+            categorias.add(categoriaLeitura);
+
+        }
         setImagens(new ImagemLeitura().converterLista(model.getImagens()));
         setCancelado(model.getCancelado());
         setCensurado(model.getCensurado());

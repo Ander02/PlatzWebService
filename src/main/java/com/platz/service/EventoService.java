@@ -4,7 +4,9 @@ import com.platz.controller.EventoController;
 import com.platz.http.cadastro.EventoCadastro;
 import com.platz.http.leitura.EventoLeitura;
 import com.platz.model.EventoModel;
+import java.util.List;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -41,6 +43,27 @@ public class EventoService {
             System.out.println("Erro: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao cadastrar evento").build();
+        }
+    }
+
+    @GET
+    @Path(value = "/eventos")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response listarTodos() {
+        try {
+            //Lista com todas as AssuntoEntity cadastradas
+            List<EventoModel> models = eventoController.listarTodos();
+
+            //Lista de Assuntos de Leitura baseado na lista de models
+            List<EventoLeitura> listaDeLeitura = new EventoLeitura().converterLista(models);
+
+            //Retorna a lista com um Status Code OK
+            return Response.ok(listaDeLeitura).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar eventos").build();
         }
     }
 
