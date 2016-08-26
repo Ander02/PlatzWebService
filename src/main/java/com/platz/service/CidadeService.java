@@ -89,6 +89,27 @@ public class CidadeService {
     }
 
     @GET
+    @Path(value = "/cidades/{nome}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarPeloNome(@PathParam("nome") String nome) {
+        try {
+            //Lista com todas as models cadastradas
+            List<CidadeModel> models = cidadeController.buscarPeloNome(nome);
+
+            //Lista de Leitura baseado na lista de models
+            List<CidadeLeitura> listaDeLeitura = new CidadeLeitura().converterLista(models);
+
+            //Retorna a lista com um Status Code OK
+            return Response.ok(listaDeLeitura).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar cidades").build();
+        }
+    }
+
+    @GET
     @Path(value = "/cidades/estado/{id}")
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloEstado(@PathParam("id") String id) {
@@ -109,6 +130,25 @@ public class CidadeService {
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar cidades").build();
         }
+    }
+    
+    @GET
+    @Path(value = "/cidade/{nome}/{uf}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarPeloNomeEUf(@PathParam("nome") String nome, @PathParam("uf") String uf) {
+        
+        CidadeModel model = cidadeController.buscarPeloNomeEUf(nome, uf);
+
+        //Verifica se a model retornada não é nula
+        if (model != null) {
+
+            //Retorna um Status Code OK com a conta de leitura
+            return Response.ok(new CidadeLeitura(model)).build();
+
+        }
+
+        //Se a model for nula retorna um Status Code Not Found
+        return Response.status(Response.Status.NOT_FOUND).entity("Cidade não encontrada").build();
     }
 
 }

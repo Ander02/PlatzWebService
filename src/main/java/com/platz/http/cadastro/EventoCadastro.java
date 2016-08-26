@@ -24,11 +24,12 @@ public class EventoCadastro {
     private String cancelado;
     private String censurado;
     private Boolean destaque;
+    private EnderecoCadastro endereco;
 
     public EventoCadastro() {
     }
 
-    public EventoCadastro(String nome, String detalhes, int idade, String dataFim, String dataInicio, Integer lotacaoMin, Integer lotacaoMax, Double preco, String empresaId, List<String> categoriasId, List<String> imagensId, String cancelado, String censurado, Boolean destaque) {
+    public EventoCadastro(String nome, String detalhes, int idade, String dataFim, String dataInicio, Integer lotacaoMin, Integer lotacaoMax, Double preco, String empresaId, List<String> categoriasId, List<String> imagensId, String cancelado, String censurado, Boolean destaque, EnderecoCadastro endereco) {
         setNome(nome);
         setDetalhes(detalhes);
         setDestaque(destaque);
@@ -43,6 +44,7 @@ public class EventoCadastro {
         setImagensId(imagensId);
         setCancelado(cancelado);
         setCensurado(censurado);
+        setEndereco(endereco);
     }
 
     public String getNome() {
@@ -155,6 +157,14 @@ public class EventoCadastro {
 
     public void setDestaque(Boolean destaque) {
         this.destaque = destaque;
+    }
+
+    public EnderecoCadastro getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(EnderecoCadastro endereco) {
+        this.endereco = endereco;
     }
 
 }
