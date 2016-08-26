@@ -12,7 +12,7 @@ import javax.persistence.EntityManager;
  *
  * @author 15153770
  */
-public class EventoDao extends GenericDao<EventoDao> {
+public class EventoDao extends GenericDao<EventoModel> {
 
     @SuppressWarnings("unchecked")
     public List<EventoModel> buscarPeloNome(String nome) {
