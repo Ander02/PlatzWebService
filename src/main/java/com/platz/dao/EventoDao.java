@@ -3,12 +3,10 @@ package com.platz.dao;
 import com.platz.model.CategoriaModel;
 import com.platz.model.EmpresaModel;
 import com.platz.model.EventoModel;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.Parameter;
 
 /**
  *
