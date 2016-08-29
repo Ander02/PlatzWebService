@@ -20,4 +20,8 @@ public class EventoController {
         return eventoDao.listarTodos(EventoModel.class);
     }
 
+    public EventoModel buscarPeloId(String id) {
+        return eventoDao.buscarPorId(EventoModel.class, id);
+    }
+
 }
