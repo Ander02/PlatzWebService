@@ -7,7 +7,9 @@ import com.platz.util.DataUtil;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -53,10 +55,10 @@ public class EventoModel {
     @NotNull(message = "A empresa deve ser informada")
     @ManyToOne
     private EmpresaModel empresa;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     @NotNull(message = "Informe ao menos uma categoria")
     private List<CategoriaModel> categorias = new ArrayList<>();
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     private List<ImagemModel> imagens = new ArrayList<>();
     @Temporal(TemporalType.TIMESTAMP)
     private Date cancelado = null;
