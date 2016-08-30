@@ -31,7 +31,7 @@ public class AssuntoService {
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(AssuntoCadastro assunto) {
-        
+
         AssuntoModel model = new AssuntoModel(assunto);
         try {
             // Cadastrar assunto
@@ -114,16 +114,13 @@ public class AssuntoService {
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response alterar(@PathParam("id") String id, AssuntoEdicao assunto) {
-        AssuntoModel model = new AssuntoModel();
 
         try {
 
-            //Settar informações na model
-            model.setId(id);
-            model.setNome(assunto.getNome());
-            
+            AssuntoModel model = assuntoController.buscarPorId(id);
+
             //Alterar registro
-            assuntoController.alterar(model);
+            assuntoController.alterar(model, assunto);
 
             //Retorna Status Code OK com a entity de leitura com a modificação
             return Response.status(Response.Status.OK).entity(new AssuntoLeitura(model)).build();

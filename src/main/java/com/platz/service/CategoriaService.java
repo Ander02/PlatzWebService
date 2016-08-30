@@ -24,21 +24,17 @@ import javax.ws.rs.core.Response;
 @Path("")
 public class CategoriaService {
 
-    private final CategoriaController categoriaController = new CategoriaController(); 
+    private final CategoriaController categoriaController = new CategoriaController();
 
     @POST
     @Path(value = "/categoria")
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(CategoriaCadastro categoria) {
-        CategoriaModel model = new CategoriaModel();
 
         try {
-            // Settar o nome na model baseado no nome da categoria passada
-            model.setNome(categoria.getNome());
 
-            /*Fazer o upload e retornar o nome para em seguida dar o setCarminhoIcone*/
-            model.setCaminhoIcone(categoria.getCaminhoIcone());
+            CategoriaModel model = new CategoriaModel(categoria);
 
             // Cadastrar categoria
             categoriaController.cadastrar(model);
@@ -121,17 +117,12 @@ public class CategoriaService {
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response alterar(@PathParam("id") String id, CategoriaEdicao categoria) {
-        CategoriaModel model = new CategoriaModel();
 
         try {
-
-            //Settar informações na model
-            model.setId(id);
-            model.setNome(categoria.getNome());
-            model.setCaminhoIcone(categoria.getCaminhoIcone());
+            CategoriaModel model = categoriaController.buscarPorId(id);
 
             //Alterar registro
-            categoriaController.alterar(model);
+            categoriaController.alterar(model, categoria);
 
             //Retorna Status Code OK com a entity de leitura com a modificação
             return Response.status(Response.Status.OK).entity(new CategoriaLeitura(model)).build();
