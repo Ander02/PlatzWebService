@@ -26,9 +26,7 @@ public class EmpresaEdicao {
         setTelefone(telefone);
         setTelefone2(telefone2);
         setImagemPerfil(imagemPerfil);
-    }
-    
-    
+    } 
     
     public String getCnpj() {
         return cnpj;
