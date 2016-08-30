@@ -31,14 +31,10 @@ public class ContaService {
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(ContaCadastro conta) {
         //Instanciar uma nova model
-        ContaModel model = new ContaModel();
+        ContaModel model = new ContaModel(conta);
 
         try {
-            //Settar informações na model baseado na Conta de Cadastro passada
-            model.setEmail(conta.getEmail());
-            model.setSenha(conta.getSenha());
-            model.setPerfil(conta.getPerfil());
-
+            //Settar informações na model baseado na Conta de Cadastro passada            
             contaController.cadastrar(model);
 
             // Retorna a resposta para o cliente com o Status Code CREATED e a Conta de Leitura

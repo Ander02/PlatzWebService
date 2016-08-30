@@ -31,12 +31,9 @@ public class AssuntoService {
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(AssuntoCadastro assunto) {
-        AssuntoModel model = new AssuntoModel();
-
+        
+        AssuntoModel model = new AssuntoModel(assunto);
         try {
-            // Settar o nome da model baseado no nome do assunto passado
-            model.setNome(assunto.getNome());
-
             // Cadastrar assunto
             assuntoController.cadastrar(model);
 
