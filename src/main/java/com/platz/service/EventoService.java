@@ -403,6 +403,7 @@ public class EventoService {
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar eventos").build();
         }
     }
+
     @GET
     @Path(value = "/eventos/dia/{dia}")
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")

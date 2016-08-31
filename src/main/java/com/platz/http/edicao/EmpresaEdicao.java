@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class EmpresaEdicao {
-    
+
     private String cnpj;
     private String nomeFantasia;
     private String razaoSocial;
@@ -26,8 +26,8 @@ public class EmpresaEdicao {
         setTelefone(telefone);
         setTelefone2(telefone2);
         setImagemPerfil(imagemPerfil);
-    } 
-    
+    }
+
     public String getCnpj() {
         return cnpj;
     }
@@ -74,6 +74,6 @@ public class EmpresaEdicao {
 
     public void setImagemPerfil(String imagemPerfil) {
         this.imagemPerfil = imagemPerfil;
-    }   
-    
+    }
+
 }

@@ -93,5 +93,4 @@ public class UsuarioCadastro {
         this.endereco = endereco;
     }
 
-   
 }

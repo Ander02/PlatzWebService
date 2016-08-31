@@ -42,7 +42,5 @@ public class CategoriaCadastro {
     public void setCaminhoIcone(String caminhoIcone) {
         this.caminhoIcone = caminhoIcone;
     }
-    
-    
 
 }

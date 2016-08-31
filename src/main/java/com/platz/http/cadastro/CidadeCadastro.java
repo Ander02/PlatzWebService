@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class CidadeCadastro {
+
     private String estadoId;
     private String nome;
 
@@ -17,8 +18,8 @@ public class CidadeCadastro {
     public CidadeCadastro(String estadoId, String nome) {
         setEstadoId(estadoId);
         setNome(nome);
-    }    
-    
+    }
+
     public String getEstadoId() {
         return estadoId;
     }
@@ -34,6 +35,5 @@ public class CidadeCadastro {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
-    
+
 }

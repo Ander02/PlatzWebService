@@ -41,8 +41,8 @@ public class MensagemDao extends GenericDao<MensagemModel> {
 
         return lista;
     }
-    
-        public List<MensagemModel> buscarExcluidas() {
+
+    public List<MensagemModel> buscarExcluidas() {
 
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
 

@@ -27,10 +27,10 @@ public class DataUtil {
             return null;
         }
     }
-    
+
     /*Caso a string tenha horas ela returnar true, se não houve hora voltar falso*/
-    private Boolean analisarStringData(String data){
-        
+    private Boolean analisarStringData(String data) {
+
         return null;
     }
 

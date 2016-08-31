@@ -15,18 +15,19 @@ import javax.persistence.EntityManager;
  *
  * @author 15153770
  */
-public class AvaliacaoDao extends GenericDao<AvaliacaoModel>{
+public class AvaliacaoDao extends GenericDao<AvaliacaoModel> {
+
     //buscar evento e usuario
-    public List<AvaliacaoModel> buscarPorEvento(EventoModel evento){
+    public List<AvaliacaoModel> buscarPorEvento(EventoModel evento) {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
         List<AvaliacaoModel> lista = entityManager.createQuery("from AvaliacaoModel where evento =:evento").setParameter("evento", evento).getResultList();
         entityManager.close();
         return lista;
     }
-    
-    public List<UsuarioModel> buscarPorUsuario(UsuarioModel usuario){
+
+    public List<AvaliacaoModel> buscarPorUsuario(UsuarioModel usuario) {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
-        List<UsuarioModel> lista = entityManager.createQuery("from AvaliacaoModel where usuario =:usuario").setParameter("usuario", usuario).getResultList();
+        List<AvaliacaoModel> lista = entityManager.createQuery("from AvaliacaoModel where usuario =:usuario").setParameter("usuario", usuario).getResultList();
         entityManager.close();
         return lista;
     }

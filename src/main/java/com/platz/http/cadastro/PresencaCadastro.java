@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class PresencaCadastro {
+
     private String eventoId;
     private String contaId;
     private int tipoPresenca;
@@ -25,7 +26,7 @@ public class PresencaCadastro {
         setContaId(contaId);
         setTipoPresenca(tipoPresenca);
     }
-    
+
     public String getEventoId() {
         return eventoId;
     }
@@ -49,6 +50,5 @@ public class PresencaCadastro {
     public void setTipoPresenca(int tipoPresenca) {
         this.tipoPresenca = tipoPresenca;
     }
-    
-    
+
 }

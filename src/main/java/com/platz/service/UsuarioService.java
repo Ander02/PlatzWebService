@@ -158,17 +158,17 @@ public class UsuarioService {
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response alterar(@PathParam("id") String id, UsuarioEdicao usuario) {
 
-         try {
-        //Settar informações na model
-        UsuarioModel model = usuarioController.buscarPorId(id);
+        try {
+            //Settar informações na model
+            UsuarioModel model = usuarioController.buscarPorId(id);
 
-        //Alterar registro
-        usuarioController.alterar(model, usuario);
+            //Alterar registro
+            usuarioController.alterar(model, usuario);
 
-        //Retorna Status Code OK com a entity de leitura com a modificação
-        return Response.status(Response.Status.OK).entity(new UsuarioLeitura(model)).build();
+            //Retorna Status Code OK com a entity de leitura com a modificação
+            return Response.status(Response.Status.OK).entity(new UsuarioLeitura(model)).build();
 
-          } catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Erro" + e.getMessage());
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar empresa").build();
         }

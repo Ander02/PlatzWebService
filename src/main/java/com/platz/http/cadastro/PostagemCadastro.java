@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class PostagemCadastro {
-    
+
     private String conteudo;
     private String eventoId;
     private String contaId;
@@ -27,7 +27,6 @@ public class PostagemCadastro {
         setContaId(contaId);
     }
 
-    
     public String getConteudo() {
         return conteudo;
     }
@@ -51,6 +50,5 @@ public class PostagemCadastro {
     public void setContaId(String contaId) {
         this.contaId = contaId;
     }
-    
-    
+
 }

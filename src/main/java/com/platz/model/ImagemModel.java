@@ -24,21 +24,20 @@ import org.bson.types.ObjectId;
 @Entity
 @Table(name = "imagem")
 public class ImagemModel {
-   @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private ObjectId id;
-   
-   @NotNull(message = "Insira uma imagem")
-   private String url;
-   
-   @Temporal(TemporalType.TIMESTAMP)
-   private Date deletado;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private ObjectId id;
+
+    @NotNull(message = "Insira uma imagem")
+    private String url;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date deletado;
 
     public ImagemModel() {
     }
 
-   
-   
     //getters and setters
     public String getId() {
         return id.toHexString();
@@ -59,9 +58,11 @@ public class ImagemModel {
     public void setUrl(String url) {
         this.url = url;
     }
+
     public Date getDeletadoDate() {
         return deletado;
     }
+
     public String getDeletado() {
         return new DataUtil().converterData(this.deletado);
     }
@@ -69,11 +70,9 @@ public class ImagemModel {
     public void setDeletado(Date deletado) {
         this.deletado = deletado;
     }
+
     public String getDataCadastro() {
         return new DataUtil().converterData(id.getDate());
     }
 
-
-   
-   
 }

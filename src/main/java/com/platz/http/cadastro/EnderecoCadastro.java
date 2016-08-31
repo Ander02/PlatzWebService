@@ -8,15 +8,15 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class EnderecoCadastro {
-    
+
     private String cep;
     private String rua;
     private String bairro;
     private String numero;
     private String complemento;
-    private String cidade;    
+    private String cidade;
     private String uf;
-    
+
     //Getters and Setters
     public String getCep() {
         return cep;
@@ -73,5 +73,5 @@ public class EnderecoCadastro {
     public void setUf(String uf) {
         this.uf = uf;
     }
-      
+
 }

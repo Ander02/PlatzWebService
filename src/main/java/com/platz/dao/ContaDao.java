@@ -52,6 +52,6 @@ public class ContaDao extends GenericDao<ContaModel> {
         entityManager.close();
 
         return lista;
-    }    
+    }
 
 }

@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class ContaEdicao {
-    
+
     private String senha;
 
     public ContaEdicao() {
@@ -17,7 +17,6 @@ public class ContaEdicao {
     public ContaEdicao(String senha) {
         setSenha(senha);
     }
-    
 
     public String getSenha() {
         return senha;
@@ -25,6 +24,6 @@ public class ContaEdicao {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }  
-    
+    }
+
 }

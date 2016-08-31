@@ -39,9 +39,7 @@ public class PresencaModel {
     public PresencaModel() {
     }
 
-    
-    
-   //getters and setters
+    //getters and setters
     public String getId() {
         return id.toHexString();
     }
@@ -77,10 +75,9 @@ public class PresencaModel {
     public void setTipoPresenca(TipoPresenca tipoPresenca) {
         this.tipoPresenca = tipoPresenca;
     }
-     public String getDataCadastro() {
+
+    public String getDataCadastro() {
         return new DataUtil().converterData(id.getDate());
     }
-    
-    
 
 }

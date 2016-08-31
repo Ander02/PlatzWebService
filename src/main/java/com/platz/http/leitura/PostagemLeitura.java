@@ -33,7 +33,7 @@ public class PostagemLeitura {
         setCensurado(model.getCensurado());
     }
 
-    public PostagemLeitura(String id, String conteudo,ContaLeitura contaLeitura, EventoLeitura evento, String dataCadastro, String deletado, String censurado) {
+    public PostagemLeitura(String id, String conteudo, ContaLeitura contaLeitura, EventoLeitura evento, String dataCadastro, String deletado, String censurado) {
         setId(id);
         setConteudo(conteudo);
         setConta(contaLeitura);
@@ -55,7 +55,7 @@ public class PostagemLeitura {
         }
         return lista;
     }
-    
+
     public String getId() {
         return id;
     }
@@ -71,8 +71,6 @@ public class PostagemLeitura {
     public void setConteudo(String conteudo) {
         this.conteudo = conteudo;
     }
-
-   
 
     public EventoLeitura getEvento() {
         return evento;

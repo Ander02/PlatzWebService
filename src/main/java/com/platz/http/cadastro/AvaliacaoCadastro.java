@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class AvaliacaoCadastro {
+
     private Integer nota;
     private String eventoId;
     private String usuarioId;
@@ -24,8 +25,8 @@ public class AvaliacaoCadastro {
         setNota(nota);
         setEventoId(eventoId);
         setUsuarioId(usuarioId);
-    }  
-    
+    }
+
     public Integer getNota() {
         return nota;
     }
@@ -49,5 +50,5 @@ public class AvaliacaoCadastro {
     public void setUsuarioId(String usuarioId) {
         this.usuarioId = usuarioId;
     }
-    
+
 }

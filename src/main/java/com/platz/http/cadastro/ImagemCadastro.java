@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class ImagemCadastro {
+
     private String url;
 
     public ImagemCadastro() {
@@ -20,8 +21,8 @@ public class ImagemCadastro {
 
     public ImagemCadastro(String url) {
         setUrl(url);
-    }  
-    
+    }
+
     public String getUrl() {
         return url;
     }
@@ -29,5 +30,5 @@ public class ImagemCadastro {
     public void setUrl(String url) {
         this.url = url;
     }
-    
+
 }
