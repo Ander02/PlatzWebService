@@ -43,25 +43,33 @@ public class MensagemController {
     }
 
     public void marcar(MensagemModel model) {
-        model.setMarcado(true);
-        mensagemDao.alterar(model);
+        if (!model.isMarcado()) {
+            model.setMarcado(true);
+            mensagemDao.alterar(model);
+        }
     }
 
     public void desmarcar(MensagemModel model) {
-        model.setMarcado(false);
-        mensagemDao.alterar(model);
+        if (model.isMarcado()) {
+            model.setMarcado(false);
+            mensagemDao.alterar(model);
+        }
     }
 
     //Marcar como apagada
     public void marcarExcluida(MensagemModel model) {
-        model.setDeletado(new Date());
-        mensagemDao.alterar(model);
+        if (model.getDeletado() == null) {
+            model.setDeletado(new Date());
+            mensagemDao.alterar(model);
+        }
     }
 
     //Recupera a mensagem sinalizada como apagada
     public void restaurar(MensagemModel model) {
-        model.setDeletado(null);
-        mensagemDao.alterar(model);
+        if (model.getDeletado() != null) {
+            model.setDeletado(null);
+            mensagemDao.alterar(model);
+        }
     }
 
     //Apagar do Banco

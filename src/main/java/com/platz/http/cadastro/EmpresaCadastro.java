@@ -1,5 +1,6 @@
 package com.platz.http.cadastro;
 
+import com.platz.model.Perfil;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -28,6 +29,7 @@ public class EmpresaCadastro {
         setTelefone(telefone);
         setTelefone2(telefone2);
         setImagemPerfil(imagemPerfil);
+        conta.setPerfil(Perfil.EMPRESA.ordinal());
         setConta(conta);
     }
     

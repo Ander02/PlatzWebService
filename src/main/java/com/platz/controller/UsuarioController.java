@@ -19,7 +19,7 @@ public class UsuarioController {
 
     private final UsuarioDao usuarioDao = new UsuarioDao();
 
-    public void cadastrar(UsuarioModel model) {        
+    public void cadastrar(UsuarioModel model) {
         usuarioDao.cadastrar(model);
     }
 
@@ -44,13 +44,22 @@ public class UsuarioController {
     }
 
     public void alterar(UsuarioModel model, UsuarioEdicao usuario) {
-
-        model.setCpf(usuario.getCpf());
-        model.setDataNascimento(usuario.getDataNascimento());
-        model.setImagemPerfil(usuario.getImagemPerfil());
-        model.setNome(usuario.getNome());
-        model.setTelefone(usuario.getTelefone());
-
+        
+        if (usuario.getCpf() != null && !usuario.getCpf().equals("")) {
+            model.setCpf(usuario.getCpf());
+        }
+        if (usuario.getDataNascimento() != null && !usuario.getDataNascimento().equals("")) {
+            model.setDataNascimento(usuario.getDataNascimento());
+        }
+        if (usuario.getImagemPerfil() != null && !usuario.getImagemPerfil().equals("")) {
+            model.setImagemPerfil(usuario.getImagemPerfil());
+        }
+        if (usuario.getNome() != null && !usuario.getNome().equals("")) {
+            model.setNome(usuario.getNome());
+        }
+        if (usuario.getTelefone() != null && !usuario.getTelefone().equals("")) {
+            model.setTelefone(usuario.getTelefone());
+        }
         usuarioDao.alterar(model);
     }
 

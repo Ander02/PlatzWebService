@@ -32,10 +32,10 @@ public class CategoriaController {
 
     public void alterar(CategoriaModel model, CategoriaEdicao categoria) {
 
-        if (categoria.getNome() != null || categoria.getNome().equals("")) {
+        if (categoria.getNome() != null && !categoria.getNome().equals("")) {
             model.setNome(categoria.getNome());
         }
-        if (categoria.getCaminhoIcone() != null || categoria.getNome().equals("")) {
+        if (categoria.getCaminhoIcone() != null && !categoria.getCaminhoIcone().equals("")) {
             model.setCaminhoIcone(categoria.getCaminhoIcone());
         }
 
@@ -43,8 +43,17 @@ public class CategoriaController {
     }
 
     public void excluir(CategoriaModel model) {
-        model.setDeletado(new Date());
+        if (model.getDeletado() == null) {
+            model.setDeletado(new Date());
+        }
         categoriaDao.alterar(model);
+    }
+
+    public void recuperar(CategoriaModel model) {
+        if (model.getDeletado() != null) {
+            model.setDeletado(null);
+            categoriaDao.alterar(model);
+        }
     }
 
 }

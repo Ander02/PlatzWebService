@@ -53,29 +53,22 @@ public class ContaController {
     public void bloquear(ContaModel model) {
         if (model.getBloqueado() == null) {
             model.setBloqueado(new Date());
+            contaDao.alterar(model);
         }
-
-        contaDao.alterar(model);
-
     }
 
     public void ativar(ContaModel model) {
-
         if (model.getInativo() != null) {
             model.setInativo(null);
+            contaDao.alterar(model);
         }
-
-        contaDao.alterar(model);
-
     }
 
     public void desbloquear(ContaModel model) {
         if (model.getBloqueado() != null) {
             model.setBloqueado(null);
+            contaDao.alterar(model);
         }
-
-        contaDao.alterar(model);
-
     }
 
 }
