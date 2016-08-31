@@ -3,7 +3,6 @@ package com.platz.service;
 import com.platz.controller.CategoriaController;
 import com.platz.controller.EmpresaController;
 import com.platz.controller.EventoController;
-import com.platz.dao.EmpresaDao;
 import com.platz.http.cadastro.EventoCadastro;
 import com.platz.http.leitura.EventoLeitura;
 import com.platz.model.CategoriaModel;
@@ -405,7 +404,7 @@ public class EventoService {
         }
     }
     @GET
-    @Path(value = "/eventos/dia={dia}")
+    @Path(value = "/eventos/dia/{dia}")
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarEventosPorDiaLimite(@PathParam("dia") int dia) {
         try {
