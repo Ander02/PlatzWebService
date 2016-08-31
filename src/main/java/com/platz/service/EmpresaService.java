@@ -35,7 +35,7 @@ public class EmpresaService {
 
         try {
             //Instanciar uma nova model, passando o http de cadastro
-           EmpresaModel model = new EmpresaModel(empresa);
+            EmpresaModel model = new EmpresaModel(empresa);
 
             empresaController.cadastrar(model);
 
@@ -56,7 +56,7 @@ public class EmpresaService {
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
 
-       // try {
+        try {
             //Lista com todas as Models cadastradas
             List<EmpresaModel> models = empresaController.listarTodos();
             //Converter a lista de models para uma lista de leitura
@@ -64,11 +64,11 @@ public class EmpresaService {
             //Retorna a lista com um Status Code OK
             return Response.ok(listaDeEmpresas).build();
 
-    /*    } catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar empresas").build();
-        }*/
+        }
     }
 
     @GET
@@ -111,9 +111,9 @@ public class EmpresaService {
     @Path(value = "/empresa/conta/{id}")
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPelaConta(@PathParam("id") String id) {
-        
+
         ContaModel conta = new ContaController().buscarPorId(id);
-        
+
         EmpresaModel model = empresaController.buscarPelaConta(conta);
 
         //Verifica se a model retornada não é nula
@@ -147,25 +147,24 @@ public class EmpresaService {
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar empresas").build();
         }
     }
-    
+
     @PUT
     @Path(value = "/empresa/{id}")
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response alterar(@PathParam("id") String id, EmpresaEdicao empresa) {
 
-       // try {
+        // try {
+        //Settar informações na model
+        EmpresaModel model = empresaController.buscarPorId(id);
 
-            //Settar informações na model
-            EmpresaModel model = empresaController.buscarPorId(id);
-            
-            //Alterar registro
-            empresaController.alterar(model, empresa);
+        //Alterar registro
+        empresaController.alterar(model, empresa);
 
-            //Retorna Status Code OK com a entity de leitura com a modificação
-            return Response.status(Response.Status.OK).entity(new EmpresaLeitura(model)).build();
+        //Retorna Status Code OK com a entity de leitura com a modificação
+        return Response.status(Response.Status.OK).entity(new EmpresaLeitura(model)).build();
 
-      /*  } catch (Exception e) {
+        /*  } catch (Exception e) {
             System.out.println("Erro" + e.getMessage());
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar empresa").build();
         }*/

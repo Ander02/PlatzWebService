@@ -1,6 +1,7 @@
 package com.platz.controller;
 
 import com.platz.dao.CategoriaDao;
+import com.platz.http.edicao.CategoriaEdicao;
 import com.platz.model.CategoriaModel;
 import java.util.Date;
 import java.util.List;
@@ -29,7 +30,15 @@ public class CategoriaController {
         return categoriaDao.buscarPeloNome(nome);
     }
 
-    public void alterar(CategoriaModel model) {
+    public void alterar(CategoriaModel model, CategoriaEdicao categoria) {
+
+        if (categoria.getNome() != null || categoria.getNome().equals("")) {
+            model.setNome(categoria.getNome());
+        }
+        if (categoria.getCaminhoIcone() != null || categoria.getNome().equals("")) {
+            model.setCaminhoIcone(categoria.getCaminhoIcone());
+        }
+
         categoriaDao.alterar(model);
     }
 
@@ -37,6 +46,5 @@ public class CategoriaController {
         model.setDeletado(new Date());
         categoriaDao.alterar(model);
     }
-    
 
 }

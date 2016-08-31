@@ -32,14 +32,8 @@ public class MensagemService {
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(MensagemCadastro mensagem) {
-        //Instanciar uma nova model
-        MensagemModel model = new MensagemModel();
-
         try {
-            //Settar informações na model baseado na Conta de Cadastro passada
-            model.setEmail(mensagem.getEmail());
-            model.setConteudo(mensagem.getConteudo());
-            model.setAssunto(new AssuntoController().buscarPorId(mensagem.getAssuntoId()));
+            MensagemModel model = new MensagemModel(mensagem);
 
             mensagemController.cadastrar(model);
 

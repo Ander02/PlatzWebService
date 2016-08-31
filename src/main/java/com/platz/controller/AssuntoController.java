@@ -1,6 +1,7 @@
 package com.platz.controller;
 
 import com.platz.dao.AssuntoDao;
+import com.platz.http.edicao.AssuntoEdicao;
 import com.platz.model.AssuntoModel;
 import java.util.Date;
 import java.util.List;
@@ -29,7 +30,12 @@ public class AssuntoController {
         return assuntoDao.buscarPeloNome(nome);
     }
 
-    public void alterar(AssuntoModel model) {
+    public void alterar(AssuntoModel model, AssuntoEdicao assunto) {
+
+        if (assunto.getNome() != null) {
+            model.setNome(assunto.getNome());
+        }
+
         assuntoDao.alterar(model);
     }
 
