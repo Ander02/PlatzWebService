@@ -25,9 +25,9 @@ public class AvaliacaoDao extends GenericDao<AvaliacaoModel> {
         return lista;
     }
 
-    public List<UsuarioModel> buscarPorUsuario(UsuarioModel usuario) {
+    public List<AvaliacaoModel> buscarPorUsuario(UsuarioModel usuario) {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
-        List<UsuarioModel> lista = entityManager.createQuery("from AvaliacaoModel where usuario =:usuario").setParameter("usuario", usuario).getResultList();
+        List<AvaliacaoModel> lista = entityManager.createQuery("from AvaliacaoModel where usuario =:usuario").setParameter("usuario", usuario).getResultList();
         entityManager.close();
         return lista;
     }
