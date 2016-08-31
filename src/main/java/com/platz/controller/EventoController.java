@@ -84,7 +84,11 @@ public class EventoController {
     }
 
     public List<EventoModel> buscarEventosDaSemana() {
-        return eventoDao.buscarEventosDaSemana();
+        return eventoDao.buscarEventosPorDia(7);
+    }
+
+    public List<EventoModel> buscarEventosPorDiaLimite(int dia) {
+        return eventoDao.buscarEventosPorDia(dia);
     }
 
     public List<EventoModel> buscarPeloValorMaximo(Double valor) {

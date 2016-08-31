@@ -89,7 +89,7 @@ public class EventoDao extends GenericDao<EventoModel> {
     @SuppressWarnings("unchecked")
     public List<EventoModel> buscarNaoCanceladosENaoCensurados() {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
-        List<EventoModel> lista = entityManager.createQuery("from EventoModel where cancelado = :cancelado and censurado = :censurado").setParameter("cancelado", null).setParameter("cancelado", null).getResultList();
+        List<EventoModel> lista = entityManager.createQuery("from EventoModel where cancelado = :cancelado and censurado = :censurado").setParameter("cancelado", null).setParameter("censurado", null).getResultList();
         entityManager.close();
         return lista;
     }
@@ -105,7 +105,7 @@ public class EventoDao extends GenericDao<EventoModel> {
     @SuppressWarnings("unchecked")
     public List<EventoModel> buscarPelaIdade(int idade) {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
-        List<EventoModel> lista = entityManager.createQuery("from EventoModel where idade = :idade").setParameter("idade", idade).getResultList();
+        List<EventoModel> lista = entityManager.createQuery("from EventoModel where idade >= :idade").setParameter("idade", idade).getResultList();
         entityManager.close();
         return lista;
     }
@@ -127,12 +127,12 @@ public class EventoDao extends GenericDao<EventoModel> {
     }
 
     @SuppressWarnings("unchecked")
-    public List<EventoModel> buscarEventosDaSemana() {
+    public List<EventoModel> buscarEventosPorDia(int dia) {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
-        calendar.add(Calendar.DAY_OF_MONTH, 7);
+        calendar.add(Calendar.DAY_OF_MONTH, dia);
         Date dataProximaSemana = calendar.getTime();
 
         List<EventoModel> lista = entityManager.createQuery("from EventoModel where dataInicio between :dataAtual and :dataProximaSemana").setParameter("dataAtual", new Date()).setParameter("dataProximaSemana", dataProximaSemana).getResultList();

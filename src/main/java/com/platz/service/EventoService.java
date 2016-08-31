@@ -336,7 +336,7 @@ public class EventoService {
     @GET
     @Path(value = "/eventos/preco/{preco}")
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public Response buscarPeloValorMaximo(@PathParam("idade") double preco) {
+    public Response buscarPeloValorMaximo(@PathParam("preco") double preco) {
         try {
             List<EventoModel> models = eventoController.buscarPeloValorMaximo(preco);
 
@@ -393,6 +393,23 @@ public class EventoService {
     public Response buscarEventosDaSemana() {
         try {
             List<EventoModel> models = eventoController.buscarEventosDaSemana();
+
+            List<EventoLeitura> listaDeLeitura = new EventoLeitura().converterLista(models);
+
+            return Response.ok(listaDeLeitura).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar eventos").build();
+        }
+    }
+    @GET
+    @Path(value = "/eventos/dia={dia}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarEventosPorDiaLimite(@PathParam("dia") int dia) {
+        try {
+            List<EventoModel> models = eventoController.buscarEventosPorDiaLimite(dia);
 
             List<EventoLeitura> listaDeLeitura = new EventoLeitura().converterLista(models);
 
