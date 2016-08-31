@@ -55,10 +55,10 @@ public class EventoModel {
     @NotNull(message = "A empresa deve ser informada")
     @ManyToOne
     private EmpresaModel empresa;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToMany(fetch = FetchType.EAGER)
     @NotNull(message = "Informe ao menos uma categoria")
     private List<CategoriaModel> categorias = new ArrayList<>();
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<ImagemModel> imagens = new ArrayList<>();
     @Temporal(TemporalType.TIMESTAMP)
     private Date cancelado = null;
@@ -86,6 +86,8 @@ public class EventoModel {
 
             categorias.add(categoria);
         }
+        
+        setCategorias(categorias);
 
         setDestaque(evento.getDestaque());
         setEndereco(new EnderecoModel(evento.getEndereco()));
