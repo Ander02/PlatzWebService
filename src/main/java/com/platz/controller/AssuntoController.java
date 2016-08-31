@@ -32,7 +32,7 @@ public class AssuntoController {
 
     public void alterar(AssuntoModel model, AssuntoEdicao assunto) {
 
-        if (assunto.getNome() != null) {
+        if (assunto.getNome() != null && !assunto.getNome().equals("")) {
             model.setNome(assunto.getNome());
         }
 

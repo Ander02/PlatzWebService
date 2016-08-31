@@ -78,7 +78,6 @@ public class ContaService {
 
         //Verifica se a model retornada não é nula
         if (model != null) {
-
             //Retorna um Status Code OK com a conta de leitura
             return Response.ok(new ContaLeitura(model)).build();
 
@@ -95,7 +94,6 @@ public class ContaService {
         ContaModel model = contaController.buscarPeloEmail(email);
 
         if (model != null) {
-
             //Retorna um Status Code OK com a conta de leitura
             return Response.ok(new ContaLeitura(model)).build();
         }

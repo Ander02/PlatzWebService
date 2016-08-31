@@ -84,7 +84,11 @@ public class EventoController {
     }
 
     public List<EventoModel> buscarEventosDaSemana() {
-        return eventoDao.buscarEventosDaSemana();
+        return eventoDao.buscarEventosPorDia(7);
+    }
+
+    public List<EventoModel> buscarEventosPorDiaLimite(int dia) {
+        return eventoDao.buscarEventosPorDia(dia);
     }
 
     public List<EventoModel> buscarPeloValorMaximo(Double valor) {
@@ -100,35 +104,47 @@ public class EventoController {
     }
 
     public void cancelar(EventoModel model) {
-        model.setCancelado(new Date());
-        eventoDao.alterar(model);
+        if (model.getCancelado() == null) {
+            model.setCancelado(new Date());
+            eventoDao.alterar(model);
+        }
     }
 
     public void censurar(EventoModel model) {
-        model.setCensurado(new Date());
-        eventoDao.alterar(model);
+        if (model.getCensurado() == null) {
+            model.setCensurado(new Date());
+            eventoDao.alterar(model);
+        }
     }
 
     public void destacar(EventoModel model) {
-        model.setDestaque(true);
-        eventoDao.alterar(model);
+        if (!model.getDestaque()) {
+            model.setDestaque(true);
+            eventoDao.alterar(model);
+        }
     }
 
     public void descancelar(EventoModel model) {
-        Date data = null;
-        model.setCancelado(data);
-        eventoDao.alterar(model);
+        if (model.getCancelado() != null) {
+            Date data = null;
+            model.setCancelado(data);
+            eventoDao.alterar(model);
+        }
     }
 
     public void descensurar(EventoModel model) {
-        Date data = null;
-        model.setCensurado(data);
-        eventoDao.alterar(model);
+        if (model.getCensurado() != null) {
+            Date data = null;
+            model.setCensurado(data);
+            eventoDao.alterar(model);
+        }
     }
 
     public void retirarDestacar(EventoModel model) {
-        model.setDestaque(false);
-        eventoDao.alterar(model);
+        if (model.getDestaque()) {
+            model.setDestaque(false);
+            eventoDao.alterar(model);
+        }
     }
 
 }

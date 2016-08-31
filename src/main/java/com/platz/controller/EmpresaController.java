@@ -40,25 +40,24 @@ public class EmpresaController {
 
     public void alterar(EmpresaModel model, EmpresaEdicao empresa) {
 
-        if (empresa.getCnpj() != null && empresa.getCnpj().equals("")) {
+        if (empresa.getCnpj() != null && !empresa.getCnpj().equals("")) {
             model.setCnpj(empresa.getCnpj());
         }
-        if (empresa.getImagemPerfil() != null && empresa.getImagemPerfil().equals("")) {
+        if (empresa.getImagemPerfil() != null && !empresa.getImagemPerfil().equals("")) {
             model.setImagemPerfil(empresa.getImagemPerfil());
         }
-        if (empresa.getNomeFantasia() != null && empresa.getNomeFantasia().equals("")) {
+        if (empresa.getNomeFantasia() != null && !empresa.getNomeFantasia().equals("")) {
             model.setNomeFantasia(empresa.getNomeFantasia());
         }
-        if (empresa.getRazaoSocial() != null && empresa.getRazaoSocial().equals("")) {
+        if (empresa.getRazaoSocial() != null && !empresa.getRazaoSocial().equals("")) {
             model.setRazaoSocial(empresa.getRazaoSocial());
         }
-        if (empresa.getTelefone() != null && empresa.getTelefone().equals("")) {
+        if (empresa.getTelefone() != null && !empresa.getTelefone().equals("")) {
             model.setTelefone(empresa.getTelefone());
         }
-        if (empresa.getTelefone2() != null && empresa.getTelefone2().equals("")) {
+        if (empresa.getTelefone2() != null && !empresa.getTelefone2().equals("")) {
             model.setTelefone2(empresa.getTelefone2());
         }
-
         empresaDao.alterar(model);
     }
 
