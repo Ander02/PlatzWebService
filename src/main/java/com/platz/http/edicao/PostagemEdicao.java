@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class PostagemEdicao {
+
     private String conteudo;
 
     public PostagemEdicao() {
@@ -17,7 +18,6 @@ public class PostagemEdicao {
         setConteudo(conteudo);
     }
 
-    
     public String getConteudo() {
         return conteudo;
     }
@@ -25,6 +25,5 @@ public class PostagemEdicao {
     public void setConteudo(String conteudo) {
         this.conteudo = conteudo;
     }
-    
-    
+
 }

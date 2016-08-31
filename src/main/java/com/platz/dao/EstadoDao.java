@@ -30,6 +30,5 @@ public class EstadoDao extends GenericDao<EstadoModel> {
         entityManager.close();
         return lista;
     }
-        
-    
+
 }

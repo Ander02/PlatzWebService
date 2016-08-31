@@ -8,20 +8,20 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class MensagemCadastro {
-    
+
     private String assuntoId;
     private String email;
     private String conteudo;
 
     public MensagemCadastro() {
-    }  
+    }
 
     public MensagemCadastro(String assuntoId, String email, String conteudo) {
         setAssuntoId(assuntoId);
         setEmail(email);
         setConteudo(conteudo);
     }
-    
+
     //getters and Setters
     public String getAssuntoId() {
         return assuntoId;
@@ -30,7 +30,7 @@ public class MensagemCadastro {
     public void setAssuntoId(String assuntoId) {
         this.assuntoId = assuntoId;
     }
-    
+
     public String getEmail() {
         return email;
     }
@@ -47,8 +47,4 @@ public class MensagemCadastro {
         this.conteudo = conteudo;
     }
 
-
-    
-    
-    
 }

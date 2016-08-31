@@ -36,7 +36,8 @@ public class PresencaLeitura {
         setTipoPresenca(tipoPresenca);
         setDataCadastro(dataCadastro);
     }
-     //Métodos
+    //Métodos
+
     public List<PresencaLeitura> converterLista(List<PresencaModel> modelList) {
 
         List<PresencaLeitura> lista = new ArrayList<>();
@@ -48,8 +49,6 @@ public class PresencaLeitura {
         }
         return lista;
     }
-    
-    
 
     public String getId() {
         return id;

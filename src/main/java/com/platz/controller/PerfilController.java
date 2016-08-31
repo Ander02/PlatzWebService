@@ -15,10 +15,10 @@ public class PerfilController {
 
         //Criar Array List
         List<Perfil> lista = new ArrayList<>();
-        
+
         //Adicionar Todos os Perfis à lista
         lista.addAll(Arrays.asList(Perfil.values()));
-        
+
         //Retornar lista
         return lista;
     }

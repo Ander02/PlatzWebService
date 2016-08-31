@@ -8,16 +8,16 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class AvaliacaoEdicao {
+
     private Integer nota;
 
     public AvaliacaoEdicao() {
     }
 
-
     public AvaliacaoEdicao(Integer nota) {
         setNota(nota);
-    }    
-    
+    }
+
     public Integer getNota() {
         return nota;
     }
@@ -25,5 +25,5 @@ public class AvaliacaoEdicao {
     public void setNota(Integer nota) {
         this.nota = nota;
     }
-    
+
 }

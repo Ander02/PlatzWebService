@@ -43,7 +43,6 @@ public class ContaLeitura {
         setUltimoAcesso(ultimoAcesso);
         setDataCadastro(dataCadastro);
     }
-    
 
     //Métodos
     public List<ContaLeitura> converterLista(List<ContaModel> modelList) {

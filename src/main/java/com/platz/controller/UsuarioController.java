@@ -44,7 +44,7 @@ public class UsuarioController {
     }
 
     public void alterar(UsuarioModel model, UsuarioEdicao usuario) {
-        
+
         if (usuario.getCpf() != null && !usuario.getCpf().equals("")) {
             model.setCpf(usuario.getCpf());
         }

@@ -11,21 +11,20 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class PerfilLeitura {
-    
+
     private int codigo;
     private String nome;
 
     //Construtores
     public PerfilLeitura() {
     }
-    
+
     public PerfilLeitura(Perfil perfil) {
         setCodigo(perfil.ordinal());
         setNome(perfil.getLabel());
     }
-    
-    
-        //Métodos
+
+    //Métodos
     public List<PerfilLeitura> converterLista(List<Perfil> enumList) {
 
         List<PerfilLeitura> lista = new ArrayList<>();
@@ -54,7 +53,5 @@ public class PerfilLeitura {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
-    
-    
+
 }

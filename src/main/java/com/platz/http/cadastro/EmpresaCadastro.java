@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class EmpresaCadastro {
-     
+
     private String cnpj;
     private String nomeFantasia;
     private String razaoSocial;
@@ -19,7 +19,7 @@ public class EmpresaCadastro {
     private ContaCadastro conta;
     private EnderecoCadastro endereco;
 
-    public EmpresaCadastro() { 
+    public EmpresaCadastro() {
     }
 
     public EmpresaCadastro(String cnpj, String nomeFantasia, String razaoSocial, String telefone, String telefone2, String imagemPerfil, ContaCadastro conta) {
@@ -32,8 +32,7 @@ public class EmpresaCadastro {
         conta.setPerfil(Perfil.EMPRESA.ordinal());
         setConta(conta);
     }
-    
-   
+
     //Getters and Setters
     public String getCnpj() {
         return cnpj;
@@ -99,6 +98,4 @@ public class EmpresaCadastro {
         this.endereco = endereco;
     }
 
-    
-    
 }

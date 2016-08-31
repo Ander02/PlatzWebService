@@ -16,7 +16,7 @@ import javax.ws.rs.core.Response;
  */
 @Path("")
 public class PerfilService {
-    
+
     private final PerfilController perfilController = new PerfilController();
 
     @GET

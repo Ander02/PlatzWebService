@@ -30,7 +30,7 @@ public class MensagemLeitura {
         setConteudo(model.getConteudo());
         setMarcado(model.isMarcado());
         setDataCadastro(model.getDataCadastro());
-        if (model.getVisualizado() != null) {            
+        if (model.getVisualizado() != null) {
             setVisualizado(model.getVisualizado());
         }
         if (model.getDeletado() != null) {
@@ -49,8 +49,7 @@ public class MensagemLeitura {
         setDeletado(deletado);
         setAssunto(assunto);
     }
-    
-    
+
     //Métodos
     public List<MensagemLeitura> converterLista(List<MensagemModel> modelList) {
 
@@ -62,7 +61,6 @@ public class MensagemLeitura {
         }
         return lista;
     }
-
 
     //Getters and Setters
     public String getId() {

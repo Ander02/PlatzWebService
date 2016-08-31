@@ -13,7 +13,7 @@ public enum TipoPresenca {
     SIM("Participarei"),
     TALVEZ("Talvez participarei"),
     NAO("Não Participarei");
-    
+
     private String label;
 
     private TipoPresenca(String label) {

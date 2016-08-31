@@ -14,22 +14,23 @@ import javax.persistence.Persistence;
  * @author Administrador
  */
 public class JPAUtil {
+
     private EntityManagerFactory factory;
     private static JPAUtil instance;
 
     public JPAUtil() {
         this.factory = Persistence.createEntityManagerFactory("platz");
     }
-    public static synchronized  JPAUtil getInstance(){
-        if(instance == null){
+
+    public static synchronized JPAUtil getInstance() {
+        if (instance == null) {
             instance = new JPAUtil();
         }
-        return instance;                
+        return instance;
     }
-    public EntityManager getEntityManager(){
-        return  factory.createEntityManager();
+
+    public EntityManager getEntityManager() {
+        return factory.createEntityManager();
     }
-    
-    
-            
+
 }

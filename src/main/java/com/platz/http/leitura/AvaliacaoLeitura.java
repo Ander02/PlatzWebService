@@ -11,6 +11,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class AvaliacaoLeitura {
+
     private String id;
     private Integer nota;
     private UsuarioLeitura usuario;
@@ -26,18 +27,18 @@ public class AvaliacaoLeitura {
         setUsuario(usuario);
         setUsuario(usuario);
         setDataCadastro(dataCadastro);
-    }   
-    
+    }
+
     public AvaliacaoLeitura(AvaliacaoModel model) {
         setId(model.getId());
-        if(model.getNota()!= null){
+        if (model.getNota() != null) {
             setNota(model.getNota());
         }
         setUsuario(new UsuarioLeitura(model.getUsuario()));
         //setEvento(new EventoLeitura(model.getEvento()));
         setDataCadastro(model.getDataCadastro());
     }
-    
+
     public List<AvaliacaoLeitura> converterLista(List<AvaliacaoModel> modelList) {
 
         List<AvaliacaoLeitura> lista = new ArrayList<>();
@@ -49,7 +50,7 @@ public class AvaliacaoLeitura {
         }
         return lista;
     }
-    
+
     public String getId() {
         return id;
     }
@@ -89,6 +90,5 @@ public class AvaliacaoLeitura {
     public void setDataCadastro(String dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
-    
-    
+
 }

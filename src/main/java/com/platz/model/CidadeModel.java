@@ -27,16 +27,16 @@ public class CidadeModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private ObjectId id;    
+    private ObjectId id;
     @NotNull(message = "O nome da cidade deve ser informada")
     private String nome;
     @NotNull(message = "O estado deve ser informado")
     @ManyToOne
     private EstadoModel estado;
-    
+
     public CidadeModel() {
     }
-    
+
     public CidadeModel(CidadeCadastro cidade) {
         setNome(cidade.getNome());
         setEstado(new EstadoDao().buscarPorId(EstadoModel.class, cidade.getEstadoId()));
@@ -46,11 +46,11 @@ public class CidadeModel {
     public String getId() {
         return id.toHexString();
     }
-    
+
     public void setId(String id) {
         this.id = new ObjectId(id);
     }
-    
+
     public ObjectId getObjectId() {
         return this.id;
     }
@@ -58,15 +58,15 @@ public class CidadeModel {
     public String getNome() {
         return nome;
     }
-    
+
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
+
     public EstadoModel getEstado() {
         return estado;
     }
-    
+
     public void setEstado(EstadoModel estado) {
         this.estado = estado;
     }
@@ -74,5 +74,5 @@ public class CidadeModel {
     public String getDataCadastro() {
         return new DataUtil().converterData(id.getDate());
     }
-    
+
 }

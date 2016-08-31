@@ -131,12 +131,12 @@ public class CidadeService {
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar cidades").build();
         }
     }
-    
+
     @GET
     @Path(value = "/cidade/{nome}/{uf}")
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloNomeEUf(@PathParam("nome") String nome, @PathParam("uf") String uf) {
-        
+
         CidadeModel model = cidadeController.buscarPeloNomeEUf(nome, uf);
 
         //Verifica se a model retornada não é nula

@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class AssuntoCadastro {
 
     private String nome;
-    
+
     //Construtores
     public AssuntoCadastro() {
     }

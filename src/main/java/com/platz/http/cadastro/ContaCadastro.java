@@ -47,6 +47,4 @@ public class ContaCadastro {
         this.perfil = perfil;
     }
 
- 
- 
 }

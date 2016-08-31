@@ -40,7 +40,7 @@ public class EnderecoModel {
             setCidade(cidadeModel);
         } else {
             //cadastro de cidade nao existente            
-            CidadeModel novaCidade = new CidadeModel(new CidadeCadastro(new EstadoDao().buscarPelaUf(endereco.getUf()).getId(),endereco.getCidade()));
+            CidadeModel novaCidade = new CidadeModel(new CidadeCadastro(new EstadoDao().buscarPelaUf(endereco.getUf()).getId(), endereco.getCidade()));
             new CidadeDao().cadastrar(novaCidade);
             setCidade(novaCidade);
         }

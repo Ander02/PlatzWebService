@@ -31,7 +31,6 @@ public class CategoriaLeitura {
         setCaminhoIcone(caminhoIcone);
         //this.deletado = deletado;
     }
-    
 
     public CategoriaLeitura(CategoriaModel model) {
         setId(model.getId());
@@ -40,7 +39,7 @@ public class CategoriaLeitura {
         setCaminhoIcone(model.getCaminhoIcone());
         if (model.getDeletado() != null) {
             setDeletado(model.getDeletado());
-              }
+        }
     }
 
     //Métodos
