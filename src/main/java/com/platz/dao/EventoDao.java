@@ -39,7 +39,7 @@ public class EventoDao extends GenericDao<EventoModel> {
     }
 
     @SuppressWarnings("unchecked")
-    public List<EventoModel> buscarPeloCancelados() {
+    public List<EventoModel> buscarCancelados() {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
         List<EventoModel> lista = entityManager.createQuery("from EventoModel where cancelado!= :cancelado").setParameter("cancelado", null).getResultList();
         entityManager.close();
@@ -47,7 +47,7 @@ public class EventoDao extends GenericDao<EventoModel> {
     }
 
     @SuppressWarnings("unchecked")
-    public List<EventoModel> buscarPeloCensurados() {
+    public List<EventoModel> buscarCensurados() {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
         List<EventoModel> lista = entityManager.createQuery("from EventoModel where censurado!= :censurado").setParameter("censurado", null).getResultList();
         entityManager.close();
@@ -55,7 +55,7 @@ public class EventoDao extends GenericDao<EventoModel> {
     }
 
     @SuppressWarnings("unchecked")
-    public List<EventoModel> buscarPeloDestaques() {
+    public List<EventoModel> buscarDestaques() {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
         List<EventoModel> lista = entityManager.createQuery("from EventoModel where destaque!= true").getResultList();
         entityManager.close();
@@ -63,7 +63,7 @@ public class EventoDao extends GenericDao<EventoModel> {
     }
 
     @SuppressWarnings("unchecked")
-    public List<EventoModel> buscarPeloNaoCancelados() {
+    public List<EventoModel> buscarNaoCancelados() {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
         List<EventoModel> lista = entityManager.createQuery("from EventoModel where cancelado = :cancelado").setParameter("cancelado", null).getResultList();
         entityManager.close();
@@ -71,7 +71,7 @@ public class EventoDao extends GenericDao<EventoModel> {
     }
 
     @SuppressWarnings("unchecked")
-    public List<EventoModel> buscarPeloNaoCensurados() {
+    public List<EventoModel> buscarNaoCensurados() {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
         List<EventoModel> lista = entityManager.createQuery("from EventoModel where censurado = :censurado").setParameter("censurado", null).getResultList();
         entityManager.close();
@@ -87,7 +87,7 @@ public class EventoDao extends GenericDao<EventoModel> {
     }
 
     @SuppressWarnings("unchecked")
-    public List<EventoModel> buscarPeloNaoCanceladosENaoCensurados() {
+    public List<EventoModel> buscarNaoCanceladosENaoCensurados() {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
         List<EventoModel> lista = entityManager.createQuery("from EventoModel where cancelado = :cancelado and censurado = :censurado").setParameter("cancelado", null).setParameter("cancelado", null).getResultList();
         entityManager.close();
@@ -95,7 +95,7 @@ public class EventoDao extends GenericDao<EventoModel> {
     }
 
     @SuppressWarnings("unchecked")
-    public List<EventoModel> buscarPeloCanceladosECensurados() {
+    public List<EventoModel> buscarCanceladosECensurados() {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
         List<EventoModel> lista = entityManager.createQuery("from EventoModel where cancelado != :cancelado and censurado != :censurado").setParameter("cancelado", null).setParameter("cancelado", null).getResultList();
         entityManager.close();

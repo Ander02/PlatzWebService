@@ -1,8 +1,13 @@
 package com.platz.service;
 
+import com.platz.controller.CategoriaController;
+import com.platz.controller.EmpresaController;
 import com.platz.controller.EventoController;
+import com.platz.dao.EmpresaDao;
 import com.platz.http.cadastro.EventoCadastro;
 import com.platz.http.leitura.EventoLeitura;
+import com.platz.model.CategoriaModel;
+import com.platz.model.EmpresaModel;
 import com.platz.model.EventoModel;
 import java.util.List;
 import javax.ws.rs.Consumes;
@@ -108,4 +113,295 @@ public class EventoService {
         }
     }
 
+    @GET
+    @Path(value = "/eventos/empresa/{id}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarPelaEmpresa(@PathParam("id") String id) {
+        try {
+            EmpresaModel empresa = new EmpresaController().buscarPorId(id);
+
+            List<EventoModel> models = eventoController.buscarPelaEmpresa(empresa);
+
+            List<EventoLeitura> listaDeLeitura = new EventoLeitura().converterLista(models);
+
+            return Response.ok(listaDeLeitura).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar eventos").build();
+        }
+    }
+
+    @GET
+    @Path(value = "/eventos/categoria/{id}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarPelaCategoria(@PathParam("id") String id) {
+        try {
+            CategoriaModel categoria = new CategoriaController().buscarPorId(id);
+
+            List<EventoModel> models = eventoController.buscarPelaCategoria(categoria);
+
+            List<EventoLeitura> listaDeLeitura = new EventoLeitura().converterLista(models);
+
+            return Response.ok(listaDeLeitura).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar eventos").build();
+        }
+    }
+
+    @GET
+    @Path(value = "/eventos/cancelados")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarCancelados() {
+        try {
+            List<EventoModel> models = eventoController.buscarCancelados();
+
+            List<EventoLeitura> listaDeLeitura = new EventoLeitura().converterLista(models);
+
+            return Response.ok(listaDeLeitura).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar eventos").build();
+        }
+    }
+
+    @GET
+    @Path(value = "/eventos/censurados")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarCensurados() {
+        try {
+            List<EventoModel> models = eventoController.buscarCensurados();
+
+            List<EventoLeitura> listaDeLeitura = new EventoLeitura().converterLista(models);
+
+            return Response.ok(listaDeLeitura).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar eventos").build();
+        }
+    }
+
+    @GET
+    @Path(value = "/eventos/destacados")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarDestacados() {
+        try {
+            List<EventoModel> models = eventoController.buscarDestaques();
+
+            List<EventoLeitura> listaDeLeitura = new EventoLeitura().converterLista(models);
+
+            return Response.ok(listaDeLeitura).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar eventos").build();
+        }
+    }
+
+    @GET
+    @Path(value = "/eventos/naocancelados")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarNaoCancelados() {
+        try {
+            List<EventoModel> models = eventoController.buscarNaoCancelados();
+
+            List<EventoLeitura> listaDeLeitura = new EventoLeitura().converterLista(models);
+
+            return Response.ok(listaDeLeitura).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar eventos").build();
+        }
+    }
+
+    @GET
+    @Path(value = "/eventos/naocensurados")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarCNaoensurados() {
+        try {
+            List<EventoModel> models = eventoController.buscarNaoCensurados();
+
+            List<EventoLeitura> listaDeLeitura = new EventoLeitura().converterLista(models);
+
+            return Response.ok(listaDeLeitura).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar eventos").build();
+        }
+    }
+
+    @GET
+    @Path(value = "/eventos/semdestacaque")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarSemDestacados() {
+        try {
+            List<EventoModel> models = eventoController.buscarSemDestaques();
+
+            List<EventoLeitura> listaDeLeitura = new EventoLeitura().converterLista(models);
+
+            return Response.ok(listaDeLeitura).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar eventos").build();
+        }
+    }
+
+    @GET
+    @Path(value = "/eventos/canceladosecensurados")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarCanceladosECensurado() {
+        try {
+            List<EventoModel> models = eventoController.buscarCanceladosECensurados();
+
+            List<EventoLeitura> listaDeLeitura = new EventoLeitura().converterLista(models);
+
+            return Response.ok(listaDeLeitura).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar eventos").build();
+        }
+    }
+
+    @GET
+    @Path(value = "/eventos/naocanceladosesemcensura")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarNaoCanceladosESemCensura() {
+        try {
+            List<EventoModel> models = eventoController.buscarNaoCanceladosENaoCensurados();
+
+            List<EventoLeitura> listaDeLeitura = new EventoLeitura().converterLista(models);
+
+            return Response.ok(listaDeLeitura).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar eventos").build();
+        }
+    }
+
+    @GET
+    @Path(value = "/eventos/idade/{idade}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarPelaIdade(@PathParam("idade") int idade) {
+        try {
+            List<EventoModel> models = eventoController.buscarPelaIdade(idade);
+
+            List<EventoLeitura> listaDeLeitura = new EventoLeitura().converterLista(models);
+
+            return Response.ok(listaDeLeitura).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar eventos").build();
+        }
+    }
+
+    @GET
+    @Path(value = "/eventos/gratuitos")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarGratuitos() {
+        try {
+            List<EventoModel> models = eventoController.buscarGratuitos();
+
+            List<EventoLeitura> listaDeLeitura = new EventoLeitura().converterLista(models);
+
+            return Response.ok(listaDeLeitura).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar eventos").build();
+        }
+    }
+
+    @GET
+    @Path(value = "/eventos/preco/{preco}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarPeloValorMaximo(@PathParam("idade") double preco) {
+        try {
+            List<EventoModel> models = eventoController.buscarPeloValorMaximo(preco);
+
+            List<EventoLeitura> listaDeLeitura = new EventoLeitura().converterLista(models);
+
+            return Response.ok(listaDeLeitura).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar eventos").build();
+        }
+    }
+
+    @GET
+    @Path(value = "/eventos/passados")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarEventosPassados() {
+        try {
+            List<EventoModel> models = eventoController.buscarEventosPassados();
+
+            List<EventoLeitura> listaDeLeitura = new EventoLeitura().converterLista(models);
+
+            return Response.ok(listaDeLeitura).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar eventos").build();
+        }
+    }
+
+    @GET
+    @Path(value = "/eventos/futuros")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarEventosFuturos() {
+        try {
+            List<EventoModel> models = eventoController.buscarEventosFuturos();
+
+            List<EventoLeitura> listaDeLeitura = new EventoLeitura().converterLista(models);
+
+            return Response.ok(listaDeLeitura).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar eventos").build();
+        }
+    }
+
+    @GET
+    @Path(value = "/eventos/semana")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarEventosDaSemana() {
+        try {
+            List<EventoModel> models = eventoController.buscarEventosDaSemana();
+
+            List<EventoLeitura> listaDeLeitura = new EventoLeitura().converterLista(models);
+
+            return Response.ok(listaDeLeitura).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar eventos").build();
+        }
+    }
 }

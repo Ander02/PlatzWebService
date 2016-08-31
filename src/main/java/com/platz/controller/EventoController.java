@@ -39,51 +39,51 @@ public class EventoController {
         return eventoDao.buscarPelaCategoria(model);
     }
 
-    public List<EventoModel> buscarPeloCancelados() {
-        return eventoDao.buscarPeloCancelados();
+    public List<EventoModel> buscarCancelados() {
+        return eventoDao.buscarCancelados();
     }
 
-    public List<EventoModel> buscarPeloCensurados() {
-        return eventoDao.buscarPeloCensurados();
+    public List<EventoModel> buscarCensurados() {
+        return eventoDao.buscarCensurados();
     }
 
-    public List<EventoModel> buscarPeloDestaques() {
-        return eventoDao.buscarPeloDestaques();
+    public List<EventoModel> buscarDestaques() {
+        return eventoDao.buscarDestaques();
     }
 
-    public List<EventoModel> buscarPeloNaoCancelados() {
-        return eventoDao.buscarPeloNaoCancelados();
+    public List<EventoModel> buscarNaoCancelados() {
+        return eventoDao.buscarNaoCancelados();
     }
 
-    public List<EventoModel> buscarPeloNaoCensurados() {
-        return eventoDao.buscarPeloNaoCensurados();
+    public List<EventoModel> buscarNaoCensurados() {
+        return eventoDao.buscarNaoCensurados();
     }
 
-    public List<EventoModel> buscarPeloSemDestaques() {
+    public List<EventoModel> buscarSemDestaques() {
         return eventoDao.buscarSemDestaques();
     }
 
-    public List<EventoModel> buscarPeloNaoCanceladosENaoCensurados() {
-        return eventoDao.buscarPeloNaoCanceladosENaoCensurados();
+    public List<EventoModel> buscarNaoCanceladosENaoCensurados() {
+        return eventoDao.buscarNaoCanceladosENaoCensurados();
     }
 
-    public List<EventoModel> buscarPeloCanceladosECensurados() {
-        return eventoDao.buscarPeloCanceladosECensurados();
+    public List<EventoModel> buscarCanceladosECensurados() {
+        return eventoDao.buscarCanceladosECensurados();
     }
 
     public List<EventoModel> buscarPelaIdade(int idade) {
         return eventoDao.buscarPelaIdade(idade);
     }
 
-    public List<EventoModel> buscarPeloEventosPassados() {
+    public List<EventoModel> buscarEventosPassados() {
         return eventoDao.buscarPeloEventosPassados();
     }
 
-    public List<EventoModel> buscarPeloEventosFuturos() {
+    public List<EventoModel> buscarEventosFuturos() {
         return eventoDao.buscarPeloEventosFuturos();
     }
 
-    public List<EventoModel> buscarDaSemana() {
+    public List<EventoModel> buscarEventosDaSemana() {
         return eventoDao.buscarEventosDaSemana();
     }
 
