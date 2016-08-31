@@ -29,7 +29,7 @@ public class EventoService {
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(EventoCadastro evento) {
 
-        try {
+        //try {
             //Settar informações na model baseado na Conta de Cadastro passada
             EventoModel model = new EventoModel(evento);
 
@@ -38,13 +38,13 @@ public class EventoService {
             // Retorna a resposta para o cliente com o Status Code CREATED e a Conta de Leitura
             return Response.status(Response.Status.CREATED).entity(new EventoLeitura(model)).build();
 
-        } catch (Exception e) {
+       // } catch (Exception e) {
 
             // Envia erro pelo console
-            System.out.println("Erro: " + e.getMessage());
+        //    System.out.println("Erro: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
-            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao cadastrar evento").build();
-        }
+       //     return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao cadastrar evento").build();
+       // }
     }
 
     @GET
