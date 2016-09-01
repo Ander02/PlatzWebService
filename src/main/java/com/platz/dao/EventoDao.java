@@ -33,7 +33,7 @@ public class EventoDao extends GenericDao<EventoModel> {
     @SuppressWarnings("unchecked")
     public List<EventoModel> buscarPelaCategoria(CategoriaModel categoria) {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
-        List<EventoModel> lista = entityManager.createQuery("Select e from EventoModel e where :categoria member of e.categorias").setParameter("categoria", categoria).getResultList();
+        List<EventoModel> lista = entityManager.createQuery("from EventoModel where :categoria member of categorias").setParameter("categoria", categoria).getResultList();
         entityManager.close();
         return lista;
     }

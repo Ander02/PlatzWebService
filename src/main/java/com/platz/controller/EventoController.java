@@ -1,9 +1,14 @@
 package com.platz.controller;
 
+import com.platz.dao.CategoriaDao;
 import com.platz.dao.EventoDao;
+import com.platz.dao.ImagemDao;
+import com.platz.http.edicao.EventoEdicao;
 import com.platz.model.CategoriaModel;
 import com.platz.model.EmpresaModel;
 import com.platz.model.EventoModel;
+import com.platz.model.ImagemModel;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -99,7 +104,53 @@ public class EventoController {
         return eventoDao.buscarGratuitos();
     }
 
-    public void alterar(EventoModel model) {
+    public void alterar(EventoModel model, EventoEdicao evento) {
+
+        if (evento.getNome() != null && !evento.getNome().equals("")) {
+            model.setNome(evento.getNome());
+        }
+        if (evento.getDetalhes() != null && !evento.getDetalhes().equals("")) {
+            model.setDetalhes(evento.getDetalhes());
+        }
+        if (evento.getDataInicio() != null && !evento.getDataInicio().equals("")) {
+            model.setDataInicio(evento.getDataInicio());
+        }
+        if (evento.getDataFim() != null && !evento.getDataFim().equals("")) {
+            model.setDataFim(evento.getDataFim());
+        }
+        if (evento.getLotacaoMin() != null && !evento.getLotacaoMin().equals("")) {
+            model.setLotacaoMin(evento.getLotacaoMin());
+        }
+        if (evento.getLotacaoMax() != null && !evento.getLotacaoMax().equals("")) {
+            model.setLotacaoMax(evento.getLotacaoMax());
+        }
+        if (evento.getDestaque() != null && !evento.getDestaque().equals("")) {
+            model.setDestaque(evento.getDestaque());
+        }
+
+        if (evento.getCategoriasId() != null && !evento.getCategoriasId().equals("")) {
+            List<CategoriaModel> listaDeCategorias = new ArrayList<>();
+            for (String categoriaId : evento.getCategoriasId()) {
+
+                CategoriaModel categoria = new CategoriaDao().buscarPorId(CategoriaModel.class, categoriaId);
+
+                listaDeCategorias.add(categoria);
+            }
+            model.setCategorias(listaDeCategorias);
+        }
+
+        if (evento.getCategoriasId() != null && !evento.getCategoriasId().equals("")) {
+
+            List<ImagemModel> listaDeImagens = new ArrayList<>();
+            for (String imagemId : evento.getCategoriasId()) {
+
+                ImagemModel imagem = new ImagemDao().buscarPorId(ImagemModel.class, imagemId);
+
+                listaDeImagens.add(imagem);
+            }
+            model.setImagens(listaDeImagens);
+        }
+
         eventoDao.alterar(model);
     }
 
