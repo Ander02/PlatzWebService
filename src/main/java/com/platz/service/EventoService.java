@@ -207,7 +207,7 @@ public class EventoService {
     }
 
     @GET
-    @Path(value = "/eventos/naocancelados")
+    @Path(value = "/eventos/naoCancelados")
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarNaoCancelados() {
         try {
@@ -225,9 +225,9 @@ public class EventoService {
     }
 
     @GET
-    @Path(value = "/eventos/naocensurados")
+    @Path(value = "/eventos/naoCensurados")
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public Response buscarCNaoensurados() {
+    public Response buscarNaoensurados() {
         try {
             List<EventoModel> models = eventoController.buscarNaoCensurados();
 
@@ -243,7 +243,7 @@ public class EventoService {
     }
 
     @GET
-    @Path(value = "/eventos/semdestacaque")
+    @Path(value = "/eventos/semDestaque")
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarSemDestacados() {
         try {
@@ -261,7 +261,7 @@ public class EventoService {
     }
 
     @GET
-    @Path(value = "/eventos/canceladosecensurados")
+    @Path(value = "/eventos/canceladosECensurados")
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarCanceladosECensurado() {
         try {
@@ -279,7 +279,7 @@ public class EventoService {
     }
 
     @GET
-    @Path(value = "/eventos/naocanceladosesemcensura")
+    @Path(value = "/eventos/naoCanceladosESemCensura")
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarNaoCanceladosESemCensura() {
         try {
@@ -405,7 +405,7 @@ public class EventoService {
     }
 
     @GET
-    @Path(value = "/eventos/dia={dia}")
+    @Path(value = "/eventos/dia/{dia}")
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarEventosPorDiaLimite(@PathParam("dia") int dia) {
         try {
