@@ -14,6 +14,15 @@ import javax.persistence.EntityManager;
  */
 public class EventoDao extends GenericDao<EventoModel> {
 
+    @Override
+    public void alterar(EventoModel model) {
+        if (new Date().before(model.getDataInicioDate())) {
+            super.alterar(model);
+        } else {
+            System.out.println("Não foi possível alterar");
+        }
+    }
+
     @SuppressWarnings("unchecked")
     public List<EventoModel> buscarPeloNome(String nome) {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();

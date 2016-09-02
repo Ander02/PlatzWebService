@@ -429,7 +429,7 @@ public class EventoService {
     @Path(value = "/evento/{id}")
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response alterar(@PathParam("id") String id, EventoEdicao evento) {
-        //try {
+        try {
             EventoModel model = eventoController.buscarPorId(id);
 
             //Alterar registro
@@ -438,10 +438,130 @@ public class EventoService {
             //Retorna Status Code OK com a model de leitura com a modificação
             return Response.status(Response.Status.OK).entity(new EventoLeitura(model)).build();
 
-//        } catch (Exception e) {
-//            System.out.println("Erro" + e.getMessage());
-//            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar evento").build();
-//        }
+        } catch (Exception e) {
+            System.out.println("Erro" + e.getMessage());
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar evento").build();
+        }
     }
 
+    @PUT
+    @Path(value = "/evento/cancelar/{id}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response cancelar(@PathParam("id") String id) {
+
+        try {
+            EventoModel model = eventoController.buscarPorId(id);
+
+            //Alterar registro
+            eventoController.cancelar(model);
+
+            //Retorna Status Code OK com a model de leitura com a modificação
+            return Response.status(Response.Status.OK).entity(new EventoLeitura(model)).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro" + e.getMessage());
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao cancelar evento").build();
+        }
+
+    }
+
+    @PUT
+    @Path(value = "/evento/censurar/{id}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response censurar(@PathParam("id") String id) {
+
+        try {
+            EventoModel model = eventoController.buscarPorId(id);
+
+            //Alterar registro
+            eventoController.censurar(model);
+
+            //Retorna Status Code OK com a model de leitura com a modificação
+            return Response.status(Response.Status.OK).entity(new EventoLeitura(model)).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro" + e.getMessage());
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao censurar evento").build();
+        }
+    }
+
+    @PUT
+    @Path(value = "/evento/destacar/{id}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response destacar(@PathParam("id") String id) {
+
+        try {
+            EventoModel model = eventoController.buscarPorId(id);
+
+            //Alterar registro
+            eventoController.destacar(model);
+
+            //Retorna Status Code OK com a model de leitura com a modificação
+            return Response.status(Response.Status.OK).entity(new EventoLeitura(model)).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro" + e.getMessage());
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao censurar evento").build();
+        }
+    }
+
+    @PUT
+    @Path(value = "/evento/descancelar/{id}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response descancelar(@PathParam("id") String id) {
+
+        try {
+            EventoModel model = eventoController.buscarPorId(id);
+
+            //Alterar registro
+            eventoController.descancelar(model);
+
+            //Retorna Status Code OK com a model de leitura com a modificação
+            return Response.status(Response.Status.OK).entity(new EventoLeitura(model)).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro" + e.getMessage());
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao descancelar evento").build();
+        }
+    }
+    
+     @PUT
+    @Path(value = "/evento/descensurar/{id}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response descensurar(@PathParam("id") String id) {
+
+        try {
+            EventoModel model = eventoController.buscarPorId(id);
+
+            //Alterar registro
+            eventoController.descensurar(model);
+
+            //Retorna Status Code OK com a model de leitura com a modificação
+            return Response.status(Response.Status.OK).entity(new EventoLeitura(model)).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro" + e.getMessage());
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao descancelar evento").build();
+        }
+    }
+
+    @PUT
+    @Path(value = "/evento/retirarDestaque/{id}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response retirarDestaque(@PathParam("id") String id) {
+
+        try {
+            EventoModel model = eventoController.buscarPorId(id);
+
+            //Alterar registro
+            eventoController.retirarDestaque(model);
+
+            //Retorna Status Code OK com a model de leitura com a modificação
+            return Response.status(Response.Status.OK).entity(new EventoLeitura(model)).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro" + e.getMessage());
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao retirar destaque evento").build();
+        }
+    }
 }
