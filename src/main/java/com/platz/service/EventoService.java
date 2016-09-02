@@ -5,7 +5,6 @@ import com.platz.controller.EmpresaController;
 import com.platz.controller.EventoController;
 import com.platz.http.cadastro.EventoCadastro;
 import com.platz.http.edicao.EventoEdicao;
-import com.platz.http.leitura.CategoriaLeitura;
 import com.platz.http.leitura.EventoLeitura;
 import com.platz.model.CategoriaModel;
 import com.platz.model.EmpresaModel;

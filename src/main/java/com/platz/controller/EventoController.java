@@ -21,7 +21,13 @@ public class EventoController {
     private final EventoDao eventoDao = new EventoDao();
 
     public void cadastrar(EventoModel model) {
+        List<CategoriaModel> categorias = model.getCategorias();
         eventoDao.cadastrar(model);
+
+        for (CategoriaModel categoria : categorias) {
+            categoria.getEventos().add(model);
+            new CategoriaDao().alterar(categoria);
+        }
     }
 
     public List<EventoModel> listarTodos() {
@@ -41,7 +47,7 @@ public class EventoController {
     }
 
     public List<EventoModel> buscarPelaCategoria(CategoriaModel model) {
-        return eventoDao.buscarPelaCategoria(model);
+        return model.getEventos();
     }
 
     public List<EventoModel> buscarCancelados() {
@@ -129,6 +135,15 @@ public class EventoController {
         }
 
         if (evento.getCategoriasId() != null && !evento.getCategoriasId().equals("")) {
+            //Remove os eventos da categoria            
+            for (CategoriaModel categoriasAntiga : model.getCategorias()) {
+                if (categoriasAntiga.getEventos().contains(model)) {
+                    categoriasAntiga.getEventos().remove(model);
+                    new CategoriaDao().alterar(categoriasAntiga);
+                }
+            }
+
+            //Adiciona os id de categoria no evento
             List<CategoriaModel> listaDeCategorias = new ArrayList<>();
             for (String categoriaId : evento.getCategoriasId()) {
 
@@ -137,6 +152,12 @@ public class EventoController {
                 listaDeCategorias.add(categoria);
             }
             model.setCategorias(listaDeCategorias);
+
+            //Adiciona os eventos nas novas categorias            
+            for (CategoriaModel categoriasNova : model.getCategorias()) {
+                categoriasNova.getEventos().add(model);
+                new CategoriaDao().alterar(categoriasNova);
+            }
 
         }
 
@@ -192,6 +213,7 @@ public class EventoController {
         }
     }
 
+    
     public void retirarDestaque(EventoModel model) {
         if (model.getDestaque()) {
             model.setDestaque(false);
