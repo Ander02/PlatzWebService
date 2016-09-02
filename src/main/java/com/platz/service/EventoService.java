@@ -4,6 +4,8 @@ import com.platz.controller.CategoriaController;
 import com.platz.controller.EmpresaController;
 import com.platz.controller.EventoController;
 import com.platz.http.cadastro.EventoCadastro;
+import com.platz.http.edicao.EventoEdicao;
+import com.platz.http.leitura.CategoriaLeitura;
 import com.platz.http.leitura.EventoLeitura;
 import com.platz.model.CategoriaModel;
 import com.platz.model.EmpresaModel;
@@ -12,6 +14,7 @@ import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -421,4 +424,24 @@ public class EventoService {
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar eventos").build();
         }
     }
+
+    @PUT
+    @Path(value = "/evento/{id}")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response alterar(@PathParam("id") String id, EventoEdicao evento) {
+        //try {
+            EventoModel model = eventoController.buscarPorId(id);
+
+            //Alterar registro
+            eventoController.alterar(model, evento);
+
+            //Retorna Status Code OK com a model de leitura com a modificação
+            return Response.status(Response.Status.OK).entity(new EventoLeitura(model)).build();
+
+//        } catch (Exception e) {
+//            System.out.println("Erro" + e.getMessage());
+//            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar evento").build();
+//        }
+    }
+
 }
