@@ -85,7 +85,7 @@ public class EventoModel {
 
             categorias.add(categoria);
         }
-        
+
         setCategorias(categorias);
 
         setDestaque(evento.getDestaque());
