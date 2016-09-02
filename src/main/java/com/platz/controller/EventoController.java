@@ -135,9 +135,8 @@ public class EventoController {
         }
 
         if (evento.getCategoriasId() != null && !evento.getCategoriasId().equals("")) {
-            //Remove os eventos da categoria
-            List<CategoriaModel> categoriasAntigas = model.getCategorias();
-            for (CategoriaModel categoriasAntiga : categoriasAntigas) {
+            //Remove os eventos da categoria            
+            for (CategoriaModel categoriasAntiga : model.getCategorias()) {
                 if (categoriasAntiga.getEventos().contains(model)) {
                     categoriasAntiga.getEventos().remove(model);
                     new CategoriaDao().alterar(categoriasAntiga);
@@ -154,9 +153,8 @@ public class EventoController {
             }
             model.setCategorias(listaDeCategorias);
 
-            //Adiciona os eventos nas novas categorias
-            List<CategoriaModel> categoriasNovas = model.getCategorias();
-            for (CategoriaModel categoriasNova : categoriasNovas) {
+            //Adiciona os eventos nas novas categorias            
+            for (CategoriaModel categoriasNova : model.getCategorias()) {
                 categoriasNova.getEventos().add(model);
                 new CategoriaDao().alterar(categoriasNova);
             }
