@@ -21,7 +21,13 @@ public class EventoController {
     private final EventoDao eventoDao = new EventoDao();
 
     public void cadastrar(EventoModel model) {
+        List<CategoriaModel> categorias = model.getCategorias();
         eventoDao.cadastrar(model);
+
+        for (CategoriaModel categoria : categorias) {
+            categoria.getEventos().add(model);
+            new CategoriaDao().alterar(categoria);
+        }
     }
 
     public List<EventoModel> listarTodos() {

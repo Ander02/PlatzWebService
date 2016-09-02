@@ -2,11 +2,15 @@ package com.platz.model;
 
 import com.platz.http.cadastro.CategoriaCadastro;
 import com.platz.util.DataUtil;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -36,6 +40,9 @@ public class CategoriaModel {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletado;
+    
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<EventoModel> eventos = new ArrayList<>();
 
     //Contrutores
     public CategoriaModel() {
@@ -43,7 +50,7 @@ public class CategoriaModel {
 
     public CategoriaModel(CategoriaCadastro categoria) {
         setNome(categoria.getNome());
-        setCaminhoIcone(categoria.getCaminhoIcone());
+        setCaminhoIcone(categoria.getCaminhoIcone());        
     }
 
     //getters and setters
@@ -89,5 +96,13 @@ public class CategoriaModel {
 
     public String getDataCadastro() {
         return new DataUtil().converterData(id.getDate());
+    }
+
+    public List<EventoModel> getEventos() {
+        return eventos;
+    }
+
+    public void setEventos(List<EventoModel> eventos) {
+        this.eventos = eventos;
     }
 }
