@@ -46,8 +46,8 @@ public class EventoController {
         return eventoDao.buscarPelaEmpresa(model);
     }
 
-    public List<EventoModel> buscarPelaCategoria(CategoriaModel model) {
-        return eventoDao.buscarPelaCategoria(model);
+    public List<EventoModel> buscarPelaCategoria(CategoriaModel model) {        
+        return model.getEventos();
     }
 
     public List<EventoModel> buscarCancelados() {

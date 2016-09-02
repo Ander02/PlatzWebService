@@ -1,6 +1,5 @@
 package com.platz.dao;
 
-import com.platz.model.CategoriaModel;
 import com.platz.model.EmpresaModel;
 import com.platz.model.EventoModel;
 import java.util.Calendar;
@@ -26,14 +25,6 @@ public class EventoDao extends GenericDao<EventoModel> {
     public List<EventoModel> buscarPelaEmpresa(EmpresaModel empresa) {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
         List<EventoModel> lista = entityManager.createQuery("from EventoModel where empresa = :empresa").setParameter("empresa", empresa).getResultList();
-        entityManager.close();
-        return lista;
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<EventoModel> buscarPelaCategoria(CategoriaModel categoria) {
-        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
-        List<EventoModel> lista = entityManager.createQuery("Select e from EventoModel e where :categoria member of e.categorias").setParameter("categoria", categoria).getResultList();
         entityManager.close();
         return lista;
     }
