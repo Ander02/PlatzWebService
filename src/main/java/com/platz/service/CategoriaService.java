@@ -5,6 +5,8 @@ import com.platz.http.cadastro.CategoriaCadastro;
 import com.platz.http.edicao.CategoriaEdicao;
 import com.platz.http.leitura.CategoriaLeitura;
 import com.platz.model.CategoriaModel;
+import com.platz.util.ImagemUtil;
+import java.io.InputStream;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -16,6 +18,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
+import org.glassfish.jersey.media.multipart.FormDataParam;
 
 /**
  *
@@ -30,11 +34,17 @@ public class CategoriaService {
     @Path(value = "/categoria")
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public Response cadastrar(CategoriaCadastro categoria) {
+    public Response cadastrar(CategoriaCadastro categoria){
 
         try {
 
             CategoriaModel model = new CategoriaModel(categoria);
+
+//            String caminhoDoUpload = new ImagemUtil().RAIZ + "/categorias/" + model.getNome();
+//
+//            new ImagemUtil().salvarArquivo(caminhoDoUpload, inputStream);
+//
+//            model.setCaminhoIcone(caminhoDoUpload);
 
             // Cadastrar categoria
             categoriaController.cadastrar(model);

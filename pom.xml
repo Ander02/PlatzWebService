@@ -107,6 +107,19 @@
             <artifactId>jersey-container-servlet-core</artifactId>
         </dependency>
         
+        <!--Jersey Multipart-->
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-multipart</artifactId>
+            <version>2.19</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.jvnet.mimepull</groupId>
+            <artifactId>mimepull</artifactId>
+            <version>1.9.6</version>
+        </dependency>
+                             
         <!--Jersey Container-->
         <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
@@ -168,8 +181,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>1.7</source>
+                    <target>1.7</target>
                     <compilerArguments>
                         <endorseddirs>${endorsed.dir}</endorseddirs>
                     </compilerArguments>
