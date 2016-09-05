@@ -36,7 +36,7 @@ public class CategoriaModel {
 
     @NotNull(message = "Adicione um icone")
     @Length(max = 255, message = "O nome da imagem é muito longo")
-    private String caminhoIcone;
+    private String caminhoIcone = "";
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletado;

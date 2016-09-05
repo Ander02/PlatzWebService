@@ -34,18 +34,17 @@ public class CategoriaService {
     @Path(value = "/categoria")
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public Response cadastrar(CategoriaCadastro categoria){
+    public Response cadastrar(CategoriaCadastro categoria) {
 
         try {
 
             CategoriaModel model = new CategoriaModel(categoria);
 
-//            String caminhoDoUpload = new ImagemUtil().RAIZ + "/categorias/" + model.getNome();
+//            String caminhoDoUpload = new ImagemUtil().RAIZ + "/categorias/" + model.getNome() + ".jpg";
 //
 //            new ImagemUtil().salvarArquivo(caminhoDoUpload, inputStream);
 //
 //            model.setCaminhoIcone(caminhoDoUpload);
-
             // Cadastrar categoria
             categoriaController.cadastrar(model);
 
@@ -58,6 +57,40 @@ public class CategoriaService {
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao cadastrar categoria").build();
         }
+    }
+
+    @PUT
+    @Path(value = "/categoria/imagem/{id}")
+    @Consumes(value = MediaType.MULTIPART_FORM_DATA)
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response subirImagem(@FormDataParam("icone") InputStream iconeInputStream,
+            @FormDataParam("icone") FormDataContentDisposition fileMetaData,
+            @PathParam("id") String id) {
+
+        try {
+            //Buscar Model pelo id
+            CategoriaModel model = new CategoriaController().buscarPorId(id);
+
+            //Montando o caminho do upload
+            String caminhoDoUpload = new ImagemUtil().RAIZ + "/categorias/" + model.getNome() + fileMetaData.getType();
+
+            //Salvar Imagem
+            new ImagemUtil().salvarArquivo(caminhoDoUpload, iconeInputStream);
+
+            //Settar o camionho do icone na model
+            model.setCaminhoIcone(caminhoDoUpload);
+
+            //Alterar
+            categoriaController.alterar(model);
+
+            return Response.ok(new CategoriaLeitura(model)).build();
+        } catch (Exception e) {
+            // Envia erro pelo console
+            System.out.println("Erro de upload: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
+        }
+
     }
 
     @GET

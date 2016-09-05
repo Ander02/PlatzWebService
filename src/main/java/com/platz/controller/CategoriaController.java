@@ -29,6 +29,10 @@ public class CategoriaController {
     public List<CategoriaModel> buscarPeloNome(String nome) {
         return categoriaDao.buscarPeloNome(nome);
     }
+    
+    public void alterar(CategoriaModel model){
+        categoriaDao.alterar(model);
+    }
 
     public void alterar(CategoriaModel model, CategoriaEdicao categoria) {
 
