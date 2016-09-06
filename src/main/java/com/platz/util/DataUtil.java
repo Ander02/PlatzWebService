@@ -28,10 +28,13 @@ public class DataUtil {
         }
     }
 
-    /*Caso a string tenha horas ela returnar true, se não houve hora voltar falso*/
-    private Boolean analisarStringData(String data) {
-
-        return null;
-    }
-
+    public Date converterDataSemHora(String data) {
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            return dateFormat.parse(data);
+        } catch (ParseException ex) {
+            System.out.println("Erro de Conversão: " + ex.getMessage());
+            return null;
+        }
+    }    
 }
