@@ -523,8 +523,8 @@ public class EventoService {
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao descancelar evento").build();
         }
     }
-    
-     @PUT
+
+    @PUT
     @Path(value = "/evento/descensurar/{id}")
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response descensurar(@PathParam("id") String id) {

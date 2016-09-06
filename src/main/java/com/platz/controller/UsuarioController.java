@@ -16,39 +16,39 @@ import java.util.List;
  * @author 15153770
  */
 public class UsuarioController {
-
+    
     private final UsuarioDao usuarioDao = new UsuarioDao();
-
+    
     public void cadastrar(UsuarioModel model) {
         usuarioDao.cadastrar(model);
     }
-
+    
     public List<UsuarioModel> listarTodos() {
         return usuarioDao.listarTodos(UsuarioModel.class);
     }
-
+    
     public UsuarioModel buscarPorId(String id) {
         return usuarioDao.buscarPorId(UsuarioModel.class, id);
     }
-
+    
     public UsuarioModel buscarPeloCPF(String cpf) {
         return usuarioDao.buscarPeloCPF(cpf);
     }
-
+    
     public List<UsuarioModel> buscarPeloNome(String nome) {
         return usuarioDao.bucarPeloNome(nome);
     }
-
+    
     public UsuarioModel buscarPelaConta(ContaModel model) {
         return usuarioDao.buscarPelaConta(model);
     }
-
-    public void alterar(UsuarioModel model){
+    
+    public void alterar(UsuarioModel model) {
         usuarioDao.alterar(model);
     }
     
     public void alterar(UsuarioModel model, UsuarioEdicao usuario) {
-
+        
         if (usuario.getCpf() != null && !usuario.getCpf().equals("")) {
             model.setCpf(usuario.getCpf());
         }
@@ -66,5 +66,5 @@ public class UsuarioController {
         }
         usuarioDao.alterar(model);
     }
-
+    
 }

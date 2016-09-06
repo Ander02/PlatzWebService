@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class PresencaEdicao {
-    
+
     private Integer tipoPresenca;
 
     public PresencaEdicao() {
@@ -31,6 +31,4 @@ public class PresencaEdicao {
         this.tipoPresenca = tipoPresenca;
     }
 
-    
-    
 }

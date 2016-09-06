@@ -11,7 +11,7 @@ import javax.persistence.EntityManager;
 public class CategoriaDao extends GenericDao<CategoriaModel> {
 
     public List<CategoriaModel> buscarPeloNome(String nome) {
-        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();        
+        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
         List<CategoriaModel> lista = entityManager.createQuery("from CategoriaModel where nome like :nome")
                 .setParameter("nome", nome + "%").getResultList();
         entityManager.close();

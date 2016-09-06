@@ -136,13 +136,13 @@ public class AvaliacaoService {
     @Produces(value = MediaType.TEXT_PLAIN + ";charset=UTF-8")
     public Response mediaPorEvento(@PathParam("id") String id) {
         try {
-            Double media = avaliacaoController.mediaPorEvento(new EventoController().buscarPorId(id));    
+            Double media = avaliacaoController.mediaPorEvento(new EventoController().buscarPorId(id));
             return Response.ok(media).build();
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao buscar media da avaliação").build();
-        }     
+        }
     }
 
     @PUT

@@ -213,7 +213,6 @@ public class EventoController {
         }
     }
 
-    
     public void retirarDestaque(EventoModel model) {
         if (model.getDestaque()) {
             model.setDestaque(false);

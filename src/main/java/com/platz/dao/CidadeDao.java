@@ -12,7 +12,7 @@ import javax.persistence.EntityManager;
 public class CidadeDao extends GenericDao<CidadeModel> {
 
     public List<CidadeModel> buscarPorEstado(EstadoModel estado) {
-        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();        
+        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
         List<CidadeModel> lista = entityManager.createQuery("from CidadeModel where estado =:estado").setParameter("estado", estado).getResultList();
         entityManager.close();
         return lista;

@@ -7,6 +7,8 @@ import com.platz.http.edicao.EmpresaEdicao;
 import com.platz.http.leitura.EmpresaLeitura;
 import com.platz.model.ContaModel;
 import com.platz.model.EmpresaModel;
+import com.platz.util.ImagemUtil;
+import java.io.InputStream;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -17,6 +19,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import org.glassfish.jersey.media.multipart.FormDataBodyPart;
+import org.glassfish.jersey.media.multipart.FormDataParam;
 
 /**
  *
@@ -48,6 +52,47 @@ public class EmpresaService {
             System.out.println("Erro: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao cadastrar empresa").build();
+        }
+    }
+
+    @PUT
+    @Path(value = "/empresa/imagem/{id}")
+    @Consumes(value = MediaType.MULTIPART_FORM_DATA)
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response subirImagem(@FormDataParam("imgPerfil") InputStream iconeInputStream,
+            @FormDataParam("imgPerfil") FormDataBodyPart fileMetaData,
+            @PathParam("id") String id) {
+
+        try {
+            //Buscar Model pelo id
+            EmpresaModel model = empresaController.buscarPorId(id);
+
+            //Montando o caminho do upload
+            String diretorioDoUpload = new ImagemUtil().RAIZ + "empresa/";
+            //Montando o nome do arquivo
+            String nomeDoArquivo = model.getId() + "." + fileMetaData.getMediaType().getSubtype();
+
+            //Salvar Imagem
+            boolean ok = new ImagemUtil().salvarArquivo(diretorioDoUpload, nomeDoArquivo, iconeInputStream);
+
+            //Se a imagem for salva sem nenhum erro atualiza a model
+            if (ok) {
+                //Settar o caminho do icone na model
+                model.setImagemPerfil(diretorioDoUpload + nomeDoArquivo);
+
+                //Alterar
+                empresaController.alterar(model);
+            } else {
+                //Retorna uma BadRequest ao usuário
+                return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
+            }
+
+            return Response.ok(new EmpresaLeitura(model)).build();
+        } catch (Exception e) {
+            // Envia erro pelo console
+            System.out.println("Erro de upload: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
         }
     }
 

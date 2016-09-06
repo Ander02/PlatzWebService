@@ -36,5 +36,5 @@ public class DataUtil {
             System.out.println("Erro de Conversão: " + ex.getMessage());
             return null;
         }
-    }    
+    }
 }

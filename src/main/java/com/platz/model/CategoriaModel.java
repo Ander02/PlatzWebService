@@ -40,7 +40,7 @@ public class CategoriaModel {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletado;
-    
+
     @ManyToMany(fetch = FetchType.EAGER)
     private List<EventoModel> eventos = new ArrayList<>();
 
@@ -50,7 +50,7 @@ public class CategoriaModel {
 
     public CategoriaModel(CategoriaCadastro categoria) {
         setNome(categoria.getNome());
-        setCaminhoIcone(categoria.getCaminhoIcone());        
+        setCaminhoIcone(categoria.getCaminhoIcone());
     }
 
     //getters and setters

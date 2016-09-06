@@ -58,7 +58,7 @@ public class UsuarioService {
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao cadastrar usuario").build();
         }
     }
-    
+
     @PUT
     @Path(value = "/usuario/imagem/{id}")
     @Consumes(value = MediaType.MULTIPART_FORM_DATA)
