@@ -14,10 +14,10 @@ public class ImagemUtil {
     public final String RAIZ = "C:/";
 
     //Método de salvar arquivo que recebe o caminho e o arquivo como inputStream
-    public boolean salvarArquivo(String diretorio, String nomeDoArquivo ,InputStream inputStream) {
+    public boolean salvarArquivo(String diretorio, String nomeDoArquivo, InputStream inputStream) {
 
         try {
-            
+
             //Cria a pasta do arquivo
             new File(diretorio).mkdirs();
 
@@ -39,6 +39,21 @@ public class ImagemUtil {
             System.out.println("Erro ao fazer upload do arquivo " + e.getMessage());
             e.printStackTrace();
             return false;
+        }
+    }
+
+    public void deletarArquivo(String caminhoDoArquivo) {
+
+        try {
+            //Pega o arquivo
+            File file = new File(caminhoDoArquivo);
+
+            //Apaga o arquivo
+            file.delete();
+
+        } catch (Exception e) {
+            System.out.println("Erro ao excluir arquivo: " + e.getMessage());
+
         }
     }
 

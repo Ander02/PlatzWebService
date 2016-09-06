@@ -193,6 +193,8 @@ public class CategoriaService {
 
             CategoriaModel model = categoriaController.buscarPorId(id);
 
+            new ImagemUtil().deletarArquivo(model.getCaminhoIcone());
+
             categoriaController.excluir(model);
 
             return Response.status(Response.Status.NO_CONTENT).build();
