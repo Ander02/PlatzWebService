@@ -17,38 +17,47 @@ import java.util.List;
  * @author 15153770
  */
 public class AvaliacaoController {
-    
+
     private final AvaliacaoDao avaliacaoDao = new AvaliacaoDao();
-    
+
     public void cadastrar(AvaliacaoModel model) {
         avaliacaoDao.cadastrar(model);
     }
-    
+
     public List<AvaliacaoModel> listarTodos() {
         return avaliacaoDao.listarTodos(AvaliacaoModel.class);
     }
-    
+
+    public Double mediaPorEvento(EventoModel evento) {
+        List<AvaliacaoModel> models = avaliacaoDao.buscarPorEvento(evento);
+        Double total = 0.0;
+        for (AvaliacaoModel model : models) {
+            total += model.getNota();
+        }
+        return total / models.size();
+    }
+
     public AvaliacaoModel buscarPorId(String id) {
         return avaliacaoDao.buscarPorId(AvaliacaoModel.class, id);
     }
-    
+
     public List<AvaliacaoModel> buscarPeloEvento(EventoModel evento) {
         return avaliacaoDao.buscarPorEvento(evento);
     }
-    
+
     public List<AvaliacaoModel> buscarPeloUsuario(UsuarioModel usuario) {
         return avaliacaoDao.buscarPorUsuario(usuario);
     }
-    
+
     public void alterar(AvaliacaoModel model, AvaliacaoEdicao avaliacao) {
         if (avaliacao.getNota() != null && !avaliacao.getNota().equals("")) {
             model.setNota(avaliacao.getNota());
             avaliacaoDao.alterar(model);
         }
     }
-    
+
     public void excluir(AvaliacaoModel model) {
         avaliacaoDao.excluir(model);
     }
-    
+
 }
