@@ -11,7 +11,7 @@ import java.io.OutputStream;
  */
 public class ImagemUtil {
 
-    public final String RAIZ = "C:/";
+    public final String RAIZ = "C:/platzImg/";
 
     //Método de salvar arquivo que recebe o caminho e o arquivo como inputStream
     public boolean salvarArquivo(String diretorio, String nomeDoArquivo, InputStream inputStream) {

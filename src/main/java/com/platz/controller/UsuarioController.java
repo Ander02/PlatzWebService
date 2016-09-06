@@ -43,6 +43,10 @@ public class UsuarioController {
         return usuarioDao.buscarPelaConta(model);
     }
 
+    public void alterar(UsuarioModel model){
+        usuarioDao.alterar(model);
+    }
+    
     public void alterar(UsuarioModel model, UsuarioEdicao usuario) {
 
         if (usuario.getCpf() != null && !usuario.getCpf().equals("")) {

@@ -19,7 +19,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.glassfish.jersey.media.multipart.FormDataBodyPart;
-import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
 /**
@@ -70,7 +69,7 @@ public class CategoriaService {
 
         try {
             //Buscar Model pelo id
-            CategoriaModel model = new CategoriaController().buscarPorId(id);
+            CategoriaModel model = categoriaController.buscarPorId(id);
 
             //Montando o caminho do upload
             String diretorioDoUpload = new ImagemUtil().RAIZ + "categorias/";
@@ -99,7 +98,6 @@ public class CategoriaService {
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
         }
-
     }
 
     @GET
