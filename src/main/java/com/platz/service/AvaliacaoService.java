@@ -157,7 +157,7 @@ public class AvaliacaoService {
             return Response.status(Response.Status.NO_CONTENT).build();
         } catch (Exception e) {
             System.out.println("Erro" + e.getMessage());
-            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar avaliação").build();
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao excluir avaliação").build();
         }
     }
 
