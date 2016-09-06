@@ -18,6 +18,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import org.glassfish.jersey.media.multipart.FormDataBodyPart;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
@@ -64,7 +65,7 @@ public class CategoriaService {
     @Consumes(value = MediaType.MULTIPART_FORM_DATA)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response subirImagem(@FormDataParam("icone") InputStream iconeInputStream,
-            @FormDataParam("icone") FormDataContentDisposition fileMetaData,
+            @FormDataParam("icone") FormDataBodyPart fileMetaData,
             @PathParam("id") String id) {
 
         try {
@@ -72,16 +73,24 @@ public class CategoriaService {
             CategoriaModel model = new CategoriaController().buscarPorId(id);
 
             //Montando o caminho do upload
-            String caminhoDoUpload = new ImagemUtil().RAIZ + "categorias/" + model.getNome() + ".jpg";
+            String diretorioDoUpload = new ImagemUtil().RAIZ + "categorias/";
+            //Montando o nome do arquivo
+            String nomeDoArquivo = model.getId() + "." + fileMetaData.getMediaType().getSubtype();
 
             //Salvar Imagem
-            new ImagemUtil().salvarArquivo(caminhoDoUpload, iconeInputStream);
+            boolean ok = new ImagemUtil().salvarArquivo(diretorioDoUpload, nomeDoArquivo, iconeInputStream);
 
-            //Settar o camionho do icone na model
-            model.setCaminhoIcone(caminhoDoUpload);
+            //Se a imagem for salva sem nenhum erro atualiza a model
+            if (ok) {
+                //Settar o caminho do icone na model
+                model.setCaminhoIcone(diretorioDoUpload + nomeDoArquivo);
 
-            //Alterar
-            categoriaController.alterar(model);
+                //Alterar
+                categoriaController.alterar(model);
+            } else {
+                //Retorna uma BadRequest ao usuário
+                return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
+            }
 
             return Response.ok(new CategoriaLeitura(model)).build();
         } catch (Exception e) {

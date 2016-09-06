@@ -14,14 +14,17 @@ public class ImagemUtil {
     public final String RAIZ = "C:/";
 
     //Método de salvar arquivo que recebe o caminho e o arquivo como inputStream
-    public void salvarArquivo(String caminhoDoArquivo, InputStream inputStream) {
+    public boolean salvarArquivo(String diretorio, String nomeDoArquivo ,InputStream inputStream) {
 
         try {
+            
+            //Cria a pasta do arquivo
+            new File(diretorio).mkdirs();
 
-            //Criação das variáveis que serão necessárias para o upload
-            OutputStream outputStream = new FileOutputStream(new File(caminhoDoArquivo));
+            //Criação das variáveis que serão necessárias para o upload          
+            OutputStream outputStream = new FileOutputStream(diretorio + nomeDoArquivo);
             int read = 0;
-            byte[] bytes = new byte[1024];
+            byte[] bytes = new byte[2048];
 
             //Salvando o arquivo
             while ((read = inputStream.read(bytes)) != -1) {
@@ -29,12 +32,13 @@ public class ImagemUtil {
             }
             outputStream.flush();
             outputStream.close();
-
             System.out.println("Upload Concluído");
 
+            return true;
         } catch (Exception e) {
-            System.out.println("Erro ao fazer upload do arquivo" + e.getMessage());
+            System.out.println("Erro ao fazer upload do arquivo " + e.getMessage());
             e.printStackTrace();
+            return false;
         }
     }
 
