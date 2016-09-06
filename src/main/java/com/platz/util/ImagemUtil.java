@@ -12,7 +12,7 @@ import java.io.OutputStream;
 public class ImagemUtil {
 
     public final String RAIZ = "C:/";
-    
+
     //Método de salvar arquivo que recebe o caminho e o arquivo como inputStream
     public void salvarArquivo(String caminhoDoArquivo, InputStream inputStream) {
 
@@ -31,7 +31,7 @@ public class ImagemUtil {
             outputStream.close();
 
             System.out.println("Upload Concluído");
-            
+
         } catch (Exception e) {
             System.out.println("Erro ao fazer upload do arquivo" + e.getMessage());
             e.printStackTrace();

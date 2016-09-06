@@ -72,7 +72,7 @@ public class CategoriaService {
             CategoriaModel model = new CategoriaController().buscarPorId(id);
 
             //Montando o caminho do upload
-            String caminhoDoUpload = new ImagemUtil().RAIZ + "/categorias/" + model.getNome() + fileMetaData.getType();
+            String caminhoDoUpload = new ImagemUtil().RAIZ + "categorias/" + model.getNome() + ".jpg";
 
             //Salvar Imagem
             new ImagemUtil().salvarArquivo(caminhoDoUpload, iconeInputStream);
