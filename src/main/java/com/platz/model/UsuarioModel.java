@@ -104,7 +104,7 @@ public class UsuarioModel {
     }
 
     public void setDataNascimento(String dataNascimento) {
-        this.dataNascimento = new DataUtil().converterData(dataNascimento);
+        this.dataNascimento = new DataUtil().converterDataSemHora(dataNascimento);
     }
 
     public String getTelefone() {

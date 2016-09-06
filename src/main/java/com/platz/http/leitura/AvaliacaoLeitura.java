@@ -35,7 +35,7 @@ public class AvaliacaoLeitura {
             setNota(model.getNota());
         }
         setUsuario(new UsuarioLeitura(model.getUsuario()));
-        //setEvento(new EventoLeitura(model.getEvento()));
+        setEvento(new EventoLeitura(model.getEvento()));
         setDataCadastro(model.getDataCadastro());
     }
 

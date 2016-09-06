@@ -137,9 +137,7 @@ public class AssuntoService {
     public Response deletar(@PathParam("id") String id) {
         try {
 
-            AssuntoModel model = assuntoController.buscarPorId(id);
-
-            assuntoController.excluir(model);
+            assuntoController.excluir(assuntoController.buscarPorId(id));
 
             return Response.status(Response.Status.NO_CONTENT).build();
 

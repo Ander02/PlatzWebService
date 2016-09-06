@@ -5,6 +5,9 @@
  */
 package com.platz.model;
 
+import com.platz.dao.EventoDao;
+import com.platz.dao.UsuarioDao;
+import com.platz.http.cadastro.AvaliacaoCadastro;
 import com.platz.util.DataUtil;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -40,7 +43,13 @@ public class AvaliacaoModel {
 
     public AvaliacaoModel() {
     }
-
+    
+    public AvaliacaoModel(AvaliacaoCadastro avaliacao) {
+        setEvento(new EventoDao().buscarPorId(EventoModel.class, avaliacao.getEventoId()));
+        setUsuario(new UsuarioDao().buscarPorId(UsuarioModel.class, avaliacao.getUsuarioId()));
+        setNota(avaliacao.getNota());
+    }
+   
     //getters and setters
     public String getId() {
         return id.toHexString();
