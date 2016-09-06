@@ -36,7 +36,7 @@ public class AvaliacaoController {
         return avaliacaoDao.buscarPorEvento(evento);
     }
     
-    public List<AvaliacaoModel> buscarPelousuario(UsuarioModel usuario) {
+    public List<AvaliacaoModel> buscarPeloUsuario(UsuarioModel usuario) {
         return avaliacaoDao.buscarPorUsuario(usuario);
     }
     
