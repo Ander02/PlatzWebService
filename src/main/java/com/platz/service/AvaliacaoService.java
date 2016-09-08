@@ -100,11 +100,11 @@ public class AvaliacaoService {
         try {
             List<AvaliacaoModel> models = avaliacaoController.buscarPeloEvento(new EventoController().buscarPorId(id));
 
-            //Lista de Assuntos de Leitura baseado na lista de models
-            List<AvaliacaoLeitura> listaDeAvaliacoes = new AvaliacaoLeitura().converterLista(models);
+            //Lista de Leitura baseado na lista de models
+            List<AvaliacaoLeitura> listaDeLeitura = new AvaliacaoLeitura().converterLista(models);
 
             //Retorna a lista com um Status Code OK
-            return Response.ok(listaDeAvaliacoes).build();
+            return Response.ok(listaDeLeitura).build();
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
@@ -120,11 +120,11 @@ public class AvaliacaoService {
         try {
             List<AvaliacaoModel> models = avaliacaoController.buscarPeloUsuario(new UsuarioController().buscarPorId(id));
 
-            //Lista de Assuntos de Leitura baseado na lista de models
-            List<AvaliacaoLeitura> listaDeAvaliacoes = new AvaliacaoLeitura().converterLista(models);
+            //Lista de Leitura baseado na lista de models
+            List<AvaliacaoLeitura> listaDeLeitura = new AvaliacaoLeitura().converterLista(models);
 
             //Retorna a lista com um Status Code OK
-            return Response.ok(listaDeAvaliacoes).build();
+            return Response.ok(listaDeLeitura).build();
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
