@@ -5,6 +5,9 @@
  */
 package com.platz.model;
 
+import com.platz.dao.ContaDao;
+import com.platz.dao.EventoDao;
+import com.platz.http.cadastro.PresencaCadastro;
 import com.platz.util.DataUtil;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,6 +40,12 @@ public class PresencaModel {
     private TipoPresenca tipoPresenca;
 
     public PresencaModel() {
+    }
+
+    public PresencaModel(PresencaCadastro presenca) {
+        setEvento(new EventoDao().buscarPorId(EventoModel.class, presenca.getEventoId()));
+        setConta(new ContaDao().buscarPorId(ContaModel.class, presenca.getContaId()));
+        setTipoPresenca(presenca.getTipoPresenca());
     }
 
     //getters and setters
@@ -74,6 +83,24 @@ public class PresencaModel {
 
     public void setTipoPresenca(TipoPresenca tipoPresenca) {
         this.tipoPresenca = tipoPresenca;
+    }
+
+    public void setTipoPresenca(Integer tipoPresenca) {
+        if (tipoPresenca != null) {
+            switch (tipoPresenca) {
+                case 0:
+                    setTipoPresenca(TipoPresenca.SIM);
+                    break;
+                case 1:
+                    setTipoPresenca(TipoPresenca.TALVEZ);
+                    break;
+                case 2:
+                    setTipoPresenca(TipoPresenca.NAO);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     public String getDataCadastro() {

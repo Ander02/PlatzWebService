@@ -16,7 +16,7 @@ public class PresencaCadastro {
 
     private String eventoId;
     private String contaId;
-    private int tipoPresenca;
+    private Integer tipoPresenca;
 
     public PresencaCadastro() {
     }
@@ -43,11 +43,11 @@ public class PresencaCadastro {
         this.contaId = contaId;
     }
 
-    public int getTipoPresenca() {
+    public Integer getTipoPresenca() {
         return tipoPresenca;
     }
 
-    public void setTipoPresenca(int tipoPresenca) {
+    public void setTipoPresenca(Integer tipoPresenca) {
         this.tipoPresenca = tipoPresenca;
     }
 
