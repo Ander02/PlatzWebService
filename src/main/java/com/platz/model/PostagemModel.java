@@ -47,7 +47,7 @@ public class PostagemModel {
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletado = null;
     @OneToMany
-    private List<ImagemModel> imagens = new ArrayList<ImagemModel>();
+    private List<ImagemModel> imagens = new ArrayList<>();
 
     public PostagemModel() {
     }
