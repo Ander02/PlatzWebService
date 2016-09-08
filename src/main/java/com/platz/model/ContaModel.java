@@ -3,6 +3,7 @@ package com.platz.model;
 import com.platz.http.cadastro.ContaCadastro;
 import com.platz.http.edicao.ContaEdicao;
 import com.platz.util.DataUtil;
+import com.platz.util.EncriptAES;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import org.bson.types.ObjectId;
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
 
 /**
  *
@@ -30,7 +32,7 @@ public class ContaModel {
     @Email(message = "Email inválido")
     @NotNull(message = "O email não pode ser nulo")
     private String email;
-
+    @Length(min = 32, max = 32, message = "A senha deve ter 32 caracteres")
     @NotNull(message = "A senha não pode ser nula")
     private String senha;
 
@@ -86,7 +88,22 @@ public class ContaModel {
     }
 
     public void setSenha(String senha) {
-        this.senha = senha;
+
+        String senhaEncriptada;
+
+        senhaEncriptada = senha;
+        // Parte da criptografia
+        try {
+
+            //Encripta a senha com o método encrypt, retornando um array de bytes que será convertido para string
+            senhaEncriptada = new EncriptAES().byteParaString(new EncriptAES().encrypt(senha, EncriptAES.getChaveEncriptacao()));
+
+        } catch (Exception e) {
+            System.out.println("Erro ao Criptografar senha");
+            e.printStackTrace();
+        }
+        //Seta a senha encriptada
+        this.senha = senhaEncriptada;
     }
 
     public String getUltimoAcesso() {
