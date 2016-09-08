@@ -3,9 +3,7 @@ package com.platz.service;
 import com.platz.controller.CurtidaController;
 import com.platz.controller.EventoController;
 import com.platz.controller.UsuarioController;
-import com.platz.dao.EventoDao;
 import com.platz.http.cadastro.CurtidaCadastro;
-import com.platz.http.leitura.AvaliacaoLeitura;
 import com.platz.http.leitura.CurtidaLeitura;
 import com.platz.model.CurtidaModel;
 import java.util.List;
@@ -21,7 +19,7 @@ import javax.ws.rs.core.Response;
 
 /**
  *
- * @author 15153766
+ * @author Anderson
  */
 @Path("")
 public class CurtidaService {

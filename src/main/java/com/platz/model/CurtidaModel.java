@@ -23,7 +23,7 @@ import org.bson.types.ObjectId;
 
 /**
  *
- * @author 15153770
+ * @author Anderson
  */
 @Entity
 @Table(name = "avaliacao")

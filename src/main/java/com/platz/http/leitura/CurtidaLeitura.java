@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author 15153770
+ * @author Anderson
  */
 @XmlRootElement
 public class CurtidaLeitura {
