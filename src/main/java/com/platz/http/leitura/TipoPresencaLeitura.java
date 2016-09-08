@@ -1,6 +1,8 @@
 package com.platz.http.leitura;
 
 import com.platz.model.TipoPresenca;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -35,6 +37,18 @@ public class TipoPresencaLeitura {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+    //Métodos
+
+    public List<TipoPresencaLeitura> converterLista(List<TipoPresenca> enumList) {
+
+        List<TipoPresencaLeitura> lista = new ArrayList<>();
+
+        for (TipoPresenca tipoLeitura : enumList) {
+            TipoPresencaLeitura presencaLeitura = new TipoPresencaLeitura(tipoLeitura);
+            lista.add(presencaLeitura);
+        }
+        return lista;
     }
 
 }
