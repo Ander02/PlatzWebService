@@ -40,11 +40,6 @@ public class CategoriaService {
 
             CategoriaModel model = new CategoriaModel(categoria);
 
-//            String caminhoDoUpload = new ImagemUtil().RAIZ + "/categorias/" + model.getNome() + ".jpg";
-//
-//            new ImagemUtil().salvarArquivo(caminhoDoUpload, inputStream);
-//
-//            model.setCaminhoIcone(caminhoDoUpload);
             // Cadastrar categoria
             categoriaController.cadastrar(model);
 
