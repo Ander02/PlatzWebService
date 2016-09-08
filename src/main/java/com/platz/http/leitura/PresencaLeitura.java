@@ -23,7 +23,7 @@ public class PresencaLeitura {
 
     public PresencaLeitura(PresencaModel model) {
         setId(model.getId());
-        //setEvento(new EventoLeitura(model.getEvento()));
+        setEvento(new EventoLeitura(model.getEvento()));
         setConta(new ContaLeitura(model.getConta()));
         setTipoPresenca(model.getTipoPresenca().getLabel());
         setDataCadastro(model.getDataCadastro());

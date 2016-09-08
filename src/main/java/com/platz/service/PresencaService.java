@@ -147,6 +147,7 @@ public class PresencaService {
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar Presença").build();
         }
     }
+    
     @DELETE
     @Path(value = "/presenca/{id}")    
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
