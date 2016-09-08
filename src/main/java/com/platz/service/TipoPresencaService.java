@@ -19,6 +19,7 @@ import javax.ws.rs.core.Response;
  *
  * @author 15153770
  */
+@Path("")
 public class TipoPresencaService {
      private final TipoPresencaController presencaController = new TipoPresencaController();
 
