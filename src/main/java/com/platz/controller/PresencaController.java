@@ -5,7 +5,6 @@ import com.platz.http.edicao.PresencaEdicao;
 import com.platz.model.ContaModel;
 import com.platz.model.EventoModel;
 import com.platz.model.PresencaModel;
-import com.platz.model.TipoPresenca;
 import java.util.List;
 
 /**
@@ -29,21 +28,7 @@ public class PresencaController {
     }
 
     public void alterar(PresencaModel model, PresencaEdicao presenca) {
-        if (presenca.getTipoPresenca() != null) {
-            switch (presenca.getTipoPresenca()) {
-                case 0:
-                    model.setTipoPresenca(TipoPresenca.SIM);
-                    break;
-                case 1:
-                    model.setTipoPresenca(TipoPresenca.TALVEZ);
-                    break;
-                case 2:
-                    model.setTipoPresenca(TipoPresenca.NAO);
-                    break;
-                default:
-                    break;
-            }
-        }
+        model.setTipoPresenca(presenca.getTipoPresenca());
     }
 
     public void excluir(PresencaModel model) {
