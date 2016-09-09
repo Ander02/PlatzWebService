@@ -7,9 +7,9 @@ package com.platz.controller;
 
 import com.platz.dao.PostagemDao;
 import com.platz.http.edicao.PostagemEdicao;
+import com.platz.model.ContaModel;
 import com.platz.model.EventoModel;
 import com.platz.model.PostagemModel;
-import com.platz.model.UsuarioModel;
 import java.util.List;
 
 /**
@@ -46,8 +46,9 @@ public class PostagemController {
     public List<PostagemModel> buscarPeloEvento(EventoModel evento) {
         return postagemDao.buscarPorEvento(evento);
     }
-    
-    public List<PostagemModel> buscarPeloUsuario(UsuarioModel usuario) {
-        return postagemDao.buscarPorUsuario(usuario);
+
+    public List<PostagemModel> buscarPelaConta(ContaModel conta) {
+        return postagemDao.buscarPorConta(conta);
     }
-}
+} 
+ 

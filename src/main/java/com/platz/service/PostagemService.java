@@ -5,9 +5,9 @@
  */
 package com.platz.service;
 
+import com.platz.controller.ContaController;
 import com.platz.controller.EventoController;
 import com.platz.controller.PostagemController;
-import com.platz.controller.UsuarioController;
 import com.platz.http.cadastro.PostagemCadastro;
 import com.platz.http.edicao.PostagemEdicao;
 import com.platz.http.leitura.PostagemLeitura;
@@ -113,11 +113,11 @@ public class PostagemService {
     }
 
     @GET
-    @Path(value = "/postagem/usuario/{id}")
+    @Path(value = "/postagem/conta/{id}")
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public Response buscarPeloUsuario(@PathParam("id") String id) {
+    public Response buscarPelaConta(@PathParam("id") String id) {
         try {
-            List<PostagemModel> models = postagemController.buscarPeloUsuario(new UsuarioController().buscarPorId(id));
+            List<PostagemModel> models = postagemController.buscarPelaConta(new ContaController().buscarPorId(id));
 
             //Lista de Assuntos de Leitura baseado na lista de models
             List<PostagemLeitura> listaDeLeitura = new PostagemLeitura().converterLista(models);

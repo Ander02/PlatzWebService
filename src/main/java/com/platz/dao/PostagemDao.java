@@ -5,9 +5,9 @@
  */
 package com.platz.dao;
 
+import com.platz.model.ContaModel;
 import com.platz.model.EventoModel;
 import com.platz.model.PostagemModel;
-import com.platz.model.UsuarioModel;
 import java.util.List;
 import javax.persistence.EntityManager;
 
@@ -24,9 +24,9 @@ public class PostagemDao extends GenericDao<PostagemModel> {
         return lista;
     }
 
-    public List<PostagemModel> buscarPorUsuario(UsuarioModel usuario) {
+    public List<PostagemModel> buscarPorConta(ContaModel conta) {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
-        List<PostagemModel> lista = entityManager.createQuery("from PostagemModel where usuario =:usuario").setParameter("usuario", usuario).getResultList();
+        List<PostagemModel> lista = entityManager.createQuery("from PostagemModel where conta =:conta").setParameter("conta", conta).getResultList();
         entityManager.close();
         return lista;
     }
