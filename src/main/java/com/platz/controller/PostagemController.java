@@ -47,7 +47,7 @@ public class PostagemController {
         return postagemDao.buscarPorEvento(evento);
     }
 
-    public List<PostagemModel> buscarPelousuario(UsuarioModel usuario) {
+    public List<PostagemModel> buscarPeloUsuario(UsuarioModel usuario) {
         return postagemDao.buscarPorUsuario(usuario);
     }
 }

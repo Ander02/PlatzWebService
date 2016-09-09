@@ -5,6 +5,9 @@
  */
 package com.platz.model;
 
+import com.platz.dao.ContaDao;
+import com.platz.dao.EventoDao;
+import com.platz.http.cadastro.PostagemCadastro;
 import com.platz.util.DataUtil;
 import java.util.ArrayList;
 import java.util.Date;
@@ -50,6 +53,13 @@ public class PostagemModel {
     private List<ImagemModel> imagens = new ArrayList<>();
 
     public PostagemModel() {
+    }
+
+    public PostagemModel(PostagemCadastro postagem) {
+        setConteudo(postagem.getConteudo());
+        setConta(new ContaDao().buscarPorId(ContaModel.class, postagem.getContaId()));
+        setEvento(new EventoDao().buscarPorId(EventoModel.class, postagem.getEventoId()));
+        //setImagens(postagem.getImagens);
     }
 
     //getters and setters
