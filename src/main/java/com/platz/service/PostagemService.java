@@ -5,13 +5,13 @@
  */
 package com.platz.service;
 
-import com.platz.controller.ContaController;
 import com.platz.controller.EventoController;
-import com.platz.controller.PresencaController;
-import com.platz.http.cadastro.PresencaCadastro;
-import com.platz.http.edicao.PresencaEdicao;
-import com.platz.http.leitura.PresencaLeitura;
-import com.platz.model.PresencaModel;
+import com.platz.controller.PostagemController;
+import com.platz.controller.UsuarioController;
+import com.platz.http.cadastro.PostagemCadastro;
+import com.platz.http.edicao.PostagemEdicao;
+import com.platz.http.leitura.PostagemLeitura;
+import com.platz.model.PostagemModel;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -29,42 +29,42 @@ import javax.ws.rs.core.Response;
  * @author 15153770
  */
 @Path("")
-public class PresencaService {
+public class PostagemService {
 
-    private final PresencaController presencaController = new PresencaController();
+    private final PostagemController postagemController = new PostagemController();
 
     @POST
-    @Path(value = "/presenca")
+    @Path(value = "/postagem")
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public Response cadastrar(PresencaCadastro presenca) {
+    public Response cadastrar(PostagemCadastro postagem) {
 
-        PresencaModel model = new PresencaModel(presenca);
+        PostagemModel model = new PostagemModel(postagem);
         try {
-            // Cadastrar assunto
-            presencaController.cadastrar(model);
+            // Cadastrar 
+            postagemController.cadastrar(model);
 
-            // Retorna a resposta para o cliente com o Status Code CREATED e o Assunto de Leitura
-            return Response.status(Response.Status.CREATED).entity(new PresencaLeitura(model)).build();
+            // Retorna a resposta para o cliente com o Status Code CREATED e o Postagem de Leitura
+            return Response.status(Response.Status.CREATED).entity(new PostagemLeitura(model)).build();
 
         } catch (Exception e) {
             // Envia erro pelo console
             System.out.println("Erro: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
-            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao cadastrar presença").build();
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao cadastrar postagem").build();
         }
     }
 
     @GET
-    @Path(value = "/presencas")
+    @Path(value = "/postagens")
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
         try {
             //Lista com todas as AssuntoEntity cadastradas
-            List<PresencaModel> models = presencaController.listarTodos();
+            List<PostagemModel> models = postagemController.listarTodos();
 
             //Lista de Assuntos de Leitura baseado na lista de models
-            List<PresencaLeitura> listaDePresenca = new PresencaLeitura().converterLista(models);
+            List<PostagemLeitura> listaDePresenca = new PostagemLeitura().converterLista(models);
 
             //Retorna a lista com um Status Code OK
             return Response.ok(listaDePresenca).build();
@@ -72,93 +72,93 @@ public class PresencaService {
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
-            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar presença").build();
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar postagem").build();
         }
     }
 
     @GET
-    @Path(value = "/presenca/{id}")
+    @Path(value = "/postagem/{id}")
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloId(@PathParam("id") String id) {
-        PresencaModel model = presencaController.buscarPorId(id);
+        PostagemModel model = postagemController.buscarPorId(id);
 
         //Verifica se a model retornada não é nula
         if (model != null) {
-            //Retorna um Status Code OK com a Presenca de leitura
-            return Response.ok(new PresencaLeitura(model)).build();
-
+            //Retorna um Status Code OK com a Postagem de leitura
+            return Response.ok(new PostagemLeitura(model)).build();
         }
 
         //Se a model for nula retorna um Status Code Not Found
-        return Response.status(Response.Status.NOT_FOUND).entity("Presença não encontrada").build();
+        return Response.status(Response.Status.NOT_FOUND).entity("postagem não encontrada").build();
     }
 
     @GET
-    @Path(value = "/presenca/evento/{id}")
+    @Path(value = "/postagem/evento/{id}")
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloEvento(@PathParam("id") String id) {
         try {
-            List<PresencaModel> models = presencaController.buscarPeloEvento(new EventoController().buscarPorId(id));
+            List<PostagemModel> models = postagemController.buscarPeloEvento(new EventoController().buscarPorId(id));
 
             //Lista de Assuntos de Leitura baseado na lista de models
-            List<PresencaLeitura> listaDeLeitura = new PresencaLeitura().converterLista(models);
+            List<PostagemLeitura> listaDeLeitura = new PostagemLeitura().converterLista(models);
 
             //Retorna a lista com um Status Code OK
             return Response.ok(listaDeLeitura).build();
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
-            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar Presenças").build();
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar Postagens").build();
         }
 
     }
 
     @GET
-    @Path(value = "/presenca/conta/{id}")
+    @Path(value = "/postagem/usuario/{id}")
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public Response buscarPelaConta(@PathParam("id") String id) {
+    public Response buscarPeloUsuario(@PathParam("id") String id) {
         try {
-            List<PresencaModel> models = presencaController.buscarPeloConta(new ContaController().buscarPorId(id));
+            List<PostagemModel> models = postagemController.buscarPeloUsuario(new UsuarioController().buscarPorId(id));
 
             //Lista de Assuntos de Leitura baseado na lista de models
-            List<PresencaLeitura> listaDeLeitura = new PresencaLeitura().converterLista(models);
+            List<PostagemLeitura> listaDeLeitura = new PostagemLeitura().converterLista(models);
 
             //Retorna a lista com um Status Code OK
             return Response.ok(listaDeLeitura).build();
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
-            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar Presenças").build();
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar Postagens").build();
         }
+
     }
 
     @PUT
-    @Path(value = "/presenca/{id}")
+    @Path(value = "/postagem/{id}")
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public Response alterar(@PathParam("id") String id, PresencaEdicao presenca) {
+    public Response alterar(@PathParam("id") String id, PostagemEdicao postagem) {
         try {
-            PresencaModel model = presencaController.buscarPorId(id);
-            presencaController.alterar(model, presenca);
-            return Response.ok(new PresencaLeitura(model)).build();
+            PostagemModel model = postagemController.buscarPorId(id);
+            postagemController.alterar(model, postagem);
+            return Response.ok(new PostagemLeitura(model)).build();
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
-            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar Presença").build();
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar Postagem").build();
         }
     }
-    
+
     @DELETE
-    @Path(value = "/presenca/{id}")    
+    @Path(value = "/postagem/{id}")
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public Response excluir(@PathParam("id") String id){
+    public Response excluir(@PathParam("id") String id) {
         try {
-            presencaController.excluir(presencaController.buscarPorId(id));
+            postagemController.excluir(postagemController.buscarPorId(id));
             return Response.status(Response.Status.NO_CONTENT).build();
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
-            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao excluir Presença").build();
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao excluir Postagem").build();
         }
     }
 
