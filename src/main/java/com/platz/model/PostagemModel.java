@@ -19,7 +19,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -61,7 +60,6 @@ public class PostagemModel {
         setConteudo(postagem.getConteudo());
         setConta(new ContaDao().buscarPorId(ContaModel.class, postagem.getContaId()));
         setEvento(new EventoDao().buscarPorId(EventoModel.class, postagem.getEventoId()));
-        //setImagens(postagem.getImagens);
     }
 
     //getters and setters
@@ -127,10 +125,6 @@ public class PostagemModel {
 
     public List<ImagemModel> getImagens() {
         return imagens;
-    }
-
-    public void setImagens(List<ImagemModel> imagens) {
-        this.imagens = imagens;
     }
 
     public String getDataCadastro() {

@@ -1,5 +1,6 @@
 package com.platz.http.cadastro;
 
+import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -12,7 +13,7 @@ public class PostagemCadastro {
     private String conteudo;
     private String eventoId;
     private String contaId;
-
+    
     public PostagemCadastro() {
     }
 
