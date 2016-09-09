@@ -7,7 +7,6 @@ package com.platz.model;
 
 import com.platz.dao.EventoDao;
 import com.platz.dao.UsuarioDao;
-import com.platz.http.cadastro.AvaliacaoCadastro;
 import com.platz.http.cadastro.CurtidaCadastro;
 import com.platz.util.DataUtil;
 import javax.persistence.Entity;
@@ -16,8 +15,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import org.bson.types.ObjectId;
 

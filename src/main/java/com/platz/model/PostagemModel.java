@@ -12,7 +12,9 @@ import com.platz.util.DataUtil;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -49,7 +51,7 @@ public class PostagemModel {
     private Date censurado = null;
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletado = null;
-    @OneToMany
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<ImagemModel> imagens = new ArrayList<>();
 
     public PostagemModel() {
