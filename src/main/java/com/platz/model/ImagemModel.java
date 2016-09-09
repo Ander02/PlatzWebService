@@ -7,27 +7,20 @@ package com.platz.model;
 
 import com.platz.util.DataUtil;
 import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.Embeddable;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import org.bson.types.ObjectId;
 
 /**
  *
  * @author 15153770
  */
-@Entity
-@Table(name = "imagem")
+@Embeddable
 public class ImagemModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private ObjectId id;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dataCadastro;
 
     @NotNull(message = "Insira uma imagem")
     private String url;
@@ -39,18 +32,7 @@ public class ImagemModel {
     }
 
     //getters and setters
-    public String getId() {
-        return id.toHexString();
-    }
-
-    public void setId(String id) {
-        this.id = new ObjectId(id);
-    }
-
-    public ObjectId getObjectId() {
-        return this.id;
-    }
-
+   
     public String getUrl() {
         return url;
     }
@@ -72,7 +54,16 @@ public class ImagemModel {
     }
 
     public String getDataCadastro() {
-        return new DataUtil().converterData(id.getDate());
+        return new DataUtil().converterData(dataCadastro);
     }
 
+    public void setDataCadastro(String dataCadastro) {
+        this.dataCadastro = new DataUtil().converterData(dataCadastro);
+    }
+    
+      public void setDataCadastro(Date dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
+
+  
 }

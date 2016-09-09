@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class ImagemLeitura {
 
-    private String id;
+    
     private String url;
     private String deletado;
     private String dataCadastro;
@@ -21,14 +21,13 @@ public class ImagemLeitura {
     }
 
     public ImagemLeitura(ImagemModel model) {
-        setUrl(model.getUrl());
-        setId(model.getId());
+        setUrl(model.getUrl());       
         setDeletado(model.getDeletado());
         setDataCadastro(model.getDataCadastro());
     }
 
-    public ImagemLeitura(String id, String url, String deletado, String dataCadastro) {
-        setId(id);
+    public ImagemLeitura(String url, String deletado, String dataCadastro) {
+        
         setUrl(url);
         setDeletado(deletado);
         setDataCadastro(dataCadastro);
@@ -61,14 +60,6 @@ public class ImagemLeitura {
 
     public void setDeletado(String deletado) {
         this.deletado = deletado;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getDataCadastro() {
