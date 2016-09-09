@@ -39,6 +39,7 @@ public class EventoModel {
     private String nome;
     @Length(max = 512, message = "Detalhes deve ter no maximo 512 caracteres")
     private String detalhes;
+    private String imagemCapa;
     private int idade = 0;
     @Temporal(TemporalType.TIMESTAMP)
     @Future
@@ -63,7 +64,7 @@ public class EventoModel {
     private Date cancelado = null;
     @Temporal(TemporalType.TIMESTAMP)
     private Date censurado = null;
-    private Boolean destaque = false;
+    private Boolean destaque = false; 
     private EnderecoModel endereco;
 
     public EventoModel() {
@@ -73,6 +74,7 @@ public class EventoModel {
         setNome(evento.getNome());
         setDetalhes(evento.getDetalhes());
         setIdade(evento.getIdade());
+        setImagemCapa(evento.getImagemCapa());
         setDataInicio(evento.getDataInicio());
         setDataFim(evento.getDataFim());
         setLotacaoMin(evento.getLotacaoMin());
@@ -260,6 +262,14 @@ public class EventoModel {
 
     public void setEndereco(EnderecoModel endereco) {
         this.endereco = endereco;
+    }
+
+    public String getImagemCapa() {
+        return imagemCapa;
+    }
+
+    public void setImagemCapa(String imagemCapa) {
+        this.imagemCapa = imagemCapa;
     }
 
 }
