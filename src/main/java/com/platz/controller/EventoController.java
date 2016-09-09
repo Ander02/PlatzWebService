@@ -110,6 +110,10 @@ public class EventoController {
         return eventoDao.buscarGratuitos();
     }
 
+    public void alterar(EventoModel model) {
+        eventoDao.alterar(model);
+    }
+
     public void alterar(EventoModel model, EventoEdicao evento) {
 
         if (evento.getNome() != null && !evento.getNome().equals("")) {
@@ -118,6 +122,15 @@ public class EventoController {
         if (evento.getDetalhes() != null && !evento.getDetalhes().equals("")) {
             model.setDetalhes(evento.getDetalhes());
         }
+
+        if (evento.getIdade() != null) {
+            model.setIdade(evento.getIdade());
+        }
+
+        if (evento.getImagemCapa() != null && !evento.getImagemCapa().equals("")) {
+            model.setImagemCapa(evento.getImagemCapa());
+        }
+
         if (evento.getDataInicio() != null && !evento.getDataInicio().equals("")) {
             model.setDataInicio(evento.getDataInicio());
         }
@@ -130,8 +143,9 @@ public class EventoController {
         if (evento.getLotacaoMax() != null && !evento.getLotacaoMax().equals("")) {
             model.setLotacaoMax(evento.getLotacaoMax());
         }
-        if (evento.getDestaque() != null && !evento.getDestaque().equals("")) {
-            model.setDestaque(evento.getDestaque());
+
+        if (evento.getPreco() != null) {
+            model.setPreco(evento.getPreco());
         }
 
         if (evento.getCategoriasId() != null && !evento.getCategoriasId().equals("")) {
@@ -171,6 +185,10 @@ public class EventoController {
                 listaDeImagens.add(imagem);
             }
             model.setImagens(listaDeImagens);
+        }
+
+        if (evento.getDestaque() != null && !evento.getDestaque().equals("")) {
+            model.setDestaque(evento.getDestaque());
         }
 
         eventoDao.alterar(model);

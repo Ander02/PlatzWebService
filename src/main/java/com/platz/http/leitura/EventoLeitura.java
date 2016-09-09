@@ -1,6 +1,5 @@
 package com.platz.http.leitura;
 
-import com.platz.model.CategoriaModel;
 import com.platz.model.EventoModel;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +15,7 @@ public class EventoLeitura {
     private String id;
     private String nome;
     private String detalhes;
+    private String imagemCapa;
     private int idade;
     private String dataInicio;
     private String dataFim;
@@ -37,6 +37,7 @@ public class EventoLeitura {
         setId(model.getId());
         setNome(model.getNome());
         setDetalhes(model.getDetalhes());
+        setImagemCapa(model.getImagemCapa());
         setIdade(model.getIdade());
         setDataInicio(model.getDataInicio());
         setDataFim(model.getDataFim());
@@ -193,6 +194,14 @@ public class EventoLeitura {
     public void setLotacaoMax(int lotacaoMax) {
         this.lotacaoMax = lotacaoMax;
 
+    }
+
+    public String getImagemCapa() {
+        return imagemCapa;
+    }
+
+    public void setImagemCapa(String imagemCapa) {
+        this.imagemCapa = imagemCapa;
     }
 
 }

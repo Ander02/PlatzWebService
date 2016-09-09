@@ -12,7 +12,8 @@ public class EventoEdicao {
 
     private String nome;
     private String detalhes;
-    private String idade;
+    private Integer idade;
+    private String imagemCapa;
     private String dataInicio;
     private String dataFim;
     private Integer lotacaoMin;
@@ -39,14 +40,6 @@ public class EventoEdicao {
 
     public void setDetalhes(String detalhes) {
         this.detalhes = detalhes;
-    }
-
-    public String getIdade() {
-        return idade;
-    }
-
-    public void setIdade(String idade) {
-        this.idade = idade;
     }
 
     public String getDataInicio() {
@@ -111,6 +104,22 @@ public class EventoEdicao {
 
     public void setDestaque(Boolean destaque) {
         this.destaque = destaque;
+    }
+
+    public String getImagemCapa() {
+        return imagemCapa;
+    }
+
+    public void setImagemCapa(String imagemCapa) {
+        this.imagemCapa = imagemCapa;
+    }
+
+    public Integer getIdade() {
+        return idade;
+    }
+
+    public void setIdade(Integer idade) {
+        this.idade = idade;
     }
 
 }

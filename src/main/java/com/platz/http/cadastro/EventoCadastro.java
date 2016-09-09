@@ -13,6 +13,7 @@ public class EventoCadastro {
     private String nome;
     private String detalhes;
     private int idade;
+    private String imagemCapa;
     private String dataFim;
     private String dataInicio;
     private Integer lotacaoMin;
@@ -145,6 +146,14 @@ public class EventoCadastro {
 
     public void setEndereco(EnderecoCadastro endereco) {
         this.endereco = endereco;
+    }
+
+    public String getImagemCapa() {
+        return imagemCapa;
+    }
+
+    public void setImagemCapa(String imagemCapa) {
+        this.imagemCapa = imagemCapa;
     }
 
 }
