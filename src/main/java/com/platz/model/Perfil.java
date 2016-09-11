@@ -10,7 +10,7 @@ package com.platz.model;
  * @author 15153770
  */
 public enum Perfil {
-
+    
     ADMINISTRADOR("Administrador"),
     EMPRESA("Empresa"),
     USUARIO("Usuario");

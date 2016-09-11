@@ -5,7 +5,10 @@ import com.platz.http.cadastro.AssuntoCadastro;
 import com.platz.http.edicao.AssuntoEdicao;
 import com.platz.http.leitura.AssuntoLeitura;
 import com.platz.model.AssuntoModel;
+import com.platz.util.PerfilUtil;
 import java.util.List;
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -28,6 +31,7 @@ public class AssuntoService {
 
     @POST
     @Path(value = "/assunto")
+    @RolesAllowed(PerfilUtil.ADMINISTRADOR)
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(AssuntoCadastro assunto) {
@@ -50,6 +54,7 @@ public class AssuntoService {
 
     @GET
     @Path(value = "/assuntos")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
         try {
@@ -71,6 +76,7 @@ public class AssuntoService {
 
     @GET
     @Path(value = "/assunto/{id}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloId(@PathParam("id") String id) {
         AssuntoModel model = assuntoController.buscarPorId(id);
@@ -89,6 +95,7 @@ public class AssuntoService {
 
     @GET
     @Path(value = "/assuntos/{nome}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloNome(@PathParam("nome") String nome) {
         try {
@@ -111,6 +118,7 @@ public class AssuntoService {
 
     @PUT
     @Path(value = "/assunto/{id}")
+    @RolesAllowed(PerfilUtil.ADMINISTRADOR)
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response alterar(@PathParam("id") String id, AssuntoEdicao assunto) {
@@ -133,6 +141,7 @@ public class AssuntoService {
 
     @DELETE
     @Path(value = "/assunto/{id}")
+    @RolesAllowed(PerfilUtil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response deletar(@PathParam("id") String id) {
         try {

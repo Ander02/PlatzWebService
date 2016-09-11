@@ -1,6 +1,5 @@
 package com.platz.filter;
 
-import com.platz.controller.ContaController;
 import com.platz.dao.ContaDao;
 import com.platz.model.ContaModel;
 import com.platz.util.EncriptAES;
@@ -62,24 +61,24 @@ public class AuthenticationFilter implements ContainerRequestFilter {
                 return;
             }
 
-            //Pegar encoded usuário e senha
+            //Pegar encoded email e senha
             String encodedUsuarioSenha = authorization.get(0).replaceFirst("Basic" + " ", "");
 
             System.out.println("encoded Email e Senha " + encodedUsuarioSenha);
 
-            //Decodificar o usuário e senha
+            //Decodificar o email e senha
             String emailESenha = new String(Base64.decode(encodedUsuarioSenha.getBytes()));
 
             System.out.println("Decoded Email e Senha " + emailESenha);
 
-            //Pegar o usuário e senha
+            //Pegar o email e senha
             StringTokenizer tokenizer = new StringTokenizer(emailESenha, ":");
             String email = tokenizer.nextToken();
             String senha = tokenizer.nextToken();
 
             System.out.println("Email " + email);
             System.out.println("Senha " + senha);
-            
+
             System.out.println("");
 
             //Se o método apresentar a anotação @RolesAllowed 
@@ -88,7 +87,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
                 RolesAllowed rolesAnnotation = method.getAnnotation(RolesAllowed.class);
                 Set<String> rolesSet = new HashSet<>(Arrays.asList(rolesAnnotation.value()));
 
-                //Verificar se o email existe
+                //Verificar se a conta existe
                 if (!verificarPermissao(email, senha, rolesSet)) {
                     requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).entity("Acesso negado").build());
                 }
@@ -97,11 +96,12 @@ public class AuthenticationFilter implements ContainerRequestFilter {
     }
 
     private boolean verificarPermissao(String email, String senha, Set<String> rolesSet) {
-//        boolean isAllowed = false;
+
         try {
+            //Encriptar Senha recebida
             String senhaEncriptada = new EncriptAES().byteParaString(new EncriptAES().encrypt(senha, EncriptAES.getChaveEncriptacao()));
 
-            //Step 1. Fetch password from database and match with password in argument
+            //Buscar Conta
             ContaModel conta = new ContaDao().getConta(email, senhaEncriptada);
 
             //Se a conta não for nula
@@ -110,21 +110,10 @@ public class AuthenticationFilter implements ContainerRequestFilter {
                 return rolesSet.contains(conta.getPerfil().getLabel());
             }
             return false;
+
         } catch (Exception e) {
             System.out.println("Erro de autenticação: " + e.getMessage());
             return false;
         }
-
-        //If both match then get the defined role for user from database and continue; else return isAllowed [false]
-        //Access the database and do this part yourself
-        //String userRole = userMgr.getUserRole(username);
-//        if (email.equals("admin") && senha.equals("admin")) {
-//            String userRole = "ADMIN";
-//
-//            //Step 2. Verify user role
-//            if (rolesSet.contains(userRole)) {
-//                isAllowed = true;
-//            }
-//        }
     }
 }
