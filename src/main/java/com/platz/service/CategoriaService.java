@@ -99,7 +99,6 @@ public class CategoriaService {
     @GET
     @Path(value = "/categorias")
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    @RolesAllowed("Administrador")
     public Response listarTodos() {
         try {
             //Lista com todas as CategoriaModels cadastradas
