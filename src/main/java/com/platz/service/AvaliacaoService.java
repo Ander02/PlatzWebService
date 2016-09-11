@@ -8,6 +8,7 @@ import com.platz.http.edicao.AvaliacaoEdicao;
 import com.platz.http.leitura.AvaliacaoLeitura;
 import com.platz.model.AvaliacaoModel;
 import java.util.List;
+import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -24,6 +25,7 @@ import javax.ws.rs.core.Response;
  * @author Anderson
  */
 @Path("")
+@PermitAll
 public class AvaliacaoService {
 
     private final AvaliacaoController avaliacaoController = new AvaliacaoController();

@@ -6,8 +6,10 @@ import com.platz.http.edicao.CategoriaEdicao;
 import com.platz.http.leitura.CategoriaLeitura;
 import com.platz.model.CategoriaModel;
 import com.platz.util.ImagemUtil;
+import com.platz.util.PerfilUtil;
 import java.io.InputStream;
 import java.util.List;
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -33,6 +35,7 @@ public class CategoriaService {
 
     @POST
     @Path(value = "/categoria")
+    @RolesAllowed(PerfilUtil.ADMINISTRADOR)
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(CategoriaCadastro categoria) {
@@ -57,6 +60,7 @@ public class CategoriaService {
 
     @PUT
     @Path(value = "/categoria/imagem/{id}")
+    @RolesAllowed(PerfilUtil.ADMINISTRADOR)
     @Consumes(value = MediaType.MULTIPART_FORM_DATA)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response subirImagem(@FormDataParam("icone") InputStream iconeInputStream,
@@ -98,6 +102,7 @@ public class CategoriaService {
 
     @GET
     @Path(value = "/categorias")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
         try {
@@ -120,6 +125,7 @@ public class CategoriaService {
 
     @GET
     @Path(value = "/categoria/{id}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloId(@PathParam("id") String id) {
         CategoriaModel model = categoriaController.buscarPorId(id);
@@ -138,6 +144,7 @@ public class CategoriaService {
 
     @GET
     @Path(value = "/categorias/{nome}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloNome(@PathParam("nome") String nome) {
         try {
@@ -160,6 +167,7 @@ public class CategoriaService {
 
     @PUT
     @Path(value = "/categoria/{id}")
+    @RolesAllowed(PerfilUtil.ADMINISTRADOR)
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response alterar(@PathParam("id") String id, CategoriaEdicao categoria) {
@@ -181,6 +189,7 @@ public class CategoriaService {
 
     @DELETE
     @Path(value = "/categoria/{id}")
+    @RolesAllowed(PerfilUtil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response deletar(@PathParam("id") String id) {
         try {
