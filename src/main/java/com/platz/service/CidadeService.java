@@ -7,6 +7,7 @@ import com.platz.http.leitura.CidadeLeitura;
 import com.platz.model.CidadeModel;
 import com.platz.model.EstadoModel;
 import java.util.List;
+import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -27,6 +28,7 @@ public class CidadeService {
 
     @POST
     @Path(value = "/cidade")
+    @PermitAll
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(CidadeCadastro cidade) {
@@ -51,6 +53,7 @@ public class CidadeService {
 
     @GET
     @Path(value = "/cidades")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
         try {
@@ -72,6 +75,7 @@ public class CidadeService {
 
     @GET
     @Path(value = "/cidade/{id}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloId(@PathParam("id") String id) {
         CidadeModel model = cidadeController.buscarPorId(id);
@@ -90,6 +94,7 @@ public class CidadeService {
 
     @GET
     @Path(value = "/cidades/{nome}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloNome(@PathParam("nome") String nome) {
         try {
@@ -111,6 +116,7 @@ public class CidadeService {
 
     @GET
     @Path(value = "/cidades/estado/{id}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloEstado(@PathParam("id") String id) {
         try {
@@ -134,6 +140,7 @@ public class CidadeService {
 
     @GET
     @Path(value = "/cidade/{nome}/{uf}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloNomeEUf(@PathParam("nome") String nome, @PathParam("uf") String uf) {
 

@@ -13,6 +13,7 @@ import com.platz.http.edicao.PostagemEdicao;
 import com.platz.http.leitura.PostagemLeitura;
 import com.platz.model.PostagemModel;
 import java.util.List;
+import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;

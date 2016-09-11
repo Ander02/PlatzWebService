@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.platz.service;
 
 import com.platz.controller.TipoPresencaController;
 import com.platz.http.leitura.TipoPresencaLeitura;
 import com.platz.model.TipoPresenca;
 import java.util.List;
+import javax.annotation.security.PermitAll;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -21,10 +17,12 @@ import javax.ws.rs.core.Response;
  */
 @Path("")
 public class TipoPresencaService {
-     private final TipoPresencaController presencaController = new TipoPresencaController();
+
+    private final TipoPresencaController presencaController = new TipoPresencaController();
 
     @GET
     @Path(value = "/tipoPresencas")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
         try {

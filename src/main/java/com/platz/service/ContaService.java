@@ -5,7 +5,10 @@ import com.platz.http.cadastro.ContaCadastro;
 import com.platz.http.edicao.ContaEdicao;
 import com.platz.http.leitura.ContaLeitura;
 import com.platz.model.ContaModel;
+import com.platz.util.PerfilUtil;
 import java.util.List;
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -27,6 +30,7 @@ public class ContaService {
 
     @POST
     @Path(value = "/conta")
+    @PermitAll
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(ContaCadastro conta) {
@@ -51,6 +55,7 @@ public class ContaService {
 
     @GET
     @Path(value = "/contas")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
 
@@ -72,6 +77,7 @@ public class ContaService {
 
     @GET
     @Path(value = "/conta/{id}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloId(@PathParam("id") String id) {
         ContaModel model = contaController.buscarPorId(id);
@@ -89,6 +95,7 @@ public class ContaService {
 
     @GET
     @Path(value = "/conta/email/{email}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloEmail(@PathParam("email") String email) {
         ContaModel model = contaController.buscarPeloEmail(email);
@@ -104,6 +111,7 @@ public class ContaService {
 
     @GET
     @Path(value = "/contas/inativos")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarInativos() {
 
@@ -125,6 +133,7 @@ public class ContaService {
 
     @GET
     @Path(value = "/contas/ativos")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarAtivos() {
 
@@ -145,6 +154,7 @@ public class ContaService {
 
     @PUT
     @Path(value = "/conta/senha/{id}")
+    @PermitAll
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response alterarSenha(@PathParam("id") String id, ContaEdicao conta) {
@@ -169,6 +179,7 @@ public class ContaService {
 
     @PUT
     @Path(value = "/conta/bloquear/{id}")
+    @RolesAllowed(PerfilUtil.ADMINISTRADOR)
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response bloquear(@PathParam("id") String id) {
@@ -192,6 +203,7 @@ public class ContaService {
 
     @PUT
     @Path(value = "/conta/desbloquear/{id}")
+    @RolesAllowed(PerfilUtil.ADMINISTRADOR)
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response desbloquear(@PathParam("id") String id) {
@@ -215,6 +227,7 @@ public class ContaService {
 
     @PUT
     @Path(value = "/conta/inativar/{id}")
+    @RolesAllowed(PerfilUtil.ADMINISTRADOR)
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response inativar(@PathParam("id") String id) {
@@ -238,6 +251,7 @@ public class ContaService {
 
     @PUT
     @Path(value = "/conta/ativar/{id}")
+    @RolesAllowed(PerfilUtil.ADMINISTRADOR)
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response ativar(@PathParam("id") String id) {

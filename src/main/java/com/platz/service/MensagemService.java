@@ -7,6 +7,7 @@ import com.platz.http.leitura.MensagemLeitura;
 import com.platz.model.AssuntoModel;
 import com.platz.model.MensagemModel;
 import java.util.List;
+import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
