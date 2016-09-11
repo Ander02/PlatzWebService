@@ -8,6 +8,7 @@ import com.platz.model.CategoriaModel;
 import com.platz.util.ImagemUtil;
 import java.io.InputStream;
 import java.util.List;
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -98,6 +99,7 @@ public class CategoriaService {
     @GET
     @Path(value = "/categorias")
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    @RolesAllowed("Administrador")
     public Response listarTodos() {
         try {
             //Lista com todas as CategoriaModels cadastradas

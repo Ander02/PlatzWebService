@@ -18,7 +18,7 @@
         <!-- Definindo o Pacote que contém os services -->       
         <init-param>
             <param-name>jersey.config.server.provider.packages</param-name>
-            <param-value>com.platz.service;org.codehaus.jackson.jaxrs</param-value>
+            <param-value>com.platz.service;com.platz.filter;org.codehaus.jackson.jaxrs</param-value>
         </init-param>
         <!--Definindo o Multpart do Jersey-->
         <init-param>
@@ -30,6 +30,7 @@
         <!-- Permitindo métodos assíncronos -->
         <async-supported>true</async-supported> 
     </servlet>
+       
     <servlet-mapping>
         <servlet-name>Jersey REST Service</servlet-name>
         <url-pattern>/platz/*</url-pattern>
