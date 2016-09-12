@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.platz.service;
 
 import com.platz.controller.ContaController;
@@ -11,7 +6,9 @@ import com.platz.controller.PostagemController;
 import com.platz.http.cadastro.PostagemCadastro;
 import com.platz.http.edicao.PostagemEdicao;
 import com.platz.http.leitura.PostagemLeitura;
+import com.platz.model.Perfil;
 import com.platz.model.PostagemModel;
+import com.platz.util.PerfilAuth;
 import java.util.List;
 import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
@@ -36,6 +33,7 @@ public class PostagemService {
 
     @POST
     @Path(value = "/postagem")
+    @PerfilAuth({Perfil.USUARIO, Perfil.EMPRESA})
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(PostagemCadastro postagem) {
@@ -58,6 +56,7 @@ public class PostagemService {
 
     @GET
     @Path(value = "/postagens")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
         try {
@@ -79,6 +78,7 @@ public class PostagemService {
 
     @GET
     @Path(value = "/postagem/{id}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloId(@PathParam("id") String id) {
         PostagemModel model = postagemController.buscarPorId(id);
@@ -95,6 +95,7 @@ public class PostagemService {
 
     @GET
     @Path(value = "/postagem/evento/{id}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloEvento(@PathParam("id") String id) {
         try {
@@ -115,6 +116,7 @@ public class PostagemService {
 
     @GET
     @Path(value = "/postagem/conta/{id}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPelaConta(@PathParam("id") String id) {
         try {
@@ -135,6 +137,7 @@ public class PostagemService {
 
     @PUT
     @Path(value = "/postagem/{id}")
+    @PerfilAuth({Perfil.USUARIO, Perfil.EMPRESA})
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response alterar(@PathParam("id") String id, PostagemEdicao postagem) {
@@ -151,6 +154,7 @@ public class PostagemService {
 
     @DELETE
     @Path(value = "/postagem/{id}")
+    @PerfilAuth({Perfil.ADMINISTRADOR, Perfil.EMPRESA, Perfil.USUARIO})
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response excluir(@PathParam("id") String id) {
         try {

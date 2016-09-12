@@ -11,8 +11,11 @@ import com.platz.controller.PresencaController;
 import com.platz.http.cadastro.PresencaCadastro;
 import com.platz.http.edicao.PresencaEdicao;
 import com.platz.http.leitura.PresencaLeitura;
+import com.platz.model.Perfil;
 import com.platz.model.PresencaModel;
+import com.platz.util.PerfilAuth;
 import java.util.List;
+import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -35,6 +38,7 @@ public class PresencaService {
 
     @POST
     @Path(value = "/presenca")
+    @PerfilAuth(Perfil.USUARIO)
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(PresencaCadastro presenca) {
@@ -57,6 +61,7 @@ public class PresencaService {
 
     @GET
     @Path(value = "/presencas")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
         try {
@@ -78,6 +83,8 @@ public class PresencaService {
 
     @GET
     @Path(value = "/presenca/{id}")
+    @PermitAll
+
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloId(@PathParam("id") String id) {
         PresencaModel model = presencaController.buscarPorId(id);
@@ -95,6 +102,7 @@ public class PresencaService {
 
     @GET
     @Path(value = "/presenca/evento/{id}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloEvento(@PathParam("id") String id) {
         try {
@@ -115,6 +123,7 @@ public class PresencaService {
 
     @GET
     @Path(value = "/presenca/conta/{id}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPelaConta(@PathParam("id") String id) {
         try {
@@ -134,6 +143,7 @@ public class PresencaService {
 
     @PUT
     @Path(value = "/presenca/{id}")
+    @PerfilAuth(Perfil.USUARIO)
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response alterar(@PathParam("id") String id, PresencaEdicao presenca) {
@@ -147,11 +157,12 @@ public class PresencaService {
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar Presença").build();
         }
     }
-    
+
     @DELETE
-    @Path(value = "/presenca/{id}")    
+    @Path(value = "/presenca/{id}")
+    @PerfilAuth(Perfil.USUARIO)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public Response excluir(@PathParam("id") String id){
+    public Response excluir(@PathParam("id") String id) {
         try {
             presencaController.excluir(presencaController.buscarPorId(id));
             return Response.status(Response.Status.NO_CONTENT).build();

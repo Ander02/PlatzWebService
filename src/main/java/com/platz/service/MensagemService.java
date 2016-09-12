@@ -6,6 +6,8 @@ import com.platz.http.cadastro.MensagemCadastro;
 import com.platz.http.leitura.MensagemLeitura;
 import com.platz.model.AssuntoModel;
 import com.platz.model.MensagemModel;
+import com.platz.model.Perfil;
+import com.platz.util.PerfilAuth;
 import java.util.List;
 import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
@@ -30,6 +32,7 @@ public class MensagemService {
 
     @POST
     @Path(value = "/mensagem")
+    @PermitAll
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(MensagemCadastro mensagem) {
@@ -52,6 +55,7 @@ public class MensagemService {
 
     @GET
     @Path(value = "/mensagens")
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
 
@@ -73,6 +77,7 @@ public class MensagemService {
 
     @GET
     @Path(value = "/mensagem/{id}")
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloId(@PathParam("id") String id) {
         MensagemModel model = mensagemController.buscarPorId(id);
@@ -91,6 +96,7 @@ public class MensagemService {
 
     @GET
     @Path(value = "/mensagens/{email}")
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloEmail(@PathParam("email") String email) {
 
@@ -111,6 +117,7 @@ public class MensagemService {
 
     @GET
     @Path(value = "/mensagens/marcadas")
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarMarcadas() {
 
@@ -131,6 +138,7 @@ public class MensagemService {
 
     @GET
     @Path(value = "/mensagens/excluidas")
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarExcluidas() {
 
@@ -151,6 +159,7 @@ public class MensagemService {
 
     @GET
     @Path(value = "/mensagens/assunto/{id}")
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloAssunto(@PathParam("id") String id) {
 
@@ -173,6 +182,7 @@ public class MensagemService {
 
     @PUT
     @Path(value = "/mensagem/marcar/{id}")
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response marcar(@PathParam("id") String id) {
 
@@ -192,6 +202,7 @@ public class MensagemService {
 
     @PUT
     @Path(value = "/mensagem/desmarcar/{id}")
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response desmarcar(@PathParam("id") String id) {
 
@@ -211,6 +222,7 @@ public class MensagemService {
 
     @PUT
     @Path(value = "/mensagem/excluir/{id}")
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response marcarExcluida(@PathParam("id") String id) {
 
@@ -230,6 +242,7 @@ public class MensagemService {
 
     @PUT
     @Path(value = "/mensagem/restaurar/{id}")
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response restaurar(@PathParam("id") String id) {
 
@@ -249,6 +262,7 @@ public class MensagemService {
 
     @DELETE
     @Path(value = "/mensagem/{id}")
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response deletar(@PathParam("id") String id) {
         try {

@@ -11,8 +11,10 @@ import com.platz.http.cadastro.UsuarioCadastro;
 import com.platz.http.edicao.UsuarioEdicao;
 import com.platz.http.leitura.UsuarioLeitura;
 import com.platz.model.ContaModel;
+import com.platz.model.Perfil;
 import com.platz.model.UsuarioModel;
 import com.platz.util.ImagemUtil;
+import com.platz.util.PerfilAuth;
 import java.io.InputStream;
 import java.util.List;
 import javax.annotation.security.PermitAll;
@@ -39,6 +41,7 @@ public class UsuarioService {
 
     @POST
     @Path(value = "/usuario")
+    @PermitAll
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(UsuarioCadastro usuario) {
@@ -62,6 +65,7 @@ public class UsuarioService {
 
     @PUT
     @Path(value = "/usuario/imagem/{id}")
+    @PermitAll
     @Consumes(value = MediaType.MULTIPART_FORM_DATA)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response subirImagem(@FormDataParam("imgPerfil") InputStream iconeInputStream,
@@ -103,6 +107,7 @@ public class UsuarioService {
 
     @GET
     @Path(value = "/usuarios")
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
 
@@ -123,6 +128,7 @@ public class UsuarioService {
 
     @GET
     @Path(value = "/usuarios/{nome}")
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloNome(@PathParam("nome") String nome) {
 
@@ -143,6 +149,7 @@ public class UsuarioService {
 
     @GET
     @Path(value = "/usuario/{id}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloId(@PathParam("id") String id) {
         UsuarioModel model = usuarioController.buscarPorId(id);
@@ -161,6 +168,7 @@ public class UsuarioService {
 
     @GET
     @Path(value = "/usuario/cpf/{cpf}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloCPF(@PathParam("cpf") String cpf) {
         UsuarioModel model = usuarioController.buscarPeloCPF(cpf);
@@ -179,6 +187,7 @@ public class UsuarioService {
 
     @GET
     @Path(value = "/usuario/conta/{id}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPelaConta(@PathParam("id") String id) {
 
@@ -200,6 +209,7 @@ public class UsuarioService {
 
     @PUT
     @Path(value = "/usuario/{id}")
+    @PerfilAuth({Perfil.ADMINISTRADOR, Perfil.USUARIO})
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response alterar(@PathParam("id") String id, UsuarioEdicao usuario) {
