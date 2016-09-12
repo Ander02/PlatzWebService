@@ -2,6 +2,7 @@ package com.platz.filter;
 
 import com.platz.dao.ContaDao;
 import com.platz.model.ContaModel;
+import com.platz.model.Perfil;
 import com.platz.util.EncriptAES;
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -22,6 +23,7 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
 import org.glassfish.jersey.internal.util.Base64;
+import com.platz.util.PerfilAuth;
 
 /**
  *
@@ -53,14 +55,14 @@ public class AuthenticationFilter implements ContainerRequestFilter {
             MultivaluedMap<String, String> headers = requestContext.getHeaders();
 
             //Pegar o Authorization Header
-           String authorization = headers.get(HttpHeaders.AUTHORIZATION).get(0);
+            String authorization = headers.get(HttpHeaders.AUTHORIZATION).get(0);
 
             //Se o Authorization Header for nulo ou vazio
             if (authorization == null || authorization.isEmpty()) {
                 //Abortar a requisição com um Unauthorized
                 requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).entity("Acesso negado").build());
                 return;
-            } 
+            }
 
             //Pegar encoded email e senha
             String encodedUsuarioSenha = authorization.replaceFirst("Basic" + " ", "");
@@ -83,20 +85,21 @@ public class AuthenticationFilter implements ContainerRequestFilter {
             System.out.println("");
 
             //Se o método apresentar a anotação @RolesAllowed 
-            if (method.isAnnotationPresent(RolesAllowed.class)) {
+            if (method.isAnnotationPresent(PerfilAuth.class)) {
+
                 //Pegar as Roles do método
-                RolesAllowed rolesAnnotation = method.getAnnotation(RolesAllowed.class);
-                Set<String> rolesSet = new HashSet<>(Arrays.asList(rolesAnnotation.value()));
+                PerfilAuth perfilAnnotation = method.getAnnotation(PerfilAuth.class);
+                Set<Perfil> perfilSet = new HashSet<>(Arrays.asList(perfilAnnotation.value()));
 
                 //Verificar se a conta existe
-                if (!verificarPermissao(email, senha, rolesSet)) {
+                if (!verificarPermissao(email, senha, perfilSet)) {
                     requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).entity("Acesso negado").build());
                 }
             }
         }
     }
 
-    private boolean verificarPermissao(String email, String senha, Set<String> rolesSet) {
+    private boolean verificarPermissao(String email, String senha, Set<Perfil> perfilSet) {
 
         try {
             //Encriptar Senha recebida
@@ -108,7 +111,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
             //Se a conta não for nula
             if (conta != null) {
                 //Verificar se o perfil existe            
-                return rolesSet.contains(conta.getPerfil().getLabel());
+                return perfilSet.contains(conta.getPerfil());
             }
             return false;
 

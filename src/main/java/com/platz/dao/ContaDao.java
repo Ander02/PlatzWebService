@@ -1,7 +1,6 @@
 package com.platz.dao;
 
 import com.platz.model.ContaModel;
-import com.platz.model.EmpresaModel;
 import java.util.List;
 import javax.persistence.EntityManager;
 
@@ -10,6 +9,18 @@ import javax.persistence.EntityManager;
  * @author Anderson
  */
 public class ContaDao extends GenericDao<ContaModel> {
+
+    @Override
+    public void cadastrar(ContaModel model) {
+
+        ContaModel conta = this.buscarPeloEmail(model.getEmail());
+
+        if (conta == null) {
+            super.cadastrar(model);
+        } else {
+            System.out.println("Erro ao cadastrar, email já existe");
+        }
+    }
 
     public ContaModel getConta(String email, String senha) {
 
@@ -25,17 +36,23 @@ public class ContaDao extends GenericDao<ContaModel> {
                 return model;
             }
         } catch (Exception e) {
-            System.out.println("Erro ao buscar conta");
+            System.out.println("Erro ao buscar conta: " + e.getMessage());
             return null;
         }
     }
 
     public ContaModel buscarPeloEmail(String email) {
-        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
-        ContaModel model = (ContaModel) entityManager.createQuery("from ContaModel where email =:email")
-                .setParameter("email", email).getSingleResult();
-        entityManager.close();
-        return model;
+
+        try {
+            EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
+            ContaModel model = (ContaModel) entityManager.createQuery("from ContaModel where email =:email")
+                    .setParameter("email", email).getSingleResult();
+            entityManager.close();
+            return model;
+        } catch (Exception e) {
+            System.out.println("Erro ao buscar pelo email" + e.getMessage());
+            return null;
+        }
     }
 
     public List<ContaModel> buscarInativos() {

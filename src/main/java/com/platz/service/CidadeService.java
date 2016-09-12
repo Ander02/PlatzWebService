@@ -7,6 +7,7 @@ import com.platz.http.leitura.CidadeLeitura;
 import com.platz.model.CidadeModel;
 import com.platz.model.EstadoModel;
 import java.util.List;
+import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -28,7 +29,7 @@ public class CidadeService {
 
     @POST
     @Path(value = "/cidade")
-    @PermitAll
+    @DenyAll
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(CidadeCadastro cidade) {

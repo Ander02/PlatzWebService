@@ -7,7 +7,10 @@ import com.platz.http.cadastro.AvaliacaoCadastro;
 import com.platz.http.edicao.AvaliacaoEdicao;
 import com.platz.http.leitura.AvaliacaoLeitura;
 import com.platz.model.AvaliacaoModel;
+import com.platz.model.Perfil;
+import com.platz.util.PerfilAuth;
 import java.util.List;
+import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -30,6 +33,7 @@ public class AvaliacaoService {
 
     @POST
     @Path(value = "/avaliacao")
+    @PerfilAuth(Perfil.USUARIO)
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(AvaliacaoCadastro avaliacao) {
@@ -52,6 +56,7 @@ public class AvaliacaoService {
 
     @GET
     @Path(value = "/avaliacoes")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
         try {
@@ -73,6 +78,7 @@ public class AvaliacaoService {
 
     @GET
     @Path(value = "/avaliacao/{id}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloId(@PathParam("id") String id) {
         AvaliacaoModel model = avaliacaoController.buscarPorId(id);
@@ -91,6 +97,7 @@ public class AvaliacaoService {
 
     @GET
     @Path(value = "/avaliacao/evento/{id}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloEvento(@PathParam("id") String id) {
         try {
@@ -111,6 +118,7 @@ public class AvaliacaoService {
 
     @GET
     @Path(value = "/avaliacao/usuario/{id}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloUsuario(@PathParam("id") String id) {
         try {
@@ -130,6 +138,7 @@ public class AvaliacaoService {
 
     @GET
     @Path(value = "/avaliacao/evento/media/{id}")
+    @PermitAll
     @Produces(value = MediaType.TEXT_PLAIN + ";charset=UTF-8")
     public Response mediaPorEvento(@PathParam("id") String id) {
         try {
@@ -144,6 +153,7 @@ public class AvaliacaoService {
 
     @PUT
     @Path(value = "/avaliacao/{id}")
+    @PerfilAuth(Perfil.USUARIO)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     @Consumes(value = MediaType.APPLICATION_JSON)
     public Response alterar(@PathParam("id") String id, AvaliacaoEdicao avaliacao) {
@@ -161,6 +171,7 @@ public class AvaliacaoService {
 
     @DELETE
     @Path(value = "/avaliacao/{id}")
+    @PerfilAuth(Perfil.USUARIO)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response deletar(@PathParam("id") String id) {
         try {

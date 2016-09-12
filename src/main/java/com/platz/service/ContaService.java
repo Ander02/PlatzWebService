@@ -5,7 +5,8 @@ import com.platz.http.cadastro.ContaCadastro;
 import com.platz.http.edicao.ContaEdicao;
 import com.platz.http.leitura.ContaLeitura;
 import com.platz.model.ContaModel;
-import com.platz.util.PerfilUtil;
+import com.platz.model.Perfil;
+import com.platz.util.PerfilAuth;
 import java.util.List;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
@@ -48,6 +49,7 @@ public class ContaService {
 
             // Envia erro pelo console
             System.out.println("Erro: " + e.getMessage());
+            e.printStackTrace();
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao cadastrar conta").build();
         }
@@ -179,7 +181,7 @@ public class ContaService {
 
     @PUT
     @Path(value = "/conta/bloquear/{id}")
-    @RolesAllowed(PerfilUtil.ADMINISTRADOR)
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response bloquear(@PathParam("id") String id) {
@@ -203,7 +205,7 @@ public class ContaService {
 
     @PUT
     @Path(value = "/conta/desbloquear/{id}")
-    @RolesAllowed(PerfilUtil.ADMINISTRADOR)
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response desbloquear(@PathParam("id") String id) {
@@ -227,7 +229,7 @@ public class ContaService {
 
     @PUT
     @Path(value = "/conta/inativar/{id}")
-    @RolesAllowed(PerfilUtil.ADMINISTRADOR)
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response inativar(@PathParam("id") String id) {
@@ -251,7 +253,7 @@ public class ContaService {
 
     @PUT
     @Path(value = "/conta/ativar/{id}")
-    @RolesAllowed(PerfilUtil.ADMINISTRADOR)
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response ativar(@PathParam("id") String id) {

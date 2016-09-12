@@ -5,12 +5,11 @@ import com.platz.http.cadastro.CategoriaCadastro;
 import com.platz.http.edicao.CategoriaEdicao;
 import com.platz.http.leitura.CategoriaLeitura;
 import com.platz.model.CategoriaModel;
+import com.platz.model.Perfil;
 import com.platz.util.ImagemUtil;
-import com.platz.util.PerfilUtil;
 import java.io.InputStream;
 import java.util.List;
 import javax.annotation.security.PermitAll;
-import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -23,6 +22,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.glassfish.jersey.media.multipart.FormDataBodyPart;
 import org.glassfish.jersey.media.multipart.FormDataParam;
+import com.platz.util.PerfilAuth;
 
 /**
  *
@@ -35,7 +35,7 @@ public class CategoriaService {
 
     @POST
     @Path(value = "/categoria")
-    @RolesAllowed(PerfilUtil.ADMINISTRADOR)
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(CategoriaCadastro categoria) {
@@ -60,7 +60,7 @@ public class CategoriaService {
 
     @PUT
     @Path(value = "/categoria/imagem/{id}")
-    @RolesAllowed(PerfilUtil.ADMINISTRADOR)
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Consumes(value = MediaType.MULTIPART_FORM_DATA)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response subirImagem(@FormDataParam("icone") InputStream iconeInputStream,
@@ -167,7 +167,7 @@ public class CategoriaService {
 
     @PUT
     @Path(value = "/categoria/{id}")
-    @RolesAllowed(PerfilUtil.ADMINISTRADOR)
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response alterar(@PathParam("id") String id, CategoriaEdicao categoria) {
@@ -189,7 +189,7 @@ public class CategoriaService {
 
     @DELETE
     @Path(value = "/categoria/{id}")
-    @RolesAllowed(PerfilUtil.ADMINISTRADOR)
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response deletar(@PathParam("id") String id) {
         try {
