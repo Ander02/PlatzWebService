@@ -7,9 +7,12 @@ import com.platz.http.edicao.EmpresaEdicao;
 import com.platz.http.leitura.EmpresaLeitura;
 import com.platz.model.ContaModel;
 import com.platz.model.EmpresaModel;
+import com.platz.model.Perfil;
 import com.platz.util.ImagemUtil;
+import com.platz.util.PerfilAuth;
 import java.io.InputStream;
 import java.util.List;
+import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -33,6 +36,7 @@ public class EmpresaService {
 
     @POST
     @Path(value = "/empresa")
+    @PermitAll
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(EmpresaCadastro empresa) {
@@ -57,6 +61,7 @@ public class EmpresaService {
 
     @PUT
     @Path(value = "/empresa/imagem/{id}")
+    @PermitAll
     @Consumes(value = MediaType.MULTIPART_FORM_DATA)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response subirImagem(@FormDataParam("imgPerfil") InputStream iconeInputStream,
@@ -98,6 +103,7 @@ public class EmpresaService {
 
     @GET
     @Path(value = "/empresas")
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
 
@@ -118,6 +124,7 @@ public class EmpresaService {
 
     @GET
     @Path(value = "/empresa/{id}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloId(@PathParam("id") String id) {
         EmpresaModel model = empresaController.buscarPorId(id);
@@ -136,6 +143,7 @@ public class EmpresaService {
 
     @GET
     @Path(value = "/empresa/cnpj/{cnpj}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloCNPJ(@PathParam("cnpj") String cnpj) {
         EmpresaModel model = empresaController.buscarPeloCNPJ(cnpj);
@@ -154,6 +162,7 @@ public class EmpresaService {
 
     @GET
     @Path(value = "/empresa/conta/{id}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPelaConta(@PathParam("id") String id) {
 
@@ -175,6 +184,7 @@ public class EmpresaService {
 
     @GET
     @Path(value = "/empresas/{nome}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloNome(@PathParam("nome") String nome) {
 
@@ -195,24 +205,25 @@ public class EmpresaService {
 
     @PUT
     @Path(value = "/empresa/{id}")
+    @PermitAll
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response alterar(@PathParam("id") String id, EmpresaEdicao empresa) {
 
-        // try {
-        //Settar informações na model
-        EmpresaModel model = empresaController.buscarPorId(id);
+        try {
+            //Settar informações na model
+            EmpresaModel model = empresaController.buscarPorId(id);
 
-        //Alterar registro
-        empresaController.alterar(model, empresa);
+            //Alterar registro
+            empresaController.alterar(model, empresa);
 
-        //Retorna Status Code OK com a entity de leitura com a modificação
-        return Response.status(Response.Status.OK).entity(new EmpresaLeitura(model)).build();
+            //Retorna Status Code OK com a entity de leitura com a modificação
+            return Response.status(Response.Status.OK).entity(new EmpresaLeitura(model)).build();
 
-        /*  } catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Erro" + e.getMessage());
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar empresa").build();
-        }*/
+        }
     }
 
 }

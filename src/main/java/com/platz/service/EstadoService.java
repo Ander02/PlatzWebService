@@ -2,9 +2,7 @@ package com.platz.service;
 
 import com.platz.controller.EstadoController;
 import com.platz.http.cadastro.EstadoCadastro;
-import com.platz.http.leitura.CidadeLeitura;
 import com.platz.http.leitura.EstadoLeitura;
-import com.platz.model.CidadeModel;
 import com.platz.model.EstadoModel;
 import java.util.List;
 import javax.annotation.security.DenyAll;

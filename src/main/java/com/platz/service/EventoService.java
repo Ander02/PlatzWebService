@@ -9,9 +9,12 @@ import com.platz.http.leitura.EventoLeitura;
 import com.platz.model.CategoriaModel;
 import com.platz.model.EmpresaModel;
 import com.platz.model.EventoModel;
+import com.platz.model.Perfil;
 import com.platz.util.ImagemUtil;
+import com.platz.util.PerfilAuth;
 import java.io.InputStream;
 import java.util.List;
+import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -35,6 +38,7 @@ public class EventoService {
 
     @POST
     @Path(value = "/evento")
+    @PerfilAuth(Perfil.EMPRESA)
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(EventoCadastro evento) {
@@ -59,6 +63,7 @@ public class EventoService {
 
     @PUT
     @Path(value = "/evento/imagem/{id}")
+    @PerfilAuth(Perfil.EMPRESA)
     @Consumes(value = MediaType.MULTIPART_FORM_DATA)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response subirImagem(@FormDataParam("imagemCapa") InputStream imagemCapaInputStream,
@@ -70,7 +75,7 @@ public class EventoService {
             EventoModel model = eventoController.buscarPorId(id);
 
             //Montando o caminho do upload
-            String diretorioDoUpload = new ImagemUtil().RAIZ + "evento/" + model.getId()+ "/";
+            String diretorioDoUpload = new ImagemUtil().RAIZ + "evento/" + model.getId() + "/";
             //Montando o nome do arquivo
             String nomeDoArquivo = "0" + "." + fileMetaData.getMediaType().getSubtype();
 
@@ -100,6 +105,7 @@ public class EventoService {
 
     @GET
     @Path(value = "/eventos")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
         try {
@@ -121,6 +127,7 @@ public class EventoService {
 
     @GET
     @Path(value = "/evento/{id}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloId(@PathParam("id") String id) {
         EventoModel model = eventoController.buscarPorId(id);
@@ -139,6 +146,7 @@ public class EventoService {
 
     @GET
     @Path(value = "/eventos/{nome}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloNome(@PathParam("nome") String nome) {
         try {
@@ -161,6 +169,7 @@ public class EventoService {
 
     @GET
     @Path(value = "/eventos/empresa/{id}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPelaEmpresa(@PathParam("id") String id) {
         try {
@@ -181,6 +190,7 @@ public class EventoService {
 
     @GET
     @Path(value = "/eventos/categoria/{id}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPelaCategoria(@PathParam("id") String id) {
         try {
@@ -201,6 +211,7 @@ public class EventoService {
 
     @GET
     @Path(value = "/eventos/cancelados")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarCancelados() {
         try {
@@ -219,6 +230,7 @@ public class EventoService {
 
     @GET
     @Path(value = "/eventos/censurados")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarCensurados() {
         try {
@@ -237,6 +249,8 @@ public class EventoService {
 
     @GET
     @Path(value = "/eventos/destacados")
+    @PermitAll
+
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarDestacados() {
         try {
@@ -255,6 +269,8 @@ public class EventoService {
 
     @GET
     @Path(value = "/eventos/naoCancelados")
+    @PermitAll
+
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarNaoCancelados() {
         try {
@@ -273,6 +289,8 @@ public class EventoService {
 
     @GET
     @Path(value = "/eventos/naoCensurados")
+    @PermitAll
+
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarNaoensurados() {
         try {
@@ -291,8 +309,10 @@ public class EventoService {
 
     @GET
     @Path(value = "/eventos/semDestaque")
+    @PermitAll
+
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public Response buscarSemDestacados() {
+    public Response buscarSemDestaque() {
         try {
             List<EventoModel> models = eventoController.buscarSemDestaques();
 
@@ -309,6 +329,8 @@ public class EventoService {
 
     @GET
     @Path(value = "/eventos/canceladosECensurados")
+    @PermitAll
+
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarCanceladosECensurado() {
         try {
@@ -327,6 +349,8 @@ public class EventoService {
 
     @GET
     @Path(value = "/eventos/naoCanceladosESemCensura")
+    @PermitAll
+
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarNaoCanceladosESemCensura() {
         try {
@@ -345,6 +369,8 @@ public class EventoService {
 
     @GET
     @Path(value = "/eventos/idade/{idade}")
+    @PermitAll
+
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPelaIdade(@PathParam("idade") int idade) {
         try {
@@ -363,6 +389,8 @@ public class EventoService {
 
     @GET
     @Path(value = "/eventos/gratuitos")
+    @PermitAll
+
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarGratuitos() {
         try {
@@ -381,6 +409,8 @@ public class EventoService {
 
     @GET
     @Path(value = "/eventos/preco/{preco}")
+    @PermitAll
+
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloValorMaximo(@PathParam("preco") double preco) {
         try {
@@ -399,6 +429,8 @@ public class EventoService {
 
     @GET
     @Path(value = "/eventos/passados")
+    @PermitAll
+
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarEventosPassados() {
         try {
@@ -417,6 +449,8 @@ public class EventoService {
 
     @GET
     @Path(value = "/eventos/futuros")
+    @PermitAll
+
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarEventosFuturos() {
         try {
@@ -435,6 +469,8 @@ public class EventoService {
 
     @GET
     @Path(value = "/eventos/semana")
+    @PermitAll
+
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarEventosDaSemana() {
         try {
@@ -453,6 +489,7 @@ public class EventoService {
 
     @GET
     @Path(value = "/eventos/dia/{dia}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarEventosPorDiaLimite(@PathParam("dia") int dia) {
         try {
@@ -471,6 +508,7 @@ public class EventoService {
 
     @PUT
     @Path(value = "/evento/{id}")
+    @PerfilAuth(Perfil.EMPRESA)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response alterar(@PathParam("id") String id, EventoEdicao evento) {
         try {
@@ -490,6 +528,7 @@ public class EventoService {
 
     @PUT
     @Path(value = "/evento/cancelar/{id}")
+    @PerfilAuth(Perfil.EMPRESA)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cancelar(@PathParam("id") String id) {
 
@@ -511,6 +550,7 @@ public class EventoService {
 
     @PUT
     @Path(value = "/evento/censurar/{id}")
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response censurar(@PathParam("id") String id) {
 
@@ -531,6 +571,7 @@ public class EventoService {
 
     @PUT
     @Path(value = "/evento/destacar/{id}")
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response destacar(@PathParam("id") String id) {
 
@@ -551,6 +592,7 @@ public class EventoService {
 
     @PUT
     @Path(value = "/evento/descancelar/{id}")
+    @PerfilAuth(Perfil.EMPRESA)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response descancelar(@PathParam("id") String id) {
 
@@ -571,6 +613,7 @@ public class EventoService {
 
     @PUT
     @Path(value = "/evento/descensurar/{id}")
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response descensurar(@PathParam("id") String id) {
 
@@ -591,6 +634,7 @@ public class EventoService {
 
     @PUT
     @Path(value = "/evento/retirarDestaque/{id}")
+    @PerfilAuth({Perfil.ADMINISTRADOR, Perfil.EMPRESA})
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response retirarDestaque(@PathParam("id") String id) {
 
