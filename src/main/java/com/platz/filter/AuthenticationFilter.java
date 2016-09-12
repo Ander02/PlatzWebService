@@ -17,6 +17,7 @@ import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.container.ResourceInfo;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
@@ -52,17 +53,17 @@ public class AuthenticationFilter implements ContainerRequestFilter {
             MultivaluedMap<String, String> headers = requestContext.getHeaders();
 
             //Pegar o Authorization Header
-            List<String> authorization = headers.get("Authorization");
+           String authorization = headers.get(HttpHeaders.AUTHORIZATION).get(0);
 
             //Se o Authorization Header for nulo ou vazio
             if (authorization == null || authorization.isEmpty()) {
                 //Abortar a requisição com um Unauthorized
                 requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).entity("Acesso negado").build());
                 return;
-            }
+            } 
 
             //Pegar encoded email e senha
-            String encodedUsuarioSenha = authorization.get(0).replaceFirst("Basic" + " ", "");
+            String encodedUsuarioSenha = authorization.replaceFirst("Basic" + " ", "");
 
             System.out.println("encoded Email e Senha " + encodedUsuarioSenha);
 
