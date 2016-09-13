@@ -47,6 +47,8 @@ public class ContaModel {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date ultimoAcesso;
+    
+    private String token;
 
     //Construtores
     public ContaModel() {
@@ -164,5 +166,13 @@ public class ContaModel {
                 this.perfil = Perfil.USUARIO;
                 break;
         }
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

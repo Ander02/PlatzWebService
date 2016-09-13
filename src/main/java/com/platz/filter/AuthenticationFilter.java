@@ -37,7 +37,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
-
+              
         //Pegar o método chamado pelo Service
         Method method = resourceInfo.getResourceMethod();
 
