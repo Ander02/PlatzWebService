@@ -1,7 +1,5 @@
 package com.platz.util;
 
-import java.util.Date;
-
 /**
  *
  * @author Anderson

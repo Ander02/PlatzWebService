@@ -15,12 +15,10 @@
             <param-name>jersey.config.disableMoxyJson.server</param-name>
             <param-value>true</param-value>
         </init-param>
-        <!-- Definindo o Pacote que contém os services -->       
-        
-        
+        <!-- Definindo o Pacote que contém os services -->              
         <init-param>
             <param-name>jersey.config.server.provider.packages</param-name>
-            <param-value>org.codehaus.jackson.jaxrs;com.platz.service;com.platz.filter</param-value> 
+            <param-value>com.platz.service;com.platz.filter;org.codehaus.jackson.jaxrs</param-value> 
         </init-param>
         <!--Definindo o Multpart do Jersey-->
         <init-param>

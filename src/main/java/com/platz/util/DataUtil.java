@@ -37,4 +37,14 @@ public class DataUtil {
             return null;
         }
     }
+    
+    public String dataSemPontuacao(Date date){
+       
+       if (date != null) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy-HHmmssSSS");
+            return dateFormat.format(date);
+        } else {            
+            return null;
+        }
+    }
 }

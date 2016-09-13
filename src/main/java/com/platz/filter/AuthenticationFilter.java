@@ -6,7 +6,6 @@ import com.platz.model.Perfil;
 import com.platz.util.PerfilAuth;
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -21,7 +20,6 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
-import org.glassfish.jersey.internal.util.Base64;
 
 /**
  *

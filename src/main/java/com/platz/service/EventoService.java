@@ -9,10 +9,13 @@ import com.platz.http.leitura.EventoLeitura;
 import com.platz.model.CategoriaModel;
 import com.platz.model.EmpresaModel;
 import com.platz.model.EventoModel;
+import com.platz.model.ImagemModel;
 import com.platz.model.Perfil;
+import com.platz.util.DataUtil;
 import com.platz.util.ImagemUtil;
 import com.platz.util.PerfilAuth;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
@@ -66,7 +69,7 @@ public class EventoService {
     @PerfilAuth(Perfil.EMPRESA)
     @Consumes(value = MediaType.MULTIPART_FORM_DATA)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public Response subirImagem(@FormDataParam("imagemCapa") InputStream imagemCapaInputStream,
+    public Response subirImagemCapa(@FormDataParam("imagemCapa") InputStream imagemCapaInputStream,
             @FormDataParam("imagemCapa") FormDataBodyPart fileMetaData,
             @PathParam("id") String id) {
 
@@ -86,6 +89,50 @@ public class EventoService {
             if (ok) {
                 //Settar o caminho do icone na model
                 model.setImagemCapa(diretorioDoUpload + nomeDoArquivo);
+
+                //Alterar
+                eventoController.alterar(model);
+            } else {
+                //Retorna uma BadRequest ao usuário
+                return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
+            }
+
+            return Response.ok(new EventoLeitura(model)).build();
+        } catch (Exception e) {
+            // Envia erro pelo console
+            System.out.println("Erro de upload: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
+        }
+    }
+    
+    
+    
+    @PUT
+    @Path(value = "/evento/imagens/{id}")
+    @PerfilAuth(Perfil.EMPRESA)
+    @Consumes(value = MediaType.MULTIPART_FORM_DATA)
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+     public Response subirImagemGaleria(@FormDataParam("imagem") InputStream imagemInputStream,
+            @FormDataParam("imagem") FormDataBodyPart fileMetaData,
+            @PathParam("id") String id) {
+
+        try {
+            //Buscar Model pelo id
+            EventoModel model = eventoController.buscarPorId(id);
+
+            //Montando o caminho do upload
+            String diretorioDoUpload = new ImagemUtil().RAIZ + "evento/" + model.getId() + "/";
+            //Montando o nome do arquivo
+            String nomeDoArquivo = new DataUtil().dataSemPontuacao(new Date())+ "." + fileMetaData.getMediaType().getSubtype();
+
+            //Salvar Imagem
+            boolean ok = new ImagemUtil().salvarArquivo(diretorioDoUpload, nomeDoArquivo, imagemInputStream);
+
+            //Se a imagem for salva sem nenhum erro atualiza a model
+            if (ok) {
+                //Settar o caminho do icone na model
+                model.getImagens().add(new ImagemModel(diretorioDoUpload + nomeDoArquivo));
 
                 //Alterar
                 eventoController.alterar(model);
