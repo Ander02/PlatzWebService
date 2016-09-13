@@ -6,8 +6,10 @@ import com.platz.model.Perfil;
 import com.platz.util.PerfilAuth;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
@@ -51,29 +53,19 @@ public class AuthenticationFilter implements ContainerRequestFilter {
             MultivaluedMap<String, String> headers = requestContext.getHeaders();
 
             //Pegar o Authorization Header
-            String authorization = headers.get(HttpHeaders.AUTHORIZATION).get(0);
-
+            List<String> authorizations = headers.get(HttpHeaders.AUTHORIZATION);
             //Se o Authorization Header for nulo ou vazio
-            if (authorization == null || authorization.isEmpty()) {
+            if (authorizations == null || authorizations.isEmpty()) {
                 //Abortar a requisição com um Unauthorized
                 requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).entity("Acesso negado").build());
                 return;
             }
 
             //Pegar o token
-            String token = authorization.replaceFirst("Bearer" + " ", "");
+            String token = authorizations.get(0).replaceFirst("Bearer" + " ", "");
 
-            System.out.println("encoded Email e Senha " + token);
+            System.out.println("Token " + token);
 
-            //Decodificar o token
-            //String token = new String(Base64.decode(encodedToken.getBytes()));
-            //System.out.println("Decoded Email e Senha " + token);
-            //Pegar o email e senha
-            //StringTokenizer tokenizer = new StringTokenizer(emailESenha, ":");
-            //String email = tokenizer.nextToken();
-            //String senha = tokenizer.nextToken();
-            //System.out.println("Email " + email);
-            //System.out.println("Senha " + senha);
             System.out.println("");
 
             //Se o método apresentar a anotação @RolesAllowed 
@@ -94,10 +86,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
     private boolean verificarPermissao(String token, Set<Perfil> perfilSet) {
 
         try {
-            //Encriptar Senha recebida
-            //String senhaEncriptada = new EncriptAES().byteParaString(new EncriptAES().encrypt(senha, EncriptAES.getChaveEncriptacao()));
-
-            //Buscar Conta
+            //Buscar Conta pelo token
             ContaModel conta = new ContaDao().getConta(token);
 
             //Se a conta não for nula
