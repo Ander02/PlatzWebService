@@ -31,7 +31,9 @@ public class PostagemController {
     public PostagemModel buscarPorId(String id) {
         return postagemDao.buscarPorId(PostagemModel.class, id);
     }
-    
+    public void alterar(PostagemModel model) {
+        postagemDao.alterar(model);
+    }
     public void alterar(PostagemModel model, PostagemEdicao postagem) {
         if (postagem.getConteudo() != null && !postagem.getConteudo().equals("")) {
             model.setConteudo(postagem.getConteudo());

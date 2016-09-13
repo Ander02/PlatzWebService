@@ -30,6 +30,11 @@ public class ImagemModel {
 
     public ImagemModel() {
     }
+    
+    public ImagemModel(String url) {
+        setDataCadastro(new Date());
+        setUrl(url);
+    }
 
     //getters and setters
    
