@@ -40,7 +40,8 @@ public class PostagemService {
 
     @POST
     @Path(value = "/postagem")
-    @PerfilAuth({Perfil.USUARIO, Perfil.EMPRESA})
+    @PermitAll
+    //@PerfilAuth({Perfil.USUARIO, Perfil.EMPRESA})
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(PostagemCadastro postagem) {
@@ -160,8 +161,9 @@ public class PostagemService {
     }
 
     @PUT
-    @Path(value = "/postagem/imagens/{id}")
-    @PerfilAuth(Perfil.EMPRESA)
+    @Path(value = "/postagem/imagem/{id}")
+    @PermitAll
+    //@PerfilAuth(Perfil.EMPRESA)
     @Consumes(value = MediaType.MULTIPART_FORM_DATA)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response subirImagem(@FormDataParam("imagem") InputStream imagemInputStream,
