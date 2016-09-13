@@ -110,7 +110,8 @@ public class EventoService {
     
     @PUT
     @Path(value = "/evento/imagens/{id}")
-    @PerfilAuth(Perfil.EMPRESA)
+    //@PerfilAuth(Perfil.EMPRESA)
+    @PermitAll
     @Consumes(value = MediaType.MULTIPART_FORM_DATA)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
      public Response subirImagemGaleria(@FormDataParam("imagem") InputStream imagemInputStream,
