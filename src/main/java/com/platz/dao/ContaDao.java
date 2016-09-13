@@ -22,6 +22,23 @@ public class ContaDao extends GenericDao<ContaModel> {
         }
     }
 
+    public ContaModel getConta(String token) {
+        try {
+            EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
+            ContaModel model = (ContaModel) entityManager.createQuery("from ContaModel where token=:token").setParameter("token", token).getSingleResult();
+            entityManager.close();
+            if (model == null) {
+                System.out.println("Conta não Encontrada");
+                return null;
+            } else {
+                return model;
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao buscar conta: " + e.getMessage());
+            return null;
+        }
+    }
+
     public ContaModel getConta(String email, String senha) {
 
         try {

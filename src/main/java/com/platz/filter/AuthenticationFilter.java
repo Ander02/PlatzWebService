@@ -3,13 +3,13 @@ package com.platz.filter;
 import com.platz.dao.ContaDao;
 import com.platz.model.ContaModel;
 import com.platz.model.Perfil;
-import com.platz.util.EncriptAES;
+import com.platz.util.PerfilAuth;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
-import java.util.StringTokenizer;
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
 import javax.ws.rs.container.ContainerRequestContext;
@@ -20,8 +20,6 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
-import org.glassfish.jersey.internal.util.Base64;
-import com.platz.util.PerfilAuth;
 
 /**
  *
@@ -53,32 +51,18 @@ public class AuthenticationFilter implements ContainerRequestFilter {
             MultivaluedMap<String, String> headers = requestContext.getHeaders();
 
             //Pegar o Authorization Header
-            String authorization = headers.get(HttpHeaders.AUTHORIZATION).get(0);
-
+            List<String> authorizations = headers.get(HttpHeaders.AUTHORIZATION);
             //Se o Authorization Header for nulo ou vazio
-            if (authorization == null || authorization.isEmpty()) {
+            if (authorizations == null || authorizations.isEmpty()) {
                 //Abortar a requisição com um Unauthorized
                 requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).entity("Acesso negado").build());
                 return;
             }
 
-            //Pegar encoded email e senha
-            String encodedUsuarioSenha = authorization.replaceFirst("Basic" + " ", "");
+            //Pegar o token
+            String token = authorizations.get(0).replaceFirst("Bearer" + " ", "");
 
-            System.out.println("encoded Email e Senha " + encodedUsuarioSenha);
-
-            //Decodificar o email e senha
-            String emailESenha = new String(Base64.decode(encodedUsuarioSenha.getBytes()));
-
-            System.out.println("Decoded Email e Senha " + emailESenha);
-
-            //Pegar o email e senha
-            StringTokenizer tokenizer = new StringTokenizer(emailESenha, ":");
-            String email = tokenizer.nextToken();
-            String senha = tokenizer.nextToken();
-
-            System.out.println("Email " + email);
-            System.out.println("Senha " + senha);
+            System.out.println("Token " + token);
 
             System.out.println("");
 
@@ -90,21 +74,18 @@ public class AuthenticationFilter implements ContainerRequestFilter {
                 Set<Perfil> perfilSet = new HashSet<>(Arrays.asList(perfilAnnotation.value()));
 
                 //Verificar se a conta existe
-                if (!verificarPermissao(email, senha, perfilSet)) {
+                if (!verificarPermissao(token, perfilSet)) {
                     requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).entity("Acesso negado").build());
                 }
             }
         }
     }
 
-    private boolean verificarPermissao(String email, String senha, Set<Perfil> perfilSet) {
+    private boolean verificarPermissao(String token, Set<Perfil> perfilSet) {
 
         try {
-            //Encriptar Senha recebida
-            String senhaEncriptada = new EncriptAES().byteParaString(new EncriptAES().encrypt(senha, EncriptAES.getChaveEncriptacao()));
-
-            //Buscar Conta
-            ContaModel conta = new ContaDao().getConta(email, senhaEncriptada);
+            //Buscar Conta pelo token
+            ContaModel conta = new ContaDao().getConta(token);
 
             //Se a conta não for nula
             if (conta != null) {
