@@ -38,21 +38,20 @@ public class LoginService {
             ContaModel model = contaController.getConta(login.getEmail(), senhaEncriptada);
 
             if (model != null) {
-                String token = new TokenUtil().criarToken(model.getId(), model.getEmail());
+                String token = new TokenUtil().criarToken(model.getId());
                 model.setToken(token);
                 contaController.alterar(model);
 
                 //Retornar token na resposta
                 return Response.ok(new ContaLeitura(model)).header(HttpHeaders.AUTHORIZATION, token).build();
             } else {
-                return Response.status(Response.Status.UNAUTHORIZED).entity("Usuário ou senhas incorretos").build();
+                return Response.status(Response.Status.UNAUTHORIZED).entity("Usuário e/ou senhas incorretos").build();
 
             }
         } catch (Exception e) {
             System.out.println("Erro ao logar: " + e.getMessage());
             return Response.status(Response.Status.UNAUTHORIZED).entity("Usuário ou senhas incorretos").build();
         }
-
     }
-
+    
 }

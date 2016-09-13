@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public class TokenUtil {
 
-    public String criarToken(String id, String email) {
+    public String criarToken(String id) {
 
         try {
             return new EncriptAES().byteParaString(new EncriptAES().encrypt(id + ":" + new Date().toString(), EncriptAES.getChaveEncriptacao()));

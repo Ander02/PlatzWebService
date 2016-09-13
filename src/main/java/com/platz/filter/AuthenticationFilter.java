@@ -60,7 +60,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
             }
 
             //Pegar o token
-            String token = authorizations.get(0).replaceFirst("Bearer" + " ", "");
+            String token = authorizations.get(0).replaceFirst("Bearer ", "");
 
             System.out.println("Token " + token);
 
