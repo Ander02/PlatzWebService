@@ -9,7 +9,6 @@ import com.platz.model.Perfil;
 import com.platz.util.PerfilAuth;
 import java.util.List;
 import javax.annotation.security.PermitAll;
-import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
