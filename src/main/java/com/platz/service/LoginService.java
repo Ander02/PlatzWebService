@@ -88,7 +88,5 @@ public class LoginService {
             System.out.println("Erro ao fazer logoff: " + e.getMessage());
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao fazer logoff").build();
         }
-
     }
-
 }
