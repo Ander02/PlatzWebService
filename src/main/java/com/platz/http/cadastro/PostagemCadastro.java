@@ -1,6 +1,5 @@
 package com.platz.http.cadastro;
 
-import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
