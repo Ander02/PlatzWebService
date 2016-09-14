@@ -13,6 +13,10 @@ public class ContaController {
 
     private final ContaDao contaDao = new ContaDao();
 
+    public ContaModel getConta(String token) {
+        return contaDao.getConta(token);
+    }
+
     public ContaModel getConta(String email, String senha) {
         return contaDao.getConta(email, senha);
     }
