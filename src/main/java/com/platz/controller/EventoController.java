@@ -148,7 +148,7 @@ public class EventoController {
             model.setPreco(evento.getPreco());
         }
 
-        if (evento.getCategoriasId() != null && !evento.getCategoriasId().equals("")) {
+        if (evento.getCategoriasId() != null) {
             //Remove os eventos da categoria            
             for (CategoriaModel categoriasAntiga : model.getCategorias()) {
                 if (categoriasAntiga.getEventos().contains(model)) {
@@ -175,7 +175,7 @@ public class EventoController {
 
         }
 
-        if (evento.getImagensId() != null && !evento.getCategoriasId().equals("")) {
+        if (evento.getImagensId() != null) {
 
             List<ImagemModel> listaDeImagens = new ArrayList<>();
             for (String imagemId : evento.getCategoriasId()) {
@@ -187,7 +187,7 @@ public class EventoController {
             model.setImagens(listaDeImagens);
         }
 
-        if (evento.getDestaque() != null && !evento.getDestaque().equals("")) {
+        if (evento.getDestaque() != null) {
             model.setDestaque(evento.getDestaque());
         }
 

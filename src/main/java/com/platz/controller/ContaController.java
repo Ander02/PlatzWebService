@@ -86,6 +86,10 @@ public class ContaController {
         model.setToken(null);
         this.alterar(model);
     }
+    public void alterarSenha(ContaModel model, String senha){
+        model.setSenha(senha);
+        this.alterar(model);
+    }
 
     public ContaModel login(Login login) {
         try {
