@@ -2,6 +2,7 @@ package com.platz.dao;
 
 import com.platz.model.EmpresaModel;
 import com.platz.model.EventoModel;
+import com.platz.util.DataUtil;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -130,10 +131,7 @@ public class EventoDao extends GenericDao<EventoModel> {
     public List<EventoModel> buscarEventosPorDia(int dia) {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(new Date());
-        calendar.add(Calendar.DAY_OF_MONTH, dia);
-        Date dataProximaSemana = calendar.getTime();
+        Date dataProximaSemana = new DataUtil().adicionaDias(dia, new Date());
 
         List<EventoModel> lista = entityManager.createQuery("from EventoModel where dataInicio between :dataAtual and :dataProximaSemana").setParameter("dataAtual", new Date()).setParameter("dataProximaSemana", dataProximaSemana).getResultList();
         entityManager.close();
