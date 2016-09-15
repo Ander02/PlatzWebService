@@ -3,6 +3,7 @@ package com.platz.model;
 import com.platz.http.cadastro.EmpresaCadastro;
 import com.platz.util.DataUtil;
 import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -41,6 +42,7 @@ public class EmpresaModel {
     @Length(min = 10, max = 11, message = "O telefone deve ter entre 10 e 11 caracteres")
     private String telefone2;
     private String imagemPerfil;
+    @Embedded
     private EnderecoModel endereco;
 
     public EmpresaModel() {

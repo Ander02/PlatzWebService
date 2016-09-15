@@ -34,8 +34,7 @@ public class CategoriaModel {
     @NotNull(message = "O nome não pode ser nulo")
     private String nome;
 
-    //@NotNull(message = "Adicione um icone")
-    @Length(max = 255, message = "O nome da imagem é muito longo")
+    @Length(max = 1024, message = "O nome da imagem é muito longo")
     private String caminhoIcone = "";
 
     @Temporal(TemporalType.TIMESTAMP)
