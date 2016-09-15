@@ -2,6 +2,7 @@ package com.platz.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -37,14 +38,21 @@ public class DataUtil {
             return null;
         }
     }
-    
-    public String dataSemPontuacao(Date date){
-       
-       if (date != null) {
+
+    public String dataSemPontuacao(Date date) {
+
+        if (date != null) {
             SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy-HHmmssSSS");
             return dateFormat.format(date);
-        } else {            
+        } else {
             return null;
         }
+    }
+
+    public Date adicionaDias(int dias, Date data) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(data);
+        calendar.add(Calendar.DAY_OF_MONTH, dias);
+        return calendar.getTime();        
     }
 }
