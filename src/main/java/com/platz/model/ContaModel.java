@@ -48,7 +48,7 @@ public class ContaModel {
     @Temporal(TemporalType.TIMESTAMP)
     private Date ultimoAcesso;
     
-    private String token;
+    private String token = null;
 
     //Construtores
     public ContaModel() {

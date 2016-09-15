@@ -163,11 +163,8 @@ public class ContaService {
             //Buscar model pelo id
             ContaModel model = contaController.buscarPorId(id);
 
-            //Settar informações na model
-            model.setSenha(conta.getSenha());
-
             //Alterar registro
-            contaController.alterar(model);
+            contaController.alterarSenha(model, conta.getSenha());
 
             //Retorna Status Code OK com a entity de leitura com a modificação
             return Response.status(Response.Status.OK).entity(new ContaLeitura(model)).build();

@@ -5,10 +5,7 @@ import com.platz.http.cadastro.Login;
 import com.platz.http.leitura.ContaLeitura;
 import com.platz.model.ContaModel;
 import com.platz.model.Perfil;
-import com.platz.util.EncriptAES;
 import com.platz.util.PerfilAuth;
-import com.platz.util.TokenUtil;
-import java.util.Date;
 import java.util.List;
 import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
@@ -38,26 +35,18 @@ public class LoginService {
     public Response login(Login login) {
 
         try {
-            String senhaEncriptada = new EncriptAES().byteParaString(new EncriptAES().encrypt(login.getSenha(), EncriptAES.getChaveEncriptacao()));
+            ContaModel model = contaController.login(login);
 
-            //autenticar usuario
-            ContaModel model = contaController.getConta(login.getEmail(), senhaEncriptada);
-
+            //Retornar token na resposta
             if (model != null) {
-                String token = new TokenUtil().criarToken(model.getId());
-                model.setToken(token);
-                model.setUltimoAcesso(new Date());
-                contaController.alterar(model);
-
-                //Retornar token na resposta
-                return Response.ok(new ContaLeitura(model)).header(HttpHeaders.AUTHORIZATION, token).build();
-            } else {
-                return Response.status(Response.Status.UNAUTHORIZED).entity("Usuário e/ou senhas incorretos").build();
-
+                return Response.ok(new ContaLeitura(model)).header(HttpHeaders.AUTHORIZATION, model.getToken()).build();
             }
+
+            return Response.status(Response.Status.UNAUTHORIZED).entity("Usuário e/ou senhas incorretos").build();
+
         } catch (Exception e) {
             System.out.println("Erro ao logar: " + e.getMessage());
-            return Response.status(Response.Status.UNAUTHORIZED).entity("Usuário ou senhas incorretos").build();
+            return Response.status(Response.Status.UNAUTHORIZED).entity("Usuário e/ou senhas incorretos").build();
         }
     }
 
@@ -79,9 +68,8 @@ public class LoginService {
             String token = authorizations.get(0).replaceFirst("Bearer ", "");
 
             //Pegar conta pelo token, anular o token e alterar o registro
-            ContaModel conta = contaController.getConta(token);
-            conta.setToken(null);
-            contaController.alterar(conta);
+            ContaModel model = contaController.getConta(token);
+            contaController.logoff(model);
 
             return Response.ok().build();
         } catch (Exception e) {

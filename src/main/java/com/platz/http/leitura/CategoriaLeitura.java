@@ -28,7 +28,7 @@ public class CategoriaLeitura {
         setNome(nome);
         setDataCadastro(dataCadastro);
         setCaminhoIcone(caminhoIcone);
-        //this.deletado = deletado;
+        setDeletado(deletado);
     }
 
     public CategoriaLeitura(CategoriaModel model) {

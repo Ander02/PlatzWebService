@@ -1,7 +1,10 @@
 package com.platz.controller;
 
 import com.platz.dao.ContaDao;
+import com.platz.http.cadastro.Login;
 import com.platz.model.ContaModel;
+import com.platz.util.EncriptAES;
+import com.platz.util.TokenUtil;
 import java.util.Date;
 import java.util.List;
 
@@ -76,6 +79,36 @@ public class ContaController {
         if (model.getBloqueado() != null) {
             model.setBloqueado(null);
             contaDao.alterar(model);
+        }
+    }
+
+    public void logoff(ContaModel model) {
+        model.setToken(null);
+        this.alterar(model);
+    }
+    public void alterarSenha(ContaModel model, String senha){
+        model.setSenha(senha);
+        this.alterar(model);
+    }
+
+    public ContaModel login(Login login) {
+        try {
+            String senhaEncriptada = new EncriptAES().byteParaString(new EncriptAES().encrypt(login.getSenha(), EncriptAES.getChaveEncriptacao()));
+
+            //autenticar usuario
+            ContaModel model = this.getConta(login.getEmail(), senhaEncriptada);
+            if (model != null) {
+                String token = new TokenUtil().criarToken(model.getId());
+                model.setToken(token);
+                model.setUltimoAcesso(new Date());
+                this.alterar(model);
+                return model;
+            }
+            return null;
+
+        } catch (Exception e) {
+            System.out.println("Erro ao logar: " + e.getMessage());
+            return null;
         }
     }
 

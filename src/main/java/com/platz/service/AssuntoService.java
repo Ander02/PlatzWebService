@@ -40,7 +40,7 @@ public class AssuntoService {
         try {
             // Cadastrar assunto
             assuntoController.cadastrar(model);
-
+            
             // Retorna a resposta para o cliente com o Status Code CREATED e o Assunto de Leitura
             return Response.status(Response.Status.CREATED).entity(new AssuntoLeitura(model)).build();
 

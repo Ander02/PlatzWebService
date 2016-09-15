@@ -19,6 +19,10 @@ public class CurtidaController {
         curtidosDao.cadastrar(model);
     }
 
+    public void descurtir(CurtidaModel model) {
+        curtidosDao.excluir(model);
+    }
+
     public List<CurtidaModel> listarTodos() {
         return curtidosDao.listarTodos(CurtidaModel.class);
     }
@@ -33,10 +37,6 @@ public class CurtidaController {
 
     public List<CurtidaModel> buscarPeloUsuario(UsuarioModel usuario) {
         return curtidosDao.buscarPorUsuario(usuario);
-    }
-
-    public void descurtir(CurtidaModel model) {
-        curtidosDao.excluir(model);
     }
 
 }

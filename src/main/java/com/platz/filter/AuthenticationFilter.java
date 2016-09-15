@@ -1,12 +1,15 @@
 package com.platz.filter;
 
+import com.platz.controller.ContaController;
 import com.platz.dao.ContaDao;
 import com.platz.model.ContaModel;
 import com.platz.model.Perfil;
+import com.platz.util.DataUtil;
 import com.platz.util.PerfilAuth;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -89,8 +92,13 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 
             //Se a conta não for nula
             if (conta != null) {
-                //Verificar se o perfil existe            
-                return perfilSet.contains(conta.getPerfil());
+                //Verificar se o perfil existe
+
+                if (new Date().before(new DataUtil().adicionaDias(1, new DataUtil().converterData(conta.getUltimoAcesso())))) {
+                    return perfilSet.contains(conta.getPerfil());
+                } else {
+                    new ContaController().logoff(conta);
+                }
             }
             return false;
 

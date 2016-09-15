@@ -45,7 +45,7 @@ public class AvaliacaoController {
     }
 
     public void alterar(AvaliacaoModel model, AvaliacaoEdicao avaliacao) {
-        if (avaliacao.getNota() != null && !avaliacao.getNota().equals("")) {
+        if (avaliacao.getNota() != null) {
             model.setNota(avaliacao.getNota());
             avaliacaoDao.alterar(model);
         }
