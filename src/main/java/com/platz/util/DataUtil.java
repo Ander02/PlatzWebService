@@ -55,4 +55,10 @@ public class DataUtil {
         calendar.add(Calendar.DAY_OF_MONTH, dias);
         return calendar.getTime();        
     }
+    public Date adicionaMinutos(int minutos, Date data) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(data);
+        calendar.add(Calendar.MINUTE, minutos);
+        return calendar.getTime();        
+    }
 }

@@ -1,5 +1,7 @@
 package com.platz.util;
 
+import java.util.Date;
+
 /**
  *
  * @author Anderson
@@ -8,9 +10,6 @@ public class Teste {
 
     public static void main(String[] args) {
 
-        
-        
-        
         
         
         /* Descriptografia de Token        
