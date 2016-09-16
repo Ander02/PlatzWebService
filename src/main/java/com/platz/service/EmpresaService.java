@@ -79,10 +79,12 @@ public class EmpresaService {
                 //Montando o nome do arquivo
                 String nomeDoArquivo = model.getId() + "." + fileMetaData.getMediaType().getSubtype();
 
-                //Verificar se já existe um icone cadastrado
-                if (model.getImagemPerfil() != null || !model.getImagemPerfil().equals("")) {
-                    new ImagemUtil().deletarArquivo(model.getImagemPerfil());
-                    System.out.println("Apagou arquivo antigo");
+                //Verificar se já existe uma imagem cadastrado
+                if (model.getImagemPerfil() != null) {
+                    if (!model.getImagemPerfil().equals("")) {
+                        new ImagemUtil().deletarArquivo(model.getImagemPerfil());
+                        System.out.println("Apagou arquivo antigo");
+                    }
                 }
 
                 //Salvar Imagem

@@ -3,7 +3,6 @@ package com.platz.dao;
 import com.platz.model.EmpresaModel;
 import com.platz.model.EventoModel;
 import com.platz.util.DataUtil;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;

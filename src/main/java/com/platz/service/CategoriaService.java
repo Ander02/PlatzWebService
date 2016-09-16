@@ -78,10 +78,12 @@ public class CategoriaService {
                 //Montando o nome do arquivo
                 String nomeDoArquivo = model.getId() + "." + fileMetaData.getMediaType().getSubtype();
 
-                //Verificar se já existe um icone cadastrado
-                if (model.getCaminhoIcone() != null || !model.getCaminhoIcone().equals("")) {
-                    new ImagemUtil().deletarArquivo(model.getCaminhoIcone());
-                    System.out.println("Apagou arquivo antigo");
+                //Verificar se já existe uma imagem cadastrado
+                if (model.getCaminhoIcone() != null) {
+                    if (!model.getCaminhoIcone().equals("")) {
+                        new ImagemUtil().deletarArquivo(model.getCaminhoIcone());
+                        System.out.println("Apagou arquivo antigo");
+                    }
                 }
 
                 //Salvar Imagem

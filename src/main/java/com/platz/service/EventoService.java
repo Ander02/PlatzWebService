@@ -77,27 +77,41 @@ public class EventoService {
             //Buscar Model pelo id
             EventoModel model = eventoController.buscarPorId(id);
 
-            //Montando o caminho do upload
-            String diretorioDoUpload = new ImagemUtil().RAIZ + "evento/" + model.getId() + "/";
-            //Montando o nome do arquivo
-            String nomeDoArquivo = "0" + "." + fileMetaData.getMediaType().getSubtype();
+            if (model != null) {
 
-            //Salvar Imagem
-            boolean ok = new ImagemUtil().salvarArquivo(diretorioDoUpload, nomeDoArquivo, imagemCapaInputStream);
+                //Montando o caminho do upload
+                String diretorioDoUpload = new ImagemUtil().RAIZ + "evento/" + model.getId() + "/";
+                //Montando o nome do arquivo
+                String nomeDoArquivo = "0" + "." + fileMetaData.getMediaType().getSubtype();
 
-            //Se a imagem for salva sem nenhum erro atualiza a model
-            if (ok) {
-                //Settar o caminho do icone na model
-                model.setImagemCapa(diretorioDoUpload + nomeDoArquivo);
+                //Verificar se já existe uma imagem cadastrado
+                if (model.getImagemCapa() != null) {
+                    if (!model.getImagemCapa().equals("")) {
+                        new ImagemUtil().deletarArquivo(model.getImagemCapa());
+                        System.out.println("Apagou arquivo antigo");
+                    }
+                }
 
-                //Alterar
-                eventoController.alterar(model);
-            } else {
-                //Retorna uma BadRequest ao usuário
-                return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
+                //Salvar Imagem
+                boolean ok = new ImagemUtil().salvarArquivo(diretorioDoUpload, nomeDoArquivo, imagemCapaInputStream);
+
+                //Se a imagem for salva sem nenhum erro atualiza a model
+                if (ok) {
+                    //Settar o caminho do icone na model
+                    model.setImagemCapa(diretorioDoUpload + nomeDoArquivo);
+
+                    //Alterar
+                    eventoController.alterar(model);
+                } else {
+                    //Retorna uma BadRequest ao usuário
+                    return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
+                }
+
+                return Response.ok(new EventoLeitura(model)).build();
             }
 
-            return Response.ok(new EventoLeitura(model)).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
+
         } catch (Exception e) {
             // Envia erro pelo console
             System.out.println("Erro de upload: " + e.getMessage());
@@ -105,16 +119,13 @@ public class EventoService {
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
         }
     }
-    
-    
-    
+
     @PUT
     @Path(value = "/evento/imagens/{id}")
-    //@PerfilAuth(Perfil.EMPRESA)
     @PermitAll
     @Consumes(value = MediaType.MULTIPART_FORM_DATA)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-     public Response subirImagemGaleria(@FormDataParam("imagem") InputStream imagemInputStream,
+    public Response subirImagemGaleria(@FormDataParam("imagem") InputStream imagemInputStream,
             @FormDataParam("imagem") FormDataBodyPart fileMetaData,
             @PathParam("id") String id) {
 
@@ -125,7 +136,7 @@ public class EventoService {
             //Montando o caminho do upload
             String diretorioDoUpload = new ImagemUtil().RAIZ + "evento/" + model.getId() + "/";
             //Montando o nome do arquivo
-            String nomeDoArquivo = new DataUtil().dataSemPontuacao(new Date())+ "." + fileMetaData.getMediaType().getSubtype();
+            String nomeDoArquivo = new DataUtil().dataSemPontuacao(new Date()) + "." + fileMetaData.getMediaType().getSubtype();
 
             //Salvar Imagem
             boolean ok = new ImagemUtil().salvarArquivo(diretorioDoUpload, nomeDoArquivo, imagemInputStream);
@@ -298,7 +309,6 @@ public class EventoService {
     @GET
     @Path(value = "/eventos/destacados")
     @PermitAll
-
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarDestacados() {
         try {
@@ -318,7 +328,6 @@ public class EventoService {
     @GET
     @Path(value = "/eventos/naoCancelados")
     @PermitAll
-
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarNaoCancelados() {
         try {
@@ -338,7 +347,6 @@ public class EventoService {
     @GET
     @Path(value = "/eventos/naoCensurados")
     @PermitAll
-
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarNaoensurados() {
         try {
@@ -358,7 +366,6 @@ public class EventoService {
     @GET
     @Path(value = "/eventos/semDestaque")
     @PermitAll
-
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarSemDestaque() {
         try {
@@ -378,7 +385,6 @@ public class EventoService {
     @GET
     @Path(value = "/eventos/canceladosECensurados")
     @PermitAll
-
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarCanceladosECensurado() {
         try {
@@ -398,7 +404,6 @@ public class EventoService {
     @GET
     @Path(value = "/eventos/naoCanceladosESemCensura")
     @PermitAll
-
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarNaoCanceladosESemCensura() {
         try {
@@ -418,7 +423,6 @@ public class EventoService {
     @GET
     @Path(value = "/eventos/idade/{idade}")
     @PermitAll
-
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPelaIdade(@PathParam("idade") int idade) {
         try {
@@ -438,7 +442,6 @@ public class EventoService {
     @GET
     @Path(value = "/eventos/gratuitos")
     @PermitAll
-
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarGratuitos() {
         try {
@@ -458,7 +461,6 @@ public class EventoService {
     @GET
     @Path(value = "/eventos/preco/{preco}")
     @PermitAll
-
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloValorMaximo(@PathParam("preco") double preco) {
         try {
@@ -478,7 +480,6 @@ public class EventoService {
     @GET
     @Path(value = "/eventos/passados")
     @PermitAll
-
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarEventosPassados() {
         try {
@@ -498,7 +499,6 @@ public class EventoService {
     @GET
     @Path(value = "/eventos/futuros")
     @PermitAll
-
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarEventosFuturos() {
         try {
@@ -518,7 +518,6 @@ public class EventoService {
     @GET
     @Path(value = "/eventos/semana")
     @PermitAll
-
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarEventosDaSemana() {
         try {
