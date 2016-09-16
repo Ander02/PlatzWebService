@@ -37,7 +37,7 @@ public class ContaService {
         //Instanciar uma nova model
 
         ContaModel model = new ContaModel(conta);
-        
+
         try {
             //Settar informações na model baseado na Conta de Cadastro passada            
             model.setPerfil(Perfil.ADMINISTRADOR.ordinal());
@@ -47,10 +47,8 @@ public class ContaService {
             return Response.status(Response.Status.CREATED).entity(new ContaLeitura(model)).build();
 
         } catch (Exception e) {
-
             // Envia erro pelo console
             System.out.println("Erro: " + e.getMessage());
-            e.printStackTrace();
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao cadastrar conta").build();
         }
@@ -63,12 +61,8 @@ public class ContaService {
     public Response listarTodos() {
 
         try {
-            //Lista com todas as ContasaModels cadastradas
-            List<ContaModel> models = contaController.listarTodos();
-            //Converter a lista de models para uma lista de leitura
-            List<ContaLeitura> listaDeContas = new ContaLeitura().converterLista(models);
-            //Retorna a lista com um Status Code OK
-            return Response.ok(listaDeContas).build();
+            //Lista com todas as models, e converte para uma lista de leitura respondendo com um status code OK
+            return Response.ok(new ContaLeitura().converterLista(contaController.listarTodos())).build();
 
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
