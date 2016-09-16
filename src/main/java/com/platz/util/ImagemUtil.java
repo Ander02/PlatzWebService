@@ -53,7 +53,6 @@ public class ImagemUtil {
 
         } catch (Exception e) {
             System.out.println("Erro ao excluir arquivo: " + e.getMessage());
-
         }
     }
 

@@ -71,27 +71,40 @@ public class CategoriaService {
             //Buscar Model pelo id
             CategoriaModel model = categoriaController.buscarPorId(id);
 
-            //Montando o caminho do upload
-            String diretorioDoUpload = new ImagemUtil().RAIZ + "categorias/";
-            //Montando o nome do arquivo
-            String nomeDoArquivo = model.getId() + "." + fileMetaData.getMediaType().getSubtype();
+            if (model != null) {
 
-            //Salvar Imagem
-            boolean ok = new ImagemUtil().salvarArquivo(diretorioDoUpload, nomeDoArquivo, iconeInputStream);
+                //Montando o caminho do upload
+                String diretorio = new ImagemUtil().RAIZ + "categorias/";
+                //Montando o nome do arquivo
+                String nomeDoArquivo = model.getId() + "." + fileMetaData.getMediaType().getSubtype();
 
-            //Se a imagem for salva sem nenhum erro atualiza a model
-            if (ok) {
-                //Settar o caminho do icone na model
-                model.setCaminhoIcone(diretorioDoUpload + nomeDoArquivo);
+                //Verificar se já existe um icone cadastrado
+                if (model.getCaminhoIcone() != null || !model.getCaminhoIcone().equals("")) {
+                    new ImagemUtil().deletarArquivo(model.getCaminhoIcone());
+                    System.out.println("Apagou arquivo antigo");
+                }
 
-                //Alterar
-                categoriaController.alterar(model);
-            } else {
-                //Retorna uma BadRequest ao usuário
-                return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
+                //Salvar Imagem
+                boolean ok = new ImagemUtil().salvarArquivo(diretorio, nomeDoArquivo, iconeInputStream);
+
+                //Se a imagem for salva sem nenhum erro atualiza a model
+                if (ok) {
+                    //Settar o caminho do icone na model
+                    model.setCaminhoIcone(diretorio + nomeDoArquivo);
+
+                    //Alterar
+                    categoriaController.alterar(model);
+                } else {
+                    //Retorna uma BadRequest ao usuário
+                    return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
+                }
+
+                return Response.ok(new CategoriaLeitura(model)).build();
             }
 
-            return Response.ok(new CategoriaLeitura(model)).build();
+            System.out.println("Id não existente");
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
+
         } catch (Exception e) {
             // Envia erro pelo console
             System.out.println("Erro de upload: " + e.getMessage());
