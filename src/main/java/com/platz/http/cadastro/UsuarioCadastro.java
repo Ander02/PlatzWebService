@@ -22,7 +22,6 @@ public class UsuarioCadastro {
     }
 
     public UsuarioCadastro(ContaCadastro conta, String nome, String dataNascimento, String telefone, String cpf, String imagemPerfil, EnderecoCadastro endereco) {
-        conta.setPerfil(Perfil.USUARIO.ordinal());
         setConta(conta);
         setCpf(cpf);
         setDataNascimento(dataNascimento);

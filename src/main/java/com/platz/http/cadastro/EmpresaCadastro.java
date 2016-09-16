@@ -28,8 +28,7 @@ public class EmpresaCadastro {
         setRazaoSocial(razaoSocial);
         setTelefone(telefone);
         setTelefone2(telefone2);
-        setImagemPerfil(imagemPerfil);
-        conta.setPerfil(Perfil.EMPRESA.ordinal());
+        setImagemPerfil(imagemPerfil);       
         setConta(conta);
     }
 

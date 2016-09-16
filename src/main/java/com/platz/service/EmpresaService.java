@@ -44,7 +44,7 @@ public class EmpresaService {
         try {
             //Instanciar uma nova model, passando o http de cadastro
             EmpresaModel model = new EmpresaModel(empresa);
-
+            model.getConta().setPerfil(Perfil.EMPRESA.ordinal());
             empresaController.cadastrar(model);
 
             // Retorna a resposta para o cliente com o Status Code CREATED e a Mensagem de Leitura

@@ -60,14 +60,9 @@ public class AvaliacaoService {
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
         try {
-            //Lista com todas as AssuntoEntity cadastradas
-            List<AvaliacaoModel> models = avaliacaoController.listarTodos();
 
-            //Lista de Assuntos de Leitura baseado na lista de models
-            List<AvaliacaoLeitura> listaDeAvaliacoes = new AvaliacaoLeitura().converterLista(models);
-
-            //Retorna a lista com um Status Code OK
-            return Response.ok(listaDeAvaliacoes).build();
+            //Lista com todas as models, e converte para uma lista de leitura respondendo com um status code OK
+            return Response.ok(new AvaliacaoLeitura().converterLista(avaliacaoController.listarTodos())).build();
 
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
@@ -103,11 +98,8 @@ public class AvaliacaoService {
         try {
             List<AvaliacaoModel> models = avaliacaoController.buscarPeloEvento(new EventoController().buscarPorId(id));
 
-            //Lista de Leitura baseado na lista de models
-            List<AvaliacaoLeitura> listaDeLeitura = new AvaliacaoLeitura().converterLista(models);
-
             //Retorna a lista com um Status Code OK
-            return Response.ok(listaDeLeitura).build();
+            return Response.ok(new AvaliacaoLeitura().converterLista(models)).build();
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
@@ -124,11 +116,8 @@ public class AvaliacaoService {
         try {
             List<AvaliacaoModel> models = avaliacaoController.buscarPeloUsuario(new UsuarioController().buscarPorId(id));
 
-            //Lista de Leitura baseado na lista de models
-            List<AvaliacaoLeitura> listaDeLeitura = new AvaliacaoLeitura().converterLista(models);
-
             //Retorna a lista com um Status Code OK
-            return Response.ok(listaDeLeitura).build();
+            return Response.ok(new AvaliacaoLeitura().converterLista(models)).build();
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
@@ -142,8 +131,8 @@ public class AvaliacaoService {
     @Produces(value = MediaType.TEXT_PLAIN + ";charset=UTF-8")
     public Response mediaPorEvento(@PathParam("id") String id) {
         try {
-            Double media = avaliacaoController.mediaPorEvento(new EventoController().buscarPorId(id));
-            return Response.ok(media).build();
+            return Response.ok(avaliacaoController.mediaPorEvento(new EventoController().buscarPorId(id))).build();
+            
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
             //Retorna uma BadRequest ao usuário

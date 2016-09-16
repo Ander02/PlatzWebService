@@ -43,7 +43,7 @@ public class UsuarioService {
         try {
             //Instanciar uma nova model
             UsuarioModel model = new UsuarioModel(usuario);
-
+            model.getConta().setPerfil(Perfil.USUARIO.ordinal());
             usuarioController.cadastrar(model);
 
             // Retorna a resposta para o cliente com o Status Code CREATED e a Mensagem de Leitura
