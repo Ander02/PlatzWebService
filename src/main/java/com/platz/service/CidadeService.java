@@ -48,7 +48,7 @@ public class CidadeService {
             // Envia erro pelo console
             System.out.println("Erro: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
-            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao cadastrar assunto").build();
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao cadastrar cidade").build();
         }
     }
 
@@ -58,14 +58,8 @@ public class CidadeService {
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
         try {
-            //Lista com todas as AssuntoEntity cadastradas
-            List<CidadeModel> models = cidadeController.listarTodos();
-
-            //Lista de Assuntos de Leitura baseado na lista de models
-            List<CidadeLeitura> listaDeAssuntos = new CidadeLeitura().converterLista(models);
-
-            //Retorna a lista com um Status Code OK
-            return Response.ok(listaDeAssuntos).build();
+            //Lista com todas as models, e converte para uma lista de leitura respondendo com um status code OK
+            return Response.ok(new CidadeLeitura().converterLista(cidadeController.listarTodos())).build();
 
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
@@ -83,10 +77,8 @@ public class CidadeService {
 
         //Verifica se a model retornada não é nula
         if (model != null) {
-
             //Retorna um Status Code OK com a conta de leitura
             return Response.ok(new CidadeLeitura(model)).build();
-
         }
 
         //Se a model for nula retorna um Status Code Not Found
@@ -102,11 +94,8 @@ public class CidadeService {
             //Lista com todas as models cadastradas
             List<CidadeModel> models = cidadeController.buscarPeloNome(nome);
 
-            //Lista de Leitura baseado na lista de models
-            List<CidadeLeitura> listaDeLeitura = new CidadeLeitura().converterLista(models);
-
             //Retorna a lista com um Status Code OK
-            return Response.ok(listaDeLeitura).build();
+            return Response.ok(new CidadeLeitura().converterLista(models)).build();
 
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
@@ -126,11 +115,8 @@ public class CidadeService {
             //Lista com todas as AssuntoEntity cadastradas
             List<CidadeModel> models = cidadeController.buscarPeloEstado(estado);
 
-            //Lista de Leitura baseado na lista de models
-            List<CidadeLeitura> listaDeLeitura = new CidadeLeitura().converterLista(models);
-
             //Retorna a lista com um Status Code OK
-            return Response.ok(listaDeLeitura).build();
+            return Response.ok(new CidadeLeitura().converterLista(models)).build();
 
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
@@ -140,7 +126,7 @@ public class CidadeService {
     }
 
     @GET
-    @Path(value = "/cidade/{nome}/{uf}")
+    @Path(value = "/cidade/{uf}/{nome}")
     @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloNomeEUf(@PathParam("nome") String nome, @PathParam("uf") String uf) {
@@ -149,10 +135,8 @@ public class CidadeService {
 
         //Verifica se a model retornada não é nula
         if (model != null) {
-
             //Retorna um Status Code OK com a conta de leitura
             return Response.ok(new CidadeLeitura(model)).build();
-
         }
 
         //Se a model for nula retorna um Status Code Not Found

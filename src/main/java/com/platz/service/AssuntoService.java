@@ -40,7 +40,7 @@ public class AssuntoService {
         try {
             // Cadastrar assunto
             assuntoController.cadastrar(model);
-            
+
             // Retorna a resposta para o cliente com o Status Code CREATED e o Assunto de Leitura
             return Response.status(Response.Status.CREATED).entity(new AssuntoLeitura(model)).build();
 
@@ -58,14 +58,8 @@ public class AssuntoService {
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
         try {
-            //Lista com todas as AssuntoEntity cadastradas
-            List<AssuntoModel> models = assuntoController.listarTodos();
-
-            //Lista de Assuntos de Leitura baseado na lista de models
-            List<AssuntoLeitura> listaDeAssuntos = new AssuntoLeitura().converterLista(models);
-
-            //Retorna a lista com um Status Code OK
-            return Response.ok(listaDeAssuntos).build();
+            //Lista com todas as models, e converte para uma lista de leitura respondendo com um status code OK
+            return Response.ok(new AssuntoLeitura().converterLista(assuntoController.listarTodos())).build();
 
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
@@ -83,14 +77,12 @@ public class AssuntoService {
 
         //Verifica se a entidade retornada não é nula
         if (model != null) {
-
             //Retorna um Status Code OK com o Assunto de leitura
             return Response.ok(new AssuntoLeitura(model)).build();
-
         }
 
         //Se a entity for nula retorna um Status Code Not Found
-        return Response.status(Response.Status.NOT_FOUND).entity("Assunto não encontrada").build();
+        return Response.status(Response.Status.NOT_FOUND).entity("Assunto não encontrado").build();
     }
 
     @GET
@@ -100,14 +92,8 @@ public class AssuntoService {
     public Response buscarPeloNome(@PathParam("nome") String nome) {
         try {
 
-            //Buscar Models pelo nome
-            List<AssuntoModel> models = assuntoController.buscarPeloNome(nome);
-
-            //Lista de Assuntos de Leitura baseado na lista de entidades
-            List<AssuntoLeitura> listaDeAssuntos = new AssuntoLeitura().converterLista(models);
-
-            //Retorna a lista com um Status Code OK
-            return Response.ok(listaDeAssuntos).build();
+            //Lista com todas as models, e converte para uma lista de leitura respondendo com um status code OK
+            return Response.ok(new AssuntoLeitura().converterLista(assuntoController.buscarPeloNome(nome))).build();
 
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());

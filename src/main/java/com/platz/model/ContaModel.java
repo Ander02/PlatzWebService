@@ -56,8 +56,7 @@ public class ContaModel {
 
     public ContaModel(ContaCadastro conta) {
         setEmail(conta.getEmail());
-        setSenha(conta.getSenha());
-        setPerfil(conta.getPerfil());
+        setSenha(conta.getSenha());        
     }
 
     public ContaModel(ContaEdicao conta) {

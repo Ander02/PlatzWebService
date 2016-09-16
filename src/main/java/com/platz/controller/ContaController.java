@@ -24,7 +24,7 @@ public class ContaController {
         return contaDao.getConta(email, senha);
     }
 
-    public void cadastrar(ContaModel model) {
+    public void cadastrar(ContaModel model) {        
         contaDao.cadastrar(model);
     }
 

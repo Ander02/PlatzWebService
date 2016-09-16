@@ -48,8 +48,7 @@ public class CategoriaModel {
     }
 
     public CategoriaModel(CategoriaCadastro categoria) {
-        setNome(categoria.getNome());
-        setCaminhoIcone(categoria.getCaminhoIcone());
+        setNome(categoria.getNome());        
     }
 
     //getters and setters

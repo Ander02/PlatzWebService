@@ -11,7 +11,7 @@ public class ContaCadastro {
 
     private String email;
     private String senha;
-    private int perfil;
+   
 
     //Construtores
     public ContaCadastro() {
@@ -37,14 +37,6 @@ public class ContaCadastro {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }
-
-    public int getPerfil() {
-        return perfil;
-    }
-
-    public void setPerfil(int perfil) {
-        this.perfil = perfil;
     }
 
 }

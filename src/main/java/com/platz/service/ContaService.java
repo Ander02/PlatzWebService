@@ -35,10 +35,12 @@ public class ContaService {
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(ContaCadastro conta) {
         //Instanciar uma nova model
-        ContaModel model = new ContaModel(conta);
 
+        ContaModel model = new ContaModel(conta);
+        
         try {
             //Settar informações na model baseado na Conta de Cadastro passada            
+            model.setPerfil(Perfil.ADMINISTRADOR.ordinal());
             contaController.cadastrar(model);
 
             // Retorna a resposta para o cliente com o Status Code CREATED e a Conta de Leitura
@@ -87,7 +89,6 @@ public class ContaService {
         if (model != null) {
             //Retorna um Status Code OK com a conta de leitura
             return Response.ok(new ContaLeitura(model)).build();
-
         }
 
         //Se a model for nula retorna um Status Code Not Found

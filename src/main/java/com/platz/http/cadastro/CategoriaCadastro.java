@@ -10,15 +10,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class CategoriaCadastro {
 
     private String nome;
-    private String caminhoIcone;
 
     //Construtores
     public CategoriaCadastro() {
     }
 
-    public CategoriaCadastro(String nome, String caminhoIcone) {
+    public CategoriaCadastro(String nome) {
         setNome(nome);
-        setCaminhoIcone(caminhoIcone);
     }
 
     //Getters and Setters
@@ -28,14 +26,6 @@ public class CategoriaCadastro {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getCaminhoIcone() {
-        return caminhoIcone;
-    }
-
-    public void setCaminhoIcone(String caminhoIcone) {
-        this.caminhoIcone = caminhoIcone;
     }
 
 }

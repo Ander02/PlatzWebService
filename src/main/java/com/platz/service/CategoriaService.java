@@ -121,14 +121,9 @@ public class CategoriaService {
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
         try {
-            //Lista com todas as CategoriaModels cadastradas
-            List<CategoriaModel> models = categoriaController.listarTodos();
 
-            //Lista de Categorias de Leitura baseado na lista de models
-            List<CategoriaLeitura> listaDeCategorias = new CategoriaLeitura().converterLista(models);
-
-            //Retorna a lista com um Status Code OK
-            return Response.ok(listaDeCategorias).build();
+            //Lista com todas as models, e converte para uma lista de leitura respondendo com um status code OK
+            return Response.ok(new CategoriaLeitura().converterLista(categoriaController.listarTodos())).build();
 
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
@@ -147,10 +142,8 @@ public class CategoriaService {
 
         //Verifica se a model retornada não é nula
         if (model != null) {
-
             //Retorna um Status Code OK com a categoria de leitura
             return Response.ok(new CategoriaLeitura(model)).build();
-
         }
 
         //Se a model for nula retorna um Status Code Not Found
@@ -167,11 +160,8 @@ public class CategoriaService {
             //Buscar Models pelo nome
             List<CategoriaModel> models = categoriaController.buscarPeloNome(nome);
 
-            //Lista de Categorias de Leitura baseado na lista de entidades
-            List<CategoriaLeitura> listaDeCategorias = new CategoriaLeitura().converterLista(models);
-
             //Retorna a lista com um Status Code OK
-            return Response.ok(listaDeCategorias).build();
+            return Response.ok(new CategoriaLeitura().converterLista(models)).build();
 
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
