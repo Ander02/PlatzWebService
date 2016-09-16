@@ -72,17 +72,22 @@ public class CategoriaService {
             CategoriaModel model = categoriaController.buscarPorId(id);
 
             //Montando o caminho do upload
-            String diretorioDoUpload = new ImagemUtil().RAIZ + "categorias/";
+            String diretorio = new ImagemUtil().RAIZ + "categorias/";
             //Montando o nome do arquivo
             String nomeDoArquivo = model.getId() + "." + fileMetaData.getMediaType().getSubtype();
 
+            if (model.getCaminhoIcone() != null || !model.getCaminhoIcone().equals("")) {
+                new ImagemUtil().deletarArquivo(model.getCaminhoIcone());
+                System.out.println("Apagou arquivo antigo");
+            }
+
             //Salvar Imagem
-            boolean ok = new ImagemUtil().salvarArquivo(diretorioDoUpload, nomeDoArquivo, iconeInputStream);
+            boolean ok = new ImagemUtil().salvarArquivo(diretorio, nomeDoArquivo, iconeInputStream);
 
             //Se a imagem for salva sem nenhum erro atualiza a model
             if (ok) {
                 //Settar o caminho do icone na model
-                model.setCaminhoIcone(diretorioDoUpload + nomeDoArquivo);
+                model.setCaminhoIcone(diretorio + nomeDoArquivo);
 
                 //Alterar
                 categoriaController.alterar(model);
