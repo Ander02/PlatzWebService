@@ -72,27 +72,40 @@ public class EmpresaService {
             //Buscar Model pelo id
             EmpresaModel model = empresaController.buscarPorId(id);
 
-            //Montando o caminho do upload
-            String diretorioDoUpload = new ImagemUtil().RAIZ + "empresa/";
-            //Montando o nome do arquivo
-            String nomeDoArquivo = model.getId() + "." + fileMetaData.getMediaType().getSubtype();
+            if (model != null) {
 
-            //Salvar Imagem
-            boolean ok = new ImagemUtil().salvarArquivo(diretorioDoUpload, nomeDoArquivo, iconeInputStream);
+                //Montando o caminho do upload
+                String diretorioDoUpload = new ImagemUtil().RAIZ + "empresa/";
+                //Montando o nome do arquivo
+                String nomeDoArquivo = model.getId() + "." + fileMetaData.getMediaType().getSubtype();
 
-            //Se a imagem for salva sem nenhum erro atualiza a model
-            if (ok) {
-                //Settar o caminho do icone na model
-                model.setImagemPerfil(diretorioDoUpload + nomeDoArquivo);
+                //Verificar se já existe um icone cadastrado
+                if (model.getImagemPerfil() != null || !model.getImagemPerfil().equals("")) {
+                    new ImagemUtil().deletarArquivo(model.getImagemPerfil());
+                    System.out.println("Apagou arquivo antigo");
+                }
 
-                //Alterar
-                empresaController.alterar(model);
-            } else {
-                //Retorna uma BadRequest ao usuário
-                return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
+                //Salvar Imagem
+                boolean ok = new ImagemUtil().salvarArquivo(diretorioDoUpload, nomeDoArquivo, iconeInputStream);
+
+                //Se a imagem for salva sem nenhum erro atualiza a model
+                if (ok) {
+                    //Settar o caminho do icone na model
+                    model.setImagemPerfil(diretorioDoUpload + nomeDoArquivo);
+
+                    //Alterar
+                    empresaController.alterar(model);
+                } else {
+                    //Retorna uma BadRequest ao usuário
+                    return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
+                }
+
+                return Response.ok(new EmpresaLeitura(model)).build();
             }
 
-            return Response.ok(new EmpresaLeitura(model)).build();
+            System.out.println("Id não existente");
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
+
         } catch (Exception e) {
             // Envia erro pelo console
             System.out.println("Erro de upload: " + e.getMessage());
