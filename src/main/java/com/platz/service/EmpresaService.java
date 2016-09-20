@@ -155,26 +155,7 @@ public class EmpresaService {
         //Se a model for nula retorna um Status Code Not Found
         return Response.status(Response.Status.NOT_FOUND).entity("Conta não encontrada").build();
     }
-
-    @GET
-    @Path(value = "/empresa/cnpj/{cnpj}")
-    @PermitAll
-    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public Response buscarPeloCNPJ(@PathParam("cnpj") String cnpj) {
-        EmpresaModel model = empresaController.buscarPeloCNPJ(cnpj);
-
-        //Verifica se a model retornada não é nula
-        if (model != null) {
-
-            //Retorna um Status Code OK com a conta de leitura
-            return Response.ok(new EmpresaLeitura(model)).build();
-
-        }
-
-        //Se a model for nula retorna um Status Code Not Found
-        return Response.status(Response.Status.NOT_FOUND).entity("Conta não encontrada").build();
-    }
-
+    
     @GET
     @Path(value = "/empresa/conta/{id}")
     @PermitAll
