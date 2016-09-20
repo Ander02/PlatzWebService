@@ -5,18 +5,10 @@ package com.platz.util;
  * @author Anderson
  */
 public class Teste {
-
-    public static void main(String[] args) {
-
-        /* Descriptografia de Token        
-        try {
-            System.out.println("ok   " + new EncriptAES().decrypt(new EncriptAES().stringParaByte(new ContaController().buscarPorId("57dace0658cf2005a8e03723").getToken()), EncriptAES.getChaveEncriptacao()));
-            
-        } catch (Exception e) {
-            System.out.println("jksgfuyjhsdb f");
-            e.printStackTrace();
-        }
+    
+    public static void main(String[] args) throws Exception {
         
-         */
+        //new EmailUtil().enviarEmailSimples("chrisxchris2010@hotmail.com", "Teste de email Simples","Um Teste", "Uma resposta para o teste");
+        new EmailUtil().enviarEmailComHtml("chrisxchris2010@hotmail.com", "Teste de email com HTML","Um Teste", "Uma resposta para o teste em html");
     }
 }

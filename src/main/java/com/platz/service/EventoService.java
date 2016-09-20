@@ -14,6 +14,7 @@ import com.platz.model.Perfil;
 import com.platz.util.DataUtil;
 import com.platz.util.ImagemUtil;
 import com.platz.util.PerfilAuth;
+import java.io.File;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
@@ -155,7 +156,7 @@ public class EventoService {
 
             return Response.ok(new EventoLeitura(model)).build();
         } catch (Exception e) {
-            // Envia erro pelo console
+            //Envia erro pelo console
             System.out.println("Erro de upload: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
