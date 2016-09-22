@@ -1,11 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="platz">
     <head>
         <title>Platz Web API </title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="lib/angular/angular.js" type="text/javascript"></script>
     </head>
-    <body>
+
+
+    <body> 
+        <script>
+
+            var app = angular.module("platz", []);
+            angular.module("platz").controller("platzC", function ($scope, $http) {
+
+                $http.get("http://localhost:8084/PlatzWebService/platz/tipoPresencas").success(function (data,status) {
+                    $scope.teste = data;
+                    console.log(status);
+                });
+
+
+            });
+
+        </script>
+
         <h1>Platz Web API</h1>
         <p>Feche essa página e abra o Postman</p>
+
+        <div ng-controller="platzC">
+            <div ng-repeat="obj in teste" >{{obj.nome}}</div>
+        </div>
+        <script>
+
+        </script>
     </body>
 </html>
