@@ -5,6 +5,7 @@ import com.platz.controller.EmpresaController;
 import com.platz.controller.EventoController;
 import com.platz.http.cadastro.EventoCadastro;
 import com.platz.http.edicao.EventoEdicao;
+import com.platz.http.edicao.ImagemEdicao;
 import com.platz.http.leitura.EventoLeitura;
 import com.platz.model.CategoriaModel;
 import com.platz.model.EmpresaModel;
@@ -14,12 +15,13 @@ import com.platz.model.Perfil;
 import com.platz.util.DataUtil;
 import com.platz.util.ImagemUtil;
 import com.platz.util.PerfilAuth;
-import java.io.File;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -32,7 +34,6 @@ import org.glassfish.jersey.media.multipart.FormDataBodyPart;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
 /**
- *
  * @author Anderson
  */
 @Path("")
@@ -153,6 +154,40 @@ public class EventoService {
                 //Retorna uma BadRequest ao usuário
                 return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
             }
+
+            return Response.ok(new EventoLeitura(model)).build();
+        } catch (Exception e) {
+            //Envia erro pelo console
+            System.out.println("Erro de upload: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
+        }
+    }
+
+    @DELETE
+    @Path(value = "/evento/imagens/{id}")
+    @PermitAll
+    @Consumes(value = MediaType.APPLICATION_JSON)
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response apagarImagemGaleria(@PathParam("id") String id, ImagemEdicao imagem) {
+
+        try {
+
+            EventoModel model = eventoController.buscarPorId(id);
+
+            List<ImagemModel> listaDeImagensAtualizadas = new ArrayList<>();
+            for (ImagemModel img : model.getImagens()) {
+
+                if (img.getUrl().equals(imagem.getUrl())) {
+                    img.setDeletado(new Date());
+                }
+
+                listaDeImagensAtualizadas.add(img);
+            }
+
+            model.setImagens(listaDeImagensAtualizadas);
+
+            eventoController.alterar(model);
 
             return Response.ok(new EventoLeitura(model)).build();
         } catch (Exception e) {
