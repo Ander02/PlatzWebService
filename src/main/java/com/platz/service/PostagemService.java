@@ -4,8 +4,11 @@ import com.platz.controller.ContaController;
 import com.platz.controller.EventoController;
 import com.platz.controller.PostagemController;
 import com.platz.http.cadastro.PostagemCadastro;
+import com.platz.http.edicao.ImagemEdicao;
 import com.platz.http.edicao.PostagemEdicao;
+import com.platz.http.leitura.EventoLeitura;
 import com.platz.http.leitura.PostagemLeitura;
+import com.platz.model.EventoModel;
 import com.platz.model.ImagemModel;
 import com.platz.model.Perfil;
 import com.platz.model.PostagemModel;
@@ -13,6 +16,7 @@ import com.platz.util.DataUtil;
 import com.platz.util.ImagemUtil;
 import com.platz.util.PerfilAuth;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.security.PermitAll;
@@ -197,6 +201,40 @@ public class PostagemService {
             return Response.ok(new PostagemLeitura(model)).build();
         } catch (Exception e) {
             // Envia erro pelo console
+            System.out.println("Erro de upload: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
+        }
+    }
+
+    @DELETE
+    @Path(value = "/postagem/imagens/{id}")
+    @PermitAll
+    @Consumes(value = MediaType.APPLICATION_JSON)
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response apagarImagens(@PathParam("id") String id, ImagemEdicao imagem) {
+
+        try {
+
+            PostagemModel model = postagemController.buscarPorId(id);
+
+            List<ImagemModel> listaDeImagensAtualizadas = new ArrayList<>();
+            for (ImagemModel img : model.getImagens()) {
+
+                if (img.getUrl().equals(imagem.getUrl())) {
+                    img.setDeletado(new Date());
+                }
+
+                listaDeImagensAtualizadas.add(img);
+            }
+
+            model.setImagens(listaDeImagensAtualizadas);
+
+            postagemController.alterar(model);
+
+            return Response.ok(new PostagemLeitura(model)).build();
+        } catch (Exception e) {
+            //Envia erro pelo console
             System.out.println("Erro de upload: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();

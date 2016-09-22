@@ -126,4 +126,8 @@ public class PostagemModel {
         return new DataUtil().converterData(id.getDate());
     }
 
+    public void setImagens(List<ImagemModel> imagens) {
+        this.imagens = imagens;
+    }
+
 }
