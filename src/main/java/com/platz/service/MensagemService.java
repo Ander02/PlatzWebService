@@ -7,6 +7,7 @@ import com.platz.http.leitura.MensagemLeitura;
 import com.platz.model.AssuntoModel;
 import com.platz.model.MensagemModel;
 import com.platz.model.Perfil;
+import com.platz.util.EmailUtil;
 import com.platz.util.PerfilAuth;
 import java.util.List;
 import javax.annotation.security.PermitAll;
@@ -46,6 +47,28 @@ public class MensagemService {
 
         } catch (Exception e) {
 
+            //Envia erro pelo console
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao cadastrar mensagem").build();
+        }
+    }
+
+    @POST
+    @Path(value = "/mensagem/{id}")
+    @PerfilAuth(Perfil.ADMINISTRADOR)
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response responderMensagem(String resposta, @PathParam("id") String id) {
+
+        try {
+
+            MensagemModel model = mensagemController.buscarPorId(id);
+
+            new EmailUtil().enviarEmailComHtml(model.getEmail(), "Resposta: " + model.getAssunto().getNome(), model.getConteudo(), resposta);
+
+            return Response.ok().build();
+
+        } catch (Exception e) {
             //Envia erro pelo console
             System.out.println("Erro: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
