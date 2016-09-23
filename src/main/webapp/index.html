@@ -13,11 +13,34 @@
             var app = angular.module("platz", []);
             angular.module("platz").controller("platzC", function ($scope, $http) {
 
-                $http.get("http://localhost:8084/PlatzWebService/platz/tipoPresencas").success(function (data,status) {
-                    $scope.teste = data;
-                    console.log(status);
-                });
+                //Faz um Get no Web Service recebendo uma URL
+                /*
+                 $http._metodoHTTP("url").then(function de sucesso,function de erro);
+                 */
+                $scope.listarTodos = function () {
+                    $http.get("http://localhost:8096/PlatzWebService/platz/categorias").then(function (response) {
+                        $scope.categorias = response.data;
+                    }, function (response) {
+                    });
+                };
 
+                $scope.cadastrar = function (categoria) {
+                    $http.post("http://localhost:8096/PlatzWebService/platz/categoria", categoria).then(function (response) {
+
+                        console.log("Categoria Cadastrada com Sucesso");
+
+                        //Atualiza a lista
+                        $scope.listarTodos();
+
+                    }, function (response) {
+
+                        console.log("Erro ao cadastrar");
+                        console.log(response);
+
+                    });
+                };
+
+                $scope.listarTodos();
 
             });
 
@@ -27,10 +50,19 @@
         <p>Feche essa página e abra o Postman</p>
 
         <div ng-controller="platzC">
-            <div ng-repeat="obj in teste" >{{obj.nome}}</div>
-        </div>
-        <script>
 
-        </script>
+            <input type="text" ng-model="categoria.nome">
+            {{categoria}}
+
+            <button ng-click="cadastrar(categoria)" style="width: 30px;height: 50px;" value="Cadastrar"></button>
+
+
+            <div ng-repeat="categoria in categorias">
+                {{categoria.nome}}
+            </div>
+
+
+        </div>
+
     </body>
 </html>

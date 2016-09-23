@@ -28,7 +28,8 @@ public class ContarLinhas {
                     if (file.isDirectory()) {
                         folderList.add(file);
                     } else if (file.getName().endsWith(".java")
-                            || file.getName().endsWith(".xml")) {
+                            || file.getName().endsWith(".xml")
+                            || file.getName().endsWith(".html")) {
                         long lineCount = 0;
                         final Scanner scanner = new Scanner(file);
                         while (scanner.hasNextLine()) {

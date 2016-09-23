@@ -7,6 +7,7 @@ import com.platz.http.leitura.CategoriaLeitura;
 import com.platz.model.CategoriaModel;
 import com.platz.model.Perfil;
 import com.platz.util.ImagemUtil;
+import com.platz.util.PerfilAuth;
 import java.io.InputStream;
 import java.util.List;
 import javax.annotation.security.PermitAll;
@@ -22,7 +23,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.glassfish.jersey.media.multipart.FormDataBodyPart;
 import org.glassfish.jersey.media.multipart.FormDataParam;
-import com.platz.util.PerfilAuth;
 
 /**
  *
@@ -35,7 +35,7 @@ public class CategoriaService {
 
     @POST
     @Path(value = "/categoria")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(CategoriaCadastro categoria) {
