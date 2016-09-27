@@ -19,4 +19,18 @@ public class AssuntoDao extends GenericDao<AssuntoModel> {
         return lista;
     }
 
+    public List<AssuntoModel> listarNaoDeletados() {
+        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
+        List<AssuntoModel> lista = entityManager.createQuery("from AssuntoModel where deletado = :deletado").setParameter("deletado", null).getResultList();
+        entityManager.close();
+        return lista;
+    }
+
+     public List<AssuntoModel> listarDeletados() {
+        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
+        List<AssuntoModel> lista = entityManager.createQuery("from AssuntoModel where deletado != :deletado").setParameter("deletado", null).getResultList();
+        entityManager.close();
+        return lista;
+    }
+
 }

@@ -1,8 +1,10 @@
 package com.platz.dao;
 
+import com.platz.model.CidadeModel;
 import com.platz.model.EmpresaModel;
 import com.platz.model.EventoModel;
 import com.platz.util.DataUtil;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -149,6 +151,22 @@ public class EventoDao extends GenericDao<EventoModel> {
     public List<EventoModel> buscarGratuitos() {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
         List<EventoModel> lista = entityManager.createQuery("from EventoModel where preco = 0.0").getResultList();
+        entityManager.close();
+        return lista;
+    }
+
+    public List<EventoModel> TresMelhores() {
+        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
+        entityManager.createQuery("from PresencaModel ");
+        
+        entityManager.close();
+        return null;
+
+    }
+    
+    public List<EventoModel> buscarPorCidade(CidadeModel cidade){
+        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
+         List<EventoModel> lista = entityManager.createQuery("from EventoModel where endereco.cidade = :cidade").setParameter("cidade", cidade).getResultList();
         entityManager.close();
         return lista;
     }

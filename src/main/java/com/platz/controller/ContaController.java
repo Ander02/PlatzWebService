@@ -24,7 +24,7 @@ public class ContaController {
         return contaDao.getConta(email, senha);
     }
 
-    public void cadastrar(ContaModel model) {        
+    public void cadastrar(ContaModel model) {
         contaDao.cadastrar(model);
     }
 
@@ -38,6 +38,13 @@ public class ContaController {
 
     public ContaModel buscarPeloEmail(String email) {
         return contaDao.buscarPeloEmail(email);
+    }
+
+    public boolean verificaEmail(String email) {
+        if (contaDao.buscarPeloEmail(email) != null) {
+            return true;
+        }
+        return false;
     }
 
     public List<ContaModel> buscarAtivos() {
@@ -86,7 +93,8 @@ public class ContaController {
         model.setToken(null);
         this.alterar(model);
     }
-    public void alterarSenha(ContaModel model, String senha){
+
+    public void alterarSenha(ContaModel model, String senha) {
         model.setSenha(senha);
         this.alterar(model);
     }
