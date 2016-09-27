@@ -6,7 +6,6 @@
         <script src="lib/angular/angular.js" type="text/javascript"></script>
     </head>
 
-
     <body> 
         <script>
 
@@ -20,6 +19,7 @@
                 $scope.listarTodos = function () {
                     $http.get("http://localhost:8096/PlatzWebService/platz/categorias").then(function (response) {
                         $scope.categorias = response.data;
+                        console.log(response);
                     }, function (response) {
                     });
                 };
@@ -52,10 +52,11 @@
         <div ng-controller="platzController">
 
             <input type="text" ng-model="categoria.nome">
-            {{categoria}}
 
             <button ng-click="cadastrar(categoria)" style="width: 30px;height: 50px;" value="Cadastrar"></button>
 
+            <select ng-options="categoria.nome for categoria in categorias" ng-model="categoria"></select>
+            {{categoria}}
 
             <div ng-repeat="categoria in categorias">
                 {{categoria.nome}}
