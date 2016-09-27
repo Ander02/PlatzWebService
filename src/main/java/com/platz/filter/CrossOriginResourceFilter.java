@@ -10,14 +10,15 @@ import javax.ws.rs.ext.Provider;
  * @author Anderson
  */
 @Provider
-public class CrossOriginHeaderFilter implements ContainerResponseFilter {
+public class CrossOriginResourceFilter implements ContainerResponseFilter {
 
     @Override
     public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) {
 
-        //Adicionar Header Access-Control-Allow-Origin a todas as Responses
         responseContext.getHeaders().putSingle("Access-Control-Allow-Origin", "*");
-
+        responseContext.getHeaders().putSingle("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, HEAD, OPTIONS");
+        responseContext.getHeaders().putSingle("Access-Control-Allow-Headers", "X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept");
+        
     }
 
 }
