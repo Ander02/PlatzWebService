@@ -162,7 +162,7 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
                         </tr>
                     </thead>
                     <tbody id="myTable">                    
-                        <tr>
+                        <tr ng-repeat="categoria in categoriasExcluidas">
                             <th scope="row"></th>
                             <td>
                                 <div >
@@ -170,11 +170,9 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
                                 </div>
                             </td>    
                             <td>{{categoria.nome}}</td>   
-                            <td>{{categoria.dataExcluido}}</td>
+                            <td>{{categoria.deletado}}</td>
                             <td>
-
-                                <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalRestaurar"><i class="fa fa-undo"></i> Restaurar</a>
-                                <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalExcluir"><i class="fa fa-trash"></i> Deletar</a>
+                                <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalRestaurar" ng-click="prepararRecuperacao(categoria.id)"><i class="fa fa-undo"></i> Restaurar</a>                           
                             </td>
                         </tr>
 
@@ -219,7 +217,7 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
                         </div>
 
                         <div class="text-xs-center">
-                            <button class="btn btn-warning" ng-click="cadastrar(categoria)">Cadastrar</button>
+                            <button class="btn btn-warning" ng-click="alterar(categoria)">Cadastrar</button>
                             <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
                         </div>
                     </form>
@@ -280,8 +278,8 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
                         <h3>Tem Certeza que deseja Restaurar essa categoria? </h3>
 
                         <div class="text-xs-center">
-                            <button class="btn btn-warning">Sim</button>
-                            <button type="button" class="btn btn-warning" data-dismiss="modal">Não</button>
+                            <button class="btn btn-warning" ng-click="recuperar()">Sim</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click="cancelarRecuperacao()">Não</button>
                         </div>
                     </form>
                 </div>

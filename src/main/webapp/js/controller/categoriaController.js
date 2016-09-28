@@ -3,18 +3,29 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
     //Faz um Get no Web Service recebendo uma URL
     $scope.listarTodos = function () {
         $http.get(webService + "/categorias").then(function (response) {
-            $scope.categorias = response.data;
+            $scope.categoriasAll = response.data;
         }, function (response) {
-            switch (response.status) {
-                case 404:
-                    console.log("Erro ao Acessar: " + webService + "/categorias");
-                    break;
-                default :
-                    break;
-            }
         });
     };
-
+    $scope.listarExcluidas = function () {
+        $http.get(webService + "/categorias/excluidas").then(function (response) {
+            $scope.categoriasExcluidas = response.data;
+        }, function (response) {
+        });
+    };
+    $scope.listarNãoExcluidas = function () {
+        $http.get(webService + "/categorias/naoExcluidas").then(function (response) {
+            $scope.categorias = response.data;
+        }, function (response) {
+        });
+    };
+    $scope.alterar = function (id) {
+        $scope.put(webService +"categoria/"+ $scope.categoriaEdicaoId).then(function (response){
+            
+        }, function (response){
+            
+        });
+    }
     $scope.cadastrar = function (categoria) {
 
         console.log(categoria);
@@ -24,8 +35,8 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
             console.log("Categoria Cadastrada com Sucesso");
 
             //Atualiza a lista
-            $scope.listarTodos();
-
+            atualizar();
+            alert("Categoria cadastrada com Sucesso");
         }, function (response) {
 
             console.log("Erro ao cadastrar");
@@ -33,7 +44,30 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
 
         });
     };
+    $scope.recuperar = function () {
+        $http.put(webService + "/categoria/recuperar/" + $scope.categoriaRecuperacaoId).then(function (response) {
+            atualizar();
+            alert("categoria recuperada com sucesso");
+        }, function (reponse) {
 
+        });
+    };
+    
+    $scope.prepararRecuperacao = function (id) {
+        $scope.categoriaRecuperacaoId = id;
+    };
+
+    $scope.cancelarRecuperacao = function () {
+        $scope.categoriaRecuperacaoId = null;
+    };
+     $scope.prepararEdicao = function (id) {
+        $scope.categoriaEdicaoId = id;
+    };
+
+    $scope.cancelarEdicao = function () {
+        $scope.categoriaEdicaoId = null;
+    };
+    
     $scope.prepararExclusao = function (id) {
         $scope.categoriaExclusaoId = id;
     };
@@ -44,11 +78,12 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
 
     $scope.deletar = function () {
 
-    console.log($scope.categoriaExclusaoId);
+        console.log($scope.categoriaExclusaoId);
 
         $http.delete(webService + "/categoria/" + $scope.categoriaExclusaoId).then(function (response) {
 
-            console.log("deletou");
+            atualizar();
+            alert("deletado");
             console.log(response);
 
         }, function (response) {
@@ -57,9 +92,12 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
 
     };
 
-    window.onload = function (ev) {
+    function atualizar() {
         $scope.listarTodos();
+        $scope.listarExcluidas();
+        $scope.listarNãoExcluidas();
     }
+    window.onload = atualizar();
 });
 
 

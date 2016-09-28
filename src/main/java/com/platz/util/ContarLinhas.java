@@ -14,7 +14,7 @@ public class ContarLinhas {
 
     public static void main(String[] args) throws FileNotFoundException {
         //Verificando o número de linhas no projeto
-        final String folderPath = "C:\\Users\\15153766\\Documents\\NetBeansProjects\\PlatzWebService\\src";
+        final String folderPath = "C:\\Users\\15153770\\Documents\\NetBeansProjects\\platz3\\PlatzWebService\\src";
 
         long totalLineCount = 0;
         final List<File> folderList = new LinkedList<>();
@@ -29,6 +29,8 @@ public class ContarLinhas {
                         folderList.add(file);
                     } else if (file.getName().endsWith(".java")
                             || file.getName().endsWith(".xml")
+                            || file.getName().endsWith(".css")
+                            || file.getName().endsWith(".js")
                             || file.getName().endsWith(".html")) {
                         long lineCount = 0;
                         final Scanner scanner = new Scanner(file);

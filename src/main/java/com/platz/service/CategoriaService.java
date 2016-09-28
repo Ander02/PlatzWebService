@@ -193,14 +193,15 @@ public class CategoriaService {
 
     @DELETE
     @Path(value = "/categoria/{id}")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+    //@PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response deletar(@PathParam("id") String id) {
         try {
 
             CategoriaModel model = categoriaController.buscarPorId(id);
 
-            new ImagemUtil().deletarArquivo(model.getCaminhoIcone());
+           // new ImagemUtil().deletarArquivo(model.getCaminhoIcone());
 
             categoriaController.excluir(model);
 
@@ -208,7 +209,63 @@ public class CategoriaService {
 
         } catch (Exception e) {
             System.out.println("Erro" + e.getMessage());
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao excluir categoria").build();
+        }
+    }
+
+    @PUT
+    @Path(value = "/categoria/recuperar/{id}")
+    //@PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response recuperar(@PathParam("id") String id) {
+        try {
+
+            CategoriaModel model = categoriaController.buscarPorId(id);
+
+            categoriaController.recuperar(model);
+
+            return Response.ok(new CategoriaLeitura(model)).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro" + e.getMessage());
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar categoria").build();
+        }
+    }
+
+    @GET
+    @Path(value = "/categorias/excluidas")
+    @PermitAll
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response listarExcluidos() {
+        try {
+
+            //Lista com todas as models, e converte para uma lista de leitura respondendo com um status code OK
+            return Response.ok(new CategoriaLeitura().converterLista(categoriaController.listarExcluidos())).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar categorias").build();
+        }
+    }
+
+    @GET
+    @Path(value = "/categorias/naoExcluidas")
+    @PermitAll
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response listarNaoExcluidos() {
+        try {
+
+            //Lista com todas as models, e converte para uma lista de leitura respondendo com um status code OK
+            return Response.ok(new CategoriaLeitura().converterLista(categoriaController.listarNaoExcluidos())).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar categorias").build();
         }
     }
 

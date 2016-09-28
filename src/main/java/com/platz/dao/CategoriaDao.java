@@ -18,4 +18,20 @@ public class CategoriaDao extends GenericDao<CategoriaModel> {
         return lista;
     }
 
+    public List<CategoriaModel> listarExcluidos() {
+        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
+        List<CategoriaModel> lista = entityManager.createQuery("from CategoriaModel where deletado != :deletado")
+                .setParameter("deletado", null ).getResultList();
+        entityManager.close();
+        return lista;
+    }
+
+    public List<CategoriaModel> listarNaoExcluidos() {
+        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
+        List<CategoriaModel> lista = entityManager.createQuery("from CategoriaModel where deletado = :deletado")
+                .setParameter("deletado", null ).getResultList();
+        entityManager.close();
+        return lista;
+    }
+
 }
