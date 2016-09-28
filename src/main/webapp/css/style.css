@@ -57,7 +57,7 @@ html,body
 }
 
 .nav-inicial .navbar-brand{ 
-    background: url(../img/Logo.png) center / contain no-repeat;
+    background: url(../img/logo.png) center / contain no-repeat;
     width: 200px;
     height: 80px;
 }
