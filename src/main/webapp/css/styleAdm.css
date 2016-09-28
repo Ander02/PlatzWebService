@@ -1,0 +1,71 @@
+/*
+Estilização de toda a pagina administrativa 
+*/
+
+/* 
+    Created on : 30/08/2016, 14:51:39
+    Author     : Gabriela Nunes Alvarenga
+*/
+
+/*centralizando os titulos das paginas*/
+.fa
+{
+    margin-right: 10px;
+}
+.head-pagina
+{
+    text-align: center;
+    margin-bottom: 5%;
+    margin-top: 2%;
+}
+.dropdown-menu, .input-group-addon, .pagination .page-item .page-link, .popover {
+    border: 0;
+    color: black;
+    border-radius: 0px;
+}
+.imagem-perfil-adm
+{
+    height: 500px;
+}
+.imagem-perfil-adm img
+{
+    height: 100%;
+    width: 100%;
+}
+/*
+*PAGINA DE CATEGORIA
+*/
+/*inputs no cadastro de categoria*/
+.form-cad-input {
+    border: none;
+    padding: 5px;
+
+}
+/*centralizando as tabs*/
+.conteudo-tab , .nav-tab
+{
+    width: 70%;
+    margin: 0 auto;
+}
+/*tamanho da imagem de categoria na tabela*/
+.img-categoria
+{
+    width:100px;
+    height: 100px;
+    border-radius:50px;
+
+}
+/*
+* fim PAGINA DE CATEGORIA
+*/
+
+/*
+*PAGINA DE MENSAGEM(INDEX)
+*/
+.label-modal-mensagem
+{
+    font-size: 15px;
+    font-weight: bold;
+}
+
+

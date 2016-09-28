@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<!--
+Pagina de cadastro , consulta, atualização e exclusão de conta, que seria contas administrativas apenas
+-->
+<html lang="pt-br" ng-app="platz">
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <title>Platz - Suas rotas, Seus Eventos</title>
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+
+        <!-- Bootstrap core CSS -->
+        <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Material Design Bootstrap -->
+        <link href="../css/bootstrap/mdb.min.css" rel="stylesheet">
+
+        <!-- Your custom styles (optional) -->
+        <link href="../css/style.css" rel="stylesheet">
+
+        <!-- Your custom styles (optional) -->
+        <link href="../css/styleAdm.css" rel="stylesheet">
+
+        <!-- link Angular -->
+        <script type="text/javascript" src="../lib/angular/angular.js"></script>
+
+        <!-- link com o icone que fica no inicio do navegador -->
+        <link rel="icon" href="../img/logo.png">
+
+
+
+    </head>
+
+    <body>
+
+
+        <!-- inicio do projeto aqui-->
+
+    <ng-include src="'../view/nav-adm.html'"></ng-include>
+
+
+    <div class="espaco"></div>
+
+
+    <div class="head-pagina">
+
+        <h1>Contas</h1>
+
+    </div>
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs md-pills pills-default nav-tab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#panel31" role="tab"><i class="fa fa-user"></i>Administrador</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#panel32" role="tab"><i class="fa fa-users"></i>Usuario</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#panel33" role="tab"><i class="fa fa-building-o"></i>Empresa</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#panel34" role="tab"><i class="fa fa-user-plus"></i>Cadastrar</a>
+        </li>
+
+    </ul>
+
+    <!-- Tab panels -->
+    <div class="tab-content conteudo-tab">
+
+        <!--Panel 1 consulta-->
+        <div class="tab-pane fade in active" id="panel31" role="tabpanel">
+
+            <br>
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs md-pills pills-ins" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#panel11" role="tab"><i class="fa fa-users animated lightSpeedIn"></i>Ativos/Desbloqueados</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#panel12" role="tab"><i class="fa fa-lock animated lightSpeedIn "></i>Bloqueados</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#panel13" role="tab"><i class="fa fa-remove animated lightSpeedIn "></i>Inativos</a>
+                </li>
+            </ul>
+
+            <!-- Tab panels -->
+            <div class="tab-content">
+
+                <!--Panel 1-->
+                <div class="tab-pane fade in active" id="panel11" role="tabpanel">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>                            
+                                    <th>Email</th>                                                 
+                                    <th>Perfil</th>
+                                    <th>Ativo/Inativo</th>
+                                    <th>Bloqueado</th>
+                                </tr>
+                            </thead>
+                            <tbody id="myTable">
+                                <tr>
+                                    <th scope="row">1</th>
+
+                                    <td>Juliana@cerqueira.com</td>
+                                    <td>Administrador</td>
+                                    <td>Ativo</td>
+                                    <td>Desbloqueado</td>   
+                                    <td>
+                                        <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalEdita"><i class="fa fa-pencil"></i>Editar</a>
+                                        <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalExcluir"><i class="fa fa-trash"></i>Excluir</a>
+                                        <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalBloquear"><i class="fa fa-toggle-on"></i> Bloquear</a>
+                                        <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalBloquear"><i class="fa fa-toggle-on"></i> Inativar</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="col-md-12 text-center">
+                        <ul class="pagination pager" id="myPager"></ul>
+                    </div>
+
+                </div>
+                <!--/.Panel 1-->
+
+                <!--Panel 2-->
+                <div class="tab-pane fade" id="panel12" role="tabpanel">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>                            
+                                    <th>Email</th>                                                 
+                                    <th>Perfil</th>
+                                    <th>Ativo/Inativo</th>
+                                    <th>Desbloquear</th>
+                                </tr>
+                            </thead>
+                            <tbody id="myTable">
+                                <tr>
+                                    <th scope="row">1</th>
+
+                                    <td>Juliana@cerqueira.com</td>
+                                    <td>Administrador</td>
+                                    <td>Ativo</td>
+                                    <td>Desbloqueado</td>   
+                                    <td>
+                                        <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalEdita"><i class="fa fa-pencil"></i>Editar</a>
+                                        <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalExcluir"><i class="fa fa-trash"></i>Excluir</a>
+                                        <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalBloquear"><i class="fa fa-toggle-on"></i> desbloquear</a>
+                                        <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalBloquear"><i class="fa fa-toggle-on"></i> Inativar</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="col-md-12 text-center">
+                        <ul class="pagination pager" id="myPager"></ul>
+                    </div>
+
+                </div>
+                <!--/.Panel 2-->
+
+                <!--Panel 3-->
+                <div class="tab-pane fade" id="panel13" role="tabpanel">
+                   <div class="table-responsive">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>                            
+                                <th>Email</th>                                                 
+                                <th>Perfil</th>
+                                <th>Ativo/Inativo </th>
+                                <th>Bloqueado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="myTable">
+                            <tr>
+                                <th scope="row">1</th>
+
+                                <td>Juliana@cerqueira.com</td>
+                                <td>Administrador</td>
+                                <td>Ativo</td>
+                                <td>Desbloqueado</td>   
+                                <td>
+                                    <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalEdita"><i class="fa fa-pencil"></i>Editar</a>
+                                    <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalExcluir"><i class="fa fa-trash"></i>Excluir</a>
+                                    <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalBloquear"><i class="fa fa-toggle-on"></i> Bloquear</a>
+                                    <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalBloquear"><i class="fa fa-toggle-on"></i>Ativar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="col-md-12 text-center">
+                    <ul class="pagination pager" id="myPager"></ul>
+                </div>
+
+                </div>
+                <!--/.Panel 3-->
+
+
+            </div>
+
+
+
+        </div>
+        <!--/.Panel 1-->
+
+        <!--Panel 2 cadastro -->
+        <div class="tab-pane fade" id="panel32" role="tabpanel">
+
+            <!--Form with header-->
+            <div class="card">
+                <div class="card-block">
+
+                    <form>
+                        <!--Body-->
+
+                        <div class="col-md-12">
+
+                            <!--Card content-->
+                            <div class="card-block text-xs-center">
+                                <!--Title-->
+                                <h4 class="card-title"><i class="fa fa-lock"></i><strong>Informações Conta</strong></h4>
+                                <div class="col-md-12">
+                                    <label for="conta-img">Imagem de Perfil</label>
+                                    <div class="md-form">                
+                                        <input id="conta-img" type="file" multiple>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="md-form">  
+                                        <input  type="text" id="conta-perfil" class="form-control" required=""
+                                                maxlength="75">
+                                        <label for="conta-perfil">Perfil</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="md-form">  
+                                        <input  type="text" id="conta-ativo-inativo" class="form-control" required=""
+                                                maxlength="75">
+                                        <label for="conta-ativo-inativo">Ativo/Inativo</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="md-form">  
+                                        <input  type="email" id="conta-email" class="form-control" required=""
+                                                maxlength="75">
+                                        <label for="conta-email">Email</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="md-form">                
+                                        <input type="password" id="conta-senha" class="form-control" required=""
+                                               maxlength="20">
+                                        <label for="conta-senha">Senha</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="md-form">  
+                                        <input  type="password" id="conta-confirma-senha" class="form-control"
+                                                required="" maxlength="20"> 
+                                        <label for="conta-confirma-senha">Confirmar a Senha</label>
+                                    </div>
+                                </div>                      
+
+                            </div>
+                            <!--/.Card content-->
+
+                        </div>
+
+
+
+                        <div class="text-xs-center">
+                            <button type="submit" class="btn btn-warning">Cadastrar</button>
+                        </div>
+                    </form>
+
+                </div>
+
+
+            </div>
+            <!--/Form with header-->
+
+        </div>
+        <!--/.Panel 2-->
+
+
+
+    </div>
+
+    <!-- Modal de edição -->
+    <div class="modal fade" id="modalEdita" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title " id="myModalLabel"><i class="fa fa-lock"></i> Editar Conta</h4>
+                </div>
+                <!--Body-->
+                <div class="modal-body">
+                    <form>
+                        <!--Body-->
+
+
+                        <div class="card-block text-xs-center">
+                            <!--Title-->                               
+                            <div class="col-md-12">
+                                <label for="conta-img">Imagem de Perfil</label>
+                                <div class="md-form">                
+                                    <input id="conta-img" type="file" multiple>
+
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="md-form">  
+                                    <input  type="text" id="conta-perfil" class="form-control" required=""
+                                            maxlength="75">
+                                    <label for="conta-perfil">Perfil</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="md-form">  
+                                    <input  type="text" id="conta-ativo-inativo" class="form-control" required=""
+                                            maxlength="75">
+                                    <label for="conta-ativo-inativo">Ativo/Inativo</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="md-form">  
+                                    <input  type="email" id="conta-email" class="form-control" required=""
+                                            maxlength="75">
+                                    <label for="conta-email">Email</label>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+
+                        <div class="text-xs-center">
+                            <button type="submit" class="btn btn-warning">Cadastrar</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <!--/.Content-->
+        </div>
+    </div> <!--/.modal-->
+
+
+    <!-- Modal Excluir -->
+    <div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Excluir Conta</h4>
+                </div>
+                <!--Body-->
+                <div class="modal-body">
+                    <form>
+                        <!--Body-->
+                        <h3>Tem Certeza que deseja excluir essa Conta? </h3>
+
+                        <div class="text-xs-center">
+                            <button class="btn btn-warning">Sim</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Não</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <!--/.Content-->
+        </div>
+    </div> <!--/.modal-->
+
+
+    <!-- Modal Bloquear -->
+    <div class="modal fade" id="modalBloquear" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Bloquear Conta</h4>
+                </div>
+                <!--Body-->
+                <div class="modal-body">
+                    <form>
+                        <!--Body-->
+                        <h3>Tem Certeza que deseja bloquear essa Conta? </h3>
+
+                        <div class="text-xs-center">
+                            <button class="btn btn-warning">Sim</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Não</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <!--/.Content-->
+        </div>
+    </div> <!--/.modal-->
+
+    <div class="espaco"></div>
+
+
+
+    <div class="footer-fixo">
+        <ng-include src="'../view/footer.html'"></ng-include>
+    </div>
+
+
+
+
+    <!-- /Start your project here-->
+
+
+    <!-- SCRIPTS -->
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="../lib/jquery/jquery-2.2.3.min.js"></script>
+
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="../lib/bootstrap/tether.min.js"></script>
+
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="../lib/bootstrap/bootstrap.min.js"></script>
+
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="../lib/bootstrap/mdb.min.js"></script>
+
+    <!-- Paginação da tabela -->
+    <script type="text/javascript" src="../js/outros/tabela-responsiva.js"></script>
+
+    <!-- angular app script -->
+    <script type="text/javascript" src="../js/app.js"></script>
+
+
+</body>
+
+</html>

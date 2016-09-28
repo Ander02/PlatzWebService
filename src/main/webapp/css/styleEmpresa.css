@@ -1,0 +1,163 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 31/08/2016, 14:40:26
+    Author     : 15153781
+*/
+
+/*centralizando os titulos das paginas*/
+.head-pagina
+{
+    text-align: center;
+    margin-bottom: 5%;
+    margin-top: 2%;
+}
+
+/*
+*PAGINA DE EVENTOS DA EMPRESA
+*/
+.titulo-meusEventos
+{
+    margin-bottom: 70px;
+}
+.evento-empresa
+{
+    margin-bottom: 5%;
+    text-align: center;
+}
+.img-evento-efeito
+{
+    width: 100%;
+    border-radius: 50px;
+}
+/* /.blocos de eventos */
+
+/*css dos links de paginação*/
+.paginator-itens
+{
+    text-align: center;
+    margin-bottom: 15%;
+    margin-top: 5%;
+    font-size: 25px;
+}
+.previous_link ,.page_link , .next_link
+{
+    padding: 5px;
+    color: #2980b9;
+}
+/*/.paginação */
+
+
+
+
+/*
+* FIM PAGINA EVENTOS EMPRESA
+*/
+
+/*
+* PAGINA DE CADASTRO DE EVENTOS
+*/
+.md-form
+{
+    border: none;
+    background: none;
+}
+.md-form label
+{
+    font-size: 15px;
+}
+.squaredFour {
+    width: 20px;
+    position: relative;
+    margin: 20px auto;
+    label {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: #fcfff4;
+        background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+        border-radius: 4px;
+        box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+        &:after {
+            content: '';
+            width: 9px;
+            height: 5px;
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            border: 3px solid #333;
+            border-top: none;
+            border-right: none;
+            background: transparent;
+            opacity: 0;
+            transform: rotate(-45deg);
+        }
+        &:hover::after {
+            opacity: 0.5;
+        }
+    }
+    input[type=checkbox] {
+        visibility: hidden;
+        &:checked + label:after {
+            opacity: 1;
+        }
+    }    
+}
+/* end .squaredFour */
+
+.titulo-form
+{
+    margin-left: 4px;
+}
+#form-cad-evento .col-md-10
+{
+    margin-left: 8%;
+}
+#form-cad-evento .well
+{
+    background: rgba(243, 156, 18,0.8);
+    padding: 2px;
+}
+#form-cad-evento .btn-cancela-evento
+{
+    margin-left: 40%;
+    margin-right: 5%;
+}
+.corpo-form-cadastro-evento
+{
+    margin-left: 16.7%;
+    background: rgba(22, 160, 133,0.1);
+    border-radius: 15px;
+    padding: 20px;
+}
+/*
+* FIM DE CADASTRO DE EVENTOS
+*/
+.bg-empresa-editar
+{
+    width: 100%;
+    height: 850px;
+    margin-bottom: 50px;
+    background: orange;
+    opacity: 0.2;
+    border-radius: 50px;
+    margin-top: 10px;
+}
+.caixa-informacao-empresa
+{
+    position:absolute;
+    top:10%;
+    left:10%;
+    width: 80%;
+    text-align: center;
+}
+.btn-cadastro
+{
+    margin-left: 41.7%;
+}

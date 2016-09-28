@@ -1,0 +1,446 @@
+/*css das paginas de fora */
+html,body
+{
+    background: rgba(236, 240, 241,1.0);
+}
+
+/* nav*/
+.espaco
+{
+    height: 110px;
+}
+/*centralizando os titulos das paginas*/
+.head-pagina
+{
+    text-align: center;
+    margin-bottom: 5%;
+    margin-top: 2%;
+}
+.image-nav
+{
+    border-radius: 50px;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+.image-nav img
+{
+    width: 100%;
+    height: 100%;
+}
+.navbar
+{
+    background: #00180a;
+    padding: 10px;
+}
+.nav-inicial .link-nav-adm
+{
+    margin-top:2%;
+}
+.nav-inicial .link-nav-adm .link
+{
+    color:white;
+}
+.navbar form input {
+    margin: 0;
+    height: 1rem;
+}
+.navbar form .btn-login-nav {
+    background: #4285F4;
+    width: 90%;
+    margin-top: 10%;
+    margin-left: 5%;
+}
+.navbar .navbar-toggler, .navbar form {
+    float: right;
+    padding: 10px;
+}
+
+.nav-inicial .navbar-brand{ 
+    background: url(../img/Logo.png) center / contain no-repeat;
+    width: 200px;
+    height: 80px;
+}
+.navbar .navbar-nav .nav-item {
+    margin-left: 0;
+    margin-top: 20px;
+}
+/* /.nav*/
+
+/*carousel*/
+.view img, .view video {
+    display: block;
+    position: relative;
+    width: 100%;
+}
+
+.carousel-caption {
+    right: 30%;
+    left: 30%;
+    padding-bottom: 30px;
+    background: rgba(105 ,105, 105,0.4);
+    border-radius: 15px;
+    color: white;
+    bottom: 10%;
+}
+
+.slider-index
+{
+    margin-top: 60px;
+}
+.carousel-index-destaques
+{
+    margin-top: 5%;
+    margin-left: 8.5%;
+}
+.controls-top
+{
+    text-align: center;
+    margin-bottom: 3%;
+}
+.btn-setas
+{
+    padding: 15px;
+    border-radius: 25px;
+}
+.carousel-index-destaques h1
+{
+    text-align: center;
+    margin-bottom: 80px;
+}
+/* /.carousel*/
+
+/*mapa do index*/
+#map_canvas
+{
+    width: 85%;
+    height: 500px;
+    margin: 0 auto;
+}
+.mapa 
+{
+    margin-top: 50%;
+    margin-bottom: 5%;
+}
+.mapa h1
+{
+    text-align: center;
+    margin-bottom: 50px;
+}
+/* /.mapa index*/
+
+/*footer */
+footer.page-footer .btn-rede-social {
+    color: #fff;
+    padding: 10px;
+    background: #1abc9c;
+    border-radius: 30px;
+    margin: 5px;
+}
+footer.page-footer {
+    margin-top: 20px;
+    padding-top: 20px;
+    background-color: #363636;
+    color: #fff;
+}
+.footer-especifico , .footer-fixo
+{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1500;
+    margin-top:20%;
+}
+
+/* /.footer*/
+
+/*evento especifico*/
+.row
+{
+    margin: 0;
+    padding: 0;
+}
+#corpo-evento-epecifico
+{
+    background: rgba(189, 195, 199,0.4);
+}
+.caixa-informacao-especifico
+{
+    position:absolute;
+    top:20%;
+    left:10%;
+    width: 80%;
+    text-align: center;
+}
+.rating li
+{
+    display: inline;
+}
+.imagem-evento-especifico
+{
+    height:450px;
+}
+.imagem-evento-especifico img
+{
+    height: 100%;
+}
+.informacao-evento-especifico
+{
+    margin-top: 50px;
+}
+.informacao-evento-especifico h1
+{
+    margin-bottom: 20px;
+}
+.informacao-evento-especifico h3
+{
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.informacao-evento-especifico .social-counters
+{
+    margin-bottom: 50px;
+}
+.info-especifico ,.descricao-especifico
+{
+    margin-top: 100px;    
+}
+.descricao-especifico
+{
+    margin-bottom: 20px;
+}
+
+/*estilização das estrelas na pagina de evento especifico*/
+div.stars {
+    width: 270px;
+    display: inline-block;
+}
+
+input.star { display: none; }
+
+label.star {
+    float: right;
+    padding: 10px;
+    font-size: 36px;
+    color: #444;
+    transition: all .2s;
+}
+
+input.star:checked ~ label.star:before {
+    content: '\f005';
+    color: #FD4;
+    transition: all .25s;
+}
+
+input.star-5:checked ~ label.star:before {
+    color: #FE7;
+    text-shadow: 0 0 20px #952;
+}
+
+input.star-1:checked ~ label.star:before { color: #F62; }
+input.star-2:checked ~ label.star:before { color: #e67e22; }
+input.star-3:checked ~ label.star:before { color: #CDCD00; }
+
+label.star:hover { transform: rotate(-15deg) scale(1.3); }
+
+label.star:before {
+    content: '\f006';
+    font-family: FontAwesome;
+}
+.estrelas
+{
+    margin-top: -16px;
+}
+/*fim da estilização das estrelas*/
+/*mapa*/
+.mapa-especifico
+{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.section .view, .section img, .z-depth-2 {
+    box-shadow: none;
+}
+
+.md-form
+{
+    /* border: 2px solid rgba(127, 140, 141,0.5); */
+    border-radius: 5px;
+    padding: 5px;
+    /* background: rgba(189, 195, 199,0.2); */
+    border-radius: 20px;
+}
+.btn-comentar
+{
+    margin-left: 45%;
+    margin-top: 2%;
+    border-radius: 10px;
+}
+.section-comentarios .section-heading
+{
+    text-align: center;
+}
+
+.social-counters button, select {
+    text-transform: none;
+    border: none;
+    background: white;
+}
+.gallery
+{
+    display: inline-block;
+    margin-top: 20px;
+}
+.modal-galeria
+{
+    top: 25%;
+}
+
+/* /.evento especifico*/
+
+/*
+*PERFIL DA EMPRESA
+*/
+.imagem-perfil-empresa-efeito
+{
+    margin-left: 33.3%;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+.evento-perfil-empresa
+{
+    margin-top: 2%;
+}
+.caixa-informacao-perfil-empresa
+{
+    position:absolute;
+    top:20%;
+    left:10%;
+    background: rgba(189, 195, 199,0.4);
+    width: 80%;
+    text-align: center;
+}
+
+
+/*
+* /.PERFIL DA EMPRESA
+*/
+/*
+*CADASTRO DE USUARIO/EMPRESA
+*/
+#cadastroEmpresa , #cadastroUsuario
+{
+    display: none;
+}
+.corpo-form-cadastro
+{
+    margin-left: 16.7%;
+    margin-top: 5%;
+    border-radius: 15px;
+    padding: 20px;
+}
+#box-toggle .fa
+{
+    margin-right: 20px;
+}
+.botaoAtivo:focus, .botaoAtivo:hover {
+    background-color: rgba(149, 165, 166,0.6);
+    color: #fff;
+}
+
+/*
+*CADASTRO DE USUARIO/EMPRESA
+*/
+
+/*
+* PAGINA DE SOBRE
+*/
+#section-projeto
+{
+    text-align: center;
+    margin-left: 8%;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+#section-integrantes
+{
+    margin-bottom: 10%;
+}
+#section-projeto .jumbotron
+{
+    background: rgba(22, 160, 133,1.0);
+    color: white;
+    border-radius: 20px 55px;
+}
+#section-projeto .platzMVVPQ
+{
+    background-color: #CDCD00;
+    border-radius: 15px 50px 30px;
+    padding: 25px;
+}
+#section-integrantes .section-heading .cls.fa-group:before, .fa-users:before {
+    margin-right: 25px;
+}
+#section-integrantes .card
+{
+    background: rgba(189, 195, 199,0.4);
+}
+#section-integrantes h1
+{
+    text-align: center;
+    margin-bottom: 100px;
+}
+.avatar-integrante
+{
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+}
+.avatar-integrante img
+{
+    width: 100%;
+}
+.cabecalho-form-sobre
+{
+    background: rgba(230, 126, 34,1.0) ;
+    color: white;
+    margin-bottom: 50px;
+}
+
+
+
+/*
+* FIM PAGINA DE SOBRE
+*/
+
+/*
+* PAGINA DE EVENTOS
+*/
+.eventos-categoria
+{
+    margin-bottom: 5%;
+    text-align: center;
+}
+.img-evento-efeito
+{
+    width: 100%;
+
+}
+/*css dos links de paginação*/
+.paginator-itens
+{
+    text-align: center;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    font-size: 20px;
+}
+.previous_link ,.page_link , .next_link
+{
+    padding: 5px;
+    color: #2980b9;
+}
+/*/.paginação */
+/*
+/.eventos
+*/

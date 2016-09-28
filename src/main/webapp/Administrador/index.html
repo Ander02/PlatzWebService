@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<!--
+Pagina indexn do administrador, quando ele se logar vem direto para esta pagina
+porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina de mensagem
+-->
+<html lang="pt-br" ng-app="platz">
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <title>Platz - Suas rotas, Seus Eventos</title>
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+
+        <!-- Bootstrap core CSS -->
+        <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Material Design Bootstrap -->
+        <link href="../css/bootstrap/mdb.min.css" rel="stylesheet">
+
+        <!-- Your custom styles (optional) -->
+        <link href="../css/style.css" rel="stylesheet">
+
+        <!-- Your custom styles (optional) -->
+        <link href="../css/styleAdm.css" rel="stylesheet">
+
+        <!-- link Angular -->
+        <script type="text/javascript" src="../lib/angular/angular.js"></script>
+
+        <!-- link com o icone que fica no inicio do navegador -->
+        <link rel="icon" href="../img/logo.png">
+
+
+
+    </head>
+
+    <body>
+
+
+        <!-- inicio do projeto aqui-->
+
+    <ng-include src="'../view/nav-adm.html'"></ng-include>
+
+
+    <div class="espaco"></div>
+
+
+    <div class="head-pagina">
+
+        <h1>Mensagens</h1>
+
+    </div>
+
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs md-pills pills-ins nav-tab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#panel11" role="tab"><i class="fa fa-list-ul"></i> Inicio</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#panel12" role="tab"><i class="fa fa-star-o"></i> Favoritas</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#panel13" role="tab"><i class="fa fa-envelope-o"></i>Mensagens Lidas</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#panel14" role="tab"><i class="fa fa-envelope"></i>Mensagens Não Lidas</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#panel15" role="tab"><i class="fa fa-trash"></i> Excluidas</a>
+        </li>
+    </ul>
+
+    <!-- Tab panels -->
+    <div class="tab-content conteudo-tab">
+
+        <!--Panel 1 caixa de entrada de mensagens-->
+        <div class="tab-pane fade in active" id="panel11" role="tabpanel">
+            <br>
+
+            <div class="table-responsive">
+                <table class="table table-hover table-striped ">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Email</th>
+                            <th>Mensagem</th>
+                            <th>Assunto</th>
+                            <th>Favoritar</th>
+                            <th>Excluir</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="myTable">
+                        <tr>
+                            <td>1</td>
+                            <td>Gabrielaalvarenga@gmail.com</td>
+                            <td>lalalalala ....</td>
+                            <td>Denuncia</td>
+                            <td>
+                                <a class="active" data-toggle="tooltip" data-placement="top" title="Added to Wishlist"><i class="fa fa-star fa-1x"></i></a>
+                            </td>
+                            <td><a class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>Excluir</a></td>
+                            <td><button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#modalMensagem">
+                                    Ler Mensagem
+                                </button></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Gabrielaalvarenga@gmail.com</td>
+                            <td>lalalalala ....</td>
+                            <td>Denuncia</td>
+                            <td>
+                                <input type="checkbox" value="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Gabrielaalvarenga@gmail.com</td>
+                            <td>lalalalala ....</td>
+                            <td>Denuncia</td>
+                            <td>
+                                <input type="checkbox" value="">
+                            </td>
+                        </tr>  <tr>
+                            <td>1</td>
+                            <td>Gabrielaalvarenga@gmail.com</td>
+                            <td>lalalalala ....</td>
+                            <td>Denuncia</td>
+                            <td>
+                                <input type="checkbox" value="">
+                            </td>
+                        </tr>  <tr>
+                            <td>1</td>
+                            <td>Gabrielaalvarenga@gmail.com</td>
+                            <td>lalalalala ....</td>
+                            <td>Denuncia</td>
+                            <td>
+                                <input type="checkbox" value="">
+                            </td>
+                        </tr>            
+                    </tbody>
+                </table>
+
+            </div><!-- fim da div table-responsive -->
+            <div class="col-md-12 text-center">
+                <ul class="pagination pager" id="myPager"></ul>
+            </div>
+
+        </div>
+        <!--/.Panel 1-->
+
+        <!--Panel 2 mensagens favoritas -->
+        <div class="tab-pane fade" id="panel12" role="tabpanel">
+            <br>
+
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Email</th>
+                            <th>Mensagem</th>
+                            <th>Assunto</th>
+                            <th>Remover</th>
+                            <th>Excluir</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="myTable2">
+                        <tr>
+                            <td>1</td>
+                            <td>Gabrielaalvarenga@gmail.com</td>
+                            <td>lalalalala ....</td>
+                            <td>Denuncia</td>
+                            <td>
+                                <a class="active" data-toggle="tooltip" data-placement="top" title="Added to Wishlist"><i class="fa fa-star fa-1x"></i></a>
+                            </td>
+                            <td><a class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>Excluir</a></td>
+                            <td><button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#modalMensagemFavorita">
+                                    Ler Mensagem
+                                </button></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Gabrielaalvarenga@gmail.com</td>
+                            <td>lalalalala ....</td>
+                            <td>Denuncia</td>
+                            <td>
+                                <input type="checkbox" value="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Gabrielaalvarenga@gmail.com</td>
+                            <td>lalalalala ....</td>
+                            <td>Denuncia</td>
+                            <td>
+                                <input type="checkbox" value="">
+                            </td>
+                        </tr>  <tr>
+                            <td>1</td>
+                            <td>Gabrielaalvarenga@gmail.com</td>
+                            <td>lalalalala ....</td>
+                            <td>Denuncia</td>
+                            <td>
+                                <input type="checkbox" value="">
+                            </td>
+                        </tr>  <tr>
+                            <td>1</td>
+                            <td>Gabrielaalvarenga@gmail.com</td>
+                            <td>lalalalala ....</td>
+                            <td>Denuncia</td>
+                            <td>
+                                <input type="checkbox" value="">
+                            </td>
+                        </tr>            
+                    </tbody>
+                </table>
+
+            </div><!-- fim da div table-responsive -->
+            <div class="col-md-12 text-center">
+                <ul class="pagination pager" id="myPager2"></ul>
+            </div>
+
+
+        </div>
+        <!--/.Panel 2-->
+
+        <!--Panel 3 mensagens lidas-->
+        <div class="tab-pane fade" id="panel13" role="tabpanel">
+            <br>
+
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Email</th>
+                            <th>Mensagem</th>
+                            <th>Assunto</th>
+                            <th>Favoritar</th>
+                            <th>Excluir</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="myTable2">
+                        <tr>
+                            <td>1</td>
+                            <td>Gabrielaalvarenga@gmail.com</td>
+                            <td>lalalalala ....</td>
+                            <td>Denuncia</td>
+                            <td>
+                                <a class="active" data-toggle="tooltip" data-placement="top" title="Added to Wishlist"><i class="fa fa-star fa-1x"></i></a>
+                            </td>
+                            <td><a class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>Excluir</a></td>
+                            <td><button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#modalMensagemFavorita">
+                                    Ler Mensagem
+                                </button></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Gabrielaalvarenga@gmail.com</td>
+                            <td>lalalalala ....</td>
+                            <td>Denuncia</td>
+                            <td>
+                                <input type="checkbox" value="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Gabrielaalvarenga@gmail.com</td>
+                            <td>lalalalala ....</td>
+                            <td>Denuncia</td>
+                            <td>
+                                <input type="checkbox" value="">
+                            </td>
+                        </tr>  <tr>
+                            <td>1</td>
+                            <td>Gabrielaalvarenga@gmail.com</td>
+                            <td>lalalalala ....</td>
+                            <td>Denuncia</td>
+                            <td>
+                                <input type="checkbox" value="">
+                            </td>
+                        </tr>  <tr>
+                            <td>1</td>
+                            <td>Gabrielaalvarenga@gmail.com</td>
+                            <td>lalalalala ....</td>
+                            <td>Denuncia</td>
+                            <td>
+                                <input type="checkbox" value="">
+                            </td>
+                        </tr>            
+                    </tbody>
+                </table>
+
+            </div><!-- fim da div table-responsive -->
+            <div class="col-md-12 text-center">
+                <ul class="pagination pager" id="myPager2"></ul>
+            </div>
+
+
+        </div>
+        <!--/.Panel 3-->
+
+        <!--Panel 4 mensagens não lidas-->
+        <div class="tab-pane fade" id="panel14" role="tabpanel">
+            <br>
+
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Email</th>
+                            <th>Mensagem</th>
+                            <th>Assunto</th>
+                            <th>Favoritar</th>
+                            <th>Excluir</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="myTable2">
+                        <tr>
+                            <td>1</td>
+                            <td>Gabrielaalvarenga@gmail.com</td>
+                            <td>lalalalala ....</td>
+                            <td>Denuncia</td>
+                            <td>
+                                <a class="active" data-toggle="tooltip" data-placement="top" title="Added to Wishlist"><i class="fa fa-star fa-1x"></i></a>
+                            </td>
+                            <td><a class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>Excluir</a></td>
+                            <td><button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#modalMensagemFavorita">
+                                    Ler Mensagem
+                                </button></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Gabrielaalvarenga@gmail.com</td>
+                            <td>lalalalala ....</td>
+                            <td>Denuncia</td>
+                            <td>
+                                <input type="checkbox" value="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Gabrielaalvarenga@gmail.com</td>
+                            <td>lalalalala ....</td>
+                            <td>Denuncia</td>
+                            <td>
+                                <input type="checkbox" value="">
+                            </td>
+                        </tr>  <tr>
+                            <td>1</td>
+                            <td>Gabrielaalvarenga@gmail.com</td>
+                            <td>lalalalala ....</td>
+                            <td>Denuncia</td>
+                            <td>
+                                <input type="checkbox" value="">
+                            </td>
+                        </tr>  <tr>
+                            <td>1</td>
+                            <td>Gabrielaalvarenga@gmail.com</td>
+                            <td>lalalalala ....</td>
+                            <td>Denuncia</td>
+                            <td>
+                                <input type="checkbox" value="">
+                            </td>
+                        </tr>            
+                    </tbody>
+                </table>
+
+            </div><!-- fim da div table-responsive -->
+            <div class="col-md-12 text-center">
+                <ul class="pagination pager" id="myPager2"></ul>
+            </div>
+
+
+        </div>
+        <!--/.Panel 4-->
+
+        <!--Panel 5 lixeira -->
+        <div class="tab-pane fade" id="panel15" role="tabpanel">
+            <br>
+
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Email</th>
+                            <th>Mensagem</th>
+                            <th>Assunto</th>
+                            <th>Remover da lixeira</th>
+                            <th>Restaurar</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="myTable3">
+                        <tr>
+                            <td>1</td>
+                            <td>Gabrielaalvarenga@gmail.com</td>
+                            <td>lalalalala ....</td>
+                            <td>Denuncia</td>  
+                            <td><a class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>Remover</a></td>
+                            <td><a class="btn btn-sm btn-default"><i class="fa fa-undo"></i>Restaurar</a></td>
+                            <td><button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#modalMensagemExcluida">
+                                    Ler Mensagem
+                                </button></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Gabrielaalvarenga@gmail.com</td>
+                            <td>lalalalala ....</td>
+                            <td>Denuncia</td>
+                            <td>
+                                <input type="checkbox" value="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Gabrielaalvarenga@gmail.com</td>
+                            <td>lalalalala ....</td>
+                            <td>Denuncia</td>
+                            <td>
+                                <input type="checkbox" value="">
+                            </td>
+                        </tr>  <tr>
+                            <td>1</td>
+                            <td>Gabrielaalvarenga@gmail.com</td>
+                            <td>lalalalala ....</td>
+                            <td>Denuncia</td>
+                            <td>
+                                <input type="checkbox" value="">
+                            </td>
+                        </tr>  <tr>
+                            <td>1</td>
+                            <td>Gabrielaalvarenga@gmail.com</td>
+                            <td>lalalalala ....</td>
+                            <td>Denuncia</td>
+                            <td>
+                                <input type="checkbox" value="">
+                            </td>
+                        </tr>            
+                    </tbody>
+                </table>
+
+            </div><!-- fim da div table-responsive -->
+            <div class="col-md-12 text-center">
+                <ul class="pagination pager" id="myPager3"></ul>
+            </div>
+
+        </div>
+        <!--/.Panel 3-->
+
+    </div>
+
+    <!-- Modal de resposta mensagens -->
+    <div class="modal fade" id="modalMensagemFavorita" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Mensagem - Favorita</h4>
+                </div>
+                <!--Body-->
+                <div class="modal-body">
+                    <div class="col-md-6" >
+                        <div class="form-group">
+                            <label for="message-text" class="form-control-label label-modal-mensagem">Nome:</label>
+                            <p>Anderson Pessoa</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6" >
+                        <div class="form-group">
+                            <label for="message-text" class="form-control-label label-modal-mensagem">Email:</label>
+                            <p>Anderson Pessoa@ufgvsdfhgvbzs.com</p>                            
+                        </div>
+                    </div>
+                    <div class="col-md-6" >
+                        <div class="form-group">
+                            <label for="message-text" class="form-control-label label-modal-mensagem">Data:</label>
+                            <p>02/02/02</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6" >
+                        <div class="form-group">
+                            <label for="message-text" class="form-control-label label-modal-mensagem">Assunto:</label>
+                            <p>Denuncia</p>                            
+                        </div>
+                    </div>
+                    <div class="col-md-12" >
+                        <div class="form-group">
+                            <label for="message-text" class="form-control-label label-modal-mensagem">Mensagem:</label>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>                            
+                        </div>
+                    </div>
+                    <div class="col-md-12" >
+                        <div class="form-group">                        
+                            <label for="message-text" class="form-control-label label-modal-mensagem">Resposta:</label>
+                            <textarea class="form-control" id="message-text"> 
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+                        </div>
+                    </div>
+                    <!--Footer-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-warning">Responder</button>
+                    </div>
+                </div>
+                <!--/.Content-->
+            </div>
+        </div>
+        <!-- /.Live preview-->
+    </div> 
+    <!-- /.modal de resposta mensagens-->
+
+    <!-- Modal de resposta mensagens favoritas -->
+    <div class="modal fade" id="modalMensagem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Mensagem</h4>
+                </div>
+                <!--Body-->
+                <div class="modal-body">
+                    <div class="col-md-6" >
+                        <div class="form-group">
+                            <label for="message-text" class="form-control-label label-modal-mensagem">Nome:</label>
+                            <p>Anderson Pessoa</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6" >
+                        <div class="form-group">
+                            <label for="message-text" class="form-control-label label-modal-mensagem">Email:</label>
+                            <p>Anderson Pessoa@ufgvsdfhgvbzs.com</p>                            
+                        </div>
+                    </div>
+                    <div class="col-md-6" >
+                        <div class="form-group">
+                            <label for="message-text" class="form-control-label label-modal-mensagem">Data:</label>
+                            <p>02/02/02</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6" >
+                        <div class="form-group">
+                            <label for="message-text" class="form-control-label label-modal-mensagem">Assunto:</label>
+                            <p>Denuncia</p>                            
+                        </div>
+                    </div>
+                    <div class="col-md-12" >
+                        <div class="form-group">
+                            <label for="message-text" class="form-control-label label-modal-mensagem">Mensagem:</label>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>                            
+                        </div>
+                    </div>
+                    <div class="col-md-12" >
+                        <div class="form-group">                        
+                            <label for="message-text" class="form-control-label label-modal-mensagem">Resposta:</label>
+                            <textarea class="form-control" id="message-text"> 
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+                        </div>
+                    </div>
+                    <!--Footer-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-warning">Responder</button>
+                    </div>
+                </div>
+                <!--/.Content-->
+            </div>
+        </div>
+        <!-- /.Live preview-->
+    </div>
+    <!--modal de resposta de mensagem favorita-->
+
+    <!-- Modal de resposta mensagens Excluidas -->
+    <div class="modal fade" id="modalMensagemExcluida" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Mensagem - Excluida</h4>
+                </div>
+                <!--Body-->
+                <div class="modal-body">
+                    <div class="col-md-6" >
+                        <div class="form-group">
+                            <label for="message-text" class="form-control-label label-modal-mensagem">Nome:</label>
+                            <p>Anderson Pessoa</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6" >
+                        <div class="form-group">
+                            <label for="message-text" class="form-control-label label-modal-mensagem">Email:</label>
+                            <p>Anderson Pessoa@ufgvsdfhgvbzs.com</p>                            
+                        </div>
+                    </div>
+                    <div class="col-md-6" >
+                        <div class="form-group">
+                            <label for="message-text" class="form-control-label label-modal-mensagem">Data:</label>
+                            <p>02/02/02</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6" >
+                        <div class="form-group">
+                            <label for="message-text" class="form-control-label label-modal-mensagem">Assunto:</label>
+                            <p>Denuncia</p>                            
+                        </div>
+                    </div>
+                    <div class="col-md-12" >
+                        <div class="form-group">
+                            <label for="message-text" class="form-control-label label-modal-mensagem">Mensagem:</label>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>                            
+                        </div>
+                    </div>
+                    <div class="col-md-12" >
+                        <div class="form-group">                        
+                            <label for="message-text" class="form-control-label label-modal-mensagem">Resposta:</label>
+                            <textarea class="form-control" id="message-text"> 
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+                        </div>
+                    </div>
+                    <!--Footer-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-warning">Responder</button>
+                    </div>
+                </div>
+                <!--/.Content-->
+            </div>
+        </div>
+        <!-- /.Live preview-->
+    </div>
+    <!--modal de resposta de mensagem favorita-->
+
+
+
+
+
+
+    <div class="espaco"></div>
+
+
+    <div class="footer-fixo">
+        <ng-include src="'../view/footer.html'"></ng-include>
+    </div>
+
+
+
+
+
+    <!-- /Start your project here-->
+
+
+    <!-- SCRIPTS -->
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="../lib/jquery/jquery-2.2.3.min.js"></script>
+
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="../lib/bootstrap/tether.min.js"></script>
+
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="../lib/bootstrap/bootstrap.min.js"></script>
+
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="../lib/bootstrap/mdb.min.js"></script>
+
+    <!-- Paginação da tabela -->
+    <script type="text/javascript" src="../js/outros/tabela-responsiva.js"></script>
+
+    <!-- angular app script -->
+    <script type="text/javascript" src="../js/app.js"></script>
+
+
+</body>
+
+</html>

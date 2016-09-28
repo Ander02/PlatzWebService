@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app="platz">
+    <head>
+        <title>Platz - Sua Rota , Seus Eventos!</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="lib/angular/angular.js"></script>
+        <link href="lib/bootstrap.min.css" rel="stylesheet">
+        <link href="lib/ie10-viewport-bug-workaround.css" rel="stylesheet">
+        <script src="lib/ie-emulation-modes-warning.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="css/estilo.css">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="Logo.png">
+        <!-- <script src="js/main.js"></script> --> 
+        <script src="js/funcionalidades-angular.js"></script>
+        <script src="js/voltar-topo.js"></script>			
+
+    </head>
+    <body>
+    <ng-include src="'view/nav.html'"></ng-include>
+
+
+    <div class="corpo-login">
+
+    </div>
+    <div class="container caixa-login">
+        <div class="form-login">
+            <form class="form-signin">
+                <h2 class="form-signin-heading">Login</h2>
+                <label for="inputEmail" class="sr-only">Email</label>
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+                <label for="inputPassword" class="sr-only">Senha</label>
+                <input type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
+                <div class="checkbox">
+                    <label class="pull-left">
+                        Logar com :
+                    </label>
+                    <p class="pull-right"> <a href="#"><img src="css/icons/facebook.png"></a>
+                        <a href="#"><img src="css/icons/gmail.png"></a>
+
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+
+            </form>
+
+            <p><a class="btn btn-warning btn-lg btn-block btn-cadastro-login" href="cadastro.html" role="button">Cadastrar</a> </p>
+        </div>
+    </div>
+
+    <div class="footer-login">
+
+        <ng-include src="'view/footer.html'"></ng-include>
+
+    </div>
+
+    <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Clique no botão para voltar ao topo da pagina" data-toggle="tooltip" data-placement="left">Voltar ao topo</a>
+
+    <script type="text/javascript">
+        angular.module("platz", []);
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+</body>
+</html>
