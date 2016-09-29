@@ -7,6 +7,11 @@ Estilização de toda a pagina administrativa
     Author     : Gabriela Nunes Alvarenga
 */
 
+
+.modal-body .md-form label
+{
+    top: -5px;
+}
 /*centralizando os titulos das paginas*/
 .fa
 {
