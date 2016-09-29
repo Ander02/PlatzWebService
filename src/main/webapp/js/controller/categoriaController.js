@@ -3,7 +3,7 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
     //Faz um Get no Web Service recebendo uma URL
     $scope.listarTodos = function () {
         $http.get(webService + "/categorias").then(function (response) {
-            $scope.categoriasAll = response.data;
+            $scope.categoriasAll = response.data;            
         }, function (response) {
         });
     };
@@ -23,6 +23,7 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
         $http.put(webService + "/categoria/" + $scope.categoriaEdicao.id, $scope.categoriaEditada).then(function (response) {
             atualizar();
             $scope.categoriaEditada = null;
+            sleep(1000);
             location.reload();
         }, function (response) {
 
