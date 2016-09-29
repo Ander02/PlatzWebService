@@ -19,11 +19,13 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
         }, function (response) {
         });
     };
-    $scope.alterar = function (id) {
-        $scope.put(webService +"categoria/"+ $scope.categoriaEdicaoId).then(function (response){
-            
-        }, function (response){
-            
+    $scope.alterar = function () {
+        $http.put(webService + "/categoria/" + $scope.categoriaEdicao.id, $scope.categoriaEditada).then(function (response) {
+            atualizar();
+            $scope.categoriaEditada = null;
+            location.reload();
+        }, function (response) {
+
         });
     }
     $scope.cadastrar = function (categoria) {
@@ -52,7 +54,7 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
 
         });
     };
-    
+
     $scope.prepararRecuperacao = function (id) {
         $scope.categoriaRecuperacaoId = id;
     };
@@ -60,20 +62,20 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
     $scope.cancelarRecuperacao = function () {
         $scope.categoriaRecuperacaoId = null;
     };
-     $scope.prepararEdicao = function (id) {
-        $scope.categoriaEdicaoId = id;
+    $scope.prepararEdicao = function (categoria) {
+        $scope.categoriaEdicao = categoria;
     };
 
     $scope.cancelarEdicao = function () {
-        $scope.categoriaEdicaoId = null;
+        $scope.categoriaEdicao = null;
     };
-    
+
     $scope.prepararExclusao = function (id) {
         $scope.categoriaExclusaoId = id;
     };
 
     $scope.cancelarExclusao = function () {
-        $scope.categoriaEdicaoId = null;
+        $scope.categoriaExclusaoId = null;
     };
 
     $scope.deletar = function () {
@@ -89,13 +91,15 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
         }, function (response) {
 
         });
-
     };
 
     function atualizar() {
         $scope.listarTodos();
         $scope.listarExcluidas();
         $scope.listarNãoExcluidas();
+        $scope.cancelarEdicao();
+        $scope.cancelarExclusao();
+        $scope.cancelarRecuperacao();
     }
     window.onload = atualizar();
 });

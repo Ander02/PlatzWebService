@@ -171,7 +171,8 @@ public class CategoriaService {
 
     @PUT
     @Path(value = "/categoria/{id}")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+    //@PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response alterar(@PathParam("id") String id, CategoriaEdicao categoria) {

@@ -98,7 +98,7 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
                             <td>{{categoria.nome}}</td>   
                             <td>{{categoria.dataCadastro}}</td>
                             <td>
-                                <a class="btn btn-sm btn-default" data-toggle="modal" ng-click="prepararEdicao(categoria.id)" data-target="#modalEdita"><i class="fa fa-pencil"></i></a>
+                                <a class="btn btn-sm btn-default" data-toggle="modal" ng-click="prepararEdicao(categoria)" data-target="#modalEdita"><i class="fa fa-pencil"></i></a>
                                 <a class="btn btn-sm btn-danger" data-toggle="modal" ng-click="prepararExclusao(categoria.id)" data-target="#modalExcluir"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
@@ -125,7 +125,7 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
                         <!--Body-->
                         <div class="md-form form-cad-input">                  
                             <input type="text" id="categoria-nome" class="form-control" ng-model="categoria.nome" required maxlength="35" >
-                            <label for="categoria-nome">Nome da Categoria {{categoria}}</label>
+                            <label for="categoria-nome">Nome da Categoria</label>
                         </div>
 
                         <div class="md-form form-cad-input">   
@@ -208,7 +208,7 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
                     <form>
                         <!--Body-->
                         <div class="md-form form-cad-input">                  
-                            <input type="text" id="categoria-nome" class="form-control"  required maxlength="35" >
+                            <input type="text" id="categoria-nome" class="form-control"  required maxlength="35" ng-value="categoriaEdicao.nome" ng-model="categoriaEditada.nome">
                             <label for="categoria-nome">Nome da Categoria</label>
                         </div>
 
@@ -217,8 +217,8 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
                         </div>
 
                         <div class="text-xs-center">
-                            <button class="btn btn-warning" ng-click="alterar(categoria)">Cadastrar</button>
-                            <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
+                            <button class="btn btn-warning" ng-click="alterar()">Editar</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click="cancelarEdicao()">Fechar</button>
                         </div>
                     </form>
                 </div>
