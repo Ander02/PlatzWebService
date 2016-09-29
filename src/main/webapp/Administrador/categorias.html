@@ -125,7 +125,7 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
                     <form>
                         <!--Body-->
                         <div class="md-form form-cad-input">                  
-                            <input type="text" id="categoria-nome" class="form-control" ng-model="categoria.nome" required maxlength="35" >
+                            <input type="text" id="categoria-nome" class="form-control" ng-model="categoriaCadastro.nome" required maxlength="35" >
                             <label for="categoria-nome">Nome da Categoria</label>
                         </div>
 
@@ -134,7 +134,7 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
                         </div>
 
                         <div class="text-xs-center">
-                            <button class="btn btn-warning" ng-click="cadastrar(categoria)">Cadastrar</button>
+                            <button class="btn btn-warning" ng-click="cadastrar()">Cadastrar</button>
                         </div>
                     </form>
 
@@ -164,7 +164,7 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
                     </thead>
                     <tbody id="myTable">                    
                         <tr ng-repeat="categoria in categoriasExcluidas">
-                            <th scope="row"></th>
+                              <th scope="row">{{$index + 1}}</th>
                             <td>
                                 <div >
                                     <img src="../img/outras/plano-fundo.jpg" alt="Imagem sobre a categoria" class="img-categoria">                                  
