@@ -217,7 +217,7 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
                         </div>
 
                         <div class="text-xs-center">
-                            <button class="btn btn-warning" ng-click="alterar()">Editar</button>
+                            <button class="btn btn-warning" data-dismiss="modal" ng-click="alterar()">Editar</button>
                             <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click="cancelarEdicao()">Fechar</button>
                         </div>
                     </form>
@@ -248,7 +248,7 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
                         <h3>Tem Certeza que deseja excluir essa categoria? </h3>
 
                         <div class="text-xs-center">
-                            <button class="btn btn-warning" ng-click="deletar()">Sim</button>
+                            <button class="btn btn-warning" data-dismiss="modal"  ng-click="deletar()">Sim</button>
                             <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click="cancelarExclusao()">Não</button>
                         </div>
                     </form>
