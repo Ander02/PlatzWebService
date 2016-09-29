@@ -7,6 +7,11 @@ Estilização de toda a pagina administrativa
     Author     : Gabriela Nunes Alvarenga
 */
 
+
+.modal-body .md-form label
+{
+    top: -5px;
+}
 /*centralizando os titulos das paginas*/
 .fa
 {
@@ -23,15 +28,14 @@ Estilização de toda a pagina administrativa
     color: black;
     border-radius: 0px;
 }
-.imagem-perfil-adm
+
+.thumbnail-adm 
 {
-    height: 500px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 15px;
 }
-.imagem-perfil-adm img
-{
-    height: 100%;
-    width: 100%;
-}
+
 /*
 *PAGINA DE CATEGORIA
 */
