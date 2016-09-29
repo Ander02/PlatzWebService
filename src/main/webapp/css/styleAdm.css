@@ -23,15 +23,14 @@ Estilização de toda a pagina administrativa
     color: black;
     border-radius: 0px;
 }
-.imagem-perfil-adm
+
+.thumbnail-adm 
 {
-    height: 500px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 15px;
 }
-.imagem-perfil-adm img
-{
-    height: 100%;
-    width: 100%;
-}
+
 /*
 *PAGINA DE CATEGORIA
 */

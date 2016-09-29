@@ -27,23 +27,24 @@
                         <li class="nav-item">
                             <a class="nav-link" href="assuntos.html">Assunto</a>
                         </li>
-                         <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link" href="categorias.html">Categoria</a>
                         </li>
-                         <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link" href="contas.html">Conta</a>
                         </li>
                     </ul>
                     <!--links de login e cadastro-->
                     <ul class="nav navbar-nav pull-right">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="../img/outras/teste-perfil.jpg" class="image-nav">  Meu Perfil</a>
+                            <a class="nav-link dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Meu Perfil</a>
                             <div class="dropdown-menu dropdown-default" aria-labelledby="dropdownMenu1" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                <div class="thumbnail">
-                                    <img src="../img/sobre/sobreAndy.png">
+                                <div class="thumbnail thumbnail-adm">
                                     <p>Nome do usuario</p>
-                                    <a href="perfil.html">Perfil</a>
+                                    <button type="button" class="btn btn-warning-outline " data-toggle="modal" data-target="#modalEditarPerfil">
+                                        Editar perfil
+                                    </button>
                                 </div>
                             </div>
                         </li>
@@ -57,6 +58,59 @@
 
         </nav>
         <!--/.Navbar-->
+
+        <div class="modal fade" id="modalEditarPerfil" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <!--Content-->
+                <div class="modal-content">
+                    <!--Header-->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Editar Perfil</h4>
+                    </div>
+                    <!--Body-->
+                    <div class="modal-body">
+                        <form>
+                            <!--Body-->
+
+
+                            <div class="card-block text-xs-center">
+
+                                <div class="col-md-12">
+                                    <div class="md-form">  
+                                        <input  type="email" id="conta-email" class="form-control" required
+                                                maxlength="75">
+                                        <label for="conta-email">Email</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="md-form">  
+                                        <input  type="password" id="conta-senha" class="form-control" required
+                                                maxlength="75">
+                                        <label for="conta-email">Senha</label>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+
+                            <div class="text-xs-center">
+                                <button type="submit" class="btn btn-warning" data-dismiss="modal">Cadastrar</button>
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                <!--/.Content-->
+            </div>
+        </div>
+        <!-- /.Live preview-->
 
 
 
