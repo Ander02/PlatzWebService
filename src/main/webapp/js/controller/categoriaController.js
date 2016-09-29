@@ -1,4 +1,4 @@
-angular.module("platz").controller("categoriaController", function ($scope, $http) {
+angular.module("platz").controller("categoriaController", function ($scope, $http, toastr) {
 
     //Faz um Get no Web Service recebendo uma URL
     $scope.listarTodos = function () {
@@ -38,7 +38,10 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
 
             //Atualiza a lista
             atualizar();
-            alert("Categoria cadastrada com Sucesso");
+            
+            toastr.success('Categoria cadastrada com sucesso', 'Sucesso!',{
+               progressBar: true
+            });
         }, function (response) {
 
             console.log("Erro ao cadastrar");
