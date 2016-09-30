@@ -31,7 +31,8 @@ public class AssuntoService {
 
     @POST
     @Path(value = "/assunto")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+    //@PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(AssuntoCadastro assunto) {
@@ -60,6 +61,38 @@ public class AssuntoService {
         try {
             //Lista com todas as models, e converte para uma lista de leitura respondendo com um status code OK
             return Response.ok(new AssuntoLeitura().converterLista(assuntoController.listarTodos())).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar assuntos").build();
+        }
+    }
+
+    @GET
+    @Path(value = "/assuntos/deletados")
+    @PermitAll
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response listarDeletados() {
+        try {
+            //Lista com todas as models, e converte para uma lista de leitura respondendo com um status code OK
+            return Response.ok(new AssuntoLeitura().converterLista(assuntoController.listarDeletados())).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar assuntos").build();
+        }
+    }
+
+    @GET
+    @Path(value = "/assuntos/naoDeletados")
+    @PermitAll
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response listarNaoDeletados() {
+        try {
+            //Lista com todas as models, e converte para uma lista de leitura respondendo com um status code OK
+            return Response.ok(new AssuntoLeitura().converterLista(assuntoController.listarNaoDeletados())).build();
 
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
@@ -104,7 +137,8 @@ public class AssuntoService {
 
     @PUT
     @Path(value = "/assunto/{id}")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+    //@PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response alterar(@PathParam("id") String id, AssuntoEdicao assunto) {
@@ -127,7 +161,8 @@ public class AssuntoService {
 
     @DELETE
     @Path(value = "/assunto/{id}")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+    //@PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response deletar(@PathParam("id") String id) {
         try {
@@ -135,6 +170,24 @@ public class AssuntoService {
             assuntoController.excluir(assuntoController.buscarPorId(id));
 
             return Response.status(Response.Status.NO_CONTENT).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro" + e.getMessage());
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar assunto").build();
+        }
+    }
+
+    @PUT
+    @Path(value = "/assunto/recuperar/{id}")
+    //@PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response recuperar(@PathParam("id") String id) {
+        try {
+
+            AssuntoModel model = assuntoController.recuperar(assuntoController.buscarPorId(id));
+
+            return Response.ok(new AssuntoLeitura(model)).build();
 
         } catch (Exception e) {
             System.out.println("Erro" + e.getMessage());

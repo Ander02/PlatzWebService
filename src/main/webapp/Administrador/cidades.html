@@ -68,8 +68,7 @@ Pagina de consulta de cidade e estados
                         <tr>
                             <th>#</th>
                             <th>Cidade</th>
-                            <th>Estado</th>
-                            <th>UF</th>
+                            <th>Estado</th>                            
                             <th>Data de Cadastro</th>
                         </tr>
                     </thead>
@@ -77,8 +76,7 @@ Pagina de consulta de cidade e estados
                         <tr ng-repeat="cidade in cidades">
                             <td>{{$index + 1}}</td>
                             <td>{{cidade.nome}}</td>                            
-                            <td>{{cidade.estado.nome}}</td>
-                            <td>{{cidade.estado.uf}}</td>
+                            <td>{{cidade.estado.nome}} - {{cidade.estado.uf}}</td>                            
                             <td>{{cidade.dataCadastro}}</td>
                         </tr>
 

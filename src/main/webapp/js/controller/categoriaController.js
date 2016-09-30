@@ -17,7 +17,7 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
             erro(errorManager(response.config.url, response.status, "Erro ao listar categorias excluidas"));
         });
     };
-    $scope.listarNãoExcluidas = function () {
+    $scope.listarNaoExcluidas = function () {
         $http.get(webService + "/categorias/naoExcluidas").then(function (response) {
             $scope.categorias = response.data;
         }, function (response) {
@@ -56,9 +56,6 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
     };
 
     $scope.deletar = function () {
-
-        console.log($scope.categoriaExclusaoId);
-
         $http.delete(webService + "/categoria/" + $scope.categoriaExclusaoId).then(function (response) {
             atualizar();
             excluido("Categoria deletada com sucesso");
@@ -96,7 +93,7 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
     function atualizar() {
         $scope.listarTodos();
         $scope.listarExcluidas();
-        $scope.listarNãoExcluidas();
+        $scope.listarNaoExcluidas();
         $scope.cancelarEdicao();
         $scope.cancelarExclusao();
         $scope.cancelarRecuperacao();

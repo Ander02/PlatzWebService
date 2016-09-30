@@ -22,6 +22,14 @@ public class AssuntoController {
         return assuntoDao.listarTodos(AssuntoModel.class);
     }
 
+    public List<AssuntoModel> listarDeletados() {
+        return assuntoDao.listarDeletados();
+    }
+
+    public List<AssuntoModel> listarNaoDeletados() {
+        return assuntoDao.listarNaoDeletados();
+    }
+
     public AssuntoModel buscarPorId(String id) {
         return assuntoDao.buscarPorId(AssuntoModel.class, id);
     }
@@ -42,6 +50,11 @@ public class AssuntoController {
     public void excluir(AssuntoModel model) {
         model.setDeletado(new Date());
         assuntoDao.alterar(model);
+    }
+    public AssuntoModel recuperar(AssuntoModel model) {
+        model.setDeletado(null);
+        assuntoDao.alterar(model);
+        return model;
     }
 
 }
