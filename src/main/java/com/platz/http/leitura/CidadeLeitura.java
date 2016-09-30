@@ -14,7 +14,7 @@ public class CidadeLeitura {
 
     private String id;
     private String nome;
-    private EstadoLeitura estadoLeitura;
+    private EstadoLeitura estado;
     private String dataCadastro;
 
     public CidadeLeitura() {
@@ -23,14 +23,14 @@ public class CidadeLeitura {
     public CidadeLeitura(CidadeModel model) {
         setId(model.getId());
         setNome(model.getNome());
-        setEstadoLeitura(new EstadoLeitura(model.getEstado()));
+        setEstado(new EstadoLeitura(model.getEstado()));
         setDataCadastro(model.getDataCadastro());
     }
 
     public CidadeLeitura(String id, String nome, EstadoLeitura estadoLeitura, String dataCadastro) {
         setId(id);
         setNome(nome);
-        setEstadoLeitura(estadoLeitura);
+        setEstado(estadoLeitura);
         setDataCadastro(dataCadastro);
     }
 
@@ -63,12 +63,12 @@ public class CidadeLeitura {
         this.nome = nome;
     }
 
-    public EstadoLeitura getEstadoLeitura() {
-        return estadoLeitura;
+    public EstadoLeitura getEstado() {
+        return estado;
     }
 
-    public void setEstadoLeitura(EstadoLeitura estadoLeitura) {
-        this.estadoLeitura = estadoLeitura;
+    public void setEstado(EstadoLeitura estadoLeitura) {
+        this.estado = estadoLeitura;
     }
 
     public String getDataCadastro() {

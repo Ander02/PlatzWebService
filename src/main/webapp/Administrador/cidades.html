@@ -29,12 +29,14 @@ Pagina de consulta de cidade e estados
         <script type="text/javascript" src="../lib/angular/angular.js"></script>
 
         <script type="text/javascript" src="../js/app.js"></script>
-
-
+        
+        <script src="../js/util.js" type="text/javascript"></script>
+        
+        <script src="../js/controller/cidadeController.js" type="text/javascript"></script>
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="../img/logo.png">
     </head>
-    <body>
+    <body ng-controller="cidadeController">
     <ng-include src="'../View/nav-adm.html'"></ng-include>
 
     <div class="espaco"></div>
@@ -43,6 +45,7 @@ Pagina de consulta de cidade e estados
     <div class="head-pagina">
 
         <h1>Cidades</h1>
+        <p>A Aplicação cadastra novas cidades automaticamente, de acordo com o cadastro de contas e eventos.</p>
 
     </div>
 
@@ -67,14 +70,16 @@ Pagina de consulta de cidade e estados
                             <th>Cidade</th>
                             <th>Estado</th>
                             <th>UF</th>
+                            <th>Data de Cadastro</th>
                         </tr>
                     </thead>
                     <tbody id="myTable">
-                        <tr>
-                            <td>1</td>
-                            <td>São Paulo</td>
-                            <td>São Paulo</td>
-                            <td>SP</td>
+                        <tr ng-repeat="cidade in cidades">
+                            <td>{{$index + 1}}</td>
+                            <td>{{cidade.nome}}</td>                            
+                            <td>{{cidade.estado.nome}}</td>
+                            <td>{{cidade.estado.uf}}</td>
+                            <td>{{cidade.dataCadastro}}</td>
                         </tr>
 
                     </tbody>
