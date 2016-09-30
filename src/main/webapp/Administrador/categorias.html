@@ -85,7 +85,7 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
                             <th>Imagem</th>     
                             <th>Nome</th>
                             <th>Data de cadastro</th>
-                            <th>Opções</th>
+                            
                         </tr>
                     </thead>
                     <tbody id="myTable">                    
@@ -98,7 +98,7 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
                             </td>    
                             <td>{{categoria.nome}}</td>   
                             <td>{{categoria.dataCadastro}}</td>
-                            <td>
+                            <td align=right>
                                 <a class="btn btn-sm btn-default" data-toggle="modal" ng-click="prepararEdicao(categoria)" data-target="#modalEdita"><i class="fa fa-pencil"></i>Editar</a>
                                 <a class="btn btn-sm btn-danger" data-toggle="modal" ng-click="prepararExclusao(categoria.id)" data-target="#modalExcluir"><i class="fa fa-trash"></i>Excluir</a>
                             </td>
@@ -159,7 +159,6 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
                             <th>Imagem</th>     
                             <th>Nome</th>
                             <th>Data de exclusão</th>
-                            <th>Opções</th>
                         </tr>
                     </thead>
                     <tbody id="myTable">                    
@@ -172,8 +171,8 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
                             </td>    
                             <td>{{categoria.nome}}</td>   
                             <td>{{categoria.deletado}}</td>
-                            <td>
-                                <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalRestaurar" ng-click="prepararRecuperacao(categoria.id)"><i class="fa fa-undo"></i> Restaurar</a>                           
+                            <td align=right >
+                                <a class="btn btn-sm btn-default-outline" data-toggle="modal" data-target="#modalRestaurar" ng-click="prepararRecuperacao(categoria.id)"><i class="fa fa-undo"></i> Restaurar</a>                           
                             </td>
                         </tr>
 
