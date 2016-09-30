@@ -6,5 +6,9 @@
             }
         }
     },
-    "attributes": {}
+    "attributes": {
+        "aria-expanded": {
+            "context": "button"
+        }
+    }
 }
