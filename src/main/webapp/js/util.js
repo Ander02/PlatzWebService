@@ -35,7 +35,7 @@ function errorManager(erro, status, mensagem) {
             return "Erro de servidor, por favor contate o administrador do sitema e relate o erro: " + mensagem + " - " + erro;
             break;
         default:
-            return "Erro não identificado. " + mensagem + " - " + erro;
+            return status + "Erro não identificado. " + mensagem + " - " + erro;
             break;
     }
 }
