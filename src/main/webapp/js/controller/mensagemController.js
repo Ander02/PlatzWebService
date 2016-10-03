@@ -2,12 +2,27 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
 
     $scope.listarTodos = function () {
         $http.get(webService + "/mensagens").then(function (response) {
-            console.log(response.data);
             $scope.mensagens = response.data;
+            console.log("muda saporra");
         }, function (response) {
             erro(errorManager(response.config.url, response.status, "Erro ao listar mensagens"));
         });
     };
+    $scope.listarNaoDeletados = function () {
+        $http.get(webService + "/------------").then(function (response) {
+            $scope.mensagensAll = response.data;
+        }, function (response) {
+            erro(errorManager(response.config.url, response.status, "Erro ao listar mensagens"));
+        });
+    };
+    $scope.listarDeletados = function () {
+        $http.get(webService + "/mensagens/excluidas").then(function (response) {
+            $scope.mensagensExcluidas = response.data;
+        }, function (response) {
+            erro(errorManager(response.config.url, response.status, "Erro ao listar mensagens"));
+        });
+    };
+
 
     $scope.cadastrar = function () {
 
@@ -19,10 +34,19 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
             erro(errorManager(response.config.url, response.status, "Erro ao enviar Mensagem "));
         });
     };
+    $scope.listarAssuntosNaoDeletados = function () {
+        $http.get(webService + "/assuntos/naoDeletados").then(function (response) {
+            $scope.assuntos = response.data;
+        }, function (response) {
+            erro(errorManager(response.config.url, response.status, "Erro ao listar assuntos"));
+        });
+    };
+
 
     //funções de atualizações e avisos
     function atualizar() {
         $scope.listarTodos();
+        $scope.listarAssuntosNaoDeletados();
     }
     window.onload = atualizar();
 

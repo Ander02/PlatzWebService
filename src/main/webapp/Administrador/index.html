@@ -100,7 +100,7 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
                         </tr>
                     </thead>
                     <tbody id="myTable">
-                        <tr ng-repeat="mensagem in mesagens">
+                        <tr ng-repeat="mensagem in mensagens">
                             <td>{{$index + 1}}</td>
                             <td>{{mensagem.email}}</td>
                             <td>{{mensagem.conteudo}}</td>
@@ -113,7 +113,7 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
                                     Ler Mensagem
                                 </button></td>
                         </tr>
-                        
+
                     </tbody>
                 </table>
 
@@ -166,22 +166,6 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
                             </td>
                         </tr>
                         <tr>
-                            <td>1</td>
-                            <td>Gabrielaalvarenga@gmail.com</td>
-                            <td>lalalalala ....</td>
-                            <td>Denuncia</td>
-                            <td>
-                                <input type="checkbox" value="">
-                            </td>
-                        </tr>  <tr>
-                            <td>1</td>
-                            <td>Gabrielaalvarenga@gmail.com</td>
-                            <td>lalalalala ....</td>
-                            <td>Denuncia</td>
-                            <td>
-                                <input type="checkbox" value="">
-                            </td>
-                        </tr>  <tr>
                             <td>1</td>
                             <td>Gabrielaalvarenga@gmail.com</td>
                             <td>lalalalala ....</td>
@@ -374,51 +358,17 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
                         </tr>
                     </thead>
                     <tbody id="myTable3">
-                        <tr>
-                            <td>1</td>
-                            <td>Gabrielaalvarenga@gmail.com</td>
-                            <td>lalalalala ....</td>
-                            <td>Denuncia</td>  
+                        <tr ng-repeat="mensagemExcluida in mensagensExcluidas">
+                            <td>{{$index +1}}</td>
+                            <td>{{mensagemExcluida.email}}</td>
+                            <td>{{mensagemExcluida.conteudo}}</td>
+                            <td>{{mensagemExcluida.assunto.nome}}</td>  
                             <td><a class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>Remover</a></td>
                             <td><a class="btn btn-sm btn-default"><i class="fa fa-undo"></i>Restaurar</a></td>
                             <td><button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#modalMensagemExcluida">
                                     Ler Mensagem
                                 </button></td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Gabrielaalvarenga@gmail.com</td>
-                            <td>lalalalala ....</td>
-                            <td>Denuncia</td>
-                            <td>
-                                <input type="checkbox" value="">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Gabrielaalvarenga@gmail.com</td>
-                            <td>lalalalala ....</td>
-                            <td>Denuncia</td>
-                            <td>
-                                <input type="checkbox" value="">
-                            </td>
-                        </tr>  <tr>
-                            <td>1</td>
-                            <td>Gabrielaalvarenga@gmail.com</td>
-                            <td>lalalalala ....</td>
-                            <td>Denuncia</td>
-                            <td>
-                                <input type="checkbox" value="">
-                            </td>
-                        </tr>  <tr>
-                            <td>1</td>
-                            <td>Gabrielaalvarenga@gmail.com</td>
-                            <td>lalalalala ....</td>
-                            <td>Denuncia</td>
-                            <td>
-                                <input type="checkbox" value="">
-                            </td>
-                        </tr>            
+                        </tr>                        
                     </tbody>
                 </table>
 

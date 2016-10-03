@@ -78,11 +78,12 @@ public class MensagemService {
 
     @GET
     @Path(value = "/mensagens")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+    // @PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
 
-        try {
+        //try {
             //Lista com todas as Models cadastradas
             List<MensagemModel> models = mensagemController.listarTodos();
             //Converter a lista de models para uma lista de leitura
@@ -90,11 +91,11 @@ public class MensagemService {
             //Retorna a lista com um Status Code OK
             return Response.ok(listaDeMensagens).build();
 
-        } catch (Exception e) {
+        /*} catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar contas").build();
-        }
+        }*/
 
     }
 
