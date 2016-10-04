@@ -42,6 +42,16 @@ public class MensagemDao extends GenericDao<MensagemModel> {
         return lista;
     }
 
+    public List<MensagemModel> buscarMarcadasNaoExcluidas() {
+
+        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
+
+        List<MensagemModel> lista = entityManager.createQuery("from MensagemModel where marcado = true and deletado= :deletado").setParameter("deletado", null).getResultList();
+        entityManager.close();
+
+        return lista;
+    }
+
     public List<MensagemModel> buscarExcluidas() {
 
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
@@ -51,8 +61,8 @@ public class MensagemDao extends GenericDao<MensagemModel> {
 
         return lista;
     }
-    
-     public List<MensagemModel> buscarNaoExcluidas() {
+
+    public List<MensagemModel> buscarNaoExcluidas() {
 
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
 
@@ -61,8 +71,8 @@ public class MensagemDao extends GenericDao<MensagemModel> {
 
         return lista;
     }
-     
-      public List<MensagemModel> buscarLidas() {
+
+    public List<MensagemModel> buscarLidas() {
 
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
 
@@ -71,12 +81,32 @@ public class MensagemDao extends GenericDao<MensagemModel> {
 
         return lista;
     }
-      
-       public List<MensagemModel> buscarNaoLidas() {
+
+    public List<MensagemModel> buscarNaoLidas() {
 
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
 
         List<MensagemModel> lista = entityManager.createQuery("from MensagemModel where visualizado = :visualizado").setParameter("visualizado", null).getResultList();
+        entityManager.close();
+
+        return lista;
+    }
+
+    public List<MensagemModel> buscarLidasNaoExcluidas() {
+
+        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
+
+        List<MensagemModel> lista = entityManager.createQuery("from MensagemModel where visualizado != :visualizado and deletado= :deletado").setParameter("deletado", null).setParameter("visualizado", null).getResultList();
+        entityManager.close();
+
+        return lista;
+    }
+
+    public List<MensagemModel> buscarNaoLidasNaoExcluidas() {
+
+        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
+
+        List<MensagemModel> lista = entityManager.createQuery("from MensagemModel where visualizado = :visualizado and deletado= :deletado").setParameter("deletado", null).setParameter("visualizado", null).getResultList();
         entityManager.close();
 
         return lista;

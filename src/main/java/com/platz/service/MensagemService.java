@@ -85,12 +85,12 @@ public class MensagemService {
     public Response listarTodos() {
 
         try {
-        //Lista com todas as Models cadastradas
-        List<MensagemModel> models = mensagemController.listarTodos();
-        //Converter a lista de models para uma lista de leitura
-        List<MensagemLeitura> listaDeMensagens = new MensagemLeitura().converterLista(models);
-        //Retorna a lista com um Status Code OK
-        return Response.ok(listaDeMensagens).build();
+            //Lista com todas as Models cadastradas
+            List<MensagemModel> models = mensagemController.listarTodos();
+            //Converter a lista de models para uma lista de leitura
+            List<MensagemLeitura> listaDeMensagens = new MensagemLeitura().converterLista(models);
+            //Retorna a lista com um Status Code OK
+            return Response.ok(listaDeMensagens).build();
 
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
@@ -151,6 +151,28 @@ public class MensagemService {
         try {
             //Lista com todas as Models cadastradas
             List<MensagemModel> models = mensagemController.buscarMarcadas();
+            //Converter a lista de models para uma lista de leitura
+            List<MensagemLeitura> listaDeMensagens = new MensagemLeitura().converterLista(models);
+            //Retorna a lista com um Status Code OK
+            return Response.ok(listaDeMensagens).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar mensagens").build();
+        }
+    }
+
+    @GET
+    @Path(value = "/mensagens/marcadasNaoExcluidas")
+    // @PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarMarcadasNaoExcluidas() {
+
+        try {
+            //Lista com todas as Models cadastradas
+            List<MensagemModel> models = mensagemController.buscarMarcadasNaoExcluidas();
             //Converter a lista de models para uma lista de leitura
             List<MensagemLeitura> listaDeMensagens = new MensagemLeitura().converterLista(models);
             //Retorna a lista com um Status Code OK
@@ -252,6 +274,50 @@ public class MensagemService {
     }
 
     @GET
+    @Path(value = "/mensagens/lidasNaoExcluidas")
+    // @PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarLidasNaoExcluidas() {
+
+        try {
+            //Lista com todas as Models cadastradas
+            List<MensagemModel> models = mensagemController.buscarLidasNaoExcluidas();
+            //Converter a lista de models para uma lista de leitura
+            List<MensagemLeitura> listaDeMensagens = new MensagemLeitura().converterLista(models);
+            //Retorna a lista com um Status Code OK
+            return Response.ok(listaDeMensagens).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar mensagens").build();
+        }
+    }
+
+    @GET
+    @Path(value = "/mensagens/naoLidasNaoExcluidas")
+    // @PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarNaoLidasNaoExcluidas() {
+
+        try {
+            //Lista com todas as Models cadastradas
+            List<MensagemModel> models = mensagemController.buscarNaoLidasNaoExcluidas();
+            //Converter a lista de models para uma lista de leitura
+            List<MensagemLeitura> listaDeMensagens = new MensagemLeitura().converterLista(models);
+            //Retorna a lista com um Status Code OK
+            return Response.ok(listaDeMensagens).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar mensagens").build();
+        }
+    }
+
+    @GET
     @Path(value = "/mensagens/assunto/{id}")
     // @PerfilAuth(Perfil.ADMINISTRADOR)
     @PermitAll
@@ -272,6 +338,48 @@ public class MensagemService {
             System.out.println("Erro: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar mensagens").build();
+        }
+    }
+
+    @PUT
+    @Path(value = "/mensagem/visualizar/{id}")
+    // @PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response visualizar(@PathParam("id") String id) {
+
+        try {
+            MensagemModel model = mensagemController.buscarPorId(id);
+
+            mensagemController.visualizar(model);
+
+            return Response.ok(new MensagemLeitura(model)).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar mensagem").build();
+        }
+    }
+
+    @PUT
+    @Path(value = "/mensagem/cancelarVisualizacao/{id}")
+    // @PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response cancelarVisualizacao(@PathParam("id") String id) {
+
+        try {
+            MensagemModel model = mensagemController.buscarPorId(id);
+
+            mensagemController.cancelarVisualizacao(model);
+
+            return Response.ok(new MensagemLeitura(model)).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar mensagem").build();
         }
     }
 

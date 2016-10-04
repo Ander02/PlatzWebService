@@ -37,6 +37,11 @@ public class MensagemController {
     public List<MensagemModel> buscarMarcadas() {
         return mensagemDao.buscarMarcadas();
     }
+    
+    
+    public List<MensagemModel> buscarMarcadasNaoExcluidas() {
+        return mensagemDao.buscarMarcadasNaoExcluidas();
+    }
 
     public List<MensagemModel> buscarExluidas() {
         return mensagemDao.buscarExcluidas();
@@ -45,7 +50,7 @@ public class MensagemController {
     public List<MensagemModel> buscarNaoExluidas() {
         return mensagemDao.buscarNaoExcluidas();
     }
-    
+
     public List<MensagemModel> buscarLidas() {
         return mensagemDao.buscarLidas();
     }
@@ -53,10 +58,39 @@ public class MensagemController {
     public List<MensagemModel> buscarNaoLidas() {
         return mensagemDao.buscarNaoLidas();
     }
+    
+    public List<MensagemModel> buscarLidasNaoExcluidas() {
+        return mensagemDao.buscarLidasNaoExcluidas();
+    }
+
+    public List<MensagemModel> buscarNaoLidasNaoExcluidas() {
+        return mensagemDao.buscarNaoLidasNaoExcluidas();
+    }
 
     public void marcar(MensagemModel model) {
         if (!model.isMarcado()) {
             model.setMarcado(true);
+            mensagemDao.alterar(model);
+        }
+    }
+
+    public void marcarLida(MensagemModel model) {
+        if (!model.isMarcado()) {
+            model.setMarcado(true);
+            mensagemDao.alterar(model);
+        }
+    }
+
+    public void cancelarVisualizacao(MensagemModel model) {
+        if (model.getVisualizado() != null) {
+            model.setVisualizado(null);
+            mensagemDao.alterar(model);
+        }
+    }
+
+    public void visualizar(MensagemModel model) {
+        if (model.getVisualizado() == null) {
+            model.setVisualizado(new Date());
             mensagemDao.alterar(model);
         }
     }

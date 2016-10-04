@@ -40,7 +40,7 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="../img/logo.png">
 
-
+        <link href="../css/efeitos/efeitoEstrelaFavorita.css" rel="stylesheet" type="text/css"/>
 
     </head>
 
@@ -108,10 +108,12 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
                             <td>{{mensagem.conteudo}}</td>
                             <td>{{mensagem.assunto.nome}}</td>
                             <td>
-                                <a class="active" data-toggle="tooltip" data-placement="top" title="Added to Wishlist"><i class="fa fa-star fa-1x"></i></a>
+                                <input type="checkbox" name="checkboxG{{$index + 1}}" id="checkboxG{{$index + 1}}"  class="css-checkbox" ng-checked="{{mensagem.marcado}}" ng-click="alterarFavorito(mensagem)"/>
+					<label for="checkboxG{{$index + 1}}" class="css-label"></label>
                             </td>
-                            <td><a class="btn btn-sm btn-danger" ng-click="prepararExclusao(mensagem.id)"><i class="fa fa-trash"></i>Excluir</a></td>
-                            <td ><button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#modalDetalhes"  ng-click="buscarPeloId(mensagem.id)">
+                            <td><button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalExcluir" ng-click="prepararExclusao(mensagem.id)">
+                                    <i class="fa fa-trash"></i>Excluir</button></td>
+                            <td ><button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#modalDetalhes"  ng-click="lerMensagem(mensagem.id)">
                                     Ler Mensagem
                                 </button></td>
                         </tr>
@@ -151,10 +153,12 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
                             <td>{{mensagem.conteudo}}</td>
                             <td>{{mensagem.assunto.nome}}</td>
                             <td>
-                                <a class="active" data-toggle="tooltip" data-placement="top" title="Added to Wishlist"><i class="fa fa-star fa-1x"></i></a>
+                                <input type="checkbox" name="checkboxF{{$index + 1}}" id="checkboxF{{$index + 1}}"  class="css-checkbox" ng-checked="{{mensagem.marcado}}" ng-click="alterarFavorito(mensagem)"/>
+					<label for="checkboxF{{$index + 1}}" class="css-label"></label>
                             </td>
-                            <td><a class="btn btn-sm btn-danger" ng-click="prepararExclusao(mensagem.id)"><i class="fa fa-trash"></i>Excluir</a></td>
-                            <td><button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#modalDetalhes" ng-click="buscarPeloId(mensagem.id)">
+                            <td><button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalExcluir" >
+                                    <i class="fa fa-trash"></i>Excluir</button></td>
+                            <td><button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#modalDetalhes" ng-click="lerMensagem(mensagem.id)">
                                     Ler Mensagem
                                 </button></td>
                         </tr>                               
@@ -194,10 +198,12 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
                             <td>{{mensagem.conteudo}}</td>
                             <td>{{mensagem.assunto.nome}}</td>
                             <td>
-                                <a class="active" data-toggle="tooltip" data-placement="top" title="Added to Wishlist"><i class="fa fa-star fa-1x"></i></a>
+                                <input type="checkbox" name="checkboxE{{$index + 1}}" id="checkboxE{{$index + 1}}"  class="css-checkbox" ng-checked="{{mensagem.marcado}}" ng-click="alterarFavorito(mensagem)"/>
+					<label for="checkboxE{{$index + 1}}" class="css-label"></label>
                             </td>
-                            <td><a class="btn btn-sm btn-danger" ng-click="prepararExclusao(mensagem.id)"><i class="fa fa-trash" ></i>Excluir</a></td>
-                            <td><button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#modalDetalhes"  ng-click="buscarPeloId(mensagem.id)">
+                            <td><button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalExcluir" >
+                                    <i class="fa fa-trash"></i>Excluir</button></td>
+                            <td><button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#modalDetalhes"  ng-click="lerMensagem(mensagem.id)">
                                     Ler Mensagem
                                 </button></td>
                         </tr>                              
@@ -237,10 +243,12 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
                             <td>{{mensagem.conteudo}}</td>
                             <td>{{mensagem.assunto.nome}}</td>
                             <td>
-                                <a class="active" data-toggle="tooltip" data-placement="top" title="Added to Wishlist"><i class="fa fa-star fa-1x"></i></a>
+                                <input type="checkbox" name="checkboxD{{$index + 1}}" id="checkboxD{{$index + 1}}"  class="css-checkbox" ng-checked="{{mensagem.marcado}}" ng-click="alterarFavorito(mensagem)"/>
+					<label for="checkboxD{{$index + 1}}" class="css-label"></label>
                             </td>
-                            <td><a class="btn btn-sm btn-danger" ng-click="prepararExclusao(mensagem.id)"><i class="fa fa-trash"></i>Excluir</a></td>
-                            <td><button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#modalDetalhes" ng-click="buscarPeloId(mensagem.id)">
+                            <td><button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalExcluir">
+                                    <i class="fa fa-trash"></i>Excluir</button></td>
+                            <td><button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#modalDetalhes" ng-click="lerMensagem(mensagem.id)">
                                     Ler Mensagem
                                 </button></td>
                         </tr>                             
@@ -279,8 +287,8 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
                             <td>{{mensagemExcluida.email}}</td>
                             <td>{{mensagemExcluida.conteudo}}</td>
                             <td>{{mensagemExcluida.assunto.nome}}</td>  
-                            <td><a class="btn btn-sm btn-danger" ng-click="prepararExclusaoDefinitiva(mensagemExcluida.id)"><i class="fa fa-trash"></i>Remover Definitivamente</a></td>
-                            <td><a class="btn btn-sm btn-default" ng-click="prepararRecuperacao(mensagemExcluida.id)"><i class="fa fa-undo"></i>Restaurar</a></td>                            
+                            <td><button data-toggle="modal" data-target="#modalExcluirDefinitivo" class="btn btn-sm btn-danger" ng-click="prepararExclusaoDefinitiva(mensagemExcluida.id)"><i class="fa fa-trash"></i>Remover Definitivamente</button></td>
+                            <td><button data-toggle="modal" data-target="#modalRestaurar" class="btn btn-sm btn-default" ng-click="prepararRecuperacao(mensagemExcluida.id)"><i class="fa fa-undo"></i>Restaurar</button></td>                            
                         </tr>                        
                     </tbody>
                 </table>
@@ -337,14 +345,14 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
                     <div class="col-md-12" >
                         <div class="form-group">                        
                             <label for="message-text" class="form-control-label label-modal-mensagem">Resposta:</label>
-                            <textarea class="form-control" id="message-text"> 
+                            <textarea class="form-control" id="message-text" ng-model="resposta"> 
                             </textarea>
                         </div>
                     </div>
                     <!--Footer-->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
-                        <button type="button" class="btn btn-warning">Responder</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-warning" ng-click="responder(mensagem.id)">Responder</button>
                     </div>
                 </div>
                 <!--/.Content-->
@@ -352,8 +360,90 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
         </div>
         <!-- /.Live preview-->
     </div> 
-    <!-- /.modal de resposta mensagens-->
+    <!-- /.modal para ver detalhes mensagens-->
 
+    <!-- modal de excluir -->
+    <div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Excluir</h4>
+                </div>
+                <!--Body-->
+                <div class="modal-body">
+                    <p>tem Certeza que deseja Excluir essa Mensagem?</p>
+                </div>
+                <!--Footer-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="marcarExcluida()"> Sim </button>
+                    <button type="button" class="btn btn-amber" data-dismiss="modal" ng-click="cancelarExclusao()"> Não </button>
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+    <!-- /.modal de excluir -->
+
+    <!-- modal de restaurar -->
+
+    <div class="modal fade" id="modalRestaurar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Restaurar</h4>
+                </div>
+                <!--Body-->
+                <div class="modal-body">
+                    <p>tem Certeza que deseja Restaurar essa Mensagem?</p>
+                </div>
+                <!--Footer-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="restaurar()"> Sim </button>
+                    <button type="button" class="btn btn-amber" data-dismiss="modal" ng-click="cancelarRecuperacao()"> Não </button>
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+    <!-- /.modal de restaurar -->
+
+    <!-- modal de excluir definitivamente -->
+
+    <div class="modal fade" id="modalExcluirDefinitivo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Excluir Definitivamente</h4>
+                </div>
+                <!--Body-->
+                <div class="modal-body">
+                    <p>tem Certeza que Deseja Excluir essa Mensagem Definitivamente?</p>
+                </div>
+                <!--Footer-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"  ng-click="excluirDefinitivamente()"> Sim </button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="cancelarExclusaoDefinitiva()"> Não </button>
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+    <!-- /.modal de excluir definitivamente -->
 
 
 
