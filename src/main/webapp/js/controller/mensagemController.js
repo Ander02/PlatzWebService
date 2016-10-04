@@ -68,6 +68,7 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
 
     $scope.favoritar = function (id) {
         $http.put(webService + "/mensagem/marcar/" + id).then(function (response) {
+            atualizar();
             confirmacao("Favoritado");
         }, function (response) {
             info(errorManager(response.config.url, response.status, "Erro ao favoritar mensagem"));
@@ -76,12 +77,38 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
 
     $scope.desfavoritar = function (id) {
         $http.put(webService + "/mensagem/desmarcar/" + id).then(function (response) {
+            atualizar();
             confirmacao("Desfavoritado");
         }, function (response) {
             info(errorManager(response.config.url, response.status, "Erro ao desmarcar mensagem"));
         });
     };
-    
+
+    $scope.excluirDefinitivamente = function (id) {
+        $http.delete(webService + "/mensagem/excluir/" + $scope.mensagemExclusaoDefinitivaId).then(function (response) {
+            atualizar();
+        }, function (response) {
+            erro(errorManager(response.config.url, response.status, "Erro ao excluir mensagem"));
+        });
+    };
+
+    $scope.marcarExcluida = function (id) {
+        $http.put(webService + "/mensagem/excluir/" + $scope.mensagemExclusaoId).then(function (response) {
+            atualizar();
+        }, function (response) {
+            erro(errorManager(response.config.url, response.status, "Erro ao excluir mensagem"));
+        });
+    };
+
+    $scope.restaurar = function (id) {
+        $http.put(webService + "/mensagem/restaurar/" + $scope.mensagemRecuperacaoId).then(function (response) {
+            atualizar();
+        }, function (response) {
+            erro(errorManager(response.config.url, response.status, "Erro ao recuperar mensagem"));
+        });
+    };
+
+    //métodos que envolvem outros tipos de objetos
     $scope.listarAssuntosNaoDeletados = function () {
         $http.get(webService + "/assuntos/naoDeletados").then(function (response) {
             $scope.assuntos = response.data;
@@ -89,6 +116,28 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
             erro(errorManager(response.config.url, response.status, "Erro ao listar assuntos"));
         });
     };
+
+    $scope.prepararExclusaoDefinitiva = function (id) {
+        console.log(id);
+        $scope.mensagemExclusaoId = id;
+    }
+    $scope.cancelarExclusaoDefinitiva = function (id) {
+        $scope.mensagemExclusaoId = null;
+    }
+    $scope.prepararExclusao = function (id) {
+        $scope.mensagemExclusaoId = id;
+    }
+    $scope.cancelarExclusao = function () {
+        $scope.mensagemExclusaoId = null;
+    }
+    $scope.prepararRecuperacao = function (id) {
+        console.log(id);
+        $scope.mensagemRecuperacaoId = id;        
+    }
+
+    $scope.cancelarRecuperacao = function () {
+        $scope.mensagemRecuperacaoId = null;
+    }
 
     //funções de atualizações e avisos
     function atualizar() {
