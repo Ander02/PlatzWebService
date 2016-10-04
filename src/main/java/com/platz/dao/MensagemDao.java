@@ -46,7 +46,37 @@ public class MensagemDao extends GenericDao<MensagemModel> {
 
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
 
-        List<MensagemModel> lista = entityManager.createQuery("from MensagemModel where excluido !=:null").setParameter("null", null).getResultList();
+        List<MensagemModel> lista = entityManager.createQuery("from MensagemModel where deletado != :deletado").setParameter("deletado", null).getResultList();
+        entityManager.close();
+
+        return lista;
+    }
+    
+     public List<MensagemModel> buscarNaoExcluidas() {
+
+        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
+
+        List<MensagemModel> lista = entityManager.createQuery("from MensagemModel where deletado = :deletado").setParameter("deletado", null).getResultList();
+        entityManager.close();
+
+        return lista;
+    }
+     
+      public List<MensagemModel> buscarLidas() {
+
+        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
+
+        List<MensagemModel> lista = entityManager.createQuery("from MensagemModel where visualizado != :visualizado").setParameter("visualizado", null).getResultList();
+        entityManager.close();
+
+        return lista;
+    }
+      
+       public List<MensagemModel> buscarNaoLidas() {
+
+        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
+
+        List<MensagemModel> lista = entityManager.createQuery("from MensagemModel where visualizado = :visualizado").setParameter("visualizado", null).getResultList();
         entityManager.close();
 
         return lista;

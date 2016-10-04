@@ -56,7 +56,8 @@ public class MensagemService {
 
     @POST
     @Path(value = "/mensagem/{id}")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+    // @PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response responderMensagem(String resposta, @PathParam("id") String id) {
 
@@ -83,25 +84,25 @@ public class MensagemService {
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
 
-        //try {
-            //Lista com todas as Models cadastradas
-            List<MensagemModel> models = mensagemController.listarTodos();
-            //Converter a lista de models para uma lista de leitura
-            List<MensagemLeitura> listaDeMensagens = new MensagemLeitura().converterLista(models);
-            //Retorna a lista com um Status Code OK
-            return Response.ok(listaDeMensagens).build();
+        try {
+        //Lista com todas as Models cadastradas
+        List<MensagemModel> models = mensagemController.listarTodos();
+        //Converter a lista de models para uma lista de leitura
+        List<MensagemLeitura> listaDeMensagens = new MensagemLeitura().converterLista(models);
+        //Retorna a lista com um Status Code OK
+        return Response.ok(listaDeMensagens).build();
 
-        /*} catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar contas").build();
-        }*/
-
+        }
     }
 
     @GET
     @Path(value = "/mensagem/{id}")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+    // @PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloId(@PathParam("id") String id) {
         MensagemModel model = mensagemController.buscarPorId(id);
@@ -120,7 +121,8 @@ public class MensagemService {
 
     @GET
     @Path(value = "/mensagens/{email}")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+    // @PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloEmail(@PathParam("email") String email) {
 
@@ -141,7 +143,8 @@ public class MensagemService {
 
     @GET
     @Path(value = "/mensagens/marcadas")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+    // @PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarMarcadas() {
 
@@ -162,7 +165,8 @@ public class MensagemService {
 
     @GET
     @Path(value = "/mensagens/excluidas")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+    // @PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarExcluidas() {
 
@@ -182,8 +186,75 @@ public class MensagemService {
     }
 
     @GET
+    @Path(value = "/mensagens/naoExcluidas")
+    // @PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarNaoExcluidas() {
+
+        try {
+            //Lista com todas as Models cadastradas
+            List<MensagemModel> models = mensagemController.buscarNaoExluidas();
+            //Converter a lista de models para uma lista de leitura
+            List<MensagemLeitura> listaDeMensagens = new MensagemLeitura().converterLista(models);
+            //Retorna a lista com um Status Code OK
+            return Response.ok(listaDeMensagens).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar mensagens").build();
+        }
+    }
+
+    @GET
+    @Path(value = "/mensagens/lidas")
+    // @PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarLidas() {
+
+        try {
+            //Lista com todas as Models cadastradas
+            List<MensagemModel> models = mensagemController.buscarLidas();
+            //Converter a lista de models para uma lista de leitura
+            List<MensagemLeitura> listaDeMensagens = new MensagemLeitura().converterLista(models);
+            //Retorna a lista com um Status Code OK
+            return Response.ok(listaDeMensagens).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar mensagens").build();
+        }
+    }
+
+    @GET
+    @Path(value = "/mensagens/naoLidas")
+    // @PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarNaoLidas() {
+
+        try {
+            //Lista com todas as Models cadastradas
+            List<MensagemModel> models = mensagemController.buscarNaoLidas();
+            //Converter a lista de models para uma lista de leitura
+            List<MensagemLeitura> listaDeMensagens = new MensagemLeitura().converterLista(models);
+            //Retorna a lista com um Status Code OK
+            return Response.ok(listaDeMensagens).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar mensagens").build();
+        }
+    }
+
+    @GET
     @Path(value = "/mensagens/assunto/{id}")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+    // @PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloAssunto(@PathParam("id") String id) {
 
@@ -206,7 +277,8 @@ public class MensagemService {
 
     @PUT
     @Path(value = "/mensagem/marcar/{id}")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+    // @PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response marcar(@PathParam("id") String id) {
 
@@ -226,7 +298,8 @@ public class MensagemService {
 
     @PUT
     @Path(value = "/mensagem/desmarcar/{id}")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+    // @PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response desmarcar(@PathParam("id") String id) {
 
@@ -246,7 +319,8 @@ public class MensagemService {
 
     @PUT
     @Path(value = "/mensagem/excluir/{id}")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+    // @PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response marcarExcluida(@PathParam("id") String id) {
 
@@ -266,7 +340,8 @@ public class MensagemService {
 
     @PUT
     @Path(value = "/mensagem/restaurar/{id}")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+    // @PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response restaurar(@PathParam("id") String id) {
 
@@ -286,7 +361,8 @@ public class MensagemService {
 
     @DELETE
     @Path(value = "/mensagem/{id}")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+    // @PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response deletar(@PathParam("id") String id) {
         try {

@@ -42,6 +42,18 @@ public class MensagemController {
         return mensagemDao.buscarExcluidas();
     }
 
+    public List<MensagemModel> buscarNaoExluidas() {
+        return mensagemDao.buscarNaoExcluidas();
+    }
+    
+    public List<MensagemModel> buscarLidas() {
+        return mensagemDao.buscarLidas();
+    }
+
+    public List<MensagemModel> buscarNaoLidas() {
+        return mensagemDao.buscarNaoLidas();
+    }
+
     public void marcar(MensagemModel model) {
         if (!model.isMarcado()) {
             model.setMarcado(true);
