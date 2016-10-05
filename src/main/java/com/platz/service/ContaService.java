@@ -69,7 +69,165 @@ public class ContaService {
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar contas").build();
         }
+    }
 
+    @GET
+    @Path(value = "/contas/administradores")
+    @PermitAll
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response listarAdministradores() {
+
+        try {
+            //Lista com todas as models, e converte para uma lista de leitura respondendo com um status code OK
+            return Response.ok(new ContaLeitura().converterLista(contaController.listarAdministradores())).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar administradores").build();
+        }
+
+    }
+
+    @GET
+    @Path(value = "/contas/usuarios")
+    @PermitAll
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response listarUsuarios() {
+
+        try {
+            //Lista com todas as models, e converte para uma lista de leitura respondendo com um status code OK
+            return Response.ok(new ContaLeitura().converterLista(contaController.listarUsuario())).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar usuários").build();
+        }
+
+    }
+
+    @GET
+    @Path(value = "/contas/empresas")
+    @PermitAll
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response listarEmpresas() {
+
+        try {
+            //Lista com todas as models, e converte para uma lista de leitura respondendo com um status code OK
+            return Response.ok(new ContaLeitura().converterLista(contaController.listarEmpresa())).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar empresas").build();
+        }
+    }
+
+    @GET
+    @Path(value = "/contas/administradores/bloqueadas")
+    @PermitAll
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response listarAdministradoresBloqueadas() {
+
+        try {
+            //Lista com todas as models, e converte para uma lista de leitura respondendo com um status code OK
+            return Response.ok(new ContaLeitura().converterLista(contaController.listarAdministradoresBloqueados())).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar administradores").build();
+        }
+
+    }
+
+    @GET
+    @Path(value = "/contas/usuarios/bloqueadas")
+    @PermitAll
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response listarUsuariosBloqueadas() {
+
+        try {
+            //Lista com todas as models, e converte para uma lista de leitura respondendo com um status code OK
+            return Response.ok(new ContaLeitura().converterLista(contaController.listarUsuarioBloqueados())).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar usuários").build();
+        }
+
+    }
+
+    @GET
+    @Path(value = "/contas/empresas/bloqeuadas")
+    @PermitAll
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response listarEmpresasBlqueadas() {
+
+        try {
+            //Lista com todas as models, e converte para uma lista de leitura respondendo com um status code OK
+            return Response.ok(new ContaLeitura().converterLista(contaController.listarEmpresaBloqueados())).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar empresas").build();
+        }
+    }
+
+    @GET
+    @Path(value = "/contas/administradores/inativas")
+    @PermitAll
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response listarAdministradoresInativas() {
+
+        try {
+            //Lista com todas as models, e converte para uma lista de leitura respondendo com um status code OK
+            return Response.ok(new ContaLeitura().converterLista(contaController.listarAdministradoresInativos())).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar administradores").build();
+        }
+
+    }
+
+    @GET
+    @Path(value = "/contas/usuarios/inativas")
+    @PermitAll
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response listarUsuariosInativas() {
+
+        try {
+            //Lista com todas as models, e converte para uma lista de leitura respondendo com um status code OK
+            return Response.ok(new ContaLeitura().converterLista(contaController.listarUsuarioInativos())).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar usuários").build();
+        }
+
+    }
+
+    @GET
+    @Path(value = "/contas/empresas/inativas")
+    @PermitAll
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response listarEmpresasInativas() {
+
+        try {
+            //Lista com todas as models, e converte para uma lista de leitura respondendo com um status code OK
+            return Response.ok(new ContaLeitura().converterLista(contaController.listarEmpresaInativos())).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar empresas").build();
+        }
     }
 
     @GET

@@ -3,6 +3,7 @@ package com.platz.controller;
 import com.platz.dao.ContaDao;
 import com.platz.http.cadastro.Login;
 import com.platz.model.ContaModel;
+import com.platz.model.Perfil;
 import com.platz.util.EncriptAES;
 import com.platz.util.TokenUtil;
 import java.util.Date;
@@ -30,6 +31,42 @@ public class ContaController {
 
     public List<ContaModel> listarTodos() {
         return contaDao.listarTodos(ContaModel.class);
+    }
+
+    public List<ContaModel> listarAdministradores() {
+        return contaDao.buscarPeloPerfilAtivosEBloqeuados(Perfil.ADMINISTRADOR);
+    }
+
+    public List<ContaModel> listarUsuario() {
+        return contaDao.buscarPeloPerfilAtivosEBloqeuados(Perfil.USUARIO);
+    }
+
+    public List<ContaModel> listarEmpresa() {
+        return contaDao.buscarPeloPerfilAtivosEBloqeuados(Perfil.EMPRESA);
+    }
+
+    public List<ContaModel> listarAdministradoresBloqueados() {
+        return contaDao.buscarPeloPerfilBloqueados(Perfil.ADMINISTRADOR);
+    }
+
+    public List<ContaModel> listarUsuarioBloqueados() {
+        return contaDao.buscarPeloPerfilBloqueados(Perfil.USUARIO);
+    }
+
+    public List<ContaModel> listarEmpresaBloqueados() {
+        return contaDao.buscarPeloPerfilBloqueados(Perfil.EMPRESA);
+    }
+
+    public List<ContaModel> listarAdministradoresInativos() {
+        return contaDao.buscarPeloPerfilInativos(Perfil.ADMINISTRADOR);
+    }
+
+    public List<ContaModel> listarUsuarioInativos() {
+        return contaDao.buscarPeloPerfilInativos(Perfil.USUARIO);
+    }
+
+    public List<ContaModel> listarEmpresaInativos() {
+        return contaDao.buscarPeloPerfilInativos(Perfil.EMPRESA);
     }
 
     public ContaModel buscarPorId(String id) {

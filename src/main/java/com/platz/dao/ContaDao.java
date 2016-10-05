@@ -1,6 +1,7 @@
 package com.platz.dao;
 
 import com.platz.model.ContaModel;
+import com.platz.model.Perfil;
 import java.util.List;
 import javax.persistence.EntityManager;
 
@@ -70,6 +71,33 @@ public class ContaDao extends GenericDao<ContaModel> {
             System.out.println("Erro ao buscar pelo email" + e.getMessage());
             return null;
         }
+    }
+
+    public List<ContaModel> buscarPeloPerfilAtivosEBloqeuados(Perfil perfil) {
+
+        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
+        List<ContaModel> lista = entityManager.createQuery("from ContaModel where perfil =:perfil and inativo =:inativo and bloqueado = :bloqueado").setParameter("perfil", perfil).setParameter("inativo", null).setParameter("bloqueado", null).getResultList();
+        entityManager.close();
+        return lista;
+
+    }
+
+    public List<ContaModel> buscarPeloPerfilInativos(Perfil perfil) {
+
+        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
+        List<ContaModel> lista = entityManager.createQuery("from ContaModel where perfil =:perfil and inativo != :inativo").setParameter("perfil", perfil).setParameter("inativo", null).getResultList();
+        entityManager.close();
+        return lista;
+
+    }
+
+    public List<ContaModel> buscarPeloPerfilBloqueados(Perfil perfil) {
+
+        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
+        List<ContaModel> lista = entityManager.createQuery("from ContaModel where perfil =:perfil and bloqueado != :bloqueado").setParameter("perfil", perfil).setParameter("bloqueado", null).getResultList();
+        entityManager.close();
+        return lista;
+
     }
 
     public List<ContaModel> buscarInativos() {
