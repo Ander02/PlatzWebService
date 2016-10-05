@@ -2,11 +2,10 @@
 angular.module("platz").controller("cidadeController", function ($scope, $http, toastr) {
 
     $scope.listarTodos = function () {
-        $http.get(webService + "/cidades").then(function (response) {
-            console.log(response.data);
+        $http.get(webService + "/cidades").then(function (response) {            
             $scope.cidades = response.data;
         }, function (response) {
-            erro(errorManager(response.config.url, response.status, "Erro ao listar cidades"));
+            erro(toastr, errorManager(response.config.url, response.status, "Erro ao listar cidades"));
         });
     };
 
@@ -15,15 +14,4 @@ angular.module("platz").controller("cidadeController", function ($scope, $http, 
         $scope.listarTodos();
     }
     window.onload = atualizar();
-
-    function erro(mensagem) {
-        toastr.error(mensagem, 'Erro', {
-            progressBar: true,
-            closeButton: true,
-            timeOut: 0,
-            extendTimeOut: 3000
-        });
-    }
-
 });
-

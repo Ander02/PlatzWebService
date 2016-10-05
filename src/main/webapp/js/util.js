@@ -3,6 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+//função que gerar um delay no codigo
 function sleep(milliseconds) {
     var start = new Date().getTime();
     for (var i = 0; i < 1e7; i++) {
@@ -11,6 +13,8 @@ function sleep(milliseconds) {
         }
     }
 }
+
+//funções que gerencia os tipo de erro
 function errorManager(erro, status, mensagem) {
     switch (status) {
         case 200:
@@ -39,5 +43,73 @@ function errorManager(erro, status, mensagem) {
             break;
     }
 }
+
+//funções de aviso para o usuario do sistema
+function sucesso(toastr, mensagem) {
+    toastr.success(mensagem, 'Sucesso', {
+        progressBar: true,
+        closeButton: true,
+        timeOut: 5000,
+        extendTimeOut: 2000
+    });
+}
+function espere(toastr, mensagem) {
+    toastr.info(mensagem, 'Enviando', {
+        progressBar: true,
+        closeButton: true,
+        timeOut: 0,
+        extendTimeOut: 5000
+    });
+}
+function confirmacao(toastr, mensagem) {
+    toastr.success(mensagem, 'Confirmação', {
+        progressBar: true,
+        closeButton: true,
+        timeOut: 1000,
+        extendTimeOut: 500
+    });
+}
+function excluido(toastr, mensagem) {
+    toastr.success(mensagem, 'Deletado', {
+        progressBar: true,
+        closeButton: true,
+        timeOut: 5000,
+        extendTimeOut: 2000
+    });
+}
+function alterado(toastr, mensagem) {
+    toastr.success(mensagem, 'Alterado', {
+        progressBar: true,
+        closeButton: true,
+        timeOut: 5000,
+        extendTimeOut: 2000
+    });
+}
+
+function info(toastr, mensagem) {
+    toastr.info(mensagem, 'Informações', {
+        progressBar: true,
+        closeButton: true,
+        timeOut: 5000,
+        extendTimeOut: 2000
+    });
+}
+function erro(toastr, mensagem) {
+    toastr.error(mensagem, 'Erro', {
+        progressBar: true,
+        closeButton: true,
+        timeOut: 0,
+        extendTimeOut: 3000
+    });
+}
+function aviso(toastr, mensagem) {
+    toastr.warning(mensagem, 'Aviso', {
+        progressBar: true,
+        closeButton: true,
+        timeOut: 0,
+        extendTimeOut: 3000
+    });
+}
+
 
 
