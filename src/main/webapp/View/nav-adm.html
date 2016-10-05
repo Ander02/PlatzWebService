@@ -40,8 +40,9 @@
                                 <div class="thumbnail thumbnail-adm">
                                     <p>Nome do usuario</p>
                                     <button type="button" class="btn btn-warning-outline " data-toggle="modal" data-target="#modalEditarPerfil">
-                                        Editar perfil
+                                        <i class="fa fa-cogs"></i>  Configuração
                                     </button>
+                                    <button class="btn btn-default"> <i class="fa fa-sign-out"></i> Sair</button>
                                 </div>
                             </div>
                         </li>
@@ -65,7 +66,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title" id="myModalLabel">Editar Perfil</h4>
+                        <h4 class="modal-title" id="myModalLabel">Editar dados </h4>
                     </div>
                     <!--Body-->
                     <div class="modal-body">
@@ -76,10 +77,16 @@
                             <div class="card-block text-xs-center">
 
                                 <div class="col-md-12">
-                                    <div class="md-form">  
-                                        <input  type="email" id="conta-email" class="form-control" required
-                                                maxlength="75">
+                                    <div class="md-form">                                          
                                         <label for="conta-email">Email</label>
+                                        <p>zdfhsxd</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-12">
+                                    <div class="md-form">                                          
+                                        <label for="conta-email">Data de Cadastro</label>
+                                        <p>zdfhsxd</p>
                                     </div>
                                 </div>
 
@@ -87,7 +94,14 @@
                                     <div class="md-form">  
                                         <input  type="password" id="conta-senha" class="form-control" required
                                                 maxlength="75">
-                                        <label for="conta-email">Senha</label>
+                                        <label for="conta-email"> Alterar Senha</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="md-form">  
+                                        <input  type="password" id="conta-senha" class="form-control" required
+                                                maxlength="75">
+                                        <label for="conta-email">Confirmar Senha</label>
                                     </div>
                                 </div>
 
@@ -97,8 +111,8 @@
 
 
                             <div class="text-xs-center">
-                                <button type="submit" class="btn btn-warning" data-dismiss="modal">Cadastrar</button>
-                                <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
+                                <button type="submit" class="btn btn-warning" data-dismiss="modal">Editar</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                             </div>
                         </form>
                     </div>
