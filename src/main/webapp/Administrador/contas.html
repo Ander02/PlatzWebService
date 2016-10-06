@@ -115,9 +115,8 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                                     <td>{{admin.email}}</td>
                                     <td>{{admin.dataCadastro}}</td>
                                     <td>{{admin.ultimoAcesso}}</td>
-                                    <td align=right >
-                                        <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalEdita"><i class="fa fa-pencil"></i>Editar</a>
-                                        <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(admin.id)"><i class="fa fa-toggle-on"></i> Bloquear</a>
+                                    <td align=right >    
+                                        <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(admin.id)"><i class="fa fa-toggle-on"></i> Bloquear</a>                                    
                                         <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar" ng-click="prepararInativacao(admin.id)"><i class="fa fa-toggle-on"></i> Inativar</a>
                                     </td>
                                 </tr>
@@ -148,10 +147,7 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                                     <td>{{admin.dataCadastro}}</td>
                                     <td>{{admin.ultimoAcesso}}</td>
                                     <td>
-                                        <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalEdita"><i class="fa fa-pencil"></i>Editar</a>
-                                        <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(admin.id)"><i class="fa fa-toggle-on"></i> Bloquear</a>
-                                        <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar" ng-click="prepararInativacao(admin.id)"><i class="fa fa-toggle-on"></i> Inativar</a>
-                                    </td>
+                                        <a class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalDesbloquear" ng-click="prepararDesbloqueamento(admin.id)"><i class="fa fa-toggle-on"></i> Desbloquear</a>                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -179,13 +175,15 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                                     <th scope="row">{{$index + 1}}</th>
                                     <td>{{admin.email}}</td>
                                     <td>{{admin.dataCadastro}}</td>
-                                    <td>{{admin.ultimoAcesso}}</td>
-                                    <td>
-                                        <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalEdita"><i class="fa fa-pencil"></i>Editar</a>
-                                        <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(admin.id)"><i class="fa fa-toggle-on"></i> Bloquear</a>
-                                        <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar" ng-click="prepararInativacao(admin.id)"><i class="fa fa-toggle-on"></i> Inativar</a>
+                                    <td>{{admin.ultimoAcesso}}</td>                                    
+                                    <td align=right>
+                                        <a ng-if="!isBloqueado(admin)" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(admin.id)"><i class="fa fa-toggle-on"></i> Bloquear</a>
+                                        <a ng-if="isBloqueado(admin)" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalDesbloquear" ng-click="prepararDesbloqueamento(admin.id)"><i class="fa fa-toggle-on"></i> Desbloquear</a>
                                     </td>
-                                </tr>
+                                    <td>
+                            <a class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalAtivar" ng-click="prepararAtivacao(admin.id)"><i class="fa fa-toggle-on"></i> Ativar</a>
+                            </td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -235,8 +233,7 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                                     <td>{{usuario.email}}</td>
                                     <td>{{usuario.dataCadastro}}</td>
                                     <td>{{usuario.ultimoAcesso}}</td>
-                                    <td>
-                                        <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalEdita"><i class="fa fa-pencil"></i>Editar</a>
+                                    <td>                                        
                                         <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(usuario.id)"><i class="fa fa-toggle-on"></i> Bloquear</a>
                                         <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar" ng-click="prepararInativacao(usuario.id)"><i class="fa fa-toggle-on"></i> Inativar</a>
                                     </td>
@@ -268,9 +265,7 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                                     <td>{{usuario.dataCadastro}}</td>
                                     <td>{{usuario.ultimoAcesso}}</td> 
                                     <td>
-                                        <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalEdita"><i class="fa fa-pencil"></i>Editar</a>
-                                        <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(usuario.id)"><i class="fa fa-toggle-on"></i> Bloquear</a>
-                                        <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar" ng-click="prepararInativacao(usuario.id)"><i class="fa fa-toggle-on"></i> Inativar</a>
+                                        <a class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalDesbloquear" ng-click="prepararDesbloqueamento(usuario.id)"><i class="fa fa-toggle-on"></i> Desbloquear</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -301,10 +296,12 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                                     <td>{{usuario.email}}</td>
                                     <td>{{usuario.dataCadastro}}</td>
                                     <td>{{usuario.ultimoAcesso}}</td>
+                                    <td align=right>
+                                        <a ng-if="!isBloqueado(usuario)" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(usuario.id)"><i class="fa fa-toggle-on"></i> Bloquear</a>
+                                        <a ng-if="isBloqueado(usuario)" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalDesbloquear" ng-click="prepararDesbloqueamento(usuario.id)"><i class="fa fa-toggle-on"></i> Desbloquear</a>
+                                    </td>                                    
                                     <td>
-                                        <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalEdita"><i class="fa fa-pencil"></i>Editar</a>
-                                        <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(usuario.id)"><i class="fa fa-toggle-on"></i> Bloquear</a>
-                                        <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar" ng-click="prepararInativacao(usuario.id)"><i class="fa fa-toggle-on"></i> Inativar</a>
+                                        <a class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalAtivar"><i class="fa fa-toggle-on" ng-click="prepararAtivacao(usuario.id)"></i> Ativar</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -356,10 +353,9 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                                     <td>{{empresa.email}}</td>
                                     <td>{{empresa.dataCadastro}}</td>
                                     <td>{{empresa.ultimoAcesso}}</td>
-                                    <td>
-                                        <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalEdita"><i class="fa fa-pencil"></i> Editar </a>
-                                        <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(empresa.id)"><i class="fa fa-toggle-on"></i> Bloquear</a>
-                                        <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar" ng-click="prepararInativacao(empresa.id)"><i class="fa fa-toggle-on"></i> Inativar</a>
+                                    <td>                                        
+                                        <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(empresa.id)"><i class="fa fa-toggle-on" ></i> Bloquear </a>
+                                        <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar" ng-click="prepararInativacao(empresa.id)"><i class="fa fa-toggle-on" ></i> Inativar </a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -388,10 +384,8 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                                     <td>{{empresa.email}}</td>
                                     <td>{{empresa.dataCadastro}}</td>
                                     <td>{{empresa.ultimoAcesso}}</td>
-                                    <td>
-                                        <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalEdita"><i class="fa fa-pencil"></i>Editar</a>
-                                        <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(empresa.id)"><i class="fa fa-toggle-on"></i> Bloquear </a>
-                                        <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar" ng-click="prepararInativacao(empresa.id)"><i class="fa fa-toggle-on"></i> Inativar </a>
+                                    <td>                                        
+                                        <a class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalDesbloquear" ng-click="prepararDesbloqueamento(empresa.id)"><i class="fa fa-toggle-on"></i> Desbloquear</a>                                        
                                     </td>
                                 </tr>
                             </tbody>
@@ -423,10 +417,12 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                                     <td>{{empresa.email}}</td>
                                     <td>{{empresa.dataCadastro}}</td>
                                     <td>{{empresa.ultimoAcesso}}</td>
-                                    <td>
-                                        <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalEdita"><i class="fa fa-pencil"></i>Editar</a>
-                                        <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear"><i class="fa fa-toggle-on"></i> Bloquear</a>
-                                        <a class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalInativar"><i class="fa fa-toggle-on"></i> Ativar</a>
+                                       <td align=right>
+                                        <a ng-if="!isBloqueado(empresa)" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(empresa.id)"><i class="fa fa-toggle-on"></i> Bloquear</a>
+                                        <a ng-if="isBloqueado(empresa)" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalDesbloquear" ng-click="prepararDesbloqueamento(empresa.id)"><i class="fa fa-toggle-on"></i> Desbloquear</a>
+                                    </td>    
+                                    <td>                                                                              
+                                        <a class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalAtivar" ng-click="prepararAtivacao(empresa.id)"><i class="fa fa-toggle-on"></i> Ativar</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -461,7 +457,7 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
 
                                 <div class="col-md-12">
                                     <div class="md-form">  
-                                        <input  type="email" id="conta-email" class="form-control" required
+                                        <input  type="email" id="conta-email" class="form-control" required=""
                                                 maxlength="75" ng-model="contaCadastro.email">
                                         <label for="conta-email">Email</label>
                                     </div>
@@ -469,7 +465,7 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
 
                                 <div class="col-md-12">
                                     <div class="md-form">                
-                                        <input type="password" id="conta-senha" class="form-control" required
+                                        <input type="password" id="conta-senha" class="form-control" required=""
                                                maxlength="20" ng-model="contaCadastro.senha">
                                         <label for="conta-senha">Senha</label>
                                     </div>
@@ -477,7 +473,7 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                                 <div class="col-md-12">
                                     <div class="md-form">  
                                         <input  type="password" id="conta-confirma-senha" class="form-control"
-                                                required maxlength="20" ng-model="contaCadastro.senha2"> 
+                                                required="" maxlength="20" ng-model="contaCadastro.senha2"> 
                                         <label for="conta-confirma-senha"> Confirmar a Senha </label>
                                     </div>
                                 </div>                      
@@ -490,86 +486,12 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                             <button type="submit" class="btn btn-warning" ng-click="cadastrar()"> Cadastrar </button>
                         </div>
                     </form>
-
                 </div>
-
-
             </div>
             <!--/Form with header-->
-
         </div>
         <!--/.Panel 4 cadastro-->
-
-
-
     </div>
-
-    <!-- Modal de edição -->
-    <div class="modal fade" id="modalEdita" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <!--Content-->
-            <div class="modal-content">
-                <!--Header-->
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title " id="myModalLabel"><i class="fa fa-lock"></i> Editar Conta</h4>
-                </div>
-                <!--Body-->
-                <div class="modal-body">
-                    <form>
-                        <!--Body-->
-
-
-                        <div class="card-block text-xs-center">
-                            <!--Title-->                               
-                            <div class="col-md-12">
-                                <label for="conta-img">Imagem de Perfil</label>
-                                <div class="md-form">                
-                                    <input id="conta-img" type="file" multiple>
-
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="md-form">  
-                                    <input  type="text" id="conta-perfil" class="form-control" required="" value="lalalalala"
-                                            maxlength="75">
-                                    <label for="conta-perfil">Perfil</label>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="md-form">  
-                                    <input  type="text" id="conta-ativo-inativo" class="form-control" required=""
-                                            maxlength="75">
-                                    <label for="conta-ativo-inativo">Ativo/Inativo</label>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="md-form">  
-                                    <input  type="email" id="conta-email" class="form-control" required=""
-                                            maxlength="75">
-                                    <label for="conta-email">Email</label>
-                                </div>
-                            </div>
-
-
-                        </div>
-
-
-
-                        <div class="text-xs-center">
-                            <button type="submit" class="btn btn-warning">Cadastrar</button>
-                            <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-            <!--/.Content-->
-        </div>
-    </div> <!--/.modal-->
-
 
     <!-- Modal Inativar -->
     <div class="modal fade" id="modalInativar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -590,8 +512,38 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                         <h3>Tem Certeza que deseja inativar essa Conta? </h3>
 
                         <div class="text-xs-center">
-                            <button class="btn btn-warning"  data-dismiss="modal" ng-click="inativar()"> Sim </button>
+                            <button class="btn btn-warning" data-dismiss="modal"  ng-click="inativar()"> Sim </button>
                             <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click="cancelarInativacao()"> Não </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <!--/.Content-->
+        </div>
+    </div> <!--/.modal-->
+
+    <!-- Modal Ativar -->
+    <div class="modal fade" id="modalAtivar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Inativar Conta</h4>
+                </div>
+                <!--Body-->
+                <div class="modal-body">
+                    <form>
+                        <!--Body-->
+                        <h3>Tem Certeza que Deseja Ativar essa Conta? </h3>
+
+                        <div class="text-xs-center">
+                            <button class="btn btn-warning" data-dismiss="modal"  ng-click="ativar()"> Sim </button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click="cancelarAtivacao()"> Não </button>
                         </div>
                     </form>
                 </div>
@@ -621,8 +573,39 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                         <h3>Tem Certeza que deseja bloquear essa Conta? </h3>
 
                         <div class="text-xs-center">
-                            <button class="btn btn-warning" data-dismiss="modal" ng-click="bloquear()" >Sim</button>
-                            <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click="cancelarBloqueamento()" >Não</button>
+                            <button class="btn btn-warning" data-dismiss="modal" ng-click="bloquear()">Sim</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click="cancelarBloqueamento()">Não</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <!--/.Content-->
+        </div>
+    </div> <!--/.modal-->
+
+
+    <!-- Modal Desbloquear -->
+    <div class="modal fade" id="modalDesbloquear" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Desbloquear Conta</h4>
+                </div>
+                <!--Body-->
+                <div class="modal-body">
+                    <form>
+                        <!--Body-->
+                        <h3>Tem Certeza que Deseja Desbloquear essa Conta? </h3>
+
+                        <div class="text-xs-center">
+                            <button class="btn btn-warning" data-dismiss="modal" ng-click="desbloquear()">Sim</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click="cancelarDesbloqueamento()">Não</button>
                         </div>
                     </form>
                 </div>
