@@ -117,8 +117,8 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                                     <td>{{admin.ultimoAcesso}}</td>
                                     <td align=right >
                                         <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalEdita"><i class="fa fa-pencil"></i>Editar</a>
-                                        <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear"><i class="fa fa-toggle-on"></i> Bloquear</a>
-                                        <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar"><i class="fa fa-toggle-on"></i> Inativar</a>
+                                        <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(admin.id)"><i class="fa fa-toggle-on"></i> Bloquear</a>
+                                        <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar" ng-click="prepararInativacao(admin.id)"><i class="fa fa-toggle-on"></i> Inativar</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -140,7 +140,7 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                                     <th>Ultimo acesso em</th>                                   
                                 </tr>
                             </thead>
-                            <tbody id="myTable">
+                            <tbody id="myTable2">
                                 <tr ng-repeat="admin in admintradoresBloqueados">
                                     <th scope="row">{{$index + 1}}</th>
                                     <!--<td>{{admin.email | limitTo:15}}{{admin.email.length >=15 ? '...':''}}</td>-->
@@ -149,8 +149,8 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                                     <td>{{admin.ultimoAcesso}}</td>
                                     <td>
                                         <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalEdita"><i class="fa fa-pencil"></i>Editar</a>
-                                        <a class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalBloquear"><i class="fa fa-toggle-on"></i> Desbloquear</a>
-                                        <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar"><i class="fa fa-toggle-on"></i> Inativar</a>
+                                        <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(admin.id)"><i class="fa fa-toggle-on"></i> Bloquear</a>
+                                        <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar" ng-click="prepararInativacao(admin.id)"><i class="fa fa-toggle-on"></i> Inativar</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -158,7 +158,7 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                     </div>
 
                     <div class="col-md-12 text-center">
-                        <ul class="pagination pager" id="myPager"></ul>
+                        <ul class="pagination pager" id="myPager2"></ul>
                     </div>
 
                 </div><!--/.Panel 1.2 administradores bloqueados-->
@@ -174,7 +174,7 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                                     <th>Ultimo acesso em</th>                                   
                                 </tr>
                             </thead>
-                            <tbody id="myTable">
+                            <tbody id="myTable3">
                                 <tr ng-repeat="admin in admintradoresInativos">
                                     <th scope="row">{{$index + 1}}</th>
                                     <td>{{admin.email}}</td>
@@ -182,8 +182,8 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                                     <td>{{admin.ultimoAcesso}}</td>
                                     <td>
                                         <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalEdita"><i class="fa fa-pencil"></i>Editar</a>
-                                        <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear"><i class="fa fa-toggle-on"></i> Bloquear</a>
-                                        <a class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalInativar"><i class="fa fa-toggle-on"></i> Ativar</a>
+                                        <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(admin.id)"><i class="fa fa-toggle-on"></i> Bloquear</a>
+                                        <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar" ng-click="prepararInativacao(admin.id)"><i class="fa fa-toggle-on"></i> Inativar</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -191,7 +191,7 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                     </div>
 
                     <div class="col-md-12 text-center">
-                        <ul class="pagination pager" id="myPager"></ul>
+                        <ul class="pagination pager" id="myPager3"></ul>
                     </div>
 
                 </div><!--/.Panel 1.3 administradores inativos-->                
@@ -223,31 +223,29 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                             <thead>
                                 <tr>
                                     <th>#</th>                            
-                                    <th>Email</th>                                                 
-                                    <th>Perfil</th>
-                                    <th>Ativo/Inativo</th>
-                                    <th>Bloqueado</th>
+                                    <th>Email</th>          
+                                    <th>Cadastro em</th>         
+                                    <th>Ultimo acesso em</th>                                   
                                 </tr>
                             </thead>
-                            <tbody id="myTable">
-                                <tr>
-                                    <th scope="row">1</th>
+                            <tbody id="myTable4">
+                                <tr ng-repeat="usuario in usuarios">
+                                    <th scope="row">{{$index + 1}}</th>
 
-                                    <td>Julianaa@cerqueira.com</td>
-                                    <td>Administrador</td>
-                                    <td>Ativo</td>
-                                    <td>Desbloqueado</td>   
+                                    <td>{{usuario.email}}</td>
+                                    <td>{{usuario.dataCadastro}}</td>
+                                    <td>{{usuario.ultimoAcesso}}</td>
                                     <td>
                                         <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalEdita"><i class="fa fa-pencil"></i>Editar</a>
-                                        <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear"><i class="fa fa-toggle-on"></i> Bloquear</a>
-                                        <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar"><i class="fa fa-toggle-on"></i> Inativar</a>
+                                        <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(usuario.id)"><i class="fa fa-toggle-on"></i> Bloquear</a>
+                                        <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar" ng-click="prepararInativacao(usuario.id)"><i class="fa fa-toggle-on"></i> Inativar</a>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     <div class="col-md-12 text-center">
-                        <ul class="pagination pager" id="myPager"></ul>
+                        <ul class="pagination pager" id="myPager4"></ul>
                     </div>
                 </div><!--/.Panel 2.1 usuarios 'livres'-->         
                 <!--Panel 2.2 usuarios bloqueados -->
@@ -257,24 +255,22 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                             <thead>
                                 <tr>
                                     <th>#</th>                            
-                                    <th>Email</th>                                                 
-                                    <th>Perfil</th>
-                                    <th>Ativo/Inativo</th>
-                                    <th>Desbloquear</th>
+                                    <th>Email</th>          
+                                    <th>Cadastro em</th>         
+                                    <th>Ultimo acesso em</th>                                   
                                 </tr>
                             </thead>
-                            <tbody id="myTable">
-                                <tr>
-                                    <th scope="row">1</th>
+                            <tbody id="myTable5">
+                                <tr ng-repeat="usuario in usuariosBloqueados">
+                                    <th scope="row">{{$index + 1}}</th>
 
-                                    <td>Julianaa@cerqueira.com</td>
-                                    <td>Administrador</td>
-                                    <td>Ativo</td>
-                                    <td>Desbloqueado</td>   
+                                    <td>{{usuario.email}}</td>
+                                    <td>{{usuario.dataCadastro}}</td>
+                                    <td>{{usuario.ultimoAcesso}}</td> 
                                     <td>
                                         <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalEdita"><i class="fa fa-pencil"></i>Editar</a>
-                                        <a class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalBloquear"><i class="fa fa-toggle-on"></i> Desbloquear</a>
-                                        <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar"><i class="fa fa-toggle-on"></i> Inativar</a>
+                                        <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(usuario.id)"><i class="fa fa-toggle-on"></i> Bloquear</a>
+                                        <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar" ng-click="prepararInativacao(usuario.id)"><i class="fa fa-toggle-on"></i> Inativar</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -282,7 +278,7 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                     </div>
 
                     <div class="col-md-12 text-center">
-                        <ul class="pagination pager" id="myPager"></ul>
+                        <ul class="pagination pager" id="myPager5"></ul>
                     </div>
 
                 </div><!--/.Panel 2.2 usuarios bloqueados-->
@@ -293,24 +289,22 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                             <thead>
                                 <tr>
                                     <th>#</th>                            
-                                    <th>Email</th>                                                 
-                                    <th>Perfil</th>
-                                    <th>Ativo/Inativo </th>
-                                    <th>Bloqueado</th>
+                                    <th>Email</th>          
+                                    <th>Cadastro em</th>         
+                                    <th>Ultimo acesso em</th>                                   
                                 </tr>
                             </thead>
-                            <tbody id="myTable">
-                                <tr>
-                                    <th scope="row">1</th>
+                            <tbody id="myTable6">
+                                <tr ng-repeat="usuario in usuariosInativos">
+                                    <th scope="row">{{$index + 1}}</th>
 
-                                    <td>Juliana@cerqueira.com</td>
-                                    <td>Administrador</td>
-                                    <td>Ativo</td>
-                                    <td>Desbloqueado</td>   
+                                    <td>{{usuario.email}}</td>
+                                    <td>{{usuario.dataCadastro}}</td>
+                                    <td>{{usuario.ultimoAcesso}}</td>
                                     <td>
                                         <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalEdita"><i class="fa fa-pencil"></i>Editar</a>
-                                        <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear"><i class="fa fa-toggle-on"></i> Bloquear</a>
-                                        <a class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalInativar"><i class="fa fa-toggle-on"></i> Ativar</a>
+                                        <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(usuario.id)"><i class="fa fa-toggle-on"></i> Bloquear</a>
+                                        <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar" ng-click="prepararInativacao(usuario.id)"><i class="fa fa-toggle-on"></i> Inativar</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -318,7 +312,7 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                     </div>
 
                     <div class="col-md-12 text-center">
-                        <ul class="pagination pager" id="myPager"></ul>
+                        <ul class="pagination pager" id="myPager6"></ul>
                     </div>
 
                 </div><!--/.Panel 2.3 usuarios inativos-->                
@@ -331,77 +325,73 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
             <!-- Nav tabs -->
             <ul class="nav nav-tabs md-pills pills-ins" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#panel14" role="tab"><i class="fa fa-users animated lightSpeedIn"></i>Ativos/Desbloqueados</a>
+                    <a class="nav-link active" data-toggle="tab" href="#panel17" role="tab"><i class="fa fa-users animated lightSpeedIn"></i>Ativos/Desbloqueados</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#panel15" role="tab"><i class="fa fa-lock animated lightSpeedIn "></i>Bloqueados</a>
+                    <a class="nav-link" data-toggle="tab" href="#panel18" role="tab"><i class="fa fa-lock animated lightSpeedIn "></i>Bloqueados</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#panel16" role="tab"><i class="fa fa-remove animated lightSpeedIn "></i>Inativos</a>
+                    <a class="nav-link" data-toggle="tab" href="#panel19" role="tab"><i class="fa fa-remove animated lightSpeedIn "></i>Inativos</a>
                 </li>
             </ul>
             <!-- Tab panels -->
             <div class="tab-content">
 
                 <!--/.Panel 3.1 empresas 'livres'-->
-                <div class="tab-pane fade in active" id="panel14" role="tabpanel">
+                <div class="tab-pane fade in active" id="panel17" role="tabpanel">
                     <div class="table-responsive">
                         <table class="table table-hover table-striped">
                             <thead>
                                 <tr>
                                     <th>#</th>                            
-                                    <th>Email</th>                                                 
-                                    <th>Perfil</th>
-                                    <th>Ativo/Inativo</th>
-                                    <th>Bloqueado</th>
+                                    <th>Email</th>          
+                                    <th>Cadastro em</th>         
+                                    <th>Ultimo acesso em</th>                                   
                                 </tr>
                             </thead>
-                            <tbody id="myTable">
-                                <tr>
-                                    <th scope="row">1</th>
+                            <tbody id="myTable7">
+                                <tr ng-repeat="empresa in empresas">
+                                    <th scope="row">{{$index + 1}}</th>
 
-                                    <td>Julianaaa@cerqueira.com</td>
-                                    <td>Administrador</td>
-                                    <td>Ativo</td>
-                                    <td>Desbloqueado</td>   
+                                    <td>{{empresa.email}}</td>
+                                    <td>{{empresa.dataCadastro}}</td>
+                                    <td>{{empresa.ultimoAcesso}}</td>
                                     <td>
-                                        <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalEdita"><i class="fa fa-pencil"></i>Editar</a>
-                                        <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear"><i class="fa fa-toggle-on"></i> Bloquear</a>
-                                        <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar"><i class="fa fa-toggle-on"></i> Inativar</a>
+                                        <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalEdita"><i class="fa fa-pencil"></i> Editar </a>
+                                        <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(empresa.id)"><i class="fa fa-toggle-on"></i> Bloquear</a>
+                                        <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar" ng-click="prepararInativacao(empresa.id)"><i class="fa fa-toggle-on"></i> Inativar</a>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     <div class="col-md-12 text-center">
-                        <ul class="pagination pager" id="myPager"></ul>
+                        <ul class="pagination pager" id="myPager7"></ul>
                     </div>
                 </div><!--/.Panel 3.1 empresas 'livres'-->         
                 <!--Panel 3.2 empresas bloqueados -->
-                <div class="tab-pane fade" id="panel15" role="tabpanel">
+                <div class="tab-pane fade" id="panel18" role="tabpanel">
                     <div class="table-responsive">
                         <table class="table table-hover table-striped">
                             <thead>
                                 <tr>
                                     <th>#</th>                            
-                                    <th>Email</th>                                                 
-                                    <th>Perfil</th>
-                                    <th>Ativo/Inativo</th>
-                                    <th>Desbloquear</th>
+                                    <th>Email</th>          
+                                    <th>Cadastro em</th>         
+                                    <th>Ultimo acesso em</th>                                   
                                 </tr>
                             </thead>
-                            <tbody id="myTable">
-                                <tr>
-                                    <th scope="row">1</th>
+                            <tbody id="myTable8">
+                                <tr ng-repeat="empresa in empresasBloqueados">
+                                    <th scope="row">{{$index + 1}}</th>
 
-                                    <td>Julianaaa@cerqueira.com</td>
-                                    <td>Administrador</td>
-                                    <td>Ativo</td>
-                                    <td>Desbloqueado</td>   
+                                    <td>{{empresa.email}}</td>
+                                    <td>{{empresa.dataCadastro}}</td>
+                                    <td>{{empresa.ultimoAcesso}}</td>
                                     <td>
                                         <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalEdita"><i class="fa fa-pencil"></i>Editar</a>
-                                        <a class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalBloquear"><i class="fa fa-toggle-on"></i> Desbloquear</a>
-                                        <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar"><i class="fa fa-toggle-on"></i> Inativar</a>
+                                        <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(empresa.id)"><i class="fa fa-toggle-on"></i> Bloquear </a>
+                                        <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar" ng-click="prepararInativacao(empresa.id)"><i class="fa fa-toggle-on"></i> Inativar </a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -409,31 +399,30 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                     </div>
 
                     <div class="col-md-12 text-center">
-                        <ul class="pagination pager" id="myPager"></ul>
+                        <ul class="pagination pager" id="myPager8"></ul>
                     </div>
 
                 </div><!--/.Panel 3.2 empresas bloqueados-->
                 <!--Panel 3.3 empresas inativos-->
-                <div class="tab-pane fade" id="panel16" role="tabpanel">
+                <div class="tab-pane fade" id="panel19" role="tabpanel">
                     <div class="table-responsive">
                         <table class="table table-hover table-striped">
                             <thead>
                                 <tr>
+                                <tr>
                                     <th>#</th>                            
-                                    <th>Email</th>                                                 
-                                    <th>Perfil</th>
-                                    <th>Ativo/Inativo </th>
-                                    <th>Bloqueado</th>
+                                    <th>Email</th>          
+                                    <th>Cadastro em</th>         
+                                    <th>Ultimo acesso em</th>                                   
                                 </tr>
                             </thead>
-                            <tbody id="myTable">
-                                <tr>
-                                    <th scope="row">1</th>
+                            <tbody id="myTable9">
+                                <tr ng-repeat="empresa in empresasInativos">
+                                    <th scope="row">{{$index + 1}}</th>
 
-                                    <td>Julianaaa@cerqueira.com</td>
-                                    <td>Administrador</td>
-                                    <td>Ativo</td>
-                                    <td>Desbloqueado</td>   
+                                    <td>{{empresa.email}}</td>
+                                    <td>{{empresa.dataCadastro}}</td>
+                                    <td>{{empresa.ultimoAcesso}}</td>
                                     <td>
                                         <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalEdita"><i class="fa fa-pencil"></i>Editar</a>
                                         <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear"><i class="fa fa-toggle-on"></i> Bloquear</a>
@@ -445,7 +434,7 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                     </div>
 
                     <div class="col-md-12 text-center">
-                        <ul class="pagination pager" id="myPager"></ul>
+                        <ul class="pagination pager" id="myPager9"></ul>
                     </div>
 
                 </div><!--/.Panel 3.3 empresa inativos-->                
@@ -472,24 +461,24 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
 
                                 <div class="col-md-12">
                                     <div class="md-form">  
-                                        <input  type="email" id="conta-email" class="form-control" required=""
-                                                maxlength="75">
+                                        <input  type="email" id="conta-email" class="form-control" required
+                                                maxlength="75" ng-model="contaCadastro.email">
                                         <label for="conta-email">Email</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-12">
                                     <div class="md-form">                
-                                        <input type="password" id="conta-senha" class="form-control" required=""
-                                               maxlength="20">
+                                        <input type="password" id="conta-senha" class="form-control" required
+                                               maxlength="20" ng-model="contaCadastro.senha">
                                         <label for="conta-senha">Senha</label>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="md-form">  
                                         <input  type="password" id="conta-confirma-senha" class="form-control"
-                                                required="" maxlength="20"> 
-                                        <label for="conta-confirma-senha">Confirmar a Senha</label>
+                                                required maxlength="20" ng-model="contaCadastro.senha2"> 
+                                        <label for="conta-confirma-senha"> Confirmar a Senha </label>
                                     </div>
                                 </div>                      
 
@@ -497,11 +486,8 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                             <!--/.Card content-->
 
                         </div>
-
-
-
                         <div class="text-xs-center">
-                            <button type="submit" class="btn btn-warning">Cadastrar</button>
+                            <button type="submit" class="btn btn-warning" ng-click="cadastrar()"> Cadastrar </button>
                         </div>
                     </form>
 
@@ -604,8 +590,8 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                         <h3>Tem Certeza que deseja inativar essa Conta? </h3>
 
                         <div class="text-xs-center">
-                            <button class="btn btn-warning">Sim</button>
-                            <button type="button" class="btn btn-warning" data-dismiss="modal">Não</button>
+                            <button class="btn btn-warning"  data-dismiss="modal" ng-click="inativar()"> Sim </button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click="cancelarInativacao()"> Não </button>
                         </div>
                     </form>
                 </div>
@@ -635,8 +621,8 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                         <h3>Tem Certeza que deseja bloquear essa Conta? </h3>
 
                         <div class="text-xs-center">
-                            <button class="btn btn-warning">Sim</button>
-                            <button type="button" class="btn btn-warning" data-dismiss="modal">Não</button>
+                            <button class="btn btn-warning" data-dismiss="modal" ng-click="bloquear()" >Sim</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click="cancelarBloqueamento()" >Não</button>
                         </div>
                     </form>
                 </div>

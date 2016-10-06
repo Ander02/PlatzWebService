@@ -161,7 +161,7 @@ public class ContaService {
     }
 
     @GET
-    @Path(value = "/contas/empresas/bloqeuadas")
+    @Path(value = "/contas/empresas/bloqueadas")
     @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarEmpresasBlqueadas() {
@@ -330,7 +330,8 @@ public class ContaService {
 
     @PUT
     @Path(value = "/conta/bloquear/{id}")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+    //@PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response bloquear(@PathParam("id") String id) {
@@ -354,7 +355,8 @@ public class ContaService {
 
     @PUT
     @Path(value = "/conta/desbloquear/{id}")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+//@PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response desbloquear(@PathParam("id") String id) {
@@ -378,7 +380,8 @@ public class ContaService {
 
     @PUT
     @Path(value = "/conta/inativar/{id}")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+//@PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response inativar(@PathParam("id") String id) {
@@ -402,7 +405,8 @@ public class ContaService {
 
     @PUT
     @Path(value = "/conta/ativar/{id}")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+//@PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response ativar(@PathParam("id") String id) {

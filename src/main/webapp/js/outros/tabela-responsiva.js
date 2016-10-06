@@ -103,5 +103,12 @@ $(document).ready(function () {
     $('#myTable').pageMe({pagerSelector: '#myPager', showPrevNext: true, hidePageNumbers: false, perPage: 4});
     $('#myTable2').pageMe({pagerSelector: '#myPager2', showPrevNext: true, hidePageNumbers: false, perPage: 4});
     $('#myTable3').pageMe({pagerSelector: '#myPager3', showPrevNext: true, hidePageNumbers: false, perPage: 4});
+    $('#myTable4').pageMe({pagerSelector: '#myPager4', showPrevNext: true, hidePageNumbers: false, perPage: 4});
+    $('#myTable5').pageMe({pagerSelector: '#myPager5', showPrevNext: true, hidePageNumbers: false, perPage: 4});
+    $('#myTable6').pageMe({pagerSelector: '#myPager6', showPrevNext: true, hidePageNumbers: false, perPage: 4});
+    $('#myTable7').pageMe({pagerSelector: '#myPager7', showPrevNext: true, hidePageNumbers: false, perPage: 4});
+    $('#myTable8').pageMe({pagerSelector: '#myPager8', showPrevNext: true, hidePageNumbers: false, perPage: 4});
+    $('#myTable9').pageMe({pagerSelector: '#myPager9', showPrevNext: true, hidePageNumbers: false, perPage: 4});
+    
 
 });
