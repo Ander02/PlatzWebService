@@ -37,6 +37,10 @@ html,body
 {
     margin-top:2%;
 }
+.nav-inicial .open>.dropdown-menu {
+    display: block;
+    text-align: center;
+}
 .nav-inicial .link-nav-adm .link
 {
     color:white;
@@ -373,12 +377,7 @@ label.star:before {
     color: white;
     border-radius: 20px 55px;
 }
-#section-projeto .platzMVVPQ
-{
-    background-color: #CDCD00;
-    border-radius: 15px 50px 30px;
-    padding: 25px;
-}
+
 #section-integrantes .section-heading .cls.fa-group:before, .fa-users:before {
     margin-right: 25px;
 }
@@ -407,7 +406,14 @@ label.star:before {
     color: white;
     margin-bottom: 50px;
 }
-
+.select-assunto
+{
+    margin-left: 40%;
+}
+.form-sobre p 
+{
+    text-align: center;
+}
 
 
 /*

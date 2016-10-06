@@ -182,7 +182,7 @@
                 <!--Form with header-->
                 <div class="card">
 
-                    <div class="card-block">
+                    <div class="card-block form-sobre">
                         <!--Header-->
                         <div class="form-header cabecalho-form-sobre">
                             <h3><i class="fa fa-envelope"></i> Escreva Para Nós:</h3>
@@ -199,26 +199,12 @@
                             <label for="form2">Email{{mensagemCadastro}}</label>
                         </div>
 
-                        <div class="md-form ">
+                        <div class="md-form ">                        
 
-                            <div class="btn-group">
-                                <button class="btn btn-warning dropdown-toggle" type="button" 
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -- Selecione um Assunto --</button>
-
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Separated link</a>
-                                </div>
-                            </div>
-
-                        </div>
-                        
-                        <select ng-model="mensagemCadastro.assuntoId" ng-options="assunto.id as assunto.nome for assunto in assuntos">
+                            <select ng-model="mensagemCadastro.assuntoId" ng-options="assunto.id as assunto.nome for assunto in assuntos" class="select-assunto btn btn-warning-outline">
                             <option value=""> --Selecione um Assunto--</option>                            
                         </select>
+                        </div>
 
                         <div class="md-form">
                             <i class="fa fa-pencil prefix"></i>

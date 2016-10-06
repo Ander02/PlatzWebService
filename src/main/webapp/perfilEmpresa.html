@@ -4,10 +4,10 @@
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- compativel com o navegador IE -->
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
         <title>Platz - Suas rotas, Seus Eventos</title>
-
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
 
@@ -17,10 +17,10 @@
         <!-- Material Design Bootstrap -->
         <link href="css/bootstrap/mdb.min.css" rel="stylesheet">
 
-        <!-- Your custom styles (optional) -->
+        <!-- css (style) -->
         <link href="css/style.css" rel="stylesheet">
 
-        <!-- Your custom styles (efeito) -->
+        <!-- efeito na imagem de perfil (efeito) -->
         <link href="css/efeitos/perfilEmpresa.css" rel="stylesheet">
 
         <!-- link Angular -->
@@ -34,22 +34,14 @@
     </head>
 
     <body>
-
-
-        <!-- inicio do projeto aqui-->
-
-    <ng-include src="'view/nav.html'"></ng-include>
-
+    <!-- inicio do projeto aqui-->
+    <ng-include src="'View/nav.html'"></ng-include>
     <div class="espaco"></div>
-
+    <!-- section com as informações do perfil -->
     <section class="section section-blog-fw">
-
         <!--First row-->
         <div class="row">
-
-
-
-            <!--Post data-->
+            <!-- caixa com o perfil da empresa -->
             <div class="jumbotron caixa-informacao-perfil-empresa">
                 <div class="col-lg-12 col-md-12 m-b-r">
 
@@ -68,24 +60,19 @@
                         </div>
 
                         <div class="card-block">
-
-                            <!--Name-->
+                            <!--Nome-->
                             <h4 class="card-title">Razão Social</h4>                              
                             <hr>
-                            <!--Quotation-->
+                            <!--outras informações que iram ser exibidas-->
                             <p>Endereço e telefone</p>
                         </div>
-
-                    </div>
-                    <!--/.Card-->
-                </div>
+                    </div><!--/.Card-->
+                </div><!--/.col-md-12-->
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs md-pills pills-ins" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#panel11" role="tab"><i class=" fa fa-th-large"></i> Eventos</a>
                     </li>
-
-
                 </ul>
 
                 <!-- Tab panels -->
@@ -94,15 +81,11 @@
                     <!--Panel 1-->
                     <div class="tab-pane fade in active" id="panel11" role="tabpanel">
                         <br>                            
-
-
                         <div class="card-group col-md-12">
                             <div class="col-md-4 evento-perfil-empresa">
                                 <div class="card">
                                     <div class="hovereffect">
-                                        <img class=" img-responsive img-evento-efeito" src="img/plano-fundo.jpg" alt="Imagem do Evento" >
-
-
+                                        <img class=" img-responsive img-evento-efeito" src="img/outras/plano-fundo.jpg" alt="Imagem do Evento" >
                                     </div><!-- /. div hovereffect  -->
 
                                     <h4 class="card-title">Nome do evento</h4>
@@ -111,95 +94,15 @@
                                     <p><i class="fa fa-map-marker animated bounceInDown"></i> Local: </p>
                                     <p><a class="btn btn-warning " href="eventoEspecifico.html" role="button">Ver Mais Detalhes &raquo;</a></p>
                                 </div>
-                            </div>
-                            <div class="col-md-4 evento-perfil-empresa">
-                                <div class="card">
-                                    <div class="hovereffect">
-                                        <img class=" img-responsive img-evento-efeito" src="img/plano-fundo.jpg" alt="Imagem do Evento" >
-
-
-                                    </div><!-- /. div hovereffect  -->
-
-                                    <h4 class="card-title">Nome do evento</h4>
-                                    <h5><i class="fa fa-building-o animated bounceInDown"></i> Empresa</h5>
-                                    <p><i class="fa fa-calendar animated bounceInDown"></i> Data: </p>
-                                    <p><i class="fa fa-map-marker animated bounceInDown"></i> Local: </p>
-                                    <p><a class="btn btn-warning " href="eventoEspecifico.html" role="button">Ver Mais Detalhes &raquo;</a></p>
-                                </div>
-                            </div>
-                            <div class="col-md-4 evento-perfil-empresa">
-                                <div class="card">
-                                    <div class="hovereffect">
-                                        <img class=" img-responsive img-evento-efeito" src="img/plano-fundo.jpg" alt="Imagem do Evento" >
-
-
-                                    </div><!-- /. div hovereffect  -->
-
-                                    <h4 class="card-title">Nome do evento</h4>
-                                    <h5><i class="fa fa-building-o animated bounceInDown"></i> Empresa</h5>
-                                    <p><i class="fa fa-calendar animated bounceInDown"></i> Data: </p>
-                                    <p><i class="fa fa-map-marker animated bounceInDown"></i> Local: </p>
-                                    <p><a class="btn btn-warning " href="eventoEspecifico.html" role="button">Ver Mais Detalhes &raquo;</a></p>
-                                </div>
-                            </div>
-                            <div class="col-md-4 evento-perfil-empresa">
-                                <div class="card">
-                                    <div class="hovereffect">
-                                        <img class=" img-responsive img-evento-efeito" src="img/plano-fundo.jpg" alt="Imagem do Evento" >
-
-
-                                    </div><!-- /. div hovereffect  -->
-
-                                    <h4 class="card-title">Nome do evento</h4>
-                                    <h5><i class="fa fa-building-o animated bounceInDown"></i> Empresa</h5>
-                                    <p><i class="fa fa-calendar animated bounceInDown"></i> Data: </p>
-                                    <p><i class="fa fa-map-marker animated bounceInDown"></i> Local: </p>
-                                    <p><a class="btn btn-warning " href="eventoEspecifico.html" role="button">Ver Mais Detalhes &raquo;</a></p>
-                                </div>
-                            </div>
-                            <div class="col-md-4 evento-perfil-empresa">
-                                <div class="card">
-                                    <div class="hovereffect">
-                                        <img class=" img-responsive img-evento-efeito" src="img/plano-fundo.jpg" alt="Imagem do Evento" >
-
-
-                                    </div><!-- /. div hovereffect  -->
-
-                                    <h4 class="card-title">Nome do evento</h4>
-                                    <h5><i class="fa fa-building-o animated bounceInDown"></i> Empresa</h5>
-                                    <p><i class="fa fa-calendar animated bounceInDown"></i> Data: </p>
-                                    <p><i class="fa fa-map-marker animated bounceInDown"></i> Local: </p>
-                                    <p><a class="btn btn-warning " href="eventoEspecifico.html" role="button">Ver Mais Detalhes &raquo;</a></p>
-                                </div>
-                            </div>
-
-                        </div>
-
-
-
-
-                    </div>
-
-                </div>
-
-            </div>
-            <!--/.Panel 1-->                  
-
-
-
-
-        </div>
-
-
-
-        <!--/Post data-->
-
-
+                            </div><!-- informações -->
+                        </div><!-- div com o card -->
+                    </div><!-- div com o painel -->
+                </div><!-- div com a tab -->
+            </div><!-- Jumbtron  -->
+        </div> <!-- /.Row -->
     </section>
 
-
-    <!-- /Start your project here-->
-
+    <!-- /fim do projeto-->
 
     <!-- SCRIPTS -->
 
