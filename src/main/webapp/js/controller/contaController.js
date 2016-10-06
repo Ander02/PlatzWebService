@@ -1,6 +1,8 @@
 angular.module("platz").controller("contaController", function ($scope, $http, toastr) {
+
     $scope.listarAdministradores = function () {
         $http.get(webService + "/contas/administradores").then(function (response) {
+
             $scope.admintradores = response.data;
         }, function (response) {
             erro(toastr, errorManager(response.config.url, response.status, "erro ao listar Admintradores"));
@@ -15,6 +17,7 @@ angular.module("platz").controller("contaController", function ($scope, $http, t
     };
     $scope.listarAdministradoresBloqueados = function () {
         $http.get(webService + "/contas/administradores/bloqueadas").then(function (response) {
+
             $scope.admintradoresBloqueados = response.data;
         }, function (response) {
             erro(toastr, errorManager(response.config.url, response.status, "erro ao listar Admintradores"));
@@ -85,15 +88,24 @@ angular.module("platz").controller("contaController", function ($scope, $http, t
             erro(toastr, errorManager(response.config.url, response.status, "falha ao desbloquear conta"));
         });
     };
-    $scope.desativar = function () {
-        $http.put(webService + "/conta/desativar/" + $scope.contaAtivarId).then(function (response) {
+    $scope.ativar = function () {
+        $http.put(webService + "/conta/ativar/" + $scope.contaAtivarId).then(function (response) {
             atualizar();
         }, function (response) {
             erro(toastr, errorManager(response.config.url, response.status, "falha ao desativar conta"));
         });
     };
 
+    $scope.iBloqueado = function (conta) {        
+        if ( conta.bloqueado == null) {
+            return false;
+        } else {
+            return true;
+        }
+    };
+
     $scope.prepararBloqueamento = function (id) {
+        console.log(id);
         $scope.contaBloquearId = id;
     }
     $scope.cancelarBloqueamento = function () {
