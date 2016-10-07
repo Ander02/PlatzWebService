@@ -3,11 +3,13 @@ package com.platz.service;
 import com.platz.controller.CategoriaController;
 import com.platz.http.cadastro.CategoriaCadastro;
 import com.platz.http.edicao.CategoriaEdicao;
+import com.platz.http.edicao.ImagemEdicao;
 import com.platz.http.leitura.CategoriaLeitura;
 import com.platz.model.CategoriaModel;
 import com.platz.model.Perfil;
 import com.platz.util.ImagemUtil;
 import com.platz.util.PerfilAuth;
+import java.io.File;
 import java.io.InputStream;
 import java.util.List;
 import javax.annotation.security.PermitAll;
@@ -115,6 +117,38 @@ public class CategoriaService {
     }
 
     @GET
+    @Path("/categoria/imagem/{id}")
+    @PermitAll
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({"image/png", "image/jpg", "image/gif"})
+    public Response baixarImagem(@PathParam("id") String id) {
+
+        try {
+
+            CategoriaModel model = categoriaController.buscarPorId(id);
+
+            if (model != null) {
+
+                if (!model.getCaminhoIcone().equals("") && model.getCaminhoIcone() != null) {
+
+                    File file = new File(model.getCaminhoIcone());
+
+                    if (file.exists()) {
+                        return Response.ok(file).header("Content-Disposition", "attachment; filename=\"" + model.getNome() + ".png" + "\"").build();
+                    }
+                }
+                return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao baixar imagem, imagem inexistente").build();
+            }
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao baixar imagem, categoria não encontrada").build();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao baixar imagem").build();
+
+        }
+    }
+
+    @GET
     @Path(value = "/categorias")
     @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
@@ -202,8 +236,7 @@ public class CategoriaService {
 
             CategoriaModel model = categoriaController.buscarPorId(id);
 
-           // new ImagemUtil().deletarArquivo(model.getCaminhoIcone());
-
+            // new ImagemUtil().deletarArquivo(model.getCaminhoIcone());
             categoriaController.excluir(model);
 
             return Response.status(Response.Status.NO_CONTENT).build();

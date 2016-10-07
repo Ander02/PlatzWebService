@@ -19,7 +19,21 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
     };
     $scope.listarNaoExcluidas = function () {
         $http.get(webService + "/categorias/naoExcluidas").then(function (response) {
+
             $scope.categorias = response.data;
+            
+            /*$scope.categorias.forEach(function (categoria) {
+
+                $http.get(webService + "/categoria/imagem/" + categoria.id).then(function (response) {
+
+                    $scope.icone = response.data;
+                    
+                }, function (response) {
+                    console.log(response);
+
+                });
+            });*/
+
         }, function (response) {
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao listar categorias"));
         });
