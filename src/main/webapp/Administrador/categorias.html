@@ -25,9 +25,17 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
         <!-- Your custom styles (optional) -->
         <link href="../css/styleAdm.css" rel="stylesheet">
         
-        <script src="../js/util.js" type="text/javascript"></script>  
         <!-- link Angular -->
         <script type="text/javascript" src="../lib/angular/angular.js"></script>
+        
+        <!-- angular app script -->
+        <script type="text/javascript" src="../js/app.js"></script>
+        
+        <!-- UTIL -->
+        <script src="../js/util.js" type="text/javascript"></script> 
+        
+        <!-- angular controller script -->
+        <script src="../js/controller/categoriaController.js" type="text/javascript"></script>
         
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="../img/logo.png">
@@ -35,25 +43,11 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
     </head>
 
     <body ng-controller="categoriaController">
-        <!-- angular app script -->
-        <script type="text/javascript" src="../js/app.js"></script>
-
-        <!-- angular controller script -->
-        <script src="../js/controller/categoriaController.js" type="text/javascript"></script>
-
-
         <!-- inicio do projeto aqui-->
-
     <ng-include src="'../View/nav-adm.html'"></ng-include>
-
-
     <div class="espaco"></div>
-
-
     <div class="head-pagina">
-
         <h1>Categoria dos eventos</h1>
-
     </div>
 
     <!-- Nav tabs -->
@@ -300,10 +294,7 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
         <ng-include src="'../View/footer.html'"></ng-include>
     </div>
 
-
-
-
-    <!-- /Start your project here-->
+    <!-- /Fim  do html do projeto-->
 
 
     <!-- SCRIPTS -->
@@ -323,11 +314,13 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
     <!-- Paginação da tabela -->
     <script type="text/javascript" src="../js/outros/tabela-responsiva.js"></script>
 
-    <!-- link Angular -->
+    <!-- link Angular animate -->
     <script src="../lib/angular/angular-animate.js" type="text/javascript"></script>
 
-    <!-- link Angular -->
+    <!-- link Angular css toastr -->
     <link href="../css/angular-toastr.css" rel="stylesheet" type="text/css"/>
+    
+    <!-- link TOASTR -->
     <script type="text/javascript" src="../lib/angular/angular-toastr.tpls.js"></script>
 
 

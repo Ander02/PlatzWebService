@@ -23,10 +23,12 @@ and open the template in the editor.
     margin-bottom: 50px;
     margin-left: 10%;
     margin-right: 10%;
+   
 }
 .section-eventos-proximos .row
 {
     margin: 0;
+     
 }
 /*
 * FIM EVENTOS PROXIMOS
@@ -38,6 +40,11 @@ and open the template in the editor.
 .section-eventos-proximos .single-news
 {
     margin-bottom: 2%;
+    text-align: center;
+}
+.section-eventos-proximos .coluna-dois
+{
+    text-align: center;
 }
 /*
 *PERFIL 

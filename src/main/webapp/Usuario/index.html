@@ -26,8 +26,13 @@ index do usuario onde mostra algumas sugestões de eventos
         <!-- Your custom styles (optional) -->
         <link href="../css/styleUsuario.css" rel="stylesheet">
 
+        <link href="../css/efeitos/indexUsuario.css" rel="stylesheet" type="text/css"/>
+
         <!-- link Angular -->
         <script type="text/javascript" src="../lib/angular/angular.js"></script>
+
+        <!-- angular app script -->
+        <script type="text/javascript" src="../js/app.js"></script>
 
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="../img/logo.png">
@@ -41,188 +46,92 @@ index do usuario onde mostra algumas sugestões de eventos
 
         <!-- inicio do projeto aqui-->
 
-    <ng-include src="'../view/nav-usuario.html'"></ng-include>
+    <ng-include src="'../View/nav-usuario.html'"></ng-include>
 
 
     <div class="espaco"></div>
 
     <div class="head-pagina">
         <h1 >Eventos Proximos </h1>
-
-        
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-            eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt 
-            mollit anim id est laborum.</p>
+        <p>Eventos que você curtiu e estão proximos de acontecer! Não se esqueça e participe, sua diversão é nossa prioridade</p>
     </div>
 
 
-    <!--Section: Magazine v.2-->
+    <!--Section: COM OS EVENTOS-->
     <section class="section magazine-section section-eventos-proximos">
-
-        <!--Section heading-->
-
 
         <!--First row-->
         <div class="row text-xs-left ">
 
-            <!--First column-->
+            <!--coluna com o evento grande-->
             <div class="col-lg-6 col-md-12">
 
-                <!--Featured news-->
+                <!--Evento maior-->
                 <div class="single-news">
+                    
+                     <div class="col-lg-12 col-md-4 col-sm-6 col-xs-12">
+                            <div class="hovereffect">
+                                <img class="img-responsive img-eventoProximo" src="../img/outras/plano-fundo.jpg" alt="">
+                                <div class="overlay">
+                                    <h2>Nome do Evento</h2>
+                                    <p> 
+                                        <a href="#">Clique aqui e veja o evento</a>
+                                    </p> 
+                                </div>
+                            </div>
+                        </div>
+                    <br>
 
-                    <!--Image-->
-                    <div class="view overlay hm-white-slight">
-                        <img class="animated bounce" src="http://mdbootstrap.com/images/slides/slide%20(10).jpg">
-                        <a>
-                            <div class="mask"></div>
-                        </a>
-                    </div>
-
-                    <!--Excerpt-->
+                    <!--Informações-->
                     <div class="news-data">
                         <h5><i class="fa fa-car"></i> Local do evento</h5>
                         <p><strong><i class="fa fa-clock-o"></i> 27/02/2016</strong></p>
                     </div>
 
-                    <h3><a>Nome do Evento</a></h3>
-                    <h4><a>Nome da Empresa</a></h4>
+                    <h5><i class="fa fa-building-o"></i> <a>Nome da Empresa</a></h5>
 
-                    <p>Sed ut perspiciatis unde voluptatem omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae explicabo.
+                    <p> parte da descrição com no maximo 30 caracteres
                     </p>
+                    
+                    <a class="btn btn-default-outline"> Ver Detalhes </a>
 
-                </div>
-                <!--/Featured news-->
+                </div><!--/evento proximo (maior)-->
+            </div><!--/First column-->
 
-            </div>
-            <!--/First column-->
+            <!--Segunda coluna com os eventos menores-->
+            <div class="col-lg-6 col-md-12 coluna-dois">
 
-            <!--Second column-->
-            <div class="col-lg-6 col-md-12">
 
-                <!--Small news-->
-               
-
-                    <div class="col-md-6">
-                        <div class="col-md-10">
-
-                            <!--Image-->
-                            <div class="view overlay hm-white-slight">
-                                <img src="http://mdbootstrap.com/images/regular/nature/img%20(75).jpg">
-                                <a>
-                                    <div class="mask"></div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!--Excerpt-->
-                        <div class="col-md-9">                           
-                            <h4><a>Nome do Evento
-                                    <i class="fa fa-angle-right"></i>
-                                </a></h4>
-                            <a>Nome da Empresa</a>
-
-                            <p><strong><i class="fa fa-clock-o"></i> 27/02/2016</strong></p>
-
-                        </div>
-
-                    </div>
-               
-                <!--/Small news-->
-
-                <!--Small news-->
+                <!--evento menor-->
                 <div class="col-md-6">
-                        <div class="col-md-10">
-
-                            <!--Image-->
-                            <div class="view overlay hm-white-slight">
-                                <img src="http://mdbootstrap.com/images/regular/nature/img%20(75).jpg">
-                                <a>
-                                    <div class="mask"></div>
-                                </a>
-                            </div>
+                    <div class="col-md-10">
+                        <!--Imagem do evento-->
+                        <div class="view overlay hm-white-slight">
+                            <img class="animated pulse" src="http://mdbootstrap.com/images/regular/nature/img%20(75).jpg">
+                            <a>
+                                <div class="mask"></div>
+                            </a>
                         </div>
-
-                        <!--Excerpt-->
-                        <div class="col-md-9">                           
-                            <h4><a>Nome do Evento
-                                    <i class="fa fa-angle-right"></i>
-                                </a></h4>
-                            <a>Nome da Empresa</a>
-
-                            <p><strong><i class="fa fa-clock-o"></i> 27/02/2016</strong></p>
-
-                        </div>
-
                     </div>
-                <!--/Small news-->
 
-                <!--Small news-->
-                <div class="col-md-6">
-                        <div class="col-md-10">
-
-                            <!--Image-->
-                            <div class="view overlay hm-white-slight">
-                                <img src="http://mdbootstrap.com/images/regular/nature/img%20(75).jpg">
-                                <a>
-                                    <div class="mask"></div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!--Excerpt-->
-                        <div class="col-md-9">                           
-                            <h4><a>Nome do Evento
-                                    <i class="fa fa-angle-right"></i>
-                                </a></h4>
-                            <a>Nome da Empresa</a>
-
-                            <p><strong><i class="fa fa-clock-o"></i> 27/02/2016</strong></p>
-
-                        </div>
-
+                    <!--Informações-->
+                    <div class="col-md-9">                           
+                        <h4> <a> Nome do Evento <i class="fa fa-angle-right"></i> </a> </h4>
+                        <a>Nome da Empresa</a>
+                        <p><strong><i class="fa fa-clock-o"></i> 27/02/2016</strong></p>
+                        
+                        <a class="btn btn-sm btn-default-outline"> Ver Detalhes </a>
                     </div>
-                <!--/Small news-->
 
-                <!--Small news-->
-                <div class="col-md-6">
-                        <div class="col-md-10">
+                </div><!--/eventos menor-->
+            </div> <!--/Segunda coluna, com os quatro quadrados de eventos-->           
+        </div> <!--/First row-->
+    </section><!--/Section: eventos-->
 
-                            <!--Image-->
-                            <div class="view overlay hm-white-slight">
-                                <img src="http://mdbootstrap.com/images/regular/nature/img%20(75).jpg">
-                                <a>
-                                    <div class="mask"></div>
-                                </a>
-                            </div>
-                        </div>
 
-                        <!--Excerpt-->
-                        <div class="col-md-9">                           
-                            <h4><a>Nome do Evento
-                                    <i class="fa fa-angle-right"></i>
-                                </a></h4>
-                            <a>Nome da Empresa</a>
-
-                            <p><strong><i class="fa fa-clock-o"></i> 27/02/2016</strong></p>
-
-                        </div>
-
-                    </div>
-                <!--/Small news-->
-
-            </div>
-            <!--/Second column-->
-
-        </div>
-        <!--/First row-->
-
-    </section>
-    <!--/Section: Magazine v.2-->
-
-    <div class="footer-fixo">
-        <ng-include src="'../view/footer.html'"></ng-include>
-    </div>
+<!--    <div class="footer-fixo">
+        <ng-include src="'../View/footer.html'"></ng-include>
+    </div>-->
 
 
 
@@ -243,8 +152,16 @@ index do usuario onde mostra algumas sugestões de eventos
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="../lib/bootstrap/mdb.min.js"></script>
 
-    <!-- angular app script -->
-    <script type="text/javascript" src="../js/app.js"></script>
+    <!-- link Angular animate -->
+    <script src="../lib/angular/angular-animate.js" type="text/javascript"></script>
+
+    <!-- link Angular css toastr -->
+    <link href="../css/angular-toastr.css" rel="stylesheet" type="text/css"/>
+
+    <!-- link TOASTR -->
+    <script type="text/javascript" src="../lib/angular/angular-toastr.tpls.js"></script>
+
+
 
 
 
