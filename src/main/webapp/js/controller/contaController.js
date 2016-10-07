@@ -96,17 +96,15 @@ angular.module("platz").controller("contaController", function ($scope, $http, t
         });
     };
 
-    $scope.isBloqueado = function (conta) {        
-        if ( conta.bloqueado === null) {
-            console.log("false");
+    $scope.isBloqueado = function (conta) {
+        if (conta.bloqueado === null) {
             return false;
         } else {
-            console.log("true");
             return true;
         }
     };
 
-    $scope.prepararBloqueamento = function (id) {       
+    $scope.prepararBloqueamento = function (id) {
         $scope.contaBloquearId = id;
     }
     $scope.cancelarBloqueamento = function () {
@@ -143,7 +141,7 @@ angular.module("platz").controller("contaController", function ($scope, $http, t
         } else {
             $scope.contaCadastro.senha == null;
             $scope.contaCadastro.senha2 == null;
-             aviso(toastr, "A senha não são iguais, por favor digite-as novamente");
+            aviso(toastr, "A senha não são iguais, por favor digite-as novamente");
         }
     };
 

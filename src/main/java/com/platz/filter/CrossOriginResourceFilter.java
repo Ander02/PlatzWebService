@@ -18,9 +18,7 @@ public class CrossOriginResourceFilter implements ContainerResponseFilter {
         responseContext.getHeaders().add("Access-Control-Allow-Origin", "*");
         responseContext.getHeaders().add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, HEAD, OPTIONS");
         responseContext.getHeaders().add("Access-Control-Allow-Headers", "X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept");
-
-        System.out.println(responseContext.getHeaders().toString());
-
+        //System.out.println(responseContext.getHeaders().toString());
     }
 
 }
