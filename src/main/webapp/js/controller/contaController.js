@@ -96,16 +96,17 @@ angular.module("platz").controller("contaController", function ($scope, $http, t
         });
     };
 
-    $scope.iBloqueado = function (conta) {        
-        if ( conta.bloqueado == null) {
+    $scope.isBloqueado = function (conta) {        
+        if ( conta.bloqueado === null) {
+            console.log("false");
             return false;
         } else {
+            console.log("true");
             return true;
         }
     };
 
-    $scope.prepararBloqueamento = function (id) {
-        console.log(id);
+    $scope.prepararBloqueamento = function (id) {       
         $scope.contaBloquearId = id;
     }
     $scope.cancelarBloqueamento = function () {
@@ -140,9 +141,9 @@ angular.module("platz").controller("contaController", function ($scope, $http, t
                 erro(toastr, errorManager(response.config.url, response.status, "Erro ao cadastrar administrador"));
             });
         } else {
-            aviso(toastr, "A senha não são iguais, por favor digite-as novamente");
             $scope.contaCadastro.senha == null;
             $scope.contaCadastro.senha2 == null;
+             aviso(toastr, "A senha não são iguais, por favor digite-as novamente");
         }
     };
 
