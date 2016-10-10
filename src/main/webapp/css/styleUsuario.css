@@ -37,10 +37,12 @@ and open the template in the editor.
 {
     text-align: center;
 }
-.section-eventos-proximos .single-news
-{
+.section-eventos-proximos .single-news {
     margin-bottom: 2%;
     text-align: center;
+    border: solid 2px rgba(127, 140, 141,0.6);
+    padding: 15px;
+    border-radius: 10px;
 }
 .section-eventos-proximos .coluna-dois
 {
@@ -52,29 +54,15 @@ and open the template in the editor.
 .img-perfil-usuario
 {
     margin: 0 auto;
-    width: 350px;
-    height: 350px;  
+    width: 550px;
 }
 .img-perfil-usuario img
 {
     margin-top: 10%;
-    height: 90%;
-    width: 100%;
-    border-radius: 50px;
-}
-.bg-usuario 
-{
-    width: 100%;
-    height: 1250px;
-    margin-bottom: 50px;
-
-}
-.bg-usuario img
-{
-    width: 100%;
     height: 100%;
-    opacity: 0.8;
+    width: 100%;
 }
+
 .bg-usuario-editar
 {
     width: 100%;
@@ -88,7 +76,7 @@ and open the template in the editor.
 .caixa-informacao-user
 {
     position:absolute;
-    top:10%;
+    top:50px;
     left:10%;
     width: 80%;
     text-align: center;
@@ -106,4 +94,5 @@ and open the template in the editor.
 .info-evento-curtido
 {
     margin-top: 325px;
+    text-align: center;
 }

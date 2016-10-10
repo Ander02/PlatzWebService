@@ -32,6 +32,14 @@ Perfil do usuario, onde ele pode alterar as coisas sobre sua conta
         <!-- link Angular -->
         <script type="text/javascript" src="../lib/angular/angular.js"></script>
 
+        <!-- angular app script -->
+        <script type="text/javascript" src="../js/app.js"></script>
+
+        <!-- angular util -->
+        <script src="../js/util.js" type="text/javascript"></script>
+
+        <!-- angular controller  -->
+
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="../img/logo.png">
 
@@ -40,65 +48,52 @@ Perfil do usuario, onde ele pode alterar as coisas sobre sua conta
     </head>
 
     <body>
-
-
         <!-- inicio do projeto aqui-->
-
-    <ng-include src="'../view/nav-usuario.html'"></ng-include>
+    <ng-include src="'../View/nav-usuario.html'"></ng-include>
 
 
     <div class="espaco"></div>
 
 
     <section class="section section-blog-fw">
-
-        <!--First row-->
-        <div >
+        <div>
             <div class="col-md-1"></div>
             <div class="col-md-10">
-                <!--Featured image-->
-                <div class="bg-usuario">
-                 <img src="../img/plano-fundo.jpg">
-                </div>
-
-                <!--Post data-->
+                
                 <div class="jumbotron caixa-informacao-user">
                     <div class="col-lg-12 col-md-12 m-b-r">
 
                         <!--Card-->
                         <div class="card testimonial-card">
-                            <!--Avatar-->
                             <div>
+                                <!--Avatar-->
                                 <div class="col-md-12">
                                     <div class="img-perfil-usuario">                          
 
                                         <div class="hovereffect">
-                                            <img class="img-responsive" src="../img/plano-fundo.jpg" alt="">
+                                            <img class="img-responsive animated tada" src="../img/outras/plano-fundo.jpg" alt="">
                                             <div class="overlay">
                                                 <h2>Editar Informações</h2>
-                                                <a class="info" href="perfilEditarUsuario.html">Editar</a>
+                                                <a class="info" href="editarPerfil.html">Editar</a>
                                             </div>
                                         </div>
 
                                     </div>
-                                </div>
-
+                                </div><!--/.Avatar-->
                                 <div class="card-block">
                                     <!--Name-->
                                     <h2 class="card-title">Nome usuario</h2>                                  
                                 </div>
-
                             </div>
-                            <hr/>
-                            <!--/.Card-->
+                            <hr/>                           
 
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs tabs-3 " role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#panel5" role="tab"><i class="fa fa-user"></i> Informações Pessoais</a>
+                                    <a class="nav-link active" data-toggle="tab" href="#panel5" role="tab"><i class="fa fa-user animated tada"></i> Informações Pessoais</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#panel6" role="tab"><i class="fa fa-map-marker"></i> Endereço</a>
+                                    <a class="nav-link" data-toggle="tab" href="#panel6" role="tab"><i class="fa fa-map-marker animated tada"></i> Endereço</a>
                                 </li>                                
                             </ul>
 
@@ -114,9 +109,7 @@ Perfil do usuario, onde ele pode alterar as coisas sobre sua conta
                                         <li class="list-group-item">Telefone</li>
                                         <li class="list-group-item">CPF</li>                                
                                     </ul>
-                                </div>
-                                <!--/.Panel 1-->
-
+                                </div><!--/.Panel 1-->                                
                                 <!--Panel 2-->
                                 <div class="tab-pane fade" id="panel6" role="tabpanel">
                                     <br>
@@ -128,38 +121,15 @@ Perfil do usuario, onde ele pode alterar as coisas sobre sua conta
                                         <li class="list-group-item">Complemento</li>
                                         <li class="list-group-item">Cidade</li> 
                                     </ul>
-
-                                </div>
-                                <!--/.Panel 2-->
-
-
-                            </div>
-
-                        </div>
-
-
-
-
-
+                                </div><!--/.Panel 2-->                                
+                            </div><!-- /.Tab panels -->
+                            <button class="btn btn-default-outline"><i class="fa fa-pencil-square-o"></i> Editar Perfil</button>
+                        </div><!--/.Card-->
                     </div>
-
-
-
-                </div>
-                <!--/Post data-->
-
-
-
-
+                </div>               
             </div>
         </div>
-        <!--/First row-->
-
-
     </section>
-
-
-
     <!-- /.fim do projeto-->
 
 
@@ -177,8 +147,15 @@ Perfil do usuario, onde ele pode alterar as coisas sobre sua conta
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="../lib/bootstrap/mdb.min.js"></script>
 
-    <!-- angular app script -->
-    <script type="text/javascript" src="../js/app.js"></script>
+    <!-- link Angular animate -->
+    <script src="../lib/angular/angular-animate.js" type="text/javascript"></script>
+
+    <!-- link Angular css toastr -->
+    <link href="../css/angular-toastr.css" rel="stylesheet" type="text/css"/>
+
+    <!-- link TOASTR -->
+    <script type="text/javascript" src="../lib/angular/angular-toastr.tpls.js"></script>
+
 
 
 

@@ -3,7 +3,10 @@ html,body
 {
     background: rgba(236, 240, 241,1.0);
 }
-
+.fa
+{
+    margin-right: 10px;
+}
 /* nav*/
 .espaco
 {
@@ -70,6 +73,13 @@ html,body
     margin-top: 20px;
 }
 /* /.nav*/
+
+/*LOGIN*/
+.form-login
+{
+    margin-left: 25%;
+    margin-top: 5%;
+}
 
 /*carousel*/
 .view img, .view video {
@@ -376,10 +386,6 @@ label.star:before {
     background: rgba(22, 160, 133,1.0);
     color: white;
     border-radius: 20px 55px;
-}
-
-#section-integrantes .section-heading .cls.fa-group:before, .fa-users:before {
-    margin-right: 25px;
 }
 #section-integrantes .card
 {
