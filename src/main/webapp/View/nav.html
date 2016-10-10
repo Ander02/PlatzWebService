@@ -1,56 +1,56 @@
 
-        <!--Navbar-->
-        <nav class="navbar navbar-dark navbar-fixed-top nav-inicial">
+<!--Navbar-->
+<nav class="navbar navbar-dark navbar-fixed-top nav-inicial">
 
-            <!-- Collapse button-->
-            <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapseEx2">
-                <i class="fa fa-bars"></i>
-            </button>
+    <!-- Collapse button-->
+    <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapseEx2">
+        <i class="fa fa-bars"></i>
+    </button>
 
-            <div class="container">
+    <div class="container">
 
-                <!--Collapse content-->
-                <div class="collapse navbar-toggleable-xs" id="collapseEx2">
-                    <!--Navbar Brand-->
-                    <a class="navbar-brand" href="index.html"></a>
-                    <!--Links-->
-                    <ul class="nav navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="eventos.html">Eventos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="sobre.html">Sobre</a>
-                        </li>
+        <!--Collapse content-->
+        <div class="collapse navbar-toggleable-xs" id="collapseEx2">
+            <!--Navbar Brand-->
+            <a class="navbar-brand" href="index.html"></a>
+            <!--Links-->
+            <ul class="nav navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="eventos.html">Eventos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="sobre.html">Sobre</a>
+                </li>
 
-                    </ul>
-                    <!--links de login e cadastro-->
-                    <ul class="nav navbar-nav pull-right">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login</a>
-                            <div class="dropdown-menu dropdown-default" aria-labelledby="dropdownMenu1" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                <form action="#" method="post" accept-charset="UTF-8">
-                                    <label for="email-usuario">Email</label>
-                                    <input type="email"  id="email-usuario" placeholder="Email">
-                                    <label for="senha-usuario">Senha</label>
-                                    <input type="password" id="senha-usuario" placeholder="Senha">
+            </ul>
+            <!--links de login e cadastro-->
+            <ul class="nav navbar-nav pull-right">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login</a>
+                    <div class="dropdown-menu dropdown-default" aria-labelledby="dropdownMenu1" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                        <form method="post" accept-charset="UTF-8" action="logar.jsp">                            
+                            <label for="email-usuario">Email</label>
+                            <input type="email"  id="email" name="email" placeholder="Email">
+                            <label for="senha-usuario">Senha</label>
+                            <input type="password" id="senha" name="senha" placeholder="Senha">
 
-                                    <button type="submit" class="btn  btn-block btn-login-nav">Entrar</button>
-                                </form>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="cadastro.html"> Cadastre-se</a>
-                        </li>
-                    </ul>
+                            <input type="submit" class="btn btn-lg btn-primary" value="Entrar" />
+                        </form>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="cadastro.html"> Cadastre-se</a>
+                </li>
+            </ul>
 
 
-                </div>
-                <!--/.Collapse content-->
+        </div>
+        <!--/.Collapse content-->
 
-            </div>
+    </div>
 
-        </nav>
-        <!--/.Navbar-->
+</nav>
+<!--/.Navbar-->

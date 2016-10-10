@@ -153,6 +153,7 @@ public class ContaController {
 
         } catch (Exception e) {
             System.out.println("Erro ao logar: " + e.getMessage());
+            e.printStackTrace();
             return null;
         }
     }
