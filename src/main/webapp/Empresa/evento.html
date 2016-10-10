@@ -8,7 +8,6 @@ Tela de cadastro de evento
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
         <title>Platz - Suas rotas, Seus Eventos</title>
 
         <!-- Font Awesome -->
@@ -29,35 +28,32 @@ Tela de cadastro de evento
         <!-- link Angular -->
         <script type="text/javascript" src="../lib/angular/angular.js"></script>
 
+        <!-- Link app -->
+        <script type="text/javascript" src="../js/app.js"></script>
+
+        <!-- link util -->
+
+        <!-- link controller -->
+
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="../img/logo.png">
 
         <!--links para o funcionamento do datetimepicker-->
         <link href="../css/bootstrap/bootstrap-material-datetimepicker.css" rel="stylesheet" type="text/css"/>
         <script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="https://rawgit.com/FezVrasta/bootstrap-material-design/master/dist/js/ma6terial.min.js"></script>
         <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
-
 
     </head>
 
     <body>
-
         <!-- inicio do projeto aqui-->
 
-    <ng-include src="'../view/nav-empresa.html'"></ng-include>
-
-
+    <ng-include src="'../View/nav-empresa.html'"></ng-include>
     <div class="espaco"></div>
-
     <div class="head-pagina">
         <h1 class="titulo-meusEventos">Cadastro de Evento</h1>        
     </div>
-
-
     <!--Form de cadastro de evento-->
-
-
     <div>
         <form>
 
@@ -91,6 +87,18 @@ Tela de cadastro de evento
                             </div>
                         </div>
                         <div class="col-md-6">
+                            <div class="md-form">                
+                                <input type="text" id="evento-lotacao-minima" class="form-control">
+                                <label for="evento-lotacao-minima">Lotação Minima</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="md-form">  
+                                <input type="text" id="evento-lotacao-maxima" class="form-control">
+                                <label for="evento-lotacao-maxima">Lotação Maxima</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
 
                             <div class="col-md-12">
                                 <div class="form-control-wrapper">
@@ -105,32 +113,15 @@ Tela de cadastro de evento
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="md-form">                
-                                <input type="text" id="evento-lotacao-minima" class="form-control">
-                                <label for="evento-lotacao-minima">Lotação Minima</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="md-form">  
-                                <input type="text" id="evento-lotacao-maxima" class="form-control">
-                                <label for="evento-lotacao-maxima">Lotação Maxima</label>
-                            </div>
-                        </div>
+
                         <div class="col-md-3">
                             <div class="md-form">                
-                                <div class="btn-group">
-                                    <button class="btn btn-warning dropdown-toggle" type="button" 
-                                            data-toggle="dropdown" aria-haspopup="true" 
-                                            aria-expanded="false">Categoria do Evento</button>
-
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>                                
-                                    </div>
-                                </div>
-
+                                <select class="form-control btn btn-lg btn-warning-outline hovereffect" id="selecione1">
+                                    <option>Selecione </option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                </select>
                             </div>
                         </div>
 
@@ -161,7 +152,7 @@ Tela de cadastro de evento
                                 <label for="evento-preco">Preço</label>
                             </div>
                         </div>
-                        
+
                         <div class="col-md-12">
                             <label for="conta-empresa-galeria"> Galeria de Imagens sobre o evento, local ..</label>
                             <div class="md-form">                
@@ -236,42 +227,43 @@ Tela de cadastro de evento
         </form>
     </div>
 
-
-    
     <!--/Form fim da div do form-->
-
-
 
     <!-- /.fim do projeto-->
 
 
     <!-- SCRIPTS -->
 
-     <!-- JQuery -->
+    <!-- JQuery -->
     <script type="text/javascript" src="../lib/jquery/jquery-2.2.3.min.js"></script>
 
     <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="../lib/boostrap/tether.min.js"></script>
+    <script type="text/javascript" src="../lib/bootstrap/tether.min.js"></script>
 
     <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="../lib/boostrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../lib/bootstrap/bootstrap.min.js"></script>
 
     <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="../lib/boostrap/mdb.min.js"></script>
-
+    <script type="text/javascript" src="../lib/bootstrap/mdb.min.js"></script>
 
     <!-- Paginação da tabela -->
     <script type="text/javascript" src="../js/outros/paginacao-empresa.js"></script>
-
-    <!-- angular app script -->
-    <script type="text/javascript" src="../js/app.js"></script>
 
     <!--data e horario (iniciando) -->
     <script src="../lib/bootstrap/dataehorario.js" type="text/javascript"></script>
 
     <script src="../lib/bootstrap/bootstrap-material-datetimepicker.js" type="text/javascript"></script>
-    
+
     <script src="../js/outros/desabilitarPreco.js" type="text/javascript"></script>
+
+    <!-- link Angular animate -->
+    <script src="../lib/angular/angular-animate.js" type="text/javascript"></script>
+
+    <!-- link Angular css toastr -->
+    <link href="../css/angular-toastr.css" rel="stylesheet" type="text/css"/>
+
+    <!-- link TOASTR -->
+    <script type="text/javascript" src="../lib/angular/angular-toastr.tpls.js"></script>
 
 
 </body>

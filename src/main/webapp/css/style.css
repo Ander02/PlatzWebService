@@ -55,8 +55,10 @@ html,body
 .navbar form .btn-login-nav {
     background: #4285F4;
     width: 90%;
+    height: 30px;
     margin-top: 10%;
     margin-left: 5%;
+    margin-bottom: 5%;
 }
 .navbar .navbar-toggler, .navbar form {
     float: right;
