@@ -19,6 +19,7 @@ public class ContaLeitura {
     private String bloqueado;
     private String ultimoAcesso;
     private String dataCadastro;
+    private String token;
 
     //Construtores
     public ContaLeitura() {
@@ -32,6 +33,7 @@ public class ContaLeitura {
         setInativo(model.getInativo());
         setBloqueado(model.getBloqueado());
         setUltimoAcesso(model.getUltimoAcesso());
+        setToken(model.getToken());
     }
 
     public ContaLeitura(String id, String email, String inativo, String perfil, String bloqueado, String ultimoAcesso, String dataCadastro) {
@@ -112,6 +114,14 @@ public class ContaLeitura {
 
     public void setPerfil(String perfil) {
         this.perfil = perfil;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
 }
