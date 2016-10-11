@@ -30,7 +30,6 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
                     
                 }, function (response) {
                     console.log(response);
-
                 });
             });*/
 

@@ -3,14 +3,12 @@ package com.platz.service;
 import com.platz.controller.CategoriaController;
 import com.platz.http.cadastro.CategoriaCadastro;
 import com.platz.http.edicao.CategoriaEdicao;
-import com.platz.http.edicao.ImagemEdicao;
 import com.platz.http.leitura.CategoriaLeitura;
 import com.platz.model.CategoriaModel;
-import com.platz.model.Perfil;
 import com.platz.util.ImagemUtil;
-import com.platz.util.PerfilAuth;
 import java.io.File;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.List;
 import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
@@ -61,7 +59,8 @@ public class CategoriaService {
 
     @PUT
     @Path(value = "/categoria/imagem/{id}")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
+//@PerfilAuth(Perfil.ADMINISTRADOR)
     @Consumes(value = MediaType.MULTIPART_FORM_DATA)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response subirImagem(@FormDataParam("icone") InputStream iconeInputStream,
@@ -94,14 +93,14 @@ public class CategoriaService {
                 if (ok) {
                     //Settar o caminho do icone na model
                     model.setCaminhoIcone(diretorio + nomeDoArquivo);
-
+                    //model.setCaminhoIcone(new ImagemUtil().caminhoHttp("categoria/imagem/", model.getId()));
                     //Alterar
                     categoriaController.alterar(model);
                 } else {
                     //Retorna uma BadRequest ao usuário
                     return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
                 }
-
+      
                 return Response.ok(new CategoriaLeitura(model)).build();
             }
 
@@ -120,21 +119,21 @@ public class CategoriaService {
     @Path("/categoria/imagem/{id}")
     @PermitAll
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces({"image/png", "image/jpg", "image/gif"})
+    @Produces("image/*")
     public Response baixarImagem(@PathParam("id") String id) {
 
         try {
 
             CategoriaModel model = categoriaController.buscarPorId(id);
-
+                       
             if (model != null) {
-
+                
                 if (!model.getCaminhoIcone().equals("") && model.getCaminhoIcone() != null) {
 
                     File file = new File(model.getCaminhoIcone());
-
+                                                                                
                     if (file.exists()) {
-                        return Response.ok(file).header("Content-Disposition", "attachment; filename=\"" + model.getNome() + ".png" + "\"").build();
+                        return Response.ok(file).build();
                     }
                 }
                 return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao baixar imagem, imagem inexistente").build();
