@@ -13,10 +13,6 @@ public class ImagemUtil {
 
     public final String RAIZ = "C:/platzImg/";
     public final String URL = "localhost:8084/PlatzWebService/platz/";
-    
-    public String caminhoHttp(String rota, String param){
-        return this.URL + rota + param;                
-    }    
 
     //Método de salvar arquivo que recebe o caminho e o arquivo como inputStream
     public boolean salvarArquivo(String diretorio, String nomeDoArquivo, InputStream inputStream) {
