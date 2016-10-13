@@ -8,7 +8,6 @@ import com.platz.model.CategoriaModel;
 import com.platz.util.ImagemUtil;
 import java.io.File;
 import java.io.InputStream;
-import java.net.URL;
 import java.util.List;
 import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
