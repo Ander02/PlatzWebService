@@ -40,8 +40,7 @@ public class ContaDao extends GenericDao<ContaModel> {
         }
     }
 
-    public ContaModel getConta(String email, String senha) {
-
+    public ContaModel getConta(String email, String senha) {        
         try {
             EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
             ContaModel model = (ContaModel) entityManager.createQuery("from ContaModel where email=:email and senha=:senha")

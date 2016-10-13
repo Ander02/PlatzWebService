@@ -32,11 +32,10 @@ public class LoginService {
     @Path("/login")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response login(Login login) {
-
+    public Response login(Login login) {        
         try {
-            ContaModel model = contaController.login(login);
 
+            ContaModel model = contaController.login(login);
             //Retornar token na resposta
             if (model != null) {
                 return Response.ok(new ContaLeitura(model)).header(HttpHeaders.AUTHORIZATION, model.getToken()).build();
