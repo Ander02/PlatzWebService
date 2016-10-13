@@ -1,9 +1,7 @@
 package com.platz.util;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.io.OutputStream;
 
 /**
  *
@@ -12,17 +10,20 @@ import java.io.OutputStream;
 public class ImagemUtil {
 
     public final String RAIZ = "C:/platzImg/";
-    public final String URL = "localhost:8084/PlatzWebService/platz/";
-    
-    public String caminhoHttp(String rota, String param){
-        return this.URL + rota + param;                
-    }    
+    public final String URL_FTP = "ftp://localhost/";
 
     //Método de salvar arquivo que recebe o caminho e o arquivo como inputStream
     public boolean salvarArquivo(String diretorio, String nomeDoArquivo, InputStream inputStream) {
 
         try {
 
+            FtpUtil ftp = new FtpUtil("localhost", 21, "admin", "");
+
+            ftp.uploadArquivoFTP(inputStream, nomeDoArquivo, diretorio);
+
+            ftp.desconectar();
+
+            /*
             //Cria a pasta do arquivo
             new File(diretorio).mkdirs();
 
@@ -38,7 +39,7 @@ public class ImagemUtil {
             outputStream.flush();
             outputStream.close();
             System.out.println("Upload Concluído");
-
+             */
             return true;
         } catch (Exception e) {
             System.out.println("Erro ao fazer upload do arquivo " + e.getMessage());
@@ -47,17 +48,26 @@ public class ImagemUtil {
         }
     }
 
-    public void deletarArquivo(String caminhoDoArquivo) {
+    public boolean deletarArquivo(String caminhoDoArquivo) {
 
         try {
-            //Pega o arquivo
-            File file = new File(caminhoDoArquivo);
+            FtpUtil ftp = new FtpUtil("localhost", 21, "admin", "");
 
-            //Apaga o arquivo
-            file.delete();
+            String caminhoReduzido = caminhoDoArquivo.replaceFirst(new ImagemUtil().URL_FTP, "");
+
+            System.out.println(caminhoDoArquivo);
+            boolean ok = ftp.deletarArquivoFTP(caminhoReduzido);
+
+            if (ok) {
+                ftp.desconectar();
+                return true;
+            } else {
+                return false;
+            }
 
         } catch (Exception e) {
             System.out.println("Erro ao excluir arquivo: " + e.getMessage());
+            return false;
         }
     }
 
