@@ -42,6 +42,26 @@ public class FtpUtil {
         ftp.enterLocalPassiveMode();
     }
 
+    public FtpUtil() throws Exception {
+        ftp = new FTPClient();
+        ftp.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(System.out)));
+        int reply;
+        ftp.connect("localhost", 21);
+
+        System.out.println("FTP URL:" + ftp.getDefaultPort());
+
+        reply = ftp.getReplyCode();
+
+        if (!FTPReply.isPositiveCompletion(reply)) {
+            ftp.disconnect();
+            throw new Exception("Exception in connecting to FTP Server");
+        }
+
+        ftp.login("admin", "");
+        ftp.setFileType(FTP.BINARY_FILE_TYPE);
+        ftp.enterLocalPassiveMode();
+    }
+
     // Method to upload the File on the FTP Server
     public void uploadArquivoFTP(String caminhoLocalDoArquivo, String diretorioDoUpload, String nomeDoArquivo) throws Exception {
         try {

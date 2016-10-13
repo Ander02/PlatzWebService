@@ -1,6 +1,5 @@
 package com.platz.util;
 
-import java.io.File;
 import java.io.InputStream;
 
 /**
@@ -17,7 +16,7 @@ public class ImagemUtil {
 
         try {
 
-            FtpUtil ftp = new FtpUtil("localhost", 21, "admin", "");
+            FtpUtil ftp = new FtpUtil();
 
             ftp.uploadArquivoFTP(inputStream, nomeDoArquivo, diretorio);
 

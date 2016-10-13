@@ -30,11 +30,14 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
             atualizar();
             $scope.categoriaEditada = null;
 
-            var icone = document.getElementById("InputIconeCategoriaEdicao");
+            var input = document.getElementById("InputIconeCategoriaEdicao");
 
-            enviarArquivo(icone.files[0], webService + "/categoria/imagem/" + response.data.id);
+            var icone = input.files[0];
 
-            icone.value = null;
+            if (!(!icone.type.match('image.*'))) {
+                enviarArquivo(icone, webService + "/categoria/imagem/" + response.data.id);
+            }
+            input.value = null;
 
             alterado(toastr, "Categoria editar com sucesso");
             sleep(1000);
@@ -48,13 +51,16 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
         $http.post(webService + "/categoria", $scope.categoriaCadastro).then(function (response) {
             atualizar();
 
+            var input = document.getElementById("InputIconeCategoriaCadastro");
+
+            var icone = input.files[0];
+
+            if (!(!icone.type.match('image.*'))) {
+                enviarArquivo(icone, webService + "/categoria/imagem/" + response.data.id);
+            }
+            input.value = null;
+
             $scope.categoriaCadastro = null;
-
-            var icone = document.getElementById("InputIconeCategoriaCadastro");
-
-            enviarArquivo(icone.files[0], webService + "/categoria/imagem/" + response.data.id);
-
-            icone.value = null;
 
             sucesso(toastr, "Categoria cadastrada com sucesso");
         }, function (response) {
