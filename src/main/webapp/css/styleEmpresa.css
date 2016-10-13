@@ -132,7 +132,7 @@ and open the template in the editor.
 .corpo-form-cadastro-evento
 {
     margin-left: 16.7%;
-    background: rgba(22, 160, 133,0.1);
+    text-align: center;
     border-radius: 15px;
     padding: 20px;
 }
