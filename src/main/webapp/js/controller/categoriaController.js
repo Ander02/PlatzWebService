@@ -29,6 +29,13 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
         $http.put(webService + "/categoria/" + $scope.categoriaEdicao.id, $scope.categoriaEditada).then(function (response) {
             atualizar();
             $scope.categoriaEditada = null;
+
+            var icone = document.getElementById("InputIconeCategoriaEdicao");
+
+            enviarArquivo(icone.files[0], webService + "/categoria/imagem/" + response.data.id);
+
+            icone.value = null;
+
             alterado(toastr, "Categoria editar com sucesso");
             sleep(1000);
             location.reload();
@@ -43,12 +50,11 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
 
             $scope.categoriaCadastro = null;
 
-            var icone = document.getElementById("InputIconeCategoria");
+            var icone = document.getElementById("InputIconeCategoriaCadastro");
 
             enviarArquivo(icone.files[0], webService + "/categoria/imagem/" + response.data.id);
-            
+
             icone.value = null;
-            
 
             sucesso(toastr, "Categoria cadastrada com sucesso");
         }, function (response) {
