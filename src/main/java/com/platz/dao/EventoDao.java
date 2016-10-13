@@ -155,18 +155,20 @@ public class EventoDao extends GenericDao<EventoModel> {
         return lista;
     }
 
+    @SuppressWarnings("unchecked")
     public List<EventoModel> TresMelhores() {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
         entityManager.createQuery("from PresencaModel ");
-        
+
         entityManager.close();
         return null;
 
     }
-    
-    public List<EventoModel> buscarPorCidade(CidadeModel cidade){
+
+    @SuppressWarnings("unchecked")
+    public List<EventoModel> buscarPorCidade(CidadeModel cidade) {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
-         List<EventoModel> lista = entityManager.createQuery("from EventoModel where endereco.cidade = :cidade").setParameter("cidade", cidade).getResultList();
+        List<EventoModel> lista = entityManager.createQuery("from EventoModel where endereco.cidade = :cidade").setParameter("cidade", cidade).getResultList();
         entityManager.close();
         return lista;
     }

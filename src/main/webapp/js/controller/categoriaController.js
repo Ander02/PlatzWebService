@@ -28,10 +28,9 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
     $scope.alterar = function () {
         $http.put(webService + "/categoria/" + $scope.categoriaEdicao.id, $scope.categoriaEditada).then(function (response) {
             atualizar();
-            $scope.categoriaEditada = null;
-
+            $scope.categoriaEditada = null;            
+            
             var input = document.getElementById("InputIconeCategoriaEdicao");
-
             var icone = input.files[0];
 
             if (!(!icone.type.match('image.*'))) {
@@ -112,8 +111,9 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
     };
 
     function enviarArquivo(arquivo, url) {
-        var formData = new FormData();
+        var formData = new FormData();        
         formData.append('icone', arquivo);
+        console.log(formData);
         $http.put(url, formData, {
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined}
