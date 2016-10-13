@@ -43,7 +43,8 @@ public class EventoService {
 
     @POST
     @Path(value = "/evento")
-    @PerfilAuth(Perfil.EMPRESA)
+    //@PerfilAuth(Perfil.EMPRESA)
+    @PermitAll
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(EventoCadastro evento) {
