@@ -24,19 +24,19 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
 
         <!-- Your custom styles (optional) -->
         <link href="../css/styleAdm.css" rel="stylesheet">
-        
+
         <!-- link Angular -->
         <script type="text/javascript" src="../lib/angular/angular.js"></script>
-        
+
         <!-- angular app script -->
         <script type="text/javascript" src="../js/app.js"></script>
-        
+
         <!-- UTIL -->
         <script src="../js/util.js" type="text/javascript"></script> 
-        
+
         <!-- angular controller script -->
         <script src="../js/controller/categoriaController.js" type="text/javascript"></script>
-        
+
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="../img/logo.png">
 
@@ -79,7 +79,7 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
                             <th>Imagem</th>     
                             <th>Nome</th>
                             <th>Data de cadastro</th>
-                            
+
                         </tr>
                     </thead>
                     <tbody id="myTable">                    
@@ -94,6 +94,7 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
                             <td>{{categoria.dataCadastro}}</td>
                             <td align=right>
                                 <a class="btn btn-sm btn-default" data-toggle="modal" ng-click="prepararEdicao(categoria)" data-target="#modalEdita"><i class="fa fa-pencil"></i>Editar</a>
+                                <a class="btn btn-sm btn-amber" data-toggle="modal" ng-click="" data-target="#modalEditaImagem"><i class="fa fa-camera animated flash"></i>Trocar imagem </a>
                                 <a class="btn btn-sm btn-danger" data-toggle="modal" ng-click="prepararExclusao(categoria.id)" data-target="#modalExcluir"><i class="fa fa-trash"></i>Excluir</a>
                             </td>
                         </tr>
@@ -124,7 +125,8 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
                         </div>
 
                         <div class="md-form form-cad-input">   
-                            <input id="categoria-img" type="file"> 
+
+                            <input type="file" id="InputIconeCategoriaCadastro" />
                         </div>
 
                         <div class="text-xs-center">
@@ -157,10 +159,10 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
                     </thead>
                     <tbody id="myTable">                    
                         <tr ng-repeat="categoria in categoriasExcluidas">
-                              <th scope="row">{{$index + 1}}</th>
+                            <th scope="row">{{$index + 1}}</th>
                             <td>
                                 <div >
-                                    <img src="../img/outras/plano-fundo.jpg" alt="Imagem sobre a categoria" class="img-categoria">                                  
+                                    <img src="{{categoria.caminhoIcone}}" alt="Imagem sobre a categoria" class="img-categoria">                                  
                                 </div>
                             </td>    
                             <td>{{categoria.nome}}</td>   
@@ -180,7 +182,7 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
 
         </div>
         <!-- /.painel 3 -->
-        
+
 
 
 
@@ -208,9 +210,6 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
                             <label for="categoria-nome">Nome da Categoria</label>
                         </div>
 
-                        <div class="md-form form-cad-input">   
-                            <input id="categoria-img" type="file" multiple> 
-                        </div>
 
                         <div class="text-xs-center">
                             <button class="btn btn-warning" data-dismiss="modal" ng-click="alterar()">Editar</button>
@@ -223,6 +222,40 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
             <!--/.Content-->
         </div>
     </div> <!--/.modal-->
+    
+        <!-- Modal de edição de imagem -->
+    <div class="modal fade" id="modalEditaImagem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Editar Imagem da Categoria</h4>
+                </div>
+                <!--Body-->
+                <div class="modal-body">
+                    <form>
+                        <!--Body-->
+                        
+                        <div class="md-form form-cad-input">   
+                            <input id="InputIconeCategoriaEdicao" type="file" /> 
+                        </div>
+
+                        <div class="text-xs-center">
+                            <button class="btn btn-warning" data-dismiss="modal" ng-click=""> Editar </button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click=""> Fechar </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <!--/.Content-->
+        </div>
+    </div> <!--/.modal-->
+
 
 
     <!-- Modal Excluir -->
@@ -319,7 +352,7 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
 
     <!-- link Angular css toastr -->
     <link href="../css/angular-toastr.css" rel="stylesheet" type="text/css"/>
-    
+
     <!-- link TOASTR -->
     <script type="text/javascript" src="../lib/angular/angular-toastr.tpls.js"></script>
 

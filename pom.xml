@@ -176,6 +176,14 @@
             <artifactId>commons-email</artifactId>
             <version>1.3</version>
         </dependency>
+        
+        <!--Commons Net-->
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>3.5</version>
+        </dependency>
+
 
     </dependencies>
 

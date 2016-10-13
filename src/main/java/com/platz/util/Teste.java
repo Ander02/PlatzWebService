@@ -6,7 +6,8 @@ package com.platz.util;
  */
 public class Teste {
 
-    public static void main(String[] args) throws Exception {
-
+    // Main method to invoke the above methods
+    public static void main(String[] args) {
+ 
     }
 }

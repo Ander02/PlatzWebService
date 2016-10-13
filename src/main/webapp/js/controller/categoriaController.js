@@ -1,7 +1,5 @@
 angular.module("platz").controller("categoriaController", function ($scope, $http, toastr) {
 
-    //Faz um Get no Web Service recebendo uma URL
-
     //funções que realizam consulta no webService
     $scope.listarTodos = function () {
         $http.get(webService + "/categorias").then(function (response) {
@@ -21,18 +19,6 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
         $http.get(webService + "/categorias/naoExcluidas").then(function (response) {
 
             $scope.categorias = response.data;
-            
-            /*$scope.categorias.forEach(function (categoria) {
-
-                $http.get(webService + "/categoria/imagem/" + categoria.id).then(function (response) {
-
-                    $scope.icone = response.data;
-                    
-                }, function (response) {
-                    console.log(response);
-
-                });
-            });*/
 
         }, function (response) {
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao listar categorias"));
@@ -43,28 +29,50 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
         $http.put(webService + "/categoria/" + $scope.categoriaEdicao.id, $scope.categoriaEditada).then(function (response) {
             atualizar();
             $scope.categoriaEditada = null;
+
+            var input = document.getElementById("InputIconeCategoriaEdicao");
+
+            var icone = input.files[0];
+
+            if (!(!icone.type.match('image.*'))) {
+                enviarArquivo(icone, webService + "/categoria/imagem/" + response.data.id);
+            }
+            input.value = null;
+
             alterado(toastr, "Categoria editar com sucesso");
             sleep(1000);
             location.reload();
         }, function (response) {
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao alterar categoria"));
         });
-    }
+    };
     $scope.cadastrar = function () {
 
         $http.post(webService + "/categoria", $scope.categoriaCadastro).then(function (response) {
             atualizar();
+
+            var input = document.getElementById("InputIconeCategoriaCadastro");
+
+            var icone = input.files[0];
+
+            if (!(!icone.type.match('image.*'))) {
+                enviarArquivo(icone, webService + "/categoria/imagem/" + response.data.id);
+            }
+            input.value = null;
+
             $scope.categoriaCadastro = null;
+
             sucesso(toastr, "Categoria cadastrada com sucesso");
         }, function (response) {
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao cadastrar categoria"));
         });
     };
+
     $scope.recuperar = function () {
         $http.put(webService + "/categoria/recuperar/" + $scope.categoriaRecuperacaoId).then(function (response) {
             atualizar();
             sucesso(toastr, "Categoria recuperada com sucesso");
-        }, function (reponse) {
+        }, function (response) {
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao recuperar categoria"));
         });
     };
@@ -102,6 +110,24 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
     $scope.cancelarExclusao = function () {
         $scope.categoriaExclusaoId = null;
     };
+
+    function enviarArquivo(arquivo, url) {
+        var formData = new FormData();
+        formData.append('icone', arquivo);
+        $http.put(url, formData, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        }).success(function (response) {
+            console.log("Arquivo Enviado");
+            console.log(response);
+
+            atualizar();
+
+        }).error(function (response) {
+            console.log("Erro ao enviar");
+            console.log(response);
+        });
+    }
 
     //funções de atualizações e avisos
     function atualizar() {

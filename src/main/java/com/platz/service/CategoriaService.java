@@ -3,12 +3,9 @@ package com.platz.service;
 import com.platz.controller.CategoriaController;
 import com.platz.http.cadastro.CategoriaCadastro;
 import com.platz.http.edicao.CategoriaEdicao;
-import com.platz.http.edicao.ImagemEdicao;
 import com.platz.http.leitura.CategoriaLeitura;
 import com.platz.model.CategoriaModel;
-import com.platz.model.Perfil;
 import com.platz.util.ImagemUtil;
-import com.platz.util.PerfilAuth;
 import java.io.File;
 import java.io.InputStream;
 import java.util.List;
@@ -61,7 +58,8 @@ public class CategoriaService {
 
     @PUT
     @Path(value = "/categoria/imagem/{id}")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
+//@PerfilAuth(Perfil.ADMINISTRADOR)
     @Consumes(value = MediaType.MULTIPART_FORM_DATA)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response subirImagem(@FormDataParam("icone") InputStream iconeInputStream,
@@ -75,15 +73,20 @@ public class CategoriaService {
             if (model != null) {
 
                 //Montando o caminho do upload
-                String diretorio = new ImagemUtil().RAIZ + "categorias/";
+                String diretorio = "categorias/";
                 //Montando o nome do arquivo
                 String nomeDoArquivo = model.getId() + "." + fileMetaData.getMediaType().getSubtype();
 
                 //Verificar se já existe uma imagem cadastrado
-                if (model.getCaminhoIcone() != null) {
-                    if (!model.getCaminhoIcone().equals("")) {
-                        new ImagemUtil().deletarArquivo(model.getCaminhoIcone());
+                if (model.getCaminhoIcone() != null && !model.getCaminhoIcone().equals("")) {
+
+                    boolean ok = new ImagemUtil().deletarArquivo(model.getCaminhoIcone());
+
+                    if (ok) {
                         System.out.println("Apagou arquivo antigo");
+                    } else {
+                        System.out.println("Não Apagou o arquivo antigo");
+                        return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
                     }
                 }
 
@@ -93,8 +96,7 @@ public class CategoriaService {
                 //Se a imagem for salva sem nenhum erro atualiza a model
                 if (ok) {
                     //Settar o caminho do icone na model
-                    model.setCaminhoIcone(diretorio + nomeDoArquivo);
-
+                    model.setCaminhoIcone(new ImagemUtil().URL_FTP + diretorio + nomeDoArquivo);
                     //Alterar
                     categoriaController.alterar(model);
                 } else {
@@ -120,7 +122,7 @@ public class CategoriaService {
     @Path("/categoria/imagem/{id}")
     @PermitAll
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces({"image/png", "image/jpg", "image/gif"})
+    @Produces("image/*")
     public Response baixarImagem(@PathParam("id") String id) {
 
         try {
@@ -134,7 +136,7 @@ public class CategoriaService {
                     File file = new File(model.getCaminhoIcone());
 
                     if (file.exists()) {
-                        return Response.ok(file).header("Content-Disposition", "attachment; filename=\"" + model.getNome() + ".png" + "\"").build();
+                        return Response.ok(file).build();
                     }
                 }
                 return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao baixar imagem, imagem inexistente").build();
@@ -236,7 +238,6 @@ public class CategoriaService {
 
             CategoriaModel model = categoriaController.buscarPorId(id);
 
-            // new ImagemUtil().deletarArquivo(model.getCaminhoIcone());
             categoriaController.excluir(model);
 
             return Response.status(Response.Status.NO_CONTENT).build();
