@@ -43,7 +43,7 @@ public class FtpUtil {
     }
 
     // Method to upload the File on the FTP Server
-    public void uploadFTPFile(String caminhoLocalDoArquivo, String nomeDoArquivo, String diretorioDoUpload) throws Exception {
+    public void uploadArquivoFTP(String caminhoLocalDoArquivo, String diretorioDoUpload, String nomeDoArquivo) throws Exception {
         try {
             InputStream arquivo = new FileInputStream(new File(caminhoLocalDoArquivo));
 
@@ -55,9 +55,8 @@ public class FtpUtil {
     }
 
     // Method to upload the File on the FTP Server
-    public void uploadFTPFile(InputStream arquivo, String nomeDoArquivo, String diretorioDoUpload) throws Exception {
+    public void uploadArquivoFTP(InputStream arquivo, String nomeDoArquivo, String diretorioDoUpload) throws Exception {
         try {
-
             this.ftp.storeFile(diretorioDoUpload + nomeDoArquivo, arquivo);
         } catch (Exception e) {
             System.out.println("Erro ao Fazer upload do Arquivo por FTP: " + e.getMessage());
@@ -65,12 +64,29 @@ public class FtpUtil {
     }
 
     // Download the FTP File from the FTP Server
-    public void downloadFTPFile(String hostRemoto, String localDownload) {
+    public void downloadArquivoFTP(String hostRemoto, String localDownload) {
 
         try (FileOutputStream fos = new FileOutputStream(localDownload)) {
             this.ftp.retrieveFile(hostRemoto, fos);
         } catch (IOException e) {
             System.out.println("Erro ao Fazer download do Arquivo por FTP: " + e.getMessage());
+        }
+    }
+
+    public boolean deletarArquivoFTP(String caminhoDoArquivo) {
+        try {
+
+            boolean status = this.ftp.deleteFile(caminhoDoArquivo);
+
+            if (status) {
+                System.out.println("Deletou o Arquivo");
+                return status;
+            }
+            return !status;
+
+        } catch (Exception e) {
+            System.out.println("Erro ao deletar arquivo pelo FTP: " + e.getMessage());
+            return false;
         }
     }
 

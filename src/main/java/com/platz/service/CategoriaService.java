@@ -74,15 +74,20 @@ public class CategoriaService {
             if (model != null) {
 
                 //Montando o caminho do upload
-                String diretorio = new ImagemUtil().RAIZ + "categorias/";
+                String diretorio = "categorias/";
                 //Montando o nome do arquivo
                 String nomeDoArquivo = model.getId() + "." + fileMetaData.getMediaType().getSubtype();
 
                 //Verificar se já existe uma imagem cadastrado
-                if (model.getCaminhoIcone() != null) {
-                    if (!model.getCaminhoIcone().equals("")) {
-                        new ImagemUtil().deletarArquivo(model.getCaminhoIcone());
+                if (model.getCaminhoIcone() != null && !model.getCaminhoIcone().equals("")) {
+
+                    boolean ok = new ImagemUtil().deletarArquivo(model.getCaminhoIcone());
+
+                    if (ok) {
                         System.out.println("Apagou arquivo antigo");
+                    } else {
+                        System.out.println("Não Apagou o arquivo antigo");
+                        return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
                     }
                 }
 
@@ -92,15 +97,14 @@ public class CategoriaService {
                 //Se a imagem for salva sem nenhum erro atualiza a model
                 if (ok) {
                     //Settar o caminho do icone na model
-                    model.setCaminhoIcone(diretorio + nomeDoArquivo);
-                    //model.setCaminhoIcone(new ImagemUtil().caminhoHttp("categoria/imagem/", model.getId()));
+                    model.setCaminhoIcone(new ImagemUtil().URL_FTP + diretorio + nomeDoArquivo);
                     //Alterar
                     categoriaController.alterar(model);
                 } else {
                     //Retorna uma BadRequest ao usuário
                     return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
                 }
-      
+
                 return Response.ok(new CategoriaLeitura(model)).build();
             }
 
@@ -125,13 +129,13 @@ public class CategoriaService {
         try {
 
             CategoriaModel model = categoriaController.buscarPorId(id);
-                       
+
             if (model != null) {
-                
+
                 if (!model.getCaminhoIcone().equals("") && model.getCaminhoIcone() != null) {
 
                     File file = new File(model.getCaminhoIcone());
-                                                                                
+
                     if (file.exists()) {
                         return Response.ok(file).build();
                     }
@@ -235,7 +239,6 @@ public class CategoriaService {
 
             CategoriaModel model = categoriaController.buscarPorId(id);
 
-            // new ImagemUtil().deletarArquivo(model.getCaminhoIcone());
             categoriaController.excluir(model);
 
             return Response.status(Response.Status.NO_CONTENT).build();
