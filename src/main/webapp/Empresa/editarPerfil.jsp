@@ -30,8 +30,15 @@ and open the template in the editor.
         <!-- Your custom styles (optional) -->
         <link href="../css/styleEmpresa.css" rel="stylesheet">
 
-        <!-- link Angular -->
+         <!-- link Angular -->
         <script type="text/javascript" src="../lib/angular/angular.js"></script>
+
+        <!-- link app -->
+        <script type="text/javascript" src="../js/app.js"></script>
+
+        <!-- link util -->
+
+        <!-- Link Controller -->
 
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="../img/logo.png">
@@ -45,7 +52,7 @@ and open the template in the editor.
 
         <!-- inicio do projeto aqui-->
 
-    <ng-include src="'../view/nav-adm.html'"></ng-include>
+    <ng-include src="'../View/nav-empresa.html'"></ng-include>
 
 
     <div class="espaco"></div>
@@ -218,16 +225,28 @@ and open the template in the editor.
     <script type="text/javascript" src="../lib/jquery/jquery-2.2.3.min.js"></script>
 
     <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="../lib/boostrap/tether.min.js"></script>
+    <script type="text/javascript" src="../lib/bootstrap/tether.min.js"></script>
 
     <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="../lib/boostrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../lib/bootstrap/bootstrap.min.js"></script>
 
     <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="../lib/boostrap/mdb.min.js"></script>
+    <script type="text/javascript" src="../lib/bootstrap/mdb.min.js"></script>
 
-    <!-- angular app script -->
-    <script type="text/javascript" src="../js/app.js"></script>
+    <!-- Paginação da tabela -->
+    <script type="text/javascript" src="../js/outros/paginacao-empresa.js"></script>
+
+    <!-- link Angular animate -->
+    <script src="../lib/angular/angular-animate.js" type="text/javascript"></script>
+
+    <!-- link Angular css toastr -->
+    <link href="../css/angular-toastr.css" rel="stylesheet" type="text/css"/>
+
+    <!-- link TOASTR -->
+    <script type="text/javascript" src="../lib/angular/angular-toastr.tpls.js"></script>
+    
+    <!-- aside -->
+    <script src="../js/outros/aside.js" type="text/javascript"></script>
 
 
 </body>

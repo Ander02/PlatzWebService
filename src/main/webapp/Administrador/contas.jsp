@@ -655,7 +655,8 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
     <link href="../css/angular-toastr.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../lib/angular/angular-toastr.tpls.js"></script>
 
-
+     <!-- aside -->
+    <script src="../js/outros/aside.js" type="text/javascript"></script>
 </body>
 
 </html>

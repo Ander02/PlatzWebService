@@ -305,6 +305,8 @@ Pagina de cadastro , consulta, atualização e exclusão de assunto de mensagem
     <!-- link Angular ANIMATE -->
     <script type="text/javascript" src="../lib/angular/angular-toastr.tpls.js"></script>
 
+     <!-- aside -->
+    <script src="../js/outros/aside.js" type="text/javascript"></script>
 </body>
 
 </html>

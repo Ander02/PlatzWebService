@@ -1,126 +1,133 @@
+<div id="mySidenav" class="sidenav" >
+    <a href="javascript:void(0)" class="closebtn " onclick="closeNav()">&times;</a>
 
-        <!--Navbar-->
-        <nav class="navbar navbar-dark navbar-fixed-top nav-inicial">
+    <div class="cabecalho-aside">
+        <h2>nome usuario</h2>       
+    </div>
 
-            <!-- Collapse button-->
-            <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapseEx2">
-                <i class="fa fa-bars"></i>
-            </button>
+    <button type="button" class="btn btn-warning-outline " data-toggle="modal" data-target="#modalEditarPerfil">
+        <i class="fa fa-cogs"></i>  Configurações do Perfil
+    </button>
+    <a href="../eventos.jsp"> <i class="fa fa-list-ul"></i> Eventos</a>
+    <a href="#"> <i class="fa fa-trophy"></i> Ranking</a>
+    <a href="../sobre.jsp"> <i class="fa fa-book"></i> Sobre</a>
 
-            <div class="container">
+    <a href="../index.jsp" class="btn btn-sm btn-danger btn-sair">Sair</a>
 
-                <!--Collapse content-->
-                <div class="collapse navbar-toggleable-xs" id="collapseEx2">
-                    <!--Navbar Brand-->
-                    <a class="navbar-brand" href="../index.html"></a>
-                    <!--Links-->
-                    <ul class="nav navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="assuntos.html">Assunto</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="categorias.html">Categoria</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contas.html">Conta</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="cidades.html">Cidades</a>
-                        </li>
-                    </ul>
-                    <!--links de login e cadastro-->
-                    <ul class="nav navbar-nav pull-right">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Meu Perfil</a>
-                            <div class="dropdown-menu dropdown-default" aria-labelledby="dropdownMenu1" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                <div class="thumbnail thumbnail-adm">
-                                    <p>Nome do usuario</p>
-                                    <button type="button" class="btn btn-warning-outline " data-toggle="modal" data-target="#modalEditarPerfil">
-                                        <i class="fa fa-cogs"></i>  Configuração
-                                    </button>
-                                    <button class="btn btn-default"> <i class="fa fa-sign-out"></i> Sair</button>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+</div>
 
+<!--Navbar-->
+<nav class="navbar navbar-dark navbar-fixed-top nav-inicial">
 
-                </div>
-                <!--/.Collapse content-->
+    <!-- Collapse button-->
+    <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapseEx2">
+        <i class="fa fa-bars"></i>
+    </button>
 
-            </div>
+    <div class="container">
 
-        </nav>
-        <!--/.Navbar-->
-
-        <div class="modal fade" id="modalEditarPerfil" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <!--Content-->
-                <div class="modal-content">
-                    <!--Header-->
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">Editar dados </h4>
-                    </div>
-                    <!--Body-->
-                    <div class="modal-body">
-                        <form>
-                            <!--Body-->
+        <!--Collapse content-->
+        <div class="collapse navbar-toggleable-xs" id="collapseEx2">
+            <!--Navbar Brand-->
+            <a class="navbar-brand" href="../index.jsp"></a>
+            <!--Links-->
+            <ul class="nav navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.jsp">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="assuntos.jsp">Assunto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="categorias.jsp">Categoria</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contas.jsp">Conta</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="cidades.jsp">Cidades</a>
+                </li>
+            </ul>
+            <!--links de login e cadastro-->
+            <ul class="nav navbar-nav pull-right">
+                <li class="nav-item">
+                    <a onclick="openNav()" class="nav-link" ><i class="fa fa-bars fa-2x animated zoomInLeft"></i></a>
+                </li>
+            </ul>
 
 
-                            <div class="card-block text-xs-center">
-
-                                <div class="col-md-12">
-                                    <div class="md-form">                                          
-                                        <label for="conta-email">Email</label>
-                                        <p>zdfhsxd</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="col-md-12">
-                                    <div class="md-form">                                          
-                                        <label for="conta-email">Data de Cadastro</label>
-                                        <p>zdfhsxd</p>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="md-form">  
-                                        <input  type="password" id="conta-senha" class="form-control" required
-                                                maxlength="75">
-                                        <label for="conta-email"> Alterar Senha</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="md-form">  
-                                        <input  type="password" id="conta-senha" class="form-control" required
-                                                maxlength="75">
-                                        <label for="conta-email">Confirmar Senha</label>
-                                    </div>
-                                </div>
-
-
-                            </div>
-
-
-
-                            <div class="text-xs-center">
-                                <button type="submit" class="btn btn-warning" data-dismiss="modal">Editar</button>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
-                <!--/.Content-->
-            </div>
         </div>
-        <!-- /.Live preview-->
+        <!--/.Collapse content-->
+
+    </div>
+
+</nav>
+<!--/.Navbar-->
+
+<div class="modal fade" id="modalEditarPerfil" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Editar dados </h4>
+            </div>
+            <!--Body-->
+            <div class="modal-body">
+                <form>
+                    <!--Body-->
+
+
+                    <div class="card-block text-xs-center">
+
+                        <div class="col-md-12">
+                            <div class="md-form">                                          
+                                <label for="conta-email">Email</label>
+                                <p>zdfhsxd</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="md-form">                                          
+                                <label for="conta-email">Data de Cadastro</label>
+                                <p>zdfhsxd</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="md-form">  
+                                <input  type="password" id="conta-senha" class="form-control" required
+                                        maxlength="75">
+                                <label for="conta-email"> Alterar Senha</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="md-form">  
+                                <input  type="password" id="conta-senha" class="form-control" required
+                                        maxlength="75">
+                                <label for="conta-email">Confirmar Senha</label>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="text-xs-center">
+                        <button type="submit" class="btn btn-warning" data-dismiss="modal">Editar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+<!-- /.Live preview-->
 
 

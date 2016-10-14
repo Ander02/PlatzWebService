@@ -69,7 +69,7 @@
                                         <img class="img-responsive" src="../img/outras/plano-fundo.jpg" alt="">
                                         <div class="overlay">
                                             <h2>Nome da Empresa</h2>
-                                            <a class="info" href="perfilEditarEmpresa.html">Editar Perfil</a>
+                                            <a class="info" href="editarPerfil.jsp">Editar Perfil</a>
                                         </div>
                                     </div>
                                 </div>
@@ -139,11 +139,11 @@
 
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="../lib/bootstrap/mdb.min.js"></script>
-    
+
     <!-- Paginação da tabela -->
     <script type="text/javascript" src="../js/outros/paginacao-empresa.js"></script>
-    
-     <!-- link Angular animate -->
+
+    <!-- link Angular animate -->
     <script src="../lib/angular/angular-animate.js" type="text/javascript"></script>
 
     <!-- link Angular css toastr -->
@@ -151,6 +151,9 @@
 
     <!-- link TOASTR -->
     <script type="text/javascript" src="../lib/angular/angular-toastr.tpls.js"></script>
+    
+    <!-- aside -->
+    <script src="../js/outros/aside.js" type="text/javascript"></script>
 
 
 </body>

@@ -158,7 +158,8 @@ Perfil do usuario, onde ele pode alterar as coisas sobre sua conta
     <!-- link TOASTR -->
     <script type="text/javascript" src="../lib/angular/angular-toastr.tpls.js"></script>
 
-
+     <!-- aside -->
+    <script src="../js/outros/aside.js" type="text/javascript"></script>
 
 
 </body>

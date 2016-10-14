@@ -12,6 +12,72 @@ html,body
 {
     height: 110px;
 }
+.sidenav {
+     font-family: "Lato", sans-serif;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 5000;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    text-align: center;
+    padding: 8px;
+    text-decoration: none;
+    font-size: 1rem;
+    color: #fff;
+    display: block;
+    transition: 0.3s
+}
+.sidenav .btn-sair
+{
+    margin-top: 100%;
+        font-size: 1rem;  
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+    background: #F80;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+.img-perfil
+{
+    height: 150px;
+    width: 150px;
+}
+.cabecalho-aside h2
+{
+    text-align: center;
+    color: white;
+    padding: 10px;
+    font-size: 20px;
+}
+.img-perfil img
+{
+    height: 100%;
+    margin-left: 40%;
+}
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}   
+    
+    
+    
+    
 /*centralizando os titulos das paginas*/
 .head-pagina
 {
@@ -49,8 +115,10 @@ html,body
     color:white;
 }
 .navbar form input {
-    margin: 0;
-    height: 1rem;
+     margin: 5px;
+    height: 2rem;
+    width: 100%;
+    padding-bottom: 5px;
 }
 .navbar form .btn-login-nav {
     background: #4285F4;

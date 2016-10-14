@@ -47,7 +47,7 @@ considerada pagina de eventos que a empresa postou
 
     <body>
         <!-- inicio do projeto aqui-->
-    <ng-include src="'../View/navteste.html'"></ng-include>
+    <ng-include src="'../View/nav-empresa.html'"></ng-include>
     <div class="espaco"></div>
 
     <div class="head-pagina">
@@ -146,6 +146,9 @@ considerada pagina de eventos que a empresa postou
 
     <!-- link TOASTR -->
     <script type="text/javascript" src="../lib/angular/angular-toastr.tpls.js"></script>
+    
+    <!-- aside -->
+    <script src="../js/outros/aside.js" type="text/javascript"></script>
 
 </body>
 
