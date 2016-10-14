@@ -56,12 +56,18 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
     <ng-include src="'../View/nav-adm.html'"></ng-include>
 
     <%
-        String token = session.getAttribute("token").toString();
-        if (token == null) {
-            response.sendRedirect("../login.html");
-        } else {
-            out.print("<input type='hidden' id='token' name='token' value ='" + token + "' >");
-     }
+        try {
+            String token = session.getAttribute("token").toString();
+            if (token == null) {
+                response.sendRedirect("../login.jsp");
+            } else {
+                out.print("<input type='hidden' id='token' name='token' value ='" + token + "' >");
+            }
+        } catch (Exception e) {
+                System.out.println("Erro ao buscar sessão " + e.getMessage());
+                response.sendRedirect("../login.jsp");
+        }
+
     %>
 
     <div class="espaco"></div>
@@ -69,7 +75,7 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
     <div class="head-pagina">
         <h1>Mensagens</h1>
     </div>
-    
+
 
     <!-- Nav tabs -->
     <ul class="nav nav-tabs md-pills pills-ins nav-tab" role="tablist">
@@ -490,6 +496,9 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
     <!-- link Angular -->
     <link href="../css/angular-toastr.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../lib/angular/angular-toastr.tpls.js"></script>
+    
+     <!-- aside -->
+    <script src="../js/outros/aside.js" type="text/javascript"></script>
 
 </body>
 

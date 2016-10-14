@@ -33,8 +33,7 @@ public class CategoriaModel {
     @Length(max = 30, message = "O nome deve ter no máximo 30 caracteres")
     @NotNull(message = "O nome não pode ser nulo")
     private String nome;
-
-    @Length(max = 1024, message = "O nome da imagem é muito longo")
+    
     private String caminhoIcone = "";
 
     @Temporal(TemporalType.TIMESTAMP)

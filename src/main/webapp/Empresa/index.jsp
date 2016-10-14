@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
 index da empresa , quando logada vai ser redirecionada para esta pagina , quando estiver navegando ela sera
@@ -19,7 +20,7 @@ considerada pagina de eventos que a empresa postou
         <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
 
         <!-- Material Design Bootstrap -->
-        <link href="../css/bootstrap/mdb.min.css" rel="stylesheet"> 
+        <link href="../css/bootstrap/mdb.min.css" rel="stylesheet">
 
         <!-- Your custom styles (optional) -->
         <link href="../css/style.css" rel="stylesheet">
@@ -46,7 +47,7 @@ considerada pagina de eventos que a empresa postou
 
     <body>
         <!-- inicio do projeto aqui-->
-    <ng-include src="'../View/nav-teste.html'"></ng-include>
+    <ng-include src="'../View/nav-empresa.html'"></ng-include>
     <div class="espaco"></div>
 
     <div class="head-pagina">
@@ -145,16 +146,10 @@ considerada pagina de eventos que a empresa postou
 
     <!-- link TOASTR -->
     <script type="text/javascript" src="../lib/angular/angular-toastr.tpls.js"></script>
+    
+    <!-- aside -->
+    <script src="../js/outros/aside.js" type="text/javascript"></script>
 
-    <script>
-function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-}
-
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-}
-</script>
 </body>
 
 </html>
