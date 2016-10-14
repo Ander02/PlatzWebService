@@ -7,7 +7,6 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao listar mensagens"));
         });
     };
-
     $scope.listarFavoritas = function () {
         $http.get(webService + "/mensagens/marcadasNaoExcluidas").then(function (response) {
             $scope.mensagemFavoritas = response.data;
@@ -15,7 +14,6 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao listar mensagens"));
         });
     };
-
     $scope.listarNaoExcluidas = function () {
         $http.get(webService + "/mensagens/naoExcluidas").then(function (response) {
             $scope.mensagens = response.data;
@@ -23,7 +21,6 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao listar mensagens"));
         });
     };
-
     $scope.listarExcluidas = function () {
         $http.get(webService + "/mensagens/excluidas").then(function (response) {
             $scope.mensagensExcluidas = response.data;
@@ -31,7 +28,6 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
             erro(etoastr, rrorManager(response.config.url, response.status, "Erro ao listar mensagens"));
         });
     };
-
     $scope.listarNaoLidas = function () {
         $http.get(webService + "/mensagens/naoLidasNaoExcluidas").then(function (response) {
             $scope.mensagensNaoLidas = response.data;
@@ -39,7 +35,6 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao listar mensagens"));
         });
     };
-
     $scope.listarLidas = function () {
         $http.get(webService + "/mensagens/lidasNaoExcluidas").then(function (response) {
             $scope.mensagensLidas = response.data;
@@ -47,7 +42,6 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao listar mensagens"));
         });
     };
-
     $scope.buscarPeloId = function (id) {
         $http.get(webService + "/mensagem/" + id).then(function (response) {
             $scope.mensagem = response.data;
@@ -55,7 +49,6 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
             info(toastr, errorManager(response.config.url, response.status, "Erro ao buscar mensagem pelo id"));
         });
     };
-
     $scope.cadastrar = function () {
         $http.post(webService + "/mensagem", $scope.mensagemCadastro).then(function (response) {
             atualizar();
@@ -65,7 +58,6 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao enviar Mensagem "));
         });
     };
-
     $scope.favoritar = function (id) {
         $http.put(webService + "/mensagem/marcar/" + id).then(function (response) {
             confirmacao(toastr, "Favoritado");
@@ -73,7 +65,6 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
             info(toastr, errorManager(response.config.url, response.status, "Erro ao favoritar mensagem"));
         });
     };
-
     $scope.desfavoritar = function (id) {
         $http.put(webService + "/mensagem/desmarcar/" + id).then(function (response) {
             confirmacao(toastr, "Desfavoritado");
@@ -81,7 +72,6 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
             info(toastr, errorManager(response.config.url, response.status, "Erro ao desmarcar mensagem"));
         });
     };
-
     $scope.excluirDefinitivamente = function (id) {
         $http.delete(webService + "/mensagem/" + $scope.mensagemExclusaoDefinitivaId).then(function (response) {
             info(toastr, "Mensagem excluida definitivamente");
@@ -90,7 +80,6 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao excluir mensagem"));
         });
     };
-
     $scope.marcarExcluida = function () {
         $http.put(webService + "/mensagem/excluir/" + $scope.mensagemExclusaoId).then(function (response) {
             sucesso(toastr, "Mensagem excluida com sucesso");
@@ -121,7 +110,6 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao recuperar mensagem"));
         });
     };
-
     //métodos que envolvem outros tipos de objetos
     $scope.listarAssuntosNaoDeletados = function () {
         $http.get(webService + "/assuntos/naoDeletados").then(function (response) {
@@ -130,7 +118,6 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao listar assuntos"));
         });
     };
-
     $scope.alterarFavorito = function (mensagem) {
         if (mensagem.marcado == true) {
             $scope.desfavoritar(mensagem.id);
@@ -175,7 +162,7 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
         $scope.mensagemRecuperacaoId = null;
     }
 
-    //funções de atualizações e avisos
+//funções de atualizações e avisos
     function atualizar() {
         $scope.listarAssuntosNaoDeletados();
         $scope.listarLidas();
@@ -184,7 +171,28 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
         $scope.listarNaoLidas();
         $scope.listarTodos();
         $scope.listarFavoritas();
+        verificarToken();
     }
     window.onload = atualizar();
-});
 
+    function verificarToken() {
+
+        var token = document.getElementById("token").value;
+
+        $http.get(webService + "/tokenIsValid/" + token).then(function (response) {
+            var valido = response.data;
+            console.log(valido);
+            if (valido == "false")  {                
+                location.href = "../login.jsp";
+            }
+        }, function (response) {
+            aviso(toastr, "Erro ao logar, por favor tente novamente");
+            $http.post(webService + "/logoff", null, {
+                headers: {
+                    Authorization: "Bearer " + token
+                }
+            });
+            location.href = "../login.jsp";
+        });
+    }
+});
