@@ -96,7 +96,7 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
                             <td>{{categoria.dataCadastro}}</td>
                             <td align=right>
                                 <a class="btn btn-sm btn-default" data-toggle="modal" ng-click="prepararEdicao(categoria)" data-target="#modalEdita"><i class="fa fa-pencil"></i>Editar</a>
-                                <a class="btn btn-sm btn-amber" data-toggle="modal" ng-click="" data-target="#modalEditaImagem"><i class="fa fa-camera animated flash"></i>Trocar imagem </a>
+                                <a class="btn btn-sm btn-amber" data-toggle="modal" ng-click="prepararEdicaoImagem(categoria.id)" data-target="#modalEditaImagem"><i class="fa fa-camera animated flash"></i>Trocar imagem </a>
                                 <a class="btn btn-sm btn-danger" data-toggle="modal" ng-click="prepararExclusao(categoria.id)" data-target="#modalExcluir"><i class="fa fa-trash"></i>Excluir</a>
                             </td>
                         </tr>
@@ -185,10 +185,6 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
         </div>
         <!-- /.painel 3 -->
 
-
-
-
-
     </div>
 
     <!-- Modal de edição -->
@@ -247,8 +243,8 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
                         </div>
 
                         <div class="text-xs-center">
-                            <button class="btn btn-warning" data-dismiss="modal" ng-click=""> Editar </button>
-                            <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click=""> Fechar </button>
+                            <button class="btn btn-warning" data-dismiss="modal" ng-click="alterarImagem()"> Alterar Imagem </button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click="cancelarEdicaoImagem()"> Fechar </button>
                         </div>
                     </form>
                 </div>
@@ -362,4 +358,3 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
 </body>
 
 </html>
-

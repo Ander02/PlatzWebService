@@ -28,16 +28,7 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
     $scope.alterar = function () {
         $http.put(webService + "/categoria/" + $scope.categoriaEdicao.id, $scope.categoriaEditada).then(function (response) {
             atualizar();
-            $scope.categoriaEditada = null;            
-            
-            var input = document.getElementById("InputIconeCategoriaEdicao");
-            var icone = input.files[0];
-
-            if (!(!icone.type.match('image.*'))) {
-                enviarArquivo(icone, webService + "/categoria/imagem/" + response.data.id);
-            }
-            input.value = null;
-
+            $scope.categoriaEditada = null;
             alterado(toastr, "Categoria editar com sucesso");
             sleep(1000);
             location.reload();
@@ -45,6 +36,19 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao alterar categoria"));
         });
     };
+
+    $scope.alterarImagem = function () {
+
+        var input = document.getElementById("InputIconeCategoriaEdicao");
+        var icone = input.files[0];
+
+        if (!(!icone.type.match('image.*'))) {
+            enviarArquivo(icone, webService + "/categoria/imagem/" + $scope.categoriaImagemEdicaoId);
+        }
+        input.value = null;
+        atualizar();
+    };
+
     $scope.cadastrar = function () {
 
         $http.post(webService + "/categoria", $scope.categoriaCadastro).then(function (response) {
@@ -109,9 +113,15 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
     $scope.cancelarExclusao = function () {
         $scope.categoriaExclusaoId = null;
     };
+    $scope.prepararEdicaoImagem = function (id) {
+        $scope.categoriaImagemEdicaoId = id;
+    }
+    $scope.cancelarEdicaoImagem = function () {
+        $scope.categoriaImagemEdicaoId = null;
+    }
 
     function enviarArquivo(arquivo, url) {
-        var formData = new FormData();        
+        var formData = new FormData();
         formData.append('icone', arquivo);
         console.log(formData);
         $http.put(url, formData, {
@@ -137,6 +147,7 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
         $scope.cancelarEdicao();
         $scope.cancelarExclusao();
         $scope.cancelarRecuperacao();
+        $scope.cancelarEdicaoImagem();
     }
     window.onload = atualizar();
 });
