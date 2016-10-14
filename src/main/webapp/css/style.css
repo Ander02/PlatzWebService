@@ -115,8 +115,10 @@ html,body
     color:white;
 }
 .navbar form input {
-    margin: 0;
-    height: 1rem;
+     margin: 5px;
+    height: 2rem;
+    width: 100%;
+    padding-bottom: 5px;
 }
 .navbar form .btn-login-nav {
     background: #4285F4;
