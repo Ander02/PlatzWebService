@@ -88,7 +88,10 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
             erro(toastr, errorManager(response.config.url, response.status, "Erro deletar categoria"));
         });
     };
-
+    
+    $scope.baixarImagem = function (id) {
+        return webService + "/categoria/imagem/" + id;
+    };
     //funções de preparação de variaveis
 
     $scope.prepararRecuperacao = function (id) {
