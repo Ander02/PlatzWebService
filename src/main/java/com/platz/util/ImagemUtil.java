@@ -1,6 +1,9 @@
 package com.platz.util;
 
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -9,7 +12,7 @@ import java.io.InputStream;
 public class ImagemUtil {
 
     public final String RAIZ = "C:/platzImg/";
-    public final String URL_FTP = "ftp://localhost/";
+    public static final String URL_FTP = "ftp://localhost/";
 
     //Método de salvar arquivo que recebe o caminho e o arquivo como inputStream
     public boolean salvarArquivo(String diretorio, String nomeDoArquivo, InputStream inputStream) {
@@ -47,12 +50,27 @@ public class ImagemUtil {
         }
     }
 
+    public InputStream baixarImagem(String hostRemoto) {
+
+        try {
+            FtpUtil ftp = new FtpUtil();
+            String caminhoReduzido = hostRemoto.replaceFirst(ImagemUtil.URL_FTP, "");
+
+            return ftp.downloadArquivoFTP(caminhoReduzido);
+
+        } catch (Exception e) {
+            System.out.println("Erro ao Fazer Download: " + e.getMessage());
+            return null;
+        }
+
+    }
+
     public boolean deletarArquivo(String caminhoDoArquivo) {
 
         try {
-            FtpUtil ftp = new FtpUtil("localhost", 21, "admin", "");
+            FtpUtil ftp = new FtpUtil();
 
-            String caminhoReduzido = caminhoDoArquivo.replaceFirst(new ImagemUtil().URL_FTP, "");
+            String caminhoReduzido = caminhoDoArquivo.replaceFirst(ImagemUtil.URL_FTP, "");
 
             System.out.println(caminhoDoArquivo);
             boolean ok = ftp.deletarArquivoFTP(caminhoReduzido);

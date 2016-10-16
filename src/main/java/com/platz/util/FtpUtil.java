@@ -86,10 +86,22 @@ public class FtpUtil {
     // Download the FTP File from the FTP Server
     public void downloadArquivoFTP(String hostRemoto, String localDownload) {
 
-        try (FileOutputStream fos = new FileOutputStream(localDownload)) {
+        try {
+            FileOutputStream fos = new FileOutputStream(localDownload);
             this.ftp.retrieveFile(hostRemoto, fos);
         } catch (IOException e) {
             System.out.println("Erro ao Fazer download do Arquivo por FTP: " + e.getMessage());
+        }
+    }
+
+    public InputStream downloadArquivoFTP(String hostRemoto) {
+
+        try {
+                        
+            return ftp.retrieveFileStream(hostRemoto);
+        } catch (IOException e) {
+            System.out.println("Erro ao Fazer download do Arquivo por FTP: " + e.getMessage());
+            return null;
         }
     }
 

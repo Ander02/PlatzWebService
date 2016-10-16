@@ -6,6 +6,7 @@ import com.platz.http.edicao.CategoriaEdicao;
 import com.platz.http.leitura.CategoriaLeitura;
 import com.platz.model.CategoriaModel;
 import com.platz.util.ImagemUtil;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.InputStream;
 import java.util.List;
@@ -132,17 +133,15 @@ public class CategoriaService {
             if (model != null) {
 
                 if (!model.getCaminhoIcone().equals("") && model.getCaminhoIcone() != null) {
+                    InputStream input = new ImagemUtil().baixarImagem(model.getCaminhoIcone());
 
-                    File file = new File(model.getCaminhoIcone());
-
-                    if (file.exists()) {
-                        return Response.ok(file).build();
+                    if (input != null) {
+                        return Response.ok(input).build();
                     }
                 }
                 return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao baixar imagem, imagem inexistente").build();
             }
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao baixar imagem, categoria não encontrada").build();
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao baixar imagem").build();
