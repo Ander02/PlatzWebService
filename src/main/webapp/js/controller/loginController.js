@@ -13,16 +13,13 @@ angular.module("platz").controller("loginController", function ($scope, $http, t
     };
 
     $scope.deslogar = function () {
-        $http.post(webService + "/logoff").then(function (response) {
+        $http.post(webService + "/logoff", null, gerarHeaders(document.getElementById("token").value)).then(function (response) {
             info(toastr, "logoff efetuado");
             location.href = "../index.jsp";
         }, function (response) {
 
         });
-        
+
     };
-    
-    window.onload = function (){
-        console.log("login inside");
-    };
+    console.log("vai tomar no seu orificio anal");
 });
