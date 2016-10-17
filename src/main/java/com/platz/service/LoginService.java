@@ -6,11 +6,14 @@ import com.platz.http.leitura.ContaLeitura;
 import com.platz.model.ContaModel;
 import com.platz.model.Perfil;
 import com.platz.util.PerfilAuth;
+import com.platz.util.TokenUtil;
 import java.util.List;
 import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
@@ -32,7 +35,7 @@ public class LoginService {
     @Path("/login")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response login(Login login) {        
+    public Response login(Login login) {
         try {
 
             ContaModel model = contaController.login(login);
@@ -50,7 +53,8 @@ public class LoginService {
     }
 
     @POST
-    @PerfilAuth({Perfil.ADMINISTRADOR, Perfil.EMPRESA, Perfil.USUARIO})
+    //@PerfilAuth({Perfil.ADMINISTRADOR, Perfil.EMPRESA, Perfil.USUARIO})
+    @PermitAll
     @Path("/logoff")
     @Produces(MediaType.APPLICATION_JSON)
     public Response logoff(@Context HttpHeaders httpHeaders) {
@@ -75,5 +79,22 @@ public class LoginService {
             System.out.println("Erro ao fazer logoff: " + e.getMessage());
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao fazer logoff").build();
         }
+    }
+
+    @GET
+    //@PerfilAuth({Perfil.ADMINISTRADOR, Perfil.EMPRESA, Perfil.USUARIO})
+    @PermitAll
+    @Path("/tokenIsValid/{token}")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response tokenIsValid(@PathParam("token") String token) {
+        if (contaController.getConta(token) != null) {
+            boolean valido = new TokenUtil().isValid(token);
+            if (!valido) {
+                contaController.logoff(contaController.getConta(token));
+            }
+            return Response.ok(valido).build();
+        }
+        return Response.ok(false).build();
+
     }
 }

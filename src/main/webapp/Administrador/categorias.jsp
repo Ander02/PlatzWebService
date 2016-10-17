@@ -89,7 +89,7 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
                             <th scope="row">{{$index + 1}}</th>
                             <td>
                                 <div >
-                                    <img ng-src="{{categoria.caminhoIcone}}" alt="Imagem sobre a categoria" class="img-categoria">                                  
+                                    <img ng-src="{{baixarImagem(categoria.id)}}" alt="Imagem sobre a categoria" class="img-categoria">                                  
                                 </div>
                             </td>    
                             <td>{{categoria.nome}}</td>   
@@ -164,7 +164,7 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
                             <th scope="row">{{$index + 1}}</th>
                             <td>
                                 <div >
-                                    <img src="{{categoria.caminhoIcone}}" alt="Imagem sobre a categoria" class="img-categoria">                                  
+                                    <img src="{{baixarImagem(categoria.id)}}" alt="Imagem sobre a categoria" class="img-categoria">                                  
                                 </div>
                             </td>    
                             <td>{{categoria.nome}}</td>   
@@ -253,8 +253,6 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
             <!--/.Content-->
         </div>
     </div> <!--/.modal-->
-
-
 
     <!-- Modal Excluir -->
     <div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
