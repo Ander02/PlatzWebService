@@ -58,7 +58,7 @@ Tela de cadastro de evento
     <div>
         <form>
 
-            <div class="col-md-8 corpo-form-cadastro-evento">
+            <div class="col-md-8 corpo-form-cadastro-evento card">
 
                 <div class="col-md-12">
 

@@ -46,17 +46,13 @@
     </head>
 
     <body>
-        <!-- inicio do projeto aqui-->
+    <!-- inicio do projeto aqui-->
     <ng-include src="'../View/nav-empresa.html'"></ng-include>
-
     <div class="espaco"></div>
 
     <section class="section section-blog-fw">
-
         <!--First row-->
         <div class="row">
-            
-
                 <!--Post data-->
                 <div class="jumbotron caixa-informacao-perfil-empresa">
                     <div class="col-lg-12 col-md-12 m-b-r">
@@ -64,19 +60,17 @@
                         <!--Card-->
                         <div class="card">
                             <div class="col-md-12">
-                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 imagem-perfil-empresa-efeito">
+                                <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12 imagem-perfil-empresa-efeito imagem-perfil-empresa">
                                     <div class="hovereffect">
-                                        <img class="img-responsive" src="../img/outras/plano-fundo.jpg" alt="">
+                                        <img class="img-responsive " src="../img/outras/plano-fundo.jpg" alt="">
                                         <div class="overlay">
-                                            <h2>Nome da Empresa</h2>
+                                            <h2>Nome da Empresa fantasia</h2>
                                             <a class="info" href="editarPerfil.jsp">Editar Perfil</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="card-block">
-
                                 <!--Name-->
                                 <h4 class="card-title">Razão Social</h4>                              
                                 <hr>
@@ -92,7 +86,6 @@
                             <a class="nav-link active" data-toggle="tab" href="#panel11" role="tab"><i class=" fa fa-th-large"></i> Eventos</a>
                         </li>
                     </ul>
-
                     <!-- Tab panels -->
                     <div class="tab-content">
 
@@ -103,11 +96,8 @@
                                 <div class="col-md-4 evento-perfil-empresa">
                                     <div class="card">
                                         <div class="hovereffect">
-                                            <img class=" img-responsive img-evento-efeito" src="../img/outras/plano-fundo.jpg" alt="Imagem do Evento" >
-                                        
-
+                                            <img class=" img-responsive " src="../img/outras/plano-fundo.jpg" alt="Imagem do Evento" >
                                         </div><!-- /. div hovereffect  -->
-
                                         <h4 class="card-title">Nome do evento</h4>
                                         <h5><i class="fa fa-building-o animated bounceInDown"></i> Empresa</h5>
                                         <p><i class="fa fa-calendar animated bounceInDown"></i> Data: </p>
@@ -121,9 +111,7 @@
             </div><!-- jumbtron -->
         </div><!--/First row-->
 </section>
-
-
-<!-- /Start your project here-->
+<!-- /. fim do projeto -->
 
 
 <!-- SCRIPTS -->

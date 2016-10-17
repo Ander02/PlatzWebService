@@ -61,10 +61,7 @@ and open the template in the editor.
     <section class="section section-blog-fw">
         <div class="col-md-1"></div>
         <div class="col-md-10">
-            <!--Featured image-->
-            <div class="bg-empresa-editar">     
-
-            </div>
+            
 
             <!--Post data-->
             <div class="jumbotron caixa-informacao-empresa">

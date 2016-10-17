@@ -388,8 +388,9 @@ label.star:before {
 */
 .imagem-perfil-empresa-efeito
 {
-    margin-left: 33.3%;
+    margin-left: 25%;
     margin-top: 2%;
+    height: 350px;
     margin-bottom: 5%;
 }
 .evento-perfil-empresa
