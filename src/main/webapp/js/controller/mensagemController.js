@@ -7,7 +7,6 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao listar mensagens"));
         });
     };
-
     $scope.listarFavoritas = function () {
         $http.get(webService + "/mensagens/marcadasNaoExcluidas").then(function (response) {
             $scope.mensagemFavoritas = response.data;
@@ -95,14 +94,14 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
         }, function (response) {
 
         });
-    }
+    };
     $scope.Cancelarvisualizacao = function (id) {
         $http.put(webService + "/mensagem/cancelarVisualizar/" + id).then(function (response) {
 
         }, function (response) {
 
         });
-    }
+    };
     $scope.restaurar = function () {
         $http.put(webService + "/mensagem/restaurar/" + $scope.mensagemRecuperacaoId).then(function (response) {
             atualizar();
@@ -111,6 +110,7 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao recuperar mensagem"));
         });
     };
+
     //métodos que envolvem outros tipos de objetos
     $scope.listarAssuntosNaoDeletados = function () {
         $http.get(webService + "/assuntos/naoDeletados").then(function (response) {
@@ -126,13 +126,13 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
             $scope.favoritar(mensagem.id);
         }
         atualizar();
-    }
-
+    };
     $scope.lerMensagem = function (id) {
         $scope.buscarPeloId(id);
         $scope.visualizar(id);
         atualizar();
-    }
+    };
+
     $scope.responder = function (id) {
         espere(toastr, "Enviando e-mail, por favor aguarde...");
         $http.post(webService + "/mensagem/" + id, $scope.resposta).then(function (response) {
@@ -141,31 +141,32 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
         }, function (response) {
             aviso(toastr, "falha ao reponder mensagem");
         });
-    }
+    };
 
     $scope.prepararExclusaoDefinitiva = function (id) {
         $scope.mensagemExclusaoDefinitivaId = id;
-    }
+    };
     $scope.cancelarExclusaoDefinitiva = function () {
         $scope.mensagemExclusaoDefinitivaId = null;
-    }
+    };
     $scope.prepararExclusao = function (id) {
         $scope.mensagemExclusaoId = id;
-    }
+    };
     $scope.cancelarExclusao = function () {
         $scope.mensagemExclusaoId = null;
-    }
+    };
     $scope.prepararRecuperacao = function (id) {
         $scope.mensagemRecuperacaoId = id;
-    }
+    };
 
     $scope.cancelarRecuperacao = function () {
         $scope.mensagemRecuperacaoId = null;
-    }
+    };
 
 //funções de atualizações e avisos
     function atualizar() {
-        verificarToken();
+        console.log("atualizar");
+        verificarToken($http, $scope, toastr);
         $scope.listarAssuntosNaoDeletados();
         $scope.listarLidas();
         $scope.listarNaoExcluidas();
@@ -173,39 +174,12 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
         $scope.listarNaoLidas();
         $scope.listarTodos();
         $scope.listarFavoritas();
-
-
     }
+
     window.onload = function () {
+        console.log("onload");
         $scope.permicao = false;
         atualizar();
     };
-
-    function verificarToken() {
-
-        var token = document.getElementById("token").value;
-
-        $http.get(webService + "/tokenIsValid/" + token).then(function (response) {
-            var valido = response.data;
-            if (valido == "false") {
-                $scope.permicao = false;
-                logoff(token);
-                location.href = "../login.jsp";
-            } else {
-                $scope.permicao = true;
-            }
-        }, function (response) {
-            $scope.permicao = false;
-            logoff(token);
-        });
-    }
-
-
-    function logoff(token) {
-        aviso(toastr, "Erro ao logar, por favor tente novamente");
-        $http.post(webService + "/logoff", null, gerarHeaders(token));
-        location.href = "../login.jsp";
-    }
-
 
 });
