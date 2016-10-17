@@ -7,6 +7,7 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao listar mensagens"));
         });
     };
+
     $scope.listarFavoritas = function () {
         $http.get(webService + "/mensagens/marcadasNaoExcluidas").then(function (response) {
             $scope.mensagemFavoritas = response.data;
@@ -25,7 +26,7 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
         $http.get(webService + "/mensagens/excluidas").then(function (response) {
             $scope.mensagensExcluidas = response.data;
         }, function (response) {
-            erro(etoastr, rrorManager(response.config.url, response.status, "Erro ao listar mensagens"));
+            erro(etoastr, errorManager(response.config.url, response.status, "Erro ao listar mensagens"));
         });
     };
     $scope.listarNaoLidas = function () {
@@ -164,6 +165,7 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
 
 //funções de atualizações e avisos
     function atualizar() {
+        verificarToken();
         $scope.listarAssuntosNaoDeletados();
         $scope.listarLidas();
         $scope.listarNaoExcluidas();
@@ -171,9 +173,13 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
         $scope.listarNaoLidas();
         $scope.listarTodos();
         $scope.listarFavoritas();
-        verificarToken();
+
+
     }
-    window.onload = atualizar();
+    window.onload = function () {
+        $scope.permicao = false;
+        atualizar();
+    };
 
     function verificarToken() {
 
@@ -181,18 +187,25 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
 
         $http.get(webService + "/tokenIsValid/" + token).then(function (response) {
             var valido = response.data;
-            console.log(valido);
-            if (valido == "false")  {                
+            if (valido == "false") {
+                $scope.permicao = false;
+                logoff(token);
                 location.href = "../login.jsp";
+            } else {
+                $scope.permicao = true;
             }
         }, function (response) {
-            aviso(toastr, "Erro ao logar, por favor tente novamente");
-            $http.post(webService + "/logoff", null, {
-                headers: {
-                    Authorization: "Bearer " + token
-                }
-            });
-            location.href = "../login.jsp";
+            $scope.permicao = false;
+            logoff(token);
         });
     }
+
+
+    function logoff(token) {
+        aviso(toastr, "Erro ao logar, por favor tente novamente");
+        $http.post(webService + "/logoff", null, gerarHeaders(token));
+        location.href = "../login.jsp";
+    }
+
+
 });

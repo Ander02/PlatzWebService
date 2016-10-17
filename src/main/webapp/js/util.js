@@ -14,6 +14,16 @@ function sleep(milliseconds) {
     }
 }
 
+//gera os headers para autorização e permição
+ function gerarHeaders(token) {
+        return {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        };
+    }
+
+
 //funções que gerencia os tipo de erro
 function errorManager(erro, status, mensagem) {
     switch (status) {

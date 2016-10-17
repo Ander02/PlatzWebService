@@ -37,7 +37,7 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
 
         <!-- angular util -->
         <script src="../js/util.js" type="text/javascript"></script>
-
+        <script src="../js/controller/categoriaController.js" type="text/javascript"></script>
         <!-- angular controller  -->
         <script src="../js/controller/mensagemController.js" type="text/javascript"></script>
 
@@ -48,7 +48,7 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
 
     </head>
 
-    <body ng-controller="mensagemController">
+    <body ng-controller="mensagemController" ng-show="permicao">
 
 
         <!-- inicio do projeto aqui-->

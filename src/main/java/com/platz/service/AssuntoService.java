@@ -52,7 +52,7 @@ public class AssuntoService {
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao cadastrar assunto").build();
         }
     }
-
+   
     @GET
     @Path(value = "/assuntos")
     @PermitAll
