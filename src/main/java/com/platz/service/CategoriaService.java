@@ -122,7 +122,6 @@ public class CategoriaService {
     @GET
     @Path("/categoria/imagem/{id}")
     @PermitAll
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces("image/*")
     public Response baixarImagem(@PathParam("id") String id) {
 
@@ -136,7 +135,7 @@ public class CategoriaService {
                     InputStream input = new ImagemUtil().baixarImagem(model.getCaminhoIcone());
 
                     if (input != null) {
-                        return Response.ok(input).build();
+                        return Response.ok(input).header("Content-Type", "image/png").build();
                     }
                 }
                 return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao baixar imagem, imagem inexistente").build();
