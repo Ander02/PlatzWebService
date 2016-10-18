@@ -14,6 +14,46 @@ function sleep(milliseconds) {
     }
 }
 
+//gera os headers para autorização e permição
+function gerarHeaders(token) {
+    return {
+        headers: {
+            Authorization: "Bearer " + token
+        }
+    };
+}
+
+
+function verificarToken($http, $scope, toastr) {
+console.log("verificar login");
+    var token = document.getElementById("token").value;
+
+    $http.get(webService + "/tokenIsValid/" + token).then(function (response) {
+        var valido = response.data;
+        if (valido == "false") {
+            console.log("t isn't valid");
+            $scope.permicao = false;
+            logoff($http, toastr, token);
+            location.href = "../login.jsp";
+        } else {
+            console.log("t is valid");
+            $scope.permicao = true;
+        }
+    }, function (response) {
+        console.log("request failed");
+        $scope.permicao = false;
+        logoff($http, toastr, token);
+    });
+}
+
+
+function logoff($http, toastr, token) {
+    aviso(toastr, "Erro ao logar, por favor tente novamente");
+    $http.post(webService + "/logoff", null, gerarHeaders(token));
+    location.href = "../login.jsp";
+}
+
+
 //funções que gerencia os tipo de erro
 function errorManager(erro, status, mensagem) {
     switch (status) {
