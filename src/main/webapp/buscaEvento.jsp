@@ -84,7 +84,7 @@ pagina onde é retornada a busca de um evento.
                     <div class="card-footer">
                         
                     <span class="right">
-                        <a class="btn btn-amber btn-lg" href="">Ver Mais >></a>                   
+                        <a class="btn btn-amber btn-lg" href="">Ver Mais >></a>                    
                     </span>
                     </div>
 
@@ -93,6 +93,7 @@ pagina onde é retornada a busca de um evento.
         </div><!--/First column--> 
     </div> <!--/First row-->
 </section><!--/Section: Products v.1-->
+
 
     <!-- /Fim do projeto -->
 

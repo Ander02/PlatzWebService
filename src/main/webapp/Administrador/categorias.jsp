@@ -314,15 +314,8 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
         </div>
     </div> <!--/.modal-->
 
-
     <div class="espaco"></div>
-
-
-
-    <div class="footer-fixo">
-        <ng-include src="'../View/footer.html'"></ng-include>
-    </div>
-
+  
     <!-- /Fim  do html do projeto-->
 
 

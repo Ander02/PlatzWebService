@@ -8,7 +8,7 @@ Pagina de evento especifico
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        
+
         <!-- meta para compatibilidade no IE -->
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
@@ -195,6 +195,7 @@ Pagina de evento especifico
                         <!-- /. mapa -->
 
                     </div>
+
 
                 </div>
 
@@ -465,12 +466,7 @@ Pagina de evento especifico
 
 
 
-
-
-
-
-
-    <!-- /Start your project here-->
+    <!-- /. fim do html-->
 
 
     <!-- SCRIPTS -->
@@ -490,7 +486,7 @@ Pagina de evento especifico
     <!-- angular app script -->
     <script type="text/javascript" src="js/app.js"></script>
     <!-- link Angular -->
-   <script src="lib/angular/angular-animate.js" type="text/javascript"></script>
+    <script src="lib/angular/angular-animate.js" type="text/javascript"></script>
     <!-- link Angular -->
     <link href="css/angular-toastr.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="lib/angular/angular-toastr.tpls.js"></script>

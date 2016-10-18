@@ -94,15 +94,7 @@ Pagina de consulta de cidade e estados
         <!--/.Panel 1-->
     </div>
 
-
-
     <div class="espaco"></div>
-
-
-    <div class="footer-fixo">
-        <ng-include src="'../View/footer.html'"></ng-include>
-    </div>
-
 
     <!-- /Fim do Projeto aqui-->
 

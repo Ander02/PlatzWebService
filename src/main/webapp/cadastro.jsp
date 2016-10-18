@@ -214,7 +214,7 @@
                         <!--/.Card content-->
 
                         <div>
-                            <button class="btn btn-lg btn-warning"><i class="fa fa-check"></i> Cadastrar</button>
+                            <button class="btn btn-lg btn-warning" data-toggle="modal" data-target="#modalLogar"><i class="fa fa-check"></i> Cadastrar</button>
                         </div>
                     </div>
 
@@ -367,20 +367,51 @@
 
                         </div>
                         <!--/.Card content-->
-                        <div >
-                            <button class="btn btn-lg btn-warning"><i class="fa fa-check"></i> Cadastrar</button>
+                        <div>
+                             <button class="btn btn-lg btn-warning" data-toggle="modal" data-target="#modalLogar"><i class="fa fa-check"></i> Cadastrar</button>
                         </div>
                     </div>
 
                 </div>
-            </form>
+            </form>            
         </div>
-
     </div>
+   
+    <!-- modal de login após o cadastro -->
+    <div class="modal fade" id="modalLogar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Login</h4>
+                </div>
+                <!--Body-->
+                <div class="modal-body">
+                    <form>
+                        <!--Body-->
+                        <h3> Deseja se logar agora? </h3>
+
+                        <div class="text-xs-center">
+                            <button class="btn btn-warning"  data-dismiss="modal" ng-click=""> Sim </button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click=""> Não </button>
+                        </div>
+                    </form>
+                </div><!-- modal body -->
+            </div><!--/.Content-->            
+        </div><!-- modal-dialog -->
+    </div> <!--/.modal-->
+   
+    
+    <!-- fim da modal -->
+    
+        <ng-include src="'View/footer.html'"></ng-include>
 
 
-
-    <!-- /Start your project here-->
+    <!-- /. fim do html -->
 
 
     <!-- SCRIPTS -->
@@ -407,7 +438,7 @@
     <!-- link Angular -->
     <link href="css/angular-toastr.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="lib/angular/angular-toastr.tpls.js"></script>
-
+    <script src="js/outros/aside.js" type="text/javascript"></script>
 
 
 </body>

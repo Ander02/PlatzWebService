@@ -468,10 +468,7 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
                 <!-- /.modal de excluir definitivamente -->
             </div> 
         </div>
-
-
-        <!-- /Start your project here-->
-
+        <!-- /.fim do html -->
 
         <!-- SCRIPTS -->
 

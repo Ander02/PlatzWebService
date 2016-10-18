@@ -12,3 +12,13 @@ function openNav() {
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
 }
+
+
+var link2 = document.getElementById("mySideFooter")
+function openFooter() {
+    document.getElementById("mySideFooter").style.width = "250px";
+}
+
+function closeFooter() {
+    document.getElementById("mySideFooter").style.width = "0";
+}

@@ -227,7 +227,6 @@ Tela de cadastro de evento
             </div>
         </form>
     </div>
-
     <!--/Form fim da div do form-->
 
     <!-- /.fim do projeto-->

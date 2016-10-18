@@ -76,7 +76,7 @@ Perfil do usuario, onde ele pode alterar as coisas sobre sua conta
                                             <img class="img-responsive animated tada" src="../img/outras/plano-fundo.jpg" alt="">
                                             <div class="overlay">
                                                 <h2>Editar Informações</h2>
-                                                <a class="info" href="editarPerfil.html">Editar</a>
+                                                <a class="info" href="editarPerfil.jsp">Editar</a>
                                             </div>
                                         </div>
 
@@ -133,7 +133,6 @@ Perfil do usuario, onde ele pode alterar as coisas sobre sua conta
         </div>
     </section>
     <!-- /.fim do projeto-->
-
 
     <!-- SCRIPTS -->
 

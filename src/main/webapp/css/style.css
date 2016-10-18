@@ -75,8 +75,67 @@ html,body
   .sidenav a {font-size: 18px;}
 }   
     
+
+/*SIDE FOOTER*/
+.botaoAbreFooter
+{
+    position: fixed;
+    bottom: 5%;
+    right: 3%;
+}
+.sidefooter {
+     font-family: "Lato", sans-serif;
+    height: 25%;
+    width: 0;
+    position: fixed;
+    z-index: 5000;
+    bottom: 5%;
+    right: 5px;
+    border-radius: 20px;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidefooter li
+{
+    color: #fff;
+}
+.sidefooter a
+{
+    color: #fff;
+      padding: 8px;
+}
+.sidefooter a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+    background: #F80;
+}
+.sidefooter ul li 
+{
+    display: inline-block;
+}
+.sidefooter ul li a
+{
+    color: #fff;
+    text-decoration: none;
+}
+.sidefooter .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}   
     
-    
+
+
+/*FIM SIDE FOOTER*/
     
 /*centralizando os titulos das paginas*/
 .head-pagina
@@ -218,22 +277,19 @@ footer.page-footer .btn-rede-social {
     color: #fff;
     padding: 10px;
     background: #1abc9c;
+    opacity: 0.6;
     border-radius: 30px;
     margin: 5px;
 }
 footer.page-footer {
     margin-top: 20px;
     padding-top: 20px;
-    background-color: #363636;
+/*    background-color: #363636;*/
     color: #fff;
 }
-.footer-especifico , .footer-fixo
+social-section .fa
 {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 1500;
-    margin-top:20%;
+    margin-right: 0px;
 }
 
 /* /.footer*/

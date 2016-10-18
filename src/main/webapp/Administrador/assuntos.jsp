@@ -266,16 +266,7 @@ Pagina de cadastro , consulta, atualização e exclusão de assunto de mensagem
             <!--/.Content-->
         </div>
     </div> <!--/.modal-->
-
-
-    <div class="espaco"></div>
-
-
-
-    <div class="footer-fixo">
-        <ng-include src="'../View/footer.html'"></ng-include>
-    </div>
-
+   <div class="espaco"></div>
     <!-- /fim do html do projeto-->
 
 

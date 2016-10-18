@@ -135,14 +135,6 @@ index do usuario onde mostra algumas sugestões de eventos
             </div> <!--/Segunda coluna, com os quatro quadrados de eventos-->           
         </div> <!--/First row-->
     </section><!--/Section: eventos-->
-
-
-<!--    <div class="footer-fixo">
-        <ng-include src="'../View/footer.html'"></ng-include>
-    </div>-->
-
-
-
     <!-- /.fim do projeto-->
 
 

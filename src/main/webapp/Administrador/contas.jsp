@@ -618,17 +618,7 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
     </div> <!--/.modal-->
 
     <div class="espaco"></div>
-
-
-
-    <div class="footer-fixo">
-        <ng-include src="'../View/footer.html'"></ng-include>
-    </div>
-
-
-
-
-    <!-- /Start your project here-->
+    <!-- /. fim do html-->
 
 
     <!-- SCRIPTS -->

@@ -210,9 +210,6 @@ and open the template in the editor.
             </div> <!-- /.jumbtron caixa-informacao-especifico -->
         </div> <!-- /.col-md-10 -->    
     </section> <!-- /.section -->
-
-
-
     <!-- /.fim do projeto-->
 
 
