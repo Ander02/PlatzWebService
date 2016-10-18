@@ -39,9 +39,8 @@ public class EmpresaService {
     @PermitAll
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public Response cadastrar(EmpresaCadastro empresa) {
-
-        try {
+    public Response cadastrar(EmpresaCadastro empresa) {        
+       try {
             //Instanciar uma nova model, passando o http de cadastro
             EmpresaModel model = new EmpresaModel(empresa);
             model.getConta().setPerfil(Perfil.EMPRESA.ordinal());
