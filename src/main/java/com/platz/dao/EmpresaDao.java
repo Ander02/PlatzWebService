@@ -1,5 +1,6 @@
 package com.platz.dao;
 
+
 import com.platz.model.ContaModel;
 import com.platz.model.EmpresaModel;
 import java.util.List;
@@ -10,6 +11,18 @@ import javax.persistence.EntityManager;
  * @author 15153770
  */
 public class EmpresaDao extends GenericDao<EmpresaModel> {
+
+    @Override
+    public void cadastrar(EmpresaModel model) {
+
+        ContaModel conta = new ContaDao().buscarPeloEmail(model.getConta().getEmail());
+
+        if (conta == null) {
+            super.cadastrar(model);
+        } else {
+            System.out.println("Erro ao cadastrar, email já existe");
+        }
+    }
 
     public EmpresaModel bucarPeloCNPJ(String cnpj) {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();

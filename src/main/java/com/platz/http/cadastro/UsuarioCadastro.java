@@ -25,8 +25,7 @@ public class UsuarioCadastro {
         setConta(conta);
         setCpf(cpf);
         setDataNascimento(dataNascimento);
-        setTelefone(telefone);
-        setTelefone(telefone);
+        setTelefone(telefone);        
         setImagemPerfil(imagemPerfil);
         setEndereco(endereco);
     }

@@ -246,7 +246,7 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="md-form">  
-                                    <input  type="email" id="conta-usuario-email" class="form-control" required=""
+                                    <input  type="email" id="conta-usuario-email" class="form-control" required ng-model="usuario.conta.email"
                                             maxlength="75">
                                     <label for="conta-usuario-email">Email</label>
                                 </div>
@@ -254,15 +254,15 @@
 
                             <div class="col-md-12">
                                 <div class="md-form">                
-                                    <input type="password" id="conta-usuario-senha" class="form-control" required=""
+                                    <input type="password" id="conta-usuario-senha" class="form-control" required ng-model="usuario.conta.senha"
                                            maxlength="20">
                                     <label for="conta-usuario-senha">Senha</label>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="md-form">  
-                                    <input  type="password" id="conta-usuario-confirma-senha" class="form-control"
-                                            required="" maxlength="20"> 
+                                    <input  type="password" id="conta-usuario-confirma-senha" class="form-control" ng-model="usuario.conta.confirmaSenha"
+                                            required maxlength="20"> 
                                     <label for="conta-usuario-confirma-senha">Confirmar a Senha</label>
                                 </div>
                             </div>                      
@@ -280,14 +280,14 @@
                             <h4 class="card-title"><i class="fa fa-user animated rotateIn"></i><strong>Informações Pessoais</strong></h4>
                             <div class="col-md-12">
                                 <div class="md-form">                
-                                    <input type="text" id="conta-usuario-nome" class="form-control" required=""
+                                    <input type="text" id="conta-usuario-nome" class="form-control" required ng-model="usuario.nome"
                                            maxlength="35">
                                     <label for="conta-usuario-nome">Nome</label>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="md-form">  
-                                    <input  type="text" id="conta-usuario-cpf" class="form-control" required=""
+                                    <input  type="text" id="conta-usuario-cpf" class="form-control" required ng-model="usuario.cpf"
                                             maxlength="30">
                                     <label for="conta-usuario-cpf">CPF</label>
                                 </div>
@@ -295,27 +295,18 @@
 
                             <div class="col-md-12">
                                 <div class="md-form">                
-                                    <input type="text" id="conta-usuario-dataNacimento" class="form-control" required=""
+                                    <input type="text" id="conta-usuario-dataNacimento" class="form-control" required ng-model="usuario.dataNascimento"
                                            maxlength="18">
                                     <label for="conta-usuario-dataNacimento">Data de Nascimento</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="md-form">  
-                                    <input  type="text" id="conta-usuario-telefone" class="form-control" required=""
+                                    <input  type="text" id="conta-usuario-telefone" class="form-control" required ng-model="usuario.telefone"
                                             maxlength="12">
-                                    <label for="conta-usuario-telefone">Telefone </label>
+                                    <label for="conta-usuario-telefone">Celular</label>
                                 </div>
                             </div>
-
-                            <div class="col-md-6">
-                                <div class="md-form">                
-                                    <input type="text" id="conta-usuario-celular" class="form-control" required=""
-                                           maxlength="12">
-                                    <label for="conta-usuario-celular">Celular</label>
-                                </div>
-                            </div>
-
 
                         </div>
                         <!--/.Card content-->
@@ -330,39 +321,39 @@
                             <h4 class="card-title"><i class="fa fa-map-marker animated rotateIn"></i><strong>Endereço</strong></h4>
                             <div class="col-md-6">
                                 <div class="md-form">                
-                                    <input type="text" id="evento-cep" class="form-control">
+                                    <input type="text" id="evento-cep" class="form-control" ng-model="usuario.endereco.cep">
                                     <label for="conta-usuario-cep">CEP</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="md-form">  
-                                    <input  type="text" id="evento-numero" class="form-control">
+                                    <input  type="text" id="evento-numero" class="form-control" ng-model="usuario.endereco.numero">
                                     <label for="conta-usuario-numero">Número</label>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="md-form">                
-                                    <input type="text" id="evento-rua" class="form-control">
+                                    <input type="text" id="evento-rua" class="form-control" ng-model="usuario.endereco.rua">
                                     <label for="conta-usuario-rua">Rua</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="md-form">  
-                                    <input  type="text" id="evento-bairro" class="form-control">
+                                    <input  type="text" id="evento-bairro" class="form-control" ng-model="usuario.endereco.bairro">
                                     <label for="conta-usuario-bairro">Bairro</label>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="md-form">                
-                                    <input type="text" id="evento-complemento" class="form-control">
+                                    <input type="text" id="evento-complemento" class="form-control" ng-model="usuario.endereco.complemento">
                                     <label for="conta-usuario-complemento">Complemento</label>
                                 </div>
                             </div>
                             <div class="col-md-6 ">
                                 <div class="md-form">  
-                                    <input  type="text" id="evento-cidade" class="form-control">
+                                    <input  type="text" id="evento-cidade" class="form-control" ng-model="usuario.endereco.cidade">
                                     <label for="conta-usuario-cidade">Cidade</label>
                                 </div>
                             </div>
@@ -370,7 +361,7 @@
                         </div>
                         <!--/.Card content-->
                         <div >
-                            <button class="btn btn-lg btn-warning"><i class="fa fa-check"></i> Cadastrar</button>
+                            <button class="btn btn-lg btn-warning" ng-click="cadastrarUsuario()"><i class="fa fa-check"></i> Cadastrar </button>
                         </div>
                     </div>
 
