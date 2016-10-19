@@ -72,9 +72,10 @@
                         <i class="fa fa-user animated fadeInLeftBig"></i> USUARIO</button>
                 </div>
             </div>
+
+
             <div class="tgl formCadastro" id="cadastroEmpresa">
                 <form>
-
                     <div class="col-md-8 corpo-form-cadastro">
 
                         <div class="col-md-12">
@@ -221,12 +222,11 @@
                                 <button class="btn btn-lg btn-warning" data-toggle="modal" data-target="#modalLogar"  ng-click="cadastrarEmpresa()"><i class="fa fa-check"></i> Cadastrar</button>                                
                             </div>
                         </div>
-
-
-
                     </div>
                 </form>
             </div>
+
+
 
             <div class="tgl formCadastro" id="cadastroUsuario">
                 <form>
@@ -404,8 +404,6 @@
         <!-- fim da modal -->
 
         <ng-include src="'View/footer.html'"></ng-include>
-
-
         <!-- /. fim do html -->
 
 

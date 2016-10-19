@@ -111,7 +111,7 @@ Ira aparecer todos os eventos que o usuario curtiu
     </div><!--/.Carousel Wrapper-->
 
     <div class="espaco"></div>
-
+<ng-include src="'../View/footer.html'"></ng-include>
     <!-- /.fim do projeto-->
 
 

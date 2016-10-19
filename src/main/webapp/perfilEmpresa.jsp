@@ -180,6 +180,7 @@
         <!--/Post data-->
     </section>
 
+     <ng-include src="'View/footer.html'"></ng-include>
     <!-- /Start your project here-->
 
     <!-- SCRIPTS -->

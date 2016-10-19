@@ -210,6 +210,8 @@ and open the template in the editor.
             </div> <!-- /.jumbtron caixa-informacao-especifico -->
         </div> <!-- /.col-md-10 -->    
     </section> <!-- /.section -->
+    
+     <ng-include src="'../View/footer.html'"></ng-include>
     <!-- /.fim do projeto-->
 
 

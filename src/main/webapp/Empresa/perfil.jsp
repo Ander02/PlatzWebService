@@ -111,6 +111,8 @@
             </div><!-- jumbtron -->
         </div><!--/First row-->
 </section>
+    
+<ng-include src="'../View/footer.html'"></ng-include>
 <!-- /. fim do projeto -->
 
 <!-- SCRIPTS -->

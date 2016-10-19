@@ -464,7 +464,7 @@ Pagina de evento especifico
     </div>
     <!-- /.Galeria-->
 
-
+ <ng-include src="'View/footer.html'"></ng-include>
 
     <!-- /. fim do html-->
 
