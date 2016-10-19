@@ -208,7 +208,7 @@
     </div>
     <!-- /. mapa -->
 
-
+     <ng-include src="'View/footer.html'"></ng-include>
     <ng-include src="'View/footer-index.html'"></ng-include>
 
 

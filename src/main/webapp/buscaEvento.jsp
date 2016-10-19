@@ -94,6 +94,7 @@ pagina onde é retornada a busca de um evento.
     </div> <!--/First row-->
 </section><!--/Section: Products v.1-->
 
+ <ng-include src="'View/footer.html'"></ng-include>
 
     <!-- /Fim do projeto -->
 

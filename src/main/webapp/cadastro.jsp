@@ -24,9 +24,9 @@
 
         <!-- link Angular --> 
         <script type="text/javascript" src="lib/angular/angular.js"></script>
-        
+
         <script src="js/app.js" type="text/javascript"></script>
-        
+
         <script src="js/util.js" type="text/javascript"></script>
 
         <script src="js/controller/cadastroController.js" type="text/javascript"></script>
@@ -173,11 +173,12 @@
                         <div class="card-block text-xs-center">
                             <!--Title-->
                             <h4 class="card-title"><i class="fa fa-map-marker animated rotateIn"></i><strong> Endereço</strong></h4>
-                            <div class="col-md-6">
-                                <div class="md-form">                
+                            <div class="col-md-6">                                
+                                <div class="md-form col-md-8">                
                                     <input type="text" id="evento-cep" class="form-control" ng-model="empresa.endereco.cep">
                                     <label for="conta-empresa-cep" >CEP</label>
                                 </div>
+                                <div class="col-md-4 link-cep"><a title="clique aqui e saiba seu cep" class="text-info">Não Sei meu cep</a></div>
                             </div>
                             <div class="col-md-6">
                                 <div class="md-form">  
@@ -320,10 +321,11 @@
                             <!--Title-->
                             <h4 class="card-title"><i class="fa fa-map-marker animated rotateIn"></i><strong>Endereço</strong></h4>
                             <div class="col-md-6">
-                                <div class="md-form">                
+                                <div class="md-form col-md-8">                
                                     <input type="text" id="evento-cep" class="form-control" ng-model="usuario.endereco.cep">
                                     <label for="conta-usuario-cep">CEP</label>
                                 </div>
+                                <div class="col-md-4 link-cep"><a title="clique aqui e saiba seu cep" class="text-info">Não Sei meu cep</a></div>
                             </div>
                             <div class="col-md-6">
                                 <div class="md-form">  
@@ -369,7 +371,7 @@
             </form>            
         </div>
     </div>
-   
+
     <!-- modal de login após o cadastro -->
     <div class="modal fade" id="modalLogar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -397,11 +399,11 @@
             </div><!--/.Content-->            
         </div><!-- modal-dialog -->
     </div> <!--/.modal-->
-   
-    
+
+
     <!-- fim da modal -->
-    
-        <ng-include src="'View/footer.html'"></ng-include>
+
+    <ng-include src="'View/footer.html'"></ng-include>
 
 
     <!-- /. fim do html -->

@@ -228,7 +228,8 @@ Tela de cadastro de evento
         </form>
     </div>
     <!--/Form fim da div do form-->
-
+    
+<ng-include src="'../View/footer.html'"></ng-include>
     <!-- /.fim do projeto-->
 
 

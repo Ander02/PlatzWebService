@@ -132,7 +132,8 @@ Perfil do usuario, onde ele pode alterar as coisas sobre sua conta
             </div>
         </div>
     </section>
-    <!-- /.fim do projeto-->
+    
+<ng-include src="'../View/footer.html'"></ng-include>    <!-- /.fim do projeto-->
 
     <!-- SCRIPTS -->
 

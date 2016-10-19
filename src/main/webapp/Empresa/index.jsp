@@ -118,6 +118,8 @@ considerada pagina de eventos que a empresa postou
             <li id='page_navigation'></li> 
         </ul>
     </div>
+    
+    <ng-include src="'../View/footer.html'"></ng-include>
     <!-- /.fim do projeto-->
 
 

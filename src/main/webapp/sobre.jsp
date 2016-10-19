@@ -225,19 +225,12 @@
 
             </div>
             <!--/First column-->
-
-
-
         </div>
 
     </section>
     <!--/Section: Contact v.1-->
 
-
-
-
-
-
+ <ng-include src="'View/footer.html'"></ng-include>
     <!-- /Start your project here-->
 
 

@@ -93,7 +93,7 @@ pagina de login, onde o usuario é redirecionado se errar o login pela nav
     </div>
     <!--Naked Form-->
 
-
+ <ng-include src="'View/footer.html'"></ng-include>
     <!-- /Start your project here-->
 
 

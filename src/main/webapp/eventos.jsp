@@ -121,6 +121,7 @@ Pagina onde ira exibir os eventos, onde sera possivel filtrar os eventos
         </ul>
     </div>
 
+    <ng-include src="'View/footer.html'"></ng-include>
     <!-- /fim do projeto-->
 
 
