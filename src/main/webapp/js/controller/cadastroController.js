@@ -27,7 +27,7 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
             $scope.usuario.perfil = 2;
             console.log($scope.usuario);
             $http.post(webService + "/usuario", $scope.usuario).then(function (response) {
-                sucesso(toastr, "Usuario cadastrada com sucesso");
+                sucesso(toastr, "Usuario cadastrado com sucesso");
             }, function (response) {
                 erro(toastr, errorManager(response.config.url, response.status, "Falha ao cadastrar usuario, verifique os campos e tente novamente"));
             });
@@ -38,8 +38,4 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
             $scope.usuario.conta.confirmaSenha = null;
         }
     };
-
-    
-
 });
-

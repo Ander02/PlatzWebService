@@ -3,7 +3,22 @@ angular.module("platz").controller("loginController", function ($scope, $http, t
         login = {
             email: document.getElementById("email").value,
             senha: document.getElementById("senha").value
-        }
+        };
+                
+        $http.post(webService + "/login", login).then(function (response) {
+            $scope.contaLogin = response.data;
+            location.href = "sessao.jsp?token=" + $scope.contaLogin.token + "&perfil=" + $scope.contaLogin.perfil;
+        }, function (response) {
+            erro(toastr, errorManager(response.config.url, response.status, "Erro ao logar, usuario ou senha incorreto"));
+        });
+    };
+    
+    $scope.logarPageLogin = function (){        
+        login = {
+            email: document.getElementById("emailLogin").value,
+            senha: document.getElementById("senhaLogin").value
+        };
+        
         $http.post(webService + "/login", login).then(function (response) {
             $scope.contaLogin = response.data;
             location.href = "sessao.jsp?token=" + $scope.contaLogin.token + "&perfil=" + $scope.contaLogin.perfil;
