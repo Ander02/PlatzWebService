@@ -25,14 +25,25 @@
         <!-- link Angular --> 
         <script type="text/javascript" src="lib/angular/angular.js"></script>
 
+        <!-- link app -->
         <script src="js/app.js" type="text/javascript"></script>
 
+        <!-- link util -->
         <script src="js/util.js" type="text/javascript"></script>
 
+        <!-- link controller -->
         <script src="js/controller/cadastroController.js" type="text/javascript"></script>
+
+        <!-- link controller -->
         <script src="js/controller/loginController.js" type="text/javascript"></script>
+
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="img/logo.png">
+
+        <!--links para o funcionamento do datetimepicker-->
+        <link href="css/bootstrap/bootstrap-material-datetimepicker.css" rel="stylesheet" type="text/css"/>
+        <script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
     </head>
 
     <body >
@@ -197,20 +208,20 @@
 
                                 <div class="col-md-6">
                                     <div class="md-form">                
-                                        <p class="form-control">{{usuario.endereco.rua}}</p>                                       
+                                        <p>{{empresa.endereco.rua}}</p>                                       
                                         <label for="conta-empresa-rua">Rua</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="md-form">  
-                                        <p class="form-control">{{usuario.endereco.bairro}}</p>   
+                                        <p>{{empresa.endereco.bairro}}</p>   
                                         <label for="conta-empresa-bairro">Bairro</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6 ">
                                     <div class="md-form">  
-                                        <p class="form-control">{{usuario.endereco.cidade}}</p>   
+                                        <p>{{empresa.endereco.cidade}}</p>   
                                         <label for="conta-empresa-cidade">Cidade</label>
                                     </div>
                                 </div>                               
@@ -295,12 +306,11 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-12">
-                                    <div class="md-form">                
-                                        <input type="text" id="conta-usuario-dataNacimento" class="form-control" required ng-model="usuario.dataNascimento"
-                                               maxlength="18">
-                                        <label for="conta-usuario-dataNacimento">Data de Nascimento</label>
+                                <div class="col-md-6">
+                                    <div class="form-control-wrapper">
+                                        <input type="text" id="date" class="form-control floating-label" placeholder="Data de nascimento">
                                     </div>
+
                                 </div>
                                 <div class="col-md-6">
                                     <div class="md-form">  
@@ -333,32 +343,27 @@
                                         <label for="conta-usuario-numero">Número</label>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="md-form">                
                                         <input type="text" id="usuario-complemento" class="form-control" ng-model="usuario.endereco.complemento">
                                         <label for="conta-usuario-complemento">Complemento</label>
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
-                                    <div class="md-form">                
-                                        <p class="form-control">{{usuario.endereco.rua}}</p>                                       
-                                        <label for="conta-usuario-rua">Rua</label>
-                                    </div>
+                                <div class="col-md-12">
+                                    <label for="conta-usuario-rua" class="text-accent-3">Rua</label>
+                                    <p>{{usuario.endereco.rua}}</p>                                  
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="md-form">  
-                                        <p class="form-control">{{usuario.endereco.bairro}}</p>   
-                                        <label for="conta-usuario-bairro">Bairro</label>
-                                    </div>
+                                <div class="col-md-12"> 
+                                    <label for="conta-usuario-bairro">Bairro</label>                                    
+                                    <p>{{usuario.endereco.bairro}}</p>                                         
                                 </div>
 
-                                <div class="col-md-6 ">
-                                    <div class="md-form">  
-                                        <p class="form-control">{{usuario.endereco.cidade}}</p>   
-                                        <label for="conta-usuario-cidade">Cidade</label>
-                                    </div>
-                                </div>                               
+                                <div class="col-md-12 ">
+                                    <label for="conta-usuario-cidade">Cidade</label>
+                                    <p>{{usuario.endereco.cidade}}</p>
+                                    <hr>
+                                </div>                              
 
                             </div>
                             <!--/.Card content-->
@@ -421,14 +426,23 @@
         <!-- MDB core JavaScript -->
         <script type="text/javascript" src="lib/bootstrap/mdb.min.js"></script>
 
+        <!--data e horario (iniciando) -->
+        <script src="lib/bootstrap/dataehorario.js" type="text/javascript"></script>
+
+        <script src="lib/bootstrap/bootstrap-material-datetimepicker.js" type="text/javascript"></script>
+
         <!-- esconder formularios -->
         <script type="text/javascript" src="js/outros/esconder-form-cad.js"></script>
+
         <!-- link Angular -->
         <script src="lib/angular/angular-animate.js" type="text/javascript"></script>
-        <!-- link Angular -->
+
+        <!-- link TOASTER CSS -->
         <link href="css/angular-toastr.css" rel="stylesheet" type="text/css"/>
+
+        <!-- link TOASTR JS -->
         <script type="text/javascript" src="lib/angular/angular-toastr.tpls.js"></script>
-        <script src="js/outros/aside.js" type="text/javascript"></script>
+
     </div>
 
 </body>

@@ -644,6 +644,7 @@ label.star:before {
 #cadastroEmpresa , #cadastroUsuario
 {
     display: none;
+    text-align: center;
 }
 .corpo-form-cadastro
 {
@@ -656,6 +657,7 @@ label.star:before {
 {
     margin-right: 20px;
 }
+
 .botaoAtivo:focus, .botaoAtivo:hover {
     background-color: rgba(149, 165, 166,0.6);
     color: #fff;
