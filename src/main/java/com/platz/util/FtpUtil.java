@@ -24,11 +24,11 @@ public class FtpUtil {
     public FtpUtil(String host, int port, String usuario, String senha) throws Exception {
 
         ftp = new FTPClient();
-        ftp.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(System.out)));
+        //ftp.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(System.out)));
         int reply;
         ftp.connect(host, port);
 
-        System.out.println("FTP URL:" + ftp.getDefaultPort());
+        //System.out.println("FTP URL:" + ftp.getDefaultPort());
 
         reply = ftp.getReplyCode();
 
@@ -44,11 +44,11 @@ public class FtpUtil {
 
     public FtpUtil() throws Exception {
         ftp = new FTPClient();
-        ftp.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(System.out)));
+        //ftp.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(System.out)));
         int reply;
         ftp.connect("localhost", 21);
 
-        System.out.println("FTP URL:" + ftp.getDefaultPort());
+        //System.out.println("FTP URL:" + ftp.getDefaultPort());
 
         reply = ftp.getReplyCode();
 
