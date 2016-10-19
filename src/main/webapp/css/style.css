@@ -310,12 +310,13 @@ footer .fa
         list-style: none outside none;
         display: block;
         background: #222;
-        padding: 0;
+        padding: 3px;
         margin: 0;
     }
     .social ul li a
     {
-        padding: 2px;
+        padding: 5px;
+ 
     }
     .social i {
         width: 40px;
@@ -339,35 +340,11 @@ footer .fa
         background: #00ABE3;
         border: 1px solid #00ABE3;
     }
-    .social .fa-google-plus:hover {
-        background: #e64522;
-        border: 1px solid #e64522;
+    .social .fa-instagram:hover {
+        background: linear-gradient(45deg, yellow,#FF6347, purple 70%);
+        border: 1px solid #fff;
+        
     }
-    .social .fa-github:hover {
-        background: #343434;
-        border: 1px solid #343434;
-    }
-    .social .fa-linkedin:hover {
-        background: #0094BC;
-        border: 1px solid #0094BC;
-    }
-    .social .fa-stack-overflow:hover {
-        background: #FEA501;
-        border: 1px solid #FEA501;
-    }
-    .social .fa-skype:hover {
-        background: #00C6FF;
-        border: 1px solid #00C6FF;
-    }
-    .social .fa-stack-exchange:hover {
-        background: #4D86C9;
-        border: 1px solid #4D86C9;
-    }
-    .social .fa-rss:hover {
-        background: #e88845;
-        border: 1px solid #e88845;
-    }
-    
     #social-collapse:after {
         font-family: 'FontAwesome';
         content: "\f068";
