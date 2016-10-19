@@ -36,6 +36,7 @@ pagina de login, onde o usuario é redirecionado se errar o login pela nav
         <script src="js/util.js" type="text/javascript"></script>
 
         <!-- Controller -->
+        <script src="js/controller/loginController.js" type="text/javascript"></script>
 
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="img/logo.png">
@@ -45,12 +46,12 @@ pagina de login, onde o usuario é redirecionado se errar o login pela nav
 
     <body>
         <!-- inicio do projeto aqui-->
-    <ng-include src="'View/nav.html'"></ng-include>
+    <ng-include src="'View/nav.html'"  ng-controller="loginController"></ng-include>
     <div class="espaco"></div>
 
 
     <!--Naked Form-->
-    <div class="col-md-6 form-login">
+    <div class="col-md-6 form-login" ng-controller="loginController">
         <div class="card-block ">
 
             <!--Header-->
@@ -60,21 +61,21 @@ pagina de login, onde o usuario é redirecionado se errar o login pela nav
             </div>
 
             <!--Body-->
-            <form>
+            <form method="post" accept-charset="UTF-8">
                 <div class="md-form">
                     <i class="fa fa-envelope prefix"></i>
-                    <input type="text" id="email" class="form-control">
+                    <input type="text" id="emailLogin" class="form-control">
                     <label for="email">Email</label>
                 </div>
 
                 <div class="md-form">
                     <i class="fa fa-lock prefix"></i>
-                    <input type="password" id="senha" class="form-control">
+                    <input type="password" id="senhaLogin" class="form-control">
                     <label for="senha">Senha</label>
                 </div>
 
                 <div class="text-xs-center">
-                    <input type="submit" class="btn btn-warning btn-sm" value="Login">                    
+                    <input type="submit" class="btn btn-warning btn-sm" value="Login" ng-click="logarPageLogin()">  
                 </div>
 
             </form>

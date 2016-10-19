@@ -11,6 +11,20 @@ import javax.persistence.EntityManager;
  */
 public class UsuarioDao extends GenericDao<UsuarioModel> {
 
+    
+    
+    @Override
+    public void cadastrar(UsuarioModel model) {
+
+        ContaModel conta = new ContaDao().buscarPeloEmail(model.getConta().getEmail());
+
+        if (conta == null) {
+            super.cadastrar(model);
+        } else {
+            System.out.println("Erro ao cadastrar, email já existe");
+        }
+    }
+
     public List<UsuarioModel> bucarPeloNome(String nome) {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
         List<UsuarioModel> lista = entityManager.createQuery("from UsuarioModel where nome like :nome").setParameter("nome", nome + "%").getResultList();
