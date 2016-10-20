@@ -25,7 +25,7 @@ Pagina onde ira exibir os eventos, onde sera possivel filtrar os eventos
         <link href="css/style.css" rel="stylesheet">
 
         <!-- Your custom styles (efeito) -->
-        <link href="css/efeitos/indexEmpresa.css" rel="stylesheet">
+        <link href="css/efeitos/eventos.css" rel="stylesheet">
 
         <!-- link Angular -->
         <script type="text/javascript" src="lib/angular/angular.js"></script>
@@ -42,10 +42,10 @@ Pagina onde ira exibir os eventos, onde sera possivel filtrar os eventos
     <div class="espaco"></div>
 
     <div class="head-pagina">
-        <h1 class="titulo-meusEventos">Eventos</h1>
+        <h1 class="titulo-meusEventos">Categorias</h1>
         <form class="form-inline form-pesquisa">
             <div class="form-group">                
-                <select class="form-control btn btn-lg btn-warning-outline hovereffect" id="selecione1">
+                <select class="form-control btn btn-lg btn-warning-outline " id="selecione1">
                     <option>Selecione </option>
                     <option>2</option>
                     <option>3</option>
@@ -59,66 +59,83 @@ Pagina onde ira exibir os eventos, onde sera possivel filtrar os eventos
         </form><!-- /. form-inline form-pesquisa -->
     </div><!-- fim da div head-pagina -->
 
-    <input type='hidden' id='current_page' />  
-    <input type='hidden' id='show_per_page' />  
 
-    <div class="head-pagina">
-        <h1>Nome da Categoria</h1>
-    </div>
-    <!--div content. Os elementos filho serão utilizados para paginar (eles não têm de ser todos iguais, 
-    você pode usar divs, parágrafos, vãos, ou o que quiser misturados). '-->  
-    <div id='content'> 
-        <div class="col-md-3 eventos-categoria">
-            <div class="card">
-                <div class="hovereffect">
-                    <img class=" img-responsive img-evento-efeito" src="img/outras/plano-fundo.jpg" alt="Imagem do Evento" >
-                    <div class="overlay">
-                        <h2>Nome do Evento</h2>
-                        <hr/>
+    <div>
+        <div class="container">
+            <div class="main">
+                <div class="box">
+                    <div class="hovereffect">
+                        <img class="img-responsive" src="img/outras/icone.png" alt="">
+                        <div class="overlay">
+                            <h2>Nome Da Categoria</h2>
+                            <a class="info" href="#">Clique e veja mais</a>
+                        </div>
+                    </div>
 
-                        <p> 
-                            <a class="btn btn-warning-outline">
-                                <i class="fa fa-check left animated bounceInUp "></i>
-                                <span class="hidden-md-down ">Vou</span>
-                            </a>         
+                </div>
+                
+                <div class="box">
+                    <div class="hovereffect">
+                        <img class="img-responsive" src="img/outras/icone2.png" alt="">
+                        <div class="overlay">
+                            <h2>Nome Da Categoria</h2>
+                            <a class="info" href="#">Clique e veja mais</a>
+                        </div>
+                    </div>
 
-                            <!--Comentarios-->
+                </div>
+                
+                <div class="box">
+                    <div class="hovereffect">
+                        <img class="img-responsive" src="img/outras/icone3.png" alt="">
+                        <div class="overlay">
+                            <h2>Nome Da Categoria</h2>
+                            <a class="info" href="#">Clique e veja mais</a>
+                        </div>
+                    </div>
 
-                            <a class="btn btn-default-outline ">
-                                <i class="fa fa-minus left animated bounceInUp "></i>
-                                <span class="hidden-md-down ">Talvez</span>
-                            </a>
+                </div>
+                
+                <div class="box">
+                    <div class="hovereffect">
+                        <img class="img-responsive" src="img/outras/icone4.png" alt="">
+                        <div class="overlay">
+                            <h2>Nome Da Categoria</h2>
+                            <a class="info" href="#">Clique e veja mais</a>
+                        </div>
+                    </div>
 
-                            <!-- galeria de imagens -->
+                </div>
+                
+                <div class="box">
+                    <div class="hovereffect">
+                        <img class="img-responsive" src="img/outras/icone5.png" alt="">
+                        <div class="overlay">
+                            <h2>Nome Da Categoria</h2>
+                            <a class="info" href="#">Clique e veja mais</a>
+                        </div>
+                    </div>
 
-                            <a class="btn btn-warning-outline">
-                                <i class="fa fa-remove left animated bounceInUp "></i>
-                                <span class="hidden-md-down ">Não vou</span>
-                            </a>
+                </div>
+                
+                <div class="box">
+                    <div class="hovereffect">
+                        <img class="img-responsive" src="img/outras/icone6.png" alt="">
+                        <div class="overlay">
+                            <h2>Nome Da Categoria</h2>
+                            <a class="info" href="#">Clique e veja mais</a>
+                        </div>
+                    </div>
 
-                        </p> 
-                        <a class="info" href="#">Ver Mais</a>
-                    </div><!--  /. div overlay -->
-
-                </div><!-- /. div hovereffect  -->
-
-                <h4 class="card-title">Nome do evento</h4>
-                <h5><i class="fa fa-building-o animated bounceInDown"></i> Empresa</h5>
-                <p><i class="fa fa-calendar animated bounceInDown"></i> Data: </p>
-                <p><i class="fa fa-map-marker animated bounceInDown"></i> Local: </p>
-                <p><a class="btn btn-warning " href="evento-especifico.html" role="button">Ver Mais Detalhes &raquo;</a></p>
+                </div>
+                
+                
+                
+                
+              
             </div>
-        </div> <!-- /. div col-md-3 evento -->
+        </div>
 
- 
-
-    </div>  <!-- /. div content -->
-
-    <!-- uma div vazia que sera preenchida usando jquery --> 
-    <div class="col-md-12 paginator-itens">
-        <ul class="pagination">
-            <li id='page_navigation'></li> 
-        </ul>
     </div>
 
     <ng-include src="'View/footer.html'"></ng-include>
@@ -142,12 +159,13 @@ Pagina onde ira exibir os eventos, onde sera possivel filtrar os eventos
     <!-- angular app script -->
     <script type="text/javascript" src="js/app.js"></script>
 
-    <!-- Paginação da tabela -->
-    <script type="text/javascript" src="js/outros/paginacao-eventos-categoria.js"></script>
     <!-- link Angular -->
     <script src="lib/angular/angular-animate.js" type="text/javascript"></script>
-    <!-- link Angular -->
+
+    <!-- link Angular TOASTR CSS -->
     <link href="css/angular-toastr.css" rel="stylesheet" type="text/css"/>
+
+    <!-- link Angular TOASTR CSS -->
     <script type="text/javascript" src="lib/angular/angular-toastr.tpls.js"></script>
 
 

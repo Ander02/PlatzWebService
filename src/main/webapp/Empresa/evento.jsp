@@ -176,10 +176,11 @@ Tela de cadastro de evento
                         <!--Title-->
                         <h4 class="card-title"><i class="fa fa-map-marker animated rotateIn"></i><strong> Endereço</strong></h4>
                         <div class="col-md-6">
-                            <div class="md-form">                
+                            <div class="md-form col-md-8">                
                                 <input type="text" id="evento-cep" class="form-control">
                                 <label for="conta-empresa-cep">CEP</label>
                             </div>
+                            <div class="col-md-4 link-cep"><a title="clique aqui e saiba seu cep" class="text-info">Não Sei meu cep</a></div>
                         </div>
                         <div class="col-md-6">
                             <div class="md-form">  
