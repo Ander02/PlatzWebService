@@ -32,6 +32,13 @@ Pagina de evento especifico
         <!-- link Angular -->
         <script type="text/javascript" src="lib/angular/angular.js"></script>
 
+        <!-- angular app script -->
+        <script type="text/javascript" src="js/app.js"></script>
+
+        <script src="js/util.js" type="text/javascript"></script>
+
+        <script src="js/controller/loginController.js" type="text/javascript"></script>
+        <script src="js/controller/eventoController.js" type="text/javascript"></script>
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="img/logo.png">
 
@@ -43,454 +50,452 @@ Pagina de evento especifico
     </head>
 
     <body onload="initialize()" id="corpo-evento-epecifico">
+        <%
+            //String idEvento = request.getParameter("idEvento");
+            String idEvento = "5806680892b4871778ae3890";
 
+            out.print("<input type='hidden' id='idEvento' name='idEvento' value ='" + idEvento + "' >");
+        %>
 
         <!-- inicio do projeto aqui-->
 
-    <ng-include src="'View/nav.html'"></ng-include>
+    <ng-include src="'View/nav.html'" ng-controller="loginController"></ng-include>
 
 
     <div class="espaco"></div>
+    <div ng-controller="eventoController">
+        <section class="section section-blog-fw">
 
-    <section class="section section-blog-fw">
+            <!--First row-->
+            <div class="row">    
+                <!--Post data-->
+                <div class="jumbotron caixa-informacao-especifico">
 
-        <!--First row-->
-        <div class="row">     
+                    <!-- Imagem do evento -->
+
+                    <div class="col-lg-12 col-md-4 col-sm-6 col-xs-12 imagem-evento-especifico">
+                        <div class="hovereffect">
+                            <img class="img-responsive" src="img/outras/plano-fundo.jpg" alt="">
+                            <div class="overlay">
+                                <h2>Curta Nossos Eventos</h2>
+                                <p> 
+                                    <a class="btn btn-warning-outline">
+                                        <i class="fa fa-check left animated bounceInUp "></i>
+                                        <span class="hidden-md-down ">Vou</span>
+                                    </a>         
+
+                                    <!--Comentarios-->
+
+                                    <a class="btn btn-default-outline ">
+                                        <i class="fa fa-minus left animated bounceInUp "></i>
+                                        <span class="hidden-md-down ">Talvez</span>
+                                    </a>
+
+                                    <!-- galeria de imagens -->
+
+                                    <a class="btn btn-warning-outline">
+                                        <i class="fa fa-remove left animated bounceInUp "></i>
+                                        <span class="hidden-md-down ">Não vou</span>
+                                    </a>
+
+                                </p> 
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 informacao-evento-especifico">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-3">  <h1>{{evento.nome}}</h1> </div>
+                        <div class="col-md-3 estrelas">
+                            <div class="stars">
+                                <form action="">
+                                    <input class="star star-5" id="star-5-2" type="radio" name="star" ng-click="avaliar(5)" ng-checked=" mediaArredondada == 5"/>
+                                    <label class="star star-5" for="star-5-2"></label>
+                                    <input class="star star-4" id="star-4-2" type="radio" name="star" ng-click="avaliar(4)" ng-checked=" mediaArredondada == 4"/>
+                                    <label class="star star-4" for="star-4-2"></label>
+                                    <input class="star star-3" id="star-3-2" type="radio" name="star" ng-click="avaliar(3)" ng-checked=" mediaArredondada == 3"/>
+                                    <label class="star star-3" for="star-3-2"></label>
+                                    <input class="star star-2" id="star-2-2" type="radio" name="star" ng-click="avaliar(2)" ng-checked=" mediaArredondada == 2"/>
+                                    <label class="star star-2" for="star-2-2"></label>
+                                    <input class="star star-1" id="star-1-2" type="radio" name="star" ng-click="avaliar(1)" ng-checked=" mediaArredondada == 1"/>
+                                    <label class="star star-1" for="star-1-2"></label>
+                                </form>
+
+                            </div> 
+                            <div><p>{{media}}</p></div>
+                        </div>
 
 
+                        <div class="col-md-12">    
 
-            <!--Post data-->
-            <div class="jumbotron caixa-informacao-especifico">
+                            <h3><a href="perfilEmpresa.html">{{evento.empresa.nomeFantasia}}</a></h3>
 
-                <!-- Imagem do evento -->
+                            <!--botoes para rota , galeria e comentarios-->
+                            <div class="social-counters ">
 
-                <div class="col-lg-12 col-md-4 col-sm-6 col-xs-12 imagem-evento-especifico">
-                    <div class="hovereffect">
-                        <img class="img-responsive" src="img/outras/plano-fundo.jpg" alt="">
-                        <div class="overlay">
-                            <h2>Curta Nossos Eventos</h2>
-                            <p> 
-                                <a class="btn btn-warning-outline">
-                                    <i class="fa fa-check left animated bounceInUp "></i>
-                                    <span class="hidden-md-down ">Vou</span>
-                                </a>         
+
+                                <!--calculo de rotas-->
+                                <button type="button"  data-toggle="modal" data-target="#myModal">
+                                    <a class="btn btn-warning btn-rota ">
+                                        <i class="fa fa-map-marker left animated bounceInDown "></i>
+                                        <span class="hidden-md-down  ">Calcular Rota</span>
+                                    </a></button>              
 
                                 <!--Comentarios-->
-
-                                <a class="btn btn-default-outline ">
-                                    <i class="fa fa-minus left animated bounceInUp "></i>
-                                    <span class="hidden-md-down ">Talvez</span>
-                                </a>
+                                <button type="button"  data-toggle="modal" data-target="#myModal2">
+                                    <a class="btn btn-default ">
+                                        <i class="fa fa-comments-o left animated bounceInDown"></i>
+                                        <span class="hidden-md-down ">Comentarios</span>
+                                    </a></button>
 
                                 <!-- galeria de imagens -->
+                                <button type="button"  data-toggle="modal" data-target="#myModal3">
+                                    <a class="btn btn-warning btn-rota ">
+                                        <i class="fa fa-photo left animated bounceInDown "></i>
+                                        <span class="hidden-md-down ">fotos</span>
+                                    </a></button>
 
-                                <a class="btn btn-warning-outline">
-                                    <i class="fa fa-remove left animated bounceInUp "></i>
-                                    <span class="hidden-md-down ">Não vou</span>
-                                </a>
+                            </div>
 
-                            </p> 
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-12 informacao-evento-especifico">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-3">  <h1>Nome do Evento</h1> </div>
-                    <div class="col-md-3 estrelas">
-                        <div class="stars">
-                            <form action="">
-                                <input class="star star-5" id="star-5-2" type="radio" name="star"/>
-                                <label class="star star-5" for="star-5-2"></label>
-                                <input class="star star-4" id="star-4-2" type="radio" name="star"/>
-                                <label class="star star-4" for="star-4-2"></label>
-                                <input class="star star-3" id="star-3-2" type="radio" name="star"/>
-                                <label class="star star-3" for="star-3-2"></label>
-                                <input class="star star-2" id="star-2-2" type="radio" name="star"/>
-                                <label class="star star-2" for="star-2-2"></label>
-                                <input class="star star-1" id="star-1-2" type="radio" name="star"/>
-                                <label class="star star-1" for="star-1-2"></label>
-                            </form>
-
-                        </div> 
-                    </div>
-
-
-                    <div class="col-md-12">    
-
-                        <h3><a href="perfilEmpresa.html">Nome da Empresa</a></h3>
-
-                        <!--botoes para rota , galeria e comentarios-->
-                        <div class="social-counters ">
-
-
-                            <!--calculo de rotas-->
-                            <button type="button"  data-toggle="modal" data-target="#myModal">
-                                <a class="btn btn-warning btn-rota ">
-                                    <i class="fa fa-map-marker left animated bounceInDown "></i>
-                                    <span class="hidden-md-down  ">Calcular Rota</span>
-                                </a></button>              
-
-                            <!--Comentarios-->
-                            <button type="button"  data-toggle="modal" data-target="#myModal2">
-                                <a class="btn btn-default ">
-                                    <i class="fa fa-comments-o left animated bounceInDown"></i>
-                                    <span class="hidden-md-down ">Comentarios</span>
-                                </a></button>
-
-                            <!-- galeria de imagens -->
-                            <button type="button"  data-toggle="modal" data-target="#myModal3">
-                                <a class="btn btn-warning btn-rota ">
-                                    <i class="fa fa-photo left animated bounceInDown "></i>
-                                    <span class="hidden-md-down ">fotos</span>
-                                </a></button>
 
                         </div>
 
-
                     </div>
 
-                </div>
 
+                    <!--/.botoes -->
 
-                <!--/.botoes -->
+                    <div class="excerpt">
+                        <div class="info-especifico">
+                            <div class="col-md-6">
+                                <h3>Informações</h3>
+                                <p>Data Inicio {{evento.dataInicio}} , Data Termino {{evento.dataFim}}</p>
+                                <hr/> 
+                                <p>Lotação Minima: {{evento.lotacaoMin}} , Lotação Maxima: {{evento.lotacaoMax}}</p>
+                                <hr/>
+                                <p>Preço: {{evento.preco}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h3>Endereço</h3>
+                                <p>Endereço: {{evento.endereco.rua}}, {{evento.endereco.numero}} </p>
+                                <p ng-if="evento.endereco.cidade.nome == null"> Complemento: {{evento.endereco.complemento}} </p>
+                                <hr/>
+                                <p> Bairro: {{evento.endereco.bairro}}, Cidade: {{evento.endereco.cidade.nome}}  - {{evento.endereco.cidade.estado.uf}}  </p>
+                                <hr/>
 
-                <div class="excerpt">
-                    <div class="info-especifico">
-                        <div class="col-md-6">
-                            <h3>Informações</h3>
-                            <p>Data Inicio 02/02/02 as 00:00 , Data Termino 02/02/02 as 00:00</p>
-                            <hr/> 
-                            <p>Lotação Minima: 252 , Lotação Maxima: 1000</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 descricao-especifico">
+                            <h3>Descrição</h3>
                             <hr/>
-                            <p>Preço: R$100,00</p>
-                        </div>
-                        <div class="col-md-6">
-                            <h3>Endereço</h3>
-                            <p>Rua: Soriano de Albuquerque , Numero: 416 , CEP: 05894440</p>
+                            <p>{{evento.detalhes}} </p>
                             <hr/>
-                            <p>Cidade: São Paulo , Bairro: Jardim sete lagos</p>
-                            <hr/>
-                            <p>Complemento: lalaalalal</p>
                         </div>
-                    </div>
 
-                    <div class="col-md-12 descricao-especifico">
-                        <h3>Descrição</h3>
-                        <hr/>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        <hr/>
-                    </div>
+                        <div class="col-md-12">
+                            <!-- mapa com os eventos -->
+                            <div class="mapa-especifico">
+                                <div id="map_canvas" ></div>
+                            </div>
+                            <!-- /. mapa -->
 
-                    <div class="col-md-12">
-                        <!-- mapa com os eventos -->
-                        <div class="mapa-especifico">
-                            <div id="map_canvas" ></div>
                         </div>
-                        <!-- /. mapa -->
+
 
                     </div>
 
 
                 </div>
+                <!--/Post data-->
+
+
 
 
             </div>
-            <!--/Post data-->
+            <!--/First row-->
 
 
+        </section>
+        <!--/Section evento especifico-->
 
-
-        </div>
-        <!--/First row-->
-
-
-    </section>
-    <!--/Section evento especifico-->
-
-    <!-- Modal de calculo de rota-->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <!--Content-->
-            <div class="modal-content">
-                <!--Header-->
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Calculo de rotas</h4>
-                </div>
-                <!--Body-->
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group row">
-                            <label for="inputCheck3" class="col-sm-4 col-form-label">Calcular pela minha localização</label>
-                            <div class="col-sm-4">
-                                <input type="checkbox" class="form-control input-contato" id="inputCheck3" />
+        <!-- Modal de calculo de rota-->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <!--Content-->
+                <div class="modal-content">
+                    <!--Header-->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Calculo de rotas</h4>
+                    </div>
+                    <!--Body-->
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group row">
+                                <label for="inputCheck3" class="col-sm-4 col-form-label">Calcular pela minha localização</label>
+                                <div class="col-sm-4">
+                                    <input type="checkbox" class="form-control input-contato" id="inputCheck3" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputText3" class="col-sm-4 col-form-label">Ponto de Partida</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control input-contato" id="inputText3" placeholder="Rua , Av." required maxlength="50" />
+                            <div class="form-group row">
+                                <label for="inputText3" class="col-sm-4 col-form-label">Ponto de Partida</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control input-contato" id="inputText3" placeholder="Rua , Av." required maxlength="50" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputTransporte3" class="col-sm-4 col-form-label">Selecione Um Tipo de Transporte</label>
-                            <div class="col-sm-8">
-                                <select class="form-control input-contato">
-                                    <option> -- Selecione um Tipo de Transporte --</option>
-                                </select>
+                            <div class="form-group row">
+                                <label for="inputTransporte3" class="col-sm-4 col-form-label">Selecione Um Tipo de Transporte</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control input-contato">
+                                        <option> -- Selecione um Tipo de Transporte --</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
 
 
-                    </form>
+                        </form>
+                    </div>
+                    <!--Footer-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-default">Calcular Rota</button>
+                    </div>
                 </div>
-                <!--Footer-->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-default">Calcular Rota</button>
-                </div>
+                <!--/.Content-->
             </div>
-            <!--/.Content-->
         </div>
-    </div>
-    <!-- /. modal de calculo de rotas-->
+        <!-- /. modal de calculo de rotas-->
 
-    <!-- Modal de cometarios-->
-    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <!--Content-->
-            <div class="modal-content">
-                <!--Header-->
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Comentarios</h4>
-                </div>
-                <!--Body-->
-                <div class="modal-body">
+        <!-- Modal de cometarios-->
+        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <!--Content-->
+                <div class="modal-content">
+                    <!--Header-->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Comentarios</h4>
+                    </div>
+                    <!--Body-->
+                    <div class="modal-body">
 
-                    <!--Section: Team v.3-->
-                    <section class="section team-section section-comentarios">
+                        <!--Section: Team v.3-->
+                        <section class="section team-section section-comentarios">
 
-                        <h1 class="section-heading">Faça seu  comentario</h1>
-                        <!--Section sescription-->
-                        <div class="section-description">
-                            <form>
-                                <div class="md-form">                                 
-                                    <textarea id="form8" class="md-textarea" placeholder="comentario"></textarea>
+                            <h1 class="section-heading">Faça seu  comentario</h1>
+                            <!--Section sescription-->
+                            <div class="section-description">
+                                <form>
+                                    <div class="md-form">                                 
+                                        <textarea id="form8" class="md-textarea" placeholder="comentario"></textarea>
 
-                                    <button type="submit" class="btn btn-warning btn-comentar">Comentar</button>
-                                </div>
-                            </form>
-                        </div> 
-
-
-
-                        <!--First row-->
-                        <div class="row">
-
-                            <!--First column-->
-                            <div class="col-md-12 m-b-r">
-
-                                <div class="col-md-3">
-                                    <img src="http://mdbootstrap.com/images/avatars/img%20(9).jpg" class="img-circle img-responsive">
-                                </div>
-
-                                <div class="col-md-9">
-                                    <h4>John Doe</h4>
-                                    <h5>Web Developer</h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur quae quaerat ad velit ab.</p>                                          
-                                </div>
-
-                            </div>
-                            <!--/First column-->
-
-                            <!--Second column-->
-                            <div class="col-md-12 m-b-r">
-
-                                <div class="col-md-3">
-                                    <img src="http://mdbootstrap.com/images/avatars/img%20(10).jpg" class="img-circle img-responsive">
-                                </div>
-
-                                <div class="col-md-9">
-                                    <h4>Maria Kate</h4>
-                                    <h5>Photographer</h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur quae quaerat ad velit ab.</p>                                                                      </div>
-
-                            </div>
-                            <!--/Second column-->
-
-                        </div>
-                        <!--/First row-->
-
-
-
-                        <!--Second row-->
-                        <div class="row">
-
-                            <!--Third column-->
-                            <div class="col-md-12 m-b-r">
-
-                                <div class="col-md-3">
-                                    <img src="http://mdbootstrap.com/images/avatars/img%20(11).jpg" class="img-circle img-responsive">
-                                </div>
-
-                                <div class="col-md-9">
-                                    <h4>Anna Deynah</h4>
-                                    <h5>Web Designer</h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur quae quaerat ad velit ab.</p>
-
-                                </div>
-
-
-                            </div>
-                            <!--/Third column-->
-
-                            <!--Fourth column-->
-                            <div class="col-md-12 m-b-r">
-
-                                <div class="col-md-3">
-                                    <img src="http://mdbootstrap.com/images/avatars/img%20(1).jpg" class="img-circle img-responsive">
-                                </div>
-
-                                <div class="col-md-9">
-                                    <h4>Sarah Melyah</h4>
-                                    <h5>Front-end Developer</h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur quae quaerat ad velit ab.</p>
-
-                                </div>
-
-                            </div>
-                            <!--/Fourth column-->
-                        </div>
-                        <!--/Second row-->
-
-                    </section>
-                    <!--/Section: Team v.3-->
-                </div>
-                <!--Footer-->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-default">Calcular Rota</button>
-                </div>
-            </div>
-            <!--/.Content-->
-        </div>
-    </div>
-
-    <!-- /. modal de comentarios-->
-
-    <!-- Modal Galeria-->
-    <div class="modal fade modal-galeria" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <!--Content-->
-            <div class="modal-content">
-                <!--Header-->
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Galeria</h4>
-                </div>
-                <!--Body-->
-                <div class="modal-body">
-
-                    <!--Carousel Wrapper-->
-                    <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
-
-                        <!--Controls-->
-                        <div class="controls-top">
-                            <a class="btn-floating btn-small" href="#multi-item-example" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
-                            <a class="btn-floating btn-small" href="#multi-item-example" data-slide="next"><i class="fa fa-chevron-right"></i></a>
-                        </div>
-                        <!--/.Controls-->
-
-
-
-                        <!--Slides-->
-                        <div class="carousel-inner" role="listbox">
-
-                            <!--First slide-->
-                            <div class="carousel-item active">
-
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <img class="img-fluid" src="http://mdbootstrap.com/images/regular/nature/img%20(1).jpg" alt="Card image cap">                                               
+                                        <button type="submit" class="btn btn-warning btn-comentar">Comentar</button>
                                     </div>
-                                </div>
+                                </form>
+                            </div> 
 
-                                <div class="col-md-4 hidden-sm-down">
-                                    <div class="card">
-                                        <img class="img-fluid" src="http://mdbootstrap.com/images/regular/nature/img%20(2).jpg" alt="Card image cap">
+
+
+                            <!--First row-->
+                            <div class="row">
+
+                                <!--First column-->
+                                <div class="col-md-12 m-b-r">
+
+                                    <div class="col-md-3">
+                                        <img src="http://mdbootstrap.com/images/avatars/img%20(9).jpg" class="img-circle img-responsive">
+                                    </div>
+
+                                    <div class="col-md-9">
+                                        <h4>John Doe</h4>
+                                        <h5>Web Developer</h5>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur quae quaerat ad velit ab.</p>                                          
+                                    </div>
+
+                                </div>
+                                <!--/First column-->
+
+                                <!--Second column-->
+                                <div class="col-md-12 m-b-r">
+
+                                    <div class="col-md-3">
+                                        <img src="http://mdbootstrap.com/images/avatars/img%20(10).jpg" class="img-circle img-responsive">
+                                    </div>
+
+                                    <div class="col-md-9">
+                                        <h4>Maria Kate</h4>
+                                        <h5>Photographer</h5>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur quae quaerat ad velit ab.</p>                                                                      </div>
+
+                                </div>
+                                <!--/Second column-->
+
+                            </div>
+                            <!--/First row-->
+
+
+
+                            <!--Second row-->
+                            <div class="row">
+
+                                <!--Third column-->
+                                <div class="col-md-12 m-b-r">
+
+                                    <div class="col-md-3">
+                                        <img src="http://mdbootstrap.com/images/avatars/img%20(11).jpg" class="img-circle img-responsive">
+                                    </div>
+
+                                    <div class="col-md-9">
+                                        <h4>Anna Deynah</h4>
+                                        <h5>Web Designer</h5>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur quae quaerat ad velit ab.</p>
 
                                     </div>
-                                </div>
 
-                                <div class="col-md-4 hidden-sm-down">
-                                    <div class="card">
-                                        <img class="img-fluid" src="http://mdbootstrap.com/images/regular/nature/img%20(3).jpg" alt="Card image cap">
+
+                                </div>
+                                <!--/Third column-->
+
+                                <!--Fourth column-->
+                                <div class="col-md-12 m-b-r">
+
+                                    <div class="col-md-3">
+                                        <img src="http://mdbootstrap.com/images/avatars/img%20(1).jpg" class="img-circle img-responsive">
+                                    </div>
+
+                                    <div class="col-md-9">
+                                        <h4>Sarah Melyah</h4>
+                                        <h5>Front-end Developer</h5>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur quae quaerat ad velit ab.</p>
 
                                     </div>
+
                                 </div>
+                                <!--/Fourth column-->
+                            </div>
+                            <!--/Second row-->
+
+                        </section>
+                        <!--/Section: Team v.3-->
+                    </div>
+                    <!--Footer-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-default">Calcular Rota</button>
+                    </div>
+                </div>
+                <!--/.Content-->
+            </div>
+        </div>
+
+        <!-- /. modal de comentarios-->
+
+        <!-- Modal Galeria-->
+        <div class="modal fade modal-galeria" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <!--Content-->
+                <div class="modal-content">
+                    <!--Header-->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Galeria</h4>
+                    </div>
+                    <!--Body-->
+                    <div class="modal-body">
+
+                        <!--Carousel Wrapper-->
+                        <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+
+                            <!--Controls-->
+                            <div class="controls-top">
+                                <a class="btn-floating btn-small" href="#multi-item-example" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+                                <a class="btn-floating btn-small" href="#multi-item-example" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+                            </div>
+                            <!--/.Controls-->
+
+
+
+                            <!--Slides-->
+                            <div class="carousel-inner" role="listbox">
+
+                                <!--First slide-->
+                                <div class="carousel-item active">
+
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <img class="img-fluid" src="http://mdbootstrap.com/images/regular/nature/img%20(1).jpg" alt="Card image cap">                                               
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 hidden-sm-down">
+                                        <div class="card">
+                                            <img class="img-fluid" src="http://mdbootstrap.com/images/regular/nature/img%20(2).jpg" alt="Card image cap">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 hidden-sm-down">
+                                        <div class="card">
+                                            <img class="img-fluid" src="http://mdbootstrap.com/images/regular/nature/img%20(3).jpg" alt="Card image cap">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!--/.First slide-->
+
+
 
                             </div>
-                            <!--/.First slide-->
-
-
+                            <!--/.Slides-->
 
                         </div>
-                        <!--/.Slides-->
+                        <!--/.Carousel Wrapper-->
 
                     </div>
-                    <!--/.Carousel Wrapper-->
-
+                    <!--Footer-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
+                    </div>
                 </div>
-                <!--Footer-->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
-                </div>
+                <!--/.Content-->
             </div>
-            <!--/.Content-->
         </div>
+        <!-- /.Galeria-->
+
+        <ng-include src="'View/footer.html'"></ng-include>
+
+        <!-- /. fim do html-->
+
+
+        <!-- SCRIPTS -->
+
+        <!-- JQuery -->
+        <script type="text/javascript" src="lib/jquery/jquery-2.2.3.min.js"></script>
+
+        <!-- Bootstrap tooltips -->
+        <script type="text/javascript" src="lib/bootstrap/tether.min.js"></script>
+
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="lib/bootstrap/bootstrap.min.js"></script>
+
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript" src="lib/bootstrap/mdb.min.js"></script>
+
+
+        <!-- link Angular -->
+        <script src="lib/angular/angular-animate.js" type="text/javascript"></script>
+        <!-- link Angular -->
+        <link href="css/angular-toastr.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" src="lib/angular/angular-toastr.tpls.js"></script>
     </div>
-    <!-- /.Galeria-->
-
- <ng-include src="'View/footer.html'"></ng-include>
-
-    <!-- /. fim do html-->
-
-
-    <!-- SCRIPTS -->
-
-    <!-- JQuery -->
-    <script type="text/javascript" src="lib/jquery/jquery-2.2.3.min.js"></script>
-
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="lib/bootstrap/tether.min.js"></script>
-
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="lib/bootstrap/bootstrap.min.js"></script>
-
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="lib/bootstrap/mdb.min.js"></script>
-
-    <!-- angular app script -->
-    <script type="text/javascript" src="js/app.js"></script>
-    <!-- link Angular -->
-    <script src="lib/angular/angular-animate.js" type="text/javascript"></script>
-    <!-- link Angular -->
-    <link href="css/angular-toastr.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="lib/angular/angular-toastr.tpls.js"></script>
-
 
 </body>
 
