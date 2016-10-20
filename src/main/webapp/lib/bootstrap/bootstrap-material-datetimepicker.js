@@ -204,7 +204,7 @@
                             '<div class="dtp-date-view">' +
                             '<header class="dtp-header">' +
                             '<div class="dtp-actual-day">Lundi</div>' +
-                            '<div class="dtp-close"><a href="javascript:void(0);"><i class="material-icons">Limpar</i></a></div>' +
+                            '<div class="dtp-close"><a href="javascript:void(0);"><i class="material-icons">X</i></a></div>' +
                             '</header>' +
                             '<div class="dtp-date hidden">' +
                             '<div>' +

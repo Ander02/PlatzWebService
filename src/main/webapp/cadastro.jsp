@@ -187,10 +187,12 @@
                                 <!--Title-->
                                 <h4 class="card-title"><i class="fa fa-map-marker animated rotateIn"></i><strong> Endereço</strong></h4>
                                 <div class="col-md-4">
-                                    <div class="md-form">                
+                                    <div class="md-form col-md-6">                
                                         <input type="text" id="empresa-cep" class="form-control" ng-model="empresa.endereco.cep" ng-blur="onblurCepEmpresa()">
                                         <label for="conta-empresa-cep" >CEP</label>
                                     </div>
+                                    <div class="col-md-6 link-cep"><a title="clique aqui e saiba seu cep" class="text-info"
+                                    href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blank">Não Sei meu cep</a></div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="md-form">  
@@ -335,10 +337,12 @@
                                 <!--Title-->
                                 <h4 class="card-title"><i class="fa fa-map-marker animated rotateIn"></i><strong>Endereço</strong></h4>
                                 <div class="col-md-4">
-                                    <div class="md-form">                
+                                    <div class="md-form col-md-6">                
                                         <input type="text" id="usuario-cep" class="form-control" ng-model="usuario.endereco.cep" ng-blur="onblurCepUsuario()">
                                         <label for="conta-usuario-cep">CEP</label>
                                     </div>
+                                    <div class="col-md-6 link-cep"><a title="clique aqui e saiba seu cep" class="text-info"
+                                    href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blank"> Não Sei meu cep</a></div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="md-form">  

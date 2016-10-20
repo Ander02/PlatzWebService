@@ -10,7 +10,8 @@ $(document).ready(function ()
     $('#date').bootstrapMaterialDatePicker
             ({
                 time: false,
-                clearButton: true
+                clearButton: true,
+                format:'DD/MM/YYYY'
             });
 
     $('#time').bootstrapMaterialDatePicker
@@ -40,7 +41,7 @@ $(document).ready(function ()
             });
     $('#date-start').bootstrapMaterialDatePicker
             ({
-                weekStart: 0, format: 'DD/MM/YYYY HH:mm', shortTime: true
+                weekStart: 0, format: 'DD/MM/YYYY HH:mm'
             }).on('change', function (e, date)
     {
         $('#date-end').bootstrapMaterialDatePicker('setMinDate', date);
