@@ -641,6 +641,14 @@ label.star:before {
 {
     top: 40px;
 }
+.label-form
+{
+    color: #757575;
+    top: .8rem;
+    left: 0;
+    font-size: 1rem;
+    cursor: text;
+}
 #cadastroEmpresa , #cadastroUsuario
 {
     display: none;
@@ -738,6 +746,11 @@ label.star:before {
 {
     width: 100%;
 
+}
+.card-footer {
+    padding: .75rem 1.25rem;
+   background: none;
+    border-top: 1px solid #e5e5e5;
 }
 /*css dos links de paginação*/
 .paginator-itens

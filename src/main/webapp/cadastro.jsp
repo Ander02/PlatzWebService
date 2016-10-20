@@ -186,44 +186,47 @@
                             <div class="card-block text-xs-center">
                                 <!--Title-->
                                 <h4 class="card-title"><i class="fa fa-map-marker animated rotateIn"></i><strong> Endereço</strong></h4>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="md-form">                
                                         <input type="text" id="empresa-cep" class="form-control" ng-model="empresa.endereco.cep" ng-blur="onblurCepEmpresa()">
                                         <label for="conta-empresa-cep" >CEP</label>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="md-form">  
                                         <input  type="text" id="empresa-numero" class="form-control" ng-model="empresa.endereco.numero">
                                         <label for="conta-empresa-numero">Número</label>
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="md-form">                
                                         <input type="text" id="empresa-complemento" class="form-control" ng-model="empresa.endereco.complemento"complemento>
                                         <label for="conta-empresa-complemento">Complemento</label>
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
-                                    <div class="md-form">                
-                                        <p>{{empresa.endereco.rua}}</p>                                       
-                                        <label for="conta-empresa-rua">Rua</label>
-                                    </div>
+                                <div class="col-md-12">
+                                    
+                                        <label for="conta-empresa-rua" class="label-form">Rua</label>
+                                        <p>{{empresa.endereco.rua}}</p>
+                                        <hr>
+                                    
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="md-form">  
+                                <div class="col-md-12">
+                                    
+                                        <label for="conta-empresa-bairro" class="label-form">Bairro</label>
                                         <p>{{empresa.endereco.bairro}}</p>   
-                                        <label for="conta-empresa-bairro">Bairro</label>
-                                    </div>
+                                        <hr>
+                                    
                                 </div>
 
-                                <div class="col-md-6 ">
-                                    <div class="md-form">  
+                                <div class="col-md-12 ">
+                                    
+                                        <label for="conta-empresa-cidade" class="label-form">Cidade</label>
                                         <p>{{empresa.endereco.cidade}}</p>   
-                                        <label for="conta-empresa-cidade">Cidade</label>
-                                    </div>
+                                        <hr>
+                                    
                                 </div>                               
 
                             </div>
@@ -331,19 +334,19 @@
                             <div class="card-block text-xs-center">
                                 <!--Title-->
                                 <h4 class="card-title"><i class="fa fa-map-marker animated rotateIn"></i><strong>Endereço</strong></h4>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="md-form">                
                                         <input type="text" id="usuario-cep" class="form-control" ng-model="usuario.endereco.cep" ng-blur="onblurCepUsuario()">
                                         <label for="conta-usuario-cep">CEP</label>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="md-form">  
                                         <input  type="text" id="usuario-numero" class="form-control" ng-model="usuario.endereco.numero">
                                         <label for="conta-usuario-numero">Número</label>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-4">
                                     <div class="md-form">                
                                         <input type="text" id="usuario-complemento" class="form-control" ng-model="usuario.endereco.complemento">
                                         <label for="conta-usuario-complemento">Complemento</label>
@@ -351,16 +354,18 @@
                                 </div>
 
                                 <div class="col-md-12">
-                                    <label for="conta-usuario-rua" class="text-accent-3">Rua</label>
-                                    <p>{{usuario.endereco.rua}}</p>                                  
+                                    <label for="conta-usuario-rua" class="label-form">Rua</label>
+                                    <p>{{usuario.endereco.rua}}</p>
+                                    <hr>
                                 </div>
                                 <div class="col-md-12"> 
-                                    <label for="conta-usuario-bairro">Bairro</label>                                    
-                                    <p>{{usuario.endereco.bairro}}</p>                                         
+                                    <label for="conta-usuario-bairro" class="label-form">Bairro</label>                                    
+                                    <p>{{usuario.endereco.bairro}}</p>
+                                    <hr>
                                 </div>
 
                                 <div class="col-md-12 ">
-                                    <label for="conta-usuario-cidade">Cidade</label>
+                                    <label for="conta-usuario-cidade"class="label-form" >Cidade</label>
                                     <p>{{usuario.endereco.cidade}}</p>
                                     <hr>
                                 </div>                              
