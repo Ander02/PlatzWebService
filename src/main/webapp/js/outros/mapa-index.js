@@ -1,7 +1,7 @@
 var centro = new google.maps.LatLng(-23.550520, -46.633309);
 
-var minhaImagem = 'css/icons/pointer3.png';
-var imagemEventos = 'css/icons/pointer2.png';
+var minhaImagem = 'css/icon/pointer.png';
+var imagemEventos = 'css/icon/pointer2.png';
 
 
 // Matriz contando os inputs dos endereços dos eventos em destaque
