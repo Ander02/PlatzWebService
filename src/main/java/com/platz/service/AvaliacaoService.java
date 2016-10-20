@@ -33,7 +33,8 @@ public class AvaliacaoService {
 
     @POST
     @Path(value = "/avaliacao")
-    @PerfilAuth(Perfil.USUARIO)
+    //@PerfilAuth(Perfil.USUARIO)
+    @PermitAll
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(AvaliacaoCadastro avaliacao) {
