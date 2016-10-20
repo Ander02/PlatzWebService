@@ -38,7 +38,7 @@ Pagina de evento especifico
         <script src="js/util.js" type="text/javascript"></script>
 
         <script src="js/controller/loginController.js" type="text/javascript"></script>
-        <script src="js/controller/eventoController.js" type="text/javascript"></script>
+        <script src="js/controller/eventoEspecificoController.js" type="text/javascript"></script>
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="img/logo.png">
 
@@ -63,7 +63,7 @@ Pagina de evento especifico
 
 
     <div class="espaco"></div>
-    <div ng-controller="eventoController">
+    <div ng-controller="eventoEspecificoController">
         <section class="section section-blog-fw">
 
             <!--First row-->
