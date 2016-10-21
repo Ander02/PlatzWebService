@@ -94,6 +94,16 @@ pagina onde é retornada a busca de um evento.
     </div> <!--/First row-->
 </section><!--/Section: Products v.1-->
 
+<!-- se não tiver evento-->
+    <div class="col-md-10" id="section-sem-evento" >
+        <div class="jumbotron animated fadeInUp">
+            <h1> Desculpe não ha resultados para sua pesquisa</h1>
+            <p>Porem você pode navegar e descobrir otimos </p>
+            <p><a class="btn btn-amber">Voltar</a></p>
+        </div>
+    </div>
+
+
  <ng-include src="'View/footer.html'"></ng-include>
 
     <!-- /Fim do projeto -->

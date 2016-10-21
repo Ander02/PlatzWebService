@@ -114,9 +114,9 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                                 <tr ng-repeat="admin in admintradores">
                                     <th scope="row">{{$index + 1}}</th>
 
-                                    <td>{{admin.email}}</td>
-                                    <td>{{admin.dataCadastro}}</td>
-                                    <td>{{admin.ultimoAcesso}}</td>
+                                    <td ng-bind="admin.email"></td>
+                                    <td ng-bind="admin.dataCadastro"></td>
+                                    <td ng-bind="admin.ultimoAcesso"></td>
                                     <td align=right >    
                                         <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(admin.id)"><i class="fa fa-toggle-on"></i> Bloquear</a>                                    
                                         <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar" ng-click="prepararInativacao(admin.id)"><i class="fa fa-toggle-on"></i> Inativar</a>
@@ -145,9 +145,9 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                                 <tr ng-repeat="admin in admintradoresBloqueados">
                                     <th scope="row">{{$index + 1}}</th>
                                     <!--<td>{{admin.email | limitTo:15}}{{admin.email.length >=15 ? '...':''}}</td>-->
-                                    <td>{{admin.email}}</td>
-                                    <td>{{admin.dataCadastro}}</td>
-                                    <td>{{admin.ultimoAcesso}}</td>
+                                    <td ng-bind="admin.email"></td>
+                                    <td ng-bind="admin.dataCadastro"></td>
+                                    <td ng-bind="admin.ultimoAcesso"></td>
                                     <td>
                                         <a class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalDesbloquear" ng-click="prepararDesbloqueamento(admin.id)"><i class="fa fa-toggle-on"></i> Desbloquear</a>                                    </td>
                                 </tr>
@@ -175,9 +175,9 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                             <tbody id="myTable3">
                                 <tr ng-repeat="admin in admintradoresInativos">
                                     <th scope="row">{{$index + 1}}</th>
-                                    <td>{{admin.email}}</td>
-                                    <td>{{admin.dataCadastro}}</td>
-                                    <td>{{admin.ultimoAcesso}}</td>                                    
+                                    <td ng-bind="admin.email"></td>
+                                    <td ng-bind="admin.dataCadastro"></td>
+                                    <td ng-bind="admin.ultimoAcesso"></td>                                    
                                     <td align=right>
                                         <a ng-if="!isBloqueado(admin)" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(admin.id)"><i class="fa fa-toggle-on"></i> Bloquear</a>
                                         <a ng-if="isBloqueado(admin)" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalDesbloquear" ng-click="prepararDesbloqueamento(admin.id)"><i class="fa fa-toggle-on"></i> Desbloquear</a>
@@ -232,9 +232,9 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                                 <tr ng-repeat="usuario in usuarios">
                                     <th scope="row">{{$index + 1}}</th>
 
-                                    <td>{{usuario.email}}</td>
-                                    <td>{{usuario.dataCadastro}}</td>
-                                    <td>{{usuario.ultimoAcesso}}</td>
+                                    <td ng-bind="usuario.email"></td>
+                                    <td ng-bind="usuario.dataCadastro"></td>
+                                    <td ng-bind="usuario.ultimoAcesso"></td>
                                     <td>                                        
                                         <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(usuario.id)"><i class="fa fa-toggle-on"></i> Bloquear</a>
                                         <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar" ng-click="prepararInativacao(usuario.id)"><i class="fa fa-toggle-on"></i> Inativar</a>
@@ -263,9 +263,9 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                                 <tr ng-repeat="usuario in usuariosBloqueados">
                                     <th scope="row">{{$index + 1}}</th>
 
-                                    <td>{{usuario.email}}</td>
-                                    <td>{{usuario.dataCadastro}}</td>
-                                    <td>{{usuario.ultimoAcesso}}</td> 
+                                    <td ng-bind="usuario.email"></td>
+                                    <td ng-bind="usuario.dataCadastro"></td>
+                                    <td ng-bind="usuario.ultimoAcesso"></td> 
                                     <td>
                                         <a class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalDesbloquear" ng-click="prepararDesbloqueamento(usuario.id)"><i class="fa fa-toggle-on"></i> Desbloquear</a>
                                     </td>
@@ -295,9 +295,9 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                                 <tr ng-repeat="usuario in usuariosInativos">
                                     <th scope="row">{{$index + 1}}</th>
 
-                                    <td>{{usuario.email}}</td>
-                                    <td>{{usuario.dataCadastro}}</td>
-                                    <td>{{usuario.ultimoAcesso}}</td>
+                                    <td ng-bind="usuario.email"></td>
+                                    <td ng-bind="usuario.dataCadastro"></td>
+                                    <td ng-bind="usuario.ultimoAcesso"></td>
                                     <td align=right>
                                         <a ng-if="!isBloqueado(usuario)" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(usuario.id)"><i class="fa fa-toggle-on"></i> Bloquear</a>
                                         <a ng-if="isBloqueado(usuario)" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalDesbloquear" ng-click="prepararDesbloqueamento(usuario.id)"><i class="fa fa-toggle-on"></i> Desbloquear</a>
@@ -352,9 +352,9 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                                 <tr ng-repeat="empresa in empresas">
                                     <th scope="row">{{$index + 1}}</th>
 
-                                    <td>{{empresa.email}}</td>
-                                    <td>{{empresa.dataCadastro}}</td>
-                                    <td>{{empresa.ultimoAcesso}}</td>
+                                    <td ng-bind="empresa.email"></td>
+                                    <td ng-bind="empresa.dataCadastro"></td>
+                                    <td ng-bind="empresa.ultimoAcesso"></td>
                                     <td>                                        
                                         <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(empresa.id)"><i class="fa fa-toggle-on" ></i> Bloquear </a>
                                         <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar" ng-click="prepararInativacao(empresa.id)"><i class="fa fa-toggle-on" ></i> Inativar </a>
@@ -383,9 +383,9 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                                 <tr ng-repeat="empresa in empresasBloqueados">
                                     <th scope="row">{{$index + 1}}</th>
 
-                                    <td>{{empresa.email}}</td>
-                                    <td>{{empresa.dataCadastro}}</td>
-                                    <td>{{empresa.ultimoAcesso}}</td>
+                                    <td ng-bind="empresa.email"></td>
+                                    <td ng-bind="empresa.dataCadastro"></td>
+                                    <td ng-bind="empresa.ultimoAcesso"></td>
                                     <td>                                        
                                         <a class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalDesbloquear" ng-click="prepararDesbloqueamento(empresa.id)"><i class="fa fa-toggle-on"></i> Desbloquear</a>                                        
                                     </td>
@@ -416,9 +416,9 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                                 <tr ng-repeat="empresa in empresasInativos">
                                     <th scope="row">{{$index + 1}}</th>
 
-                                    <td>{{empresa.email}}</td>
-                                    <td>{{empresa.dataCadastro}}</td>
-                                    <td>{{empresa.ultimoAcesso}}</td>
+                                    <td ng-bind="empresa.email"></td>
+                                    <td ng-bind="empresa.dataCadastro"></td>
+                                    <td ng-bind="empresa.ultimoAcesso"></td>
                                     <td align=right>
                                         <a ng-if="!isBloqueado(empresa)" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(empresa.id)"><i class="fa fa-toggle-on"></i> Bloquear</a>
                                         <a ng-if="isBloqueado(empresa)" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalDesbloquear" ng-click="prepararDesbloqueamento(empresa.id)"><i class="fa fa-toggle-on"></i> Desbloquear</a>

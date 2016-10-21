@@ -803,3 +803,16 @@ label.star:before {
     max-width: 100%;
     height: 350px;
 }
+#section-sem-evento
+{
+    text-align: center;
+    margin-left: 8%;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+#section-sem-evento .jumbotron
+{
+    background: rgba(44, 62, 80,0.6);
+    color: white;
+    border-radius: 20px 55px;
+}
