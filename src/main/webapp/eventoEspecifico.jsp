@@ -51,10 +51,9 @@ Pagina de evento especifico
 
     <body onload="initialize()" id="corpo-evento-epecifico">
         <%
-            //String idEvento = request.getParameter("idEvento");
-            String idEvento = "5806680892b4871778ae3890";
-
-            out.print("<input type='hidden' id='idEvento' name='idEvento' value ='" + idEvento + "' >");
+            String evento = request.getParameter("evento");
+            
+            out.print("<input type='hidden' id='idEvento' name='idEvento' value ='" + evento + "' >");
         %>
 
         <!-- inicio do projeto aqui-->
