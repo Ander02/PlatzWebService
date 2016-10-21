@@ -28,7 +28,6 @@ Pagina de evento especifico
         <!-- Your custom styles (efeito) -->
         <link href="css/efeitos/eventoEspecifico.css" rel="stylesheet">
         
-
         <!-- link Angular -->
         <script type="text/javascript" src="lib/angular/angular.js"></script>
 
@@ -68,15 +67,13 @@ Pagina de evento especifico
 
     <div class="espaco"></div>
     <div ng-controller="eventoEspecificoController">
+        
         <section class="section section-blog-fw">
-
             <!--First row-->
             <div class="row">    
                 <!--Post data-->
                 <div class="jumbotron caixa-informacao-especifico">
-
                     <!-- Imagem do evento -->
-
                     <div class="col-lg-12 col-md-4 col-sm-6 col-xs-12 imagem-evento-especifico">
                         <div class="hovereffect">
                             <img class="img-responsive" src="img/outras/plano-fundo.jpg" alt="">
@@ -87,29 +84,24 @@ Pagina de evento especifico
                                         <i class="fa fa-check left animated bounceInUp "></i>
                                         <span class="hidden-md-down ">Vou</span>
                                     </a>         
-
-                                    <!--Comentarios-->
-
+                                    <!--Opção de talvez ir-->
                                     <a class="btn btn-default-outline ">
                                         <i class="fa fa-minus left animated bounceInUp "></i>
                                         <span class="hidden-md-down ">Talvez</span>
                                     </a>
-
-                                    <!-- galeria de imagens -->
-
+                                    <!-- Opção de não vou -->
                                     <a class="btn btn-warning-outline">
                                         <i class="fa fa-remove left animated bounceInUp "></i>
                                         <span class="hidden-md-down ">Não vou</span>
                                     </a>
-
                                 </p> 
-                            </div>
-                        </div>
-                    </div>
+                            </div><!-- overlay -->
+                        </div><!-- hoverEffect-->
+                    </div><!-- /.imagemEventoEspecifico -->
 
                     <div class="col-md-12 informacao-evento-especifico">
                         <div class="col-md-3"></div>
-                        <div class="col-md-3">  <h1>{{evento.nome}}</h1> </div>
+                        <div class="col-md-3">  <h1 ng-bind="evento.nome"></h1> </div>
                         <div class="col-md-3 estrelas">
                             
                             <div class="stars">
@@ -134,7 +126,7 @@ Pagina de evento especifico
 
                         <div class="col-md-12">    
 
-                            <h3><a href="perfilEmpresa.html">{{evento.empresa.nomeFantasia}}</a></h3>
+                            <h3><i class="fa fa-building-o"></i><a href="perfilEmpresa.html" ng-bind="evento.empresa.nomeFantasia"></a></h3>
 
                             <!--botoes para rota , galeria e comentarios-->
                             <div class="social-counters ">
@@ -160,12 +152,8 @@ Pagina de evento especifico
                                         <i class="fa fa-photo left animated bounceInDown "></i>
                                         <span class="hidden-md-down ">fotos</span>
                                     </a></button>
-
                             </div>
-
-
                         </div>
-
                     </div>
 
 
@@ -195,7 +183,7 @@ Pagina de evento especifico
                         <div class="col-md-12 descricao-especifico">
                             <h3>Descrição</h3>
                             <hr/>
-                            <p>{{evento.detalhes}} </p>
+                            <p ng-bind="evento.detalhes"></p>
                             <hr/>
                         </div>
 

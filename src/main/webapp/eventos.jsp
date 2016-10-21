@@ -50,22 +50,6 @@ Pagina onde ira exibir os eventos, onde sera possivel filtrar os eventos
     <div ng-controller="eventosController">
         <div class="espaco"></div>
 
-        <div class="head-pagina">
-            <h1 class="titulo-meusEventos">Categorias</h1>
-            <form class="form-inline form-pesquisa" action="buscaEvento.jsp" method="post">
-                <div class="form-group">                
-                    <select class="form-control btn btn-lg btn-warning-outline " id="selecione1" name="categoriaId" ng-options="categoria.id as categoria.nome for categoria in categorias" ng-model="categoriaBusca">
-                        <option value="">Selecione</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <input id="nome-evento" name="nome-evento" type="text" class="form-control" maxlength="30" placeholder="Nome do Evento">
-                </div>
-                <input class="btn btn-default btn-sm" type="submit" value="Pesquisar">
-            </form><!-- /. form-inline form-pesquisa -->
-        </div><!-- fim da div head-pagina -->
-
-
         <div>
             <div class="container">
                 <div class="main">
@@ -74,15 +58,12 @@ Pagina onde ira exibir os eventos, onde sera possivel filtrar os eventos
                         <div class="hovereffect">
                             <img class="img-responsive" ng-src="{{baixarImagem(categoria.id)}}" onerror='this.src = "img/logo.png"' alt="">                            
                             <div class="overlay">
-                                <h2>{{categoria.nome}}</h2>
+                                <h2 ng-bind="categoria.nome"></h2>
                                 <a class="info" href="eventosCategoria.jsp?categoria={{categoria.id}}" > Clique e veja mais</a>
                                 <a ></a>
                             </div>
                         </div>
                     </div>
-
-
-
                 </div>
             </div>
 
