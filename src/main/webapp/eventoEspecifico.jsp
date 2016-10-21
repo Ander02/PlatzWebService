@@ -52,7 +52,7 @@ Pagina de evento especifico
     <body onload="initialize()" id="corpo-evento-epecifico">
         <%
             String evento = request.getParameter("evento");
-            
+
             out.print("<input type='hidden' id='idEvento' name='idEvento' value ='" + evento + "' >");
         %>
 

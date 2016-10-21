@@ -52,9 +52,9 @@ Pagina onde ira exibir os eventos, onde sera possivel filtrar os eventos
 
         <div class="head-pagina">
             <h1 class="titulo-meusEventos">Categorias</h1>
-            <form class="form-inline form-pesquisa" action="buscaEvento.jsp" method="get">
+            <form class="form-inline form-pesquisa" action="buscaEvento.jsp" method="post">
                 <div class="form-group">                
-                    <select class="form-control btn btn-lg btn-warning-outline " id="selecione1" name="categoriaId" ng-options="categoria.id.toString() as categoria.nome for categoria in categorias" ng-model="categoriaBusca">
+                    <select class="form-control btn btn-lg btn-warning-outline " id="selecione1" name="categoriaId" ng-options="categoria.id as categoria.nome for categoria in categorias" ng-model="categoriaBusca">
                         <option value="">Selecione</option>
                     </select>
                 </div>
