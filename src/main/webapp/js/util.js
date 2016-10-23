@@ -14,6 +14,26 @@ function sleep(milliseconds) {
     }
 }
 
+//Faz o upload de um arquivo para o service
+function enviarArquivo($http, arquivo, name, url) {
+    var formData = new FormData();
+    formData.append(name, arquivo);
+    console.log(formData);
+    $http.put(url, formData, {
+        transformRequest: angular.identity,
+        headers: {'Content-Type': undefined}
+    }).success(function (response) {
+        console.log("Arquivo Enviado");
+        console.log(response);
+
+        atualizar();
+
+    }).error(function (response) {
+        console.log("Erro ao enviar");
+        console.log(response);
+    });
+}
+
 //gera os headers para autorização e permição
 function gerarHeaders(token) {
     return {
@@ -23,9 +43,8 @@ function gerarHeaders(token) {
     };
 }
 
-
 function verificarToken($http, $scope, toastr) {
-console.log("verificar login");
+    console.log("verificar login");
     var token = document.getElementById("token").value;
 
     $http.get(webService + "/tokenIsValid/" + token).then(function (response) {
@@ -52,7 +71,6 @@ function logoff($http, toastr, token) {
     $http.post(webService + "/logoff", null, gerarHeaders(token));
     location.href = "../login.jsp";
 }
-
 
 //funções que gerencia os tipo de erro
 function errorManager(erro, status, mensagem) {

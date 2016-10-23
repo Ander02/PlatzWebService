@@ -43,7 +43,7 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
         var icone = input.files[0];
 
         if (!(!icone.type.match('image.*'))) {
-            enviarArquivo(icone, webService + "/categoria/imagem/" + $scope.categoriaImagemEdicaoId);
+            enviarArquivo($http ,icone, 'icone' ,webService + "/categoria/imagem/" + $scope.categoriaImagemEdicaoId);
         }
         input.value = null;
         atualizar();
@@ -59,7 +59,7 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
             var icone = input.files[0];
 
             if (!(!icone.type.match('image.*'))) {
-                enviarArquivo(icone, webService + "/categoria/imagem/" + response.data.id);
+                enviarArquivo($http, icone, 'icone' ,webService + "/categoria/imagem/" + response.data.id);
             }
             input.value = null;
 
@@ -118,29 +118,10 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
     };
     $scope.prepararEdicaoImagem = function (id) {
         $scope.categoriaImagemEdicaoId = id;
-    }
+    };
     $scope.cancelarEdicaoImagem = function () {
         $scope.categoriaImagemEdicaoId = null;
-    }
-
-    function enviarArquivo(arquivo, url) {
-        var formData = new FormData();
-        formData.append('icone', arquivo);
-        console.log(formData);
-        $http.put(url, formData, {
-            transformRequest: angular.identity,
-            headers: {'Content-Type': undefined}
-        }).success(function (response) {
-            console.log("Arquivo Enviado");
-            console.log(response);
-
-            atualizar();
-
-        }).error(function (response) {
-            console.log("Erro ao enviar");
-            console.log(response);
-        });
-    }
+    };
 
     //funções de atualizações e avisos
     function atualizar() {

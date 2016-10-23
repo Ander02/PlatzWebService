@@ -258,8 +258,7 @@
                                 <div class="col-md-12">
                                     <label for="conta-usuario-img">Imagem de Perfil</label>
                                     <div class="md-form">                
-                                        <input id="conta-usuario-img" type="file" multiple>
-
+                                        <input id="conta-usuario-img" type="file" >
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -436,7 +435,7 @@
 
         <!-- MDB core JavaScript -->
         <script type="text/javascript" src="lib/bootstrap/mdb.min.js"></script>
-        
+
         <script src="lib/bootstrap/bootstrap-material-datetimepicker.js" type="text/javascript"></script>
 
         <!--data e horario (iniciando) -->

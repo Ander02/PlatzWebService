@@ -119,10 +119,40 @@ public class UsuarioService {
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
         }
     }
+    
+    @GET
+    @Path("/usuario/imagem/{id}")
+    @PermitAll
+    @Produces("image/*")
+    public Response baixarImagem(@PathParam("id") String id) {
+
+        try {
+
+            UsuarioModel model = usuarioController.buscarPorId(id);
+
+            if (model != null) {
+
+                if (!model.getImagemPerfil().equals("") && model.getImagemPerfil()!= null) {
+                    InputStream input = new ImagemUtil().baixarImagem(model.getImagemPerfil());
+
+                    if (input != null) {
+                        return Response.ok(input).header("Content-Type", "image/png").build();
+                    }
+                }
+                return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao baixar imagem, imagem inexistente").build();
+            }
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao baixar imagem, usuário não encontrada").build();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao baixar imagem").build();
+
+        }
+    }
 
     @GET
     @Path(value = "/usuarios")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+    //@PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
 
