@@ -26,8 +26,6 @@ function enviarArquivo($http, arquivo, name, url) {
         console.log("Arquivo Enviado");
         console.log(response);
 
-        atualizar();
-
     }).error(function (response) {
         console.log("Erro ao enviar");
         console.log(response);

@@ -98,7 +98,7 @@
                                 <div class="col-md-12">
                                     <label for="conta-empresa-img">Imagem de Perfil</label>
                                     <div class="md-form">                
-                                        <input id="conta-empresa-img" type="file" multiple>
+                                        <input id="conta-empresa-img" type="file" >
                                     </div>
                                 </div>
 

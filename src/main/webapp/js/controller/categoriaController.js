@@ -43,7 +43,7 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
         var icone = input.files[0];
 
         if (!(!icone.type.match('image.*'))) {
-            enviarArquivo($http ,icone, 'icone' ,webService + "/categoria/imagem/" + $scope.categoriaImagemEdicaoId);
+            enviarArquivo($http, icone, 'icone', webService + "/categoria/imagem/" + $scope.categoriaImagemEdicaoId);
         }
         input.value = null;
         atualizar();
@@ -52,19 +52,17 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
     $scope.cadastrar = function () {
 
         $http.post(webService + "/categoria", $scope.categoriaCadastro).then(function (response) {
-            atualizar();
 
             var input = document.getElementById("InputIconeCategoriaCadastro");
 
             var icone = input.files[0];
 
             if (!(!icone.type.match('image.*'))) {
-                enviarArquivo($http, icone, 'icone' ,webService + "/categoria/imagem/" + response.data.id);
+                enviarArquivo($http, icone, 'icone', webService + "/categoria/imagem/" + response.data.id);
             }
             input.value = null;
-
             $scope.categoriaCadastro = null;
-
+            atualizar();
             sucesso(toastr, "Categoria cadastrada com sucesso");
         }, function (response) {
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao cadastrar categoria"));
@@ -88,7 +86,7 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
             erro(toastr, errorManager(response.config.url, response.status, "Erro deletar categoria"));
         });
     };
-    
+
     $scope.baixarImagem = function (id) {
         return webService + "/categoria/imagem/" + id;
     };

@@ -36,10 +36,23 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
             $scope.empresa.perfil = 1;
             console.log($scope.empresa);
             $http.post(webService + "/empresa", $scope.empresa).then(function (response) {
-                sucesso(toastr, "Empresa cadastrada com sucesso");
-                $scope.empresa = null;
+
                 $scope.conta = response.data.conta;
                 $scope.conta.senha = $scope.empresa.conta.senha;
+
+                var input = document.getElementById("conta-empresa-img");
+
+                var imagemPerfil = input.files[0];
+
+                if (!(!imagemPerfil.type.match('image.*'))) {
+                    enviarArquivo($http, imagemPerfil, 'imgPerfil', webService + "/empresa/imagem/" + response.data.id);
+                }
+
+                $scope.empresa = null;
+                input.value = null;
+//
+                sucesso(toastr, "Empresa cadastrada com sucesso");
+
             }, function (response) {
                 erro(toastr, errorManager(response.config.url, response.status, "Falha ao cadastrar empresa, verifique os campos e tente novamente"));
             });
