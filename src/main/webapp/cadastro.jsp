@@ -192,7 +192,7 @@
                                         <label for="conta-empresa-cep" >CEP</label>
                                     </div>
                                     <div class="col-md-6 link-cep"><a title="clique aqui e saiba seu cep" class="text-info"
-                                    href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blank">Não Sei meu cep</a></div>
+                                                                      href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blank">Não Sei meu cep</a></div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="md-form">  
@@ -209,26 +209,26 @@
                                 </div>
 
                                 <div class="col-md-12">
-                                    
-                                        <label for="conta-empresa-rua" class="label-form">Rua</label>
-                                        <p>{{empresa.endereco.rua}}</p>
-                                        <hr>
-                                    
+
+                                    <label for="conta-empresa-rua" class="label-form">Rua</label>
+                                    <p>{{empresa.endereco.rua}}</p>
+                                    <hr>
+
                                 </div>
                                 <div class="col-md-12">
-                                    
-                                        <label for="conta-empresa-bairro" class="label-form">Bairro</label>
-                                        <p>{{empresa.endereco.bairro}}</p>   
-                                        <hr>
-                                    
+
+                                    <label for="conta-empresa-bairro" class="label-form">Bairro</label>
+                                    <p>{{empresa.endereco.bairro}}</p>   
+                                    <hr>
+
                                 </div>
 
                                 <div class="col-md-12 ">
-                                    
-                                        <label for="conta-empresa-cidade" class="label-form">Cidade</label>
-                                        <p>{{empresa.endereco.cidade}}</p>   
-                                        <hr>
-                                    
+
+                                    <label for="conta-empresa-cidade" class="label-form">Cidade</label>
+                                    <p>{{empresa.endereco.cidade}}</p>   
+                                    <hr>
+
                                 </div>                               
 
                             </div>
@@ -321,7 +321,7 @@
                                     <div class="md-form">  
                                         <input  type="text" id="conta-usuario-telefone" class="form-control" required ng-model="usuario.telefone"
                                                 maxlength="12">
-                                        <label for="conta-usuario-telefone">Celular</label>
+                                        <label for="conta-usuario-telefone">Telefone  {{usuario.dataNascimento}}</label>
                                     </div>
                                 </div>
 
@@ -341,8 +341,10 @@
                                         <input type="text" id="usuario-cep" class="form-control" ng-model="usuario.endereco.cep" ng-blur="onblurCepUsuario()">
                                         <label for="conta-usuario-cep">CEP</label>
                                     </div>
-                                    <div class="col-md-6 link-cep"><a title="clique aqui e saiba seu cep" class="text-info"
-                                    href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blank"> Não Sei meu cep</a></div>
+                                    <div class="col-md-6 link-cep">
+                                        <a title="clique aqui e saiba seu cep" class="text-info"
+                                           href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blank"> Não Sei meu cep</a>
+                                    </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="md-form">  
@@ -434,11 +436,12 @@
 
         <!-- MDB core JavaScript -->
         <script type="text/javascript" src="lib/bootstrap/mdb.min.js"></script>
+        
+        <script src="lib/bootstrap/bootstrap-material-datetimepicker.js" type="text/javascript"></script>
 
         <!--data e horario (iniciando) -->
         <script src="lib/bootstrap/dataehorario.js" type="text/javascript"></script>
 
-        <script src="lib/bootstrap/bootstrap-material-datetimepicker.js" type="text/javascript"></script>
 
         <!-- esconder formularios -->
         <script type="text/javascript" src="js/outros/esconder-form-cad.js"></script>

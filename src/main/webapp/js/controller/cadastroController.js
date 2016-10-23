@@ -52,9 +52,10 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
     };
 
     $scope.cadastrarUsuario = function () {
+       $scope.usuario.dataNascimento = document.getElementById("date").value;
 
         if ($scope.usuario.conta.senha === $scope.usuario.conta.confirmaSenha) {
-            $scope.usuario.endereco.uf = "SP";
+            //$scope.usuario.endereco.uf = "SP";
             $scope.usuario.perfil = 2;
             console.log($scope.usuario);
             $http.post(webService + "/usuario", $scope.usuario).then(function (response) {
