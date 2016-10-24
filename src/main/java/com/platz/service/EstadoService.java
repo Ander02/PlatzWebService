@@ -27,7 +27,8 @@ public class EstadoService {
 
     @POST
     @Path(value = "/estado")
-    @DenyAll
+    //@DenyAll
+    @PermitAll
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(EstadoCadastro estado) {

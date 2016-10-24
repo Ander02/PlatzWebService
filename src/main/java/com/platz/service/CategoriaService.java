@@ -5,7 +5,9 @@ import com.platz.http.cadastro.CategoriaCadastro;
 import com.platz.http.edicao.CategoriaEdicao;
 import com.platz.http.leitura.CategoriaLeitura;
 import com.platz.model.CategoriaModel;
+import com.platz.model.Perfil;
 import com.platz.util.ImagemUtil;
+import com.platz.util.PerfilAuth;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.InputStream;
@@ -34,6 +36,7 @@ public class CategoriaService {
 
     @POST
     @Path(value = "/categoria")
+    //@PerfilAuth(Perfil.ADMINISTRADOR)
     @PermitAll
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")

@@ -17,7 +17,7 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
     $scope.onblurCepUsuario = function () {
         cep = document.getElementById("usuario-cep").value;
         $http.get("https://viacep.com.br/ws/" + cep + "/json/").then(function (response) {
-            console.log(response.data);
+            //console.log(response.data);
             $scope.usuario.endereco.cep = response.data.cep;
             $scope.usuario.endereco.rua = response.data.logradouro;
             $scope.usuario.endereco.bairro = response.data.bairro;
@@ -36,10 +36,23 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
             $scope.empresa.perfil = 1;
             console.log($scope.empresa);
             $http.post(webService + "/empresa", $scope.empresa).then(function (response) {
-                sucesso(toastr, "Empresa cadastrada com sucesso");
-                $scope.empresa = null;
+
                 $scope.conta = response.data.conta;
                 $scope.conta.senha = $scope.empresa.conta.senha;
+
+                var input = document.getElementById("conta-empresa-img");
+
+                var imagemPerfil = input.files[0];
+
+                if (!(!imagemPerfil.type.match('image.*'))) {
+                    enviarArquivo($http, imagemPerfil, 'imgPerfil', webService + "/empresa/imagem/" + response.data.id);
+                }
+
+                $scope.empresa = null;
+                input.value = null;
+//
+                sucesso(toastr, "Empresa cadastrada com sucesso");
+
             }, function (response) {
                 erro(toastr, errorManager(response.config.url, response.status, "Falha ao cadastrar empresa, verifique os campos e tente novamente"));
             });
@@ -54,14 +67,29 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
     $scope.cadastrarUsuario = function () {
 
         if ($scope.usuario.conta.senha === $scope.usuario.conta.confirmaSenha) {
-            $scope.usuario.endereco.uf = "SP";
+            //$scope.usuario.endereco.uf = "SP";
             $scope.usuario.perfil = 2;
+            $scope.usuario.dataNascimento = document.getElementById("date").value;
             console.log($scope.usuario);
             $http.post(webService + "/usuario", $scope.usuario).then(function (response) {
-                sucesso(toastr, "Usuario cadastrado com sucesso");
-                $scope.usuario = null;
+
                 $scope.conta = response.data.conta;
                 $scope.conta.senha = $scope.usuario.conta.senha;
+
+                var input = document.getElementById("conta-usuario-img");
+
+                var imagemPerfil = input.files[0];
+
+                console.log(imagemPerfil);
+
+                if (!(!imagemPerfil.type.match('image.*'))) {
+                    enviarArquivo($http, imagemPerfil, 'imgPerfil', webService + "/usuario/imagem/" + response.data.id);
+                }
+
+                $scope.usuario = null;
+                input.value = null;
+
+                sucesso(toastr, "Usuario cadastrado com sucesso");
             }, function (response) {
                 erro(toastr, errorManager(response.config.url, response.status, "Falha ao cadastrar usuario, verifique os campos e tente novamente"));
             });

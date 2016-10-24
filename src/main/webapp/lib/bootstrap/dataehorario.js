@@ -3,8 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 $(document).ready(function ()
 {
     $('#date').bootstrapMaterialDatePicker
@@ -49,5 +47,5 @@ $(document).ready(function ()
 
     $('#min-date').bootstrapMaterialDatePicker({format: 'DD/MM/YYYY HH:mm', minDate: new Date()});
 
-    $.material.init()
+    $.material.init();
 });

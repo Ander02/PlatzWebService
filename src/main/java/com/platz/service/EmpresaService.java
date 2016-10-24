@@ -39,8 +39,8 @@ public class EmpresaService {
     @PermitAll
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public Response cadastrar(EmpresaCadastro empresa) {        
-       try {
+    public Response cadastrar(EmpresaCadastro empresa) {
+        try {
             //Instanciar uma nova model, passando o http de cadastro
             EmpresaModel model = new EmpresaModel(empresa);
             model.getConta().setPerfil(Perfil.EMPRESA.ordinal());
@@ -74,26 +74,30 @@ public class EmpresaService {
             if (model != null) {
 
                 //Montando o caminho do upload
-                String diretorioDoUpload = new ImagemUtil().RAIZ + "empresa/";
+                String diretorio = "empresas/";
                 //Montando o nome do arquivo
                 String nomeDoArquivo = model.getId() + "." + fileMetaData.getMediaType().getSubtype();
 
                 //Verificar se já existe uma imagem cadastrado
-                if (model.getImagemPerfil() != null) {
-                    if (!model.getImagemPerfil().equals("")) {
-                        new ImagemUtil().deletarArquivo(model.getImagemPerfil());
+                if (model.getImagemPerfil() != null && !model.getImagemPerfil().equals("")) {
+
+                    boolean ok = new ImagemUtil().deletarArquivo(model.getImagemPerfil());
+
+                    if (ok) {
                         System.out.println("Apagou arquivo antigo");
+                    } else {
+                        System.out.println("Não Apagou o arquivo antigo");
+                        return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
                     }
                 }
 
                 //Salvar Imagem
-                boolean ok = new ImagemUtil().salvarArquivo(diretorioDoUpload, nomeDoArquivo, iconeInputStream);
+                boolean ok = new ImagemUtil().salvarArquivo(diretorio, nomeDoArquivo, iconeInputStream);
 
                 //Se a imagem for salva sem nenhum erro atualiza a model
                 if (ok) {
                     //Settar o caminho do icone na model
-                    model.setImagemPerfil(diretorioDoUpload + nomeDoArquivo);
-
+                    model.setImagemPerfil(new ImagemUtil().URL_FTP + diretorio + nomeDoArquivo);
                     //Alterar
                     empresaController.alterar(model);
                 } else {
@@ -116,8 +120,38 @@ public class EmpresaService {
     }
 
     @GET
+    @Path("/empresa/imagem/{id}")
+    @PermitAll
+    @Produces("image/*")
+    public Response baixarImagem(@PathParam("id") String id) {
+
+        try {
+
+            EmpresaModel model = empresaController.buscarPorId(id);
+
+            if (model != null) {
+
+                if (!model.getImagemPerfil().equals("") && model.getImagemPerfil() != null) {
+                    InputStream input = new ImagemUtil().baixarImagem(model.getImagemPerfil());
+
+                    if (input != null) {
+                        return Response.ok(input).header("Content-Type", "image/png").build();
+                    }
+                }
+                return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao baixar imagem, imagem inexistente").build();
+            }
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao baixar imagem, usuário não encontrada").build();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao baixar imagem").build();
+
+        }
+    }
+
+    @GET
     @Path(value = "/empresas")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+    //@PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
 
@@ -154,7 +188,7 @@ public class EmpresaService {
         //Se a model for nula retorna um Status Code Not Found
         return Response.status(Response.Status.NOT_FOUND).entity("Conta não encontrada").build();
     }
-    
+
     @GET
     @Path(value = "/empresa/conta/{id}")
     @PermitAll
