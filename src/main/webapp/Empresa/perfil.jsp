@@ -26,17 +26,19 @@
 
         <!-- link Angular -->
         <script type="text/javascript" src="../lib/angular/angular.js"></script>
-        
-         <!-- link Angular -->
+
+        <!-- link Angular -->
         <script type="text/javascript" src="../lib/angular/angular.js"></script>
-        
+
         <!-- link app -->
         <script type="text/javascript" src="../js/app.js"></script>
-        
-        <!-- link util -->
-        
-        <!-- Link Controller -->
 
+        <!-- link util -->
+        <script src="../js/util.js" type="text/javascript"></script>
+
+        <!-- Link Controller -->
+        <script src="../js/controller/perfilEmpresaController.js" type="text/javascript"></script>
+        
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="../img/logo.png">
 
@@ -46,13 +48,29 @@
     </head>
 
     <body>
-    <!-- inicio do projeto aqui-->
+        <!-- inicio do projeto aqui-->
     <ng-include src="'../View/nav-empresa.html'"></ng-include>
-    <div class="espaco"></div>
+        
+    <%
+            try {
+                String token = session.getAttribute("token").toString();
+                if (token == null) {
+                    response.sendRedirect("../login.jsp");
+                } else {
+                    out.print("<input type='hidden' id='token' name='token' value ='" + token + "' >");
+                }
+            } catch (Exception e) {
+                System.out.println("Erro ao buscar sessão " + e.getMessage());
+                response.sendRedirect("../login.jsp");
+            }
+        %>
 
-    <section class="section section-blog-fw">
-        <!--First row-->
-        <div class="row">
+    <div ng-controller="perfilEmpresaController">
+        <div class="espaco"></div>
+
+        <section class="section section-blog-fw">
+            <!--First row-->
+            <div class="row">
                 <!--Post data-->
                 <div class="jumbotron caixa-informacao-perfil-empresa">
                     <div class="col-lg-12 col-md-12 m-b-r">
@@ -64,7 +82,7 @@
                                     <div class="hovereffect">
                                         <img class="img-responsive " src="../img/outras/plano-fundo.jpg" alt="">
                                         <div class="overlay">
-                                            <h2>Nome da Empresa fantasia</h2>
+                                            <h2>{{empresa.nomeFantasia}}</h2>
                                             <a class="info" href="editarPerfil.jsp">Editar Perfil</a>
                                         </div>
                                     </div>
@@ -72,14 +90,14 @@
                             </div>
                             <div class="card-block">
                                 <!--Name-->
-                                <h4 class="card-title">Razão Social</h4>                              
+                                <h4 class="card-title">{{empresa.razaoSocial}}</h4>                              
                                 <hr>
                                 <!--Quotation-->
                                 <p>Endereço e telefone</p>
                             </div>
                         </div> <!--/.Card-->                       
                     </div>
-                    
+
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs md-pills pills-ins" role="tablist">
                         <li class="nav-item">
@@ -105,46 +123,46 @@
                                         <p><a class="btn btn-warning " href="../eventoEspecifico.html" role="button">Ver Mais Detalhes &raquo;</a></p>
                                     </div>
                                 </div>
-                        </div><!-- /.card group -->
-                    </div><!-- /.painel -->
-                </div><!--/. tab-content-->                  
-            </div><!-- jumbtron -->
-        </div><!--/First row-->
-</section>
-    
-<ng-include src="'../View/footer.html'"></ng-include>
-<!-- /. fim do projeto -->
+                            </div><!-- /.card group -->
+                        </div><!-- /.painel -->
+                    </div><!--/. tab-content-->                  
+                </div><!-- jumbtron -->
+            </div><!--/First row-->
+        </section>
 
-<!-- SCRIPTS -->
+        <ng-include src="'../View/footer.html'"></ng-include>
+        <!-- /. fim do projeto -->
 
- <!-- JQuery -->
-    <script type="text/javascript" src="../lib/jquery/jquery-2.2.3.min.js"></script>
+        <!-- SCRIPTS -->
 
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="../lib/bootstrap/tether.min.js"></script>
+        <!-- JQuery -->
+        <script type="text/javascript" src="../lib/jquery/jquery-2.2.3.min.js"></script>
 
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="../lib/bootstrap/bootstrap.min.js"></script>
+        <!-- Bootstrap tooltips -->
+        <script type="text/javascript" src="../lib/bootstrap/tether.min.js"></script>
 
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="../lib/bootstrap/mdb.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="../lib/bootstrap/bootstrap.min.js"></script>
 
-    <!-- Paginação da tabela -->
-    <script type="text/javascript" src="../js/outros/paginacao-empresa.js"></script>
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript" src="../lib/bootstrap/mdb.min.js"></script>
 
-    <!-- link Angular animate -->
-    <script src="../lib/angular/angular-animate.js" type="text/javascript"></script>
+        <!-- Paginação da tabela -->
+        <script type="text/javascript" src="../js/outros/paginacao-empresa.js"></script>
 
-    <!-- link Angular css toastr -->
-    <link href="../css/angular-toastr.css" rel="stylesheet" type="text/css"/>
+        <!-- link Angular animate -->
+        <script src="../lib/angular/angular-animate.js" type="text/javascript"></script>
 
-    <!-- link TOASTR -->
-    <script type="text/javascript" src="../lib/angular/angular-toastr.tpls.js"></script>
-    
-    <!-- aside -->
-    <script src="../js/outros/aside.js" type="text/javascript"></script>
+        <!-- link Angular css toastr -->
+        <link href="../css/angular-toastr.css" rel="stylesheet" type="text/css"/>
 
+        <!-- link TOASTR -->
+        <script type="text/javascript" src="../lib/angular/angular-toastr.tpls.js"></script>
 
+        <!-- aside -->
+        <script src="../js/outros/aside.js" type="text/javascript"></script>
+
+    </div>
 </body>
 
 </html>

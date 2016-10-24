@@ -248,6 +248,23 @@ public class ContaService {
     }
 
     @GET
+    @Path(value = "/conta/token/{token}")
+    @PermitAll
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarPelotoken(@PathParam("token") String token) {
+        ContaModel model = contaController.getConta(token);
+
+        //Verifica se a model retornada não é nula
+        if (model != null) {
+            //Retorna um Status Code OK com a conta de leitura
+            return Response.ok(new ContaLeitura(model)).build();
+        }
+
+        //Se a model for nula retorna um Status Code Not Found
+        return Response.status(Response.Status.NOT_FOUND).entity("Conta não encontrada").build();
+    }
+
+    @GET
     @Path(value = "/conta/email/{email}")
     @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")

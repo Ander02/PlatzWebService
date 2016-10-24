@@ -142,7 +142,7 @@ public class ContaController {
 
             //autenticar usuario
             ContaModel model = this.getConta(login.getEmail(), senhaEncriptada);
-            if (model != null) {
+            if (model != null && model.getBloqueado() == null) {
                 String token = new TokenUtil().criarToken(model.getId());
                 model.setToken(token);
                 model.setUltimoAcesso(new Date());
