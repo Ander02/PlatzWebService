@@ -41,28 +41,58 @@ function gerarHeaders(token) {
     };
 }
 
-function verificarToken($http, $scope, toastr) {
-    console.log("verificar login");
-    var token = document.getElementById("token").value;
+function verificarToken($http, $scope, toastr, sucess) {
+    try {
 
-    $http.get(webService + "/tokenIsValid/" + token).then(function (response) {
-        var valido = response.data;
-        if (valido == "false") {
-            console.log("t isn't valid");
+        var token = document.getElementById("token").value;
+        $scope.token = token;
+        $http.get(webService + "/tokenIsValid/" + token).then(function (response) {
+            var valido = response.data;
+
+            if (valido == "false") {
+                console.log("t isn't valid");
+                $scope.permicao = false;
+                console.log($scope.permicao);
+                logoff($http, toastr, token);
+                location.href = "../login.jsp";
+            } else {
+                console.log("t is valid" + token);
+                $http.get(webService + "/conta/token/" + token).then(function (response) {
+                    $scope.permicao = true;
+                    console.log($scope.permicao);
+                    $scope.conta = response.data;
+                    console.log($scope.conta);
+                    var regExp = new RegExp("/" + $scope.conta.perfil);
+                    if (!regExp.test(window.location.href)) {
+                        $scope.permicao = false;
+                        console.log($scope.permicao);
+                        $scope.conta = null;
+                        logoff($http, toastr, token);
+                        location.href = "../login.jsp";
+                    } else {
+                        sucess();
+                    }
+                }, function (response) {
+                    $scope.permicao = false;
+                    console.log($scope.permicao);
+                    logoff($http, toastr, token);
+                    location.href = "../login.jsp";
+                });
+            }
+
+        }, function (response) {
+            console.log("request failed");
             $scope.permicao = false;
+            console.log($scope.permicao);
             logoff($http, toastr, token);
-            location.href = "../login.jsp";
-        } else {
-            console.log("t is valid");
-            $scope.permicao = true;
-        }
-    }, function (response) {
-        console.log("request failed");
-        $scope.permicao = false;
+        });
+    } catch (err) {
+        aviso("falha ao manter sessão, por favor logue-se novamente");
+        location.href = "../login.jsp";
         logoff($http, toastr, token);
-    });
-}
+    }
 
+}
 
 function logoff($http, toastr, token) {
     aviso(toastr, "Erro ao logar, por favor tente novamente");

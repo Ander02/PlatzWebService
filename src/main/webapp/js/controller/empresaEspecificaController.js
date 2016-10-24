@@ -14,13 +14,19 @@ angular.module("platz").controller("empresaEspecificaController", function ($sco
         $http.get(webService + "/eventos/empresa/" + idEmpresa).then(function (response) {
             $scope.eventos = response.data;
         }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "erro ao buscar eventos da empre"));
+            erro(toastr, errorManager(response.config.url, response.status, "erro ao buscar eventos da empresa"));
         });
     };
-    
-    window.onload = function () {
+
+    //funções de atualizações e avisos
+    function atualizar() {
         $scope.empresaId();
         $scope.eventosEmpresa();
+    }
+
+    window.onload = function () {       
+        atualizar();
     };
+
 
 });

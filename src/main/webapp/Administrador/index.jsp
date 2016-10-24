@@ -71,7 +71,7 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
         </div>
 
         <div ng-controller="mensagemController">
-            <div ng-if="$scope.permicao">
+            <div ng-if="permicao">
 
                 <div class="espaco"></div>
 

@@ -163,10 +163,12 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
         $scope.mensagemRecuperacaoId = null;
     };
 
-//funções de atualizações e avisos
+//funções de atualizações
     function atualizar() {
         console.log("atualizar");
-        verificarToken($http, $scope, toastr);
+        verificarToken($http, $scope, toastr,function (){
+            
+        });
         $scope.listarAssuntosNaoDeletados();
         $scope.listarLidas();
         $scope.listarNaoExcluidas();
