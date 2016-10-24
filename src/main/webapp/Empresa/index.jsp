@@ -52,15 +52,7 @@ considerada pagina de eventos que a empresa postou
 
     <div class="head-pagina">
         <h1 class="titulo-meusEventos">Meus Eventos</h1>
-        <form class="form-inline form-pesquisa">
-            <div class="form-group">                
-                <select class="form-control btn btn-lg btn-warning-outline hovereffect" id="selecione1">
-                    <option>Selecione </option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                </select>
-            </div>
+        <form class="form-inline form-pesquisa">            
             <div class="form-group">
                 <input id="nome-evento" type="text" class="form-control" maxlength="30" placeholder="Nome do Evento">
             </div>
