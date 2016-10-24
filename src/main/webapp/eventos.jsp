@@ -56,7 +56,7 @@ Pagina onde ira exibir os eventos, onde sera possivel filtrar os eventos
                     <div class="box" ng-repeat="categoria in categorias">
 
                         <div class="hovereffect">
-                            <img class="img-responsive" ng-src="{{baixarImagem(categoria.id)}}" onerror='this.src = "img/logo.png"' alt="">                            
+                            <img class="img-responsive" ng-src="{{baixarImagemCategoria(categoria.id)}}" onerror='this.src = "img/logo.png"' alt="">                            
                             <div class="overlay">
                                 <h2 ng-bind="categoria.nome"></h2>
                                 <a class="info" href="eventosCategoria.jsp?categoria={{categoria.id}}" > Clique e veja mais</a>
