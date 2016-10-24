@@ -53,6 +53,7 @@ public class UsuarioService {
 
             //Envia erro pelo console
             System.out.println("Erro: " + e.getMessage());
+            e.printStackTrace();
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao cadastrar usuario").build();
         }
@@ -71,27 +72,46 @@ public class UsuarioService {
             //Buscar Model pelo id
             UsuarioModel model = usuarioController.buscarPorId(id);
 
-            //Montando o caminho do upload
-            String diretorioDoUpload = new ImagemUtil().RAIZ + "usuario/";
-            //Montando o nome do arquivo
-            String nomeDoArquivo = model.getId() + "." + fileMetaData.getMediaType().getSubtype();
+            if (model != null) {
 
-            //Salvar Imagem
-            boolean ok = new ImagemUtil().salvarArquivo(diretorioDoUpload, nomeDoArquivo, iconeInputStream);
+                //Montando o caminho do upload
+                String diretorio = "usuarios/";
+                //Montando o nome do arquivo
+                String nomeDoArquivo = model.getId() + "." + fileMetaData.getMediaType().getSubtype();
 
-            //Se a imagem for salva sem nenhum erro atualiza a model
-            if (ok) {
-                //Settar o caminho do icone na model
-                model.setImagemPerfil(diretorioDoUpload + nomeDoArquivo);
+                //Verificar se já existe uma imagem cadastrado
+                if (model.getImagemPerfil() != null && !model.getImagemPerfil().equals("")) {
 
-                //Alterar
-                usuarioController.alterar(model);
-            } else {
-                //Retorna uma BadRequest ao usuário
-                return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
+                    boolean ok = new ImagemUtil().deletarArquivo(model.getImagemPerfil());
+
+                    if (ok) {
+                        System.out.println("Apagou arquivo antigo");
+                    } else {
+                        System.out.println("Não Apagou o arquivo antigo");
+                        return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
+                    }
+                }
+
+                //Salvar Imagem
+                boolean ok = new ImagemUtil().salvarArquivo(diretorio, nomeDoArquivo, iconeInputStream);
+
+                //Se a imagem for salva sem nenhum erro atualiza a model
+                if (ok) {
+                    //Settar o caminho do icone na model
+                    model.setImagemPerfil(new ImagemUtil().URL_FTP + diretorio + nomeDoArquivo);
+                    //Alterar
+                    usuarioController.alterar(model);
+                } else {
+                    //Retorna uma BadRequest ao usuário
+                    return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
+                }
+
+                return Response.ok(new UsuarioLeitura(model)).build();
             }
 
-            return Response.ok(new UsuarioLeitura(model)).build();
+            System.out.println("Id não existente");
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
+
         } catch (Exception e) {
             // Envia erro pelo console
             System.out.println("Erro de upload: " + e.getMessage());
@@ -99,10 +119,40 @@ public class UsuarioService {
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
         }
     }
+    
+    @GET
+    @Path("/usuario/imagem/{id}")
+    @PermitAll
+    @Produces("image/*")
+    public Response baixarImagem(@PathParam("id") String id) {
+
+        try {
+
+            UsuarioModel model = usuarioController.buscarPorId(id);
+
+            if (model != null) {
+
+                if (!model.getImagemPerfil().equals("") && model.getImagemPerfil()!= null) {
+                    InputStream input = new ImagemUtil().baixarImagem(model.getImagemPerfil());
+
+                    if (input != null) {
+                        return Response.ok(input).header("Content-Type", "image/png").build();
+                    }
+                }
+                return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao baixar imagem, imagem inexistente").build();
+            }
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao baixar imagem, usuário não encontrada").build();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao baixar imagem").build();
+
+        }
+    }
 
     @GET
     @Path(value = "/usuarios")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+    //@PerfilAuth(Perfil.ADMINISTRADOR)
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
 

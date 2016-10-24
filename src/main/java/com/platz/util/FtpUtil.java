@@ -29,7 +29,6 @@ public class FtpUtil {
         ftp.connect(host, port);
 
         //System.out.println("FTP URL:" + ftp.getDefaultPort());
-
         reply = ftp.getReplyCode();
 
         if (!FTPReply.isPositiveCompletion(reply)) {
@@ -44,12 +43,11 @@ public class FtpUtil {
 
     public FtpUtil() throws Exception {
         ftp = new FTPClient();
-        //ftp.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(System.out)));
+        ftp.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(System.out)));
         int reply;
         ftp.connect("localhost", 21);
 
         //System.out.println("FTP URL:" + ftp.getDefaultPort());
-
         reply = ftp.getReplyCode();
 
         if (!FTPReply.isPositiveCompletion(reply)) {
@@ -62,12 +60,36 @@ public class FtpUtil {
         ftp.enterLocalPassiveMode();
     }
 
+    public boolean criarDiretorios(String diretorio) throws Exception {
+
+        String[] pathElements = diretorio.split("/");
+
+        if (pathElements != null && pathElements.length > 0) {
+            for (String singleDir : pathElements) {
+                boolean exist = this.ftp.changeWorkingDirectory(singleDir);
+                if (!exist) {
+                    boolean ok = this.ftp.makeDirectory(singleDir);
+                    if (ok) {
+                        System.out.println("Diretório: " + singleDir + " criado com sucesso");
+                        this.ftp.changeWorkingDirectory(singleDir);
+                    } else {
+                        System.out.println("Não foi possível criar o diretório: " + singleDir);
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
     // Method to upload the File on the FTP Server
     public void uploadArquivoFTP(String caminhoLocalDoArquivo, String diretorioDoUpload, String nomeDoArquivo) throws Exception {
         try {
+            this.criarDiretorios(diretorioDoUpload);
+
             InputStream arquivo = new FileInputStream(new File(caminhoLocalDoArquivo));
 
-            this.ftp.storeFile(diretorioDoUpload + nomeDoArquivo, arquivo);
+            this.ftp.storeFile(nomeDoArquivo, arquivo);
         } catch (Exception e) {
             System.out.println("Erro ao Fazer upload do Arquivo por FTP: " + e.getMessage());
             e.printStackTrace();
@@ -77,7 +99,15 @@ public class FtpUtil {
     // Method to upload the File on the FTP Server
     public void uploadArquivoFTP(InputStream arquivo, String nomeDoArquivo, String diretorioDoUpload) throws Exception {
         try {
-            this.ftp.storeFile(diretorioDoUpload + nomeDoArquivo, arquivo);
+
+            this.criarDiretorios(diretorioDoUpload);
+
+            boolean ok = this.ftp.storeFile(nomeDoArquivo, arquivo);
+
+            if (!ok) {
+                System.out.println("Não foi possivel subir o arquivo");
+            }
+
         } catch (Exception e) {
             System.out.println("Erro ao Fazer upload do Arquivo por FTP: " + e.getMessage());
         }
@@ -97,7 +127,7 @@ public class FtpUtil {
     public InputStream downloadArquivoFTP(String hostRemoto) {
 
         try {
-                        
+
             return ftp.retrieveFileStream(hostRemoto);
         } catch (IOException e) {
             System.out.println("Erro ao Fazer download do Arquivo por FTP: " + e.getMessage());

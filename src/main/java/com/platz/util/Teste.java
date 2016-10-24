@@ -1,6 +1,6 @@
 package com.platz.util;
 
-import com.platz.dao.CidadeDao;
+import com.platz.controller.EventoController;
 
 /**
  *
@@ -12,5 +12,6 @@ public class Teste {
     public static void main(String[] args) {
 
 //        System.out.println(new TokenUtil().isValid("824a87871903439b8be46f797c59ad5bd472f865b3a7eff3e323caf9119b485685e8046f92566dea7a952f0cc1a70351"));        
+        new EventoController().TopNEventos(3);
     }
 }

@@ -1,9 +1,6 @@
 package com.platz.util;
 
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -20,9 +17,15 @@ public class ImagemUtil {
         try {
 
             FtpUtil ftp = new FtpUtil();
-
+            
+            //ftp.criarDiretorios(diretorio);
+            
+            //ftp.desconectar();
+            
+            //ftp = new FtpUtil();
+            
             ftp.uploadArquivoFTP(inputStream, nomeDoArquivo, diretorio);
-
+                        
             ftp.desconectar();
 
             /*
@@ -72,7 +75,7 @@ public class ImagemUtil {
 
             String caminhoReduzido = caminhoDoArquivo.replaceFirst(ImagemUtil.URL_FTP, "");
 
-            System.out.println(caminhoDoArquivo);
+            //System.out.println(caminhoDoArquivo);
             boolean ok = ftp.deletarArquivoFTP(caminhoReduzido);
 
             if (ok) {

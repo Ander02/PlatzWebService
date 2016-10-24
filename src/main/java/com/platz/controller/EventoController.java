@@ -9,6 +9,7 @@ import com.platz.model.EmpresaModel;
 import com.platz.model.EventoModel;
 import com.platz.model.ImagemModel;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -96,6 +97,28 @@ public class EventoController {
 
     public List<EventoModel> buscarEventosDaSemana() {
         return eventoDao.buscarEventosPorDia(7);
+    }
+
+    public List<EventoModel> TopNEventos(int max) {
+        List<EventoModel> eventosSemana = this.buscarEventosDaSemana();
+        List<EventoModel> eventoSemanaMarcados = new ArrayList<>();
+
+        for (EventoModel evento : eventosSemana) {
+            
+            if (evento.getDestaque() == true) {
+                eventoSemanaMarcados.add(evento);
+            }
+        }
+        List<EventoModel> topN = new ArrayList<>();
+        if (max > eventoSemanaMarcados.size()) {
+            max = eventoSemanaMarcados.size();
+        }
+
+        for (int i = 0; i < max; i++) {
+            topN.add(eventoSemanaMarcados.get(i));
+        }
+        System.out.println(Arrays.toString(topN.toArray()));
+        return topN;
     }
 
     public List<EventoModel> buscarEventosPorDiaLimite(int dia) {

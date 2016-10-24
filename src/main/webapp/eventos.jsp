@@ -63,9 +63,10 @@ Pagina onde ira exibir os eventos, onde sera possivel filtrar os eventos
                         <h2 ng-bind="categoria.nome"></h2>
                         <a class="info" href="eventosCategoria.jsp?categoria={{categoria.id}}" > Clique e veja mais</a>
                         <a ></a>
-                    </div>
                 </div>
             </div>  
+        </div>
+            
         </div>
 
         <ng-include src="'View/footer.html'"></ng-include>

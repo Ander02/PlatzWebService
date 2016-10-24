@@ -4,7 +4,6 @@ import com.platz.model.CidadeModel;
 import com.platz.model.EmpresaModel;
 import com.platz.model.EventoModel;
 import com.platz.util.DataUtil;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -20,7 +19,7 @@ public class EventoDao extends GenericDao<EventoModel> {
         if (new Date().before(model.getDataInicioDate())) {
             super.alterar(model);
         } else {
-            System.out.println("Não foi possível alterar");
+            System.out.println("Não foi possível alterar o evento");
         }
     }
 
@@ -134,7 +133,7 @@ public class EventoDao extends GenericDao<EventoModel> {
 
         Date dataProximaSemana = new DataUtil().adicionaDias(dia, new Date());
 
-        List<EventoModel> lista = entityManager.createQuery("from EventoModel where dataInicio between :dataAtual and :dataProximaSemana").setParameter("dataAtual", new Date()).setParameter("dataProximaSemana", dataProximaSemana).getResultList();
+        List<EventoModel> lista = entityManager.createQuery("from EventoModel where dataInicio between :dataAtual and :dataProximaSemana order by dataInicio").setParameter("dataAtual", new Date()).setParameter("dataProximaSemana", dataProximaSemana).getResultList();
         entityManager.close();
         return lista;
     }
@@ -153,16 +152,6 @@ public class EventoDao extends GenericDao<EventoModel> {
         List<EventoModel> lista = entityManager.createQuery("from EventoModel where preco = 0.0").getResultList();
         entityManager.close();
         return lista;
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<EventoModel> TresMelhores() {
-        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
-        entityManager.createQuery("from PresencaModel ");
-
-        entityManager.close();
-        return null;
-
     }
 
     @SuppressWarnings("unchecked")

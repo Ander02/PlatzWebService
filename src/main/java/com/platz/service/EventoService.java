@@ -325,6 +325,21 @@ public class EventoService {
     }
 
     @GET
+    @Path(value = "/eventos/top/{max}")
+    @PermitAll
+    @Produces
+    public Response buscarTopN(@PathParam("max") int max) {
+        try {
+            return Response.ok(new EventoLeitura().converterLista(eventoController.TopNEventos(max))).build();
+            
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar eventos").build();
+        }
+    }
+
+    @GET
     @Path(value = "/eventos/censurados")
     @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
