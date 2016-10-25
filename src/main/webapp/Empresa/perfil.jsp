@@ -47,25 +47,25 @@
 
     </head>
 
-    <body>
+    <body ng-controller="perfilEmpresaController">
         <!-- inicio do projeto aqui-->
     <ng-include src="'../View/nav-empresa.html'"></ng-include>
-        
-    <%
-            try {
-                String token = session.getAttribute("token").toString();
-                if (token == null) {
-                    response.sendRedirect("../login.jsp");
-                } else {
-                    out.print("<input type='hidden' id='token' name='token' value ='" + token + "' >");
-                }
-            } catch (Exception e) {
-                System.out.println("Erro ao buscar sessão " + e.getMessage());
-                response.sendRedirect("../login.jsp");
-            }
-        %>
 
-    <div ng-controller="perfilEmpresaController">
+    <%
+        try {
+            String token = session.getAttribute("token").toString();
+            if (token == null) {
+                response.sendRedirect("../login.jsp");
+            } else {
+                out.print("<input type='hidden' id='token' name='token' value ='" + token + "' >");
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao buscar sessão " + e.getMessage());
+            response.sendRedirect("../login.jsp");
+        }
+    %>
+
+    <div ng-if="permicao">
         <div class="espaco"></div>
 
         <section class="section section-blog-fw">
@@ -93,7 +93,7 @@
                                 <h4 class="card-title">{{empresa.razaoSocial}}</h4>                              
                                 <hr>
                                 <!--Quotation-->
-                                <p>Endereço e telefone</p>
+                                <p>{{empresa.endereco.bairro}} {{empresa.endereco.cidade.nome}} - {{empresa.endereco.cidade.estado.uf}}</p>
                             </div>
                         </div> <!--/.Card-->                       
                     </div>
@@ -111,16 +111,15 @@
                         <div class="tab-pane fade in active" id="panel11" role="tabpanel">
                             <br>                            
                             <div class="card-group col-md-12">
-                                <div class="col-md-4 evento-perfil-empresa">
+                                <div class="col-md-4 evento-perfil-empresa" ng-repeat="evento in eventos">
                                     <div class="card">
                                         <div class="hovereffect">
                                             <img class=" img-responsive " src="../img/outras/plano-fundo.jpg" alt="Imagem do Evento" >
                                         </div><!-- /. div hovereffect  -->
-                                        <h4 class="card-title">Nome do evento</h4>
-                                        <h5><i class="fa fa-building-o animated bounceInDown"></i> Empresa</h5>
-                                        <p><i class="fa fa-calendar animated bounceInDown"></i> Data: </p>
-                                        <p><i class="fa fa-map-marker animated bounceInDown"></i> Local: </p>
-                                        <p><a class="btn btn-warning " href="../eventoEspecifico.html" role="button">Ver Mais Detalhes &raquo;</a></p>
+                                        <h4 class="card-title">{{evento.nome}}</h4>
+                                        <p><i class="fa fa-calendar animated bounceInDown"></i> {{evento.dataInicio}}</p>
+                                        <p><i class="fa fa-map-marker animated bounceInDown"></i> {{evento.endereco.bairro}}, {{evento.endereco.cidade.nome}} - {{evento.endereco.cidade.estado.uf}} </p>
+                                        <p><a class="btn btn-warning " href="../eventoEspecifico.jsp?evento={{evento.id}}" role="button">Ver Mais Detalhes &raquo;</a></p>
                                     </div>
                                 </div>
                             </div><!-- /.card group -->

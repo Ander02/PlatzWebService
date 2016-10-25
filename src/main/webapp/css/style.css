@@ -737,7 +737,7 @@ label.star:before {
 /*
 * PAGINA DE EVENTOS
 */
-.eventos-categoria
+.eventos-categoria , .eventos-empresa
 {
     margin-bottom: 5%;
     text-align: center;

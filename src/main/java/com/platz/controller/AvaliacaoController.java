@@ -25,9 +25,12 @@ public class AvaliacaoController {
 
     public Double mediaPorEvento(EventoModel evento) {
         List<AvaliacaoModel> models = avaliacaoDao.buscarPorEvento(evento);
-        Double total = 0.0;
+        double total = 0.0;
         for (AvaliacaoModel model : models) {
             total += model.getNota();
+        }
+        if(total==0){
+            return 0.0;
         }
         return total / models.size();
     }

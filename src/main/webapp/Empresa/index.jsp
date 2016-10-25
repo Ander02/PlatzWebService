@@ -35,9 +35,9 @@ considerada pagina de eventos que a empresa postou
         <script type="text/javascript" src="../js/app.js"></script>
 
         <!-- link util -->
-
+        <script src="../js/util.js" type="text/javascript"></script>
         <!-- Link Controller -->
-
+        <script src="../js/controller/perfilEmpresaController.js" type="text/javascript"></script>
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="../img/logo.png">
 
@@ -45,27 +45,27 @@ considerada pagina de eventos que a empresa postou
         <link href="../css/efeitos/indexEmpresa.css" rel="stylesheet">
     </head>
 
-    <body>
+    <body ng-controller="perfilEmpresaController">
         <!-- inicio do projeto aqui-->
+        <%
+            try {
+                String token = session.getAttribute("token").toString();
+                if (token == null) {
+                    response.sendRedirect("../login.jsp");
+                } else {
+                    out.print("<input type='hidden' id='token' name='token' value ='" + token + "' >");
+                }
+            } catch (Exception e) {
+                System.out.println("Erro ao buscar sessão " + e.getMessage());
+                response.sendRedirect("../login.jsp");
+            }
+        %>
+
     <ng-include src="'../View/nav-empresa.html'"></ng-include>
     <div class="espaco"></div>
 
     <div class="head-pagina">
         <h1 class="titulo-meusEventos">Meus Eventos</h1>
-        <form class="form-inline form-pesquisa">
-            <div class="form-group">                
-                <select class="form-control btn btn-lg btn-warning-outline hovereffect" id="selecione1">
-                    <option>Selecione </option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <input id="nome-evento" type="text" class="form-control" maxlength="30" placeholder="Nome do Evento">
-            </div>
-            <button class="btn btn-default" type="button">Pesquisar</button>
-        </form><!-- /. form-inline form-pesquisa -->
     </div>
 
     <input type='hidden' id='current_page' />  
@@ -75,25 +75,25 @@ considerada pagina de eventos que a empresa postou
     (eles não têm de ser todos iguais, você pode usar divs, parágrafos, vãos, ou o que quiser misturados). '-->  
     <div id='content'> 
 
-        <div class="col-md-3 eventos-categoria">
+        <div class="col-md-3 eventos-empresa" ng-repeat="evento in eventos">
             <div class="card">
                 <div class="hovereffect">
                     <img class=" img-responsive " src="../img/outras/plano-fundo.jpg" alt="Imagem do Evento" >
                     <div class="overlay">
-                        <h2>Nome do Evento</h2>
+                        <h2>{{evento.nome}}</h2>
                         <hr/>                                             
                         <div class="col-md-3 estrelas">
                             <div class="stars">
                                 <form action="">
-                                    <input class="star star-5" id="star-5-2" type="radio" name="star"/>
+                                    <input class="star star-5" id="star-5-2" type="radio" name="star" ng-checked=" evento.mediaArredondada == 5" disabled/>
                                     <label class="star star-5" for="star-5-2"></label>
-                                    <input class="star star-4" id="star-4-2" type="radio" name="star"/>
+                                    <input class="star star-4" id="star-4-2" type="radio" name="star" ng-checked=" evento.mediaArredondada == 4" disabled/>
                                     <label class="star star-4" for="star-4-2"></label>
-                                    <input class="star star-3" id="star-3-2" type="radio" name="star"/>
+                                    <input class="star star-3" id="star-3-2" type="radio" name="star" ng-checked=" evento.mediaArredondada == 3" disabled/>
                                     <label class="star star-3" for="star-3-2"></label>
-                                    <input class="star star-2" id="star-2-2" type="radio" name="star"/>
+                                    <input class="star star-2" id="star-2-2" type="radio" name="star" ng-checked=" evento.mediaArredondada == 2" disabled/>
                                     <label class="star star-2" for="star-2-2"></label>
-                                    <input class="star star-1" id="star-1-2" type="radio" name="star"/>
+                                    <input class="star star-1" id="star-1-2" type="radio" name="star" ng-checked=" evento.mediaArredondada == 1" disabled/>
                                     <label class="star star-1" for="star-1-2"></label>
                                 </form>
 
@@ -103,11 +103,10 @@ considerada pagina de eventos que a empresa postou
 
                 </div><!-- /. div hovereffect  -->
 
-                <h4 class="card-title">Nome do evento</h4>
-                <h5><i class="fa fa-building-o animated bounceInDown"></i> Empresa</h5>
-                <p><i class="fa fa-calendar animated bounceInDown"></i> Data: </p>
-                <p><i class="fa fa-map-marker animated bounceInDown"></i> Local: </p>
-                <p><a class="btn btn-warning " href="evento-especifico.html" role="button">Ver Mais Detalhes &raquo;</a></p>
+                <h4 class="card-title">{{evento.nome}}</h4>
+                <p><i class="fa fa-calendar animated bounceInDown"></i> {{evento.dataInicio}} </p>
+                <p><i class="fa fa-map-marker animated bounceInDown"></i> {{evento.endereco.bairro}}, {{evento.endereco.cidade.nome}} - {{evento.endereco.cidade.estado.uf}} </p>
+                <p><a class="btn btn-warning " href="../eventoEspecifico.jsp?evento={{evento.id}}" role="button">Ver Mais Detalhes &raquo;</a></p>
             </div>
         </div> <!-- /. div col-md-3 evento -->       
     </div><!-- /. div content -->
@@ -118,7 +117,7 @@ considerada pagina de eventos que a empresa postou
             <li id='page_navigation'></li> 
         </ul>
     </div>
-    
+
     <ng-include src="'../View/footer.html'"></ng-include>
     <!-- /.fim do projeto-->
 
@@ -148,7 +147,7 @@ considerada pagina de eventos que a empresa postou
 
     <!-- link TOASTR -->
     <script type="text/javascript" src="../lib/angular/angular-toastr.tpls.js"></script>
-    
+
     <!-- aside -->
     <script src="../js/outros/aside.js" type="text/javascript"></script>
 
