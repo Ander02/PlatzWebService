@@ -25,7 +25,7 @@ Tela de cadastro de evento
 
         <!-- Your custom styles (optional) -->
         <link href="../css/styleEmpresa.css" rel="stylesheet">
-        
+
         <link href="../css/efeitos/dropEvento.css" rel="stylesheet" type="text/css"/>
 
         <!-- link Angular -->
@@ -35,8 +35,10 @@ Tela de cadastro de evento
         <script type="text/javascript" src="../js/app.js"></script>
 
         <!-- link util -->
+        <script src="../js/util.js" type="text/javascript"></script>
 
         <!-- link controller -->
+        <script src="../js/controller/eventoController.js" type="text/javascript"></script>
 
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="../img/logo.png">
@@ -48,8 +50,22 @@ Tela de cadastro de evento
 
     </head>
 
-    <body>
+    <body ng-controller="eventoController">
         <!-- inicio do projeto aqui-->
+
+        <%
+            try {
+                String token = session.getAttribute("token").toString();
+                if (token == null) {
+                    response.sendRedirect("../login.jsp");
+                } else {
+                    out.print("<input type='hidden' id='token' name='token' value ='" + token + "' >");
+                }
+            } catch (Exception e) {
+                System.out.println("Erro ao buscar sessão " + e.getMessage());
+                response.sendRedirect("../login.jsp");
+            }
+        %>
 
     <ng-include src="'../View/nav-empresa.html'"></ng-include>
     <div class="espaco"></div>
@@ -71,13 +87,13 @@ Tela de cadastro de evento
                         <div class="col-md-12">
                             <label for="conta-empresa-img">Imagem de Capa</label>
                             <div class="md-form">                
-                                <input id="conta-empresa-img" type="file" multiple>
+                                <input id="cadastro-evento-img" type="file" >
 
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="md-form">  
-                                <input  type="text" id="evento-nome" class="form-control" required=""
+                                <input  type="text" id="evento-nome" class="form-control" required ng-model="evento.nome"
                                         maxlength="75">
                                 <label for="evento-nome">Nome do Evento</label>
                             </div>
@@ -85,19 +101,19 @@ Tela de cadastro de evento
 
                         <div class="col-md-12">
                             <div class="md-form">                
-                                <textarea id="evento-descricao" class="md-textarea"></textarea>
+                                <textarea id="evento-descricao" class="md-textarea" ng-model="evento.detalhes"></textarea>
                                 <label for="evento-descricao">Descrição</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="md-form">                
-                                <input type="text" id="evento-lotacao-minima" class="form-control">
+                                <input type="text" id="evento-lotacao-minima" class="form-control" ng-model="evento.lotacaoMin">
                                 <label for="evento-lotacao-minima">Lotação Minima</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="md-form">  
-                                <input type="text" id="evento-lotacao-maxima" class="form-control">
+                                <input type="text" id="evento-lotacao-maxima" class="form-control" ng-model="evento.lotacaoMax">
                                 <label for="evento-lotacao-maxima">Lotação Maxima</label>
                             </div>
                         </div>
@@ -132,23 +148,14 @@ Tela de cadastro de evento
                                     <dd>
                                         <div class="mutliSelect" >
                                             <ul>
+                                                <li class="btn btn-warning-outline" ng-repeat="categoria in categorias">
+                                                    <input type="checkbox" value="{{categoria.id}}" class="categorias" />{{categoria.nome}}</li>
                                                 <li class="btn btn-warning-outline">
-                                                    <input type="checkbox" value="Apple" />Apple</li>
-                                                <li class="btn btn-warning-outline">
-                                                    <input type="checkbox" value="Blackberry" />Blackberry</li>
-                                                <li class="btn btn-warning-outline">
-                                                    <input type="checkbox" value="HTC" />HTC</li>
-                                                <li class="btn btn-warning-outline">
-                                                    <input type="checkbox" value="Sony Ericson" />Sony Ericson</li>
-                                                <li class="btn btn-warning-outline">
-                                                    <input type="checkbox" value="Motorola" />Motorola</li>
-                                                <li class="btn btn-warning-outline">
-                                                    <input type="checkbox" value="Nokia" />Nokia</li>
                                             </ul>
                                         </div>
                                     </dd>
-                                   
-                            </dl>
+
+                                </dl>
 
                             </div>
 
@@ -157,7 +164,7 @@ Tela de cadastro de evento
 
                         <div class="col-md-3">
                             <div class="md-form">                        
-                                <input type="text" id="evento-idade-minima" class="form-control">
+                                <input type="text" id="evento-idade-minima" class="form-control" ng-model="evento.idade">
                                 <label for="evento-idade-minima">Idade Minima</label>
                             </div>
                         </div>
@@ -178,21 +185,17 @@ Tela de cadastro de evento
                         </div>
                         <div class="col-md-3">
                             <div class="md-form">                        
-                                <input type="text"  id="evento-preco" class="form-control">
+                                <input type="text"  id="evento-preco" class="form-control" ng-model="evento.preco">
                                 <label for="evento-preco">Preço</label>
                             </div>
                         </div>
 
                         <div class="col-md-12">
-                            <label for="conta-empresa-galeria"> Galeria de Imagens sobre o evento, local ..</label>
+                            <label for="evento-galeria"> Galeria de Imagens sobre o evento, local ..</label>
                             <div class="md-form">                
-                                <input id="conta-empresa-galeria" type="file" multiple>
-
+                                <input id="evento-imagem-galeria" type="file" >
                             </div>
                         </div>
-
-
-
                     </div>
                     <!--/.Card content-->
 
@@ -206,49 +209,48 @@ Tela de cadastro de evento
                         <h4 class="card-title"><i class="fa fa-map-marker animated rotateIn"></i><strong> Endereço</strong></h4>
                         <div class="col-md-6">
                             <div class="md-form col-md-8">                
-                                <input type="text" id="evento-cep" class="form-control">
-                                <label for="conta-empresa-cep">CEP</label>
+                                <input type="text" id="evento-cep" class="form-control"  ng-model="evento.endereco.cep" ng-blur="onblurCepEvento()">
+                                <label for="evento-cep">CEP</label>
                             </div>
                             <div class="col-md-4 link-cep"><a title="clique aqui e saiba seu cep" class="text-info">Não Sei meu cep</a></div>
                         </div>
                         <div class="col-md-6">
                             <div class="md-form">  
                                 <input  type="text" id="evento-numero" class="form-control">
-                                <label for="conta-empresa-numero">Número</label>
+                                <label for="evento-numero"   ng-model="evento.endereco.numero">Número</label>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="md-form">                
-                                <input type="text" id="evento-rua" class="form-control">
-                                <label for="conta-empresa-rua">Rua</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="md-form">  
-                                <input  type="text" id="evento-bairro" class="form-control">
-                                <label for="conta-empresa-bairro">Bairro</label>
+                                <input type="text" id="evento-complemento" class="form-control" ng-model="evento.endereco.complemento">
+                                <label for="evento-complemento">Complemento</label>
                             </div>
                         </div>
 
-                        <div class="col-md-6">
-                            <div class="md-form">                
-                                <input type="text" id="evento-complemento" class="form-control">
-                                <label for="conta-empresa-complemento">Complemento</label>
-                            </div>
+                        <div class="col-md-12">
+                            <label for="evento-rua" class="label-form">Rua</label>
+                            <p>{{evento.endereco.rua}}</p>
+                            <hr>
                         </div>
-                        <div class="col-md-6">
-                            <div class="md-form">  
-                                <input  type="text" id="evento-cidade" class="form-control">
-                                <label for="conta-empresa-cidade">Cidade</label>
-                            </div>
+
+                        <div class="col-md-12">
+                            <label for="evento-bairro" class="label-form">Bairro</label>
+                            <p>{{evento.endereco.bairro}}</p>   
+                            <hr>
                         </div>
+
+                        <div class="col-md-12 ">
+                            <label for="evento-cidade" class="label-form">Cidade</label>
+                            <p>{{evento.endereco.cidade}}</p>   
+                            <hr>
+                        </div>  
 
                     </div>
                     <!--/.Card content-->
 
                     <div>
-                        <button class="btn btn-lg btn-warning"><i class="fa fa-check"></i> Cadastrar</button>
+                        <button class="btn btn-lg btn-warning" ng-click="cadastrar()"><i class="fa fa-check"></i> Cadastrar</button>
                     </div>
                 </div>
 
@@ -298,7 +300,7 @@ Tela de cadastro de evento
 
     <!-- aside -->
     <script src="../js/outros/aside.js" type="text/javascript"></script>
-    
+
     <script src="../js/outros/selectCheckbox.js" type="text/javascript"></script>
 
 

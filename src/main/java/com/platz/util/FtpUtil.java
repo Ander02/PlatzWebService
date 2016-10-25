@@ -43,7 +43,7 @@ public class FtpUtil {
 
     public FtpUtil() throws Exception {
         ftp = new FTPClient();
-        ftp.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(System.out)));
+        //ftp.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(System.out)));
         int reply;
         ftp.connect("localhost", 21);
 
