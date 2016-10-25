@@ -14,7 +14,7 @@ and open the template in the editor.
 
 
 a {
-  color: #fff;
+  color: #000;
 }
 
 .dropdown dd,
@@ -33,7 +33,7 @@ a {
 
 .dropdown a,
 .dropdown a:visited {
-  color: #fff;
+  color: #000000;
   text-decoration: none;
   outline: none;
   font-size: 12px;
@@ -56,16 +56,15 @@ a {
 }
 
 .dropdown dd ul {
-  background-color: #dfe5d7;
   border: 0;
-  color: #fff;
+  color: #000;
   display: none;
   left: 5px;
   padding: 2px 15px 2px 5px;
   position: absolute;
   top: -22px;
   list-style: none;
-  height: 100px;
+  height: 450px;
   width: 240px;
   overflow: auto;
 }

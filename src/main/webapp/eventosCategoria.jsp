@@ -58,16 +58,6 @@ pagina onde é retornada a busca de eventos por uma unica determinada categoria
     <div ng-controller="eventosCategoriaController">
         <div class="espaco"></div>
 
-        <div class="head-pagina">
-            <h1 class="titulo-meusEventos">Categorias</h1>
-            <form class="form-inline form-pesquisa" action="" method="post">
-               <div class="form-group">
-                    <input id="nome-evento" name="nome-evento" type="text" class="form-control" maxlength="30" placeholder="Nome do Evento">
-                </div>
-                <input class="btn btn-default btn-sm" type="submit" value="Pesquisar">
-            </form><!-- /. form-inline form-pesquisa -->
-        </div><!-- fim da div head-pagina -->
-
 
         <!-- Section: Retornando eventos -->
         <section class="section sectionCategoria col-md-10">

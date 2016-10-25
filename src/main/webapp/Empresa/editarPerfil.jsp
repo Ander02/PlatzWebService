@@ -30,7 +30,7 @@ and open the template in the editor.
         <!-- Your custom styles (optional) -->
         <link href="../css/styleEmpresa.css" rel="stylesheet">
 
-         <!-- link Angular -->
+        <!-- link Angular -->
         <script type="text/javascript" src="../lib/angular/angular.js"></script>
 
         <!-- link app -->
@@ -61,7 +61,7 @@ and open the template in the editor.
     <section class="section section-blog-fw">
         <div class="col-md-1"></div>
         <div class="col-md-10">
-            
+
 
             <!--Post data-->
             <div class="jumbotron caixa-informacao-empresa">
@@ -87,28 +87,21 @@ and open the template in the editor.
                         <br>
                         <form>
                             <h4><i class="fa fa-lock animated rotateIn"></i><strong>Informações da Conta</strong></h4>
-                            <div class="md-form col-md-6">  
-                               <input  type="email" id="conta-empresa-email" class="form-control" required=""
-                                            maxlength="75">
-                                    <label for="conta-empresa-email">Email</label>
+                            <div class="md-form col-md-12">  
+                                <label for="conta-empresa-email" class="label-form">Email</label>
+                                <p></p>
+                                <hr/>
                             </div>
-                            <div class="md-form col-md-6">  
-                                <label for="conta-empresa-img">Imagem de Perfil</label>
-                                <br/>
-                                <div class="md-form">                
-                                     <input id="conta-empresa-img" type="file" multiple>
 
-                                </div>
-                            </div>
                             <div class="md-form col-md-6">  
-                               <input type="password" id="conta-empresa-senha" class="form-control" required=""
-                                           maxlength="20">
-                                    <label for="conta-empresa-senha">Senha</label>
+                                <input type="password" id="conta-empresa-senha" class="form-control" required=""
+                                       maxlength="20">
+                                <label for="conta-empresa-senha">Senha</label>
                             </div>
                             <div class="md-form col-md-6">  
                                 <input  type="password" id="conta-empresa-confirma-senha" class="form-control"
-                                            required="" maxlength="20"> 
-                                    <label for="conta-empresa-confirma-senha">Confirmar a Senha</label>
+                                        required="" maxlength="20"> 
+                                <label for="conta-empresa-confirma-senha">Confirmar a Senha</label>
                             </div>
                             <div class="md-form col-md-2 btn-cadastro">  
                                 <input  type="submit" id="btn-cadastrar-conta" class="form-control btn btn-lg btn-warning-outline">                               
@@ -124,15 +117,23 @@ and open the template in the editor.
                         <form>
                             <h4><i class="fa fa-building-o animated rotateIn"></i><strong>Informações Empresariais</strong></h4>
 
-                            <div class="md-form col-md-6">                
+                            <div class="md-form col-md-4">                
                                 <input type="text" id="conta-empresa-razao" class="form-control" required=""
                                        maxlength="35">
                                 <label for="conta-empresa-razao">Razão Social</label>
                             </div>
-                            <div class="md-form col-md-6">  
+                            <div class="md-form col-md-4">  
                                 <input  type="text" id="conta-empresa-nomeFantasia" class="form-control" required=""
                                         maxlength="30">
                                 <label for="conta-empresa-nomeFantasia">Nome Fantasia</label>
+                            </div>
+
+                            <div class="md-form col-md-4">  
+                                <label for="conta-empresa-img">Imagem de Perfil</label>
+                                <br/>
+                                <div class="md-form">                
+                                    <input id="conta-empresa-img" type="file" multiple>
+                                </div>
                             </div>
 
                             <div class="md-form col-md-4">                
@@ -164,34 +165,40 @@ and open the template in the editor.
                         <form>
                             <h4><i class="fa fa-map-marker animated rotateIn"></i><strong>Endereço</strong></h4>
 
-                            <div class="md-form col-md-6">                
+                            <div class="md-form col-md-2">                
                                 <input type="text" id="conta-empresa-cep" class="form-control">
                                 <label for="conta-empresa-cep">CEP</label>
                             </div>
+                            <div class="col-md-2 link-cep">
+                                <a title="clique aqui e saiba seu cep" class="text-info"
+                                   href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blank">Não Sei meu cep</a></div>
 
-                            <div class="md-form col-md-6">  
+                            <div class="md-form col-md-4">  
                                 <input  type="text" id="conta-empresa-numero" class="form-control">
                                 <label for="conta-empresa-numero">Número</label>
                             </div>
 
-                            <div class="md-form col-md-6">                
-                                <input type="text" id="conta-empresa-rua" class="form-control">
-                                <label for="conta-empresa-rua">Rua</label>
-                            </div>
-
-                            <div class="md-form col-md-6">  
-                                <input  type="text" id="conta-empresa-bairro" class="form-control">
-                                <label for="conta-empresa-bairro">Bairro</label>
-                            </div>
-
-                            <div class="md-form col-md-6">                
+                            <div class="md-form col-md-4">                
                                 <input type="text" id="conta-empresa-complemento" class="form-control">
                                 <label for="conta-empresa-complemento">Complemento</label>
                             </div>
 
-                            <div class="md-form col-md-6">  
-                                <input  type="text" id="conta-empresa-cidade" class="form-control">
-                                <label for="conta-empresa-cidade">Cidade</label>
+                            <div class="md-form col-md-12">
+                                <label for="conta-empresa-rua" class="label-form">Rua</label>
+                                <p></p>
+                                <hr>
+                            </div>
+
+                            <div class="md-form col-md-12">                                 
+                                <label for="conta-empresa-bairro" class="label-form">Bairro</label>
+                                <p></p>
+                                <hr>
+                            </div>
+
+                            <div class="md-form col-md-12">  
+                                <label for="conta-empresa-cidade" class="label-form">Cidade</label>
+                                <p></p>
+                                <hr>
                             </div>
 
                             <div class="md-form col-md-2 btn-cadastro">  
@@ -210,8 +217,8 @@ and open the template in the editor.
             </div> <!-- /.jumbtron caixa-informacao-especifico -->
         </div> <!-- /.col-md-10 -->    
     </section> <!-- /.section -->
-    
-     <ng-include src="'../View/footer.html'"></ng-include>
+
+    <ng-include src="'../View/footer.html'"></ng-include>
     <!-- /.fim do projeto-->
 
 
@@ -240,7 +247,7 @@ and open the template in the editor.
 
     <!-- link TOASTR -->
     <script type="text/javascript" src="../lib/angular/angular-toastr.tpls.js"></script>
-    
+
     <!-- aside -->
     <script src="../js/outros/aside.js" type="text/javascript"></script>
 

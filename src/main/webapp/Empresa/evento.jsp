@@ -130,20 +130,15 @@ Tela de cadastro de evento
                                     </dt>
 
                                     <dd>
-                                        <div class="mutliSelect" >
+                                        <div class="mutliSelect list-group" >
                                             <ul>
-                                                <li class="btn btn-warning-outline">
+                                                <li class="list-group-item">
                                                     <input type="checkbox" value="Apple" />Apple</li>
-                                                <li class="btn btn-warning-outline">
+                                                <li class="list-group-item">
                                                     <input type="checkbox" value="Blackberry" />Blackberry</li>
-                                                <li class="btn btn-warning-outline">
+                                                <li class="list-group-item">
                                                     <input type="checkbox" value="HTC" />HTC</li>
-                                                <li class="btn btn-warning-outline">
-                                                    <input type="checkbox" value="Sony Ericson" />Sony Ericson</li>
-                                                <li class="btn btn-warning-outline">
-                                                    <input type="checkbox" value="Motorola" />Motorola</li>
-                                                <li class="btn btn-warning-outline">
-                                                    <input type="checkbox" value="Nokia" />Nokia</li>
+                                                
                                             </ul>
                                         </div>
                                     </dd>
