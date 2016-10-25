@@ -44,29 +44,29 @@ Pagina onde ira exibir os eventos, onde sera possivel filtrar os eventos
 
     </head>
 
-    <body >
+    <body>
         <!-- inicio do projeto aqui-->
     <ng-include src="'View/nav.html'" ng-controller="loginController"></ng-include>
     <div ng-controller="eventosController">
+
         <div class="espaco"></div>
 
-        <div>
-            <div class="container">
-                <div class="main">
-                    <div class="box" ng-repeat="categoria in categorias">
 
-                        <div class="hovereffect">
-                            <img class="img-responsive" ng-src="{{baixarImagemCategoria(categoria.id)}}" onerror='this.src = "img/logo.png"' alt="">                            
-                            <div class="overlay">
-                                <h2 ng-bind="categoria.nome"></h2>
-                                <a class="info" href="eventosCategoria.jsp?categoria={{categoria.id}}" > Clique e veja mais</a>
-                                <a ></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="col-md-12 card-group">
+            <div class="head-pagina">
+                <h1> Categoria dos Eventos </h1>
             </div>
-
+            <div class="card-block col-md-3" ng-repeat="categoria in categorias">
+                <div class="hovereffect">
+                    <img class="img-responsive img-fluid" ng-src="{{baixarImagem(categoria.id)}}" onerror='this.src = "img/logo.png"' alt="">                            
+                    <div class="overlay">
+                        <h2 ng-bind="categoria.nome"></h2>
+                        <a class="info" href="eventosCategoria.jsp?categoria={{categoria.id}}" > Clique e veja mais</a>
+                        <a ></a>
+                </div>
+            </div>  
+        </div>
+            
         </div>
 
         <ng-include src="'View/footer.html'"></ng-include>
@@ -95,6 +95,8 @@ Pagina onde ira exibir os eventos, onde sera possivel filtrar os eventos
 
         <!-- link Angular TOASTR CSS -->
         <script type="text/javascript" src="lib/angular/angular-toastr.tpls.js"></script>
+
+        <script src="js/outros/randomCores.js" type="text/javascript"></script>
 
     </div>
 

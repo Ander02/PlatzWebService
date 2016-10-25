@@ -25,6 +25,8 @@ Tela de cadastro de evento
 
         <!-- Your custom styles (optional) -->
         <link href="../css/styleEmpresa.css" rel="stylesheet">
+        
+        <link href="../css/efeitos/dropEvento.css" rel="stylesheet" type="text/css"/>
 
         <!-- link Angular -->
         <script type="text/javascript" src="../lib/angular/angular.js"></script>
@@ -116,14 +118,41 @@ Tela de cadastro de evento
                         </div>
 
                         <div class="col-md-3">
-                            <div class="md-form">                
-                                <select class="form-control btn btn-lg btn-warning-outline hovereffect" id="selecione1">
-                                    <option>Selecione </option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                </select>
+                            <div class="md-form"> 
+
+                                <dl class="dropdown"> 
+
+                                    <dt>
+                                        <a href="#" class="btn btn-amber">
+                                            <span class="hida">Selecione categorias</span>    
+                                            <p class="multiSel"></p>  
+                                        </a>
+                                    </dt>
+
+                                    <dd>
+                                        <div class="mutliSelect" >
+                                            <ul>
+                                                <li class="btn btn-warning-outline">
+                                                    <input type="checkbox" value="Apple" />Apple</li>
+                                                <li class="btn btn-warning-outline">
+                                                    <input type="checkbox" value="Blackberry" />Blackberry</li>
+                                                <li class="btn btn-warning-outline">
+                                                    <input type="checkbox" value="HTC" />HTC</li>
+                                                <li class="btn btn-warning-outline">
+                                                    <input type="checkbox" value="Sony Ericson" />Sony Ericson</li>
+                                                <li class="btn btn-warning-outline">
+                                                    <input type="checkbox" value="Motorola" />Motorola</li>
+                                                <li class="btn btn-warning-outline">
+                                                    <input type="checkbox" value="Nokia" />Nokia</li>
+                                            </ul>
+                                        </div>
+                                    </dd>
+                                   
+                            </dl>
+
                             </div>
+
+
                         </div>
 
                         <div class="col-md-3">
@@ -229,8 +258,8 @@ Tela de cadastro de evento
         </form>
     </div>
     <!--/Form fim da div do form-->
-    
-<ng-include src="'../View/footer.html'"></ng-include>
+
+    <ng-include src="'../View/footer.html'"></ng-include>
     <!-- /.fim do projeto-->
 
 
@@ -267,8 +296,10 @@ Tela de cadastro de evento
     <!-- link TOASTR -->
     <script type="text/javascript" src="../lib/angular/angular-toastr.tpls.js"></script>
 
-     <!-- aside -->
+    <!-- aside -->
     <script src="../js/outros/aside.js" type="text/javascript"></script>
+    
+    <script src="../js/outros/selectCheckbox.js" type="text/javascript"></script>
 
 
 </body>

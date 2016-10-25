@@ -9,7 +9,8 @@ $(document).ready(function ()
             ({
                 time: false,
                 clearButton: true,
-                format:'DD/MM/YYYY'
+                format:'DD/MM/YYYY',
+                maxDate: new Date()
             });
 
     $('#time').bootstrapMaterialDatePicker
