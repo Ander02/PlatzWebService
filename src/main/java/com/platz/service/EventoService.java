@@ -62,6 +62,7 @@ public class EventoService {
 
             // Envia erro pelo console
             System.out.println("Erro: " + e.getMessage());
+            e.printStackTrace();
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao cadastrar evento").build();
         }

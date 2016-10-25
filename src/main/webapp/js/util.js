@@ -87,7 +87,7 @@ function verificarToken($http, $scope, toastr, sucess) {
             logoff($http, toastr, token);
         });
     } catch (err) {
-        aviso("falha ao manter sessão, por favor logue-se novamente");
+        aviso(toastr, "falha ao manter sessão, por favor logue-se novamente");
         location.href = "../login.jsp";
         logoff($http, toastr, token);
     }
