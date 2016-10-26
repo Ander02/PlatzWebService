@@ -12,7 +12,7 @@ Tela de cadastro de evento
         <title>Platz - Suas rotas, Seus Eventos</title>
 
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+        <link href="../css/font/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 
         <!-- Bootstrap core CSS -->
         <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
@@ -45,7 +45,9 @@ Tela de cadastro de evento
 
         <!--links para o funcionamento do datetimepicker-->
         <link href="../css/bootstrap/bootstrap-material-datetimepicker.css" rel="stylesheet" type="text/css"/>
+
         <script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>        
+
         <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
 
     </head>

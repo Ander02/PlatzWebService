@@ -96,6 +96,14 @@ angular.module("platz").controller("contaController", function ($scope, $http, t
         });
     };
 
+    $scope.getUsuario = function (contaId) {
+        $http.get(webService + "/usuario/conta/" + contaId).then(function (response) {
+            $scope.usuarioDetalhe = response.data;
+        }, function (response) {
+            aviso(toastr, "falha ao buscar informações do usuario");
+        });
+    };
+
     $scope.isBloqueado = function (conta) {
         if (conta.bloqueado === null) {
             return false;
@@ -130,7 +138,7 @@ angular.module("platz").controller("contaController", function ($scope, $http, t
     }
 
     $scope.cadastrar = function () {
-        if ($scope.contaCadastro.senha == $scope.contaCadastro.senha2) {
+        if ($scope.contaCadastro.senha === $scope.contaCadastro.senha2) {
             $http.post(webService + "/conta", $scope.contaCadastro).then(function (response) {
                 atualizar();
                 $scope.contaCadastro = null;

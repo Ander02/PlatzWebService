@@ -46,14 +46,26 @@ pagina onde é retornada a busca de eventos por uma unica determinada categoria
 
 
         <!-- inicio do projeto aqui-->
-
-    <ng-include src="'View/nav.html'" ng-controller="loginController"></ng-include>
         <%
+            try {
+                String token = session.getAttribute("token").toString();
+                if (token == null) {
+                    out.print("<input type='hidden' id='token' name='token' value ='' >");
+                } else {
+                    out.print("<input type='hidden' id='token' name='token' value ='" + token + "' >");
+                }
+            } catch (Exception e) {
+                System.out.println("Erro ao buscar sessão " + e.getMessage());
+                out.print("<input type='hidden' id='token' name='token' value ='' >");
+            }
+            
             String idCategoria = request.getParameter("categoria");
 
             out.print("<input type='hidden' id='idCategoria' name='idCategoria' value ='" + idCategoria + "' >");
 
         %>
+
+    <ng-include src="'View/nav.html'" ng-controller="loginController"></ng-include>
 
     <div ng-controller="eventosCategoriaController">
         <div class="espaco"></div>
@@ -65,34 +77,34 @@ pagina onde é retornada a busca de eventos por uma unica determinada categoria
             <!--Section heading-->
             <h1 class="section-heading" ng-bind="categoria.nome"></h1>
 
-                <!--First column-->
-                <div class="col-lg-4 col-md-6 m-b-r"  ng-repeat="evento in eventos">
-                    <!--Card-->
-                    <div class="card card-cascade narrower">
-                        <!--Card image-->
-                        <div class="view overlay hm-white-slight">
-                            <img src="img/outras/plano-fundo.jpg" class="img-fluid" alt="">
-                            <a>
-                                <div class="mask"></div>
-                            </a>
-                        </div>
-                        <!--/.Card image-->
+            <!--First column-->
+            <div class="col-lg-4 col-md-6 m-b-r"  ng-repeat="evento in eventos">
+                <!--Card-->
+                <div class="card card-cascade narrower">
+                    <!--Card image-->
+                    <div class="view overlay hm-white-slight">
+                        <img src="img/outras/plano-fundo.jpg" class="img-fluid" alt="">
+                        <a>
+                            <div class="mask"></div>
+                        </a>
+                    </div>
+                    <!--/.Card image-->
 
-                        <!--Card content-->
-                        <div class="card-block text-xs-center">
-                            <!--Categoria & nome da empresa e do evento-->                  
-                            <h4 class="card-title"><strong ng-bind="evento.nome"></strong></h4> 
-                            <h4 class="card-title"><i class="fa fa-building-o"></i><strong ><a href="perfilEmpresa.jsp?empresa={{evento.empresa.id}}" ng-bind="evento.empresa.nomeFantasia"> </a></strong></h4> 
-                            <!--Description-->
-                            <p class="card-text" ><i class="fa fa-calendar"></i>{{evento.dataInicio}}</p>
-                            <p class="card-text"><i class="fa fa-map-marker"></i> {{evento.endereco.cidade.nome}} - {{evento.endereco.cidade.estado.uf}}</p>
-                            <span class="right">
-                                <a class="btn btn-amber btn-lg" href="eventoEspecifico.jsp?evento={{evento.id}}">Ver Mais >></a>                   
-                            </span>
+                    <!--Card content-->
+                    <div class="card-block text-xs-center">
+                        <!--Categoria & nome da empresa e do evento-->                  
+                        <h4 class="card-title"><strong ng-bind="evento.nome"></strong></h4> 
+                        <h4 class="card-title"><i class="fa fa-building-o"></i><strong ><a href="perfilEmpresa.jsp?empresa={{evento.empresa.id}}" ng-bind="evento.empresa.nomeFantasia"> </a></strong></h4> 
+                        <!--Description-->
+                        <p class="card-text" ><i class="fa fa-calendar"></i>{{evento.dataInicio}}</p>
+                        <p class="card-text"><i class="fa fa-map-marker"></i> {{evento.endereco.cidade.nome}} - {{evento.endereco.cidade.estado.uf}}</p>
+                        <span class="right">
+                            <a class="btn btn-amber btn-lg" href="eventoEspecifico.jsp?evento={{evento.id}}">Ver Mais >></a>                   
+                        </span>
 
-                        </div><!--/.Card content-->               
-                    </div><!--/.Card-->         
-                </div><!--/First column-->
+                    </div><!--/.Card content-->               
+                </div><!--/.Card-->         
+            </div><!--/First column-->
         </section><!--/Section: Products v.1-->
 
 

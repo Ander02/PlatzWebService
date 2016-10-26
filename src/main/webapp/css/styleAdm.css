@@ -62,7 +62,19 @@ Estilização de toda a pagina administrativa
 /*
 * fim PAGINA DE CATEGORIA
 */
-
+.lista
+{
+    text-align: center;
+}
+.imagem-perfil
+{
+    text-align: center;
+    height: 200px;
+}
+.imagem-perfil img
+{
+    height: 100%;
+}
 /*
 *PAGINA DE MENSAGEM(INDEX)
 */

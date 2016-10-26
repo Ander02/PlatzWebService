@@ -59,7 +59,7 @@ function verificarToken($http, $scope, toastr, sucess) {
                     $scope.permicao = true;
                     console.log($scope.permicao);
                     $scope.conta = response.data;
-                    console.log($scope.conta);
+                    //console.log($scope.conta);
                     var regExp = new RegExp("/" + $scope.conta.perfil);
                     if (!regExp.test(window.location.href)) {
                         $scope.permicao = false;

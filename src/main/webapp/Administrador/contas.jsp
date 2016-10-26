@@ -1,5 +1,4 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <!--
 Pagina de cadastro , consulta, atualização e exclusão de conta, que seria contas administrativas apenas
@@ -14,7 +13,7 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
         <title>Platz - Suas rotas, Seus Eventos</title>
 
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+        <link href="../css/font/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 
         <!-- Bootstrap core CSS -->
         <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
@@ -238,7 +237,7 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                                     <td>                                        
                                         <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(usuario.id)"><i class="fa fa-toggle-on"></i> Bloquear</a>
                                         <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar" ng-click="prepararInativacao(usuario.id)"><i class="fa fa-toggle-on"></i> Inativar</a>
-                                        <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalVerDetalhesUsuario" ><i class="fa fa-user"></i> Ver Mais Detalhes</a>
+                                        <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalVerDetalhesUsuario" ng-click="getUsuario(usuario.id)" ><i class="fa fa-user"></i> Ver Mais Detalhes</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -359,6 +358,7 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                                     <td>                                        
                                         <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(empresa.id)"><i class="fa fa-toggle-on" ></i> Bloquear </a>
                                         <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar" ng-click="prepararInativacao(empresa.id)"><i class="fa fa-toggle-on" ></i> Inativar </a>
+                                         <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalVerDetalhesEmpresa" ><i class="fa fa-user"></i> Ver Mais Detalhes</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -602,9 +602,84 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                 </div>
                 <!--Body-->
                 <div class="modal-body">
-                    <div class="list-group">
+                    <div class="list-group lista">
+                        
+                         <a href="#" class="list-group-item imagem-perfil">
+                            <img class="img-responsive img-circle" src="../img/outras/teste-perfil.jpg">
+                        </a>
+                        
+                        
                         <a href="#" class="list-group-item">
                             <h5 class="list-group-item-heading"><i class="fa fa-user"></i>  Nome</h5>
+                            <p class="list-group-item-text" ng-bind="usuarioDetalhe.nome"> </p>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <h5 class="list-group-item-heading"><i class="fa fa-envelope"></i> Email </h5>
+                            <p class="list-group-item-text" ng-bind="usuarioDetalhe.conta.email">  </p>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <h5 class="list-group-item-heading"> <i class="fa fa-calendar"></i> Data de Nascimento</h5>
+                            <p class="list-group-item-text" ng-bind="usuarioDetalhe.dataNascimento">  </p>
+                        </a>
+
+                        <a href="#" class="list-group-item">
+                            <h5 class="list-group-item-heading"> <i class="fa fa-list-alt"></i> CPF</h5>
+                            <p class="list-group-item-text" ng-bind="usuarioDetalhe.cpf">  </p>
+                        </a>
+
+                        <a href="#" class="list-group-item">
+                            <h5 class="list-group-item-heading"> <i class="fa fa-phone"></i> Telefone</h5>
+                            <p class="list-group-item-text" ng-bind="usuarioDetalhe.telefone"> </p>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <h5 class="list-group-item-heading"> <i class="fa fa-phone"></i>  Ultimo Acesso</h5>
+                            <p class="list-group-item-text" ng-bind="usuarioDetalhe.conta.ultimoAcesso"> </p>
+                        </a>
+                        <hr/>
+
+                        <a href="#" class="list-group-item">
+                            <h5 class="list-group-item-heading"> <i class="fa fa-map-marker"></i> Endereço</h5>
+                            <p class="list-group-item-text"> {{usuarioDetalhe.endereco.bairro}}, {{usuarioDetalhe.endereco.cidade.nome}} - {{usuarioDetalhe.endereco.cidade.estado.uf}} </p>
+                        </a>
+
+                    </div>
+
+                    <div class="text-xs-center">
+                        <button class="btn btn-warning" data-dismiss="modal"> Fechar </button>
+                    </div>
+                </div>
+
+            </div>
+            <!--/.Content-->
+        </div>
+    </div> <!--/.modal-->
+    
+     <!-- Modal Ver detalhes usuario -->
+    <div class="modal fade" id="modalVerDetalhesEmpresa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Detalhes Empresa</h4>
+                </div>
+                <!--Body-->
+                <div class="modal-body">
+                    <div class="list-group lista">
+                        
+                        <a href="#" class="list-group-item imagem-perfil">
+                            <img class="img-responsive img-circle" src="../img/outras/teste-perfil.jpg">
+                        </a>
+                        
+                        <a href="#" class="list-group-item">
+                            <h5 class="list-group-item-heading"><i class="fa fa-building-o"></i> Razão Social</h5>
+                            <p class="list-group-item-text"> {{}} </p>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <h5 class="list-group-item-heading"><i class="fa fa-building"></i> Nome Fantasia</h5>
                             <p class="list-group-item-text"> {{}} </p>
                         </a>
                         <a href="#" class="list-group-item">
@@ -612,17 +687,22 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                             <p class="list-group-item-text"> {{}} </p>
                         </a>
                         <a href="#" class="list-group-item">
-                            <h5 class="list-group-item-heading"> <i class="fa fa-calendar"></i> Data de Nascimento</h5>
+                            <h5 class="list-group-item-heading"> <i class="fa fa-list-alt"></i> CNPJ</h5>
                             <p class="list-group-item-text"> {{}} </p>
                         </a>
                         
                         <a href="#" class="list-group-item">
-                            <h5 class="list-group-item-heading"> <i class="fa fa-list-alt"></i> CPF</h5>
+                            <h5 class="list-group-item-heading"> <i class="fa fa-phone-square"></i> Telefone 1</h5>
                             <p class="list-group-item-text"> {{}} </p>
                         </a>
                         
                         <a href="#" class="list-group-item">
-                            <h5 class="list-group-item-heading"> <i class="fa fa-phone"></i> Telefone</h5>
+                            <h5 class="list-group-item-heading"> <i class="fa fa-phone"></i> Telefone 2</h5>
+                            <p class="list-group-item-text"> {{}} </p>
+                        </a>
+                        
+                        <a href="#" class="list-group-item">
+                            <h5 class="list-group-item-heading"> <i class="fa fa-calendar"></i> Ultimo Acesso</h5>
                             <p class="list-group-item-text"> {{}} </p>
                         </a>
                         
