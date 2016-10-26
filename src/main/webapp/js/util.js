@@ -23,11 +23,9 @@ function enviarArquivo($http, arquivo, name, url) {
         transformRequest: angular.identity,
         headers: {'Content-Type': undefined}
     }).success(function (response) {
-        console.log("Arquivo Enviado");
-        console.log(response);
-
+        console.log("Arquivo Enviado para " + url);
     }).error(function (response) {
-        console.log("Erro ao enviar");
+        console.log("Erro ao enviar para " + url);
         console.log(response);
     });
 }

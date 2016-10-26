@@ -150,19 +150,6 @@ public class EventoService {
                 //Montando o nome do arquivo
                 String nomeDoArquivo = new DataUtil().dataSemPontuacao(new Date()) + "." + fileMetaData.getMediaType().getSubtype();
 
-                //Verificar se já existe uma imagem cadastrado
-                if (model.getImagemCapa() != null && !model.getImagemCapa().equals("")) {
-
-                    boolean ok = new ImagemUtil().deletarArquivo(model.getImagemCapa());
-
-                    if (ok) {
-                        System.out.println("Apagou arquivo antigo");
-                    } else {
-                        System.out.println("Não Apagou o arquivo antigo");
-                        return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
-                    }
-                }
-
                 //Salvar Imagem
                 boolean ok = new ImagemUtil().salvarArquivo(diretorio, nomeDoArquivo, imagemInputStream);
 
