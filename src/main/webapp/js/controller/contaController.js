@@ -130,7 +130,7 @@ angular.module("platz").controller("contaController", function ($scope, $http, t
     }
 
     $scope.cadastrar = function () {
-        if ($scope.contaCadastro.senha == $scope.contaCadastro.senha2) {
+        if ($scope.contaCadastro.senha === $scope.contaCadastro.senha2) {
             $http.post(webService + "/conta", $scope.contaCadastro).then(function (response) {
                 atualizar();
                 $scope.contaCadastro = null;

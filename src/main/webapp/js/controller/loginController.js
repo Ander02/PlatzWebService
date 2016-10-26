@@ -36,6 +36,33 @@ angular.module("platz").controller("loginController", function ($scope, $http, t
         });
 
     };
+
+    $scope.getConta = function () {
+        $http.get(webService + "/conta/token/" + document.getElementById("token").value).then(function (response) {
+            $scope.conta = response.data;
+            console.log($scope.conta);
+        }, function (response) {
+            $scope.deslogar();
+        });
+    };
+    $scope.getConta();
+
+    $scope.alterarSenha = function (contaEditada) {
+
+        if (contaEditada.senha === contaEditada.confirmaSenha) {
+            $http.put(webService + "/conta/senha/" + $scope.conta.id, contaEditada).then(function (response) {
+                $scope.conta = response.data;
+                sucesso(toastr, "senha editada com sucesso");
+            }, function (response) {
+                aviso(toastr, "Erro ao editar senha, tente novamente mais tarde");
+            });
+        } else {
+            contaEditada.senha = "";
+            contaEditada.confirmaSenha = "";
+            aviso(toastr, "A senha não são iguais, por favor digite-as novamente");
+        }
+    };
+
     console.log("vai tomar no seu orificio anal ");
 
 });

@@ -66,437 +66,436 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
             }
         %>
 
-        <div ng-controller="loginController">
-            <ng-include src="'../View/nav-adm.html'"></ng-include>            
-        </div>
-
-        <div ng-controller="mensagemController">
-            <div ng-if="permicao">
-
-                <div class="espaco"></div>
-
-                <div class="head-pagina">
-                    <h1>Mensagens</h1>
-                </div>
+    <ng-include src="'../View/nav-adm.html'" ng-controller="loginController"></ng-include>            
 
 
-                <!-- Nav tabs -->
-                <ul class="nav nav-tabs md-pills pills-ins nav-tab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#panel11" role="tab"><i class="fa fa-list-ul"></i> Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#panel12" role="tab"><i class="fa fa-star-o"></i> Favoritas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#panel13" role="tab"><i class="fa fa-envelope-o"></i>Mensagens Lidas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#panel14" role="tab"><i class="fa fa-envelope"></i>Mensagens Não Lidas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#panel15" role="tab"><i class="fa fa-trash"></i> Excluidas</a>
-                    </li>
-                </ul>
+    <div ng-controller="mensagemController">
+        <div ng-if="permicao">
 
-                <!-- Tab panels -->
-                <div class="tab-content conteudo-tab">
+            <div class="espaco"></div>
 
-                    <!--Panel 1 caixa de entrada de mensagens-->
-                    <div class="tab-pane fade in active" id="panel11" role="tabpanel">
-                        <br>
+            <div class="head-pagina">
+                <h1>Mensagens</h1>
+            </div>
 
-                        <div class="table-responsive">
-                            <table class="table table-hover table-striped ">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Favoritar</th>
-                                        <th>Email</th>
-                                        <th>Enviado em</th>                            
-                                        <th>Assunto</th>                            
-                                        <th>Excluir</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody id="myTable">
-                                    <tr ng-repeat="mensagem in mensagens">
-                                        <td>{{$index + 1}}</td>
-                                        <td>
-                                            <input type="checkbox" name="checkboxG{{$index + 1}}" id="checkboxG{{$index + 1}}"  class="css-checkbox" ng-checked="{{mensagem.marcado}}" ng-click="alterarFavorito(mensagem)"/>
-                                            <label for="checkboxG{{$index + 1}}" class="css-label"></label>
-                                        </td>
-                                        <td>{{mensagem.email}}</td>
-                                        <td>{{mensagem.dataCadastro}}</td>
-                                        <td>{{mensagem.assunto.nome}}</td>                            
-                                        <td><button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalExcluir" ng-click="prepararExclusao(mensagem.id)">
-                                                <i class="fa fa-trash"></i>Excluir</button></td>
-                                        <td ><button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#modalDetalhes"  ng-click="lerMensagem(mensagem.id)">
-                                                Ler Mensagem
-                                            </button></td>
-                                    </tr>
 
-                                </tbody>
-                            </table>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs md-pills pills-ins nav-tab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#panel11" role="tab"><i class="fa fa-list-ul"></i> Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#panel12" role="tab"><i class="fa fa-star-o"></i> Favoritas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#panel13" role="tab"><i class="fa fa-envelope-o"></i>Mensagens Lidas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#panel14" role="tab"><i class="fa fa-envelope"></i>Mensagens Não Lidas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#panel15" role="tab"><i class="fa fa-trash"></i> Excluidas</a>
+                </li>
+            </ul>
 
-                        </div><!-- fim da div table-responsive -->
-                        <div class="col-md-12 text-center">
-                            <ul class="pagination pager" id="myPager"></ul>
-                        </div>
+            <!-- Tab panels -->
+            <div class="tab-content conteudo-tab">
 
+                <!--Panel 1 caixa de entrada de mensagens-->
+                <div class="tab-pane fade in active" id="panel11" role="tabpanel">
+                    <br>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped ">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Favoritar</th>
+                                    <th>Email</th>
+                                    <th>Enviado em</th>                            
+                                    <th>Assunto</th>                            
+                                    <th>Excluir</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="myTable">
+                                <tr ng-repeat="mensagem in mensagens">
+                                    <td>{{$index + 1}}</td>
+                                    <td>
+                                        <input type="checkbox" name="checkboxG{{$index + 1}}" id="checkboxG{{$index + 1}}"  class="css-checkbox" ng-checked="{{mensagem.marcado}}" ng-click="alterarFavorito(mensagem)"/>
+                                        <label for="checkboxG{{$index + 1}}" class="css-label"></label>
+                                    </td>
+                                    <td>{{mensagem.email}}</td>
+                                    <td>{{mensagem.dataCadastro}}</td>
+                                    <td>{{mensagem.assunto.nome}}</td>                            
+                                    <td><button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalExcluir" ng-click="prepararExclusao(mensagem.id)">
+                                            <i class="fa fa-trash"></i>Excluir</button></td>
+                                    <td ><button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#modalDetalhes"  ng-click="lerMensagem(mensagem.id)">
+                                            Ler Mensagem
+                                        </button></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div><!-- fim da div table-responsive -->
+                    <div class="col-md-12 text-center">
+                        <ul class="pagination pager" id="myPager"></ul>
                     </div>
-                    <!--/.Panel 1-->
-
-                    <!--Panel 2 mensagens favoritas -->
-                    <div class="tab-pane fade" id="panel12" role="tabpanel">
-                        <br>
-
-                        <div class="table-responsive">
-                            <table class="table table-hover table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Favoritar</th>
-                                        <th>Email</th>
-                                        <th>Enviado em</th>                            
-                                        <th>Assunto</th>                            
-                                        <th>Excluir</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody id="myTable2">
-                                    <tr ng-repeat="mensagem in mensagemFavoritas">
-                                        <td>{{$index + 1}}</td>
-                                        <td>
-                                            <input type="checkbox" name="checkboxF{{$index + 1}}" id="checkboxF{{$index + 1}}"  class="css-checkbox" ng-checked="{{mensagem.marcado}}" ng-click="alterarFavorito(mensagem)"/>
-                                            <label for="checkboxF{{$index + 1}}" class="css-label"></label>
-                                        </td>
-
-                                        <td>{{mensagem.email}}</td>
-                                        <td>{{mensagem.dataCadastro}}</td>
-                                        <td>{{mensagem.assunto.nome}}</td>
-                                        <td><button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalExcluir" >
-                                                <i class="fa fa-trash"></i>Excluir</button></td>
-                                        <td><button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#modalDetalhes" ng-click="lerMensagem(mensagem.id)">
-                                                Ler Mensagem
-                                            </button></td>
-                                    </tr>                               
-                                </tbody>
-                            </table>
-
-                        </div><!-- fim da div table-responsive -->
-                        <div class="col-md-12 text-center">
-                            <ul class="pagination pager" id="myPager2"></ul>
-                        </div>
-
-
-                    </div>
-                    <!--/.Panel 2-->
-
-                    <!--Panel 3 mensagens lidas-->
-                    <div class="tab-pane fade" id="panel13" role="tabpanel">
-                        <br>
-
-                        <div class="table-responsive">
-                            <table class="table table-hover table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Favoritar</th>
-                                        <th>Email</th>
-                                        <th>Enviado em</th>                            
-                                        <th>Assunto</th>                            
-                                        <th>Excluir</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody id="myTable2">
-                                    <tr ng-repeat="mensagem in mensagensLidas">
-                                        <td>{{$index + 1}}</td>
-                                        <td>
-                                            <input type="checkbox" name="checkboxE{{$index + 1}}" id="checkboxE{{$index + 1}}"  class="css-checkbox" ng-checked="{{mensagem.marcado}}" ng-click="alterarFavorito(mensagem)"/>
-                                            <label for="checkboxE{{$index + 1}}" class="css-label"></label>
-                                        </td>
-                                        <td>{{mensagem.email}}</td>
-                                        <td>{{mensagem.dataCadastro}}</td>
-                                        <td>{{mensagem.assunto.nome}}</td>
-
-                                        <td><button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalExcluir" >
-                                                <i class="fa fa-trash"></i>Excluir</button></td>
-                                        <td><button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#modalDetalhes"  ng-click="lerMensagem(mensagem.id)">
-                                                Ler Mensagem
-                                            </button></td>
-                                    </tr>                              
-                                </tbody>
-                            </table>
-
-                        </div><!-- fim da div table-responsive -->
-                        <div class="col-md-12 text-center">
-                            <ul class="pagination pager" id="myPager2"></ul>
-                        </div>
-
-
-                    </div>
-                    <!--/.Panel 3-->
-
-                    <!--Panel 4 mensagens não lidas-->
-                    <div class="tab-pane fade" id="panel14" role="tabpanel">
-                        <br>
-
-                        <div class="table-responsive">
-                            <table class="table table-hover table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Favoritar</th>
-                                        <th>Email</th>
-                                        <th>Enviado em</th>                            
-                                        <th>Assunto</th>                            
-                                        <th>Excluir</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody id="myTable2">
-                                    <tr ng-repeat="mensagem in mensagensNaoLidas">
-                                        <td>{{$index + 1}}</td>
-                                        <td>
-                                            <input type="checkbox" name="checkboxD{{$index + 1}}" id="checkboxD{{$index + 1}}"  class="css-checkbox" ng-checked="{{mensagem.marcado}}" ng-click="alterarFavorito(mensagem)"/>
-                                            <label for="checkboxD{{$index + 1}}" class="css-label"></label>
-                                        </td>
-                                        <td>{{mensagem.email}}</td>
-                                        <td>{{mensagem.dataCadastro}}</td>
-                                        <td>{{mensagem.assunto.nome}}</td>
-
-                                        <td><button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalExcluir">
-                                                <i class="fa fa-trash"></i>Excluir</button></td>
-                                        <td><button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#modalDetalhes" ng-click="lerMensagem(mensagem.id)">
-                                                Ler Mensagem
-                                            </button></td>
-                                    </tr>                             
-                                </tbody>
-                            </table>
-
-                        </div><!-- fim da div table-responsive -->
-                        <div class="col-md-12 text-center">
-                            <ul class="pagination pager" id="myPager2"></ul>
-                        </div>
-
-
-                    </div>
-                    <!--/.Panel 4-->
-
-                    <!--Panel 5 lixeira -->
-                    <div class="tab-pane fade" id="panel15" role="tabpanel">
-                        <br>
-
-                        <div class="table-responsive">
-                            <table class="table table-hover table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Email</th>                            
-                                        <th>Enviado em</th>  
-                                        <th>Excluido em</th> 
-                                        <th>Assunto</th>
-                                        <th>Opções</th>                            
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody id="myTable3">
-                                    <tr ng-repeat="mensagemExcluida in mensagensExcluidas">
-                                        <td>{{$index + 1}}</td>
-                                        <td>{{mensagemExcluida.email}}</td>
-                                        <td>{{mensagemExcluida.dataCadastro}}</td>
-                                        <td>{{mensagemExcluida.deletado}}</td>
-                                        <td>{{mensagemExcluida.assunto.nome}}</td>  
-                                        <td><button data-toggle="modal" data-target="#modalExcluirDefinitivo" class="btn btn-sm btn-danger" ng-click="prepararExclusaoDefinitiva(mensagemExcluida.id)"><i class="fa fa-trash"></i>Apagar</button>
-                                            <button data-toggle="modal" data-target="#modalRestaurar" class="btn btn-sm btn-default" ng-click="prepararRecuperacao(mensagemExcluida.id)"><i class="fa fa-undo"></i>Restaurar</button></td>                            
-                                    </tr>                        
-                                </tbody>
-                            </table>
-
-                        </div><!-- fim da div table-responsive -->
-                        <div class="col-md-12 text-center">
-                            <ul class="pagination pager" id="myPager3"></ul>
-                        </div>
-
-                    </div>
-                    <!--/.Panel 3-->
 
                 </div>
+                <!--/.Panel 1-->
 
-                <!-- Modal para ver detalhes das mensagens -->
-                <div class="modal fade" id="modalDetalhes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <!--Content-->
-                        <div class="modal-content">
-                            <!--Header-->
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <h4 class="modal-title" id="myModalLabel">Mensagem</h4>
-                            </div>
-                            <!--Body-->
-                            <div class="modal-body">
+                <!--Panel 2 mensagens favoritas -->
+                <div class="tab-pane fade" id="panel12" role="tabpanel">
+                    <br>
 
-                                <div class="col-md-12" >
-                                    <div class="form-group">
-                                        <label for="message-text" class="form-control-label label-modal-mensagem">Email:</label>
-                                        <p>{{mensagem.email}}</p>                            
-                                    </div>
-                                </div>
-                                <div class="col-md-6" >
-                                    <div class="form-group">
-                                        <label for="message-text" class="form-control-label label-modal-mensagem">Data:</label>
-                                        <p>{{mensagem.dataCadastro}}</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6" >
-                                    <div class="form-group">
-                                        <label for="message-text" class="form-control-label label-modal-mensagem">Assunto:</label>
-                                        <p>{{mensagem.assunto.nome}}</p>                            
-                                    </div>
-                                </div>
-                                <div class="col-md-12" >
-                                    <div class="form-group">
-                                        <label for="message-text" class="form-control-label label-modal-mensagem">Mensagem:</label>
-                                        <p>{{mensagem.conteudo}}</p>                            
-                                    </div>
-                                </div>
-                                <div class="col-md-12" >
-                                    <div class="form-group">                        
-                                        <label for="message-text" class="form-control-label label-modal-mensagem">Envie um e-mail de resposta:</label>
-                                        <textarea class="form-control" id="message-text" ng-model="resposta"> 
-                                        </textarea>
-                                    </div>
-                                </div>
-                                <!--Footer-->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                    <button type="button" class="btn btn-warning" ng-click="responder(mensagem.id)">Responder</button>
-                                </div>
-                            </div>
-                            <!--/.Content-->
-                        </div>
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Favoritar</th>
+                                    <th>Email</th>
+                                    <th>Enviado em</th>                            
+                                    <th>Assunto</th>                            
+                                    <th>Excluir</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="myTable2">
+                                <tr ng-repeat="mensagem in mensagemFavoritas">
+                                    <td>{{$index + 1}}</td>
+                                    <td>
+                                        <input type="checkbox" name="checkboxF{{$index + 1}}" id="checkboxF{{$index + 1}}"  class="css-checkbox" ng-checked="{{mensagem.marcado}}" ng-click="alterarFavorito(mensagem)"/>
+                                        <label for="checkboxF{{$index + 1}}" class="css-label"></label>
+                                    </td>
+
+                                    <td>{{mensagem.email}}</td>
+                                    <td>{{mensagem.dataCadastro}}</td>
+                                    <td>{{mensagem.assunto.nome}}</td>
+                                    <td><button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalExcluir" >
+                                            <i class="fa fa-trash"></i>Excluir</button></td>
+                                    <td><button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#modalDetalhes" ng-click="lerMensagem(mensagem.id)">
+                                            Ler Mensagem
+                                        </button></td>
+                                </tr>                               
+                            </tbody>
+                        </table>
+
+                    </div><!-- fim da div table-responsive -->
+                    <div class="col-md-12 text-center">
+                        <ul class="pagination pager" id="myPager2"></ul>
                     </div>
-                    <!-- /.Live preview-->
-                </div> 
-                <!-- /.modal para ver detalhes mensagens-->
 
-                <!-- modal de excluir -->
-                <div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <!--Content-->
-                        <div class="modal-content">
-                            <!--Header-->
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <h4 class="modal-title" id="myModalLabel">Excluir</h4>
+
+                </div>
+                <!--/.Panel 2-->
+
+                <!--Panel 3 mensagens lidas-->
+                <div class="tab-pane fade" id="panel13" role="tabpanel">
+                    <br>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Favoritar</th>
+                                    <th>Email</th>
+                                    <th>Enviado em</th>                            
+                                    <th>Assunto</th>                            
+                                    <th>Excluir</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="myTable2">
+                                <tr ng-repeat="mensagem in mensagensLidas">
+                                    <td>{{$index + 1}}</td>
+                                    <td>
+                                        <input type="checkbox" name="checkboxE{{$index + 1}}" id="checkboxE{{$index + 1}}"  class="css-checkbox" ng-checked="{{mensagem.marcado}}" ng-click="alterarFavorito(mensagem)"/>
+                                        <label for="checkboxE{{$index + 1}}" class="css-label"></label>
+                                    </td>
+                                    <td>{{mensagem.email}}</td>
+                                    <td>{{mensagem.dataCadastro}}</td>
+                                    <td>{{mensagem.assunto.nome}}</td>
+
+                                    <td><button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalExcluir" >
+                                            <i class="fa fa-trash"></i>Excluir</button></td>
+                                    <td><button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#modalDetalhes"  ng-click="lerMensagem(mensagem.id)">
+                                            Ler Mensagem
+                                        </button></td>
+                                </tr>                              
+                            </tbody>
+                        </table>
+
+                    </div><!-- fim da div table-responsive -->
+                    <div class="col-md-12 text-center">
+                        <ul class="pagination pager" id="myPager2"></ul>
+                    </div>
+
+
+                </div>
+                <!--/.Panel 3-->
+
+                <!--Panel 4 mensagens não lidas-->
+                <div class="tab-pane fade" id="panel14" role="tabpanel">
+                    <br>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Favoritar</th>
+                                    <th>Email</th>
+                                    <th>Enviado em</th>                            
+                                    <th>Assunto</th>                            
+                                    <th>Excluir</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="myTable2">
+                                <tr ng-repeat="mensagem in mensagensNaoLidas">
+                                    <td>{{$index + 1}}</td>
+                                    <td>
+                                        <input type="checkbox" name="checkboxD{{$index + 1}}" id="checkboxD{{$index + 1}}"  class="css-checkbox" ng-checked="{{mensagem.marcado}}" ng-click="alterarFavorito(mensagem)"/>
+                                        <label for="checkboxD{{$index + 1}}" class="css-label"></label>
+                                    </td>
+                                    <td>{{mensagem.email}}</td>
+                                    <td>{{mensagem.dataCadastro}}</td>
+                                    <td>{{mensagem.assunto.nome}}</td>
+
+                                    <td><button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalExcluir">
+                                            <i class="fa fa-trash"></i>Excluir</button></td>
+                                    <td><button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#modalDetalhes" ng-click="lerMensagem(mensagem.id)">
+                                            Ler Mensagem
+                                        </button></td>
+                                </tr>                             
+                            </tbody>
+                        </table>
+
+                    </div><!-- fim da div table-responsive -->
+                    <div class="col-md-12 text-center">
+                        <ul class="pagination pager" id="myPager2"></ul>
+                    </div>
+
+
+                </div>
+                <!--/.Panel 4-->
+
+                <!--Panel 5 lixeira -->
+                <div class="tab-pane fade" id="panel15" role="tabpanel">
+                    <br>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Email</th>                            
+                                    <th>Enviado em</th>  
+                                    <th>Excluido em</th> 
+                                    <th>Assunto</th>
+                                    <th>Opções</th>                            
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="myTable3">
+                                <tr ng-repeat="mensagemExcluida in mensagensExcluidas">
+                                    <td>{{$index + 1}}</td>
+                                    <td>{{mensagemExcluida.email}}</td>
+                                    <td>{{mensagemExcluida.dataCadastro}}</td>
+                                    <td>{{mensagemExcluida.deletado}}</td>
+                                    <td>{{mensagemExcluida.assunto.nome}}</td>  
+                                    <td><button data-toggle="modal" data-target="#modalExcluirDefinitivo" class="btn btn-sm btn-danger" ng-click="prepararExclusaoDefinitiva(mensagemExcluida.id)"><i class="fa fa-trash"></i>Apagar</button>
+                                        <button data-toggle="modal" data-target="#modalRestaurar" class="btn btn-sm btn-default" ng-click="prepararRecuperacao(mensagemExcluida.id)"><i class="fa fa-undo"></i>Restaurar</button></td>                            
+                                </tr>                        
+                            </tbody>
+                        </table>
+
+                    </div><!-- fim da div table-responsive -->
+                    <div class="col-md-12 text-center">
+                        <ul class="pagination pager" id="myPager3"></ul>
+                    </div>
+
+                </div>
+                <!--/.Panel 3-->
+
+            </div>
+
+            <!-- Modal para ver detalhes das mensagens -->
+            <div class="modal fade" id="modalDetalhes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <!--Content-->
+                    <div class="modal-content">
+                        <!--Header-->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">Mensagem</h4>
+                        </div>
+                        <!--Body-->
+                        <div class="modal-body">
+
+                            <div class="col-md-12" >
+                                <div class="form-group">
+                                    <label for="message-text" class="form-control-label label-modal-mensagem">Email:</label>
+                                    <p>{{mensagem.email}}</p>                            
+                                </div>
                             </div>
-                            <!--Body-->
-                            <div class="modal-body">
-                                <p>tem Certeza que deseja Excluir essa Mensagem?</p>
+                            <div class="col-md-6" >
+                                <div class="form-group">
+                                    <label for="message-text" class="form-control-label label-modal-mensagem">Data:</label>
+                                    <p>{{mensagem.dataCadastro}}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6" >
+                                <div class="form-group">
+                                    <label for="message-text" class="form-control-label label-modal-mensagem">Assunto:</label>
+                                    <p>{{mensagem.assunto.nome}}</p>                            
+                                </div>
+                            </div>
+                            <div class="col-md-12" >
+                                <div class="form-group">
+                                    <label for="message-text" class="form-control-label label-modal-mensagem">Mensagem:</label>
+                                    <p>{{mensagem.conteudo}}</p>                            
+                                </div>
+                            </div>
+                            <div class="col-md-12" >
+                                <div class="form-group">                        
+                                    <label for="message-text" class="form-control-label label-modal-mensagem">Envie um e-mail de resposta:</label>
+                                    <textarea class="form-control" id="message-text" ng-model="resposta"> 
+                                    </textarea>
+                                </div>
                             </div>
                             <!--Footer-->
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="marcarExcluida()"> Sim </button>
-                                <button type="button" class="btn btn-amber" data-dismiss="modal" ng-click="cancelarExclusao()"> Não </button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                <button type="button" class="btn btn-warning" ng-click="responder(mensagem.id)">Responder</button>
                             </div>
                         </div>
                         <!--/.Content-->
                     </div>
                 </div>
-                <!-- /.modal de excluir -->
-
-                <!-- modal de restaurar -->
-
-                <div class="modal fade" id="modalRestaurar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <!--Content-->
-                        <div class="modal-content">
-                            <!--Header-->
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <h4 class="modal-title" id="myModalLabel">Restaurar</h4>
-                            </div>
-                            <!--Body-->
-                            <div class="modal-body">
-                                <p>tem Certeza que deseja Restaurar essa Mensagem?</p>
-                            </div>
-                            <!--Footer-->
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="restaurar()"> Sim </button>
-                                <button type="button" class="btn btn-amber" data-dismiss="modal" ng-click="cancelarRecuperacao()"> Não </button>
-                            </div>
-                        </div>
-                        <!--/.Content-->
-                    </div>
-                </div>
-                <!-- /.modal de restaurar -->
-
-                <!-- modal de excluir definitivamente -->
-
-                <div class="modal fade" id="modalExcluirDefinitivo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <!--Content-->
-                        <div class="modal-content">
-                            <!--Header-->
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <h4 class="modal-title" id="myModalLabel">Excluir Definitivamente</h4>
-                            </div>
-                            <!--Body-->
-                            <div class="modal-body">
-                                <p>tem Certeza que Deseja Excluir essa Mensagem <strong>Definitivamente</strong>?</p>
-                            </div>
-                            <!--Footer-->
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal"  ng-click="excluirDefinitivamente()"> Sim </button>
-                                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="cancelarExclusaoDefinitiva()"> Não </button>
-                            </div>
-                        </div>
-                        <!--/.Content-->
-                    </div>
-                </div>
-                <!-- /.modal de excluir definitivamente -->
+                <!-- /.Live preview-->
             </div> 
-        </div>
-        <!-- /.fim do html -->
+            <!-- /.modal para ver detalhes mensagens-->
 
-        <!-- SCRIPTS -->
+            <!-- modal de excluir -->
+            <div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <!--Content-->
+                    <div class="modal-content">
+                        <!--Header-->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">Excluir</h4>
+                        </div>
+                        <!--Body-->
+                        <div class="modal-body">
+                            <p>tem Certeza que deseja Excluir essa Mensagem?</p>
+                        </div>
+                        <!--Footer-->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="marcarExcluida()"> Sim </button>
+                            <button type="button" class="btn btn-amber" data-dismiss="modal" ng-click="cancelarExclusao()"> Não </button>
+                        </div>
+                    </div>
+                    <!--/.Content-->
+                </div>
+            </div>
+            <!-- /.modal de excluir -->
 
-        <!-- JQuery -->
-        <script type="text/javascript" src="../lib/jquery/jquery-2.2.3.min.js"></script>
+            <!-- modal de restaurar -->
 
-        <!-- Bootstrap tooltips -->
-        <script type="text/javascript" src="../lib/bootstrap/tether.min.js"></script>
+            <div class="modal fade" id="modalRestaurar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <!--Content-->
+                    <div class="modal-content">
+                        <!--Header-->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">Restaurar</h4>
+                        </div>
+                        <!--Body-->
+                        <div class="modal-body">
+                            <p>tem Certeza que deseja Restaurar essa Mensagem?</p>
+                        </div>
+                        <!--Footer-->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="restaurar()"> Sim </button>
+                            <button type="button" class="btn btn-amber" data-dismiss="modal" ng-click="cancelarRecuperacao()"> Não </button>
+                        </div>
+                    </div>
+                    <!--/.Content-->
+                </div>
+            </div>
+            <!-- /.modal de restaurar -->
 
-        <!-- Bootstrap core JavaScript -->
-        <script type="text/javascript" src="../lib/bootstrap/bootstrap.min.js"></script>
+            <!-- modal de excluir definitivamente -->
 
-        <!-- MDB core JavaScript -->
-        <script type="text/javascript" src="../lib/bootstrap/mdb.min.js"></script>
+            <div class="modal fade" id="modalExcluirDefinitivo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <!--Content-->
+                    <div class="modal-content">
+                        <!--Header-->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">Excluir Definitivamente</h4>
+                        </div>
+                        <!--Body-->
+                        <div class="modal-body">
+                            <p>tem Certeza que Deseja Excluir essa Mensagem <strong>Definitivamente</strong>?</p>
+                        </div>
+                        <!--Footer-->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal"  ng-click="excluirDefinitivamente()"> Sim </button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="cancelarExclusaoDefinitiva()"> Não </button>
+                        </div>
+                    </div>
+                    <!--/.Content-->
+                </div>
+            </div>
+            <!-- /.modal de excluir definitivamente -->
+        </div> 
+    </div>
+    <!-- /.fim do html -->
 
-        <!-- Paginação da tabela -->
-        <script type="text/javascript" src="../js/outros/tabela-responsiva.js"></script>
+    <!-- SCRIPTS -->
 
-        <!-- link Angular -->
-        <script src="../lib/angular/angular-animate.js" type="text/javascript"></script>
+    <!-- JQuery -->
+    <script type="text/javascript" src="../lib/jquery/jquery-2.2.3.min.js"></script>
 
-        <!-- link Angular -->
-        <link href="../css/angular-toastr.css" rel="stylesheet" type="text/css"/>
-        <script type="text/javascript" src="../lib/angular/angular-toastr.tpls.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="../lib/bootstrap/tether.min.js"></script>
 
-        <!-- aside -->
-        <script src="../js/outros/aside.js" type="text/javascript"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="../lib/bootstrap/bootstrap.min.js"></script>
 
-    </body>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="../lib/bootstrap/mdb.min.js"></script>
+
+    <!-- Paginação da tabela -->
+    <script type="text/javascript" src="../js/outros/tabela-responsiva.js"></script>
+
+    <!-- link Angular -->
+    <script src="../lib/angular/angular-animate.js" type="text/javascript"></script>
+
+    <!-- link Angular -->
+    <link href="../css/angular-toastr.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="../lib/angular/angular-toastr.tpls.js"></script>
+
+    <!-- aside -->
+    <script src="../js/outros/aside.js" type="text/javascript"></script>
+
+</body>
 
 </html>
