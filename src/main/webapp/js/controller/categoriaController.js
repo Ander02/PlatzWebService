@@ -123,6 +123,8 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
 
     //funções de atualizações e avisos
     function atualizar() {
+        verificarToken($http, $scope, toastr, function () {
+        });
         $scope.listarTodos();
         $scope.listarExcluidas();
         $scope.listarNaoExcluidas();
@@ -131,5 +133,9 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
         $scope.cancelarRecuperacao();
         $scope.cancelarEdicaoImagem();
     }
-    window.onload = atualizar();
+    window.onload = function () {
+        console.log("onload");
+        $scope.permicao = false;
+        atualizar();
+    };
 });

@@ -157,13 +157,15 @@ angular.module("platz").controller("contaController", function ($scope, $http, t
                 erro(toastr, errorManager(response.config.url, response.status, "Erro ao cadastrar administrador"));
             });
         } else {
-            $scope.contaCadastro.senha == null;
-            $scope.contaCadastro.senha2 == null;
+            $scope.contaCadastro.senha = null;
+            $scope.contaCadastro.senha2 = null;
             aviso(toastr, "A senha não são iguais, por favor digite-as novamente");
         }
     };
 
     function atualizar() {
+         verificarToken($http, $scope, toastr, function () {
+        });
         $scope.listarAdministradores();
         $scope.listarAdministradoresBloqueados();
         $scope.listarAdministradoresInativos();
@@ -176,5 +178,9 @@ angular.module("platz").controller("contaController", function ($scope, $http, t
         $scope.listarEmpresasBloqueados();
         $scope.listarEmpresasInativos();
     }
-    window.onload = atualizar();
+    window.onload = function () {
+        console.log("onload");
+        $scope.permicao = false;
+        atualizar();
+    };
 });
