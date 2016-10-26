@@ -359,7 +359,7 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                                     <td>                                        
                                         <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(empresa.id)"><i class="fa fa-toggle-on" ></i> Bloquear </a>
                                         <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar" ng-click="prepararInativacao(empresa.id)"><i class="fa fa-toggle-on" ></i> Inativar </a>
-                                         <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalVerDetalhesEmpresa" ><i class="fa fa-user"></i> Ver Mais Detalhes</a>
+                                        <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalVerDetalhesEmpresa" ng-click="getEmpresa(empresa.id)" ><i class="fa fa-user"></i> Ver Mais Detalhes</a>
                                     </td>
                                 </tr>
                             </tbody>

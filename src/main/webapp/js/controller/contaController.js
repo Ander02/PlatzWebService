@@ -99,8 +99,19 @@ angular.module("platz").controller("contaController", function ($scope, $http, t
     $scope.getUsuario = function (contaId) {
         $http.get(webService + "/usuario/conta/" + contaId).then(function (response) {
             $scope.usuarioDetalhe = response.data;
+            $scope.imagemUsuario = webService + "/usuario/imagem/" + $scope.usuarioDetalhe.id;
         }, function (response) {
-            aviso(toastr, "falha ao buscar informações do usuario");
+            aviso(toastr, "falha ao buscar informações do Usuario");
+        });
+    };
+
+    $scope.getEmpresa = function (contaId) {
+        $http.get(webService + "/empresa/conta/" + contaId).then(function (response) {
+            $scope.empresaDetalhe = response.data;
+            console.log(empresaDetalhe);
+            $scope.imagemEmpresa = webService + "/empresa/imagem/" + $scope.empresaDetalhe.id;
+        }, function (response) {
+            aviso(toastr, "falha ao buscar informações da Empresa");
         });
     };
 
