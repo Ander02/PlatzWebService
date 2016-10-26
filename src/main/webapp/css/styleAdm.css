@@ -62,12 +62,16 @@ Estilização de toda a pagina administrativa
 /*
 * fim PAGINA DE CATEGORIA
 */
-.imagem-empresa
+.lista
+{
+    text-align: center;
+}
+.imagem-perfil
 {
     text-align: center;
     height: 200px;
 }
-.imagem-empresa img
+.imagem-perfil img
 {
     height: 100%;
 }
