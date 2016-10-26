@@ -16,8 +16,7 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
 
     $scope.onblurCepUsuario = function () {
         cep = document.getElementById("usuario-cep").value;
-        $http.get("https://viacep.com.br/ws/" + cep + "/json/").then(function (response) {
-            //console.log(response.data);
+        $http.get("https://viacep.com.br/ws/" + cep + "/json/").then(function (response) {            
             $scope.usuario.endereco.cep = response.data.cep;
             $scope.usuario.endereco.rua = response.data.logradouro;
             $scope.usuario.endereco.bairro = response.data.bairro;
