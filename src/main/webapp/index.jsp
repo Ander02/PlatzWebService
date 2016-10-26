@@ -34,7 +34,6 @@
         <!-- angular app script -->
         <script type="text/javascript" src="js/app.js"></script>
 
-
         <script src="js/util.js" type="text/javascript"></script>
 
         <script src="js/controller/loginController.js" type="text/javascript"></script>
@@ -43,6 +42,21 @@
     </head>
 
     <body onload="initialize()" class="hidden-sn blue-skin">
+        
+        
+        <%
+            try {
+                String token = session.getAttribute("token").toString();
+                if (token == null) {
+                    out.print("<input type='hidden' id='token' name='token' value ='' >");
+                } else {
+                    out.print("<input type='hidden' id='token' name='token' value ='" + token + "' >");
+                }
+            } catch (Exception e) {
+                System.out.println("Erro ao buscar sessão " + e.getMessage());
+                out.print("<input type='hidden' id='token' name='token' value ='' >");
+            }
+        %>
 
 
         <!-- inicio do projeto aqui-->

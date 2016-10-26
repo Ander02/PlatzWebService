@@ -18,8 +18,8 @@
             String perfil = request.getParameter("perfil");
             //HttpSession sessao = request.getSession();
             session.setAttribute("token", token);
-            response.sendRedirect(perfil + "/");      
-
+            response.sendRedirect(perfil + "/");
+            
         %>
     </body>
 </html>

@@ -40,12 +40,16 @@ pagina de login, onde o usuario é redirecionado se errar o login pela nav
 
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="img/logo.png">
-
-
     </head>
 
     <body>
         <!-- inicio do projeto aqui-->
+        <%
+            out.print("<input type='hidden' id='token' name='token' value ='' >");
+            session.invalidate();
+          
+        %>
+
     <ng-include src="'View/nav.html'"  ng-controller="loginController"></ng-include>
     <div class="espaco"></div>
 
@@ -93,7 +97,7 @@ pagina de login, onde o usuario é redirecionado se errar o login pela nav
     </div>
     <!--Naked Form-->
 
- <ng-include src="'View/footer.html'"></ng-include>
+    <ng-include src="'View/footer.html'"></ng-include>
     <!-- /Start your project here-->
 
 

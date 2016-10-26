@@ -341,6 +341,7 @@ public class ContaService {
 
         } catch (Exception e) {
             System.out.println("Erro" + e.getMessage());
+            e.printStackTrace();
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar conta").build();
         }
     }

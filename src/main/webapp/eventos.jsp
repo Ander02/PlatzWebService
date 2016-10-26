@@ -46,6 +46,19 @@ Pagina onde ira exibir os eventos, onde sera possivel filtrar os eventos
 
     <body>
         <!-- inicio do projeto aqui-->
+        <%
+            try {
+                String token = session.getAttribute("token").toString();
+                if (token == null) {
+                    out.print("<input type='hidden' id='token' name='token' value ='' >");
+                } else {
+                    out.print("<input type='hidden' id='token' name='token' value ='" + token + "' >");
+                }
+            } catch (Exception e) {
+                System.out.println("Erro ao buscar sessão " + e.getMessage());
+                out.print("<input type='hidden' id='token' name='token' value ='' >");
+            }
+        %>
     <ng-include src="'View/nav.html'" ng-controller="loginController"></ng-include>
     <div ng-controller="eventosController">
 
@@ -58,15 +71,15 @@ Pagina onde ira exibir os eventos, onde sera possivel filtrar os eventos
             </div>
             <div class="card-block col-md-3" ng-repeat="categoria in categorias">
                 <div class="hovereffect">
-                    <img class="img-responsive img-fluid" ng-src="{{baixarImagem(categoria.id)}}" onerror='this.src = "img/logo.png"' alt="">                            
+                    <img class="img-responsive img-fluid" ng-src="{{baixarImagemCategoria(categoria.id)}}" onerror='this.src = "img/logo.png"' alt="">                            
                     <div class="overlay">
                         <h2 ng-bind="categoria.nome"></h2>
                         <a class="info" href="eventosCategoria.jsp?categoria={{categoria.id}}" > Clique e veja mais</a>
                         <a ></a>
-                </div>
-            </div>  
-        </div>
-            
+                    </div>
+                </div>  
+            </div>
+
         </div>
 
         <ng-include src="'View/footer.html'"></ng-include>
