@@ -42,13 +42,11 @@ angular.module("platz").controller("loginController", function ($scope, $http, t
             $scope.conta = response.data;
             console.log($scope.conta);
         }, function (response) {
-            $scope.deslogar();
         });
     };
     $scope.getConta();
 
     $scope.alterarSenha = function (contaEditada) {
-
         if (contaEditada.senha === contaEditada.confirmaSenha) {
             $http.put(webService + "/conta/senha/" + $scope.conta.id, contaEditada).then(function (response) {
                 $scope.conta = response.data;

@@ -238,7 +238,7 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                                     <td>                                        
                                         <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(usuario.id)"><i class="fa fa-toggle-on"></i> Bloquear</a>
                                         <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar" ng-click="prepararInativacao(usuario.id)"><i class="fa fa-toggle-on"></i> Inativar</a>
-                                        <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalVerDetalhesUsuario" ><i class="fa fa-user"></i> Ver Mais Detalhes</a>
+                                        <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalVerDetalhesUsuario" ng-click="getUsuario(usuario.id)" ><i class="fa fa-user"></i> Ver Mais Detalhes</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -605,39 +605,42 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                     <div class="list-group">
                         <a href="#" class="list-group-item">
                             <h5 class="list-group-item-heading"><i class="fa fa-user"></i>  Nome</h5>
-                            <p class="list-group-item-text"> {{}} </p>
+                            <p class="list-group-item-text" ng-bind="usuarioDetalhe.nome"> </p>
                         </a>
                         <a href="#" class="list-group-item">
                             <h5 class="list-group-item-heading"><i class="fa fa-envelope"></i> Email </h5>
-                            <p class="list-group-item-text"> {{}} </p>
+                            <p class="list-group-item-text" ng-bind="usuarioDetalhe.conta.email">  </p>
                         </a>
                         <a href="#" class="list-group-item">
                             <h5 class="list-group-item-heading"> <i class="fa fa-calendar"></i> Data de Nascimento</h5>
-                            <p class="list-group-item-text"> {{}} </p>
+                            <p class="list-group-item-text" ng-bind="usuarioDetalhe.dataNascimento">  </p>
                         </a>
-                        
+
                         <a href="#" class="list-group-item">
                             <h5 class="list-group-item-heading"> <i class="fa fa-list-alt"></i> CPF</h5>
-                            <p class="list-group-item-text"> {{}} </p>
+                            <p class="list-group-item-text" ng-bind="usuarioDetalhe.cpf">  </p>
                         </a>
-                        
+
                         <a href="#" class="list-group-item">
                             <h5 class="list-group-item-heading"> <i class="fa fa-phone"></i> Telefone</h5>
-                            <p class="list-group-item-text"> {{}} </p>
+                            <p class="list-group-item-text" ng-bind="usuarioDetalhe.telefone"> </p>
                         </a>
-                        
+                        <a href="#" class="list-group-item">
+                            <h5 class="list-group-item-heading"> <i class="fa fa-phone"></i>  Ultimo Acesso</h5>
+                            <p class="list-group-item-text" ng-bind="usuarioDetalhe.conta.ultimoAcesso"> </p>
+                        </a>
                         <hr/>
-                        
+
                         <a href="#" class="list-group-item">
                             <h5 class="list-group-item-heading"> <i class="fa fa-map-marker"></i> Endereço</h5>
-                            <p class="list-group-item-text"> {{}} </p>
+                            <p class="list-group-item-text"> {{usuarioDetalhe.endereco.bairro}}, {{usuarioDetalhe.endereco.cidade.nome}} - {{usuarioDetalhe.endereco.cidade.estado.uf}} </p>
                         </a>
-                        
+
                     </div>
-                    
+
                     <div class="text-xs-center">
-                            <button class="btn btn-warning" data-dismiss="modal"> Fechar </button>
-                        </div>
+                        <button class="btn btn-warning" data-dismiss="modal"> Fechar </button>
+                    </div>
                 </div>
 
             </div>

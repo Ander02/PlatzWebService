@@ -15,7 +15,7 @@ Pagina de evento especifico
         <title>Platz - Suas rotas, Seus Eventos</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
-        
+
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
 
@@ -27,22 +27,22 @@ Pagina de evento especifico
 
         <!-- Your custom styles (efeito) -->
         <link href="css/efeitos/eventoEspecifico.css" rel="stylesheet">
-        
+
         <!-- link Angular -->
         <script type="text/javascript" src="lib/angular/angular.js"></script>
 
         <!-- angular app script -->
         <script type="text/javascript" src="js/app.js"></script>
-        
-         <!-- angular app UTIL -->
+
+        <!-- angular app UTIL -->
         <script src="js/util.js" type="text/javascript"></script>
 
         <!-- angular app CONTROLLER LOGIN -->
         <script src="js/controller/loginController.js" type="text/javascript"></script>
-        
+
         <!-- CONTROLLER EVENTO ESPECIFICO -->
         <script src="js/controller/eventoEspecificoController.js" type="text/javascript"></script>
-        
+
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="img/logo.png">
 
@@ -54,7 +54,19 @@ Pagina de evento especifico
     </head>
 
     <body onload="initialize()" id="corpo-evento-epecifico">
+
         <%
+            try {
+                String token = session.getAttribute("token").toString();
+                if (token == null) {
+                    out.print("<input type='hidden' id='token' name='token' value ='' >");
+                } else {
+                    out.print("<input type='hidden' id='token' name='token' value ='" + token + "' >");
+                }
+            } catch (Exception e) {
+                System.out.println("Erro ao buscar sessão " + e.getMessage());
+                out.print("<input type='hidden' id='token' name='token' value ='' >");
+            }
             String evento = request.getParameter("evento");
 
             out.print("<input type='hidden' id='idEvento' name='idEvento' value ='" + evento + "' >");
@@ -67,7 +79,7 @@ Pagina de evento especifico
 
     <div class="espaco"></div>
     <div ng-controller="eventoEspecificoController">
-        
+
         <section class="section section-blog-fw">
             <!--First row-->
             <div class="row">    
@@ -103,7 +115,7 @@ Pagina de evento especifico
                         <div class="col-md-3"></div>
                         <div class="col-md-3">  <h1 ng-bind="evento.nome"></h1> </div>
                         <div class="col-md-3 estrelas">
-                            
+
                             <div class="stars">
                                 <form action="">                                
                                     <input class="star star-5" id="star-5-2" type="radio" name="star" ng-click="avaliar(5)" ng-checked=" mediaArredondada == 5"/>
@@ -485,12 +497,12 @@ Pagina de evento especifico
 
         <!-- link Angular -->
         <script src="lib/angular/angular-animate.js" type="text/javascript"></script>
-        
+
         <!-- link Angular -->
         <link href="css/angular-toastr.css" rel="stylesheet" type="text/css"/>
-        
+
         <script type="text/javascript" src="lib/angular/angular-toastr.tpls.js"></script>
-        
+
     </div>
 
 </body>

@@ -96,6 +96,14 @@ angular.module("platz").controller("contaController", function ($scope, $http, t
         });
     };
 
+    $scope.getUsuario = function (contaId) {
+        $http.get(webService + "/usuario/conta/" + contaId).then(function (response) {
+            $scope.usuarioDetalhe = response.data;
+        }, function (response) {
+            aviso(toastr, "falha ao buscar informações do usuario");
+        });
+    };
+
     $scope.isBloqueado = function (conta) {
         if (conta.bloqueado === null) {
             return false;
