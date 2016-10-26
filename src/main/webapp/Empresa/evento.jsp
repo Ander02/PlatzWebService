@@ -47,7 +47,9 @@ Tela de cadastro de evento
         <link href="../css/bootstrap/bootstrap-material-datetimepicker.css" rel="stylesheet" type="text/css"/>
         <script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
         <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
-
+        
+        <script src="../lib/bootstrap/selectMulti.js" type="text/javascript"></script>
+   
     </head>
 
     <body ng-controller="eventoController">
@@ -158,7 +160,18 @@ Tela de cadastro de evento
                                 </dl>
 
                             </div>
-
+                                
+                            <div class="example">
+                                
+                                <select id="example-getting-started" multiple="multiple" >
+                                    <option value="cheese">Cheese</option>
+                                    <option value="tomatoes">Tomatoes</option>
+                                    <option value="Mozzarella">Mozzarella</option>
+                                    <option value="Mushrooms">Mushrooms</option>
+                                    <option value="Pepperoni">Pepperoni</option>
+                                    <option value="Onions">Onions</option>
+                                </select>
+                            </div>
 
                         </div>
 
@@ -278,7 +291,13 @@ Tela de cadastro de evento
 
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="../lib/bootstrap/mdb.min.js"></script>
-
+    
+    <link href="../css/bootstrap/prettify.css" rel="stylesheet" type="text/css"/>
+    <script src="../lib/bootstrap/prettify.js" type="text/javascript"></script>
+    
+    <link href="../css/bootstrap/bootstrap-multiselect.css" rel="stylesheet" type="text/css"/>
+    <script src="../lib/bootstrap/bootstrap-multiselect.js" type="text/javascript"></script>
+    
     <!-- Paginação da tabela -->
     <script type="text/javascript" src="../js/outros/paginacao-empresa.js"></script>
 

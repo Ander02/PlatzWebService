@@ -238,6 +238,7 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                                     <td>                                        
                                         <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalBloquear" ng-click="prepararBloqueamento(usuario.id)"><i class="fa fa-toggle-on"></i> Bloquear</a>
                                         <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalInativar" ng-click="prepararInativacao(usuario.id)"><i class="fa fa-toggle-on"></i> Inativar</a>
+                                        <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalVerDetalhesUsuario" ><i class="fa fa-user"></i> Ver Mais Detalhes</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -587,6 +588,63 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
     </div> <!--/.modal-->
 
 
+    <!-- Modal Ver detalhes usuario -->
+    <div class="modal fade" id="modalVerDetalhesUsuario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Detalhes Usuario</h4>
+                </div>
+                <!--Body-->
+                <div class="modal-body">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item">
+                            <h5 class="list-group-item-heading"><i class="fa fa-user"></i>  Nome</h5>
+                            <p class="list-group-item-text"> {{}} </p>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <h5 class="list-group-item-heading"><i class="fa fa-envelope"></i> Email </h5>
+                            <p class="list-group-item-text"> {{}} </p>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <h5 class="list-group-item-heading"> <i class="fa fa-calendar"></i> Data de Nascimento</h5>
+                            <p class="list-group-item-text"> {{}} </p>
+                        </a>
+                        
+                        <a href="#" class="list-group-item">
+                            <h5 class="list-group-item-heading"> <i class="fa fa-list-alt"></i> CPF</h5>
+                            <p class="list-group-item-text"> {{}} </p>
+                        </a>
+                        
+                        <a href="#" class="list-group-item">
+                            <h5 class="list-group-item-heading"> <i class="fa fa-phone"></i> Telefone</h5>
+                            <p class="list-group-item-text"> {{}} </p>
+                        </a>
+                        
+                        <hr/>
+                        
+                        <a href="#" class="list-group-item">
+                            <h5 class="list-group-item-heading"> <i class="fa fa-map-marker"></i> Endereço</h5>
+                            <p class="list-group-item-text"> {{}} </p>
+                        </a>
+                        
+                    </div>
+                    
+                    <div class="text-xs-center">
+                            <button class="btn btn-warning" data-dismiss="modal"> Fechar </button>
+                        </div>
+                </div>
+
+            </div>
+            <!--/.Content-->
+        </div>
+    </div> <!--/.modal-->
+
     <!-- Modal Desbloquear -->
     <div class="modal fade" id="modalDesbloquear" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -645,7 +703,7 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
     <link href="../css/angular-toastr.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../lib/angular/angular-toastr.tpls.js"></script>
 
-     <!-- aside -->
+    <!-- aside -->
     <script src="../js/outros/aside.js" type="text/javascript"></script>
 </body>
 
