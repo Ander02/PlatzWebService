@@ -7,6 +7,10 @@ html,body
 {
     margin-right: 10px;
 }
+.controles-slide-mini .fa
+{
+    margin-right: 0;
+}
 /* nav*/
 .espaco
 {

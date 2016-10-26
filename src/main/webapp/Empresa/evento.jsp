@@ -46,8 +46,9 @@ Tela de cadastro de evento
         <!--links para o funcionamento do datetimepicker-->
         <link href="../css/bootstrap/bootstrap-material-datetimepicker.css" rel="stylesheet" type="text/css"/>
         
-        <script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
+        <script src="../lib/jquery/jquery-1.12.3.min.js" type="text/javascript"></script>
+        
+        <script src="../lib/bootstrap/moment-with-locales.js" type="text/javascript"></script>
         
         <script src="../lib/bootstrap/selectMulti.js" type="text/javascript"></script>
    

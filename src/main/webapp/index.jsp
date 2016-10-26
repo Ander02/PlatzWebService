@@ -10,7 +10,7 @@
         <title>Platz - Suas rotas, Seus Eventos</title>
 
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+        <link href="css/font/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
@@ -30,7 +30,9 @@
         <!-- script com o arquivo do mapa -->
         <script type="text/javascript"
         src="http://maps.google.com/maps/api/js?key=AIzaSyBdWHheIGYeuOEDTS4iYFI1lbIbq7-W7Hw"></script>
+        
         <script src="js/outros/mapa-index.js"></script>
+        
         <!-- angular app script -->
         <script type="text/javascript" src="js/app.js"></script>
 
@@ -118,7 +120,7 @@
             <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
 
                 <!--Controls-->
-                <div class="controls-top">
+                <div class="controls-top controles-slide-mini">
                     <a class="btn-floating btn-small btn-warning btn-setas" href="#multi-item-example" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
                     <a class="btn-floating btn-small btn-warning btn-setas" href="#multi-item-example" data-slide="next"><i class="fa fa-chevron-right"></i></a>
                 </div>
