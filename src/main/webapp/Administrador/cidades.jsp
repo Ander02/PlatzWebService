@@ -12,7 +12,7 @@ Pagina de consulta de cidade e estados
 
         <title>Platz - Suas rotas, Seus Eventos</title>
 
-         <!-- Font Awesome -->
+        <!-- Font Awesome -->
         <link href="../css/font/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 
         <!-- Bootstrap core CSS -->
@@ -31,71 +31,87 @@ Pagina de consulta de cidade e estados
         <script type="text/javascript" src="../lib/angular/angular.js"></script>
 
         <script type="text/javascript" src="../js/app.js"></script>
-        
+
         <script src="../js/util.js" type="text/javascript"></script>
-        
+
+        <script src="../js/controller/loginController.js" type="text/javascript"></script>
+
         <script src="../js/controller/cidadeController.js" type="text/javascript"></script>
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="../img/logo.png">
     </head>
-    <body ng-controller="cidadeController">
-    <ng-include src="'../View/nav-adm.html'"></ng-include>
+    
+    <body>
+        <%
+            try {
+                String token = session.getAttribute("token").toString();
+                if (token == null) {
+                    response.sendRedirect("../login.jsp");
+                } else {
+                    out.print("<input type='hidden' id='token' name='token' value ='" + token + "' >");
+                }
+            } catch (Exception e) {
+                System.out.println("Erro ao buscar sessão " + e.getMessage());
+                response.sendRedirect("../login.jsp");
+            }
+        %>
+    <ng-include src="'../View/nav-adm.html'"  ng-controller="loginController"></ng-include>
+    <div  ng-controller="cidadeController">
+        <div class="espaco"></div>
 
-    <div class="espaco"></div>
 
+        <div class="head-pagina">
 
-    <div class="head-pagina">
-
-        <h1>Cidades</h1>
-        <p>A Aplicação cadastra novas cidades automaticamente, de acordo com o cadastro de contas e eventos.</p>
-
-    </div>
-
-    <ul class="nav nav-tabs md-pills pills-ins nav-tab" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#panel11" role="tab"><i class="fa fa-list-ul"></i>Consulta</a>
-        </li>
-    </ul>
-
-
-    <div class="tab-content conteudo-tab">
-
-        <!--Panel 1 caixa de entrada de mensagens-->
-        <div class="tab-pane fade in active" id="panel11" role="tabpanel">
-            <br>
-
-            <div class="table-responsive">
-                <table class="table table-hover table-striped ">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Cidade</th>
-                            <th>Estado</th>                            
-                            <th>Data de Cadastro</th>
-                        </tr>
-                    </thead>
-                    <tbody id="myTable">
-                        <tr ng-repeat="cidade in cidades">
-                            <td>{{$index + 1}}</td>
-                            <td>{{cidade.nome}}</td>                            
-                            <td>{{cidade.estado.nome}} - {{cidade.estado.uf}}</td>                            
-                            <td>{{cidade.dataCadastro}}</td>
-                        </tr>
-
-                    </tbody>
-                </table>
-
-            </div><!-- fim da div table-responsive -->
-            <div class="col-md-12 text-center">
-                <ul class="pagination pager" id="myPager"></ul>
-            </div>
+            <h1>Cidades</h1>
+            <p>A Aplicação cadastra novas cidades automaticamente, de acordo com o cadastro de contas e eventos.</p>
 
         </div>
-        <!--/.Panel 1-->
+
+        <ul class="nav nav-tabs md-pills pills-ins nav-tab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#panel11" role="tab"><i class="fa fa-list-ul"></i>Consulta</a>
+            </li>
+        </ul>
+
+
+        <div class="tab-content conteudo-tab" ng-if="permicao">
+
+            <!--Panel 1 caixa de entrada de mensagens-->
+            <div class="tab-pane fade in active" id="panel11" role="tabpanel">
+                <br>
+
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped ">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Cidade</th>
+                                <th>Estado</th>                            
+                                <th>Data de Cadastro</th>
+                            </tr>
+                        </thead>
+                        <tbody id="myTable">
+                            <tr ng-repeat="cidade in cidades">
+                                <td>{{$index + 1}}</td>
+                                <td>{{cidade.nome}}</td>                            
+                                <td>{{cidade.estado.nome}} - {{cidade.estado.uf}}</td>                            
+                                <td>{{cidade.dataCadastro}}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div><!-- fim da div table-responsive -->
+                <div class="col-md-12 text-center">
+                    <ul class="pagination pager" id="myPager"></ul>
+                </div>
+
+            </div>
+            <!--/.Panel 1-->
+        </div>
+
+        <div class="espaco"></div>
     </div>
-
-    <div class="espaco"></div>
-
     <!-- /Fim do Projeto aqui-->
 
 
@@ -122,8 +138,8 @@ Pagina de consulta de cidade e estados
     <!-- link Angular -->
     <link href="../css/angular-toastr.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../lib/angular/angular-toastr.tpls.js"></script>
-    
-     <!-- aside -->
+
+    <!-- aside -->
     <script src="../js/outros/aside.js" type="text/javascript"></script>
 </body>
 </html>

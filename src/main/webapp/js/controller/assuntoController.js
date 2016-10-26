@@ -85,6 +85,8 @@ angular.module("platz").controller("assuntoController", function ($scope, $http,
 
     function atualizar() {
         $scope.listarTodos();
+        verificarToken($http, $scope, toastr, function () {
+        });
         $scope.listarDeletados();
         $scope.listarNaoDeletados();
         $scope.cancelarEdicao();
@@ -92,5 +94,9 @@ angular.module("platz").controller("assuntoController", function ($scope, $http,
         $scope.cancelarRecuperacao();
 
     }
-    window.onload = atualizar();
+    window.onload = function () {
+        console.log("onload");
+        $scope.permicao = false;
+        atualizar();
+    };
 });

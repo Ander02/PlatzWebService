@@ -11,7 +11,12 @@ angular.module("platz").controller("cidadeController", function ($scope, $http, 
 
     //funções de atualizações e avisos
     function atualizar() {
+         verificarToken($http, $scope, toastr, function () {
+        });
         $scope.listarTodos();
     }
-    window.onload = atualizar();
-});
+ window.onload = function () {
+        console.log("onload");
+        $scope.permicao = false;
+        atualizar();
+    };});
