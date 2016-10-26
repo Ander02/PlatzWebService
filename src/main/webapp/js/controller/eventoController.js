@@ -28,8 +28,9 @@ angular.module("platz").controller("eventoController", function ($scope, $http, 
             var inputGaleria = document.getElementById("cadastro-evento-imagem-galeria");
             for (var i = 0; i < inputGaleria.files.length; i++) {
                 if (!(!inputGaleria.files[i].type.match('image.*'))) {
+                    sleep(1000);
                     enviarArquivo($http, inputGaleria.files[i], 'imagemGaleria', webService + "/evento/imagens/" + response.data.id);
-                }
+                } 
             }
             inputGaleria.value = null;
 

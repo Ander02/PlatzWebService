@@ -100,14 +100,14 @@ public class FtpUtil {
     public void uploadArquivoFTP(InputStream arquivo, String nomeDoArquivo, String diretorioDoUpload) throws Exception {
         try {
 
-            this.criarDiretorios(diretorioDoUpload);
+            if (this.criarDiretorios(diretorioDoUpload)) {
 
-            boolean ok = this.ftp.storeFile(nomeDoArquivo, arquivo);
+                boolean ok = this.ftp.storeFile(nomeDoArquivo, arquivo);
 
-            if (!ok) {
-                System.out.println("Não foi possivel subir o arquivo");
+                if (!ok) {
+                    System.out.println("Não foi possivel subir o arquivo");
+                }
             }
-
         } catch (Exception e) {
             System.out.println("Erro ao Fazer upload do Arquivo por FTP: " + e.getMessage());
         }
@@ -127,7 +127,6 @@ public class FtpUtil {
     public InputStream downloadArquivoFTP(String hostRemoto) {
 
         try {
-
             return ftp.retrieveFileStream(hostRemoto);
         } catch (IOException e) {
             System.out.println("Erro ao Fazer download do Arquivo por FTP: " + e.getMessage());
