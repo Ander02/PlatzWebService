@@ -45,7 +45,6 @@ pagina de login, onde o usuario é redirecionado se errar o login pela nav
     <body>
         <!-- inicio do projeto aqui-->
         <%
-
             out.print("<input type='hidden' id='token' name='token' value ='' >");
             session.invalidate();
           
