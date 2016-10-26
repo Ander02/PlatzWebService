@@ -62,7 +62,15 @@ Estilização de toda a pagina administrativa
 /*
 * fim PAGINA DE CATEGORIA
 */
-
+.imagem-empresa
+{
+    text-align: center;
+    height: 200px;
+}
+.imagem-empresa img
+{
+    height: 100%;
+}
 /*
 *PAGINA DE MENSAGEM(INDEX)
 */
