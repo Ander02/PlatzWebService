@@ -17,6 +17,7 @@ import com.platz.util.ImagemUtil;
 import com.platz.util.PerfilAuth;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.security.PermitAll;
@@ -157,9 +158,12 @@ public class EventoService {
                 if (ok) {
                     //Settar o caminho do icone na model
                     model.getImagens().add(new ImagemModel(ImagemUtil.URL_FTP + diretorio + nomeDoArquivo));
+                    System.out.println("Adicionou a imagem");
+                    System.out.println("Total de imagens agora:" + model.getImagens().size());
                     //Alterar
                     eventoController.alterar(model);
                 } else {
+                    System.out.println("Não adicionou a imagem");
                     //Retorna uma BadRequest ao usuário
                     return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
                 }
