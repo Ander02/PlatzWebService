@@ -1,23 +1,41 @@
 angular.module("platz").controller("eventoController", function ($scope, $http, toastr) {
 
-
     $scope.cadastrar = function () {
 
-        var categorias = document.querySelectorAll(".categorias");
-        $scope.evento.categoriasId = new Array();
+//        var categorias = document.querySelectorAll(".categorias");
+//        $scope.evento.categoriasId = new Array();
+//
+//        for (var i = 0; i < categorias.length; i++) {
+//            if (categorias[i].checked === true) {
+//                $scope.evento.categoriasId.push(categorias[i].value);
+//            }
+//        }
 
-        for (var i = 0; i < categorias.length; i++) {
-            if (categorias[i].checked === true) {
-                $scope.evento.categoriasId.push(categorias[i].value);
-            }
-        }
         $scope.evento.empresaId = $scope.empresa.id;
         $scope.evento.dataInicio = document.getElementById("date-start").value;
         $scope.evento.dataFim = document.getElementById("date-end").value;
         $scope.evento.destaque = false;
 
         $http.post(webService + "/evento", $scope.evento, gerarHeaders(document.getElementById("token").value)).then(function (response) {
+            //Upload imagem capa
+            var inputCapa = document.getElementById("cadastro-evento-img-capa");
+            if (!(!inputCapa.files[0].type.match('image.*'))) {
+                enviarArquivo($http, inputCapa.files[0], 'imagemCapa', webService + "/evento/imagem/" + response.data.id);
+            }
+            inputCapa.value = null;
+
+            //Upload Imagem Galeria
+            var inputGaleria = document.getElementById("cadastro-evento-imagem-galeria");
+            for (var i = 0; i < inputGaleria.files.length; i++) {
+                if (!(!inputGaleria.files[i].type.match('image.*'))) {
+                    enviarArquivo($http, inputGaleria.files[i], 'imagemGaleria', webService + "/evento/imagens/" + response.data.id);
+                }
+            }
+            inputGaleria.value = null;
+
+            //$scope.evento = null;
             sucesso(toastr, "Evento Cadastrado com sucesso");
+
         }, function (response) {
             erro(toastr, errorManager(response.config.url, response.status, "falha ao cadastra eventos"));
         });

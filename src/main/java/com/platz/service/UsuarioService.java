@@ -98,7 +98,7 @@ public class UsuarioService {
                 //Se a imagem for salva sem nenhum erro atualiza a model
                 if (ok) {
                     //Settar o caminho do icone na model
-                    model.setImagemPerfil(new ImagemUtil().URL_FTP + diretorio + nomeDoArquivo);
+                    model.setImagemPerfil(ImagemUtil.URL_FTP + diretorio + nomeDoArquivo);
                     //Alterar
                     usuarioController.alterar(model);
                 } else {
@@ -119,7 +119,7 @@ public class UsuarioService {
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
         }
     }
-    
+
     @GET
     @Path("/usuario/imagem/{id}")
     @PermitAll
@@ -132,7 +132,7 @@ public class UsuarioService {
 
             if (model != null) {
 
-                if (!model.getImagemPerfil().equals("") && model.getImagemPerfil()!= null) {
+                if (!model.getImagemPerfil().equals("") && model.getImagemPerfil() != null) {
                     InputStream input = new ImagemUtil().baixarImagem(model.getImagemPerfil());
 
                     if (input != null) {
