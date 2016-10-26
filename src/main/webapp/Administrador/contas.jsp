@@ -1,5 +1,4 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <!--
 Pagina de cadastro , consulta, atualização e exclusão de conta, que seria contas administrativas apenas
@@ -14,7 +13,7 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
         <title>Platz - Suas rotas, Seus Eventos</title>
 
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+        <link href="../css/font/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 
         <!-- Bootstrap core CSS -->
         <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
@@ -603,7 +602,13 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                 </div>
                 <!--Body-->
                 <div class="modal-body">
-                    <div class="list-group">
+                    <div class="list-group lista">
+                        
+                         <a href="#" class="list-group-item imagem-perfil">
+                            <img class="img-responsive img-circle" src="../img/outras/teste-perfil.jpg">
+                        </a>
+                        
+                        
                         <a href="#" class="list-group-item">
                             <h5 class="list-group-item-heading"><i class="fa fa-user"></i>  Nome</h5>
                             <p class="list-group-item-text" ng-bind="usuarioDetalhe.nome"> </p>
@@ -663,9 +668,9 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                 </div>
                 <!--Body-->
                 <div class="modal-body">
-                    <div class="list-group">
+                    <div class="list-group lista">
                         
-                        <a href="#" class="list-group-item imagem-empresa">
+                        <a href="#" class="list-group-item imagem-perfil">
                             <img class="img-responsive img-circle" src="../img/outras/teste-perfil.jpg">
                         </a>
                         
