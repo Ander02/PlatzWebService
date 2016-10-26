@@ -366,7 +366,7 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
                             <div class="col-md-12" >
                                 <div class="form-group">                        
                                     <label for="message-text" class="form-control-label label-modal-mensagem">Envie um e-mail de resposta:</label>
-                                    <textarea class="form-control" id="message-text" ng-model="resposta"> 
+                                    <textarea class="form-control" id="message-text" ng-model="resposta" required> 
                                     </textarea>
                                 </div>
                             </div>
