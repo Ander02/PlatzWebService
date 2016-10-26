@@ -603,12 +603,12 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                 <!--Body-->
                 <div class="modal-body">
                     <div class="list-group lista">
-                        
-                         <a href="#" class="list-group-item imagem-perfil">
-                            <img class="img-responsive img-circle" src="../img/outras/teste-perfil.jpg">
+
+                        <a href="#" class="list-group-item imagem-perfil">
+                            <img class="img-responsive img-circle"  ng-src="{{imagemUsuario}}" onerror="this.src='../img/outras/teste-perfil.jpg'">
                         </a>
-                        
-                        
+
+
                         <a href="#" class="list-group-item">
                             <h5 class="list-group-item-heading"><i class="fa fa-user"></i>  Nome</h5>
                             <p class="list-group-item-text" ng-bind="usuarioDetalhe.nome"> </p>
@@ -653,8 +653,8 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
             <!--/.Content-->
         </div>
     </div> <!--/.modal-->
-    
-     <!-- Modal Ver detalhes usuario -->
+
+    <!-- Modal Ver detalhes usuario -->
     <div class="modal fade" id="modalVerDetalhesEmpresa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <!--Content-->
@@ -669,55 +669,55 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                 <!--Body-->
                 <div class="modal-body">
                     <div class="list-group lista">
-                        
+
                         <a href="#" class="list-group-item imagem-perfil">
-                            <img class="img-responsive img-circle" src="../img/outras/teste-perfil.jpg">
+                            <img class="img-responsive img-circle" ng-src="{{imagemEmpresa}}" onerror="this.src='../img/outras/teste-perfil.jpg'">
                         </a>
-                        
+
                         <a href="#" class="list-group-item">
                             <h5 class="list-group-item-heading"><i class="fa fa-building-o"></i> Razão Social</h5>
-                            <p class="list-group-item-text"> {{}} </p>
+                            <p class="list-group-item-text" ng-bind="empresaDetalhe.razaoSocial">  </p>
                         </a>
                         <a href="#" class="list-group-item">
                             <h5 class="list-group-item-heading"><i class="fa fa-building"></i> Nome Fantasia</h5>
-                            <p class="list-group-item-text"> {{}} </p>
+                            <p class="list-group-item-text" ng-bind="empresaDetalhe.nomeFantasia">  </p>
                         </a>
                         <a href="#" class="list-group-item">
                             <h5 class="list-group-item-heading"><i class="fa fa-envelope"></i> Email </h5>
-                            <p class="list-group-item-text"> {{}} </p>
+                            <p class="list-group-item-text" ng-bind="empresaDetalhe.conta.email">  </p>
                         </a>
                         <a href="#" class="list-group-item">
                             <h5 class="list-group-item-heading"> <i class="fa fa-list-alt"></i> CNPJ</h5>
-                            <p class="list-group-item-text"> {{}} </p>
+                            <p class="list-group-item-text" ng-bind="empresaDetalhe.cnpj">  </p>
                         </a>
-                        
+
                         <a href="#" class="list-group-item">
                             <h5 class="list-group-item-heading"> <i class="fa fa-phone-square"></i> Telefone 1</h5>
-                            <p class="list-group-item-text"> {{}} </p>
+                            <p class="list-group-item-text" ng-bind="empresaDetalhe.telefone">  </p>
                         </a>
-                        
+
                         <a href="#" class="list-group-item">
                             <h5 class="list-group-item-heading"> <i class="fa fa-phone"></i> Telefone 2</h5>
-                            <p class="list-group-item-text"> {{}} </p>
+                            <p class="list-group-item-text" ng-bind="empresaDetalhe.telefone2">  </p>
                         </a>
-                        
+
                         <a href="#" class="list-group-item">
                             <h5 class="list-group-item-heading"> <i class="fa fa-calendar"></i> Ultimo Acesso</h5>
-                            <p class="list-group-item-text"> {{}} </p>
+                            <p class="list-group-item-text" ng-bind="empresaDetalhe.conta.ultimoAcesso">  </p>
                         </a>
-                        
+
                         <hr/>
-                        
+
                         <a href="#" class="list-group-item">
                             <h5 class="list-group-item-heading"> <i class="fa fa-map-marker"></i> Endereço</h5>
-                            <p class="list-group-item-text"> {{}} </p>
+                            <p class="list-group-item-text"> {{empresaDetalhe.endereco.bairro}}, {{empresaDetalhe.endereco.cidade.nome}} - {{empresaDetalhe.endereco.cidade.estado.uf}} </p>
                         </a>
-                        
+
                     </div>
-                    
+
                     <div class="text-xs-center">
-                            <button class="btn btn-warning" data-dismiss="modal"> Fechar </button>
-                        </div>
+                        <button class="btn btn-warning" data-dismiss="modal"> Fechar </button>
+                    </div>
                 </div>
 
             </div>
