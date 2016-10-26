@@ -70,7 +70,8 @@ public class EventoService {
 
     @PUT
     @Path(value = "/evento/imagem/{id}")
-    @PerfilAuth(Perfil.EMPRESA)
+    //@PerfilAuth(Perfil.EMPRESA)
+    @PermitAll
     @Consumes(value = MediaType.MULTIPART_FORM_DATA)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response subirImagemCapa(@FormDataParam("imagemCapa") InputStream imagemCapaInputStream,
@@ -84,26 +85,30 @@ public class EventoService {
             if (model != null) {
 
                 //Montando o caminho do upload
-                String diretorioDoUpload = new ImagemUtil().RAIZ + "evento/" + model.getId() + "/";
+                String diretorio = "eventos/" + model.getId() + "/";
                 //Montando o nome do arquivo
-                String nomeDoArquivo = "0" + "." + fileMetaData.getMediaType().getSubtype();
+                String nomeDoArquivo = "0." + fileMetaData.getMediaType().getSubtype();
 
                 //Verificar se já existe uma imagem cadastrado
-                if (model.getImagemCapa() != null) {
-                    if (!model.getImagemCapa().equals("")) {
-                        new ImagemUtil().deletarArquivo(model.getImagemCapa());
+                if (model.getImagemCapa() != null && !model.getImagemCapa().equals("")) {
+
+                    boolean ok = new ImagemUtil().deletarArquivo(model.getImagemCapa());
+
+                    if (ok) {
                         System.out.println("Apagou arquivo antigo");
+                    } else {
+                        System.out.println("Não Apagou o arquivo antigo");
+                        return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
                     }
                 }
 
                 //Salvar Imagem
-                boolean ok = new ImagemUtil().salvarArquivo(diretorioDoUpload, nomeDoArquivo, imagemCapaInputStream);
+                boolean ok = new ImagemUtil().salvarArquivo(diretorio, nomeDoArquivo, imagemCapaInputStream);
 
                 //Se a imagem for salva sem nenhum erro atualiza a model
                 if (ok) {
                     //Settar o caminho do icone na model
-                    model.setImagemCapa(diretorioDoUpload + nomeDoArquivo);
-
+                    model.setImagemCapa(ImagemUtil.URL_FTP + diretorio + nomeDoArquivo);
                     //Alterar
                     eventoController.alterar(model);
                 } else {
@@ -114,6 +119,7 @@ public class EventoService {
                 return Response.ok(new EventoLeitura(model)).build();
             }
 
+            System.out.println("Id não existente");
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
 
         } catch (Exception e) {
@@ -129,37 +135,56 @@ public class EventoService {
     @PermitAll
     @Consumes(value = MediaType.MULTIPART_FORM_DATA)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public Response subirImagemGaleria(@FormDataParam("imagem") InputStream imagemInputStream,
-            @FormDataParam("imagem") FormDataBodyPart fileMetaData,
+    public Response subirImagemGaleria(@FormDataParam("imagemGaleria") InputStream imagemInputStream,
+            @FormDataParam("imagemGaleria") FormDataBodyPart fileMetaData,
             @PathParam("id") String id) {
 
         try {
             //Buscar Model pelo id
             EventoModel model = eventoController.buscarPorId(id);
 
-            //Montando o caminho do upload
-            String diretorioDoUpload = new ImagemUtil().RAIZ + "evento/" + model.getId() + "/";
-            //Montando o nome do arquivo
-            String nomeDoArquivo = new DataUtil().dataSemPontuacao(new Date()) + "." + fileMetaData.getMediaType().getSubtype();
+            if (model != null) {
 
-            //Salvar Imagem
-            boolean ok = new ImagemUtil().salvarArquivo(diretorioDoUpload, nomeDoArquivo, imagemInputStream);
+                //Montando o caminho do upload
+                String diretorio = "eventos/" + model.getId() + "/";
+                //Montando o nome do arquivo
+                String nomeDoArquivo = new DataUtil().dataSemPontuacao(new Date()) + "." + fileMetaData.getMediaType().getSubtype();
 
-            //Se a imagem for salva sem nenhum erro atualiza a model
-            if (ok) {
-                //Settar o caminho do icone na model
-                model.getImagens().add(new ImagemModel(diretorioDoUpload + nomeDoArquivo));
+                //Verificar se já existe uma imagem cadastrado
+                if (model.getImagemCapa() != null && !model.getImagemCapa().equals("")) {
 
-                //Alterar
-                eventoController.alterar(model);
-            } else {
-                //Retorna uma BadRequest ao usuário
-                return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
+                    boolean ok = new ImagemUtil().deletarArquivo(model.getImagemCapa());
+
+                    if (ok) {
+                        System.out.println("Apagou arquivo antigo");
+                    } else {
+                        System.out.println("Não Apagou o arquivo antigo");
+                        return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
+                    }
+                }
+
+                //Salvar Imagem
+                boolean ok = new ImagemUtil().salvarArquivo(diretorio, nomeDoArquivo, imagemInputStream);
+
+                //Se a imagem for salva sem nenhum erro atualiza a model
+                if (ok) {
+                    //Settar o caminho do icone na model
+                    model.getImagens().add(new ImagemModel(ImagemUtil.URL_FTP + diretorio + nomeDoArquivo));
+                    //Alterar
+                    eventoController.alterar(model);
+                } else {
+                    //Retorna uma BadRequest ao usuário
+                    return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
+                }
+
+                return Response.ok(new EventoLeitura(model)).build();
             }
 
-            return Response.ok(new EventoLeitura(model)).build();
+            System.out.println("Id não existente");
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
+
         } catch (Exception e) {
-            //Envia erro pelo console
+            // Envia erro pelo console
             System.out.println("Erro de upload: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
@@ -332,7 +357,7 @@ public class EventoService {
     public Response buscarTopN(@PathParam("max") int max) {
         try {
             return Response.ok(new EventoLeitura().converterLista(eventoController.TopNEventos(max))).build();
-            
+
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
