@@ -83,7 +83,7 @@ pagina onde é retornada a busca de eventos por uma unica determinada categoria
                 <div class="card card-cascade narrower">
                     <!--Card image-->
                     <div class="view overlay hm-white-slight">
-                        <img src="img/outras/plano-fundo.jpg" class="img-fluid" alt="">
+                        <img ng-src="{{buscarImagemCapa(evento.id)}}" onerror="this.src='img/logo.png'" class="img-fluid" alt="">
                         <a>
                             <div class="mask"></div>
                         </a>

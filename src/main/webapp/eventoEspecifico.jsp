@@ -88,7 +88,7 @@ Pagina de evento especifico
                     <!-- Imagem do evento -->
                     <div class="col-lg-12 col-md-4 col-sm-6 col-xs-12 imagem-evento-especifico">
                         <div class="hovereffect">
-                            <img class="img-responsive" src="img/outras/plano-fundo.jpg" alt="">
+                            <img class="img-responsive" ng-src="{{imagemCapa}}" onerror="this.src='img/logo.png'" >
                             <div class="overlay">
                                 <h2>Curta Nossos Eventos</h2>
                                 <p> 

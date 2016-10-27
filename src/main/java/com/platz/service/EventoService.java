@@ -131,6 +131,33 @@ public class EventoService {
         }
     }
 
+    @GET
+    @Path("/evento/imagemCapa/{id}")
+    @PermitAll
+    @Produces("image/*")
+    public Response baixarImagemCapa(@PathParam("id") String id) {
+
+        try {
+
+            EventoModel model = eventoController.buscarPorId(id);
+
+            if (model != null) {
+                if (!model.getImagemCapa().equals("") && model.getImagemCapa() != null) {
+                    InputStream input = new ImagemUtil().baixarImagem(model.getImagemCapa());
+
+                    if (input != null) {
+                        return Response.ok(input).header("Content-Type", "image/png").build();
+                    }
+                }
+                return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao baixar imagem, imagem inexistente").build();
+            }
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao baixar imagem, categoria não encontrada").build();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao baixar imagem").build();
+        }
+    }
+
     @PUT
     @Path(value = "/evento/imagens/{id}")
     @PermitAll

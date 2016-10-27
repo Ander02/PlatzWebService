@@ -1,5 +1,5 @@
 angular.module("platz").controller("eventosController", function ($scope, $http, toastr) {
-     
+
     $scope.listarCategoriasNaoExcluidas = function () {
         $http.get(webService + "/categorias/naoExcluidas").then(function (response) {
             $scope.categorias = response.data;
@@ -52,7 +52,10 @@ angular.module("platz").controller("eventosController", function ($scope, $http,
     $scope.baixarImagemCategoria = function (id) {
         return webService + "/categoria/imagem/" + id;
     };
-
+    
+    $scope.buscarImagemCapa = function (id) {
+        return webService + "/evento/imagemCapa/" + id;
+    };
 
 
     window.onload = function () {

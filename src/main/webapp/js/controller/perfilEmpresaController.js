@@ -14,6 +14,10 @@ angular.module("platz").controller("perfilEmpresaController", function ($scope, 
             console.log(response.data);
         });
     };
+    
+    $scope.buscarImagemCapa = function (id){
+        return webService + "/evento/imagemCapa/" + id;
+    };
 
     $scope.eventosEmpresa = function () {
         $http.get(webService + "/eventos/empresa/" + $scope.empresa.id).then(function (response) {
