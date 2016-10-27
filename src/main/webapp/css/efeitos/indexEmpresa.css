@@ -12,6 +12,7 @@ and open the template in the editor.
 .hovereffect {
     width: 100%;
     height: 100%;
+    background: lightslategrey;
     float: left;
     overflow: hidden;
     position: relative;
@@ -47,6 +48,7 @@ and open the template in the editor.
 .hovereffect img {
     display: block;
     height: 350px;
+    margin: 0 auto;
     position: relative;
     -webkit-transition: all 0.35s;
     transition: all 0.35s;
