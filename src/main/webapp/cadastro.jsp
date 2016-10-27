@@ -10,7 +10,7 @@
 
         <title>Platz - Suas rotas, Seus Eventos</title>
 
-         <!-- Font Awesome -->
+        <!-- Font Awesome -->
         <link href="css/font/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 
         <!-- Bootstrap core CSS -->
@@ -32,9 +32,8 @@
         <script src="js/util.js" type="text/javascript"></script>
 
         <!-- link controller -->
-        <script src="js/controller/cadastroController.js" type="text/javascript"></script>
 
-        <!-- link controller -->
+        <script src="js/controller/cadastroController.js" type="text/javascript"></script>
         <script src="js/controller/loginController.js" type="text/javascript"></script>
 
         <!-- link com o icone que fica no inicio do navegador -->
@@ -42,9 +41,9 @@
 
         <!--links para o funcionamento do datetimepicker-->
         <link href="css/bootstrap/bootstrap-material-datetimepicker.css" rel="stylesheet" type="text/css"/>
-        
+
         <script src="lib/jquery/jquery-1.12.3.min.js"></script>
-        
+
         <script type="text/javascript" src="lib/bootstrap/moment-with-locales.js"></script>
     </head>
 

@@ -1,6 +1,5 @@
 angular.module("platz").controller("cadastroController", function ($scope, $http, toastr) {
     $scope.conta;
-
     $scope.onblurCepEmpresa = function () {
         cep = document.getElementById("empresa-cep").value;
         $http.get("https://viacep.com.br/ws/" + cep + "/json/").then(function (response) {

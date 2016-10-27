@@ -139,7 +139,7 @@ Pagina de evento especifico
 
                         <div class="col-md-12">    
 
-                            <h3><i class="fa fa-building-o"></i><a href="perfilEmpresa.html" ng-bind="evento.empresa.nomeFantasia"></a></h3>
+                            <h3><i class="fa fa-building-o"></i><a href="perfilEmpresa.jsp?empresa={{evento.empresa.id}}" ng-bind="evento.empresa.nomeFantasia"></a></h3>
 
                             <!--botoes para rota , galeria e comentarios-->
                             <div class="social-counters ">

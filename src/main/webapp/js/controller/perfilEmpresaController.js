@@ -24,16 +24,54 @@ angular.module("platz").controller("perfilEmpresaController", function ($scope, 
         });
     };
     $scope.alterarSenha = function () {
-        console.log($scope.empresaEdicaoSenha);
+
+        if ($scope.empresaEdicaoSenha.senha === $scope.empresaEdicaoSenha.confirmaSenha) {
+
+            $http.put(webService + "/conta/senha/" + $scope.empresaEdicaoSenha.conta.id, $scope.empresaEdicaoSenha).then(function (response) {
+                sucesso(toastr, "Senha editada com sucesso");
+                $scope.empresaEdicaoSenha.senha = null;
+                $scope.empresaEdicaoSenha.confirmaSenha = null;
+            }, function (reasponse) {
+                aviso(toastr, "falha ao editar senha, por favor tente novamente mais tarde");
+            });
+
+        } else {
+            aviso(toastr, "as senhas não corresponde, digite-as novamente");
+            $scope.empresaEdicaoSenha.senha = null;
+            $scope.empresaEdicaoSenha.confirmaSenha = null;
+        }
+
 
     };
+
     $scope.alterarInfoEmpresariais = function () {
         console.log($scope.empresaEdicaoInfo);
+        $http.put(webService + "/empresa/" + $scope.empresaEdicaoInfo.id, $scope.empresaEdicaoInfo).then(function (response) {
+            sucesso(toastr, "informações editada com sucesso");
+        }, function (response) {
+            aviso(toastr, "falha ao editar informações, por favor tente novamente mais tarde");
 
+        });
+        var input = document.getElementById("conta-empresa-img");
+        var imgEmpresa = input.files[0];
+
+        if (imgEmpresa != null && imgEmpresa != "" && typeof imgEmpresa != undefined) {
+            if (!(!imgEmpresa.type.match('image.*'))) {
+                enviarArquivo($http, imgEmpresa, 'imgPerfil', webService + "/empresa/imagem/" + $scope.empresaEdicaoInfo.id);
+                sucesso(toastr, "Imagem atualizada");
+            }
+            input.value = null;
+        }
     };
 
     $scope.alterarEndereco = function () {
         console.log($scope.empresaEdicaoEndereco);
+        $http.put(webService + "/empresa/" + $scope.empresaEdicaoEndereco.id, $scope.empresaEdicaoEndereco).then(function (response) {
+            sucesso(toastr, "endereço editado com sucesso");
+        }, function (response) {
+            aviso(toastr, "falha ao editar endereço, por favor tente novamente mais tarde");
+
+        });
     };
 
     $scope.onblurCep = function () {

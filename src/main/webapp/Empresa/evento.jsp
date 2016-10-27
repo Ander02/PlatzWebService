@@ -38,7 +38,7 @@ Tela de cadastro de evento
         <script src="../js/util.js" type="text/javascript"></script>
 
         <!-- link controller -->
-        <script src="../js/controller/eventoController.js" type="text/javascript"></script>
+        <script src="../js/controller/eventoCadastroController.js" type="text/javascript"></script>
 
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="../img/logo.png">
@@ -52,7 +52,7 @@ Tela de cadastro de evento
         
     </head>
 
-    <body ng-controller="eventoController">
+    <body ng-controller="eventoCadastroController">
         <!-- inicio do projeto aqui-->
 
         <%
