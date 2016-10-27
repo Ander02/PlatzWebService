@@ -141,6 +141,7 @@ public class EventoService {
             @PathParam("id") String id) {
 
         try {
+
             //Buscar Model pelo id
             EventoModel model = eventoController.buscarPorId(id);
 
@@ -148,6 +149,8 @@ public class EventoService {
 
                 //Montando o caminho do upload
                 String diretorio = "eventos/" + model.getId() + "/";
+
+                System.out.println(diretorio);
                 //Montando o nome do arquivo
                 String nomeDoArquivo = new DataUtil().dataSemPontuacao(new Date()) + "." + fileMetaData.getMediaType().getSubtype();
 
@@ -159,7 +162,6 @@ public class EventoService {
                     //Settar o caminho do icone na model
                     model.getImagens().add(new ImagemModel(ImagemUtil.URL_FTP + diretorio + nomeDoArquivo));
                     System.out.println("Adicionou a imagem");
-                    System.out.println("Total de imagens agora:" + model.getImagens().size());
                     //Alterar
                     eventoController.alterar(model);
                 } else {
@@ -169,6 +171,7 @@ public class EventoService {
                 }
 
                 return Response.ok(new EventoLeitura(model)).build();
+
             }
 
             System.out.println("Id não existente");
