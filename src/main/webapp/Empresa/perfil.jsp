@@ -9,9 +9,9 @@
 
         <title>Platz - Suas rotas, Seus Eventos</title>
 
-          <!-- Font Awesome -->
+        <!-- Font Awesome -->
         <link href="../css/font/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-        
+
         <!-- Bootstrap core CSS -->
         <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
 
@@ -38,7 +38,7 @@
 
         <!-- Link Controller -->
         <script src="../js/controller/perfilEmpresaController.js" type="text/javascript"></script>
-        
+
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="../img/logo.png">
 
@@ -80,7 +80,7 @@
                             <div class="col-md-12">
                                 <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12 imagem-perfil-empresa-efeito imagem-perfil-empresa">
                                     <div class="hovereffect">
-                                        <img class="img-responsive " src="../img/outras/plano-fundo.jpg" alt="">
+                                        <img class="img-responsive " ng-src="{{imagemPerfil}}" onerror="this.src='../img/placeholder.png'">
                                         <div class="overlay">
                                             <h2>{{empresa.nomeFantasia}}</h2>
                                             <a class="info" href="editarPerfil.jsp">Editar Perfil</a>
@@ -112,9 +112,9 @@
                             <br>                            
                             <div class="card-group col-md-12">
                                 <div class="col-md-4 evento-perfil-empresa" ng-repeat="evento in eventos">
-                                    <div class="card">
+                                    <div class="card">                                        
                                         <div class="hovereffect">
-                                            <img class=" img-responsive " src="../img/outras/plano-fundo.jpg" alt="Imagem do Evento" >
+                                            <img class=" img-responsive " ng-src="{{buscarImagemCapa(evento.id)}}" onerror = "this.src = '../img/placeholder.png'" alt="Imagem do Evento" >
                                         </div><!-- /. div hovereffect  -->
                                         <h4 class="card-title">{{evento.nome}}</h4>
                                         <p><i class="fa fa-calendar animated bounceInDown"></i> {{evento.dataInicio}}</p>
