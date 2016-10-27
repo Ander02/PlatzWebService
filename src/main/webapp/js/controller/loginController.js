@@ -34,11 +34,9 @@ angular.module("platz").controller("loginController", function ($scope, $http, t
         }, function (response) {
 
         });
-
     };
 
     $scope.getConta = function () {
-
         var token = document.getElementById("token").value;
         if (token !== null && token !== "") {
             $http.get(webService + "/conta/token/" + token).then(function (response) {

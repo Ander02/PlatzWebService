@@ -78,7 +78,7 @@ considerada pagina de eventos que a empresa postou
         <div class="col-md-3 eventos-empresa" ng-repeat="evento in eventos">
             <div class="card">
                 <div class="hovereffect">
-                    <img class=" img-responsive " ng-src="{{buscarImagemCapa(evento.id)}}" alt="Imagem do Evento" >
+                    <img class=" img-responsive " ng-src="{{buscarImagemCapa(evento.id)}}" onerror = "this.src = '../img/placeholder.png'"  alt="Imagem do Evento" >
                     <!--<img class=" img-responsive " src="../img/outras/plano-fundo.jpg" alt="Imagem do Evento" >-->
                     <div class="overlay">
                         <h2>{{evento.nome}}</h2>

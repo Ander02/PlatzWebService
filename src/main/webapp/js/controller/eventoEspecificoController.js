@@ -13,6 +13,7 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
     $scope.avaliar = function (nota) {
         console.log(nota);
     };
+    
     $scope.getMedia = function () {
         $http.get(webService + "/avaliacao/evento/media/" + id).then(function (response) {
             $scope.media = parseFloat(response.data);
