@@ -248,7 +248,7 @@ public class EmpresaService {
             return Response.status(Response.Status.OK).entity(new EmpresaLeitura(model)).build();
 
         } catch (Exception e) {
-            System.out.println("Erro" + e.getMessage());
+            // System.out.println("Erro" + e.getMessage());           
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar empresa").build();
         }
     }

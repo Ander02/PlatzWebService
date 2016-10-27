@@ -13,8 +13,8 @@ Perfil do usuario, onde ele pode alterar as coisas sobre sua conta
 
         <title>Platz - Suas rotas, Seus Eventos</title>
 
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+         <!-- Font Awesome -->
+        <link href="../css/font/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 
         <!-- Bootstrap core CSS -->
         <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">

@@ -161,3 +161,9 @@ and open the template in the editor.
 {
     margin-left: 41.7%;
 }
+.select-categoria option
+{
+    background: red;
+    margin: 5px;
+    font-size: 20px;
+}

@@ -38,7 +38,7 @@ Tela de cadastro de evento
         <script src="../js/util.js" type="text/javascript"></script>
 
         <!-- link controller -->
-        <script src="../js/controller/eventoController.js" type="text/javascript"></script>
+        <script src="../js/controller/eventoCadastroController.js" type="text/javascript"></script>
 
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="../img/logo.png">
@@ -46,13 +46,13 @@ Tela de cadastro de evento
         <!--links para o funcionamento do datetimepicker-->
         <link href="../css/bootstrap/bootstrap-material-datetimepicker.css" rel="stylesheet" type="text/css"/>
 
-        <script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>        
+        <script src="../lib/jquery/jquery-1.12.3.min.js" type="text/javascript"></script>
 
-        <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
-
+        <script src="../lib/bootstrap/moment-with-locales.js" type="text/javascript"></script>
+        
     </head>
 
-    <body ng-controller="eventoController">
+    <body ng-controller="eventoCadastroController">
         <!-- inicio do projeto aqui-->
 
         <%
@@ -135,34 +135,10 @@ Tela de cadastro de evento
                         </div>
 
                         <div class="col-md-3">
-                            <!--                            <div class="md-form"> 
-                            
-                                                            <dl class="dropdown"> 
-                            
-                                                                <dt>
-                                                                    <a href="#" class="btn btn-amber">
-                                                                        <span class="hida">Selecione categorias</span>    
-                                                                        <p class="multiSel"></p>  
-                                                                    </a>
-                                                                </dt>
-                            
-                                                                <dd>
-                                                                    <div class="mutliSelect list-group" >
-                                                                        <ul>
-                                                                            <li class="list-group-item" ng-repeat="categoria in categorias">
-                                                                                <input type="checkbox" value="{{categoria.id}}" class="categorias" />{{categoria.nome}}</li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </dd>
-                            
-                                                            </dl>
-                            
-                                                        </div>
-                            -->
 
-                            <select class="selectpicker" multiple ng-model="evento.categoriasId" ng-options="categoria.id as categoria.nome for categoria in categorias"  >
-                                <!--                                    <option ng-repeat="categoria in categoria" value="{{categoria.id}}">{{categoria.nome}}</option>-->
-                                <option>--Selecione uma Categoria--</option>
+                            <select class="form-control select-categoria"  multiple ng-model="evento.categoriasId" 
+                                    ng-options="categoria.id as categoria.nome for categoria in categorias">
+                                <option>Selecione uma categoria</option>
                             </select>
 
                         </div>
@@ -170,7 +146,7 @@ Tela de cadastro de evento
                         <div class="col-md-3">
                             <div class="md-form">                        
                                 <input type="text" id="evento-idade-minima" class="form-control" ng-model="evento.idade">
-                                <label for="evento-idade-minima">Idade Minima {{evento.categoriasId}}</label>
+                                <label for="evento-idade-minima">Idade Minima</label>
                             </div>
                         </div>
 
@@ -284,14 +260,6 @@ Tela de cadastro de evento
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="../lib/bootstrap/mdb.min.js"></script>
 
-    <link href="../css/bootstrap/prettify.css" rel="stylesheet" type="text/css"/>
-
-    <script src="../lib/bootstrap/prettify.js" type="text/javascript"></script>
-
-    <link href="../css/bootstrap/bootstrap-multiselect.css" rel="stylesheet" type="text/css"/>
-
-    <script src="../lib/bootstrap/bootstrap-multiselect.js" type="text/javascript"></script>
-
     <!-- Paginação da tabela -->
     <script type="text/javascript" src="../js/outros/paginacao-empresa.js"></script>
 
@@ -310,10 +278,9 @@ Tela de cadastro de evento
 
     <!-- link TOASTR -->
     <script type="text/javascript" src="../lib/angular/angular-toastr.tpls.js"></script>
+
     <!-- aside -->
     <script src="../js/outros/aside.js" type="text/javascript"></script>
-
-    <!--<script src="../js/outros/selectCheckbox.js" type="text/javascript"></script>-->
 
 </body>
 

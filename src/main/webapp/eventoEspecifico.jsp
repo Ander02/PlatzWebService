@@ -14,7 +14,8 @@ Pagina de evento especifico
 
         <title>Platz - Suas rotas, Seus Eventos</title>
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+        <!-- Font Awesome -->
+        <link href="css/font/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
@@ -138,7 +139,7 @@ Pagina de evento especifico
 
                         <div class="col-md-12">    
 
-                            <h3><i class="fa fa-building-o"></i><a href="perfilEmpresa.html" ng-bind="evento.empresa.nomeFantasia"></a></h3>
+                            <h3><i class="fa fa-building-o"></i><a href="perfilEmpresa.jsp?empresa={{evento.empresa.id}}" ng-bind="evento.empresa.nomeFantasia"></a></h3>
 
                             <!--botoes para rota , galeria e comentarios-->
                             <div class="social-counters ">

@@ -14,7 +14,7 @@ pagina de login, onde o usuario é redirecionado se errar o login pela nav
         <title>Platz - Suas rotas, Seus Eventos</title>
 
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+        <link href="css/font/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
@@ -89,7 +89,7 @@ pagina de login, onde o usuario é redirecionado se errar o login pela nav
 
         <div class="modal-footer">
             <div class="options">
-                <p>Não possui uma conta? <a href="#">Cadastre-se</a></p>
+                <p>Não possui uma conta? <a href="cadastro.jsp">Cadastre-se</a></p>
                 <p>Esqueceu a <a href="#"> senha?</a></p>
             </div>
         </div>

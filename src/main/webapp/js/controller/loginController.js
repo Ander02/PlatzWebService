@@ -38,11 +38,19 @@ angular.module("platz").controller("loginController", function ($scope, $http, t
     };
 
     $scope.getConta = function () {
-        $http.get(webService + "/conta/token/" + document.getElementById("token").value).then(function (response) {
-            $scope.conta = response.data;
-            console.log($scope.conta);
-        }, function (response) {
-        });
+
+        var token = document.getElementById("token").value;
+        if (token !== null && token !== "") {
+            $http.get(webService + "/conta/token/" + token).then(function (response) {
+                $scope.conta = response.data;
+                console.log($scope.conta);
+            }, function (response) {
+
+            });
+        } else {
+            //metodo para verificar se o usuario está na area livre, caso esteja mantenha, caso não... deslogar
+        }
+
     };
     $scope.getConta();
 

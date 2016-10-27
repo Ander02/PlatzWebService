@@ -1,4 +1,4 @@
-angular.module("platz").controller("eventoController", function ($scope, $http, toastr) {
+angular.module("platz").controller("eventoCadastroController", function ($scope, $http, toastr) {
 
     $scope.cadastrar = function () {
 
@@ -8,7 +8,7 @@ angular.module("platz").controller("eventoController", function ($scope, $http, 
 //        for (var i = 0; i < categorias.length; i++) {
 //            if (categorias[i].checked === true) {
 //                $scope.evento.categoriasId.push(categorias[i].value);
-//            } 
+//            }
 //        }
 
         $scope.evento.empresaId = $scope.empresa.id;
@@ -28,15 +28,13 @@ angular.module("platz").controller("eventoController", function ($scope, $http, 
             var inputGaleria = document.getElementById("cadastro-evento-imagem-galeria");
             for (var i = 0; i < inputGaleria.files.length; i++) {
                 if (!(!inputGaleria.files[i].type.match('image.*'))) {
-                    console.log(i);
-                    enviarArquivo($http, inputGaleria.files[i], 'imagemGaleria', webService + "/evento/imagens/" + response.data.id);
                     sleep(1000);
-                }
+                    enviarArquivo($http, inputGaleria.files[i], 'imagemGaleria', webService + "/evento/imagens/" + response.data.id);
+                } 
             }
-
             inputGaleria.value = null;
 
-            $scope.evento = null;
+            //$scope.evento = null;
             sucesso(toastr, "Evento Cadastrado com sucesso");
 
         }, function (response) {
