@@ -167,3 +167,7 @@ and open the template in the editor.
     margin: 5px;
     font-size: 20px;
 }
+.select-categoria option[selected]
+{
+    background: yellow;
+}

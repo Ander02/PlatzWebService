@@ -89,12 +89,12 @@
             <div class="col-md-4">
                 <div class="col-md-5">
                     <button class="btn-warning-outline btn-lg" id="btnEmpresa" onclick="Mudarestado('cadastroEmpresa', 'cadastroUsuario'), selecionar('btnEmpresa', 'btnUsuario')">
-                        <i class="fa fa-building-o animated fadeInLeftBig"></i> EMPRESA</button>
+                        <i class="fa fa-building-o animated fadeInLeftBig fa-cadastro"></i><br/> EMPRESA</button>
                 </div>
                 <div class="col-md-2"></div>
                 <div class="col-md-5">
                     <button class="btn-default-outline btn-lg" id="btnUsuario" onclick="Mudarestado('cadastroUsuario', 'cadastroEmpresa'), selecionar('btnUsuario', 'btnEmpresa')">
-                        <i class="fa fa-user animated fadeInLeftBig"></i> USUARIO</button>
+                        <i class="fa fa-user animated fadeInLeftBig fa-cadastro"></i><br/> USUARIO</button>
                 </div>
             </div>
 

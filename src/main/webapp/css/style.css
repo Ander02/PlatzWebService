@@ -11,6 +11,19 @@ html,body
 {
     margin-right: 0;
 }
+.fa-cadastro
+{
+    margin-left: 20%;
+}
+.esqueceu-senha
+{
+    font-size: 13px;
+    color: #7f8c8d;
+    margin-top: 20px;
+}
+.navbar .dropdown .dropdown-menu .esqueceu-senha a {
+    color: #3498db!important;
+}
 /* nav*/
 .espaco
 {
