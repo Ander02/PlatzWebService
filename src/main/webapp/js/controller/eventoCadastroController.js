@@ -1,4 +1,4 @@
-angular.module("platz").controller("eventoController", function ($scope, $http, toastr) {
+angular.module("platz").controller("eventoCadastroController", function ($scope, $http, toastr) {
 
     $scope.cadastrar = function () {
 

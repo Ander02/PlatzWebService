@@ -21,4 +21,9 @@ angular.module("platz").controller("eventosCategoriaController", function ($scop
         $scope.categoriaId();
     };
 
+    $scope.buscarImagemCapa = function (id) {
+        return webService + "/evento/imagemCapa/" + id;
+    };
+
+
 });

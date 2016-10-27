@@ -15,17 +15,9 @@ public class EmpresaEdicao {
     private String telefone;
     private String telefone2;
     private String imagemPerfil;
+    private EnderecoEdicao endereco;
 
     public EmpresaEdicao() {
-    }
-
-    public EmpresaEdicao(String cnpj, String nomeFantasia, String razaoSocial, String telefone, String telefone2, String imagemPerfil) {
-        setCnpj(cnpj);
-        setNomeFantasia(nomeFantasia);
-        setRazaoSocial(razaoSocial);
-        setTelefone(telefone);
-        setTelefone2(telefone2);
-        setImagemPerfil(imagemPerfil);
     }
 
     public String getCnpj() {
@@ -74,6 +66,14 @@ public class EmpresaEdicao {
 
     public void setImagemPerfil(String imagemPerfil) {
         this.imagemPerfil = imagemPerfil;
+    }
+
+    public EnderecoEdicao getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(EnderecoEdicao endereco) {
+        this.endereco = endereco;
     }
 
 }

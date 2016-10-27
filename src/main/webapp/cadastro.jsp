@@ -32,9 +32,8 @@
         <script src="js/util.js" type="text/javascript"></script>
 
         <!-- link controller -->
-        <script src="js/controller/cadastroController.js" type="text/javascript"></script>
 
-        <!-- link controller -->
+        <script src="js/controller/cadastroController.js" type="text/javascript"></script>
         <script src="js/controller/loginController.js" type="text/javascript"></script>
 
         <!-- link com o icone que fica no inicio do navegador -->

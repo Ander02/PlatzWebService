@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import org.apache.commons.net.PrintCommandListener;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
@@ -63,7 +64,7 @@ public class FtpUtil {
     public boolean criarDiretorios(String diretorio) throws Exception {
 
         String[] pathElements = diretorio.split("/");
-
+        System.out.println(Arrays.toString(pathElements));
         if (pathElements != null && pathElements.length > 0) {
             for (String singleDir : pathElements) {
                 boolean exist = this.ftp.changeWorkingDirectory(singleDir);

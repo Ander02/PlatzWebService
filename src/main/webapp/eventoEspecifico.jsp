@@ -89,7 +89,7 @@ Pagina de evento especifico
                     <!-- Imagem do evento -->
                     <div class="col-lg-12 col-md-4 col-sm-6 col-xs-12 imagem-evento-especifico">
                         <div class="hovereffect">
-                            <img class="img-responsive" src="img/outras/plano-fundo.jpg" alt="">
+                            <img class="img-responsive" ng-src="{{imagemCapa}}" onerror="this.src='img/logo.png'" >
                             <div class="overlay">
                                 <h2>Curta Nossos Eventos</h2>
                                 <p> 
@@ -139,7 +139,7 @@ Pagina de evento especifico
 
                         <div class="col-md-12">    
 
-                            <h3><i class="fa fa-building-o"></i><a href="perfilEmpresa.html" ng-bind="evento.empresa.nomeFantasia"></a></h3>
+                            <h3><i class="fa fa-building-o"></i><a href="perfilEmpresa.jsp?empresa={{evento.empresa.id}}" ng-bind="evento.empresa.nomeFantasia"></a></h3>
 
                             <!--botoes para rota , galeria e comentarios-->
                             <div class="social-counters ">

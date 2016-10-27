@@ -167,7 +167,7 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
     function atualizar() {
         console.log("atualizar");
         verificarToken($http, $scope, toastr,function (){
-            
+            //passar localidade 
         });
         $scope.listarAssuntosNaoDeletados();
         $scope.listarLidas();

@@ -4,6 +4,7 @@ import com.platz.dao.CidadeDao;
 import com.platz.dao.EstadoDao;
 import com.platz.http.cadastro.CidadeCadastro;
 import com.platz.http.cadastro.EnderecoCadastro;
+import com.platz.http.edicao.EnderecoEdicao;
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
@@ -30,6 +31,23 @@ public class EnderecoModel {
     }
 
     public EnderecoModel(EnderecoCadastro endereco) {
+        setCep(endereco.getCep());
+        setRua(endereco.getRua());
+        setBairro(endereco.getBairro());
+        setNumero(endereco.getNumero());
+
+        CidadeModel cidadeModel = new CidadeDao().buscarPeloNomeEUf(endereco.getCidade(), endereco.getUf());
+        if (cidadeModel != null) {
+            setCidade(cidadeModel);
+        } else {
+            //cadastro de cidade nao existente                        
+            CidadeModel novaCidade = new CidadeModel(new CidadeCadastro(new EstadoDao().buscarPelaUf(endereco.getUf()).getId(), endereco.getCidade()));
+            new CidadeDao().cadastrar(novaCidade);
+            setCidade(novaCidade);
+        }
+    }
+
+    public EnderecoModel(EnderecoEdicao endereco) {
         setCep(endereco.getCep());
         setRua(endereco.getRua());
         setBairro(endereco.getBairro());

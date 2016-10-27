@@ -133,7 +133,7 @@ and open the template in the editor.
                                 <label for="conta-empresa-img">Imagem de Perfil</label>
                                 <br/>
                                 <div class="md-form">                
-                                    <input id="conta-empresa-img" type="file" multiple>
+                                    <input id="conta-empresa-img" type="file" >
                                 </div>
                             </div>
 
