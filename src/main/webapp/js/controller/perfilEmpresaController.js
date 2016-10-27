@@ -15,6 +15,10 @@ angular.module("platz").controller("perfilEmpresaController", function ($scope, 
         });
     };
 
+    $scope.buscarImagemCapa = function (id) {
+        return webService + "/evento/imagemCapa/" + id;
+    };
+
     $scope.eventosEmpresa = function () {
         $http.get(webService + "/eventos/empresa/" + $scope.empresa.id).then(function (response) {
             $scope.eventos = response.data;
@@ -23,6 +27,7 @@ angular.module("platz").controller("perfilEmpresaController", function ($scope, 
             erro(toastr, errorManager(response.config.url, response.status, "erro ao buscar eventos da empresa"));
         });
     };
+
     $scope.alterarSenha = function () {
 
         if ($scope.empresaEdicaoSenha.senha === $scope.empresaEdicaoSenha.confirmaSenha) {

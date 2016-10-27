@@ -64,6 +64,7 @@
         <!-- inicio do projeto aqui-->
 
     <ng-include src="'View/nav.html'"  ng-controller="loginController"></ng-include>
+    
     <div ng-controller="eventosController">
         <div class="slider-index">
             <!--Carousel Wrapper-->
@@ -75,7 +76,7 @@
                     <div class="carousel-item {{$index==0?'active':''}}" ng-repeat="evento3 in top3Eventos">
                         <!--Mask color-->
                         <div class="view hm-black-light">
-                            <img src="http://mdbootstrap.com/images/slides/slide%20(11).jpg" class="img-fluid" alt="">
+                            <img ng-src="{{buscarImagemCapa(evento3.id)}}" onerror="this.src='img/logo.png'" class="img-fluid" alt="">
                             <div class="full-bg-img">
                             </div>
                         </div>
@@ -136,7 +137,7 @@
 
                         <div class="col-md-4" ng-repeat="evento in eventosMiniSlide track by $index">
                             <div class="card" ng-if="evento != null">
-                                <img class="img-fluid" src="http://mdbootstrap.com/images/regular/nature/img%20(1).jpg" alt="Card image cap">
+                                <img class="img-fluid" ng-src="{{buscarImagemCapa(evento.id)}}" onerror="this.src='img/logo.png'" alt="Card image cap">
                                 <div class="card-block">
                                     <h4 class="card-title">{{evento.nome}}</h4>
                                     <h5><i class="fa fa-building-o animated bounceInDown"></i> {{evento.empresa.nomeFantasia}}</h5>
