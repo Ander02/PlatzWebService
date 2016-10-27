@@ -1,4 +1,4 @@
-$(document).ready(function(){
+
 $('#conta-empresa-telefone1').mask('(00) 0000-00009');
 $('#conta-empresa-telefone2').mask('(00) 0000-00009');
 $('#conta-empresa-cnpj').mask('00.000.000/0000-00', {reverse: true});
@@ -17,4 +17,4 @@ spOptions = {
 
 $('#conta-usuario-telefone').mask(SPMaskBehavior, spOptions);
 $('#usuario-cep').mask('00000-000');
-});
+

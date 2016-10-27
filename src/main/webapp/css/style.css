@@ -833,3 +833,7 @@ label.star:before {
     color: white;
     border-radius: 20px 55px;
 }
+.img-mini-slide img
+{
+    height: 350px;
+}
