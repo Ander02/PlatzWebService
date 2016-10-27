@@ -10,7 +10,7 @@
 
         <title>Platz - Suas rotas, Seus Eventos</title>
 
-         <!-- Font Awesome -->
+        <!-- Font Awesome -->
         <link href="css/font/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 
         <!-- Bootstrap core CSS -->
@@ -42,9 +42,9 @@
 
         <!--links para o funcionamento do datetimepicker-->
         <link href="css/bootstrap/bootstrap-material-datetimepicker.css" rel="stylesheet" type="text/css"/>
-        
+
         <script src="lib/jquery/jquery-1.12.3.min.js"></script>
-        
+
         <script type="text/javascript" src="lib/bootstrap/moment-with-locales.js"></script>
     </head>
 
@@ -203,7 +203,7 @@
                                 <div class="col-md-4">
                                     <div class="md-form col-md-6">                
                                         <input type="text" id="empresa-cep" class="form-control" ng-model="empresa.endereco.cep" ng-blur="onblurCepEmpresa()">
-                                        <label for="conta-empresa-cep" >CEP</label>
+                                        <label for="empresa-cep" >CEP</label>
                                     </div>
                                     <div class="col-md-6 link-cep"><a title="clique aqui e saiba seu cep" class="text-info"
                                                                       href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blank">Não Sei meu cep</a></div>
@@ -334,7 +334,7 @@
                                     <div class="md-form">  
                                         <input  type="text" id="conta-usuario-telefone" class="form-control" required ng-model="usuario.telefone"
                                                 maxlength="12">
-                                        <label for="conta-usuario-telefone">Telefone  {{usuario.dataNascimento}}</label>
+                                        <label for="conta-usuario-telefone">Telefone </label>
                                     </div>
                                 </div>
 
@@ -452,10 +452,6 @@
 
         <script src="lib/bootstrap/bootstrap-material-datetimepicker.js" type="text/javascript"></script>
 
-        <!--data e horario (iniciando) -->
-        <script src="lib/bootstrap/dataehorario.js" type="text/javascript"></script>
-
-
         <!-- esconder formularios -->
         <script type="text/javascript" src="js/outros/esconder-form-cad.js"></script>
 
@@ -467,6 +463,14 @@
 
         <!-- link TOASTR JS -->
         <script type="text/javascript" src="lib/angular/angular-toastr.tpls.js"></script>
+
+        <!--data e horario (iniciando) -->
+        <script src="lib/bootstrap/dataehorario.js" type="text/javascript"></script>
+
+        <script src="lib/jquery/jquery.mask.min.js" type="text/javascript"></script>
+
+        <script src="js/outros/validacoes.js" type="text/javascript"></script>
+        
 
     </div>
 

@@ -1,61 +1,20 @@
-function mascaraMutuario(o, f) {
-    v_obj = o
-    v_fun = f
-    setTimeout('execmascara()', 1)
-}
+$(document).ready(function(){
+$('#conta-empresa-telefone1').mask('(00) 0000-00009');
+$('#conta-empresa-telefone2').mask('(00) 0000-00009');
+$('#conta-empresa-cnpj').mask('00.000.000/0000-00', {reverse: true});
+$('#empresa-cep').mask('00000-000');
 
-function execmascara() {
-    v_obj.value = v_fun(v_obj.value)
-}
+$('#conta-usuario-cpf').mask('000.000.000-00', {reverse: true});
 
-function cpfCnpj(v) {
-
-    //Remove tudo o que não é dígito
-    v = v.replace(/\D/g, "")
-
-    if (v.length <= 14) { //CPF
-
-        //Coloca um ponto entre o terceiro e o quarto dígitos
-        v = v.replace(/(\d{3})(\d)/, "$1.$2")
-
-        //Coloca um ponto entre o terceiro e o quarto dígitos
-        //de novo (para o segundo bloco de números)
-        v = v.replace(/(\d{3})(\d)/, "$1.$2")
-
-        //Coloca um hífen entre o terceiro e o quarto dígitos
-        v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2")
-
-    } else { //CNPJ
-
-        //Coloca ponto entre o segundo e o terceiro dígitos
-        v = v.replace(/^(\d{2})(\d)/, "$1.$2")
-
-        //Coloca ponto entre o quinto e o sexto dígitos
-        v = v.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3")
-
-        //Coloca uma barra entre o oitavo e o nono dígitos
-        v = v.replace(/\.(\d{3})(\d)/, ".$1/$2")
-
-        //Coloca um hífen depois do bloco de quatro dígitos
-        v = v.replace(/(\d{4})(\d)/, "$1-$2")
-
+var SPMaskBehavior = function (val) {
+  return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+},
+spOptions = {
+  onKeyPress: function(val, e, field, options) {
+      field.mask(SPMaskBehavior.apply({}, arguments), options);
     }
+};
 
-    return v
-
-}
-
-function validaSenhaEmpresa(input) {
-    if (input.value != document.getElementById('senha-empresa').value) {
-        input.setCustomValidity('Repita a senha corretamente');
-    } else {
-        input.setCustomValidity('');
-    }
-}
-function validaSenhaUsuario(input) {
-    if (input.value != document.getElementById('senha-usuario').value) {
-        input.setCustomValidity('Repita a senha corretamente');
-    } else {
-        input.setCustomValidity('');
-    }
-} 
+$('#conta-usuario-telefone').mask(SPMaskBehavior, spOptions);
+$('#usuario-cep').mask('00000-000');
+});
