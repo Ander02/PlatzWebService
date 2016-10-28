@@ -46,7 +46,7 @@ angular.module("platz").controller("loginController", function ($scope, $http, t
 
             });
         } else {
-            //metodo para verificar se o usuario está na area livre, caso esteja mantenha, caso não... deslogar
+            
         }
 
     };
