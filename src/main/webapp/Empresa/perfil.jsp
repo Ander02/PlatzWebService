@@ -113,7 +113,7 @@
                             <div class="card-group col-md-12">
                                 <div class="col-md-4 evento-perfil-empresa" ng-repeat="evento in eventos">
                                     <div class="card">                                        
-                                        <div class="hovereffect">
+                                        <div class="img-card-perfil">
                                             <img class=" img-responsive " ng-src="{{buscarImagemCapa(evento.id)}}" onerror = "this.src = '../img/placeholder.png'" alt="Imagem do Evento" >
                                         </div><!-- /. div hovereffect  -->
                                         <h4 class="card-title">{{evento.nome}}</h4>

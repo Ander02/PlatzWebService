@@ -40,7 +40,7 @@ $(document).ready(function ()
             });
     $('#date-start').bootstrapMaterialDatePicker
             ({
-                weekStart: 0, format: 'DD/MM/YYYY HH:mm'
+                weekStart: 0, minDate: new Date(),format: 'DD/MM/YYYY HH:mm'
             }).on('change', function (e, date)
     {
         $('#date-end').bootstrapMaterialDatePicker('setMinDate', date);

@@ -10,7 +10,7 @@ angular.module("platz").controller("eventoCadastroController", function ($scope,
 //                $scope.evento.categoriasId.push(categorias[i].value);
 //            }
 //        }
-
+        console.log($scope.evento);
         $scope.evento.empresaId = $scope.empresa.id;
         $scope.evento.dataInicio = document.getElementById("date-start").value;
         $scope.evento.dataFim = document.getElementById("date-end").value;
@@ -30,7 +30,7 @@ angular.module("platz").controller("eventoCadastroController", function ($scope,
                 if (!(!inputGaleria.files[i].type.match('image.*'))) {
                     sleep(1000);
                     enviarArquivo($http, inputGaleria.files[i], 'imagemGaleria', webService + "/evento/imagens/" + response.data.id);
-                } 
+                }
             }
             inputGaleria.value = null;
 

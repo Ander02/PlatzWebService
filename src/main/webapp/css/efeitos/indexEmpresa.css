@@ -12,7 +12,7 @@ and open the template in the editor.
 .hovereffect {
     width: 100%;
     height: 100%;
-    background: lightslategrey;
+    background: rgba(200,200,200,0.4);
     float: left;
     overflow: hidden;
     position: relative;
