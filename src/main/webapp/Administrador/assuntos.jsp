@@ -140,7 +140,7 @@ Pagina de cadastro , consulta, atualização e exclusão de assunto de mensagem
                                 </div>                       
 
                                 <div class="text-xs-center">
-                                    <button type="submit" class="btn btn-warning" ng-click="cadastrar()">Cadastrar</button>
+                                    <button type="submit" class="btn btn-warning" ng-click="cadastrar(assuntoCadastro)">Cadastrar</button>
                                 </div>
                             </form>
 

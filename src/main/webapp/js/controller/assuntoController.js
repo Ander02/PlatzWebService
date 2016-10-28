@@ -33,12 +33,13 @@ angular.module("platz").controller("assuntoController", function ($scope, $http,
         }, function (response) {
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao alterar assunto"));
         });
-    }
-    $scope.cadastrar = function () {
+    };
+    
+    $scope.cadastrar = function (assuntoCadastro) {
 
-        $http.post(webService + "/assunto", $scope.assuntoCadastro).then(function (response) {
+        $http.post(webService + "/assunto", assuntoCadastro).then(function (response) {
             atualizar();
-            $scope.assuntoCadastro = null;
+            $scope.assuntoCadastro = "";            
             sucesso(toastr, "Assunto cadastrado com sucesso");
         }, function (response) {
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao cadastrar assunto"));
