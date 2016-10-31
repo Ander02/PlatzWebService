@@ -51,6 +51,7 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
 
     $scope.cadastrar = function () {
 
+        console.log($scope.categoriaCadastro);
         $http.post(webService + "/categoria", $scope.categoriaCadastro).then(function (response) {
 
             var input = document.getElementById("InputIconeCategoriaCadastro");
@@ -132,6 +133,8 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
         $scope.cancelarExclusao();
         $scope.cancelarRecuperacao();
         $scope.cancelarEdicaoImagem();
+        $scope.categoriaCadastro = "";
+
     }
     window.onload = function () {
         console.log("onload");
