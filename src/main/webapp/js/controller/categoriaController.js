@@ -25,14 +25,16 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
         });
     };
 
-    $scope.alterar = function () {
-        $http.put(webService + "/categoria/" + $scope.categoriaEdicao.id, $scope.categoriaEditada).then(function (response) {
+    $scope.alterar = function (categoriaEditada) {
+        console.log(categoriaEditada);
+        $http.put(webService + "/categoria/" + $scope.categoriaEdicao.id, categoriaEditada, gerarHeaders($scope.token)).then(function (response) {
             atualizar();
-            $scope.categoriaEditada = null;
+            //$scope.categoriaEditada = null;
             alterado(toastr, "Categoria editar com sucesso");
             sleep(1000);
             location.reload();
         }, function (response) {
+            console.log(response);
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao alterar categoria"));
         });
     };
@@ -73,7 +75,7 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
     };
 
     $scope.recuperar = function () {
-        $http.put(webService + "/categoria/recuperar/" + $scope.categoriaRecuperacaoId).then(function (response) {
+        $http.put(webService + "/categoria/recuperar/" + $scope.categoriaRecuperacaoId,gerarHeaders($scope.token)).then(function (response) {
             atualizar();
             sucesso(toastr, "Categoria recuperada com sucesso");
         }, function (response) {
@@ -82,7 +84,7 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
     };
 
     $scope.deletar = function () {
-        $http.delete(webService + "/categoria/" + $scope.categoriaExclusaoId).then(function (response) {
+        $http.delete(webService + "/categoria/" + $scope.categoriaExclusaoId,gerarHeaders($scope.token)).then(function (response) {
             atualizar();
             excluido(toastr, "Categoria deletada com sucesso");
         }, function (response) {

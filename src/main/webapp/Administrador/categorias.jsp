@@ -229,7 +229,7 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
 
 
                                 <div class="text-xs-center">
-                                    <button class="btn btn-warning" data-dismiss="modal" ng-click="alterar()">Editar</button>
+                                    <button class="btn btn-warning" data-dismiss="modal" ng-click="alterar(categoriaEditada)">Editar</button>
                                     <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click="cancelarEdicao()">Fechar</button>
                                 </div>
                             </form>
