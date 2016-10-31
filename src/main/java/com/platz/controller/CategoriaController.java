@@ -15,6 +15,7 @@ public class CategoriaController {
     private final CategoriaDao categoriaDao = new CategoriaDao();
     
     public void cadastrar(CategoriaModel model) {
+        System.out.println(model.getNome());
         categoriaDao.cadastrar(model);
     }
     

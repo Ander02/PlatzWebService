@@ -20,6 +20,8 @@
 .hovereffect img {
     display: block;
     position: relative;
+    height: 325px;
+    width: 100%;
 }
 
 .hovereffect h2 {

@@ -5,7 +5,9 @@ import com.platz.http.cadastro.CategoriaCadastro;
 import com.platz.http.edicao.CategoriaEdicao;
 import com.platz.http.leitura.CategoriaLeitura;
 import com.platz.model.CategoriaModel;
+import com.platz.model.Perfil;
 import com.platz.util.ImagemUtil;
+import com.platz.util.PerfilAuth;
 import java.io.InputStream;
 import java.util.List;
 import javax.annotation.security.PermitAll;
@@ -32,18 +34,16 @@ public class CategoriaService {
 
     @POST
     @Path(value = "/categoria")
-    //@PerfilAuth(Perfil.ADMINISTRADOR)
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(CategoriaCadastro categoria) {
-
+        
         try {
-            CategoriaModel model = new CategoriaModel(categoria);
-
+            CategoriaModel model = new CategoriaModel(categoria);            
             // Cadastrar categoria
             categoriaController.cadastrar(model);
-
+            
             // Retorna a resposta para o cliente com o Status Code CREATED e a Categoria de Leitura
             return Response.status(Response.Status.CREATED).entity(new CategoriaLeitura(model)).build();
 

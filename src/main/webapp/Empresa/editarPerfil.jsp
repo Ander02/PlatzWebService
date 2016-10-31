@@ -29,6 +29,7 @@ and open the template in the editor.
 
         <!-- Your custom styles (optional) -->
         <link href="../css/styleEmpresa.css" rel="stylesheet">
+        
 
         <!-- link Angular -->
         <script type="text/javascript" src="../lib/angular/angular.js"></script>
@@ -262,6 +263,10 @@ and open the template in the editor.
 
     <!-- aside -->
     <script src="../js/outros/aside.js" type="text/javascript"></script>
+    
+      <script src="../lib/jquery/jquery.mask.min.js" type="text/javascript"></script>
+
+        <script src="../js/outros/validacoes.js" type="text/javascript"></script>
 
 
 </body>

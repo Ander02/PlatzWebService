@@ -76,9 +76,7 @@
                     <div class="carousel-item {{$index==0?'active':''}}" ng-repeat="evento3 in top3Eventos">
                         <!--Mask color-->
                         <div class="view hm-black-light">
-                            <img ng-src="{{buscarImagemCapa(evento3.id)}}" onerror="this.src='img/logo.png'" class="img-fluid" alt="">
-                            <div class="full-bg-img">
-                            </div>
+                            <img ng-src="{{buscarImagemCapa(evento3.id)}}" onerror="this.src='img/placeholder.png'" class="img-fluid" alt="">
                         </div>
                         <!--Caption-->
                         <div class="carousel-caption">
@@ -117,6 +115,7 @@
 
         <!--Carousel Wrapper-->
         <div class="col-md-10 carousel-index-destaques">
+            
             <h1>Eventos em destaque</h1>
             <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
 
@@ -160,7 +159,9 @@
 
         <!-- mapa com os eventos -->
         <div class="mapa">
+            <div class="col-md-12">
             <h1>Veja os eventos perto de você</h1>
+            </div>
             <div id="map_canvas" ></div>
         </div>
         <!-- /. mapa -->

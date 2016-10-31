@@ -142,17 +142,16 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
                             <form>
                                 <!--Body-->
                                 <div class="md-form form-cad-input">                  
-                                    <input type="text" id="categoria-nome" class="form-control" ng-model="categoriaCadastro.nome" required maxlength="35" >
-                                    <label for="categoria-nome">Nome da Categoria{{categoriaCadastro}}</label>
+                                    <input type="text" id="categoria-nome" class="form-control" required maxlength="35" ng-model="cadastroCategoria.nome">
+                                    <label for="categoria-nome"> Nome da Categoria </label>
                                 </div>
 
-                                <div class="md-form form-cad-input">   
-
+                                <div class="md-form form-cad-input">
                                     <input type="file" id="InputIconeCategoriaCadastro" />
                                 </div>
 
                                 <div class="text-xs-center">
-                                    <button class="btn btn-warning" ng-click="cadastrar()">Cadastrar</button>
+                                    <button class="btn btn-warning" ng-click="cadastrar(cadastroCategoria)">Cadastrar</button>
                                 </div>
                             </form>
 
@@ -224,8 +223,8 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
                             <form>
                                 <!--Body-->
                                 <div class="md-form form-cad-input">                  
-                                    <input type="text" id="categoria-nome" class="form-control"  required maxlength="35" ng-value="categoriaEdicao.nome" ng-model="categoriaEditada.nome">
-                                    <label for="categoria-nome">Nome da Categoria</label>
+                                    <input type="text" id="categoria-edicao" class="form-control"  required maxlength="35" ng-value="categoriaEdicao.nome" ng-model="categoriaEditada.nome">
+                                    <label for="categoria-edicao">Nome da Categoria</label>
                                 </div>
 
 
@@ -333,10 +332,10 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
                     <!--/.Content-->
                 </div>
             </div> <!--/.modal-->
-
-            <div class="espaco"></div>
         </div>
     </div>
+    <div class="espaco"></div>
+
     <!-- /Fim  do html do projeto-->
 
 

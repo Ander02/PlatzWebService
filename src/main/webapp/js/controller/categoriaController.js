@@ -49,23 +49,25 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
         atualizar();
     };
 
-    $scope.cadastrar = function () {
 
-        console.log($scope.categoriaCadastro);
-        $http.post(webService + "/categoria", $scope.categoriaCadastro).then(function (response) {
-
+    $scope.cadastrar = function (cadastroCategoria) {
+        
+        
+        
+        $http.post(webService + "/categoria", cadastroCategoria, gerarHeaders($scope.token)).then(function (response) {
+            
             var input = document.getElementById("InputIconeCategoriaCadastro");
-
             var icone = input.files[0];
 
             if (!(!icone.type.match('image.*'))) {
                 enviarArquivo($http, icone, 'icone', webService + "/categoria/imagem/" + response.data.id);
             }
             input.value = null;
-            $scope.categoriaCadastro = null;
+
             atualizar();
             sucesso(toastr, "Categoria cadastrada com sucesso");
         }, function (response) {
+            console.log(response);
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao cadastrar categoria"));
         });
     };
@@ -125,6 +127,7 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
     //funções de atualizações e avisos
     function atualizar() {
         verificarToken($http, $scope, toastr, function () {
+
         });
         $scope.listarTodos();
         $scope.listarExcluidas();
@@ -138,6 +141,7 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
     }
     window.onload = function () {
         console.log("onload");
+        $scope.token = document.getElementById("token").value;
         $scope.permicao = false;
         atualizar();
     };

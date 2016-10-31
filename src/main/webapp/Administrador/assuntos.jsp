@@ -103,7 +103,7 @@ Pagina de cadastro , consulta, atualização e exclusão de assunto de mensagem
 
                                 </tr>
                             </thead>
-                            <tbody id="myTable">
+                            <tbody id="myTable2">
                                 <tr ng-repeat="assunto in assuntos">
                                     <th scope="row">{{$index + 1}}</th>
 
@@ -120,7 +120,7 @@ Pagina de cadastro , consulta, atualização e exclusão de assunto de mensagem
                     </div>
 
                     <div class="col-md-12 text-center">
-                        <ul class="pagination  pager" id="myPager"></ul>
+                        <ul class="pagination  pager" id="myPager2"></ul>
                     </div>
 
                 </div>
@@ -140,7 +140,7 @@ Pagina de cadastro , consulta, atualização e exclusão de assunto de mensagem
                                 </div>                       
 
                                 <div class="text-xs-center">
-                                    <button type="submit" class="btn btn-warning" ng-click="cadastrar()">Cadastrar</button>
+                                    <button type="submit" class="btn btn-warning" ng-click="cadastrar(assuntoCadastro)">Cadastrar</button>
                                 </div>
                             </form>
 
@@ -167,7 +167,7 @@ Pagina de cadastro , consulta, atualização e exclusão de assunto de mensagem
                                     <th>Data de exclusão</th>                           
                                 </tr>
                             </thead>
-                            <tbody id="myTable">
+                            <tbody id="myTable3">
                                 <tr ng-repeat=" assunto in assuntosDeletados">
                                     <th scope="row">{{$index + 1}}</th>
 
@@ -182,7 +182,7 @@ Pagina de cadastro , consulta, atualização e exclusão de assunto de mensagem
                     </div>
 
                     <div class="col-md-12 text-center">
-                        <ul class="pagination  pager" id="myPager"></ul>
+                        <ul class="pagination  pager" id="myPager3"></ul>
                     </div>
 
                 </div>
@@ -209,8 +209,8 @@ Pagina de cadastro , consulta, atualização e exclusão de assunto de mensagem
                             <form>
                                 <!--Body-->
                                 <div class="md-form form-cad-input">                  
-                                    <input type="text" id="categoria-nome" class="form-control" ng-model="assuntoEditado.nome" ng-value="assuntoEdicao.nome" required maxlength="35">
-                                    <label for="categoria-nome">Nome do Assunto</label>
+                                    <input type="text" id="assunto-nome-edicao" class="form-control" ng-model="assuntoEditado.nome" ng-value="assuntoEdicao.nome" required maxlength="35">
+                                    <label for="assunto-nome-edicao">Nome do Assunto</label>
                                 </div>
 
 
