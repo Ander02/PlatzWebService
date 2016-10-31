@@ -134,32 +134,21 @@ Tela de cadastro de evento
                             </div>
                         </div>
 
-                        <div class="col-md-3">
-
+                        <div class="col-md-12">
+                            <label for="select-categoria">Selecione uma categoria</label>
                             <select class="form-control select-categoria"  multiple ng-model="evento.categoriasId" 
                                     ng-options="categoria.id as categoria.nome for categoria in categorias">
-                                <option>Selecione uma categoria</option>
                             </select>
-
-                            <select id='callbacks' multiple='multiple'>
-                                <option value='elem_1'>elem 1</option>
-                                <option value='elem_2'>elem 2</option>
-                                <option value='elem_3'>elem 3</option>
-                                <option value='elem_4'>elem 4</option>
-                                ...
-                                <option value='elem_100'>elem 100</option>
-                            </select>
-
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="md-form">                        
                                 <input type="text" id="evento-idade-minima" class="form-control" ng-model="evento.idade">
                                 <label for="evento-idade-minima">Idade Minima</label>
                             </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="md-form">   
                                 <section title=".squaredFour">
                                     <!-- .squaredFour -->
@@ -173,7 +162,7 @@ Tela de cadastro de evento
                                 <label for="evento-gratuito">Evento Gratuito</label>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="md-form">                        
                                 <input type="text"  id="evento-preco" class="form-control" ng-model="evento.preco">
                                 <label for="evento-preco">Preço</label>
@@ -291,8 +280,7 @@ Tela de cadastro de evento
     <!-- aside -->
     <script src="../js/outros/aside.js" type="text/javascript"></script>
 
-    <link href="../css/bootstrap/multi-select.css" rel="stylesheet" type="text/css"/>
-    <script src="../lib/bootstrap/jquery.multi-select.js" type="text/javascript"></script>
+
 </body>
 
 </html>

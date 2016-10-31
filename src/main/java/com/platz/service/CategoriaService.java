@@ -38,12 +38,12 @@ public class CategoriaService {
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(CategoriaCadastro categoria) {
-        
+
         try {
-            CategoriaModel model = new CategoriaModel(categoria);            
+            CategoriaModel model = new CategoriaModel(categoria);
             // Cadastrar categoria
             categoriaController.cadastrar(model);
-            
+
             // Retorna a resposta para o cliente com o Status Code CREATED e a Categoria de Leitura
             return Response.status(Response.Status.CREATED).entity(new CategoriaLeitura(model)).build();
 
@@ -203,15 +203,15 @@ public class CategoriaService {
 
     @PUT
     @Path(value = "/categoria/{id}")
-    //@PerfilAuth(Perfil.ADMINISTRADOR)
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @PermitAll
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response alterar(@PathParam("id") String id, CategoriaEdicao categoria) {
-
+ 
         try {
             CategoriaModel model = categoriaController.buscarPorId(id);
-
+            
             //Alterar registro
             categoriaController.alterar(model, categoria);
 
@@ -219,7 +219,8 @@ public class CategoriaService {
             return Response.status(Response.Status.OK).entity(new CategoriaLeitura(model)).build();
 
         } catch (Exception e) {
-            System.out.println("Erro" + e.getMessage());
+            System.out.println("Erro " + e.getMessage());
+            e.printStackTrace();
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar categoria").build();
         }
     }
