@@ -37,7 +37,9 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
 
         <!-- angular util -->
         <script src="../js/util.js" type="text/javascript"></script>
-
+        
+        <script src="../js/services/loginService.js" type="text/javascript"></script>
+        
         <!-- angular controller  -->
         <script src="../js/controller/loginController.js" type="text/javascript"></script>
 
