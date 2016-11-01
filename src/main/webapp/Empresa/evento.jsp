@@ -186,21 +186,21 @@ Tela de cadastro de evento
                     <div class="card-block text-xs-center">
                         <!--Title-->
                         <h4 class="card-title"><i class="fa fa-map-marker animated rotateIn"></i><strong> Endereço</strong></h4>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="md-form col-md-8">                
                                 <input type="text" id="evento-cep" class="form-control"  ng-model="evento.endereco.cep" ng-blur="onblurCepEvento()">
                                 <label for="evento-cep">CEP</label>
                             </div>
                             <div class="col-md-4 link-cep"><a title="clique aqui e saiba seu cep" class="text-info">Não Sei meu cep</a></div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="md-form">  
                                 <input  type="text" id="evento-numero" class="form-control">
                                 <label for="evento-numero"   ng-model="evento.endereco.numero">Número</label>
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="md-form">                
                                 <input type="text" id="evento-complemento" class="form-control" ng-model="evento.endereco.complemento">
                                 <label for="evento-complemento">Complemento</label>
@@ -223,14 +223,16 @@ Tela de cadastro de evento
                             <label for="evento-cidade" class="label-form">Cidade</label>
                             <p>{{evento.endereco.cidade}}</p>   
                             <hr>
-                        </div>  
+                        </div> 
+                        
+                        
+                        <div class="col-md-12">
+                        <button class="btn btn-lg btn-warning" ng-click="cadastrar()"><i class="fa fa-check"></i> Cadastrar</button>
+                    </div>
 
                     </div>
                     <!--/.Card content-->
 
-                    <div>
-                        <button class="btn btn-lg btn-warning" ng-click="cadastrar()"><i class="fa fa-check"></i> Cadastrar</button>
-                    </div>
                 </div>
 
 
