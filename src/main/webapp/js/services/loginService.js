@@ -20,7 +20,11 @@ angular.module("platz").service("loginService", function () {
         try {
             token = document.getElementById("token").value;
             console.log(token);
-            $http.get(webService + "/tokenIsValid/" + token).then(function (response) {
+            $http.get(webService + "/tokenIsValid/" + token, {
+                headers: {
+                    Authorization: "Bearer " + token
+                }
+            }).then(function (response) {
                 var valido = response.data;
 
                 if (valido == "false") {
@@ -30,7 +34,11 @@ angular.module("platz").service("loginService", function () {
                     location.href = "../login.jsp";
                 } else {
                     console.log("t is valid ");
-                    $http.get(webService + "/conta/token/" + token).then(function (response) {
+                    $http.get(webService + "/conta/token/" + token, {
+                        headers: {
+                            Authorization: "Bearer " + token
+                        }
+                    }).then(function (response) {
 
                         conta = response.data;
 
