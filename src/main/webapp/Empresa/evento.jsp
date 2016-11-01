@@ -134,13 +134,12 @@ Tela de cadastro de evento
                             </div>
                         </div>
 
-                        <div class="col-md-12">
-                            <label for="select-categoria">Selecione uma categoria</label>
+                        <div class="col-md-12 select-categorias-cadastro">
+                            <label for="select-categoria">Selecione uma ou mais categoria</label>
                             <select class="form-control select-categoria"  multiple ng-model="evento.categoriasId" 
-                                    ng-options="categoria.id as categoria.nome for categoria in categorias">
+                                    ng-options="categoria.id as categoria.nome for categoria in categorias"  >                                
                             </select>
                         </div>
-
                         <div class="col-md-4">
                             <div class="md-form">                        
                                 <input type="text" id="evento-idade-minima" class="form-control" ng-model="evento.idade">
@@ -282,7 +281,7 @@ Tela de cadastro de evento
     <!-- aside -->
     <script src="../js/outros/aside.js" type="text/javascript"></script>
 
-
+    <script src="../js/outros/option.js" type="text/javascript"></script>
 </body>
 
 </html>

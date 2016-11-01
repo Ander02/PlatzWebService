@@ -81,6 +81,7 @@ angular.module("platz").controller("eventoCadastroController", function ($scope,
     };
 
     window.onload = function () {
+        
         console.log("onload");
         $scope.permicao = false;
         atualizar();
