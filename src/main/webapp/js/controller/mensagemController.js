@@ -1,13 +1,6 @@
-angular.module("platz").controller("mensagemController", function ($scope, $http, toastr, loginService) {
+angular.module("platz").controller("mensagemController", function ($scope, $http, toastr, loginService, $rootScope) {
 
-    $scope.listarTodos = function () {
-        $http.get(webService + "/mensagens").then(function (response) {
-            $scope.mensagensAll = response.data;
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "Erro ao listar mensagens"));
-        });
-    };
-    $scope.listarFavoritas = function () {
+      $scope.listarFavoritas = function () {
         $http.get(webService + "/mensagens/marcadasNaoExcluidas").then(function (response) {
             $scope.mensagemFavoritas = response.data;
         }, function (response) {
@@ -167,17 +160,15 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
     function atualizar() {
         console.log("atualizar");
         loginService.verificarToken($http, toastr, "Administrador", function () {
-            console.log("ok");
+            $scope.permicao = loginService.getPermicao();
+            $scope.conta = loginService.getConta();
+            $scope.token = loginService.getToken();            
         });
-        $scope.conta = loginService.getConta();
-        $scope.token = loginService.getToken();
-        $scope.permicao = loginService.getPermicao();
         $scope.listarAssuntosNaoDeletados();
         $scope.listarLidas();
         $scope.listarNaoExcluidas();
         $scope.listarExcluidas();
         $scope.listarNaoLidas();
-        $scope.listarTodos();
         $scope.listarFavoritas();
     }
 

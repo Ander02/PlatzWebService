@@ -1,4 +1,4 @@
-angular.module("platz").controller("loginController", function ($scope, $http, toastr) {
+angular.module("platz").controller("loginController", function ($scope, $http, toastr, $rootScope) {
 
     $scope.logar = function () {
         login = {
@@ -35,6 +35,15 @@ angular.module("platz").controller("loginController", function ($scope, $http, t
 
         });
     };
+    
+    $scope.getConta = function () {
+        var token = document.getElementById("token").value;
+            $http.get(webService + "/conta/token/" + token).then(function (response) {
+                $scope.conta = response.data;
+            }, function (response) {
+            });       
+    };
+    $scope.getConta();
 
     $scope.alterarSenha = function (contaEditada) {
         if (contaEditada.senha === contaEditada.confirmaSenha) {
@@ -50,7 +59,5 @@ angular.module("platz").controller("loginController", function ($scope, $http, t
             aviso(toastr, "A senha não são iguais, por favor digite-as novamente");
         }
     };
-
-    console.log("vai tomar no seu orificio anal ");
 
 });

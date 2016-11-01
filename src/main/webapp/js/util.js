@@ -30,15 +30,6 @@ function enviarArquivo($http, arquivo, name, url) {
     });
 }
 
-//gera os headers para autorização e permição
-function gerarHeaders(token) {
-    return {
-        headers: {
-            Authorization: "Bearer " + token
-        }
-    };
-}
-
 function verificarToken($http, $scope, toastr, sucess) {
     try {
 
