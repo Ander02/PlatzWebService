@@ -1,21 +1,14 @@
-angular.module("platz").controller("assuntoController", function ($scope, $http, toastr) {
+angular.module("platz").controller("assuntoController", function ($scope, $http, toastr, loginService) {
 
-    $scope.listarTodos = function () {
-        $http.get(webService + "/assuntos").then(function (response) {
-            $scope.assuntosAll = response.data;
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "Erro ao listar assuntos"));
-        });
-    };
     $scope.listarDeletados = function () {
-        $http.get(webService + "/assuntos/deletados").then(function (response) {
+        $http.get(webService + "/assuntos/deletados", loginService.getHeaders()).then(function (response) {
             $scope.assuntosDeletados = response.data;
         }, function (response) {
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao listar assuntos excluidos"));
         });
     };
     $scope.listarNaoDeletados = function () {
-        $http.get(webService + "/assuntos/naoDeletados").then(function (response) {
+        $http.get(webService + "/assuntos/naoDeletados", loginService.getHeaders()).then(function (response) {
             $scope.assuntos = response.data;
         }, function (response) {
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao listar assuntos"));
@@ -23,7 +16,7 @@ angular.module("platz").controller("assuntoController", function ($scope, $http,
     };
 
     $scope.alterar = function () {
-        $http.put(webService + "/assunto/" + $scope.assuntoEdicao.id, $scope.assuntoEditado).then(function (response) {
+        $http.put(webService + "/assunto/" + $scope.assuntoEdicao.id, $scope.assuntoEditado, loginService.getHeaders()).then(function (response) {
 
             atualizar();
             $scope.assuntoEdicao = null;
@@ -34,19 +27,19 @@ angular.module("platz").controller("assuntoController", function ($scope, $http,
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao alterar assunto"));
         });
     };
-    
+
     $scope.cadastrar = function (assuntoCadastro) {
 
-        $http.post(webService + "/assunto", assuntoCadastro).then(function (response) {
+        $http.post(webService + "/assunto", assuntoCadastro, loginService.getHeaders()).then(function (response) {
             atualizar();
-            $scope.assuntoCadastro = "";            
+            $scope.assuntoCadastro = "";
             sucesso(toastr, "Assunto cadastrado com sucesso");
         }, function (response) {
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao cadastrar assunto"));
         });
     };
     $scope.deletar = function () {
-        $http.delete(webService + "/assunto/" + $scope.assuntoExclusaoId).then(function (response) {
+        $http.delete(webService + "/assunto/" + $scope.assuntoExclusaoId, loginService.getHeaders()).then(function (response) {
             atualizar();
             excluido(toastr, "Assunto deletado com sucesso");
         }, function (response) {
@@ -54,7 +47,7 @@ angular.module("platz").controller("assuntoController", function ($scope, $http,
         });
     };
     $scope.recuperar = function () {
-        $http.put(webService + "/assunto/recuperar/" + $scope.assuntoRecuperacaoId).then(function (response) {
+        $http.put(webService + "/assunto/recuperar/" + $scope.assuntoRecuperacaoId, null, loginService.getHeaders()).then(function (response) {
             atualizar();
             sucesso(toastr, "Assunto restaurado com sucesso");
         }, function (reponse) {
@@ -85,8 +78,10 @@ angular.module("platz").controller("assuntoController", function ($scope, $http,
     };
 
     function atualizar() {
-        $scope.listarTodos();
-        verificarToken($http, $scope, toastr, function () {
+        loginService.verificarToken($http, toastr, "Administrador", function () {
+            $scope.permicao = loginService.getPermicao();
+            $scope.conta = loginService.getConta();
+            $scope.token = loginService.getToken();
         });
         $scope.listarDeletados();
         $scope.listarNaoDeletados();

@@ -15,28 +15,23 @@ function sleep(milliseconds) {
 }
 
 //Faz o upload de um arquivo para o service
-function enviarArquivo($http, arquivo, name, url) {
+function enviarArquivo($http, arquivo, name, url, token) {
     var formData = new FormData();
     formData.append(name, arquivo);
     console.log(formData);
     $http.put(url, formData, {
+        
         transformRequest: angular.identity,
-        headers: {'Content-Type': undefined}
+        headers: {
+            'Content-Type': undefined,
+             Authorization: "Bearer " + token
+        }
     }).success(function (response) {
         console.log("Arquivo Enviado para " + url);
     }).error(function (response) {
         console.log("Erro ao enviar para " + url);
         console.log(response);
     });
-}
-
-//gera os headers para autorização e permição
-function gerarHeaders(token) {
-    return {
-        headers: {
-            Authorization: "Bearer " + token
-        }
-    };
 }
 
 function verificarToken($http, $scope, toastr, sucess) {

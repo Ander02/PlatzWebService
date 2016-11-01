@@ -1,4 +1,4 @@
-angular.module("platz").controller("loginController", function ($scope, $http, toastr) {
+angular.module("platz").controller("loginController", function ($scope, $http, toastr, loginService) {
 
     $scope.logar = function () {
         login = {
@@ -28,27 +28,20 @@ angular.module("platz").controller("loginController", function ($scope, $http, t
     };
 
     $scope.deslogar = function () {
-        $http.post(webService + "/logoff", null, gerarHeaders(document.getElementById("token").value)).then(function (response) {
+        $http.post(webService + "/logoff", null, loginService.getHeaders()).then(function (response) {
             info(toastr, "logoff efetuado");
             location.href = "../index.jsp";
         }, function (response) {
 
         });
     };
-
+    
     $scope.getConta = function () {
         var token = document.getElementById("token").value;
-        if (token !== null && token !== "") {
-            $http.get(webService + "/conta/token/" + token).then(function (response) {
+            $http.get(webService + "/conta/token/" + token, loginService.getHeaders()).then(function (response) {
                 $scope.conta = response.data;
-                console.log($scope.conta);
             }, function (response) {
-
-            });
-        } else {
-            
-        }
-
+            });       
     };
     $scope.getConta();
 
@@ -66,7 +59,5 @@ angular.module("platz").controller("loginController", function ($scope, $http, t
             aviso(toastr, "A senha não são iguais, por favor digite-as novamente");
         }
     };
-
-    console.log("vai tomar no seu orificio anal ");
 
 });

@@ -33,15 +33,15 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
         <script type="text/javascript" src="../js/app.js"></script>
 
         <script src="../js/util.js" type="text/javascript"></script>
-
+        
+        <script src="../js/services/loginService.js" type="text/javascript"></script>
+        
         <script src="../js/controller/loginController.js" type="text/javascript"></script>
 
         <script src="../js/controller/contaController.js" type="text/javascript"></script>     
 
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="../img/logo.png">
-
-
 
     </head>
 
@@ -503,7 +503,7 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
 
                                 </div>
                                 <div class="text-xs-center">
-                                    <button type="submit" class="btn btn-warning" ng-click="cadastrar()"> Cadastrar </button>
+                                    <button type="submit" class="btn btn-warning" ng-click="cadastrar(contaCadastro)"> Cadastrar </button>
                                 </div>
                             </form>
                         </div>

@@ -31,8 +31,7 @@ public class AssuntoService {
 
     @POST
     @Path(value = "/assunto")
-    //@PerfilAuth(Perfil.ADMINISTRADOR)
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(AssuntoCadastro assunto) {
@@ -71,7 +70,7 @@ public class AssuntoService {
 
     @GET
     @Path(value = "/assuntos/deletados")
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarDeletados() {
         try {
@@ -137,8 +136,7 @@ public class AssuntoService {
 
     @PUT
     @Path(value = "/assunto/{id}")
-    //@PerfilAuth(Perfil.ADMINISTRADOR)
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response alterar(@PathParam("id") String id, AssuntoEdicao assunto) {
@@ -161,14 +159,11 @@ public class AssuntoService {
 
     @DELETE
     @Path(value = "/assunto/{id}")
-    //@PerfilAuth(Perfil.ADMINISTRADOR)
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response deletar(@PathParam("id") String id) {
         try {
-
             assuntoController.excluir(assuntoController.buscarPorId(id));
-
             return Response.status(Response.Status.NO_CONTENT).build();
 
         } catch (Exception e) {
@@ -179,8 +174,7 @@ public class AssuntoService {
 
     @PUT
     @Path(value = "/assunto/recuperar/{id}")
-    //@PerfilAuth(Perfil.ADMINISTRADOR)
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response recuperar(@PathParam("id") String id) {
         try {

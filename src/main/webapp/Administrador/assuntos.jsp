@@ -35,7 +35,8 @@ Pagina de cadastro , consulta, atualização e exclusão de assunto de mensagem
 
         <!-- link Angular UTIL -->
         <script src="../js/util.js" type="text/javascript"></script>
-
+        
+        <script src="../js/services/loginService.js" type="text/javascript"></script>
         <!-- link CONTROLLER -->
         <script src="../js/controller/loginController.js" type="text/javascript"></script>
 
