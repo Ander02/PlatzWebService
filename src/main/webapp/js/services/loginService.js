@@ -61,17 +61,21 @@ angular.module("platz").service("loginService", function () {
     };
 
 //gera os headers para autorização e permição
-    gerarHeaders = function () {
+    this.getHeaders = function () {
         return {
             headers: {
-                Authorization: "Bearer " + token            
+                Authorization: "Bearer " + token
             }
         };
     };
 
     this.logoff = function ($http, toastr) {
         aviso(toastr, "Erro ao logar, por favor tente novamente");
-        $http.post(webService + "/logoff", null, this.gerarHeaders());
+        $http.post(webService + "/logoff", null, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        });
         location.href = "../login.jsp";
     };
 });

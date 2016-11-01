@@ -56,8 +56,7 @@ public class MensagemService {
 
     @POST
     @Path(value = "/mensagem/{id}")
-    // @PerfilAuth(Perfil.ADMINISTRADOR)
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response responderMensagem(String resposta, @PathParam("id") String id) {
 
@@ -79,8 +78,7 @@ public class MensagemService {
 
     @GET
     @Path(value = "/mensagens")
-    // @PerfilAuth(Perfil.ADMINISTRADOR)
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
 
@@ -101,8 +99,7 @@ public class MensagemService {
 
     @GET
     @Path(value = "/mensagem/{id}")
-    // @PerfilAuth(Perfil.ADMINISTRADOR)
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloId(@PathParam("id") String id) {
         MensagemModel model = mensagemController.buscarPorId(id);
@@ -121,8 +118,7 @@ public class MensagemService {
 
     @GET
     @Path(value = "/mensagens/{email}")
-    // @PerfilAuth(Perfil.ADMINISTRADOR)
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloEmail(@PathParam("email") String email) {
 
@@ -143,8 +139,7 @@ public class MensagemService {
 
     @GET
     @Path(value = "/mensagens/marcadas")
-    // @PerfilAuth(Perfil.ADMINISTRADOR)
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarMarcadas() {
 
@@ -165,8 +160,7 @@ public class MensagemService {
 
     @GET
     @Path(value = "/mensagens/marcadasNaoExcluidas")
-    // @PerfilAuth(Perfil.ADMINISTRADOR)
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarMarcadasNaoExcluidas() {
 
@@ -187,8 +181,7 @@ public class MensagemService {
 
     @GET
     @Path(value = "/mensagens/excluidas")
-    // @PerfilAuth(Perfil.ADMINISTRADOR)
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarExcluidas() {
 
@@ -209,8 +202,7 @@ public class MensagemService {
 
     @GET
     @Path(value = "/mensagens/naoExcluidas")
-    // @PerfilAuth(Perfil.ADMINISTRADOR)
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarNaoExcluidas() {
 
@@ -231,8 +223,7 @@ public class MensagemService {
 
     @GET
     @Path(value = "/mensagens/lidas")
-    // @PerfilAuth(Perfil.ADMINISTRADOR)
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarLidas() {
 
@@ -253,8 +244,7 @@ public class MensagemService {
 
     @GET
     @Path(value = "/mensagens/naoLidas")
-    // @PerfilAuth(Perfil.ADMINISTRADOR)
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarNaoLidas() {
 
@@ -275,8 +265,7 @@ public class MensagemService {
 
     @GET
     @Path(value = "/mensagens/lidasNaoExcluidas")
-    // @PerfilAuth(Perfil.ADMINISTRADOR)
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarLidasNaoExcluidas() {
 
@@ -297,8 +286,7 @@ public class MensagemService {
 
     @GET
     @Path(value = "/mensagens/naoLidasNaoExcluidas")
-    // @PerfilAuth(Perfil.ADMINISTRADOR)
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarNaoLidasNaoExcluidas() {
 
@@ -319,8 +307,7 @@ public class MensagemService {
 
     @GET
     @Path(value = "/mensagens/assunto/{id}")
-    // @PerfilAuth(Perfil.ADMINISTRADOR)
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloAssunto(@PathParam("id") String id) {
 
@@ -343,8 +330,7 @@ public class MensagemService {
 
     @PUT
     @Path(value = "/mensagem/visualizar/{id}")
-    // @PerfilAuth(Perfil.ADMINISTRADOR)
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response visualizar(@PathParam("id") String id) {
 
@@ -364,8 +350,7 @@ public class MensagemService {
 
     @PUT
     @Path(value = "/mensagem/cancelarVisualizacao/{id}")
-    // @PerfilAuth(Perfil.ADMINISTRADOR)
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cancelarVisualizacao(@PathParam("id") String id) {
 
@@ -385,8 +370,7 @@ public class MensagemService {
 
     @PUT
     @Path(value = "/mensagem/marcar/{id}")
-    // @PerfilAuth(Perfil.ADMINISTRADOR)
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response marcar(@PathParam("id") String id) {
 
@@ -406,8 +390,7 @@ public class MensagemService {
 
     @PUT
     @Path(value = "/mensagem/desmarcar/{id}")
-    // @PerfilAuth(Perfil.ADMINISTRADOR)
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response desmarcar(@PathParam("id") String id) {
 
@@ -427,8 +410,7 @@ public class MensagemService {
 
     @PUT
     @Path(value = "/mensagem/excluir/{id}")
-    // @PerfilAuth(Perfil.ADMINISTRADOR)
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response marcarExcluida(@PathParam("id") String id) {
 
@@ -448,8 +430,7 @@ public class MensagemService {
 
     @PUT
     @Path(value = "/mensagem/restaurar/{id}")
-    // @PerfilAuth(Perfil.ADMINISTRADOR)
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response restaurar(@PathParam("id") String id) {
 
@@ -469,8 +450,7 @@ public class MensagemService {
 
     @DELETE
     @Path(value = "/mensagem/{id}")
-    // @PerfilAuth(Perfil.ADMINISTRADOR)
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response deletar(@PathParam("id") String id) {
         try {
