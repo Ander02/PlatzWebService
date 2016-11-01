@@ -15,13 +15,17 @@ function sleep(milliseconds) {
 }
 
 //Faz o upload de um arquivo para o service
-function enviarArquivo($http, arquivo, name, url) {
+function enviarArquivo($http, arquivo, name, url, token) {
     var formData = new FormData();
     formData.append(name, arquivo);
     console.log(formData);
     $http.put(url, formData, {
+        
         transformRequest: angular.identity,
-        headers: {'Content-Type': undefined}
+        headers: {
+            'Content-Type': undefined,
+             Authorization: "Bearer " + token
+        }
     }).success(function (response) {
         console.log("Arquivo Enviado para " + url);
     }).error(function (response) {

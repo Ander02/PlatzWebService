@@ -58,8 +58,7 @@ public class CategoriaService {
 
     @PUT
     @Path(value = "/categoria/imagem/{id}")
-    @PermitAll
-//@PerfilAuth(Perfil.ADMINISTRADOR)
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Consumes(value = MediaType.MULTIPART_FORM_DATA)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response subirImagem(@FormDataParam("icone") InputStream iconeInputStream,
@@ -205,14 +204,13 @@ public class CategoriaService {
     @PUT
     @Path(value = "/categoria/{id}")
     @PerfilAuth(Perfil.ADMINISTRADOR)
-    @PermitAll
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response alterar(@PathParam("id") String id, CategoriaEdicao categoria) {
- 
+
         try {
             CategoriaModel model = categoriaController.buscarPorId(id);
-            
+
             //Alterar registro
             categoriaController.alterar(model, categoria);
 
@@ -228,8 +226,7 @@ public class CategoriaService {
 
     @DELETE
     @Path(value = "/categoria/{id}")
-    //@PerfilAuth(Perfil.ADMINISTRADOR)
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response deletar(@PathParam("id") String id) {
         try {
@@ -248,8 +245,7 @@ public class CategoriaService {
 
     @PUT
     @Path(value = "/categoria/recuperar/{id}")
-    //@PerfilAuth(Perfil.ADMINISTRADOR)
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response recuperar(@PathParam("id") String id) {
         try {
@@ -268,7 +264,7 @@ public class CategoriaService {
 
     @GET
     @Path(value = "/categorias/excluidas")
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarExcluidos() {
         try {

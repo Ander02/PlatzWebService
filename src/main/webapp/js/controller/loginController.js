@@ -1,4 +1,4 @@
-angular.module("platz").controller("loginController", function ($scope, $http, toastr, $rootScope) {
+angular.module("platz").controller("loginController", function ($scope, $http, toastr, loginService) {
 
     $scope.logar = function () {
         login = {
@@ -28,7 +28,7 @@ angular.module("platz").controller("loginController", function ($scope, $http, t
     };
 
     $scope.deslogar = function () {
-        $http.post(webService + "/logoff", null, gerarHeaders(document.getElementById("token").value)).then(function (response) {
+        $http.post(webService + "/logoff", null, loginService.getHeaders()).then(function (response) {
             info(toastr, "logoff efetuado");
             location.href = "../index.jsp";
         }, function (response) {

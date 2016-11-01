@@ -1,25 +1,16 @@
-angular.module("platz").controller("categoriaController", function ($scope, $http, toastr) {
+angular.module("platz").controller("categoriaController", function ($scope, $http, toastr, loginService) {
 
-    //funções que realizam consulta no webService
-    $scope.listarTodos = function () {
-        $http.get(webService + "/categorias").then(function (response) {
-            $scope.categoriasAll = response.data;
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "Erro ao listar categorias"));
-        });
-    };
+    //funções que realizam consulta no webService    
     $scope.listarExcluidas = function () {
-        $http.get(webService + "/categorias/excluidas").then(function (response) {
+        $http.get(webService + "/categorias/excluidas", loginService.getHeaders()).then(function (response) {
             $scope.categoriasExcluidas = response.data;
         }, function (response) {
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao listar categorias excluidas"));
         });
     };
     $scope.listarNaoExcluidas = function () {
-        $http.get(webService + "/categorias/naoExcluidas").then(function (response) {
-
+        $http.get(webService + "/categorias/naoExcluidas", loginService.getHeaders()).then(function (response) {
             $scope.categorias = response.data;
-
         }, function (response) {
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao listar categorias"));
         });
@@ -27,9 +18,8 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
 
     $scope.alterar = function (categoriaEditada) {
         console.log(categoriaEditada);
-        $http.put(webService + "/categoria/" + $scope.categoriaEdicao.id, categoriaEditada, gerarHeaders($scope.token)).then(function (response) {
+        $http.put(webService + "/categoria/" + $scope.categoriaEdicao.id, categoriaEditada, loginService.getHeaders()).then(function (response) {
             atualizar();
-            //$scope.categoriaEditada = null;
             alterado(toastr, "Categoria editar com sucesso");
             sleep(1000);
             location.reload();
@@ -45,7 +35,7 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
         var icone = input.files[0];
 
         if (!(!icone.type.match('image.*'))) {
-            enviarArquivo($http, icone, 'icone', webService + "/categoria/imagem/" + $scope.categoriaImagemEdicaoId);
+            enviarArquivo($http, icone, 'icone', webService + "/categoria/imagem/" + $scope.categoriaImagemEdicaoId, $scope.token);
         }
         input.value = null;
         atualizar();
@@ -53,16 +43,14 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
 
 
     $scope.cadastrar = function (cadastroCategoria) {
-        
-        
-        
-        $http.post(webService + "/categoria", cadastroCategoria, gerarHeaders($scope.token)).then(function (response) {
-            
+
+        $http.post(webService + "/categoria", cadastroCategoria, loginService.getHeaders()).then(function (response) {
+
             var input = document.getElementById("InputIconeCategoriaCadastro");
             var icone = input.files[0];
 
             if (!(!icone.type.match('image.*'))) {
-                enviarArquivo($http, icone, 'icone', webService + "/categoria/imagem/" + response.data.id);
+                enviarArquivo($http, icone, 'icone', webService + "/categoria/imagem/" + response.data.id, $scope.token);
             }
             input.value = null;
 
@@ -75,7 +63,7 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
     };
 
     $scope.recuperar = function () {
-        $http.put(webService + "/categoria/recuperar/" + $scope.categoriaRecuperacaoId,gerarHeaders($scope.token)).then(function (response) {
+        $http.put(webService + "/categoria/recuperar/" + $scope.categoriaRecuperacaoId, loginService.getHeaders()).then(function (response) {
             atualizar();
             sucesso(toastr, "Categoria recuperada com sucesso");
         }, function (response) {
@@ -84,7 +72,7 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
     };
 
     $scope.deletar = function () {
-        $http.delete(webService + "/categoria/" + $scope.categoriaExclusaoId,gerarHeaders($scope.token)).then(function (response) {
+        $http.delete(webService + "/categoria/" + $scope.categoriaExclusaoId, loginService.getHeaders()).then(function (response) {
             atualizar();
             excluido(toastr, "Categoria deletada com sucesso");
         }, function (response) {
@@ -128,10 +116,11 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
 
     //funções de atualizações e avisos
     function atualizar() {
-        verificarToken($http, $scope, toastr, function () {
-
+        loginService.verificarToken($http, toastr, "Administrador", function () {
+            $scope.permicao = loginService.getPermicao();
+            $scope.conta = loginService.getConta();
+            $scope.token = loginService.getToken();
         });
-        $scope.listarTodos();
         $scope.listarExcluidas();
         $scope.listarNaoExcluidas();
         $scope.cancelarEdicao();
@@ -139,11 +128,10 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
         $scope.cancelarRecuperacao();
         $scope.cancelarEdicaoImagem();
         $scope.categoriaCadastro = "";
-
     }
+
     window.onload = function () {
         console.log("onload");
-        $scope.token = document.getElementById("token").value;
         $scope.permicao = false;
         atualizar();
     };
