@@ -1,9 +1,9 @@
-angular.module("platz").controller("perfilEmpresaController", function ($scope, $http, toastr) {
+angular.module("platz").controller("perfilEmpresaController", function ($scope, $http, toastr, loginService) {
 
 //funções de atualizações
 
     $scope.buscaEmpresa = function () {
-        $http.get(webService + "/empresa/conta/" + $scope.conta.id).then(function (response) {
+        $http.get(webService + "/empresa/conta/" + $scope.conta.id, loginService.getHeaders()).then(function (response) {
             $scope.empresa = response.data;
             $scope.empresaEdicaoEndereco = $scope.empresa;
             $scope.empresaEdicaoSenha = $scope.empresa;
@@ -11,7 +11,6 @@ angular.module("platz").controller("perfilEmpresaController", function ($scope, 
             $scope.imagemPerfil = webService + "/empresa/imagem/" + $scope.empresa.id;
             $scope.eventosEmpresa();
         }, function (response) {
-            console.log(response.data);
         });
     };
 
@@ -20,9 +19,8 @@ angular.module("platz").controller("perfilEmpresaController", function ($scope, 
     };
 
     $scope.eventosEmpresa = function () {
-        $http.get(webService + "/eventos/empresa/" + $scope.empresa.id).then(function (response) {
+        $http.get(webService + "/eventos/empresa/" + $scope.empresa.id, loginService.getHeaders()).then(function (response) {
             $scope.eventos = response.data;
-            console.log($scope.eventos);
         }, function (response) {
             erro(toastr, errorManager(response.config.url, response.status, "erro ao buscar eventos da empresa"));
         });
@@ -31,8 +29,8 @@ angular.module("platz").controller("perfilEmpresaController", function ($scope, 
     $scope.alterarSenha = function () {
 
         if ($scope.empresaEdicaoSenha.senha === $scope.empresaEdicaoSenha.confirmaSenha) {
-
-            $http.put(webService + "/conta/senha/" + $scope.empresaEdicaoSenha.conta.id, $scope.empresaEdicaoSenha).then(function (response) {
+            $scope.empresaEdicaoSenha.endereco = null;
+            $http.put(webService + "/conta/senha/" + $scope.empresaEdicaoSenha.conta.id, $scope.empresaEdicaoSenha, loginService.getHeaders()).then(function (response) {
                 sucesso(toastr, "Senha editada com sucesso");
                 $scope.empresaEdicaoSenha.senha = null;
                 $scope.empresaEdicaoSenha.confirmaSenha = null;
@@ -50,8 +48,9 @@ angular.module("platz").controller("perfilEmpresaController", function ($scope, 
     };
 
     $scope.alterarInfoEmpresariais = function () {
+        $scope.empresaEdicaoInfo.endereco = null;
         console.log($scope.empresaEdicaoInfo);
-        $http.put(webService + "/empresa/" + $scope.empresaEdicaoInfo.id, $scope.empresaEdicaoInfo).then(function (response) {
+        $http.put(webService + "/empresa/" + $scope.empresaEdicaoInfo.id, $scope.empresaEdicaoInfo, loginService.getHeaders()).then(function (response) {
             sucesso(toastr, "informações editada com sucesso");
         }, function (response) {
             aviso(toastr, "falha ao editar informações, por favor tente novamente mais tarde");
@@ -62,7 +61,7 @@ angular.module("platz").controller("perfilEmpresaController", function ($scope, 
 
         if (imgEmpresa != null && imgEmpresa != "" && typeof imgEmpresa != undefined) {
             if (!(!imgEmpresa.type.match('image.*'))) {
-                enviarArquivo($http, imgEmpresa, 'imgPerfil', webService + "/empresa/imagem/" + $scope.empresaEdicaoInfo.id);
+                enviarArquivo($http, imgEmpresa, 'imgPerfil', webService + "/empresa/imagem/" + $scope.empresaEdicaoInfo.id, $scope.token);
                 sucesso(toastr, "Imagem atualizada");
             }
             input.value = null;
@@ -71,7 +70,7 @@ angular.module("platz").controller("perfilEmpresaController", function ($scope, 
 
     $scope.alterarEndereco = function () {
         console.log($scope.empresaEdicaoEndereco);
-        $http.put(webService + "/empresa/" + $scope.empresaEdicaoEndereco.id, $scope.empresaEdicaoEndereco).then(function (response) {
+        $http.put(webService + "/empresa/" + $scope.empresaEdicaoEndereco.id, $scope.empresaEdicaoEndereco,loginService.getHeaders()).then(function (response) {
             sucesso(toastr, "endereço editado com sucesso");
         }, function (response) {
             aviso(toastr, "falha ao editar endereço, por favor tente novamente mais tarde");
@@ -97,7 +96,7 @@ angular.module("platz").controller("perfilEmpresaController", function ($scope, 
     };
 
     $scope.deslogar = function () {
-        $http.post(webService + "/logoff", null, gerarHeaders(document.getElementById("token").value)).then(function (response) {
+        $http.post(webService + "/logoff", null, loginService.getHeaders()).then(function (response) {
             info(toastr, "logoff efetuado");
             location.href = "../index.jsp";
         }, function (response) {
@@ -106,20 +105,17 @@ angular.module("platz").controller("perfilEmpresaController", function ($scope, 
     };
 
     function atualizar() {
-        console.log("atualizar");
-        verificarToken($http, $scope, toastr, function () {
+        loginService.verificarToken($http, toastr, "Empresa", function () {
+            $scope.permicao = loginService.getPermicao();
+            $scope.conta = loginService.getConta();
+            $scope.token = loginService.getToken();
             $scope.buscaEmpresa();
         });
-    }
-    ;
+    };
 
     window.onload = function () {
-        console.log("onload");
         $scope.permicao = false;
         atualizar();
     };
-
-
-
 
 });

@@ -37,6 +37,8 @@ Tela de cadastro de evento
         <!-- link util -->
         <script src="../js/util.js" type="text/javascript"></script>
 
+        <script src="../js/services/loginService.js" type="text/javascript"></script>
+
         <!-- link controller -->
         <script src="../js/controller/eventoCadastroController.js" type="text/javascript"></script>
 
@@ -76,7 +78,7 @@ Tela de cadastro de evento
     </div>
     <!--Form de cadastro de evento-->
     <div>
-        <form>
+        <form ng-if="permicao">
 
             <div class="col-md-8 corpo-form-cadastro-evento card">
 
@@ -223,11 +225,11 @@ Tela de cadastro de evento
                             <p>{{evento.endereco.cidade}}</p>   
                             <hr>
                         </div> 
-                        
-                        
+
+
                         <div class="col-md-12">
-                        <button class="btn btn-lg btn-warning" ng-click="cadastrar()"><i class="fa fa-check"></i> Cadastrar</button>
-                    </div>
+                            <button class="btn btn-lg btn-warning" ng-click="cadastrar()"><i class="fa fa-check"></i> Cadastrar</button>
+                        </div>
 
                     </div>
                     <!--/.Card content-->
