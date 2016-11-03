@@ -37,6 +37,8 @@ Pagina de evento especifico
 
         <!-- angular app UTIL -->
         <script src="js/util.js" type="text/javascript"></script>
+        
+        <script src="js/services/loginService.js" type="text/javascript"></script>
 
         <!-- angular app CONTROLLER LOGIN -->
         <script src="js/controller/loginController.js" type="text/javascript"></script>

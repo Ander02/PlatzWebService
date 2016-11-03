@@ -34,9 +34,13 @@ pagina onde é retornada a busca de eventos por uma unica determinada categoria
         <script type="text/javascript" src="js/app.js"></script>
 
         <script src="js/util.js" type="text/javascript"></script>
+        
+        <script src="js/services/loginService.js" type="text/javascript"></script>
 
         <script src="js/controller/loginController.js" type="text/javascript"></script>
+        
         <script src="js/controller/eventosCategoriaController.js" type="text/javascript"></script>
+        
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="img/logo.png">
 

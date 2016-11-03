@@ -33,8 +33,12 @@
 
         <script src="js/util.js" type="text/javascript"></script>
 
-        <script src="js/controller/loginController.js" type="text/javascript"></script>        
+        <script src="js/controller/loginController.js" type="text/javascript"></script>
+        
         <script src="js/controller/empresaEspecificaController.js" type="text/javascript"></script>
+        
+        <script src="js/services/loginService.js" type="text/javascript"></script>
+        
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="img/logo.png">
     </head>

@@ -39,6 +39,9 @@ Perfil do usuario, onde ele pode alterar as coisas sobre sua conta
 
         <!-- angular util -->
         <script src="../js/util.js" type="text/javascript"></script>
+        
+        <!-- service -->
+        <script src="../js/services/loginService.js" type="text/javascript"></script>
 
         <!-- angular controller  -->
 
