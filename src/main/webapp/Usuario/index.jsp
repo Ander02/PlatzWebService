@@ -38,11 +38,12 @@ index do usuario onde mostra algumas sugestões de eventos
 
         <!-- angular util -->
         <script src="../js/util.js" type="text/javascript"></script>
+        
+         <!-- service -->
+        <script src="../js/services/loginService.js" type="text/javascript"></script>
 
         <!-- angular controller  -->
        
-        <!-- service -->
-        <script src="../js/services/loginService.js" type="text/javascript"></script>
         
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="../img/logo.png">

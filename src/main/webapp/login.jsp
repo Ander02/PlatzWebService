@@ -35,10 +35,10 @@ pagina de login, onde o usuario é redirecionado se errar o login pela nav
         <!-- UTIL -->
         <script src="js/util.js" type="text/javascript"></script>
 
+        <script src="js/services/loginService.js" type="text/javascript"></script>
+        
         <!-- Controller -->
         <script src="js/controller/loginController.js" type="text/javascript"></script>
-        
-        <script src="js/services/loginService.js" type="text/javascript"></script>
 
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="img/logo.png">
@@ -49,7 +49,7 @@ pagina de login, onde o usuario é redirecionado se errar o login pela nav
         <%
             out.print("<input type='hidden' id='token' name='token' value ='' >");
             session.invalidate();
-          
+
         %>
 
     <ng-include src="'View/nav.html'"  ng-controller="loginController"></ng-include>
