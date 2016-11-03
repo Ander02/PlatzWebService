@@ -1,4 +1,4 @@
-angular.module("platz").controller("eventosController", function ($scope, $http, toastr) {
+angular.module("platz").controller("eventosController", function ($scope, $http, toastr, loginService) {
 
     $scope.listarCategoriasNaoExcluidas = function () {
         $http.get(webService + "/categorias/naoExcluidas").then(function (response) {
@@ -52,19 +52,27 @@ angular.module("platz").controller("eventosController", function ($scope, $http,
     $scope.baixarImagemCategoria = function (id) {
         return webService + "/categoria/imagem/" + id;
     };
-    
+
     $scope.buscarImagemCapa = function (id) {
         return webService + "/evento/imagemCapa/" + id;
     };
 
-
-    window.onload = function () {
+//funções de atualizações
+    function atualizar() {
+        loginService.verificarToken($http, toastr, "Livre", function () {
+            $scope.permicao = loginService.getPermicao();
+            $scope.conta = loginService.getConta();
+            $scope.token = loginService.getToken();
+        });
         $scope.listarEventos();
         $scope.listarCategoriasNaoExcluidas();
         $scope.listarTop3Eventos();
         $scope.listarTop15Eventos();
+    }
 
-
+    window.onload = function () {
+        $scope.permicao = false;
+        atualizar();
     };
 
 

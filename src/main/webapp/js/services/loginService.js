@@ -19,53 +19,56 @@ angular.module("platz").service("loginService", function () {
 
         try {
             token = document.getElementById("token").value;
-            console.log(token);
-            $http.get(webService + "/tokenIsValid/" + token, {
-                headers: {
-                    Authorization: "Bearer " + token
-                }
-            }).then(function (response) {
-                var valido = response.data;
+            if (token !== null && token !== "" && local !== "Livre") {
+                console.log(token);
+                $http.get(webService + "/tokenIsValid/" + token, {
+                    headers: {
+                        Authorization: "Bearer " + token
+                    }
+                }).then(function (response) {
+                    var valido = response.data;
 
-                if (valido == "false") {
-                    console.log("t isn't valid");
-                    permicao = false;
-                    logoff($http, toastr);
-                    location.href = "../login.jsp";
-                } else {
-                    console.log("t is valid ");
-                    $http.get(webService + "/conta/token/" + token, {
-                        headers: {
-                            Authorization: "Bearer " + token
-                        }
-                    }).then(function (response) {
-
-                        conta = response.data;
-
-                        if (local === "Livre" || local === conta.perfil) {
-                            permicao = true;
-                            success();
-                        } else {
-                            logoff($http, toastr);
-                        }
-
-                    }, function (response) {
+                    if (valido == "false") {
+                        console.log("t isn't valid");
                         permicao = false;
                         logoff($http, toastr);
-                        location.href = "../login.jsp";
-                    });
-                }
+                        location.href = "/quebraSessao.jsp";
+                    } else {
+                        console.log("t is valid ");
+                        $http.get(webService + "/conta/token/" + token, {
+                            headers: {
+                                Authorization: "Bearer " + token
+                            }
+                        }).then(function (response) {
 
-            }, function (response) {
-                console.log("request failed");
-                permicao = false;
-                logoff($http, toastr);
-            });
+                            conta = response.data;
+
+                            if (local === "Livre" || local === conta.perfil) {
+                                permicao = true;
+                                success();
+                            } else {
+                                logoff($http, toastr);
+                            }
+
+                        }, function (response) {
+                            permicao = false;
+                            logoff($http, toastr);
+                            location.href = "/quebraSessao.jsp";
+                        });
+                    }
+
+                }, function (response) {
+                    console.log("request failed");
+                    permicao = false;
+                    logoff($http, toastr);
+                });
+            }
         } catch (err) {
             aviso(toastr, "falha ao manter sessão, por favor logue-se novamente");
             logoff($http, toastr);
-            location.href = "../login.jsp";
+            location.href = "/quebraSessao.jsp";
         }
+
     };
 
 //gera os headers para autorização e permição
@@ -86,6 +89,6 @@ angular.module("platz").service("loginService", function () {
                 Authorization: "Bearer " + token
             }
         });
-        location.href = "../login.jsp";
+        location.href = "/quebraSessao.jsp";
     };
 });

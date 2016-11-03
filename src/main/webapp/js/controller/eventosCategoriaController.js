@@ -1,4 +1,4 @@
-angular.module("platz").controller("eventosCategoriaController", function ($scope, $http, toastr) {
+angular.module("platz").controller("eventosCategoriaController", function ($scope, $http, toastr, loginService) {
 
     idCategoria = document.getElementById("idCategoria").value;
 
@@ -16,9 +16,21 @@ angular.module("platz").controller("eventosCategoriaController", function ($scop
             info(toastr, "falha ao carrregar categoria");
         });
     };
-    window.onload = function () {
+
+    function atualizar() {
+        loginService.verificarToken($http, toastr, "Livre", function () {
+            $scope.permicao = loginService.getPermicao();
+            $scope.conta = loginService.getConta();
+            $scope.token = loginService.getToken();
+        });
         $scope.eventosPorCategoria();
         $scope.categoriaId();
+
+    }
+
+    window.onload = function () {
+        $scope.permicao = false;
+        atualizar();
     };
 
     $scope.buscarImagemCapa = function (id) {

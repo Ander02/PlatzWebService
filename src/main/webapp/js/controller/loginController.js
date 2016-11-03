@@ -30,11 +30,11 @@ angular.module("platz").controller("loginController", function ($scope, $http, t
     $scope.deslogar = function () {
         $http.post(webService + "/logoff", null, loginService.getHeaders()).then(function (response) {
             info(toastr, "logoff efetuado");
-            location.href = "/index.jsp";
-        }, function (response) {
-
+            location.href = "/quebraSessao.jsp";
+        }, function () {
         });
     };
+    
 
     $scope.getConta = function () {
 

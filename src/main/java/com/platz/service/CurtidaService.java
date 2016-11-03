@@ -31,7 +31,8 @@ public class CurtidaService {
 
     @POST
     @Path(value = "/curtir")
-    @PerfilAuth(Perfil.USUARIO)
+    //@PerfilAuth(Perfil.USUARIO)
+    @PermitAll
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response curtir(CurtidaCadastro curtida) {

@@ -1,4 +1,4 @@
-angular.module("platz").controller("eventoEspecificoController", function ($scope, $http, toastr) {
+angular.module("platz").controller("eventoEspecificoController", function ($scope, $http, toastr, loginService) {
     id = document.getElementById("idEvento").value;
 
     $scope.eventoEspecifico = function () {
@@ -13,7 +13,7 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
     $scope.avaliar = function (nota) {
         console.log(nota);
     };
-    
+
     $scope.getMedia = function () {
         $http.get(webService + "/avaliacao/evento/media/" + id).then(function (response) {
             $scope.media = parseFloat(response.data);
@@ -22,12 +22,21 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
             console.log(response.data);
         });
     };
-
-    window.onload = function () {
+    function atualizar() {
+        loginService.verificarToken($http, toastr, "Livre", function () {
+            $scope.permicao = loginService.getPermicao();
+            $scope.conta = loginService.getConta();
+            $scope.token = loginService.getToken();
+        });
         $scope.eventoEspecifico();
         $scope.getMedia();
-    };
 
+    }
+
+    window.onload = function () {
+        $scope.permicao = false;
+        atualizar();
+    };
 
 
 });
