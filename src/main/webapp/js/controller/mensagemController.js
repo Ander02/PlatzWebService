@@ -75,7 +75,7 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
     };
     $scope.visualizar = function (id) {
         $http.put(webService + "/mensagem/visualizar/" + id, null, loginService.getHeaders()).then(function (response) {
-        atualizar();
+            atualizar();
         }, function (response) {
 
         });
@@ -112,9 +112,9 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
         atualizar();
     };
 
-    $scope.responder = function (id) {
+    $scope.responder = function (id, resposta) {        
         espere(toastr, "Enviando e-mail, por favor aguarde...");
-        $http.post(webService + "/mensagem/" + id, $scope.resposta, loginService.getHeaders()).then(function (response) {
+        $http.post(webService + "/mensagem/" + id, resposta, loginService.getHeaders()).then(function (response) {
             sucesso(toastr, "mensagem respondida");
             $scope.resposta = null;
         }, function (response) {
