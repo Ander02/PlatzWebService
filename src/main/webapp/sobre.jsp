@@ -25,6 +25,7 @@
 
         <!-- link Angular -->
         <script type="text/javascript" src="lib/angular/angular.js"></script>
+        
         <!-- angular app script -->
         <script type="text/javascript" src="js/app.js"></script>
 
@@ -33,6 +34,8 @@
         <script src="js/controller/loginController.js" type="text/javascript"></script>
 
         <script src="js/controller/sobreController.js" type="text/javascript"></script>
+        
+        <script src="js/services/loginService.js" type="text/javascript"></script>
 
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="img/logo.png">

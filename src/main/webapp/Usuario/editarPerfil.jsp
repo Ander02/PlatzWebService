@@ -39,6 +39,9 @@ Pagina para a edição do perfil do usuario
 
         <!-- angular util -->
         <script src="../js/util.js" type="text/javascript"></script>
+        
+        <!-- service -->
+        <script src="../js/services/loginService.js" type="text/javascript"></script>
 
         <!-- angular controller  -->
         

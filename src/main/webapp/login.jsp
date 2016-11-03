@@ -37,6 +37,8 @@ pagina de login, onde o usuario é redirecionado se errar o login pela nav
 
         <!-- Controller -->
         <script src="js/controller/loginController.js" type="text/javascript"></script>
+        
+        <script src="js/services/loginService.js" type="text/javascript"></script>
 
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="img/logo.png">
