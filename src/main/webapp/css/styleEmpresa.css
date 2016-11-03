@@ -161,12 +161,26 @@ and open the template in the editor.
 {
     margin-left: 41.7%;
 }
-.select-categorias-cadastro label
+.label-modificado
 {
     color: #757575;
     position: absolute;
     top: 5px;
     left: 0px;
+    text-align: center;
+    font-size: 1rem;
+    cursor: text;
+    -webkit-transition: .2s ease-out;
+    -moz-transition: .2s ease-out;
+    -o-transition: .2s ease-out;
+    -ms-transition: .2s ease-out;
+    transition: .2s ease-out;
+}
+.label-modificado-imagens
+{
+    color: #757575;
+    position: absolute;
+    left: 10px;
     text-align: center;
     font-size: 1rem;
     cursor: text;
