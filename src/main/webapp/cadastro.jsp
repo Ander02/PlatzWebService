@@ -30,12 +30,12 @@
         <!-- link util -->
         <script src="js/util.js" type="text/javascript"></script>
 
+        <script src="js/services/loginService.js" type="text/javascript"></script>
+
         <!-- link controller -->
         <script src="js/controller/cadastroController.js" type="text/javascript"></script>
 
-        <script src="js/controller/loginController.js" type="text/javascript"></script>
-
-        <script src="js/services/loginService.js" type="text/javascript"></script>
+        <script src="js/controller/loginController.js" type="text/javascript"></script>    
 
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="img/logo.png">
@@ -51,6 +51,7 @@
     <body >
         <!-- inicio do projeto aqui-->
         <%
+
             try {
                 String token = session.getAttribute("token").toString();
                 if (token == null) {
@@ -62,6 +63,10 @@
                 System.out.println("Erro ao buscar sessÃ£o " + e.getMessage());
                 out.print("<input type='hidden' id='token' name='token' value ='' >");
             }
+
+            out.print("<input type='hidden' id='token' name='token' value ='' >");
+            session.invalidate();
+
         %>
     <ng-include src="'View/nav.html'" ng-controller="loginController"></ng-include>
 
@@ -108,7 +113,7 @@
                             <!--Card content-->
                             <div class="card-block text-xs-center">
                                 <!--Title-->
-                                <h4 class="card-title"><i class="fa fa-lock animated rotateIn"></i><strong> InformaÃ§Ãµes Conta</strong></h4>
+                                <h4 class="card-title"><i class="fa fa-lock animated rotateIn"></i><strong> Informações Conta</strong></h4>
                                 <div class="col-md-12">
                                     <label for="conta-empresa-img">Imagem de Perfil</label>
                                     <div class="md-form">                
@@ -149,12 +154,12 @@
                             <!--Card content-->
                             <div class="card-block text-xs-center">
                                 <!--Title-->
-                                <h4 class="card-title"><i class="fa fa-building-o animated rotateIn"></i><strong> InformaÃ§Ãµes Empresariais</strong></h4>
+                                <h4 class="card-title"><i class="fa fa-building-o animated rotateIn"></i><strong> Informações Empresariais</strong></h4>
                                 <div class="col-md-12">
                                     <div class="md-form">                
                                         <input type="text" id="conta-empresa-razao" class="form-control" ng-model="empresa.razaoSocial"
                                                required maxlength="35">
-                                        <label for="conta-empresa-razao" >RazÃ£o Social</label>
+                                        <label for="conta-empresa-razao" >Razão Social</label>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -199,19 +204,19 @@
                             <!--Card content-->
                             <div class="card-block text-xs-center">
                                 <!--Title-->
-                                <h4 class="card-title"><i class="fa fa-map-marker animated rotateIn"></i><strong> EndereÃ§o</strong></h4>
+                                <h4 class="card-title"><i class="fa fa-map-marker animated rotateIn"></i><strong> Endereço</strong></h4>
                                 <div class="col-md-4">
                                     <div class="md-form col-md-6">                
                                         <input type="text" id="empresa-cep" class="form-control" ng-model="empresa.endereco.cep" ng-blur="onblurCepEmpresa()">
                                         <label for="empresa-cep" >CEP</label>
                                     </div>
                                     <div class="col-md-6 link-cep"><a title="clique aqui e saiba seu cep" class="text-info"
-                                                                      href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blank">NÃ£o Sei meu cep</a></div>
+                                                                      href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blank">Não Sei meu cep</a></div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="md-form">  
                                         <input  type="text" id="empresa-numero" class="form-control" ng-model="empresa.endereco.numero">
-                                        <label for="conta-empresa-numero">NÃºmero</label>
+                                        <label for="conta-empresa-numero">Numero</label>
                                     </div>
                                 </div>
 
@@ -223,26 +228,20 @@
                                 </div>
 
                                 <div class="col-md-12">
-
-                                    <label for="conta-empresa-rua" class="label-form">Rua</label>
+                                    <label for="conta-empresa-rua" class="label-form" ng-if="empresa.endereco.rua!= null">Rua</label>
                                     <p>{{empresa.endereco.rua}}</p>
                                     <hr>
-
                                 </div>
-                                <div class="col-md-12">
-
+                                <div class="col-md-12" ng-if="empresa.endereco.bairro!= null">
                                     <label for="conta-empresa-bairro" class="label-form">Bairro</label>
                                     <p>{{empresa.endereco.bairro}}</p>   
                                     <hr>
-
                                 </div>
 
-                                <div class="col-md-12 ">
-
+                                <div class="col-md-12 " ng-if="empresa.endereco.cidade!= null">
                                     <label for="conta-empresa-cidade" class="label-form">Cidade</label>
                                     <p>{{empresa.endereco.cidade}}</p>   
                                     <hr>
-
                                 </div>                               
 
                             </div>
@@ -268,7 +267,7 @@
                             <!--Card content-->
                             <div class="card-block text-xs-center">
                                 <!--Title-->
-                                <h4 class="card-title"><i class="fa fa-lock animated rotateIn"></i><strong>InformaÃ§Ãµes Conta</strong></h4>
+                                <h4 class="card-title"><i class="fa fa-lock animated rotateIn"></i><strong>Informações Conta</strong></h4>
                                 <div class="col-md-12">
                                     <label for="conta-usuario-img">Imagem de Perfil</label>
                                     <div class="md-form">                
@@ -308,7 +307,7 @@
                             <!--Card content-->
                             <div class="card-block text-xs-center">
                                 <!--Title-->
-                                <h4 class="card-title"><i class="fa fa-user animated rotateIn"></i><strong>InformaÃ§Ãµes Pessoais</strong></h4>
+                                <h4 class="card-title"><i class="fa fa-user animated rotateIn"></i><strong>Informações Pessoais</strong></h4>
                                 <div class="col-md-12">
                                     <div class="md-form">                
                                         <input type="text" id="conta-usuario-nome" class="form-control" required ng-model="usuario.nome"
@@ -348,7 +347,7 @@
                             <!--Card content-->
                             <div class="card-block text-xs-center">
                                 <!--Title-->
-                                <h4 class="card-title"><i class="fa fa-map-marker animated rotateIn"></i><strong>EndereÃ§o</strong></h4>
+                                <h4 class="card-title"><i class="fa fa-map-marker animated rotateIn"></i><strong>Endereço</strong></h4>
                                 <div class="col-md-4">
                                     <div class="md-form col-md-6">                
                                         <input type="text" id="usuario-cep" class="form-control" ng-model="usuario.endereco.cep" ng-blur="onblurCepUsuario()">
@@ -356,13 +355,13 @@
                                     </div>
                                     <div class="col-md-6 link-cep">
                                         <a title="clique aqui e saiba seu cep" class="text-info"
-                                           href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blank"> NÃ£o Sei meu cep</a>
+                                           href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blank"> Não Sei meu cep</a>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="md-form">  
                                         <input  type="text" id="usuario-numero" class="form-control" ng-model="usuario.endereco.numero">
-                                        <label for="conta-usuario-numero">NÃºmero</label>
+                                        <label for="conta-usuario-numero">Numero</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -372,18 +371,18 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-12">
+                                <div class="col-md-12" ng-if="usuario.endereco.rua!= null">
                                     <label for="conta-usuario-rua" class="label-form">Rua</label>
                                     <p>{{usuario.endereco.rua}}</p>
                                     <hr>
                                 </div>
-                                <div class="col-md-12"> 
+                                <div class="col-md-12" ng-if="usuario.endereco.bairro!= null" > 
                                     <label for="conta-usuario-bairro" class="label-form">Bairro</label>                                    
                                     <p>{{usuario.endereco.bairro}}</p>
                                     <hr>
                                 </div>
 
-                                <div class="col-md-12 ">
+                                <div class="col-md-12 " ng-if="usuario.endereco.cidade!= null" >
                                     <label for="conta-usuario-cidade"class="label-form" >Cidade</label>
                                     <p>{{usuario.endereco.cidade}}</p>
                                     <hr>
@@ -421,7 +420,7 @@
 
                             <div class="text-xs-center">
                                 <button class="btn btn-warning"  data-dismiss="modal" ng-click="logar()"> Sim </button>
-                                <button type="button" class="btn btn-warning" data-dismiss="modal"> NÃ£o </button>
+                                <button type="button" class="btn btn-warning" data-dismiss="modal"> Não </button>
                             </div>
                         </form>
                     </div><!-- modal body -->

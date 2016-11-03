@@ -30,7 +30,7 @@ angular.module("platz").service("loginService", function () {
                 if (valido == "false") {
                     console.log("t isn't valid");
                     permicao = false;
-                    this.logoff($http, toastr);
+                    logoff($http, toastr);
                     location.href = "../login.jsp";
                 } else {
                     console.log("t is valid ");
@@ -46,7 +46,7 @@ angular.module("platz").service("loginService", function () {
                             permicao = true;
                             success();
                         } else {
-                            this.logoff($http, toastr);
+                            logoff($http, toastr);
                         }
 
                     }, function (response) {
@@ -77,7 +77,9 @@ angular.module("platz").service("loginService", function () {
         };
     };
 
-    this.logoff = function ($http, toastr) {
+    this.logoff = logoff;
+
+    var logoff = function ($http, toastr) {
         aviso(toastr, "Erro ao logar, por favor tente novamente");
         $http.post(webService + "/logoff", null, {
             headers: {

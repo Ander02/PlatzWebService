@@ -87,12 +87,6 @@ function verificarToken($http, $scope, toastr, sucess) {
 
 }
 
-function logoff($http, toastr, token) {
-    aviso(toastr, "Erro ao logar, por favor tente novamente");
-    $http.post(webService + "/logoff", null, gerarHeaders(token));
-    location.href = "../login.jsp";
-}
-
 //funções que gerencia os tipo de erro
 function errorManager(erro, status, mensagem) {
     switch (status) {

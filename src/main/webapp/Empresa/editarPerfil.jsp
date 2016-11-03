@@ -39,6 +39,8 @@ and open the template in the editor.
 
         <!-- link util -->
         <script src="../js/util.js" type="text/javascript"></script>
+        
+        <script src="../js/services/loginService.js" type="text/javascript"></script>
         <!-- Link Controller -->
         <script src="../js/controller/loginController.js" type="text/javascript"></script>
 
@@ -71,7 +73,7 @@ and open the template in the editor.
     <div class="espaco"></div>
 
 
-    <section class="section section-blog-fw">
+    <section class="section section-blog-fw" ng-if="permicao">
         <div class="col-md-1"></div>
         <div class="col-md-10">
 

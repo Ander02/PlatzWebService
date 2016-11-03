@@ -30,18 +30,32 @@ angular.module("platz").controller("loginController", function ($scope, $http, t
     $scope.deslogar = function () {
         $http.post(webService + "/logoff", null, loginService.getHeaders()).then(function (response) {
             info(toastr, "logoff efetuado");
-            location.href = "../index.jsp";
+            location.href = "/index.jsp";
         }, function (response) {
 
         });
     };
-    
+
     $scope.getConta = function () {
+
         var token = document.getElementById("token").value;
+        if (token !== null && token !== "") {
             $http.get(webService + "/conta/token/" + token, loginService.getHeaders()).then(function (response) {
                 $scope.conta = response.data;
-            }, function (response) {
-            });       
+                console.log($scope.conta.perfil);
+                
+                if ($scope.conta.perfil === "Empresa") {
+                    $http.get(webService + "/empresa/conta/" + $scope.conta.id, loginService.getHeaders()).then(function (response) {
+                        $scope.empresa = response.data;
+                        $scope.imagemPerfil = webService + "/empresa/imagem/" + $scope.empresa.id;
+                    }, function (response) {
+                    });
+                }
+                
+            }, function () {
+                $scope.conta = null;
+            });
+        }
     };
     $scope.getConta();
 
