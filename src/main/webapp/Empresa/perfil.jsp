@@ -94,6 +94,8 @@
                                 <hr>
                                 <!--Quotation-->
                                 <p>{{empresa.endereco.bairro}} {{empresa.endereco.cidade.nome}} - {{empresa.endereco.cidade.estado.uf}}</p>
+                                
+                                <a href="editarPerfil.jsp" class="btn btn-warning"> <i class="fa fa-edit animated bounceInLeft"></i> Editar Perfil</a>
                             </div>
                         </div> <!--/.Card-->                       
                     </div>

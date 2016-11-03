@@ -15,6 +15,7 @@ and open the template in the editor.
 .img-card-perfil img
 {
     height: 300px;
+    width: 100%;
 }
 .hovereffect {
     width: 100%;

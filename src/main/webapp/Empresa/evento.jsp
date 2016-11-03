@@ -87,7 +87,7 @@ Tela de cadastro de evento
                         <!--Title-->
                         <h4 class="card-title"><i class="fa fa-spinner animated rotateIn"></i><strong> Evento</strong></h4>
                         <div class="col-md-12">
-                            <label for="cadastro-evento-img">Imagem de Capa</label>
+                            <label for="cadastro-evento-img" class="label-modificado-imagens">Imagem de Capa</label>
                             <div class="md-form">                
                                 <input id="cadastro-evento-img-capa" type="file" >
                             </div>
@@ -134,8 +134,8 @@ Tela de cadastro de evento
                             </div>
                         </div>
 
-                        <div class="col-md-12 select-categorias-cadastro">
-                            <label for="select-categoria">Selecione uma ou mais categoria</label>
+                        <div class="col-md-12 ">
+                            <label class="label-modificado" for="select-categoria">Selecione uma ou mais categoria</label>
                             <select class="form-control select-categoria"  multiple ng-model="evento.categoriasId" 
                                     ng-options="categoria.id as categoria.nome for categoria in categorias"  >                                
                             </select>
@@ -169,7 +169,7 @@ Tela de cadastro de evento
                         </div>
 
                         <div class="col-md-12">
-                            <label for="cadastro-evento-imagem-galeria"> Galeria de Imagens sobre o evento, local ..</label>
+                            <label for="cadastro-evento-imagem-galeria" class="label-modificado-imagens"> Galeria de Imagens sobre o evento, local ..</label>
                             <div class="md-form">                
                                 <input id="cadastro-evento-imagem-galeria" type="file" multiple >
                             </div>
@@ -206,28 +206,28 @@ Tela de cadastro de evento
                             </div>
                         </div>
 
-                        <div class="col-md-12">
+                        <div class="col-md-12" ng-if="evento.endereco.rua != null">
                             <label for="evento-rua" class="label-form">Rua</label>
                             <p>{{evento.endereco.rua}}</p>
                             <hr>
                         </div>
 
-                        <div class="col-md-12">
+                        <div class="col-md-12" ng-if="evento.endereco.bairro != null">
                             <label for="evento-bairro" class="label-form">Bairro</label>
                             <p>{{evento.endereco.bairro}}</p>   
                             <hr>
                         </div>
 
-                        <div class="col-md-12 ">
+                        <div class="col-md-12 " ng-if="evento.endereco.cidade != null">
                             <label for="evento-cidade" class="label-form">Cidade</label>
                             <p>{{evento.endereco.cidade}}</p>   
                             <hr>
                         </div> 
-                        
-                        
+
+
                         <div class="col-md-12">
-                        <button class="btn btn-lg btn-warning" ng-click="cadastrar()"><i class="fa fa-check"></i> Cadastrar</button>
-                    </div>
+                            <button class="btn btn-lg btn-warning" ng-click="cadastrar()"><i class="fa fa-check"></i> Cadastrar</button>
+                        </div>
 
                     </div>
                     <!--/.Card content-->
@@ -280,6 +280,10 @@ Tela de cadastro de evento
 
     <!-- aside -->
     <script src="../js/outros/aside.js" type="text/javascript"></script>
+
+    <script src="../lib/jquery/jquery.mask.min.js" type="text/javascript"></script>
+
+    <script src="../js/outros/validacoes.js" type="text/javascript"></script>
 
     <script src="../js/outros/option.js" type="text/javascript"></script>
 </body>
