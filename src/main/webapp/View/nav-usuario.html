@@ -1,61 +1,62 @@
 
- <div id="mySidenav" class="sidenav" >
-  <a href="javascript:void(0)" class="closebtn " onclick="closeNav()">&times;</a>
-  
-  <div class="cabecalho-aside">
-  
-  <div class="img-perfil">
-      <img src="../img/outras/teste-perfil.jpg" class="img-responsive img-circle">
-  </div>
-  <h2>nome usuario</h2> 
-      
-      </div>
-  <a href="Usuario/perfil.jsp"> <i class="fa fa-user"></i> Perfil</a>
-  <a href="/eventos.jsp"> <i class="fa fa-list-ul"></i> Eventos</a>
-  <a href="#"> <i class="fa fa-trophy"></i> Ranking</a>
-  <a href="/sobre.jsp"> <i class="fa fa-book"></i> Sobre</a>
-  
-  <a href="/index.jsp" class="btn btn-sm btn-danger btn-sair">Sair</a>
+<div id="mySidenav" class="sidenav" >
+    <a href="javascript:void(0)" class="closebtn " onclick="closeNav()">&times;</a>
 
- </div>
+    <div class="cabecalho-aside">
 
-        <!--Navbar-->
-        <nav class="navbar navbar-dark navbar-fixed-top nav-inicial">
+        <div class="img-perfil">
+            <img ng-src="{{imagemPerfil}}" onerror='this.src = "/img/outras/teste-perfil.jpg"'  class="img-responsive img-circle">
 
-            <!-- Collapse button-->
-            <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapseEx2">
-                <i class="fa fa-bars"></i>
-            </button>
+        </div>
+        <h2 ng-bind="usuario.nome">nome usuario</h2> 
 
-            <div class="container">
+    </div>
+    <a href="/Usuario/perfil.jsp"> <i class="fa fa-user"></i> Perfil</a>
+    <a href="/eventos.jsp"> <i class="fa fa-list-ul"></i> Eventos</a>
+    <a href="#"> <i class="fa fa-trophy"></i> Ranking</a>
+    <a href="/sobre.jsp"> <i class="fa fa-book"></i> Sobre</a>
 
-                <!--Collapse content-->
-                <div class="collapse navbar-toggleable-xs" id="collapseEx2">
-                    <!--Navbar Brand-->
-                    <a class="navbar-brand" href="/index.jsp"></a>
-                    <!--Links-->
-                    <ul class="nav navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="Usuario/index.jsp">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Usuario/eventosCurtidos.jsp">Eventos Curtidos</a>
-                        </li>
-                    </ul>
-                    <!--links de login e cadastro-->
-                    <ul class="nav navbar-nav pull-right">
-                        <li class="nav-item">
-                           <a onclick="openNav()" class="nav-link" ><i class="fa fa-bars fa-2x"></i></a>
-                        </li>
-                    </ul>
+    <a href="/index.jsp" class="btn btn-sm btn-danger btn-sair">Sair</a>
+
+</div>
+
+<!--Navbar-->
+<nav class="navbar navbar-dark navbar-fixed-top nav-inicial">
+
+    <!-- Collapse button-->
+    <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapseEx2">
+        <i class="fa fa-bars"></i>
+    </button>
+
+    <div class="container">
+
+        <!--Collapse content-->
+        <div class="collapse navbar-toggleable-xs" id="collapseEx2">
+            <!--Navbar Brand-->
+            <a class="navbar-brand" href="/index.jsp"></a>
+            <!--Links-->
+            <ul class="nav navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/Usuario/index.jsp">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Usuario/eventosCurtidos.jsp">Eventos Curtidos</a>
+                </li>
+            </ul>
+            <!--links de login e cadastro-->
+            <ul class="nav navbar-nav pull-right">
+                <li class="nav-item">
+                    <a onclick="openNav()" class="nav-link" ><i class="fa fa-bars fa-2x"></i></a>
+                </li>
+            </ul>
 
 
-                </div>
-                <!--/.Collapse content-->
+        </div>
+        <!--/.Collapse content-->
 
-            </div>
+    </div>
 
-        </nav>
-        <!--/.Navbar-->
+</nav>
+<!--/.Navbar-->
 
 

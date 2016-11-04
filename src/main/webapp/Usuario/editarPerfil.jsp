@@ -13,7 +13,7 @@ Pagina para a edição do perfil do usuario
 
         <title>Platz - Suas rotas, Seus Eventos</title>
 
-         <!-- Font Awesome -->
+        <!-- Font Awesome -->
         <link href="../css/font/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 
         <!-- Bootstrap core CSS -->
@@ -39,170 +39,186 @@ Pagina para a edição do perfil do usuario
 
         <!-- angular util -->
         <script src="../js/util.js" type="text/javascript"></script>
-        
+
         <!-- service -->
         <script src="../js/services/loginService.js" type="text/javascript"></script>
 
         <!-- angular controller  -->
-        
+        <script src="../js/controller/loginController.js" type="text/javascript"></script>
+
+        <script src="../js/controller/usuarioController.js" type="text/javascript"></script>
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="../img/logo.png">
     </head>
 
     <body>
         <!-- inicio do projeto aqui-->
-    <ng-include src="'../View/nav-usuario.html'"></ng-include>
+        <%
+            try {
+                String token = session.getAttribute("token").toString();
+                if (token == null) {
+                    response.sendRedirect("/login.jsp");
+                } else {
+                    out.print("<input type='hidden' id='token' name='token' value ='" + token + "' >");
+                }
+            } catch (Exception e) {
+                System.out.println("Erro ao buscar sessão " + e.getMessage());
+                response.sendRedirect("/login.jsp");
+            }
+        %>
+    <ng-include ng-controller="loginController" src="'../View/nav-usuario.html'"></ng-include>
     <div class="espaco"></div>
 
+    <div ng-controller="usuarioController">
+        <section class="section section-blog-fw" ng-if="permicao">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
 
-    <section class="section section-blog-fw">
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
-            
 
-            <!--Post data-->
-            <div class="jumbotron caixa-informacao-user">
+                <!--Post data-->
+                <div class="jumbotron caixa-informacao-user">
 
-                <ul class="nav nav-tabs md-pills pills-default nav-tab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#panel31" role="tab"><i class="fa fa-lock fa-2x"></i><br>Conta</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#panel32" role="tab"><i class="fa fa-user fa-2x"></i><br> Informações Pessoais</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#panel33" role="tab"><i class="fa fa-map-marker fa-2x"></i><br> Endereço</a>
-                    </li>
+                    <ul class="nav nav-tabs md-pills pills-default nav-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#panel31" role="tab"><i class="fa fa-lock fa-2x"></i><br>Conta</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#panel32" role="tab"><i class="fa fa-user fa-2x"></i><br> Informações Pessoais</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#panel33" role="tab"><i class="fa fa-map-marker fa-2x"></i><br> Endereço</a>
+                        </li>
 
-                </ul>
+                    </ul>
 
-                <!-- Tab panels -->
-                <div class="tab-content conteudo-tab">
+                    <!-- Tab panels -->
+                    <div class="tab-content conteudo-tab">
 
-                    <!--Panel 1 consulta-->
-                    <div class="tab-pane fade in active" id="panel31" role="tabpanel">
-                        <br>
-                        <form>
-                            <h4><i class="fa fa-lock animated rotateIn"></i><strong>Informações da Conta</strong></h4>
-                            <div class="md-form col-md-6">  
-                                <input  type="email" id="conta-usuario-email" class="form-control" required=""
-                                        maxlength="75">
-                                <label for="conta-usuario-email">Email</label>
-                            </div>
-                            <div class="md-form col-md-6">  
-                                <label for="conta-usuario-img">Imagem de Perfil</label>
-                                <br/>
-                                <div class="md-form">                
-                                    <input id="conta-usuario-img" type="file" multiple>
-
+                        <!--Panel 1 consulta-->
+                        <div class="tab-pane fade in active" id="panel31" role="tabpanel">
+                            <br>
+                            <form>
+                                <h4><i class="fa fa-lock animated rotateIn"></i><strong>Informações da Conta</strong></h4>
+                                <div class="md-form col-md-6">  
+                                    <input  type="email" id="conta-usuario-email" class="form-control" required=""
+                                            maxlength="75">
+                                    <label for="conta-usuario-email">Email</label>
                                 </div>
-                            </div>
-                            <div class="md-form col-md-6">  
-                                <input type="password" id="conta-usuario-senha" class="form-control" required=""
-                                       maxlength="20">
-                                <label for="conta-usuario-senha">Senha</label>
-                            </div>
-                            <div class="md-form col-md-6">  
-                                <input  type="password" id="conta-usuario-confirma-senha" class="form-control"
-                                        required="" maxlength="20"> 
-                                <label for="conta-usuario-confirma-senha">Confirmar a Senha</label>
-                            </div>
-                            <div class="md-form col-md-2 btn-cadastro">  
-                                <input  type="submit" id="btn-cadastrar-conta" class="form-control btn btn-lg btn-warning-outline">                               
-                            </div>
-                        </form>
+                                <div class="md-form col-md-6">  
+                                    <label for="conta-usuario-img">Imagem de Perfil</label>
+                                    <br/>
+                                    <div class="md-form">                
+                                        <input id="conta-usuario-img" type="file" multiple>
 
-                    </div>
-                    <!--/.Panel 1-->
+                                    </div>
+                                </div>
+                                <div class="md-form col-md-6">  
+                                    <input type="password" id="conta-usuario-senha" class="form-control" required=""
+                                           maxlength="20">
+                                    <label for="conta-usuario-senha">Senha</label>
+                                </div>
+                                <div class="md-form col-md-6">  
+                                    <input  type="password" id="conta-usuario-confirma-senha" class="form-control"
+                                            required="" maxlength="20"> 
+                                    <label for="conta-usuario-confirma-senha">Confirmar a Senha</label>
+                                </div>
+                                <div class="md-form col-md-2 btn-cadastro">  
+                                    <input  type="submit" id="btn-cadastrar-conta" class="form-control btn btn-lg btn-warning-outline">                               
+                                </div>
+                            </form>
 
-                    <!--Panel 2 cadastro -->
-                    <div class="tab-pane fade" id="panel32" role="tabpanel">
-                        <br>
-                        <form>
-                            <h4><i class="fa fa-user animated rotateIn"></i><strong>Informações Pessoais</strong></h4>
+                        </div>
+                        <!--/.Panel 1-->
 
-                            <div class="md-form col-md-6">                
-                                <input type="text" id="conta-usuario-nome" class="form-control" required=""
-                                       maxlength="35">
-                                <label for="conta-usuario-nome">Nome</label>
-                            </div>
-                            <div class="md-form col-md-6">  
-                                <input  type="text" id="conta-usuario-cpf" class="form-control" required=""
-                                        maxlength="30">
-                                <label for="conta-usuario-cpf">CPF</label>
-                            </div>
+                        <!--Panel 2 cadastro -->
+                        <div class="tab-pane fade" id="panel32" role="tabpanel">
+                            <br>
+                            <form>
+                                <h4><i class="fa fa-user animated rotateIn"></i><strong>Informações Pessoais</strong></h4>
 
-                            <div class="md-form col-md-4">                
-                                <input type="text" id="conta-usuario-dataNacimento" class="form-control" required=""
-                                       maxlength="18">
-                                <label for="conta-usuario-dataNacimento">Data de Nascimento</label>
-                            </div>
+                                <div class="md-form col-md-6">                
+                                    <input type="text" id="conta-usuario-nome" class="form-control" required=""
+                                           maxlength="35">
+                                    <label for="conta-usuario-nome">Nome</label>
+                                </div>
+                                <div class="md-form col-md-6">  
+                                    <input  type="text" id="conta-usuario-cpf" class="form-control" required=""
+                                            maxlength="30">
+                                    <label for="conta-usuario-cpf">CPF</label>
+                                </div>
 
-                            <div class="md-form col-md-4">  
-                                <input  type="text" id="conta-usuario-telefone" class="form-control" required=""
-                                        maxlength="12">
-                                <label for="conta-usuario-telefone">Telefone </label>
-                            </div>
-                            <div class="md-form col-md-4">                
-                                <input type="text" id="conta-usuario-celular" class="form-control" required=""
-                                       maxlength="12">
-                                <label for="conta-usuario-celular">Celular</label>
-                            </div>
-                            <div class="md-form col-md-2 btn-cadastro">  
-                                <input  type="submit" id="btn-cadastrar-pessoais" class="form-control btn btn-lg btn-warning-outline">                               
-                            </div>
-                        </form>                         
+                                <div class="md-form col-md-4">                
+                                    <input type="text" id="conta-usuario-dataNacimento" class="form-control" required=""
+                                           maxlength="18">
+                                    <label for="conta-usuario-dataNacimento">Data de Nascimento</label>
+                                </div>
 
-                    </div>
-                    
-                    <!--/.Panel 2-->
-                    <div class="tab-pane fade" id="panel33" role="tabpanel">
-                        <br>
-                        <form>
-                            <h4><i class="fa fa-map-marker animated rotateIn"></i><strong>Endereço</strong></h4>
+                                <div class="md-form col-md-4">  
+                                    <input  type="text" id="conta-usuario-telefone" class="form-control" required=""
+                                            maxlength="12">
+                                    <label for="conta-usuario-telefone">Telefone </label>
+                                </div>
+                                <div class="md-form col-md-4">                
+                                    <input type="text" id="conta-usuario-celular" class="form-control" required=""
+                                           maxlength="12">
+                                    <label for="conta-usuario-celular">Celular</label>
+                                </div>
+                                <div class="md-form col-md-2 btn-cadastro">  
+                                    <input  type="submit" id="btn-cadastrar-pessoais" class="form-control btn btn-lg btn-warning-outline">                               
+                                </div>
+                            </form>                         
 
-                            <div class="md-form col-md-6">                
-                                <input type="text" id="evento-cep" class="form-control">
-                                <label for="conta-usuario-cep">CEP</label>
-                            </div>
+                        </div>
 
-                            <div class="md-form col-md-6">  
-                                <input  type="text" id="evento-numero" class="form-control">
-                                <label for="conta-usuario-numero">Número</label>
-                            </div>
+                        <!--/.Panel 2-->
+                        <div class="tab-pane fade" id="panel33" role="tabpanel">
+                            <br>
+                            <form>
+                                <h4><i class="fa fa-map-marker animated rotateIn"></i><strong>Endereço</strong></h4>
 
-                            <div class="md-form col-md-6">                
-                                <input type="text" id="evento-rua" class="form-control">
-                                <label for="conta-usuario-rua">Rua</label>
-                            </div>
+                                <div class="md-form col-md-6">                
+                                    <input type="text" id="usuario-cep" class="form-control" ng-blur="onblurCep()">
+                                    <label for="usuario-cep">CEP</label>
+                                </div>
 
-                            <div class="md-form col-md-6">  
-                                <input  type="text" id="evento-bairro" class="form-control">
-                                <label for="conta-usuario-bairro">Bairro</label>
-                            </div>
+                                <div class="md-form col-md-6">  
+                                    <input  type="text" id="usuario-numero" class="form-control">
+                                    <label for="usuario-numero">Número</label>
+                                </div>
 
-                            <div class="md-form col-md-6">                
-                                <input type="text" id="evento-complemento" class="form-control">
-                                <label for="conta-usuario-complemento">Complemento</label>
-                            </div>
+                                <div class="md-form col-md-6">                
+                                    <input type="text" id="usuario-rua" class="form-control">
+                                    <label for="usuario-rua">Rua</label>
+                                </div>
 
-                            <div class="md-form col-md-6">  
-                                <input  type="text" id="evento-cidade" class="form-control">
-                                <label for="conta-usuario-cidade">Cidade</label>
-                            </div>
+                                <div class="md-form col-md-6">  
+                                    <input  type="text" id="usuario-bairro" class="form-control">
+                                    <label for="usuario-bairro">Bairro</label>
+                                </div>
 
-                            <div class="md-form col-md-2 btn-cadastro">  
-                                <input  type="submit" id="Btn-cadastrar" class="form-control btn btn-lg btn-warning-outline">                               
-                            </div>
+                                <div class="md-form col-md-6">                
+                                    <input type="text" id="usuario-complemento" class="form-control">
+                                    <label for="usuario-complemento">Complemento</label>
+                                </div>
 
-                        </form> <!-- /.form -->                      
+                                <div class="md-form col-md-6">  
+                                    <input  type="text" id="usuario-cidade" class="form-control">
+                                    <label for="usuario-cidade">Cidade</label>
+                                </div>
 
-                    </div><!--/.Panel 2-->                    
-                </div><!-- tab content -->
-            </div> <!-- /.jumbtron caixa-informacao-especifico -->
-        </div> <!-- /.col-md-10 -->    
-    </section> <!-- /.section -->
-<ng-include src="'../View/footer.html'"></ng-include>    
+                                <div class="md-form col-md-2 btn-cadastro">  
+                                    <input  type="submit" id="Btn-cadastrar" class="form-control btn btn-lg btn-warning-outline">                               
+                                </div>
+
+                            </form> <!-- /.form -->                      
+
+                        </div><!--/.Panel 2-->                    
+                    </div><!-- tab content -->
+                </div> <!-- /.jumbtron caixa-informacao-especifico -->
+            </div> <!-- /.col-md-10 -->    
+        </section> <!-- /.section -->
+    </div>
+    <ng-include src="'../View/footer.html'"></ng-include>    
     <!-- /.fim do projeto-->
 
 
@@ -220,7 +236,7 @@ Pagina para a edição do perfil do usuario
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="../lib/bootstrap/mdb.min.js"></script>
 
-   <!-- link Angular animate -->
+    <!-- link Angular animate -->
     <script src="../lib/angular/angular-animate.js" type="text/javascript"></script>
 
     <!-- link Angular css toastr -->
@@ -229,7 +245,7 @@ Pagina para a edição do perfil do usuario
     <!-- link TOASTR -->
     <script type="text/javascript" src="../lib/angular/angular-toastr.tpls.js"></script>
 
-     <!-- aside -->
+    <!-- aside -->
     <script src="../js/outros/aside.js" type="text/javascript"></script>
 
 </body>
