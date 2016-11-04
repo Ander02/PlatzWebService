@@ -171,7 +171,7 @@ Pagina para a edição do perfil do usuario
                                 <h4><i class="fa fa-map-marker animated rotateIn"></i><strong>Endereço</strong></h4>
 
                                 <div class="md-form col-md-2">                
-                                    <input type="text" id="usuario-cep" class="form-control" ng-blur="onblurCep()">
+                                    <input type="text" id="usuario-cep" class="form-control" ng-blur="onblurCep()" ng-model="usuarioEdicaoEndereco.endereco.cep" autofocus>
                                     <label for="usuario-cep">CEP</label>
                                 </div>
                                 <div class="col-md-2 link-cep">

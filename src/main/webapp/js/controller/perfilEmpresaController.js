@@ -28,24 +28,23 @@ angular.module("platz").controller("perfilEmpresaController", function ($scope, 
 
     $scope.alterarSenha = function () {
 
-        if ($scope.empresaEdicaoSenha.senha === $scope.empresaEdicaoSenha.confirmaSenha) {
+        if ($scope.empresaEdicaoSenha.conta.senha === $scope.empresaEdicaoSenha.conta.confirmaSenha) {
             $scope.empresaEdicaoSenha.endereco = null;
-            $http.put(webService + "/conta/senha/" + $scope.empresaEdicaoSenha.conta.id, $scope.empresaEdicaoSenha, loginService.getHeaders()).then(function (response) {
+            $http.put(webService + "/conta/senha/" + $scope.empresaEdicaoSenha.conta.id, $scope.empresaEdicaoSenha.conta, loginService.getHeaders()).then(function (response) {
                 sucesso(toastr, "Senha editada com sucesso");
-                $scope.empresaEdicaoSenha.senha = null;
-                $scope.empresaEdicaoSenha.confirmaSenha = null;
+                $scope.empresaEdicaoSenha.conta.senha = null;
+                $scope.empresaEdicaoSenha.conta.confirmaSenha = null;
             }, function () {
                 aviso(toastr, "falha ao editar senha, por favor tente novamente mais tarde");
             });
 
         } else {
             aviso(toastr, "as senhas não corresponde, digite-as novamente");
-            $scope.empresaEdicaoSenha.senha = null;
-            $scope.empresaEdicaoSenha.confirmaSenha = null;
+            $scope.empresaEdicaoSenha.conta.senha = null;
+            $scope.empresaEdicaoSenha.conta.confirmaSenha = null;
         }
-
-
     };
+
 
     $scope.alterarInfoEmpresariais = function () {
         $scope.empresaEdicaoInfo.endereco = null;
