@@ -14,16 +14,9 @@ public class UsuarioEdicao {
     private String telefone;
     private String cpf;
     private String imagemPerfil;
+    private EnderecoEdicao endereco;
 
     public UsuarioEdicao() {
-    }
-
-    public UsuarioEdicao(String nome, String dataNascimento, String telefone, String cpf, String imagemPerfil) {
-        setNome(nome);
-        setDataNascimento(dataNascimento);
-        setTelefone(telefone);
-        setCpf(cpf);
-        setImagemPerfil(imagemPerfil);
     }
 
     public String getNome() {
@@ -64,6 +57,14 @@ public class UsuarioEdicao {
 
     public void setImagemPerfil(String imagemPerfil) {
         this.imagemPerfil = imagemPerfil;
+    }
+
+    public EnderecoEdicao getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(EnderecoEdicao endereco) {
+        this.endereco = endereco;
     }
 
 }

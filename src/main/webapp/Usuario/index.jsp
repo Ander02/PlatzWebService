@@ -38,13 +38,12 @@ index do usuario onde mostra algumas sugestões de eventos
 
         <!-- angular util -->
         <script src="../js/util.js" type="text/javascript"></script>
-        
-         <!-- service -->
+
+        <!-- service -->
         <script src="../js/services/loginService.js" type="text/javascript"></script>
 
         <!-- angular controller  -->
-       
-        
+
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="../img/logo.png">
 
@@ -53,7 +52,19 @@ index do usuario onde mostra algumas sugestões de eventos
     </head>
 
     <body>
-
+        <%
+            try {
+                String token = session.getAttribute("token").toString();
+                if (token == null) {
+                    response.sendRedirect("/login.jsp");
+                } else {
+                    out.print("<input type='hidden' id='token' name='token' value ='" + token + "' >");
+                }
+            } catch (Exception e) {
+                System.out.println("Erro ao buscar sessão " + e.getMessage());
+                response.sendRedirect("/login.jsp");
+            }
+        %>
 
         <!-- inicio do projeto aqui-->
 
@@ -79,18 +90,18 @@ index do usuario onde mostra algumas sugestões de eventos
 
                 <!--Evento maior-->
                 <div class="single-news">
-                    
-                     <div>
-                            <div class="hovereffect">
-                                <img class="img-responsive img-eventoProximo" src="../img/outras/plano-fundo.jpg" alt="">
-                                <div class="overlay">
-                                    <h2>Nome do Evento</h2>
-                                    <p> 
-                                        <a href="#">Clique aqui e veja o evento</a>
-                                    </p> 
-                                </div>
+
+                    <div>
+                        <div class="hovereffect">
+                            <img class="img-responsive img-eventoProximo" src="../img/outras/plano-fundo.jpg" alt="">
+                            <div class="overlay">
+                                <h2>Nome do Evento</h2>
+                                <p> 
+                                    <a href="#">Clique aqui e veja o evento</a>
+                                </p> 
                             </div>
                         </div>
+                    </div>
                     <br>
 
                     <!--Informações-->
@@ -103,7 +114,7 @@ index do usuario onde mostra algumas sugestões de eventos
 
                     <p> parte da descrição com no maximo 30 caracteres
                     </p>
-                    
+
                     <a class="btn btn-default-outline"> Ver Detalhes </a>
 
                 </div><!--/evento proximo (maior)-->
@@ -130,7 +141,7 @@ index do usuario onde mostra algumas sugestões de eventos
                         <h4> <a> Nome do Evento <i class="fa fa-angle-right"></i> </a> </h4>
                         <a>Nome da Empresa</a>
                         <p><strong><i class="fa fa-clock-o"></i> 27/02/2016</strong></p>
-                        
+
                         <a class="btn btn-sm btn-default-outline"> Ver Detalhes </a>
                     </div>
 
@@ -138,8 +149,8 @@ index do usuario onde mostra algumas sugestões de eventos
             </div> <!--/Segunda coluna, com os quatro quadrados de eventos-->           
         </div> <!--/First row-->
     </section><!--/Section: eventos-->
-    
-<ng-include src="'../View/footer.html'"></ng-include>    <!-- /.fim do projeto-->
+
+    <ng-include src="'../View/footer.html'"></ng-include>    <!-- /.fim do projeto-->
 
 
     <!-- SCRIPTS -->
@@ -165,7 +176,7 @@ index do usuario onde mostra algumas sugestões de eventos
     <!-- link TOASTR -->
     <script type="text/javascript" src="../lib/angular/angular-toastr.tpls.js"></script>
 
-     <!-- aside -->
+    <!-- aside -->
     <script src="../js/outros/aside.js" type="text/javascript"></script>
 
 

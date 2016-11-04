@@ -29,7 +29,7 @@ and open the template in the editor.
 
         <!-- Your custom styles (optional) -->
         <link href="../css/styleEmpresa.css" rel="stylesheet">
-        
+
 
         <!-- link Angular -->
         <script type="text/javascript" src="../lib/angular/angular.js"></script>
@@ -39,7 +39,7 @@ and open the template in the editor.
 
         <!-- link util -->
         <script src="../js/util.js" type="text/javascript"></script>
-        
+
         <script src="../js/services/loginService.js" type="text/javascript"></script>
         <!-- Link Controller -->
         <script src="../js/controller/loginController.js" type="text/javascript"></script>
@@ -103,18 +103,17 @@ and open the template in the editor.
                         <form>
                             <h4><i class="fa fa-lock animated rotateIn"></i><strong>Informações da Conta</strong></h4>
                             <div class="md-form col-md-12">  
-                                <label for="conta-empresa-email" class="label-form" > Email:  {{empresa.conta.email}} </label>
-                                <p></p>
+                                <label for="conta-empresa-email" class="label-form" > Email:   <strong>{{empresa.conta.email}}</strong> </label>
                                 <hr/>
                             </div>
 
                             <div class="md-form col-md-6">  
-                                <input type="password" id="conta-empresa-senha" class="form-control" required ng-model="empresaEdicaoSenha.senha"
+                                <input type="password" id="conta-empresa-senha" class="form-control" required ng-model="empresaEdicaoSenha.conta.senha"
                                        maxlength="20">
                                 <label for="conta-empresa-senha">Senha</label>
                             </div>
                             <div class="md-form col-md-6">  
-                                <input  type="password" id="conta-empresa-confirma-senha" class="form-control" ng-model="empresaEdicaoSenha.confirmaSenha"
+                                <input  type="password" id="conta-empresa-confirma-senha" class="form-control" ng-model="empresaEdicaoSenha.conta.confirmaSenha"
                                         required maxlength="20"> 
                                 <label for="conta-empresa-confirma-senha">Confirmar a Senha</label>
                             </div>
@@ -181,7 +180,7 @@ and open the template in the editor.
                             <h4><i class="fa fa-map-marker animated rotateIn"></i><strong>Endereço</strong></h4>
 
                             <div class="md-form col-md-2">                
-                                <input type="text" id="conta-empresa-cep" class="form-control" ng-blur="onblurCep()">
+                                <input type="text" id="conta-empresa-cep" class="form-control" ng-blur="onblurCep()" ng-model="usuarioEdicaoEndereco.endereco.cep" autofocus>
                                 <label for="conta-empresa-cep" id="conta-empresa-cep" >CEP</label>
                             </div>
                             <div class="col-md-2 link-cep">
@@ -212,7 +211,7 @@ and open the template in the editor.
 
                             <div class="md-form col-md-12">  
                                 <label for="conta-empresa-cidade" class="label-form">Cidade</label>
-                                <p >{{empresaEdicaoEndereco.endereco.cidade.nome || empresaEdicaoEndereco.endereco.cidade}}</p>
+                                <p >{{empresaEdicaoEndereco.endereco.cidade.nome|| empresaEdicaoEndereco.endereco.cidade}}</p>
                                 <hr>
                             </div>
 
@@ -265,10 +264,10 @@ and open the template in the editor.
 
     <!-- aside -->
     <script src="../js/outros/aside.js" type="text/javascript"></script>
-    
-      <script src="../lib/jquery/jquery.mask.min.js" type="text/javascript"></script>
 
-        <script src="../js/outros/validacoes.js" type="text/javascript"></script>
+    <script src="../lib/jquery/jquery.mask.min.js" type="text/javascript"></script>
+
+    <script src="../js/outros/validacoes.js" type="text/javascript"></script>
 
 
 </body>

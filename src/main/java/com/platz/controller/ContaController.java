@@ -21,6 +21,10 @@ public class ContaController {
         return contaDao.getConta(token);
     }
 
+    public ContaModel getContaPorTokenAndroid(String token) {
+        return contaDao.getContaPorTokenAndroid(token);
+    }
+
     public ContaModel getConta(String email, String senha) {
         return contaDao.getConta(email, senha);
     }
@@ -145,6 +149,29 @@ public class ContaController {
             if (model != null && model.getBloqueado() == null) {
                 String token = new TokenUtil().criarToken(model.getId());
                 model.setToken(token);
+                model.setUltimoAcesso(new Date());
+                this.alterar(model);
+                return model;
+            }
+            return null;
+
+        } catch (Exception e) {
+            System.out.println("Erro ao logar: " + e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    
+    public ContaModel loginAndroid(Login login) {
+        try {
+            String senhaEncriptada = new EncriptAES().byteParaString(new EncriptAES().encrypt(login.getSenha(), EncriptAES.getChaveEncriptacao()));
+
+            //autenticar usuario
+            ContaModel model = this.getConta(login.getEmail(), senhaEncriptada);
+            if (model != null && model.getBloqueado() == null) {
+                String token = new TokenUtil().criarToken(model.getId());
+                model.setTokenAndroid(token);
                 model.setUltimoAcesso(new Date());
                 this.alterar(model);
                 return model;

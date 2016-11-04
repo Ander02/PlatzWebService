@@ -146,7 +146,7 @@ public class ContaService {
     @GET
     @Path(value = "/contas/usuarios/bloqueadas")
     @PerfilAuth(Perfil.ADMINISTRADOR)
-   @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarUsuariosBloqueadas() {
 
         try {
@@ -253,8 +253,26 @@ public class ContaService {
     //@PerfilAuth({Perfil.ADMINISTRADOR, Perfil.EMPRESA, Perfil.USUARIO})
     @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public Response buscarPelotoken(@PathParam("token") String token) {
+    public Response buscarPeloToken(@PathParam("token") String token) {
         ContaModel model = contaController.getConta(token);
+
+        //Verifica se a model retornada não é nula
+        if (model != null) {
+            //Retorna um Status Code OK com a conta de leitura
+            return Response.ok(new ContaLeitura(model)).build();
+        }
+
+        //Se a model for nula retorna um Status Code Not Found
+        return Response.status(Response.Status.NOT_FOUND).entity("Conta não encontrada").build();
+    }
+
+    @GET
+    @Path(value = "/conta/tokenAndroid/{token}")
+    //@PerfilAuth({Perfil.ADMINISTRADOR, Perfil.EMPRESA, Perfil.USUARIO})
+    @PermitAll
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarPeloTokenAndroid(@PathParam("token") String token) {
+        ContaModel model = contaController.getContaPorTokenAndroid(token);
 
         //Verifica se a model retornada não é nula
         if (model != null) {
@@ -350,7 +368,7 @@ public class ContaService {
 
     @PUT
     @Path(value = "/conta/bloquear/{id}")
-    @PerfilAuth(Perfil.ADMINISTRADOR)    
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response bloquear(@PathParam("id") String id) {

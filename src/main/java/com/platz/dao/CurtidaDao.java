@@ -27,4 +27,11 @@ public class CurtidaDao extends GenericDao<CurtidaModel> {
         return lista;
     }
 
+    public CurtidaModel buscarPorEventoEUsuario(UsuarioModel usuario, EventoModel evento) {
+        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
+        CurtidaModel curtida = (CurtidaModel) entityManager.createQuery("from CurtidaModel where evento =:evento and usuario =:usuario").setParameter("evento", evento).setParameter("usuario", usuario).getSingleResult();
+        entityManager.close();
+        return curtida;      
+    }
+
 }

@@ -47,8 +47,10 @@ public class ContaModel {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date ultimoAcesso;
-    
+
     private String token = null;
+
+    private String tokenAndroid = null;
 
     //Construtores
     public ContaModel() {
@@ -56,7 +58,7 @@ public class ContaModel {
 
     public ContaModel(ContaCadastro conta) {
         setEmail(conta.getEmail());
-        setSenha(conta.getSenha());        
+        setSenha(conta.getSenha());
     }
 
     public ContaModel(ContaEdicao conta) {
@@ -173,5 +175,13 @@ public class ContaModel {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getTokenAndroid() {
+        return tokenAndroid;
+    }
+
+    public void setTokenAndroid(String tokenAndroid) {
+        this.tokenAndroid = tokenAndroid;
     }
 }

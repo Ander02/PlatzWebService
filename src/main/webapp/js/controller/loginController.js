@@ -34,7 +34,7 @@ angular.module("platz").controller("loginController", function ($scope, $http, t
         }, function () {
         });
     };
-    
+
 
     $scope.getConta = function () {
 
@@ -43,15 +43,21 @@ angular.module("platz").controller("loginController", function ($scope, $http, t
             $http.get(webService + "/conta/token/" + token, loginService.getHeaders()).then(function (response) {
                 $scope.conta = response.data;
                 console.log($scope.conta.perfil);
-                
+
                 if ($scope.conta.perfil === "Empresa") {
                     $http.get(webService + "/empresa/conta/" + $scope.conta.id, loginService.getHeaders()).then(function (response) {
                         $scope.empresa = response.data;
                         $scope.imagemPerfil = webService + "/empresa/imagem/" + $scope.empresa.id;
-                    }, function (response) {
+                    }, function () {
+                    });
+                } else if ($scope.conta.perfil === "Usuario") {
+                    $http.get(webService + "/usuario/conta/" + $scope.conta.id, loginService.getHeaders()).then(function (response) {
+                        $scope.usuario = response.data;
+                        $scope.imagemPerfil = webService + "/usuario/imagem/" + $scope.usuario.id;
+                    }, function () {
                     });
                 }
-                
+
             }, function () {
                 $scope.conta = null;
             });

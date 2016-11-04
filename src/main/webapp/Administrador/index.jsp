@@ -375,7 +375,7 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
                             <!--Footer-->
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                <button type="button" class="btn btn-warning" ng-click="responder(mensagem.id)">Responder</button>
+                                <button type="button" class="btn btn-warning" ng-click="responder(mensagem.id, resposta)">Responder</button>
                             </div>
                         </div>
                         <!--/.Content-->
