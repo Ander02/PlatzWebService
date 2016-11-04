@@ -39,4 +39,8 @@ public class CurtidaController {
         return curtidosDao.buscarPorUsuario(usuario);
     }
 
+    public CurtidaModel buscarPorEventoEUsuario(UsuarioModel usuario, EventoModel evento) {
+        return curtidosDao.buscarPorEventoEUsuario(usuario, evento);             
+    }
+
 }
