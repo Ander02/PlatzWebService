@@ -100,29 +100,22 @@ Pagina para a edição do perfil do usuario
                             <form>
                                 <h4><i class="fa fa-lock animated rotateIn"></i><strong>Informações da Conta</strong></h4>
                                 <div class="md-form col-md-12">  
-                                <label for="conta-usuario-email" class="label-form" > Email:  {{usuario.conta.email}} </label>
-                                <hr/>
-                            </div>
-                                <div class="md-form col-md-6">  
-                                    <label for="conta-usuario-img">Imagem de Perfil</label>
-                                    <br/>
-                                    <div class="md-form">                
-                                        <input id="conta-usuario-img" type="file" multiple>
+                                    <label for="conta-usuario-email" class="label-form" > Email:  <strong>{{usuario.conta.email}}</strong> </label>
+                                    <hr/>
+                                </div>
 
-                                    </div>
-                                </div>
                                 <div class="md-form col-md-6">  
-                                    <input type="password" id="conta-usuario-senha" class="form-control" required=""
+                                    <input type="password" id="conta-usuario-senha" class="form-control" required ng-model="usuarioEdicaoSenha.conta.senha"
                                            maxlength="20">
-                                    <label for="conta-usuario-senha">Senha</label>
+                                    <label for="conta-usuario-senha" >Senha</label>
                                 </div>
                                 <div class="md-form col-md-6">  
-                                    <input  type="password" id="conta-usuario-confirma-senha" class="form-control"
-                                            required="" maxlength="20"> 
-                                    <label for="conta-usuario-confirma-senha">Confirmar a Senha</label>
+                                    <input  type="password" id="conta-usuario-confirma-senha" class="form-control" ng-model="usuarioEdicaoSenha.conta.confirmaSenha"
+                                            required maxlength="20"> 
+                                    <label for="conta-usuario-confirma-senha" >Confirmar a Senha</label>
                                 </div>
                                 <div class="md-form col-md-2 btn-cadastro">  
-                                    <input  type="submit" id="btn-cadastrar-conta" class="form-control btn btn-lg btn-warning-outline">                               
+                                    <input  type="submit" id="btn-cadastrar-conta" ng-click="alterarSenha()" class="form-control btn btn-lg btn-warning-outline">                               
                                 </div>
                             </form>
 
@@ -134,36 +127,38 @@ Pagina para a edição do perfil do usuario
                             <br>
                             <form>
                                 <h4><i class="fa fa-user animated rotateIn"></i><strong>Informações Pessoais</strong></h4>
+                                <div class="md-form col-md-12">  
+                                    <label for="conta-usuario-img">Imagem de Perfil</label>
+                                    <br/>
+                                    <div class="md-form">                
+                                        <input id="conta-usuario-img" type="file">
 
+                                    </div>
+                                </div>
                                 <div class="md-form col-md-6">                
-                                    <input type="text" id="conta-usuario-nome" class="form-control" required=""
+                                    <input type="text" id="conta-usuario-nome" class="form-control" required ng-model="usuarioEdicaoInfo.nome"
                                            maxlength="35">
                                     <label for="conta-usuario-nome">Nome</label>
                                 </div>
                                 <div class="md-form col-md-6">  
-                                    <input  type="text" id="conta-usuario-cpf" class="form-control" required=""
+                                    <input  type="text" id="conta-usuario-cpf" class="form-control" required ng-model="usuarioEdicaoInfo.cpf"
                                             maxlength="30">
                                     <label for="conta-usuario-cpf">CPF</label>
                                 </div>
 
                                 <div class="md-form col-md-4">                
-                                    <input type="text" id="conta-usuario-dataNacimento" class="form-control" required=""
+                                    <input type="text" id="conta-usuario-dataNacimento" class="form-control" required ng-model="usuarioEdicaoInfo.dataNascimento"
                                            maxlength="18">
                                     <label for="conta-usuario-dataNacimento">Data de Nascimento</label>
                                 </div>
 
-                                <div class="md-form col-md-4">  
-                                    <input  type="text" id="conta-usuario-telefone" class="form-control" required=""
-                                            maxlength="12">
-                                    <label for="conta-usuario-telefone">Telefone </label>
-                                </div>
                                 <div class="md-form col-md-4">                
-                                    <input type="text" id="conta-usuario-celular" class="form-control" required=""
+                                    <input type="text" id="conta-usuario-celular" class="form-control" required ng-model="usuarioEdicaoInfo.telefone"
                                            maxlength="12">
                                     <label for="conta-usuario-celular">Celular</label>
                                 </div>
                                 <div class="md-form col-md-2 btn-cadastro">  
-                                    <input  type="submit" id="btn-cadastrar-pessoais" class="form-control btn btn-lg btn-warning-outline">                               
+                                    <input  type="submit" id="btn-cadastrar-pessoais" class="form-control btn btn-lg btn-warning-outline" ng-click="alterarInfoPessoais()">                               
                                 </div>
                             </form>                         
 
@@ -212,7 +207,7 @@ Pagina para a edição do perfil do usuario
                                 </div>
 
                                 <div class="md-form col-md-2 btn-cadastro">  
-                                    <input  type="submit" id="Btn-cadastrar" class="form-control btn btn-lg btn-warning-outline">                               
+                                    <input  type="submit" id="Btn-cadastrar" class="form-control btn btn-lg btn-warning-outline" ng-click="alterarEndereco()">                               
                                 </div>
 
                             </form> <!-- /.form -->                      

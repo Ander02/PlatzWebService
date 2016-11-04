@@ -34,7 +34,7 @@ angular.module("platz").controller("perfilEmpresaController", function ($scope, 
                 sucesso(toastr, "Senha editada com sucesso");
                 $scope.empresaEdicaoSenha.senha = null;
                 $scope.empresaEdicaoSenha.confirmaSenha = null;
-            }, function (reasponse) {
+            }, function () {
                 aviso(toastr, "falha ao editar senha, por favor tente novamente mais tarde");
             });
 

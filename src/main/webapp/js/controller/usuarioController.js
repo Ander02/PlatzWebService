@@ -1,15 +1,70 @@
 angular.module("platz").controller("usuarioController", function ($scope, $http, toastr, loginService) {
-    console.log("ok");
 
     $scope.buscaUsuario = function () {
         $http.get(webService + "/usuario/conta/" + $scope.conta.id, loginService.getHeaders()).then(function (response) {
             $scope.usuario = response.data;
+            $scope.usuarioEdicaoSenha = $scope.usuario;
+            $scope.usuarioEdicaoInfo = $scope.usuario;
             $scope.usuarioEdicaoEndereco = $scope.usuario;
             $scope.imagemPerfil = webService + "/usuario/imagem/" + $scope.usuario.id;
         }, function () {
         });
     };
 
+    $scope.alterarSenha = function () {
+        console.log($scope.usuarioEdicaoSenha);
+        if ($scope.usuarioEdicaoSenha.conta.senha === $scope.usuarioEdicaoSenha.conta.confirmaSenha) {
+            $http.put(webService + "/conta/senha/" + $scope.usuarioEdicaoSenha.conta.id, $scope.usuarioEdicaoSenha.conta, loginService.getHeaders()).then(function (response) {
+                sucesso(toastr, "Senha editada com sucesso");
+                $scope.usuarioEdicaoSenha.conta.senha = "";
+                $scope.usuarioEdicaoSenha.conta.confirmaSenha = "";
+            }, function () {
+                aviso(toastr, "falha ao editar senha, por favor tente novamente mais tarde");
+            });
+
+        } else {
+            aviso(toastr, "as senhas não corresponde, digite-as novamente");
+            $scope.usuarioEdicaoSenha.conta.senha = "";
+            $scope.usuarioEdicaoSenha.conta.confirmaSenha = "";
+        }
+        atualizar();
+    };
+
+    $scope.alterarInfoPessoais = function () {
+
+        console.log($scope.usuarioEdicaoInfo);
+        $scope.usuarioEdicaoInfo.endereco = null;
+        $http.put(webService + "/usuario/" + $scope.usuarioEdicaoInfo.id, $scope.usuarioEdicaoInfo, loginService.getHeaders()).then(function (response) {
+            sucesso(toastr, "informações editada com sucesso");
+        }, function (response) {
+            aviso(toastr, "falha ao editar informações, por favor tente novamente mais tarde");
+
+        });
+
+        var input = document.getElementById("conta-usuario-img");
+        var imgUsuario = input.files[0];
+
+        if (imgUsuario != null && imgUsuario != "" && typeof imgUsuario != undefined) {
+            if (!(!imgUsuario.type.match('image.*'))) {
+                enviarArquivo($http, imgUsuario, 'imgPerfil', webService + "/usuario/imagem/" + $scope.usuarioEdicaoInfo.id, $scope.token);
+                sucesso(toastr, "Imagem atualizada");
+            }
+            input.value = null;
+        }
+        atualizar();
+    };
+
+    $scope.alterarEndereco = function () {
+        console.log($scope.usuarioEdicaoEndereco);
+        $http.put(webService + "/usuario/" + $scope.usuarioEdicaoEndereco.id, $scope.usuarioEdicaoEndereco, loginService.getHeaders()).then(function (response) {
+            console.log(response.data);
+            sucesso(toastr, "endereço editado com sucesso");
+        }, function (response) {
+            aviso(toastr, "falha ao editar endereço, por favor tente novamente mais tarde");
+
+        });
+        atualizar();
+    };
 
     $scope.onblurCep = function () {
         cep = document.getElementById("usuario-cep").value;
