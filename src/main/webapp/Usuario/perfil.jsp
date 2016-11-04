@@ -13,7 +13,7 @@ Perfil do usuario, onde ele pode alterar as coisas sobre sua conta
 
         <title>Platz - Suas rotas, Seus Eventos</title>
 
-         <!-- Font Awesome -->
+        <!-- Font Awesome -->
         <link href="../css/font/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 
         <!-- Bootstrap core CSS -->
@@ -27,7 +27,7 @@ Perfil do usuario, onde ele pode alterar as coisas sobre sua conta
 
         <!-- Your custom styles (optional) -->
         <link href="../css/styleUsuario.css" rel="stylesheet">
-        
+
         <!-- Your custom styles (efeito) -->
         <link href="../css/efeitos/perflUsuario.css" rel="stylesheet">
 
@@ -39,12 +39,14 @@ Perfil do usuario, onde ele pode alterar as coisas sobre sua conta
 
         <!-- angular util -->
         <script src="../js/util.js" type="text/javascript"></script>
-        
+
         <!-- service -->
         <script src="../js/services/loginService.js" type="text/javascript"></script>
 
         <!-- angular controller  -->
+        <script src="../js/controller/loginController.js" type="text/javascript"></script>
 
+        <script src="../js/controller/usuarioController.js" type="text/javascript"></script>
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="../img/logo.png">
 
@@ -54,17 +56,30 @@ Perfil do usuario, onde ele pode alterar as coisas sobre sua conta
 
     <body>
         <!-- inicio do projeto aqui-->
-    <ng-include src="'../View/nav-usuario.html'"></ng-include>
+        <%
+            try {
+                String token = session.getAttribute("token").toString();
+                if (token == null) {
+                    response.sendRedirect("/login.jsp");
+                } else {
+                    out.print("<input type='hidden' id='token' name='token' value ='" + token + "' >");
+                }
+            } catch (Exception e) {
+                System.out.println("Erro ao buscar sessão " + e.getMessage());
+                response.sendRedirect("/login.jsp");
+            }
+        %>
+    <ng-include ng-controller="loginController" src="'../View/nav-usuario.html'"></ng-include>
 
 
     <div class="espaco"></div>
 
 
-    <section class="section section-blog-fw">
-        <div>
+    <section class="section section-blog-fw" ng-controller="usuarioController">
+        <div ng-if="permicao">
             <div class="col-md-1"></div>
             <div class="col-md-10">
-                
+
                 <div class="jumbotron caixa-informacao-user">
                     <div class="col-lg-12 col-md-12 m-b-r">
 
@@ -76,7 +91,7 @@ Perfil do usuario, onde ele pode alterar as coisas sobre sua conta
                                     <div class="col-md-8 img-perfil-usuario">                          
 
                                         <div class="hovereffect">
-                                            <img class="img-responsive animated tada" src="../img/outras/plano-fundo.jpg" alt="">
+                                            <img class="img-responsive animated tada" ng-src="{{imagemPerfil}}" onerror='this.src = "/img/outras/plano-fundo.jpg"' alt="">
                                             <div class="overlay">
                                                 <h2>Editar Informações</h2>
                                                 <a class="info" href="editarPerfil.jsp">Editar</a>
@@ -87,7 +102,7 @@ Perfil do usuario, onde ele pode alterar as coisas sobre sua conta
                                 </div><!--/.Avatar-->
                                 <div class="card-block">
                                     <!--Name-->
-                                    <h2 class="card-title">Nome usuario</h2>                                  
+                                    <h2 class="card-title" ng-bind="usuario.nome">Nome usuario</h2>                                  
                                 </div>
                             </div>
                             <hr/>                           
@@ -109,38 +124,36 @@ Perfil do usuario, onde ele pode alterar as coisas sobre sua conta
                                 <div class="tab-pane fade in active" id="panel5" role="tabpanel">
                                     <br>
                                     <ul class="list-group">
-                                        <li class="list-group-item"><i class="fa fa-envelope-o"></i> Email</li>
-                                        <li class="list-group-item"><i class="fa fa-calendar"></i>Data de Nascimento</li>
-                                        <li class="list-group-item"><i class="fa fa-phone"></i>Telefone</li>
-                                        <li class="list-group-item"><i class="fa fa-user"></i>CPF</li>                                
+                                        <li class="list-group-item"><i class="fa fa-envelope-o"></i> Email: {{usuario.conta.email}}</li>
+                                        <li class="list-group-item"><i class="fa fa-calendar"></i>Data de Nascimento: {{usuario.dataNascimento}}</li>
+                                        <li class="list-group-item"><i class="fa fa-phone"></i>Telefone: {{usuario.telefone}}</li>
+                                        <li class="list-group-item"><i class="fa fa-user"></i>CPF: {{usuario.cpf}} </li>                                
                                     </ul>
                                 </div><!--/.Panel 1-->                                
                                 <!--Panel 2-->
                                 <div class="tab-pane fade" id="panel6" role="tabpanel">
                                     <br>
                                     <ul class="list-group">
-                                        <li class="list-group-item"><i class="fa fa-map-pin"></i>CEP</li>
-                                        <li class="list-group-item"><i class="fa fa-map-pin"></i>Rua</li>
-                                        <li class="list-group-item"><i class="fa fa-map-pin"></i>Numero</li>
-                                        <li class="list-group-item"><i class="fa fa-map-pin"></i>Bairro</li> 
-                                        <li class="list-group-item"><i class="fa fa-map-pin"></i>Complemento</li>
-                                        <li class="list-group-item"><i class="fa fa-map-pin"></i>Cidade</li> 
+                                        <li class="list-group-item"><i class="fa fa-map-pin"></i>CEP: {{usuario.endereco.cep}}</li>
+                                        <li class="list-group-item"><i class="fa fa-map-pin"></i>{{usuario.endereco.rua}}, {{usuario.endereco.numero}} - {{usuario.endereco.bairro}}</li>
+                                        <li class="list-group-item" ng-if="usuario.endereco.complemento != null"><i class="fa fa-map-pin"></i>Complemento: {{usuario.endereco.complemento}}</li>
+                                        <li class="list-group-item"><i class="fa fa-map-pin"></i>Cidade: : {{usuario.endereco.cidade.nome}} - {{usuario.endereco.cidade.estado.uf}}</li> 
                                     </ul>
                                 </div><!--/.Panel 2-->                                
                             </div><!-- /.Tab panels -->
-                            <button class="btn btn-default-outline"><i class="fa fa-pencil-square-o"></i> Editar Perfil</button>
+                            <a class="btn btn-default-outline" href="/Usuario/editarPerfil.jsp"><i class="fa fa-pencil-square-o"></i> Editar Perfil</a>
                         </div><!--/.Card-->
                     </div>
                 </div>               
             </div>
         </div>
     </section>
-    
-<ng-include src="'../View/footer.html'"></ng-include>    <!-- /.fim do projeto-->
+
+    <ng-include src="'../View/footer.html'"></ng-include>    <!-- /.fim do projeto-->
 
     <!-- SCRIPTS -->
 
-   <!-- JQuery -->
+    <!-- JQuery -->
     <script type="text/javascript" src="../lib/jquery/jquery-2.2.3.min.js"></script>
 
     <!-- Bootstrap tooltips -->
@@ -161,7 +174,7 @@ Perfil do usuario, onde ele pode alterar as coisas sobre sua conta
     <!-- link TOASTR -->
     <script type="text/javascript" src="../lib/angular/angular-toastr.tpls.js"></script>
 
-     <!-- aside -->
+    <!-- aside -->
     <script src="../js/outros/aside.js" type="text/javascript"></script>
 
 

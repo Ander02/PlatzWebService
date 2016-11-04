@@ -1,7 +1,5 @@
 package com.platz.util;
 
-import com.platz.dao.ContaDao;
-import com.platz.model.ContaModel;
 import java.util.Date;
 
 /**

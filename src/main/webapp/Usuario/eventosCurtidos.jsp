@@ -13,7 +13,7 @@ Ira aparecer todos os eventos que o usuario curtiu
 
         <title>Platz - Suas rotas, Seus Eventos</title>
 
-         <!-- Font Awesome -->
+        <!-- Font Awesome -->
         <link href="../css/font/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 
         <!-- Bootstrap core CSS -->
@@ -39,7 +39,7 @@ Ira aparecer todos os eventos que o usuario curtiu
 
         <!-- angular util -->
         <script src="../js/util.js" type="text/javascript"></script>
-        
+
         <!-- service -->
         <script src="../js/services/loginService.js" type="text/javascript"></script>
 
@@ -52,6 +52,19 @@ Ira aparecer todos os eventos que o usuario curtiu
 
     <body>
         <!-- inicio do projeto aqui-->
+        <%
+            try {
+                String token = session.getAttribute("token").toString();
+                if (token == null) {
+                    response.sendRedirect("/login.jsp");
+                } else {
+                    out.print("<input type='hidden' id='token' name='token' value ='" + token + "' >");
+                }
+            } catch (Exception e) {
+                System.out.println("Erro ao buscar sessão " + e.getMessage());
+                response.sendRedirect("/login.jsp");
+            }
+        %>
     <ng-include src="'../View/nav-usuario.html'"></ng-include>
     <div class="espaco"></div>
 
@@ -63,7 +76,7 @@ Ira aparecer todos os eventos que o usuario curtiu
     </div>
 
     <div class="head-pagina">
-    <h3>Eu vou</h3>
+        <h3>Eu vou</h3>
     </div>
     <!--Carousel Wrapper-->
     <div class="col-md-1"></div>
@@ -114,7 +127,7 @@ Ira aparecer todos os eventos que o usuario curtiu
     </div><!--/.Carousel Wrapper-->
 
     <div class="espaco"></div>
-<ng-include src="'../View/footer.html'"></ng-include>
+    <ng-include src="'../View/footer.html'"></ng-include>
     <!-- /.fim do projeto-->
 
 
@@ -131,10 +144,10 @@ Ira aparecer todos os eventos que o usuario curtiu
 
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="../lib/bootstrap/mdb.min.js"></script>
-    
+
     <!-- tooltip -->
     <script src="../js/outros/tooltip.js" type="text/javascript"></script>
-    
+
     <!-- link Angular animate -->
     <script src="../lib/angular/angular-animate.js" type="text/javascript"></script>
 
@@ -143,7 +156,7 @@ Ira aparecer todos os eventos que o usuario curtiu
 
     <!-- link TOASTR -->
     <script type="text/javascript" src="../lib/angular/angular-toastr.tpls.js"></script>
-    
+
     <!-- aside -->
     <script src="../js/outros/aside.js" type="text/javascript"></script>
 
