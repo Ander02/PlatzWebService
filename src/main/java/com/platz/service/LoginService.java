@@ -53,6 +53,28 @@ public class LoginService {
     }
 
     @POST
+    @PermitAll
+    @Path("/loginAndroid")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response loginAndroid(Login login) {
+        try {
+
+            ContaModel model = contaController.loginAndroid(login);
+            //Retornar token na resposta
+            if (model != null) {
+                return Response.ok(new ContaLeitura(model)).header(HttpHeaders.AUTHORIZATION, model.getToken()).build();
+            }
+
+            return Response.status(Response.Status.UNAUTHORIZED).entity("Usuário e/ou senhas incorretos").build();
+
+        } catch (Exception e) {
+            System.out.println("Erro ao logar: " + e.getMessage());
+            return Response.status(Response.Status.UNAUTHORIZED).entity("Usuário e/ou senhas incorretos").build();
+        }
+    }
+
+    @POST
     //@PerfilAuth({Perfil.ADMINISTRADOR, Perfil.EMPRESA, Perfil.USUARIO})
     @PermitAll
     @Path("/logoff")
@@ -91,6 +113,23 @@ public class LoginService {
             boolean valido = new TokenUtil().isValid(token);
             if (!valido) {
                 contaController.logoff(contaController.getConta(token));
+            }
+            return Response.ok(valido).build();
+        }
+        return Response.ok(false).build();
+
+    }
+
+    @GET
+    //@PerfilAuth({Perfil.ADMINISTRADOR, Perfil.EMPRESA, Perfil.USUARIO})
+    @PermitAll
+    @Path("/tokenAndroidIsValid/{token}")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response tokenAndroidIsValid(@PathParam("token") String token) {
+        if (contaController.getContaPorTokenAndroid(token) != null) {
+            boolean valido = new TokenUtil().isValid(token);
+            if (!valido) {
+                contaController.logoff(contaController.getContaPorTokenAndroid(token));
             }
             return Response.ok(valido).build();
         }

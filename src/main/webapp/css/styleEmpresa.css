@@ -161,13 +161,43 @@ and open the template in the editor.
 {
     margin-left: 41.7%;
 }
+.label-modificado
+{
+    color: #757575;
+    position: absolute;
+    top: 5px;
+    left: 0px;
+    text-align: center;
+    font-size: 1rem;
+    cursor: text;
+    -webkit-transition: .2s ease-out;
+    -moz-transition: .2s ease-out;
+    -o-transition: .2s ease-out;
+    -ms-transition: .2s ease-out;
+    transition: .2s ease-out;
+}
+.label-modificado-imagens
+{
+    color: #757575;
+    position: absolute;
+    left: 10px;
+    text-align: center;
+    font-size: 1rem;
+    cursor: text;
+    -webkit-transition: .2s ease-out;
+    -moz-transition: .2s ease-out;
+    -o-transition: .2s ease-out;
+    -ms-transition: .2s ease-out;
+    transition: .2s ease-out;
+}
 .select-categoria option
 {
-    background: red;
+    background: rgba(189, 195, 199,0.7);
     margin: 5px;
     font-size: 20px;
 }
-.select-categoria option:after
+.select-categoria
 {
-    background: yellow;
+    margin-bottom: 100px;
+    margin-top: 50px;
 }

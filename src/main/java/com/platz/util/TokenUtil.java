@@ -24,11 +24,6 @@ public class TokenUtil {
     public boolean isValid(String token) {
 
         try {
-            ContaModel conta = new ContaDao().getConta(token);
-            if (conta == null) {
-                System.out.println("O token nao esta em nenhuma conta");
-                return false;
-            }
             String tokenDesc = new EncriptAES().decrypt(new EncriptAES().stringParaByte(token), EncriptAES.getChaveEncriptacao());
 
             return new DataUtil().converterData(tokenDesc.split(",")[1]).after(new Date());

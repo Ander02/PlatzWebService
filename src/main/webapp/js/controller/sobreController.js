@@ -1,4 +1,4 @@
-angular.module("platz").controller("sobreController", function ($scope, $http, toastr) {
+angular.module("platz").controller("sobreController", function ($scope, $http, toastr, loginService) {
 
 
     //métodos que envolvem outros tipos de objetos
@@ -20,12 +20,20 @@ angular.module("platz").controller("sobreController", function ($scope, $http, t
     };
 
 //funções de atualizações
+
     function atualizar() {
+        loginService.verificarToken($http, toastr, "Livre", function () {
+            $scope.permicao = loginService.getPermicao();
+            $scope.conta = loginService.getConta();
+            $scope.token = loginService.getToken();
+        });
         $scope.listarAssuntosNaoDeletados();
     }
 
     window.onload = function () {
+        $scope.permicao = false;
         atualizar();
     };
+
 
 });

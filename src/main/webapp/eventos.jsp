@@ -35,6 +35,8 @@ Pagina onde ira exibir os eventos, onde sera possivel filtrar os eventos
 
         <script src="js/util.js" type="text/javascript"></script>
 
+        <script src="js/services/loginService.js" type="text/javascript"></script>
+
         <script src="js/controller/loginController.js" type="text/javascript"></script>
 
         <script src="js/controller/eventosController.js" type="text/javascript"></script>
@@ -59,60 +61,64 @@ Pagina onde ira exibir os eventos, onde sera possivel filtrar os eventos
                 out.print("<input type='hidden' id='token' name='token' value ='' >");
             }
         %>
-    <ng-include src="'View/nav.html'" ng-controller="loginController"></ng-include>
-    <div ng-controller="eventosController">
+        <div ng-controller="loginController">
+            <ng-include ng-if="conta == null" src="'View/nav.html'" ></ng-include>
+            <ng-include ng-if="conta.perfil === 'Administrador'" src="'View/nav-adm.html'"  ></ng-include>
+            <ng-include ng-if="conta.perfil === 'Empresa'" src="'View/nav-empresa.html'"  ></ng-include>
+            <ng-include ng-if="conta.perfil === 'Usuario'" src="'View/nav-usuario.html'"  ></ng-include>
+        </div>    <div ng-controller="eventosController">
 
-        <div class="espaco"></div>
+            <div class="espaco"></div>
 
 
-        <div class="col-md-12 card-group">
-            <div class="head-pagina">
-                <h1> Categoria dos Eventos </h1>
+            <div class="col-md-12 card-group">
+                <div class="head-pagina">
+                    <h1> Categoria dos Eventos </h1>
+                </div>
+                <div class="card-block col-md-3" ng-repeat="categoria in categorias">
+                    <div class="hovereffect">
+                        <img class="img-responsive img-fluid" ng-src="{{baixarImagemCategoria(categoria.id)}}" onerror='this.src = "img/placeholder.png"' alt="">                            
+                        <div class="overlay">
+                            <h2 ng-bind="categoria.nome"></h2>
+                            <a class="info" href="eventosCategoria.jsp?categoria={{categoria.id}}" > Clique e veja mais</a>
+                            <a ></a>
+                        </div>
+                    </div>  
+                </div>
+
             </div>
-            <div class="card-block col-md-3" ng-repeat="categoria in categorias">
-                <div class="hovereffect">
-                    <img class="img-responsive img-fluid" ng-src="{{baixarImagemCategoria(categoria.id)}}" onerror='this.src = "img/placeholder.png"' alt="">                            
-                    <div class="overlay">
-                        <h2 ng-bind="categoria.nome"></h2>
-                        <a class="info" href="eventosCategoria.jsp?categoria={{categoria.id}}" > Clique e veja mais</a>
-                        <a ></a>
-                    </div>
-                </div>  
-            </div>
+
+            <ng-include src="'View/footer.html'"></ng-include>
+            <!-- /fim do projeto-->
+
+
+            <!-- SCRIPTS -->
+
+            <!-- JQuery -->
+            <script type="text/javascript" src="lib/jquery/jquery-2.2.3.min.js"></script>
+
+            <!-- Bootstrap tooltips -->
+            <script type="text/javascript" src="lib/bootstrap/tether.min.js"></script>
+
+            <!-- Bootstrap core JavaScript -->
+            <script type="text/javascript" src="lib/bootstrap/bootstrap.min.js"></script>
+
+            <!-- MDB core JavaScript -->
+            <script type="text/javascript" src="lib/bootstrap/mdb.min.js"></script>
+
+            <!-- link Angular -->
+            <script src="lib/angular/angular-animate.js" type="text/javascript"></script>
+
+            <!-- link Angular TOASTR CSS -->
+            <link href="css/angular-toastr.css" rel="stylesheet" type="text/css"/>
+
+            <!-- link Angular TOASTR CSS -->
+            <script type="text/javascript" src="lib/angular/angular-toastr.tpls.js"></script>
+
+            <script src="js/outros/randomCores.js" type="text/javascript"></script>
 
         </div>
 
-        <ng-include src="'View/footer.html'"></ng-include>
-        <!-- /fim do projeto-->
-
-
-        <!-- SCRIPTS -->
-
-        <!-- JQuery -->
-        <script type="text/javascript" src="lib/jquery/jquery-2.2.3.min.js"></script>
-
-        <!-- Bootstrap tooltips -->
-        <script type="text/javascript" src="lib/bootstrap/tether.min.js"></script>
-
-        <!-- Bootstrap core JavaScript -->
-        <script type="text/javascript" src="lib/bootstrap/bootstrap.min.js"></script>
-
-        <!-- MDB core JavaScript -->
-        <script type="text/javascript" src="lib/bootstrap/mdb.min.js"></script>
-
-        <!-- link Angular -->
-        <script src="lib/angular/angular-animate.js" type="text/javascript"></script>
-
-        <!-- link Angular TOASTR CSS -->
-        <link href="css/angular-toastr.css" rel="stylesheet" type="text/css"/>
-
-        <!-- link Angular TOASTR CSS -->
-        <script type="text/javascript" src="lib/angular/angular-toastr.tpls.js"></script>
-
-        <script src="js/outros/randomCores.js" type="text/javascript"></script>
-
-    </div>
-
-</body>
+    </body>
 
 </html>

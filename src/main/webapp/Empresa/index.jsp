@@ -13,7 +13,7 @@ considerada pagina de eventos que a empresa postou
 
         <title>Platz - Suas rotas, Seus Eventos</title>
 
-         <!-- Font Awesome -->
+        <!-- Font Awesome -->
         <link href="../css/font/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 
         <!-- Bootstrap core CSS -->
@@ -33,6 +33,8 @@ considerada pagina de eventos que a empresa postou
 
         <!-- link app -->
         <script type="text/javascript" src="../js/app.js"></script>
+
+        <script src="../js/services/loginService.js" type="text/javascript"></script>
 
         <!-- link util -->
         <script src="../js/util.js" type="text/javascript"></script>
@@ -73,7 +75,7 @@ considerada pagina de eventos que a empresa postou
 
     <!--div content. Os elementos filho serão utilizados para paginar
     (eles não têm de ser todos iguais, você pode usar divs, parágrafos, vãos, ou o que quiser misturados). '-->  
-    <div id='content'> 
+    <div id='content' ng-if="permicao"> 
 
         <div class="col-md-3 eventos-empresa" ng-repeat="evento in eventos">
             <div class="card">
