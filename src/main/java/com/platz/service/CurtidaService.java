@@ -154,5 +154,27 @@ public class CurtidaService {
         }
 
     }
+    
+    @DELETE
+    @Path("/descurtir/{idUsuario}/{idEvento}")
+    @PerfilAuth(Perfil.USUARIO)
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response descurtir(@PathParam("id") String idUsuario, String idEvento) {
+
+        try {
+
+            CurtidaModel model = curtidaController.buscarPorEventoEUsuario(new UsuarioController().buscarPorId(idUsuario), new EventoController().buscarPorId(idEvento));
+
+            curtidaController.descurtir(model);
+
+            return Response.status(Response.Status.NO_CONTENT).build();
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar avaliações").build();
+        }
+
+    }
+
 
 }
