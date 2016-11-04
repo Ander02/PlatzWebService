@@ -93,7 +93,6 @@ public class AuthenticationFilter implements ContainerRequestFilter {
             //Se a conta não for nula
             if (conta != null) {
                 //Verificar se o perfil existe
-
                 if (new Date().before(new DataUtil().adicionaDias(1, new DataUtil().converterData(conta.getUltimoAcesso())))) {
                     return perfilSet.contains(conta.getPerfil());
                 } else {
@@ -105,7 +104,6 @@ public class AuthenticationFilter implements ContainerRequestFilter {
                 //Se a conta não for nula
                 if (contaAndroid != null) {
                     //Verificar se o perfil existe
-
                     if (new Date().before(new DataUtil().adicionaDias(1, new DataUtil().converterData(contaAndroid.getUltimoAcesso())))) {
                         return perfilSet.contains(contaAndroid.getPerfil());
                     } else {
@@ -121,4 +119,5 @@ public class AuthenticationFilter implements ContainerRequestFilter {
             return false;
         }
     }
+
 }
