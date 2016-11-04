@@ -30,6 +30,7 @@ public class ContaService {
 
     @POST
     @Path(value = "/conta")
+    //@PermitAll
     @PerfilAuth(Perfil.ADMINISTRADOR)
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")

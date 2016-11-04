@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+ ng-bind=""<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
 Pagina index do administrador, quando ele se logar vem direto para esta pagina
@@ -44,7 +44,7 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
         <script src="../js/controller/loginController.js" type="text/javascript"></script>
 
         <script src="../js/controller/mensagemController.js" type="text/javascript"></script>
-
+    
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="../img/logo.png">
 
@@ -127,9 +127,9 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
                                         <input type="checkbox" name="checkboxG{{$index + 1}}" id="checkboxG{{$index + 1}}"  class="css-checkbox" ng-checked="{{mensagem.marcado}}" ng-click="alterarFavorito(mensagem)"/>
                                         <label for="checkboxG{{$index + 1}}" class="css-label"></label>
                                     </td>
-                                    <td>{{mensagem.email}}</td>
-                                    <td>{{mensagem.dataCadastro}}</td>
-                                    <td>{{mensagem.assunto.nome}}</td>                            
+                                    <td ng-bind="mensagem.email"></td>
+                                    <td ng-bind="mensagem.dataCadastro"></td>
+                                    <td ng-bind="mensagem.assunto.nome"></td>                            
                                     <td><button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalExcluir" ng-click="prepararExclusao(mensagem.id)">
                                             <i class="fa fa-trash"></i>Excluir</button></td>
                                     <td ><button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#modalDetalhes"  ng-click="lerMensagem(mensagem.id)">
@@ -157,7 +157,7 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Favoritar</th>
+                                    <th>Desfavoritar</th>
                                     <th>Email</th>
                                     <th>Enviado em</th>                            
                                     <th>Assunto</th>                            
@@ -173,9 +173,9 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
                                         <label for="checkboxF{{$index + 1}}" class="css-label"></label>
                                     </td>
 
-                                    <td>{{mensagem.email}}</td>
-                                    <td>{{mensagem.dataCadastro}}</td>
-                                    <td>{{mensagem.assunto.nome}}</td>
+                                    <td ng-bind="mensagem.email"></td>
+                                    <td ng-bind="mensagem.dataCadastro"></td>
+                                    <td ng-bind="mensagem.assunto.nome"></td>
                                     <td><button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalExcluir" >
                                             <i class="fa fa-trash"></i>Excluir</button></td>
                                     <td><button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#modalDetalhes" ng-click="lerMensagem(mensagem.id)">
@@ -218,9 +218,9 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
                                         <input type="checkbox" name="checkboxE{{$index + 1}}" id="checkboxE{{$index + 1}}"  class="css-checkbox" ng-checked="{{mensagem.marcado}}" ng-click="alterarFavorito(mensagem)"/>
                                         <label for="checkboxE{{$index + 1}}" class="css-label"></label>
                                     </td>
-                                    <td>{{mensagem.email}}</td>
-                                    <td>{{mensagem.dataCadastro}}</td>
-                                    <td>{{mensagem.assunto.nome}}</td>
+                                    <td ng-bind="mensagem.email"></td>
+                                    <td ng-bind="mensagem.dataCadastro"></td>
+                                    <td ng-bind="mensagem.assunto.nome"></td>
 
                                     <td><button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalExcluir" >
                                             <i class="fa fa-trash"></i>Excluir</button></td>
@@ -264,9 +264,9 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
                                         <input type="checkbox" name="checkboxD{{$index + 1}}" id="checkboxD{{$index + 1}}"  class="css-checkbox" ng-checked="{{mensagem.marcado}}" ng-click="alterarFavorito(mensagem)"/>
                                         <label for="checkboxD{{$index + 1}}" class="css-label"></label>
                                     </td>
-                                    <td>{{mensagem.email}}</td>
-                                    <td>{{mensagem.dataCadastro}}</td>
-                                    <td>{{mensagem.assunto.nome}}</td>
+                                    <td ng-bind="mensagem.email"></td>
+                                    <td ng-bind="mensagem.dataCadastro"></td>
+                                    <td ng-bind="mensagem.assunto.nome"></td>
 
                                     <td><button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalExcluir">
                                             <i class="fa fa-trash"></i>Excluir</button></td>
@@ -306,10 +306,10 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
                             <tbody id="myTable3">
                                 <tr ng-repeat="mensagemExcluida in mensagensExcluidas">
                                     <td>{{$index + 1}}</td>
-                                    <td>{{mensagemExcluida.email}}</td>
-                                    <td>{{mensagemExcluida.dataCadastro}}</td>
-                                    <td>{{mensagemExcluida.deletado}}</td>
-                                    <td>{{mensagemExcluida.assunto.nome}}</td>  
+                                    <td ng-bin="mensagemExcluida.email"></td>
+                                    <td ng-bin="mensagemExcluida.dataCadastro"></td>
+                                    <td ng-bin="mensagemExcluida.deletado"></td>
+                                    <td ng-bin="mensagemExcluida.assunto.nome"></td>  
                                     <td><button data-toggle="modal" data-target="#modalExcluirDefinitivo" class="btn btn-sm btn-danger" ng-click="prepararExclusaoDefinitiva(mensagemExcluida.id)"><i class="fa fa-trash"></i>Apagar</button>
                                         <button data-toggle="modal" data-target="#modalRestaurar" class="btn btn-sm btn-default" ng-click="prepararRecuperacao(mensagemExcluida.id)"><i class="fa fa-undo"></i>Restaurar</button></td>                            
                                 </tr>                        

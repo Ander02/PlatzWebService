@@ -108,8 +108,8 @@ Pagina de cadastro , consulta, atualização e exclusão de assunto de mensagem
                                 <tr ng-repeat="assunto in assuntos">
                                     <th scope="row">{{$index + 1}}</th>
 
-                                    <td>{{assunto.nome}}</td>  
-                                    <td>{{assunto.dataCadastro}}</td>  
+                                    <td ng-bind="assunto.nome"></td>  
+                                    <td ng-bind="assunto.dataCadastro"></td>  
                                     <td  align=right>
                                         <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalEdita" ng-click="prepararEdicao(assunto)"><i class="fa fa-pencil"></i> Editar</a>
                                         <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalExcluir" ng-click="prepararExclusao(assunto.id)"><i class="fa fa-trash"></i>Excluir</a>
@@ -172,8 +172,8 @@ Pagina de cadastro , consulta, atualização e exclusão de assunto de mensagem
                                 <tr ng-repeat=" assunto in assuntosDeletados">
                                     <th scope="row">{{$index + 1}}</th>
 
-                                    <td>{{assunto.nome}}</td>                                                   
-                                    <td>{{assunto.deletado}}</td>   
+                                    <td ng-bind="assunto.nome"></td>                                                   
+                                    <td ng-bind="assunto.deletado"></td>   
                                     <td align=right >                          
                                         <a class="btn btn-sm btn-default-outline" data-toggle="modal" data-target="#modalRestaurar" ng-click="prepararRecuperacao(assunto.id)"><i class="fa fa-undo"></i> Restaurar </a>
                                     </td>

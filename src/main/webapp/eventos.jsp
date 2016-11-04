@@ -70,12 +70,11 @@ Pagina onde ira exibir os eventos, onde sera possivel filtrar os eventos
 
             <div class="espaco"></div>
 
-
             <div class="col-md-12 card-group">
                 <div class="head-pagina">
                     <h1> Categoria dos Eventos </h1>
                 </div>
-                <div class="card-block col-md-3" ng-repeat="categoria in categorias">
+                <div class="card-block card-eventos col-md-3" ng-repeat="categoria in categorias">
                     <div class="hovereffect">
                         <img class="img-responsive img-fluid" ng-src="{{baixarImagemCategoria(categoria.id)}}" onerror='this.src = "img/placeholder.png"' alt="">                            
                         <div class="overlay">
@@ -87,6 +86,8 @@ Pagina onde ira exibir os eventos, onde sera possivel filtrar os eventos
                 </div>
 
             </div>
+
+
 
             <ng-include src="'View/footer.html'"></ng-include>
             <!-- /fim do projeto-->

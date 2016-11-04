@@ -23,10 +23,7 @@ html,body
     color: #7f8c8d;
     margin-top: 20px;
 }
-.md-form label
-{
-    top: -5px;
-}
+
 .navbar .dropdown .dropdown-menu .esqueceu-senha a {
     color: #3498db!important;
 }
@@ -495,10 +492,7 @@ hr.small {
     margin: 0;
     padding: 0;
 }
-#corpo-evento-epecifico
-{
-    background: rgba(189, 195, 199,0.4);
-}
+
 .caixa-informacao-especifico
 {
     position:absolute;
@@ -765,6 +759,7 @@ label.star:before {
 /*
 * PAGINA DE EVENTOS
 */
+
 .eventos-categoria , .eventos-empresa
 {
     margin-bottom: 5%;
