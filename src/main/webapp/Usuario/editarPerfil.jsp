@@ -99,11 +99,10 @@ Pagina para a edição do perfil do usuario
                             <br>
                             <form>
                                 <h4><i class="fa fa-lock animated rotateIn"></i><strong>Informações da Conta</strong></h4>
-                                <div class="md-form col-md-6">  
-                                    <input  type="email" id="conta-usuario-email" class="form-control" required=""
-                                            maxlength="75">
-                                    <label for="conta-usuario-email">Email</label>
-                                </div>
+                                <div class="md-form col-md-12">  
+                                <label for="conta-usuario-email" class="label-form" > Email:  {{usuario.conta.email}} </label>
+                                <hr/>
+                            </div>
                                 <div class="md-form col-md-6">  
                                     <label for="conta-usuario-img">Imagem de Perfil</label>
                                     <br/>
@@ -176,34 +175,40 @@ Pagina para a edição do perfil do usuario
                             <form>
                                 <h4><i class="fa fa-map-marker animated rotateIn"></i><strong>Endereço</strong></h4>
 
-                                <div class="md-form col-md-6">                
+                                <div class="md-form col-md-2">                
                                     <input type="text" id="usuario-cep" class="form-control" ng-blur="onblurCep()">
                                     <label for="usuario-cep">CEP</label>
                                 </div>
+                                <div class="col-md-2 link-cep">
+                                    <a title="clique aqui e saiba seu cep" class="text-info"
+                                       href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blank">Não Sei meu cep</a></div>
 
-                                <div class="md-form col-md-6">  
-                                    <input  type="text" id="usuario-numero" class="form-control">
+                                <div class="md-form col-md-3">  
+                                    <input  type="text" id="usuario-numero" class="form-control" ng-model="usuarioEdicaoEndereco.endereco.numero">
                                     <label for="usuario-numero">Número</label>
                                 </div>
 
-                                <div class="md-form col-md-6">                
-                                    <input type="text" id="usuario-rua" class="form-control">
-                                    <label for="usuario-rua">Rua</label>
-                                </div>
-
-                                <div class="md-form col-md-6">  
-                                    <input  type="text" id="usuario-bairro" class="form-control">
-                                    <label for="usuario-bairro">Bairro</label>
-                                </div>
-
-                                <div class="md-form col-md-6">                
-                                    <input type="text" id="usuario-complemento" class="form-control">
+                                <div class="md-form col-md-3">                
+                                    <input type="text" id="usuario-complemento" class="form-control" usuarioEdicaoEndereco.endereco.complemento>
                                     <label for="usuario-complemento">Complemento</label>
                                 </div>
 
-                                <div class="md-form col-md-6">  
-                                    <input  type="text" id="usuario-cidade" class="form-control">
-                                    <label for="usuario-cidade">Cidade</label>
+                                <div class="md-form col-md-12">       
+                                    <p ng-bind="usuarioEdicaoEndereco.endereco.rua"></p>
+                                    <label for="usuario-rua">Rua</label>
+                                    <hr>
+                                </div>
+
+                                <div class="md-form col-md-12">                                 
+                                    <p ng-bind="usuarioEdicaoEndereco.endereco.bairro"></p>
+                                    <label for="usuario-bairro">Bairro</label>  
+                                    <hr>
+                                </div>
+
+                                <div class="md-form col-md-12">  
+                                    <p >{{usuarioEdicaoEndereco.endereco.cidade.nome|| usuarioEdicaoEndereco.endereco.cidade}}</p>
+                                    <label for="usuario-cidade">Cidade</label>                                   
+                                    <hr>
                                 </div>
 
                                 <div class="md-form col-md-2 btn-cadastro">  

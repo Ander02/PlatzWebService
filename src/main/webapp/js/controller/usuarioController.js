@@ -11,7 +11,6 @@ angular.module("platz").controller("usuarioController", function ($scope, $http,
     };
 
 
-
     $scope.onblurCep = function () {
         cep = document.getElementById("usuario-cep").value;
         $http.get("https://viacep.com.br/ws/" + cep + "/json/").then(function (response) {

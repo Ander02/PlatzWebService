@@ -104,7 +104,6 @@ and open the template in the editor.
                             <h4><i class="fa fa-lock animated rotateIn"></i><strong>Informações da Conta</strong></h4>
                             <div class="md-form col-md-12">  
                                 <label for="conta-empresa-email" class="label-form" > Email:  {{empresa.conta.email}} </label>
-                                <p></p>
                                 <hr/>
                             </div>
 
