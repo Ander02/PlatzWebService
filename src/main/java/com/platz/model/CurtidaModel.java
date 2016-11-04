@@ -18,7 +18,7 @@ import org.bson.types.ObjectId;
  * @author Anderson
  */
 @Entity
-@Table(name = "avaliacao")
+@Table(name = "curtidos")
 public class CurtidaModel {
 
     @Id

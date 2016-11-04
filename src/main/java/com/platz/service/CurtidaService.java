@@ -111,9 +111,8 @@ public class CurtidaService {
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar avaliações").build();
         }
-
     }
-
+    
     @GET
     @Path(value = "/curtidas/usuario/{id}")
     @PermitAll
@@ -133,7 +132,7 @@ public class CurtidaService {
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar avaliações").build();
         }
     }
-
+    
     @DELETE
     @Path("/descurtir/{id}")
     @PerfilAuth(Perfil.USUARIO)
