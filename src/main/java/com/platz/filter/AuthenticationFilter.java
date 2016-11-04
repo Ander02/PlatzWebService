@@ -93,18 +93,31 @@ public class AuthenticationFilter implements ContainerRequestFilter {
             //Se a conta não for nula
             if (conta != null) {
                 //Verificar se o perfil existe
-
                 if (new Date().before(new DataUtil().adicionaDias(1, new DataUtil().converterData(conta.getUltimoAcesso())))) {
                     return perfilSet.contains(conta.getPerfil());
                 } else {
                     new ContaController().logoff(conta);
                 }
+            } else {
+                ContaModel contaAndroid = new ContaDao().getContaPorTokenAndroid(token);
+
+                //Se a conta não for nula
+                if (contaAndroid != null) {
+                    //Verificar se o perfil existe
+                    if (new Date().before(new DataUtil().adicionaDias(1, new DataUtil().converterData(contaAndroid.getUltimoAcesso())))) {
+                        return perfilSet.contains(contaAndroid.getPerfil());
+                    } else {
+                        new ContaController().logoff(contaAndroid);
+                    }
+
+                }
+                return false;
             }
             return false;
-
         } catch (Exception e) {
             System.out.println("Erro de autenticação: " + e.getMessage());
             return false;
         }
     }
+
 }
