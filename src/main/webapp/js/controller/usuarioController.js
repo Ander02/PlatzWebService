@@ -7,8 +7,39 @@ angular.module("platz").controller("usuarioController", function ($scope, $http,
             $scope.usuarioEdicaoInfo = $scope.usuario;
             $scope.usuarioEdicaoEndereco = $scope.usuario;
             $scope.imagemPerfil = webService + "/usuario/imagem/" + $scope.usuario.id;
+            $scope.buscaEventosCurtidos();
         }, function () {
         });
+    };
+
+    $scope.buscaEventosCurtidos = function () {
+        $http.get(webService + "/curtidas/usuario/" + $scope.usuario.id, loginService.getHeaders()).then(function (response) {
+            var eventosCurtidos = new Array();
+            for (var i = 0; i < response.data.length; i++) {
+                eventosCurtidos.push(response.data[i].evento);
+            }
+            
+            index = 1;
+            var evento3 = new Array();
+            var eventos = new Array();
+            do {
+                for (var i = index - 1; i < index + 2; i++) {
+                    evento3.push(eventosCurtidos[i]);
+                }
+                eventos.push(evento3);
+                index += 3;
+                evento3 = new Array();
+            } while (index <= response.data.length);
+            $scope.eventosCurtidos = eventos;
+            console.log($scope.eventosCurtidos);
+            
+        }, function () {
+
+        });
+    };
+
+    $scope.buscarImagemCapa = function (id) {
+        return webService + "/evento/imagemCapa/" + id;
     };
 
     $scope.alterarSenha = function () {
