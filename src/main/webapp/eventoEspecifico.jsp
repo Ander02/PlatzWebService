@@ -312,86 +312,20 @@ Pagina de evento especifico
                                     </form>
                                 </div> 
 
-
-
-                                <!--First row-->
-                                <div class="row">
-
                                     <!--First column-->
-                                    <div class="col-md-12 m-b-r">
+                                    <div class="col-md-12 m-b-r" ng-repeat="postagem in postagens">
 
                                         <div class="col-md-3">
-                                            <img src="http://mdbootstrap.com/images/avatars/img%20(9).jpg" class="img-circle img-responsive">
+                                            <img onerror='this.src = "/img/outras/teste-perfil.jpg"' class="img-circle img-responsive">
                                         </div>
 
                                         <div class="col-md-9">
-                                            <h4>John Doe</h4>
-                                            <h5>Web Developer</h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur quae quaerat ad velit ab.</p>                                          
+                                            <h4 ng-bind="nomePostagem(postagem.conta)"></h4>
+                                            <p>{{postagem.conteudo}}</p>                                          
                                         </div>
 
                                     </div>
                                     <!--/First column-->
-
-                                    <!--Second column-->
-                                    <div class="col-md-12 m-b-r">
-
-                                        <div class="col-md-3">
-                                            <img src="http://mdbootstrap.com/images/avatars/img%20(10).jpg" class="img-circle img-responsive">
-                                        </div>
-
-                                        <div class="col-md-9">
-                                            <h4>Maria Kate</h4>
-                                            <h5>Photographer</h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur quae quaerat ad velit ab.</p>                                                                      </div>
-
-                                    </div>
-                                    <!--/Second column-->
-
-                                </div>
-                                <!--/First row-->
-
-
-
-                                <!--Second row-->
-                                <div class="row">
-
-                                    <!--Third column-->
-                                    <div class="col-md-12 m-b-r">
-
-                                        <div class="col-md-3">
-                                            <img src="http://mdbootstrap.com/images/avatars/img%20(11).jpg" class="img-circle img-responsive">
-                                        </div>
-
-                                        <div class="col-md-9">
-                                            <h4>Anna Deynah</h4>
-                                            <h5>Web Designer</h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur quae quaerat ad velit ab.</p>
-
-                                        </div>
-
-
-                                    </div>
-                                    <!--/Third column-->
-
-                                    <!--Fourth column-->
-                                    <div class="col-md-12 m-b-r">
-
-                                        <div class="col-md-3">
-                                            <img src="http://mdbootstrap.com/images/avatars/img%20(1).jpg" class="img-circle img-responsive">
-                                        </div>
-
-                                        <div class="col-md-9">
-                                            <h4>Sarah Melyah</h4>
-                                            <h5>Front-end Developer</h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur quae quaerat ad velit ab.</p>
-
-                                        </div>
-
-                                    </div>
-                                    <!--/Fourth column-->
-                                </div>
-                                <!--/Second row-->
 
                             </section>
                             <!--/Section: Team v.3-->
@@ -399,7 +333,6 @@ Pagina de evento especifico
                         <!--Footer-->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
-                            <button type="button" class="btn btn-default">Calcular Rota</button>
                         </div>
                     </div>
                     <!--/.Content-->
@@ -509,7 +442,9 @@ Pagina de evento especifico
             <link href="css/angular-toastr.css" rel="stylesheet" type="text/css"/>
 
             <script type="text/javascript" src="lib/angular/angular-toastr.tpls.js"></script>
-
+            
+            <!-- Aside para quando estiver logado -->
+            <script src="js/outros/aside.js" type="text/javascript"></script>
         </div>
 
     </body>

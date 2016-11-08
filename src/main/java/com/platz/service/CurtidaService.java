@@ -159,7 +159,7 @@ public class CurtidaService {
     @Path("/descurtir/{idUsuario}/{idEvento}")
     @PerfilAuth(Perfil.USUARIO)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public Response descurtir(@PathParam("id") String idUsuario, String idEvento) {
+    public Response descurtir(@PathParam("idUsuario") String idUsuario,@PathParam("idEvento") String idEvento) {
 
         try {
 
