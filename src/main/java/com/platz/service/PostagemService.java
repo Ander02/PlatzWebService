@@ -4,20 +4,11 @@ import com.platz.controller.ContaController;
 import com.platz.controller.EventoController;
 import com.platz.controller.PostagemController;
 import com.platz.http.cadastro.PostagemCadastro;
-import com.platz.http.edicao.ImagemEdicao;
 import com.platz.http.edicao.PostagemEdicao;
-import com.platz.http.leitura.EventoLeitura;
 import com.platz.http.leitura.PostagemLeitura;
-import com.platz.model.EventoModel;
-import com.platz.model.ImagemModel;
 import com.platz.model.Perfil;
 import com.platz.model.PostagemModel;
-import com.platz.util.DataUtil;
-import com.platz.util.ImagemUtil;
 import com.platz.util.PerfilAuth;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
@@ -30,8 +21,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import org.glassfish.jersey.media.multipart.FormDataBodyPart;
-import org.glassfish.jersey.media.multipart.FormDataParam;
 
 /**
  *
@@ -61,6 +50,7 @@ public class PostagemService {
         } catch (Exception e) {
             // Envia erro pelo console
             System.out.println("Erro: " + e.getMessage());
+            e.printStackTrace();
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao cadastrar postagem").build();
         }
@@ -82,7 +72,7 @@ public class PostagemService {
             return Response.ok(listaDePresenca).build();
 
         } catch (Exception e) {
-            System.out.println("Erro: " + e.getMessage());
+            System.out.println("Erro: " + e.getMessage());            
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar postagem").build();
         }
@@ -161,83 +151,6 @@ public class PostagemService {
             System.out.println("Erro: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar Postagem").build();
-        }
-    }
-
-    @PUT
-    @Path(value = "/postagem/imagem/{id}")
-    @PermitAll
-    //@PerfilAuth(Perfil.EMPRESA)
-    @Consumes(value = MediaType.MULTIPART_FORM_DATA)
-    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public Response subirImagem(@FormDataParam("imagem") InputStream imagemInputStream,
-            @FormDataParam("imagem") FormDataBodyPart fileMetaData,
-            @PathParam("id") String id) {
-
-        try {
-            //Buscar Model pelo id
-            PostagemModel model = postagemController.buscarPorId(id);
-
-            //Montando o caminho do upload
-            String diretorioDoUpload = new ImagemUtil().RAIZ + "postagem/" + model.getEvento().getId() + "/" + model.getId() + "/";
-            //Montando o nome do arquivo
-            String nomeDoArquivo = new DataUtil().dataSemPontuacao(new Date()) + "." + fileMetaData.getMediaType().getSubtype();
-
-            //Salvar Imagem
-            boolean ok = new ImagemUtil().salvarArquivo(diretorioDoUpload, nomeDoArquivo, imagemInputStream);
-
-            //Se a imagem for salva sem nenhum erro atualiza a model
-            if (ok) {
-                //Settar o caminho do icone na model
-                model.getImagens().add(new ImagemModel(diretorioDoUpload + nomeDoArquivo));
-
-                //Alterar
-                postagemController.alterar(model);
-            } else {
-                //Retorna uma BadRequest ao usuário
-                return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
-            }
-
-            return Response.ok(new PostagemLeitura(model)).build();
-        } catch (Exception e) {
-            // Envia erro pelo console
-            System.out.println("Erro de upload: " + e.getMessage());
-            //Retorna uma BadRequest ao usuário
-            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
-        }
-    }
-
-    @DELETE
-    @Path(value = "/postagem/imagens/{id}")
-    @PermitAll
-    @Consumes(value = MediaType.APPLICATION_JSON)
-    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public Response apagarImagens(@PathParam("id") String id, ImagemEdicao imagem) {
-
-        try {
-
-            PostagemModel model = postagemController.buscarPorId(id);
-
-            List<ImagemModel> listaDeImagensAtualizadas = new ArrayList<>();
-            for (ImagemModel img : model.getImagens()) {
-
-                if (img.getUrl().equals(imagem.getUrl())) {
-                    img.setDeletado(new Date());
-                }
-
-                listaDeImagensAtualizadas.add(img);
-            }
-
-            model.setImagens(listaDeImagensAtualizadas);
-
-            postagemController.alterar(model);
-
-            return Response.ok(new PostagemLeitura(model)).build();
-        } catch (Exception e) {
-            //Envia erro pelo console
-            System.out.println("Erro de upload: " + e.getMessage());
-            //Retorna uma BadRequest ao usuário
-            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao subir imagem").build();
         }
     }
 

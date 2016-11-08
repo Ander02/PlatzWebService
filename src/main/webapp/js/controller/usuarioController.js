@@ -18,7 +18,7 @@ angular.module("platz").controller("usuarioController", function ($scope, $http,
             for (var i = 0; i < response.data.length; i++) {
                 eventosCurtidos.push(response.data[i].evento);
             }
-            
+
             index = 1;
             var evento3 = new Array();
             var eventos = new Array();
@@ -31,10 +31,19 @@ angular.module("platz").controller("usuarioController", function ($scope, $http,
                 evento3 = new Array();
             } while (index <= response.data.length);
             $scope.eventosCurtidos = eventos;
-            console.log($scope.eventosCurtidos);
-            
+
         }, function () {
 
+        });
+    };
+
+    $scope.descurtir = function (eventoId) {
+        console.log($scope.usuario.id);
+        console.log(eventoId);
+        $http.delete(webService + "/descurtir/" + $scope.usuario.id + "/" + eventoId, loginService.getHeaders()).then(function (response) {
+            atualizar();
+        }, function (response) {
+            info(toastr, "Falha ao discurtir");
         });
     };
 

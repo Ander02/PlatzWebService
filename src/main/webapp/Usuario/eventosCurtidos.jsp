@@ -87,7 +87,7 @@ Ira aparecer todos os eventos que o usuario curtiu
         <div id="multi-item-example" class="carousel slide carousel-multi-item col-md-10" data-ride="carousel">
 
             <!--Controls-->
-            <div class="controls-top">
+            <div class="controls-top" ng-if="eventosCurtidos.length > 1">
                 <a class="btn-floating btn-lg orange" href="#multi-item-example" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
                 <a class="btn-floating btn-lg orange" href="#multi-item-example" data-slide="next"><i class="fa fa-chevron-right"></i></a>
             </div>
@@ -99,10 +99,9 @@ Ira aparecer todos os eventos que o usuario curtiu
 
                 <!--First slide-->
                 <div class="carousel-item {{$index==0?'active':''}}" ng-repeat="evento3 in eventosCurtidos">
-
                     <div class="col-md-4 " ng-repeat="evento in evento3 track by $index">
-                        <div class="card">                       
-                            <div class="hovereffect">                             
+                        <div class="card" ng-if="evento != null">                       
+                            <div class="hovereffect">
                                 <img class="img-fluid imagem-evento" ng-src="{{buscarImagemCapa(evento.id)}}" onerror='this.src = "../img/outras/plano-fundo.jpg"' alt="">
                                 <div class="ev-cancelado">
                                         <p>Cancelado</p>
@@ -113,7 +112,7 @@ Ira aparecer todos os eventos que o usuario curtiu
                                         <a href="/eventoEspecifico.jsp?evento={{evento.id}}" data-toggle="tooltip" data-placement="bottom" title="Ver Detalhes">
                                             <i class="fa fa-eye"></i>
                                         </a>
-                                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="Descurtir">
+                                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="Descurtir" ng-click="descurtir(evento.id)">
                                             <i class="fa fa-thumbs-o-down"></i>
                                         </a>
                                     </p>
