@@ -70,7 +70,7 @@
             <ng-include ng-if="conta.perfil === 'Empresa'" src="'View/nav-empresa.html'"  ></ng-include>
             <ng-include ng-if="conta.perfil === 'Usuario'" src="'View/nav-usuario.html'"  ></ng-include>
         </div>
-        
+
         <div ng-controller="eventosController">
             <div class="slider-index">
                 <!--Carousel Wrapper-->
@@ -143,6 +143,9 @@
                             <div class="col-md-4" ng-repeat="evento in eventosMiniSlide track by $index">
                                 <div class="card img-mini-slide" ng-if="evento != null">
                                     <img class="img-fluid " ng-src="{{buscarImagemCapa(evento.id)}}" onerror="this.src='img/logo.png'" alt="Card image cap">
+                                    <div class="ev-cancelado">
+                                        <p>Cancelado</p>
+                                    </div>
                                     <div class="card-block">
                                         <h4 class="card-title">{{evento.nome}}</h4>
                                         <h5><i class="fa fa-building-o animated bounceInDown"></i> {{evento.empresa.nomeFantasia}}</h5>
