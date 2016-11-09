@@ -45,8 +45,6 @@ public class PostagemModel {
     private Date censurado = null;
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletado = null;
-    @ElementCollection(fetch = FetchType.EAGER)
-    private List<ImagemModel> imagens = new ArrayList<>();
 
     public PostagemModel() {
     }
@@ -118,16 +116,8 @@ public class PostagemModel {
         this.deletado = deletado;
     }
 
-    public List<ImagemModel> getImagens() {
-        return imagens;
-    }
-
     public String getDataCadastro() {
         return new DataUtil().converterData(id.getDate());
     }
-
-    public void setImagens(List<ImagemModel> imagens) {
-        this.imagens = imagens;
-    }
-
+  
 }

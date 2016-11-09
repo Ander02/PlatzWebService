@@ -14,6 +14,33 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
         console.log(nota);
     };
 
+    $scope.listarPostagem = function () {
+        $http.get(webService + "/postagens", loginService.getHeaders()).then(function (response) {
+            $scope.postagens = response.data;            
+        }, function () {
+
+        });
+    };
+
+    $scope.imagemPostagem = function (conta) {
+
+        if (conta.perfil === "Usuario") {
+            console.log("A");
+            $http.get(webService + "/usuario/conta/" + conta.id, loginService.getHeaders()).then(function (response) {
+                console.log("B");
+                console.log(response.data);
+                return webService + "/usuario/imagem/" + response.data.id;
+            }, function () {
+
+            });
+        }
+    };
+    
+    
+    $scope.nomePostagem = function (conta) {
+
+    };
+
     $scope.getMedia = function () {
         $http.get(webService + "/avaliacao/evento/media/" + id).then(function (response) {
             $scope.media = parseFloat(response.data);
@@ -30,6 +57,7 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
         });
         $scope.eventoEspecifico();
         $scope.getMedia();
+        $scope.listarPostagem();
 
     }
 

@@ -19,7 +19,6 @@ public class PostagemLeitura {
     private String dataCadastro;
     private String deletado;
     private String censurado;
-    private List<ImagemLeitura> imagens;
     
     public PostagemLeitura() {
     }
@@ -32,7 +31,6 @@ public class PostagemLeitura {
         setDataCadastro(model.getDataCadastro());
         setDeletado(model.getDeletado());
         setCensurado(model.getCensurado());      
-        setImagens(new ImagemLeitura().converterLista(model.getImagens()));
     }
     
     public PostagemLeitura(String id, String conteudo, ContaLeitura contaLeitura, EventoLeitura evento, String dataCadastro, String deletado, String censurado) {
@@ -112,14 +110,6 @@ public class PostagemLeitura {
     
     public void setConta(ContaLeitura conta) {
         this.conta = conta;
-    }
-    
-    public List<ImagemLeitura> getImagens() {
-        return imagens;
-    }
-    
-    public void setImagens(List<ImagemLeitura> imagens) {
-        this.imagens = imagens;
     }
     
 }

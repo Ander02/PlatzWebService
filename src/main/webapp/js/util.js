@@ -19,8 +19,7 @@ function enviarArquivo($http, arquivo, name, url, token) {
     var formData = new FormData();
     formData.append(name, arquivo);
     console.log(formData);
-    $http.put(url, formData, {
-        
+    $http.put(url, formData, {        
         transformRequest: angular.identity,
         headers: {
             'Content-Type': undefined,
@@ -33,7 +32,7 @@ function enviarArquivo($http, arquivo, name, url, token) {
         console.log(response);
     });
 }
-
+/*
 function verificarToken($http, $scope, toastr, sucess) {
     try {
 
@@ -63,7 +62,6 @@ function verificarToken($http, $scope, toastr, sucess) {
                         logoff($http, toastr, token);
                         location.href = "../login.jsp";
                     } else {
-                        sucess();
                     }
                 }, function (response) {
                     $scope.permicao = false;
@@ -85,7 +83,7 @@ function verificarToken($http, $scope, toastr, sucess) {
         logoff($http, toastr, token);
     }
 
-}
+}*/
 
 //funções que gerencia os tipo de erro
 function errorManager(erro, status, mensagem) {

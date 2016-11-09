@@ -44,6 +44,9 @@ Ira aparecer todos os eventos que o usuario curtiu
         <script src="../js/services/loginService.js" type="text/javascript"></script>
 
         <!-- angular controller  -->
+        <script src="../js/controller/loginController.js" type="text/javascript"></script>
+
+        <script src="../js/controller/usuarioController.js" type="text/javascript"></script>
 
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="../img/logo.png">
@@ -65,67 +68,70 @@ Ira aparecer todos os eventos que o usuario curtiu
                 response.sendRedirect("/login.jsp");
             }
         %>
-    <ng-include src="'../View/nav-usuario.html'"></ng-include>
+    <ng-include ng-controller="loginController" src="'../View/nav-usuario.html'"></ng-include>
     <div class="espaco"></div>
+    <div ng-controller="usuarioController">
 
-    <div class="head-pagina">
-        <h1>Eventos</h1>
-        <p>
-            pagina dedica aos eventos que foram curtidos ou pelo menos tiveram suas partipações como talvez
-        </p>
-    </div>
-
-    <div class="head-pagina">
-        <h3>Eu vou</h3>
-    </div>
-    <!--Carousel Wrapper-->
-    <div class="col-md-1"></div>
-    <div id="multi-item-example" class="carousel slide carousel-multi-item col-md-10" data-ride="carousel">
-
-        <!--Controls-->
-        <div class="controls-top">
-            <a class="btn-floating btn-lg orange" href="#multi-item-example" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
-            <a class="btn-floating btn-lg orange" href="#multi-item-example" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+        <div class="head-pagina">
+            <h1>Eventos</h1>
+            <p>
+                pagina dedica aos eventos que foram curtidos ou pelo menos tiveram suas partipações como talvez
+            </p>
         </div>
-        <!--/.Controls-->
+
+        <div class="head-pagina">
+            <h3>Eu vou</h3>
+        </div>
+        <!--Carousel Wrapper-->
+        <div class="col-md-1"></div>
+        <div id="multi-item-example" class="carousel slide carousel-multi-item col-md-10" data-ride="carousel">
+
+            <!--Controls-->
+            <div class="controls-top" ng-if="eventosCurtidos.length > 1">
+                <a class="btn-floating btn-lg orange" href="#multi-item-example" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+                <a class="btn-floating btn-lg orange" href="#multi-item-example" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+            </div>
+            <!--/.Controls-->
 
 
-        <!--Slides-->
-        <div class="carousel-inner" role="listbox">
+            <!--Slides-->
+            <div class="carousel-inner" role="listbox" ng-if="permicao">
 
-            <!--First slide-->
-            <div class="carousel-item active">
-
-                <div class="col-md-4 ">
-                    <div class="card">                       
-                        <div class="hovereffect">
-                            <img class="img-fluid imagem-evento" src="../img/outras/plano-fundo.jpg" alt="">
-                            <div class="overlay">
-                                <h2>Nome do Evento</h2>
-                                <p>
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="Ver Detalhes">
-                                        <i class="fa fa-eye"></i>
-                                    </a>
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="Descurtir">
-                                        <i class="fa fa-thumbs-o-down"></i>
-                                    </a>
-                                </p>
+                <!--First slide-->
+                <div class="carousel-item {{$index==0?'active':''}}" ng-repeat="evento3 in eventosCurtidos">
+                    <div class="col-md-4 " ng-repeat="evento in evento3 track by $index">
+                        <div class="card" ng-if="evento != null">                       
+                            <div class="hovereffect">
+                                <img class="img-fluid imagem-evento" ng-src="{{buscarImagemCapa(evento.id)}}" onerror='this.src = "../img/outras/plano-fundo.jpg"' alt="">
+                                <div class="ev-cancelado">
+                                        <p>Cancelado</p>
+                                    </div>
+                                <div class="overlay">
+                                    <h2 ng-bind="evento.nome">Nome do Evento</h2>
+                                    <p>
+                                        <a href="/eventoEspecifico.jsp?evento={{evento.id}}" data-toggle="tooltip" data-placement="bottom" title="Ver Detalhes">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="Descurtir" ng-click="descurtir(evento.id)">
+                                            <i class="fa fa-thumbs-o-down"></i>
+                                        </a>
+                                    </p>
+                                </div>
+                                 
+                            </div>                        
+                            <div class="card-block info-evento-curtido">                          
+                                <h4 class="card-title"><a>{{evento.nome}} <i class="fa fa-angle-right"></i></a></h4>
+                                <p class="card-text">
+                                    <a> <i class="fa fa-building-o"></i> {{evento.empresa.nomeFantasia}}</a>
+                                <p><strong><i class="fa fa-clock-o"></i> {{evento.dataInicio}}</strong></p>                                
+                                <a href="/eventoEspecifico.jsp?evento={{evento.id}}" class="btn btn-default-outline" >Ver Mais Detalhes</a>
                             </div>
-                        </div>                        
-                        <div class="card-block info-evento-curtido">                          
-                            <h4 class="card-title"><a>Nome do Evento <i class="fa fa-angle-right"></i></a></h4>
-                            <p class="card-text">
-                                <a> <i class="fa fa-building-o"></i> Nome da Empresa</a>
-                            <p><strong><i class="fa fa-clock-o"></i> 27/02/2016</strong></p>
-                            <p><strong><i class="fa fa fa-th-list"></i> Nome da Categoria</strong></p>
-                            <a href="#" class="btn btn-default-outline">Ver Mais Detalhes</a>
                         </div>
-                    </div>
-                </div> <!-- coluna com o primeiro card -->
-            </div> <!--/.First slide-->           
-        </div><!--/.Slides-->      
-    </div><!--/.Carousel Wrapper-->
-
+                    </div> <!-- coluna com o primeiro card -->
+                </div> <!--/.First slide-->           
+            </div><!--/.Slides-->      
+        </div><!--/.Carousel Wrapper-->
+    </div>
     <div class="espaco"></div>
     <ng-include src="'../View/footer.html'"></ng-include>
     <!-- /.fim do projeto-->
@@ -159,6 +165,7 @@ Ira aparecer todos os eventos que o usuario curtiu
 
     <!-- aside -->
     <script src="../js/outros/aside.js" type="text/javascript"></script>
+    
 
 </body>
 

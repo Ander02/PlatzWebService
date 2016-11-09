@@ -31,6 +31,7 @@ public class ContaModel {
 
     @Email(message = "Email inválido")
     @NotNull(message = "O email não pode ser nulo")
+    @Length( max = 50, message = "O email deve ter até 50 Caracteres")
     private String email;
     @Length(min = 32, max = 32, message = "A senha deve ter 32 caracteres")
     @NotNull(message = "A senha não pode ser nula")

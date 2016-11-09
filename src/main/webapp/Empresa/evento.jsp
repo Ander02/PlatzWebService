@@ -136,12 +136,22 @@ Tela de cadastro de evento
                             </div>
                         </div>
 
-                        <div class="col-md-12 ">
-                            <label class="label-modificado" for="select-categoria">Selecione uma ou mais categoria</label>
-                            <select class="form-control select-categoria"  multiple ng-model="evento.categoriasId" 
-                                    ng-options="categoria.id as categoria.nome for categoria in categorias"  >                                
-                            </select>
+                        <!--<div class="col-md-12 ">-->
+                        <!--<label class="label-modificado" for="select-categoria">Selecione uma ou mais categoria</label>-->
+                        <!--                            <select class="form-control select-categoria"  multiple ng-model="evento.categoriasId" 
+                                                            ng-options="categoria.id as categoria.nome for categoria in categorias"  >                                
+                                                    </select>-->
+
+                        <div     
+                            isteven-multi-select
+                            input-model="categorias"
+                            output-model="categoriasSelecionadas"
+                            button-label="nome"
+                            item-label="nome"
+                            tick-property="ticked"
+                            >
                         </div>
+                        <!--</div>-->
                         <div class="col-md-4">
                             <div class="md-form">                        
                                 <input type="text" id="evento-idade-minima" class="form-control" ng-model="evento.idade">
@@ -228,7 +238,7 @@ Tela de cadastro de evento
 
 
                         <div class="col-md-12">
-                            <button class="btn btn-lg btn-warning" ng-click="cadastrar()"><i class="fa fa-check"></i> Cadastrar</button>
+                            <button class="btn btn-lg btn-warning" ng-click="cadastrar(evento)"><i class="fa fa-check"></i> Cadastrar</button>
                         </div>
 
                     </div>
@@ -246,9 +256,8 @@ Tela de cadastro de evento
     <ng-include src="'../View/footer.html'"></ng-include>
     <!-- /.fim do projeto-->
 
-
     <!-- SCRIPTS -->
-
+    
     <!-- JQuery -->
     <script type="text/javascript" src="../lib/jquery/jquery-2.2.3.min.js"></script>
 
@@ -260,16 +269,6 @@ Tela de cadastro de evento
 
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="../lib/bootstrap/mdb.min.js"></script>
-
-    <!-- Paginação da tabela -->
-    <script type="text/javascript" src="../js/outros/paginacao-empresa.js"></script>
-
-    <!--data e horario (iniciando) -->
-    <script src="../lib/bootstrap/dataehorario.js" type="text/javascript"></script>
-
-    <script src="../lib/bootstrap/bootstrap-material-datetimepicker.js" type="text/javascript"></script>
-
-    <script src="../js/outros/desabilitarPreco.js" type="text/javascript"></script>
 
     <!-- link Angular animate -->
     <script src="../lib/angular/angular-animate.js" type="text/javascript"></script>
@@ -283,11 +282,19 @@ Tela de cadastro de evento
     <!-- aside -->
     <script src="../js/outros/aside.js" type="text/javascript"></script>
 
+    <!-- Desabilitar o preço -->
+    <script src="../js/outros/desabilitarPreco.js" type="text/javascript"></script>
+
+    <!--data e horario (iniciando) -->
+    <script src="../lib/bootstrap/bootstrap-material-datetimepicker.js" type="text/javascript"></script>
+
+    <script src="../lib/bootstrap/dataehorario.js" type="text/javascript"></script>
+
     <script src="../lib/jquery/jquery.mask.min.js" type="text/javascript"></script>
 
-    <script src="../js/outros/validacoes.js" type="text/javascript"></script>
+    <link href="../css/bootstrap/isteven-multi-select.css" rel="stylesheet" type="text/css"/>
 
-    <script src="../js/outros/option.js" type="text/javascript"></script>
+    <script src="../lib/angular/isteven-multi-select.js" type="text/javascript"></script>
 </body>
 
 </html>

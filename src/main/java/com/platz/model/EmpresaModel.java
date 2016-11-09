@@ -32,15 +32,22 @@ public class EmpresaModel {
     @CNPJ
     @NotNull(message = "O CNPJ deve ser informado")
     private String cnpj;
+
+    @Length(max = 50, message = "Onome fantasia deve ter no maximo 50 caracteres")
     @NotNull(message = "O nome fantasia deve ser informado")
     private String nomeFantasia;
+    
     @NotNull(message = "a razao social deve ser informada")
+    @Length(max = 70, message = "A razao Social deve ter no maximo 70 caracteres")
     private String razaoSocial;
+    
     @NotNull(message = "O telefone deve ser informado")
     @Length(min = 10, max = 11, message = "O telefone deve ter entre 10 e 11 caracteres")
     private String telefone;
+    
     @Length(min = 10, max = 11, message = "O telefone deve ter entre 10 e 11 caracteres")
     private String telefone2;
+    
     private String imagemPerfil;
     @Embedded
     private EnderecoModel endereco;

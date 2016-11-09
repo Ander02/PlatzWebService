@@ -1,15 +1,25 @@
-angular.module("platz").controller("eventoCadastroController", function ($scope, $http, toastr, loginService) {
+app.requires.push('isteven-multi-select');
+app.controller("eventoCadastroController", function ($scope, $http, toastr, loginService) {
 
-    $scope.cadastrar = function () {
-
-//        var categorias = document.querySelectorAll(".categorias");
-//        $scope.evento.categoriasId = new Array();
+    //$scope.evento.categoriasId = []; 
+    $scope.categoriasId = [];
+//    $scope.evento = "";
+    $scope.cadastrar = function (evento) {
+        $scope.evento = evento;
+        $scope.evento.categoriasId = new Array();
 //
 //        for (var i = 0; i < categorias.length; i++) {
 //            if (categorias[i].checked === true) {
 //                $scope.evento.categoriasId.push(categorias[i].value);
 //            }
 //        }
+
+        for (var i = 0; i < $scope.categoriasSelecionadas.length; i++) {
+            $scope.evento.categoriasId.push($scope.categoriasSelecionadas[i].id);
+        }
+
+        console.log($scope.evento.categoriasId);
+
         console.log($scope.evento);
         $scope.evento.empresaId = $scope.empresa.id;
         $scope.evento.dataInicio = document.getElementById("date-start").value;
@@ -45,6 +55,11 @@ angular.module("platz").controller("eventoCadastroController", function ($scope,
     $scope.listarNaoExcluidas = function () {
         $http.get(webService + "/categorias/naoExcluidas", loginService.getHeaders()).then(function (response) {
             $scope.categorias = response.data;
+
+            for (var i = 0; i < $scope.categorias.length; i++) {
+                $scope.categoriasId.push($scope.categorias[i].id);
+            }
+            console.log($scope.categoriasId);
         }, function (response) {
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao listar categorias"));
         });
