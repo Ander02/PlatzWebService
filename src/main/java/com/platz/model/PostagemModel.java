@@ -4,12 +4,8 @@ import com.platz.dao.ContaDao;
 import com.platz.dao.EventoDao;
 import com.platz.http.cadastro.PostagemCadastro;
 import com.platz.util.DataUtil;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,7 +29,7 @@ public class PostagemModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     ObjectId id;
 
-    @Length(max = 512, message = "O conteudo pode ter no maximo 512 caracteres")
+    @Length(min = 8,max = 512, message = "O conteudo pode ter entre 8 e 4096 caracteres")
     private String conteudo;
     @NotNull(message = "Indique a conta")
     @ManyToOne
