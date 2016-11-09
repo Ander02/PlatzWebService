@@ -873,3 +873,29 @@ label.star:before {
     background-color: red;
     border: 1px solid white;;
 }
+
+/**PAGINA DE RANKING*/
+.section-ranking
+{
+    margin-left: 8.35%;
+}
+.single-news .info-ev-ranking
+{
+    text-align: center;
+}
+.ev-primeiro-lugar
+{
+    width: 100%;
+    height: 400px;
+    text-align: center;
+}
+.ev-primeiro-lugar img
+{
+    height: 500px;
+    width: 80%;
+    margin: 0 auto;
+}
+.ev-segundo-lugar img , .ev-terceiro-lugar img
+{
+    height: 350px;
+}

@@ -306,10 +306,10 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
                             <tbody id="myTable3">
                                 <tr ng-repeat="mensagemExcluida in mensagensExcluidas">
                                     <td>{{$index + 1}}</td>
-                                    <td ng-bin="mensagemExcluida.email"></td>
-                                    <td ng-bin="mensagemExcluida.dataCadastro"></td>
-                                    <td ng-bin="mensagemExcluida.deletado"></td>
-                                    <td ng-bin="mensagemExcluida.assunto.nome"></td>  
+                                    <td ng-bind="mensagemExcluida.email"></td>
+                                    <td ng-bind="mensagemExcluida.dataCadastro"></td>
+                                    <td ng-bind="mensagemExcluida.deletado"></td>
+                                    <td ng-bind="mensagemExcluida.assunto.nome"></td>  
                                     <td><button data-toggle="modal" data-target="#modalExcluirDefinitivo" class="btn btn-sm btn-danger" ng-click="prepararExclusaoDefinitiva(mensagemExcluida.id)"><i class="fa fa-trash"></i>Apagar</button>
                                         <button data-toggle="modal" data-target="#modalRestaurar" class="btn btn-sm btn-default" ng-click="prepararRecuperacao(mensagemExcluida.id)"><i class="fa fa-undo"></i>Restaurar</button></td>                            
                                 </tr>                        
