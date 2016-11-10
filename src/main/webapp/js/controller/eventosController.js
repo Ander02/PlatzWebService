@@ -72,7 +72,7 @@ app.controller("eventosController", function ($scope, $http, toastr, loginServic
 
                         // Janela de Informações
                         var infowindow = new google.maps.InfoWindow({
-                            content: "<h4>" + this.eventosDestaque[i].nome + "</h4>"
+                            content: "<h4>Nome:"+ eventosDestaque[i].nome +" </h4>"
                         });
 
 
