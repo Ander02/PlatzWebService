@@ -115,9 +115,13 @@ Pagina onde ira exibir os eventos, onde sera possivel filtrar os eventos
 
             <!-- link Angular TOASTR CSS -->
             <script type="text/javascript" src="lib/angular/angular-toastr.tpls.js"></script>
+            
+                    <script src="lib/angular/ng-map.min.js" type="text/javascript"></script>
 
-            <script src="js/outros/randomCores.js" type="text/javascript"></script>
 
+            <link href="css/bootstrap/isteven-multi-select.css" rel="stylesheet" type="text/css"/>
+
+            <script src="lib/angular/isteven-multi-select.js" type="text/javascript"></script>
         </div>
 
     </body>

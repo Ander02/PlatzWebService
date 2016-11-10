@@ -1,11 +1,9 @@
 app.requires.push('isteven-multi-select');
 app.controller("eventoCadastroController", function ($scope, $http, toastr, loginService) {
 
-    //$scope.evento.categoriasId = []; 
-    $scope.categoriasId = [];
-//    $scope.evento = "";
-    $scope.cadastrar = function (evento) {
-        $scope.evento = evento;
+//    $scope.categoriasId = [];
+
+    $scope.cadastrar = function () {
         $scope.evento.categoriasId = new Array();
 //
 //        for (var i = 0; i < categorias.length; i++) {
@@ -14,11 +12,11 @@ app.controller("eventoCadastroController", function ($scope, $http, toastr, logi
 //            }
 //        }
 
-        for (var i = 0; i < $scope.categoriasSelecionadas.length; i++) {
-            $scope.evento.categoriasId.push($scope.categoriasSelecionadas[i].id);
+        for (var i = 0; i < this.categoriasSelecionadas.length; i++) {
+            $scope.evento.categoriasId.push(this.categoriasSelecionadas[i].id);
+            console.log($scope.evento.categoriasId);
         }
 
-        console.log($scope.evento.categoriasId);
 
         console.log($scope.evento);
         $scope.evento.empresaId = $scope.empresa.id;
@@ -56,10 +54,6 @@ app.controller("eventoCadastroController", function ($scope, $http, toastr, logi
         $http.get(webService + "/categorias/naoExcluidas", loginService.getHeaders()).then(function (response) {
             $scope.categorias = response.data;
 
-            for (var i = 0; i < $scope.categorias.length; i++) {
-                $scope.categoriasId.push($scope.categorias[i].id);
-            }
-            console.log($scope.categoriasId);
         }, function (response) {
             erro(toastr, errorManager(response.config.url, response.status, "Erro ao listar categorias"));
         });
@@ -68,11 +62,14 @@ app.controller("eventoCadastroController", function ($scope, $http, toastr, logi
     $scope.onblurCepEvento = function () {
         cep = document.getElementById("evento-cep").value;
         $http.get("https://viacep.com.br/ws/" + cep + "/json/").then(function (response) {
-            console.log(response.data);
+            console.log($scope.evento);
+
             $scope.evento.endereco.rua = response.data.logradouro;
             $scope.evento.endereco.bairro = response.data.bairro;
             $scope.evento.endereco.cidade = response.data.localidade;
             $scope.evento.endereco.uf = response.data.uf;
+
+            console.log($scope.evento);
         }, function (response) {
             aviso(toastr, "CEP inexistente, por favor verifique-o");
         });
@@ -89,6 +86,19 @@ app.controller("eventoCadastroController", function ($scope, $http, toastr, logi
 
     }
 
+    $scope.alterarPreco = function () {
+        var checkboxGratuito = document.getElementById("evento-gratuito");
+        var inputPreco = document.getElementById("evento-preco");
+        console.log(inputPreco);
+        console.log(checkboxGratuito);
+
+        if (checkboxGratuito.checked) {
+            inputPreco.disabled = true;
+        } else {
+            inputPreco.disabled = false;
+        }
+    };
+
     $scope.buscaEmpresa = function () {
         $http.get(webService + "/empresa/conta/" + $scope.conta.id).then(function (response) {
             $scope.empresa = response.data;
@@ -100,6 +110,7 @@ app.controller("eventoCadastroController", function ($scope, $http, toastr, logi
     window.onload = function () {
         $scope.permicao = false;
         atualizar();
+        $scope.evento = new Object();
     };
 
 });

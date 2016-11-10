@@ -26,21 +26,21 @@ Tela de cadastro de evento
         <!-- Your custom styles (optional) -->
         <link href="../css/styleEmpresa.css" rel="stylesheet">
 
-        <link href="../css/efeitos/dropEvento.css" rel="stylesheet" type="text/css"/>
-
         <!-- link Angular -->
         <script type="text/javascript" src="../lib/angular/angular.js"></script>
 
-        <!-- Link app -->
+        <!-- link app -->
         <script type="text/javascript" src="../js/app.js"></script>
+
+        <script src="../js/services/loginService.js" type="text/javascript"></script>
 
         <!-- link util -->
         <script src="../js/util.js" type="text/javascript"></script>
 
         <script src="../js/services/loginService.js" type="text/javascript"></script>
 
-        <!-- link controller -->
-        <script src="../js/controller/eventoCadastroController.js" type="text/javascript"></script>
+        <!-- Link Controller -->
+        <script src="../js/controller/eventoCadastroController.js"></script>
 
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="../img/logo.png">
@@ -155,7 +155,7 @@ Tela de cadastro de evento
                         <div class="col-md-4">
                             <div class="md-form">                        
                                 <input type="text" id="evento-idade-minima" class="form-control" ng-model="evento.idade">
-                                <label for="evento-idade-minima">Idade Minima</label>
+                                <label for="evento-idade-minima">Idade Minima </label>
                             </div>
                         </div>
 
@@ -164,7 +164,7 @@ Tela de cadastro de evento
                                 <section title=".squaredFour">
                                     <!-- .squaredFour -->
                                     <div class="squaredFour">
-                                        <input type="checkbox" value="None" id="evento-gratuito" name="check"  />
+                                        <input type="checkbox" value="None" id="evento-gratuito" name="check" ng-click="alterarPreco()"/>
 
                                     </div>
                                     <!-- end .squaredFour -->
@@ -175,7 +175,7 @@ Tela de cadastro de evento
                         </div>
                         <div class="col-md-4">
                             <div class="md-form">                        
-                                <input type="text"  id="evento-preco" class="form-control" ng-model="evento.preco">
+                                <input type="text" id="evento-preco" class="form-control" ng-model="evento.preco">
                                 <label for="evento-preco">Preço</label>
                             </div>
                         </div>
@@ -238,7 +238,7 @@ Tela de cadastro de evento
 
 
                         <div class="col-md-12">
-                            <button class="btn btn-lg btn-warning" ng-click="cadastrar(evento)"><i class="fa fa-check"></i> Cadastrar</button>
+                            <button class="btn btn-lg btn-warning" ng-click="cadastrar()"><i class="fa fa-check"></i> Cadastrar</button>
                         </div>
 
                     </div>
@@ -257,7 +257,7 @@ Tela de cadastro de evento
     <!-- /.fim do projeto-->
 
     <!-- SCRIPTS -->
-    
+
     <!-- JQuery -->
     <script type="text/javascript" src="../lib/jquery/jquery-2.2.3.min.js"></script>
 
@@ -282,19 +282,18 @@ Tela de cadastro de evento
     <!-- aside -->
     <script src="../js/outros/aside.js" type="text/javascript"></script>
 
+    <script src="../lib/bootstrap/dataehorario.js" type="text/javascript"></script>
+
+    <link href="../css/bootstrap/isteven-multi-select.css" rel="stylesheet" type="text/css"/>
+
+    <script src="../lib/angular/isteven-multi-select.js" type="text/javascript"></script>
+
     <!-- Desabilitar o preço -->
     <script src="../js/outros/desabilitarPreco.js" type="text/javascript"></script>
 
     <!--data e horario (iniciando) -->
     <script src="../lib/bootstrap/bootstrap-material-datetimepicker.js" type="text/javascript"></script>
 
-    <script src="../lib/bootstrap/dataehorario.js" type="text/javascript"></script>
-
-    <script src="../lib/jquery/jquery.mask.min.js" type="text/javascript"></script>
-
-    <link href="../css/bootstrap/isteven-multi-select.css" rel="stylesheet" type="text/css"/>
-
-    <script src="../lib/angular/isteven-multi-select.js" type="text/javascript"></script>
 </body>
 
 </html>
