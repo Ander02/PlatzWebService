@@ -49,8 +49,7 @@ function initialize() {
              * um LatLng onde definimos a latitude e longitude acima como centro
              * do mapa
              */
-            map.setCenter(new google.maps.LatLng(position.coords.latitude,
-                    position.coords.longitude));
+            map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
 
             // Marcador com a sua localização
             var marker = new google.maps.Marker({
