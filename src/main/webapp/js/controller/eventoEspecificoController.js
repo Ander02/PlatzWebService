@@ -12,6 +12,7 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
     };
 
     $scope.avaliar = function (nota) {
+
         if ($scope.usuario !== null && $scope.usuario !== "" && typeof $scope.usuario !== undefined) {
             console.log($scope.usuario.id);
             avaliacao = {
@@ -52,7 +53,7 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
                 $scope.notaUsuario = response.data.nota;
             }, function () {
             });
-            
+
         }, function () {
         });
     };
@@ -63,9 +64,9 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
             $scope.mediaArredondada = Math.round($scope.media);
         }, function (response) {
             console.log(response.data);
-        });   
+        });
     };
-    
+
     function atualizar() {
         loginService.verificarToken($http, toastr, "Livre", function () {
             $scope.permicao = loginService.getPermicao();
@@ -82,6 +83,7 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
     ;
 
     window.onload = function () {
+        $scope.usuario = "";
         $scope.permicao = false;
         atualizar();
     };
