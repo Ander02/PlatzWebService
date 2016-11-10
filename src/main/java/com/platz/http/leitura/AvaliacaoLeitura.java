@@ -21,14 +21,6 @@ public class AvaliacaoLeitura {
     public AvaliacaoLeitura() {
     }
 
-    public AvaliacaoLeitura(String id, Integer nota, UsuarioLeitura usuario, EventoLeitura evento, String dataCadastro) {
-        setId(id);
-        setNota(nota);
-        setUsuario(usuario);
-        setUsuario(usuario);
-        setDataCadastro(dataCadastro);
-    }
-
     public AvaliacaoLeitura(AvaliacaoModel model) {
         setId(model.getId());
         if (model.getNota() != null) {

@@ -119,27 +119,27 @@ Pagina de evento especifico
                         </div><!-- /.imagemEventoEspecifico -->
 
                         <div class="col-md-12 informacao-evento-especifico">
-                            <div class="col-md-3"></div>
-                            <div class="col-md-3">  <h1 ng-bind="evento.nome"></h1> </div>
+
+                            <div class="col-md-6">  <h1 ng-bind="evento.nome"></h1> </div>
                             <div class="col-md-3 estrelas">
 
                                 <div class="stars">
                                     <form action="">                                
-                                        <input class="star star-5" id="star-5-2" type="radio" name="star" ng-click="avaliar(5)" ng-checked=" mediaArredondada == 5"/>
+                                        <input class="star star-5" id="star-5-2" type="radio" name="star" ng-click="avaliar(5)" ng-checked=" notaUsuario === 5"/>
                                         <label class="star star-5" for="star-5-2"></label>
-                                        <input class="star star-4" id="star-4-2" type="radio" name="star" ng-click="avaliar(4)" ng-checked=" mediaArredondada == 4"/>
+                                        <input class="star star-4" id="star-4-2" type="radio" name="star" ng-click="avaliar(4)" ng-checked=" notaUsuario === 4"/>
                                         <label class="star star-4" for="star-4-2"></label>
-                                        <input class="star star-3" id="star-3-2" type="radio" name="star" ng-click="avaliar(3)" ng-checked=" mediaArredondada == 3"/>
+                                        <input class="star star-3" id="star-3-2" type="radio" name="star" ng-click="avaliar(3)" ng-checked=" notaUsuario === 3"/>
                                         <label class="star star-3" for="star-3-2"></label>
-                                        <input class="star star-2" id="star-2-2" type="radio" name="star" ng-click="avaliar(2)" ng-checked=" mediaArredondada == 2"/>
+                                        <input class="star star-2" id="star-2-2" type="radio" name="star" ng-click="avaliar(2)" ng-checked=" notaUsuario === 2"/>
                                         <label class="star star-2" for="star-2-2"></label>
-                                        <input class="star star-1" id="star-1-2" type="radio" name="star" ng-click="avaliar(1)" ng-checked=" mediaArredondada == 1"/>
+                                        <input class="star star-1" id="star-1-2" type="radio" name="star" ng-click="avaliar(1)" ng-checked=" notaUsuario === 1"/>
                                         <label class="star star-1" for="star-1-2"></label>
                                     </form>
                                 </div> 
                             </div>
                             <div class="col-md-3">
-                                <h1>{{media}}</h1>
+                                <h1>Média: {{media}}</h1>
                             </div>
 
 
@@ -312,20 +312,20 @@ Pagina de evento especifico
                                     </form>
                                 </div> 
 
-                                    <!--First column-->
-                                    <div class="col-md-12 m-b-r" ng-repeat="postagem in postagens">
+                                <!--First column-->
+                                <div class="col-md-12 m-b-r" ng-repeat="postagem in postagens">
 
-                                        <div class="col-md-3">
-                                            <img onerror='this.src = "/img/outras/teste-perfil.jpg"' class="img-circle img-responsive">
-                                        </div>
-
-                                        <div class="col-md-9">
-                                            <h4 ng-bind="nomePostagem(postagem.conta)"></h4>
-                                            <p>{{postagem.conteudo}}</p>                                          
-                                        </div>
-
+                                    <div class="col-md-3">
+                                        <img onerror='this.src = "/img/outras/teste-perfil.jpg"' class="img-circle img-responsive">
                                     </div>
-                                    <!--/First column-->
+
+                                    <div class="col-md-9">
+                                        <h4>Nome usuario</h4>
+                                        <p>{{postagem.conteudo}}</p>                                          
+                                    </div>
+
+                                </div>
+                                <!--/First column-->
 
                             </section>
                             <!--/Section: Team v.3-->
@@ -442,7 +442,7 @@ Pagina de evento especifico
             <link href="css/angular-toastr.css" rel="stylesheet" type="text/css"/>
 
             <script type="text/javascript" src="lib/angular/angular-toastr.tpls.js"></script>
-            
+
             <!-- Aside para quando estiver logado -->
             <script src="js/outros/aside.js" type="text/javascript"></script>
         </div>

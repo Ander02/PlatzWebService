@@ -126,7 +126,7 @@
                 <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
 
                     <!--Controls-->
-                    <div class="controls-top controles-slide-mini">
+                    <div class="controls-top controles-slide-mini" ng-if="top15Eventos.length > 1">
                         <a class="btn-floating btn-small btn-warning btn-setas" href="#multi-item-example" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
                         <a class="btn-floating btn-small btn-warning btn-setas" href="#multi-item-example" data-slide="next"><i class="fa fa-chevron-right"></i></a>
                     </div>

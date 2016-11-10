@@ -32,7 +32,7 @@ public class AvaliacaoService {
     private final AvaliacaoController avaliacaoController = new AvaliacaoController();
 
     @POST
-    @Path(value = "/avaliacao")
+    @Path(value = "/avaliar")
     //@PerfilAuth(Perfil.USUARIO)
     @PermitAll
     @Consumes(value = MediaType.APPLICATION_JSON)
@@ -43,13 +43,13 @@ public class AvaliacaoService {
         try {
             // Cadastrar assunto
             avaliacaoController.cadastrar(model);
-
             // Retorna a resposta para o cliente com o Status Code CREATED e o Assunto de Leitura
             return Response.status(Response.Status.CREATED).entity(new AvaliacaoLeitura(model)).build();
 
         } catch (Exception e) {
             // Envia erro pelo console
             System.out.println("Erro: " + e.getMessage());
+            e.printStackTrace();
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao cadastrar avaliação").build();
         }
@@ -110,6 +110,24 @@ public class AvaliacaoService {
     }
 
     @GET
+    @Path(value = "/avaliacao/evento/{idEvento}/usuario/{idUsuario}")
+    @PermitAll
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarPeloEventoEUsuario(@PathParam("idEvento") String idEvento, @PathParam("idUsuario") String idUsuario) {
+        try {
+            AvaliacaoModel model = avaliacaoController.buscarPeloEventoEUsuario(new EventoController().buscarPorId(idEvento), new UsuarioController().buscarPorId(idUsuario));
+
+            //Retorna a lista com um Status Code OK
+            return Response.ok(new AvaliacaoLeitura(model)).build();
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar avaliações").build();
+        }
+
+    }
+
+    @GET
     @Path(value = "/avaliacao/usuario/{id}")
     @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
@@ -133,7 +151,7 @@ public class AvaliacaoService {
     public Response mediaPorEvento(@PathParam("id") String id) {
         try {
             return Response.ok(avaliacaoController.mediaPorEvento(new EventoController().buscarPorId(id))).build();
-            
+
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
