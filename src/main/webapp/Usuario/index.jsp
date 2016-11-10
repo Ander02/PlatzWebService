@@ -97,6 +97,9 @@ index do usuario onde mostra algumas sugestões de eventos
                         <div>
                             <div class="hovereffect">
                                 <img class="img-responsive img-eventoProximo" src="../img/outras/plano-fundo.jpg" alt="">
+                                <div class="ev-cancelado">
+                                        <p>Cancelado</p>
+                                    </div>
                                 <div class="overlay">
                                     <h2>Nome do Evento</h2>
                                     <p> 
@@ -133,6 +136,9 @@ index do usuario onde mostra algumas sugestões de eventos
                             <!--Imagem do evento-->
                             <div class="view overlay hm-white-slight">
                                 <img class="animated pulse" src="http://mdbootstrap.com/images/regular/nature/img%20(75).jpg">
+                                <div class="ev-cancelado">
+                                        <p>Cancelado</p>
+                                    </div>
                                 <a>
                                     <div class="mask"></div>
                                 </a>

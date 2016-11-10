@@ -103,6 +103,9 @@ Ira aparecer todos os eventos que o usuario curtiu
                         <div class="card" ng-if="evento != null">                       
                             <div class="hovereffect">
                                 <img class="img-fluid imagem-evento" ng-src="{{buscarImagemCapa(evento.id)}}" onerror='this.src = "../img/outras/plano-fundo.jpg"' alt="">
+                                <div class="ev-cancelado">
+                                        <p>Cancelado</p>
+                                    </div>
                                 <div class="overlay">
                                     <h2 ng-bind="evento.nome">Nome do Evento</h2>
                                     <p>
@@ -114,6 +117,7 @@ Ira aparecer todos os eventos que o usuario curtiu
                                         </a>
                                     </p>
                                 </div>
+                                 
                             </div>                        
                             <div class="card-block info-evento-curtido">                          
                                 <h4 class="card-title"><a>{{evento.nome}} <i class="fa fa-angle-right"></i></a></h4>
@@ -161,6 +165,7 @@ Ira aparecer todos os eventos que o usuario curtiu
 
     <!-- aside -->
     <script src="../js/outros/aside.js" type="text/javascript"></script>
+    
 
 </body>
 

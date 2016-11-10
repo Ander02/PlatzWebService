@@ -257,7 +257,7 @@ Tela de cadastro de evento
     <!-- /.fim do projeto-->
 
     <!-- SCRIPTS -->
-
+    
     <!-- JQuery -->
     <script type="text/javascript" src="../lib/jquery/jquery-2.2.3.min.js"></script>
 
@@ -269,13 +269,6 @@ Tela de cadastro de evento
 
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="../lib/bootstrap/mdb.min.js"></script>
-
-    <!--data e horario (iniciando) -->
-    <script src="../lib/bootstrap/dataehorario.js" type="text/javascript"></script>
-
-    <script src="../lib/bootstrap/bootstrap-material-datetimepicker.js" type="text/javascript"></script>
-
-    <script src="../js/outros/desabilitarPreco.js" type="text/javascript"></script>
 
     <!-- link Angular animate -->
     <script src="../lib/angular/angular-animate.js" type="text/javascript"></script>
@@ -289,8 +282,16 @@ Tela de cadastro de evento
     <!-- aside -->
     <script src="../js/outros/aside.js" type="text/javascript"></script>
 
+    <!-- Desabilitar o preço -->
+    <script src="../js/outros/desabilitarPreco.js" type="text/javascript"></script>
+
+    <!--data e horario (iniciando) -->
+    <script src="../lib/bootstrap/bootstrap-material-datetimepicker.js" type="text/javascript"></script>
+
+    <script src="../lib/bootstrap/dataehorario.js" type="text/javascript"></script>
+
     <script src="../lib/jquery/jquery.mask.min.js" type="text/javascript"></script>
-    
+
     <link href="../css/bootstrap/isteven-multi-select.css" rel="stylesheet" type="text/css"/>
 
     <script src="../lib/angular/isteven-multi-select.js" type="text/javascript"></script>

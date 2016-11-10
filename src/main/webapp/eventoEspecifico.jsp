@@ -96,6 +96,9 @@ Pagina de evento especifico
                         <div class="col-lg-12 col-md-4 col-sm-6 col-xs-12 imagem-evento-especifico">
                             <div class="hovereffect">
                                 <img class="img-responsive" ng-src="{{imagemCapa}}" onerror="this.src='img/placeholder.png'" >
+                                <div class="ev-cancelado">
+                                        <p>Cancelado</p>
+                                    </div>
                                 <div class="overlay">
                                     <h2>Curta Nossos Eventos</h2>
                                     <p> 
@@ -170,6 +173,12 @@ Pagina de evento especifico
                                         <a class="btn btn-warning btn-rota ">
                                             <i class="fa fa-photo left animated bounceInDown "></i>
                                             <span class="hidden-md-down ">fotos</span>
+                                        </a></button>
+                                    
+                                    <button type="button" >
+                                        <a class="btn btn-default" >
+                                            <i class="fa fa-edit left animated bounceInDown "></i>
+                                            <span class="hidden-md-down ">Editar Evento</span>
                                         </a></button>
                                 </div>
                             </div>

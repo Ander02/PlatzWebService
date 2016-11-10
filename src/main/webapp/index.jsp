@@ -28,10 +28,7 @@
         <link rel="icon" href="img/logo.png">
 
         <!-- script com o arquivo do mapa -->
-        <script type="text/javascript"
-        src="http://maps.google.com/maps/api/js?key=AIzaSyBdWHheIGYeuOEDTS4iYFI1lbIbq7-W7Hw"></script>
-
-        <script src="js/outros/mapa-index.js"></script>
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyBdWHheIGYeuOEDTS4iYFI1lbIbq7-W7Hw"></script>
 
         <!-- angular app script -->
         <script type="text/javascript" src="js/app.js"></script>
@@ -41,11 +38,12 @@
         <script src="js/services/loginService.js" type="text/javascript"></script>
 
         <script src="js/controller/loginController.js" type="text/javascript"></script>
+        <script src="lib/angular/ng-map.min.js" type="text/javascript"></script>
 
         <script src="js/controller/eventosController.js" type="text/javascript"></script>
     </head>
 
-    <body onload="initialize()" class="hidden-sn blue-skin">
+    <body class="hidden-sn blue-skin">
 
 
         <%
@@ -70,7 +68,7 @@
             <ng-include ng-if="conta.perfil === 'Empresa'" src="'View/nav-empresa.html'"  ></ng-include>
             <ng-include ng-if="conta.perfil === 'Usuario'" src="'View/nav-usuario.html'"  ></ng-include>
         </div>
-        
+
         <div ng-controller="eventosController">
             <div class="slider-index">
                 <!--Carousel Wrapper-->
@@ -143,6 +141,9 @@
                             <div class="col-md-4" ng-repeat="evento in eventosMiniSlide track by $index">
                                 <div class="card img-mini-slide" ng-if="evento != null">
                                     <img class="img-fluid " ng-src="{{buscarImagemCapa(evento.id)}}" onerror="this.src='img/logo.png'" alt="Card image cap">
+                                    <div class="ev-cancelado">
+                                        <p>Cancelado</p>
+                                    </div>
                                     <div class="card-block">
                                         <h4 class="card-title">{{evento.nome}}</h4>
                                         <h5><i class="fa fa-building-o animated bounceInDown"></i> {{evento.empresa.nomeFantasia}}</h5>
@@ -172,10 +173,9 @@
             </div>
             <!-- /. mapa -->
 
+
             <ng-include src="'View/footer.html'"></ng-include>
             <ng-include src="'View/footer-index.html'"></ng-include>
-
-
 
 
             <!-- /Start your project here-->
@@ -197,10 +197,11 @@
 
             <!-- link Angular -->
             <script src="lib/angular/angular-animate.js" type="text/javascript"></script>
-            <!-- link Angular -->
             <link href="css/angular-toastr.css" rel="stylesheet" type="text/css"/>
             <script type="text/javascript" src="lib/angular/angular-toastr.tpls.js"></script>
             <script src="js/outros/aside.js" type="text/javascript"></script>
+            <script src="js/outros/mapa-index.js"></script>
+
         </div>
 
     </body>

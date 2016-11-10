@@ -81,6 +81,9 @@ considerada pagina de eventos que a empresa postou
             <div class="card">
                 <div class="hovereffect">
                     <img class=" img-responsive " ng-src="{{buscarImagemCapa(evento.id)}}" onerror = "this.src = '../img/placeholder.png'"  alt="Imagem do Evento" >
+                    <div class="ev-cancelado">
+                                        <p>Cancelado</p>
+                                    </div>
                     <!--<img class=" img-responsive " src="../img/outras/plano-fundo.jpg" alt="Imagem do Evento" >-->
                     <div class="overlay">
                         <h2>{{evento.nome}}</h2>
@@ -110,6 +113,7 @@ considerada pagina de eventos que a empresa postou
                 <p><i class="fa fa-calendar animated bounceInDown"></i> {{evento.dataInicio}} </p>
                 <p><i class="fa fa-map-marker animated bounceInDown"></i> {{evento.endereco.bairro}}, {{evento.endereco.cidade.nome}} - {{evento.endereco.cidade.estado.uf}} </p>
                 <p><a class="btn btn-warning " href="../eventoEspecifico.jsp?evento={{evento.id}}" role="button">Ver Mais Detalhes &raquo;</a></p>
+                <p><a class="btn btn-default " href="../Empresa/editarEvento.jsp" role="button">Editar Evento</a></p>
             </div>
         </div> <!-- /. div col-md-3 evento -->       
     </div><!-- /. div content -->
@@ -139,9 +143,6 @@ considerada pagina de eventos que a empresa postou
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="../lib/bootstrap/mdb.min.js"></script>
 
-    <!-- Paginação da tabela -->
-    <script type="text/javascript" src="../js/outros/paginacao-empresa.js"></script>
-
     <!-- link Angular animate -->
     <script src="../lib/angular/angular-animate.js" type="text/javascript"></script>
 
@@ -153,6 +154,7 @@ considerada pagina de eventos que a empresa postou
 
     <!-- aside -->
     <script src="../js/outros/aside.js" type="text/javascript"></script>
+    
 
 </body>
 

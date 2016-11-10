@@ -96,6 +96,9 @@ pagina onde é retornada a busca de eventos por uma unica determinada categoria
                                 <div class="mask"></div>
                             </a>
                         </div>
+                        <div class="ev-cancelado">
+                                        <p>Cancelado</p>
+                                    </div>
                         <!--/.Card image-->
 
                         <!--Card content-->
