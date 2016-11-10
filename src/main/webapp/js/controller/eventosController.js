@@ -50,8 +50,10 @@ app.controller("eventosController", function ($scope, $http, toastr, loginServic
         var geocoder = new google.maps.Geocoder();
         $http.get(webService + "/eventos/top/" + 10).then(function (response) {
             this.eventosDestaque = response.data;
+            self = this;
             // Geocoder
             for (var i = 0; i < this.eventosDestaque.length; i++) {
+                self.cont = i;
                 geocoder.geocode({
                     'address': this.eventosDestaque[i].endereco.cep
                 }, function (results, status) {
@@ -69,12 +71,14 @@ app.controller("eventosController", function ($scope, $http, toastr, loginServic
                             icon: 'css/icon/pointer2.png'
 
                         });
-
                         // Janela de Informações
                         var infowindow = new google.maps.InfoWindow({
-                            content: "<h4>Nome:"+ eventosDestaque[i].nome +" </h4>"
+                            content: "<h4 class='card-title'>" + self.eventosDestaque[self.cont].nome + "</h4>" +
+                                    "<h5><i class='fa fa-building-o animated bounceInDown'></i>" + self.eventosDestaque[self.cont].empresa.nomeFantasia + "</h5>" +
+                                    "<h6><i class='fa fa-calendar animated bounceInDown'></i>" + self.eventosDestaque[self.cont].dataInicio + "</h6>" +
+                                    "<h6><i class='fa fa-map-marker animated bounceInDown'></i>" + self.eventosDestaque[self.cont].endereco.rua + " - " + self.eventosDestaque[self.cont].endereco.bairro + "</h6>" +
+                                    "<h6><a class='btn btn-warning' href='eventoEspecifico.jsp?evento=" + self.eventosDestaque[self.cont].id + "' role='button'>Ver Mais Detalhes &raquo;</a></h6>"
                         });
-
 
                         //Evento de Click no marker
                         marker.addListener("click", function () {
