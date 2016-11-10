@@ -39,6 +39,14 @@ public class DataUtil {
         }
     }
 
+    public String converterDataSemHoraString(Date data) {
+        if (data != null) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            return dateFormat.format(data);
+        }
+        return null;
+    }
+
     public String dataSemPontuacao(Date date) {
 
         if (date != null) {
@@ -53,12 +61,13 @@ public class DataUtil {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(data);
         calendar.add(Calendar.DAY_OF_MONTH, dias);
-        return calendar.getTime();        
+        return calendar.getTime();
     }
+
     public Date adicionaMinutos(int minutos, Date data) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(data);
         calendar.add(Calendar.MINUTE, minutos);
-        return calendar.getTime();        
+        return calendar.getTime();
     }
 }

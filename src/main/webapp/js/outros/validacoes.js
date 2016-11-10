@@ -2,6 +2,7 @@
 $('#conta-empresa-telefone1').mask('(00) 0000-00009');
 $('#conta-empresa-telefone2').mask('(00) 0000-00009');
 $('#conta-empresa-cnpj').mask('00.000.000/0000-00', {reverse: true});
+$('#conta-empresa-cep').mask('00000-000');
 $('#empresa-cep').mask('00000-000');
 $('#evento-cep').mask('00000-000');
 $('#evento-preco').mask('000.000.000.000.000,00', {reverse: true});

@@ -675,6 +675,11 @@ label.star:before {
     font-size: 1rem;
     cursor: text;
 }
+.md-form .label-perfil-empresa ,.md-form .label-perfil-usuario
+{
+    top: -15px;
+}
+
 #cadastroEmpresa , #cadastroUsuario
 {
     display: none;
