@@ -22,7 +22,9 @@ public class EnderecoModel {
     private String cep;
     private String rua;
     private String bairro;
+    @Length(max = 8, message = "o numero deve ter até 8 digitos")
     private String numero;
+    @Length(max = 15, message = "o complemento deve ter até 15 digitos")
     private String complemento = null;
     @ManyToOne
     private CidadeModel cidade;

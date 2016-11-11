@@ -40,7 +40,7 @@ public class UsuarioModel {
     @Past(message = "A data de nascimento é de uma data do futuro")
     @NotNull(message = "A data de nascimento deve ser informada")
     private Date dataNascimento;
-    @Length(min = 10, max = 11)
+    @Length(min = 10, max = 11, message = "O telefone deve ter entre 10 e 11 caracteres")
     private String telefone;
     @CPF
     private String cpf = null;

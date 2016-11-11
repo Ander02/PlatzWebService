@@ -32,6 +32,7 @@ public class MensagemModel {
     @NotNull(message = "Assunto não pode ser nulo")
     private AssuntoModel assunto;
     @Email(message = "Email inválido")
+    @Length(max = 50, message = "O email deve ter até 50 Caracteres")
     private String email;
     @Temporal(TemporalType.TIMESTAMP)
     private Date visualizado = null;
@@ -39,7 +40,7 @@ public class MensagemModel {
     private Date deletado = null;
     private boolean marcado = false;
     @NotNull
-    @Length(min = 8, max = 512, message = "A mensagem deve ter entre 8 e 512 caracteres")
+    @Length(min = 8, max = 512, message = "A mensagem deve ter entre 8 e 4096 caracteres")
     private String conteudo;
 
     //Construtores

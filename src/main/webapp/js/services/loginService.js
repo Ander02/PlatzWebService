@@ -18,6 +18,7 @@ angular.module("platz").service("loginService", function () {
     this.verificarToken = function ($http, toastr, local, success) {
 
         try {
+
             token = document.getElementById("token").value;
             if (token !== null && token !== "" && local !== "Livre") {
                 console.log(token);
@@ -29,12 +30,14 @@ angular.module("platz").service("loginService", function () {
                     var valido = response.data;
 
                     if (valido == "false") {
+
                         console.log("t isn't valid");
                         permicao = false;
                         logoff($http, toastr);
                         location.href = "/quebraSessao.jsp";
                     } else {
                         console.log("t is valid ");
+
                         $http.get(webService + "/conta/token/" + token, {
                             headers: {
                                 Authorization: "Bearer " + token
@@ -44,6 +47,7 @@ angular.module("platz").service("loginService", function () {
                             conta = response.data;
 
                             if (local === "Livre" || local === conta.perfil) {
+
                                 permicao = true;
                                 success();
                             } else {
@@ -58,12 +62,28 @@ angular.module("platz").service("loginService", function () {
                     }
 
                 }, function (response) {
+
                     console.log("request failed");
+
                     permicao = false;
                     logoff($http, toastr);
                 });
+            } else {
+                if (token !== null && token !== "") {
+                    $http.get(webService + "/conta/token/" + token, {
+                        headers: {
+                            Authorization: "Bearer " + token
+                        }
+                    }).then(function (response) {
+                        conta = response.data;
+                        success();
+                    }, function () {
+                        success();
+                    });
+                }
+
             }
-        } catch (err) {
+        } catch (err) {            
             aviso(toastr, "falha ao manter sessão, por favor logue-se novamente");
             logoff($http, toastr);
             location.href = "/quebraSessao.jsp";

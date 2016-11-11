@@ -29,7 +29,7 @@ public class AvaliacaoController {
         for (AvaliacaoModel model : models) {
             total += model.getNota();
         }
-        if(total==0){
+        if (total == 0) {
             return 0.0;
         }
         return total / models.size();
@@ -41,6 +41,10 @@ public class AvaliacaoController {
 
     public List<AvaliacaoModel> buscarPeloEvento(EventoModel evento) {
         return avaliacaoDao.buscarPorEvento(evento);
+    }
+
+    public AvaliacaoModel buscarPeloEventoEUsuario(EventoModel evento, UsuarioModel usuario) {
+        return avaliacaoDao.buscarPorEventoEUsuario(evento, usuario);
     }
 
     public List<AvaliacaoModel> buscarPeloUsuario(UsuarioModel usuario) {

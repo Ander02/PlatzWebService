@@ -10,35 +10,52 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
             console.log(response.data);
         });
     };
+
     $scope.avaliar = function (nota) {
-        console.log(nota);
+
+        if ($scope.usuario !== null && $scope.usuario !== "" && typeof $scope.usuario !== undefined) {
+            console.log($scope.usuario.id);
+            avaliacao = {
+                nota: nota,
+                eventoId: id,
+                usuarioId: $scope.usuario.id
+            };
+
+            $http.post(webService + "/avaliar", avaliacao, loginService.getHeaders()).then(function (response) {
+                atualizar();
+            }, function () {
+
+            });
+
+        } else {
+            openLoginModal();
+        }
+
+    };
+
+    var openLoginModal = function () {
+        console.log("usuario deslogado");
     };
 
     $scope.listarPostagem = function () {
         $http.get(webService + "/postagens", loginService.getHeaders()).then(function (response) {
-            $scope.postagens = response.data;            
+            $scope.postagens = response.data;
         }, function () {
 
         });
     };
 
-    $scope.imagemPostagem = function (conta) {
+    $scope.buscaUsuario = function () {
+        $http.get(webService + "/usuario/conta/" + $scope.conta.id, loginService.getHeaders()).then(function (response) {
+            $scope.usuario = response.data;
 
-        if (conta.perfil === "Usuario") {
-            console.log("A");
-            $http.get(webService + "/usuario/conta/" + conta.id, loginService.getHeaders()).then(function (response) {
-                console.log("B");
-                console.log(response.data);
-                return webService + "/usuario/imagem/" + response.data.id;
+            $http.get(webService + "/avaliacao/evento/" + id + "/usuario/" + $scope.usuario.id, loginService.getHeaders()).then(function (response) {
+                $scope.notaUsuario = response.data.nota;
             }, function () {
-
             });
-        }
-    };
-    
-    
-    $scope.nomePostagem = function (conta) {
 
+        }, function () {
+        });
     };
 
     $scope.getMedia = function () {
@@ -49,19 +66,24 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
             console.log(response.data);
         });
     };
+
     function atualizar() {
         loginService.verificarToken($http, toastr, "Livre", function () {
             $scope.permicao = loginService.getPermicao();
             $scope.conta = loginService.getConta();
             $scope.token = loginService.getToken();
+            if ($scope.conta.perfil === "Usuario") {
+                $scope.buscaUsuario();
+            }
         });
         $scope.eventoEspecifico();
         $scope.getMedia();
         $scope.listarPostagem();
-
     }
+    ;
 
     window.onload = function () {
+        $scope.usuario = "";
         $scope.permicao = false;
         atualizar();
     };
