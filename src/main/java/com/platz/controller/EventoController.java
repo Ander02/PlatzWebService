@@ -48,7 +48,13 @@ public class EventoController {
     }
 
     public List<EventoModel> buscarPelaCategoria(CategoriaModel model) {
-        return model.getEventos();
+        List<EventoModel> eventos = new ArrayList<>();
+        for (EventoModel evento : model.getEventos()) {
+            if(evento.getCensurado()== null){
+                eventos.add(evento);
+            }
+        }
+        return eventos;
     }
 
     public List<EventoModel> buscarCancelados() {

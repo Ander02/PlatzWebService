@@ -42,4 +42,8 @@ public class PresencaController {
     public List<PresencaModel> buscarPeloConta(ContaModel conta) {
         return presencaDao.buscarPorConta(conta);
     }
+
+    public PresencaModel buscarPeloEventoEConta(EventoModel evento, ContaModel conta) {
+        return presencaDao.buscarPorEventoEConta(evento, conta);
+    }
 }

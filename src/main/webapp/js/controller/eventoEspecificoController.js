@@ -5,17 +5,35 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
 
         $http.get(webService + "/evento/" + id).then(function (response) {
             $scope.evento = response.data;
-            console.log($scope.evento.cancelado );
             $scope.imagemCapa = webService + "/evento/imagemCapa/" + id;
         }, function (response) {
             console.log(response.data);
         });
     };
 
+    $scope.participar = function (partipacao) {
+
+        if ($scope.conta !== null && $scope.conta !== "" && typeof $scope.conta !== 'undefined' && $scope.conta.perfil !== "Administrador") {
+
+            var presenca = {
+                "contaId": $scope.conta.id,
+                "eventoId": id,
+                "tipoPresenca": partipacao
+            };
+
+            $http.post(webService + "/presenca", presenca, loginService.getHeaders()).then(function (response) {
+                atualizar();
+            }, function () {
+
+            });
+        } else {
+            pedidoLogin("Por favor, realize o login como usuario ou empresa para ter acesso a essa funcionalidade");
+        }
+    };
+
     $scope.avaliar = function (nota) {
 
-        if ($scope.usuario !== null && $scope.usuario !== "" && typeof $scope.usuario !== undefined) {
-            console.log($scope.usuario.id);
+        if ($scope.usuario !== null && $scope.usuario !== "" && typeof $scope.usuario !== 'undefined') {
             avaliacao = {
                 nota: nota,
                 eventoId: id,
@@ -29,13 +47,15 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
             });
 
         } else {
-            pedidoLogin();
+            pedidoLogin("Por favor, realize o login como usuario para ter acesso a essa funcionalidade");
         }
 
     };
 
-    var pedidoLogin = function () {
-        generateToastr(toastr, "Por favor, realize o login como usuario para ter acesso a essa funcionalidade", "info", "Realize o login", true, true, 0, 2500);
+    var pedidoLogin = function (mensagem) {
+        toastr.clear();
+        generateToastr(toastr, mensagem, "info", "Realize o login", true, true, 0, 2500);
+        atualizar();
     };
 
     $scope.listarPostagem = function () {
@@ -49,12 +69,26 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
     $scope.buscaUsuario = function () {
         $http.get(webService + "/usuario/conta/" + $scope.conta.id, loginService.getHeaders()).then(function (response) {
             $scope.usuario = response.data;
-
             $http.get(webService + "/avaliacao/evento/" + id + "/usuario/" + $scope.usuario.id, loginService.getHeaders()).then(function (response) {
                 $scope.notaUsuario = response.data.nota;
             }, function () {
             });
+            $scope.buscaParticipacao();
+        }, function () {
+        });
+    };
 
+    $scope.buscaEmpresa = function () {
+        $http.get(webService + "/empresa/conta/" + $scope.conta.id, loginService.getHeaders()).then(function (response) {
+            $scope.empresa = response.data;
+            $scope.buscaParticipacao();
+        }, function () {
+        });
+    };
+
+    $scope.buscaParticipacao = function () {
+        $http.get(webService + "/presenca/evento/" + id + "/conta/" + $scope.conta.id, loginService.getHeaders()).then(function (response) {
+            $scope.participacao = response.data.tipoPresenca;
         }, function () {
         });
     };
@@ -75,6 +109,8 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
             $scope.token = loginService.getToken();
             if ($scope.conta.perfil === "Usuario") {
                 $scope.buscaUsuario();
+            } else if ($scope.conta.perfil === "Empresa") {
+                $scope.buscaEmpresa();
             }
         });
         $scope.eventoEspecifico();

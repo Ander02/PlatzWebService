@@ -102,17 +102,17 @@ Pagina de evento especifico
                                 <div class="overlay">
                                     <h2>Curta Nossos Eventos</h2>
                                     <p> 
-                                        <a class="btn btn-warning-outline">
+                                        <a class="btn btn-warning-outline {{participacao === 'Participarei'?'active':''}}" ng-click="participar(0)">
                                             <i class="fa fa-check left animated bounceInUp "></i>
                                             <span class="hidden-md-down ">Vou</span>
                                         </a>         
                                         <!--Opção de talvez ir-->
-                                        <a class="btn btn-default-outline ">
+                                        <a class="btn  {{participacao === 'Talvez participarei'?'btn-default':'btn-default-outline'}}" ng-click="participar(1)">
                                             <i class="fa fa-minus left animated bounceInUp "></i>
                                             <span class="hidden-md-down ">Talvez</span>
                                         </a>
                                         <!-- Opção de não vou -->
-                                        <a class="btn btn-warning-outline">
+                                        <a class="btn btn-warning-outline {{participacao === 'Não Participarei'?'active':''}}" ng-click="participar(2)">
                                             <i class="fa fa-remove left animated bounceInUp "></i>
                                             <span class="hidden-md-down ">Não vou</span>
                                         </a>
