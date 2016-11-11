@@ -97,8 +97,8 @@ pagina onde é retornada a busca de eventos por uma unica determinada categoria
                             </a>
                         </div>
                         <div class="ev-cancelado">
-                                        <p>Cancelado</p>
-                                    </div>
+                            <p>Cancelado</p>
+                        </div>
                         <!--/.Card image-->
 
                         <!--Card content-->
@@ -157,6 +157,10 @@ pagina onde é retornada a busca de eventos por uma unica determinada categoria
 
         <!-- link Angular Toast-->
         <script type="text/javascript" src="lib/angular/angular-toastr.tpls.js"></script>
+
+        <link href="css/bootstrap/isteven-multi-select.css" rel="stylesheet" type="text/css"/>
+
+        <script src="lib/angular/isteven-multi-select.js" type="text/javascript"></script>
 
         <!-- FIM SCRIPTS -->
     </div>

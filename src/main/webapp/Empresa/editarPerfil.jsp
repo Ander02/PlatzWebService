@@ -142,29 +142,29 @@ and open the template in the editor.
                             <div class="md-form col-md-6">                
                                 <input type="text" id="conta-empresa-razao" class="form-control" required ng-model="empresaEdicaoInfo.razaoSocial"
                                        maxlength="35">
-                                <label for="conta-empresa-razao">Razão Social</label>
+                                <label for="conta-empresa-razao" class=" label-perfil-empresa">Razão Social</label>
                             </div>
                             <div class="md-form col-md-6">  
                                 <input  type="text" id="conta-empresa-nomeFantasia" class="form-control" required ng-model="empresaEdicaoInfo.nomeFantasia"
                                         maxlength="30">
-                                <label for="conta-empresa-nomeFantasia">Nome Fantasia</label>
+                                <label for="conta-empresa-nomeFantasia" class=" label-perfil-empresa">Nome Fantasia</label>
                             </div>
 
                             <div class="md-form col-md-4">                
                                 <input type="text" id="conta-empresa-cnpj" class="form-control" required ng-model="empresaEdicaoInfo.cnpj"
                                        maxlength="18">
-                                <label for="conta-empresa-cnpj">CNPJ</label>
+                                <label for="conta-empresa-cnpj" class=" label-perfil-empresa">CNPJ</label>
                             </div>
 
                             <div class="md-form col-md-4">  
                                 <input  type="text" id="conta-empresa-telefone1" class="form-control" required ng-model="empresaEdicaoInfo.telefone"
                                         maxlength="12">
-                                <label for="conta-empresa-telefone1">Telefone 1</label>
+                                <label for="conta-empresa-telefone1" class=" label-perfil-empresa">Telefone 1</label>
                             </div>
                             <div class="md-form col-md-4">                
                                 <input type="text" id="conta-empresa-telefone2" class="form-control" required ng-model="empresaEdicaoInfo.telefone2"
                                        maxlength="12">
-                                <label for="conta-empresa-telefone2">Telefone 2</label>
+                                <label for="conta-empresa-telefone2" class=" label-perfil-empresa">Telefone 2</label>
                             </div>
                             <div class="md-form col-md-2 btn-cadastro">  
                                 <input  type="submit" id="btn-cadastrar-pessoais" class="form-control btn btn-lg btn-warning-outline" ng-click="alterarInfoEmpresariais()">    
@@ -181,7 +181,7 @@ and open the template in the editor.
 
                             <div class="md-form col-md-2">                
                                 <input type="text" id="conta-empresa-cep" class="form-control" ng-blur="onblurCep()" ng-model="usuarioEdicaoEndereco.endereco.cep" autofocus>
-                                <label for="conta-empresa-cep" id="conta-empresa-cep" >CEP</label>
+                                <label for="conta-empresa-cep" id="conta-empresa-cep" class=" label-perfil-empresa" >CEP</label>
                             </div>
                             <div class="col-md-2 link-cep">
                                 <a title="clique aqui e saiba seu cep" class="text-info"
@@ -189,12 +189,12 @@ and open the template in the editor.
 
                             <div class="md-form col-md-4">  
                                 <input  type="text" id="conta-empresa-numero" class="form-control" ng-model="empresaEdicaoEndereco.endereco.numero">
-                                <label for="conta-empresa-numero">Número</label>
+                                <label for="conta-empresa-numero" class=" label-perfil-empresa">Número</label>
                             </div>
 
                             <div class="md-form col-md-4">                
                                 <input type="text" id="conta-empresa-complemento" class="form-control" ng-model="empresaEdicaoEndereco.endereco.complemento">
-                                <label for="conta-empresa-complemento">Complemento</label>
+                                <label for="conta-empresa-complemento" class=" label-perfil-empresa">Complemento</label>
                             </div>
 
                             <div class="md-form col-md-12">

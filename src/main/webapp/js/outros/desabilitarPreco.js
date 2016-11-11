@@ -7,10 +7,13 @@
 
 var checkboxGratuito = document.getElementById("evento-gratuito");
 var inputPreco = document.getElementById("evento-preco");
+
 checkboxGratuito.addEventListener("change", function (ev) {
+    console.log("inputPreco");
     if (checkboxGratuito.checked) {
         inputPreco.disabled = true;
     } else {
         inputPreco.disabled = false;
     }
 });
+

@@ -95,7 +95,7 @@ public class UsuarioModel {
     }
 
     public String getDataNascimento() {
-        return new DataUtil().converterData(dataNascimento);
+        return new DataUtil().converterDataSemHoraString(dataNascimento);
     }
 
     public void setDataNascimento(String dataNascimento) {
