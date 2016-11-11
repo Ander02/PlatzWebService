@@ -96,8 +96,8 @@ pagina onde é retornada a busca de eventos por uma unica determinada categoria
                                 <div class="mask"></div>
                             </a>
                         </div>
-                        <div class="ev-cancelado">
-                            <p>Cancelado</p>
+                        <div class="{{evento.cancelado === null?'ev-normais':'ev-cancelado'}}">
+                            <p>{{evento.cancelado === null? evento.nome.length < 20? evento.nome:evento.nome :'Cancelado'}}</p>
                         </div>
                         <!--/.Card image-->
 

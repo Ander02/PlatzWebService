@@ -5,6 +5,7 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
 
         $http.get(webService + "/evento/" + id).then(function (response) {
             $scope.evento = response.data;
+            console.log($scope.evento.cancelado );
             $scope.imagemCapa = webService + "/evento/imagemCapa/" + id;
         }, function (response) {
             console.log(response.data);

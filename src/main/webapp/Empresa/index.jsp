@@ -81,9 +81,9 @@ considerada pagina de eventos que a empresa postou
             <div class="card">
                 <div class="hovereffect">
                     <img class=" img-responsive " ng-src="{{buscarImagemCapa(evento.id)}}" onerror = "this.src = '../img/placeholder.png'"  alt="Imagem do Evento" >
-                    <div class="ev-cancelado">
-                                        <p>Cancelado</p>
-                                    </div>
+                    <div class="{{evento.cancelado === null?'ev-normais':'ev-cancelado'}}">
+                        <p>{{evento.cancelado === null? evento.nome.length < 20? evento.nome:evento.nome :'Cancelado'}}</p>
+                    </div>
                     <!--<img class=" img-responsive " src="../img/outras/plano-fundo.jpg" alt="Imagem do Evento" >-->
                     <div class="overlay">
                         <h2>{{evento.nome}}</h2>
@@ -154,7 +154,7 @@ considerada pagina de eventos que a empresa postou
 
     <!-- aside -->
     <script src="../js/outros/aside.js" type="text/javascript"></script>
-    
+
 
 </body>
 
