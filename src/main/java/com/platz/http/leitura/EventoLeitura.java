@@ -1,7 +1,10 @@
 package com.platz.http.leitura;
 
 import com.platz.controller.AvaliacaoController;
+import com.platz.controller.CurtidaController;
+import com.platz.controller.PresencaController;
 import com.platz.model.EventoModel;
+import com.platz.model.TipoPresenca;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -33,6 +36,10 @@ public class EventoLeitura {
     private EnderecoLeitura endereco;
     private double media = 0.0;
     private double mediaArredondada = 0.0;
+    private int ParticiparcaoSim = 0;
+    private int ParticiparcaoTalvez = 0;
+    private int ParticiparcaoNao = 0;
+    private int curtidas = 0;
 
     public EventoLeitura() {
     }
@@ -58,6 +65,10 @@ public class EventoLeitura {
         setEndereco(new EnderecoLeitura(model.getEndereco()));
         setMedia(new AvaliacaoController().mediaPorEvento(model));
         setMediaArredondada(Math.round(getMedia()));
+        setParticiparcaoSim(new PresencaController().buscartipoPresenca(TipoPresenca.SIM, model).size());
+        setParticiparcaoNao(new PresencaController().buscartipoPresenca(TipoPresenca.NAO, model).size());
+        setParticiparcaoTalvez(new PresencaController().buscartipoPresenca(TipoPresenca.TALVEZ, model).size());
+        setCurtidas(new CurtidaController().buscarPeloEvento(model).size());
     }
 
     //Métodos
@@ -233,6 +244,38 @@ public class EventoLeitura {
 
     public void setMediaArredondada(double mediaArredondada) {
         this.mediaArredondada = mediaArredondada;
+    }
+
+    public int getParticiparcaoSim() {
+        return ParticiparcaoSim;
+    }
+
+    public void setParticiparcaoSim(int ParticiparcaoSim) {
+        this.ParticiparcaoSim = ParticiparcaoSim;
+    }
+
+    public int getParticiparcaoTalvez() {
+        return ParticiparcaoTalvez;
+    }
+
+    public void setParticiparcaoTalvez(int ParticiparcaoTalvez) {
+        this.ParticiparcaoTalvez = ParticiparcaoTalvez;
+    }
+
+    public int getParticiparcaoNao() {
+        return ParticiparcaoNao;
+    }
+
+    public void setParticiparcaoNao(int ParticiparcaoNão) {
+        this.ParticiparcaoNao = ParticiparcaoNão;
+    }
+
+    public int getCurtidas() {
+        return curtidas;
+    }
+
+    public void setCurtidas(int curtidas) {
+        this.curtidas = curtidas;
     }
 
 }

@@ -34,7 +34,7 @@ public class PresencaDao extends GenericDao<PresencaModel> {
             entityManager.close();
             return model;
         } catch (Exception e) {
-            e.printStackTrace();            
+            e.printStackTrace();
             return null;
         }
 
@@ -57,6 +57,13 @@ public class PresencaDao extends GenericDao<PresencaModel> {
     public List<PresencaModel> buscarPorTipoPresenca(TipoPresenca tipoPresenca) {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
         List<PresencaModel> lista = entityManager.createQuery("from PresencaModel where tipoPresenca =:tipoPresenca").setParameter("tipoPresenca", tipoPresenca).getResultList();
+        entityManager.close();
+        return lista;
+    }
+
+    public List<PresencaModel> buscarPorTipoPresenca(TipoPresenca tipoPresenca, EventoModel evento) {
+        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
+        List<PresencaModel> lista = entityManager.createQuery("from PresencaModel where tipoPresenca =:tipoPresenca and evento =:evento").setParameter("evento", evento).setParameter("tipoPresenca", tipoPresenca).getResultList();
         entityManager.close();
         return lista;
     }
