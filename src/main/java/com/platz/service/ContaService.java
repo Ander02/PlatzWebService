@@ -8,6 +8,7 @@ import com.platz.model.ContaModel;
 import com.platz.model.Perfil;
 import com.platz.util.PerfilAuth;
 import java.util.List;
+import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -30,7 +31,6 @@ public class ContaService {
 
     @POST
     @Path(value = "/conta")
-    //@PermitAll
     @PerfilAuth(Perfil.ADMINISTRADOR)
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
@@ -250,8 +250,7 @@ public class ContaService {
 
     @GET
     @Path(value = "/conta/token/{token}")
-    //@PerfilAuth({Perfil.ADMINISTRADOR, Perfil.EMPRESA, Perfil.USUARIO})
-    @PermitAll
+    @PerfilAuth({Perfil.ADMINISTRADOR, Perfil.EMPRESA, Perfil.USUARIO})
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloToken(@PathParam("token") String token) {
         ContaModel model = contaController.getConta(token);
@@ -268,8 +267,7 @@ public class ContaService {
 
     @GET
     @Path(value = "/conta/tokenAndroid/{token}")
-    //@PerfilAuth({Perfil.ADMINISTRADOR, Perfil.EMPRESA, Perfil.USUARIO})
-    @PermitAll
+    @PerfilAuth({Perfil.ADMINISTRADOR, Perfil.EMPRESA, Perfil.USUARIO})
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloTokenAndroid(@PathParam("token") String token) {
         ContaModel model = contaController.getContaPorTokenAndroid(token);
@@ -302,7 +300,7 @@ public class ContaService {
 
     @GET
     @Path(value = "/contas/inativos")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+    @DenyAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarInativos() {
 
@@ -324,7 +322,7 @@ public class ContaService {
 
     @GET
     @Path(value = "/contas/ativos")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+    @DenyAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarAtivos() {
 
