@@ -19,11 +19,11 @@ function enviarArquivo($http, arquivo, name, url, token) {
     var formData = new FormData();
     formData.append(name, arquivo);
     console.log(formData);
-    $http.put(url, formData, {        
+    $http.put(url, formData, {
         transformRequest: angular.identity,
         headers: {
             'Content-Type': undefined,
-             Authorization: "Bearer " + token
+            Authorization: "Bearer " + token
         }
     }).success(function (response) {
         console.log("Arquivo Enviado para " + url);
@@ -33,57 +33,57 @@ function enviarArquivo($http, arquivo, name, url, token) {
     });
 }
 /*
-function verificarToken($http, $scope, toastr, sucess) {
-    try {
-
-        var token = document.getElementById("token").value;
-        $scope.token = token;
-        $http.get(webService + "/tokenIsValid/" + token).then(function (response) {
-            var valido = response.data;
-
-            if (valido == "false") {
-                console.log("t isn't valid");
-                $scope.permicao = false;
-                console.log($scope.permicao);
-                logoff($http, toastr, token);
-                location.href = "../login.jsp";
-            } else {
-                console.log("t is valid" + token);
-                $http.get(webService + "/conta/token/" + token).then(function (response) {
-                    $scope.permicao = true;
-                    console.log($scope.permicao);
-                    $scope.conta = response.data;
-                    //console.log($scope.conta);
-                    var regExp = new RegExp("/" + $scope.conta.perfil);
-                    if (!regExp.test(window.location.href)) {
-                        $scope.permicao = false;
-                        console.log($scope.permicao);
-                        $scope.conta = null;
-                        logoff($http, toastr, token);
-                        location.href = "../login.jsp";
-                    } else {
-                    }
-                }, function (response) {
-                    $scope.permicao = false;
-                    console.log($scope.permicao);
-                    logoff($http, toastr, token);
-                    location.href = "../login.jsp";
-                });
-            }
-
-        }, function (response) {
-            console.log("request failed");
-            $scope.permicao = false;
-            console.log($scope.permicao);
-            logoff($http, toastr, token);
-        });
-    } catch (err) {
-        aviso(toastr, "falha ao manter sessão, por favor logue-se novamente");
-        location.href = "../login.jsp";
-        logoff($http, toastr, token);
-    }
-
-}*/
+ function verificarToken($http, $scope, toastr, sucess) {
+ try {
+ 
+ var token = document.getElementById("token").value;
+ $scope.token = token;
+ $http.get(webService + "/tokenIsValid/" + token).then(function (response) {
+ var valido = response.data;
+ 
+ if (valido == "false") {
+ console.log("t isn't valid");
+ $scope.permicao = false;
+ console.log($scope.permicao);
+ logoff($http, toastr, token);
+ location.href = "../login.jsp";
+ } else {
+ console.log("t is valid" + token);
+ $http.get(webService + "/conta/token/" + token).then(function (response) {
+ $scope.permicao = true;
+ console.log($scope.permicao);
+ $scope.conta = response.data;
+ //console.log($scope.conta);
+ var regExp = new RegExp("/" + $scope.conta.perfil);
+ if (!regExp.test(window.location.href)) {
+ $scope.permicao = false;
+ console.log($scope.permicao);
+ $scope.conta = null;
+ logoff($http, toastr, token);
+ location.href = "../login.jsp";
+ } else {
+ }
+ }, function (response) {
+ $scope.permicao = false;
+ console.log($scope.permicao);
+ logoff($http, toastr, token);
+ location.href = "../login.jsp";
+ });
+ }
+ 
+ }, function (response) {
+ console.log("request failed");
+ $scope.permicao = false;
+ console.log($scope.permicao);
+ logoff($http, toastr, token);
+ });
+ } catch (err) {
+ aviso(toastr, "falha ao manter sessão, por favor logue-se novamente");
+ location.href = "../login.jsp";
+ logoff($http, toastr, token);
+ }
+ 
+ }*/
 
 //funções que gerencia os tipo de erro
 function errorManager(erro, status, mensagem) {
@@ -182,5 +182,48 @@ function aviso(toastr, mensagem) {
     });
 }
 
+function generateToastr(toastr, mensagem, tipo, titulo, progrssBar, closeButtton, timeOut, extendTimeOut) {
+    switch (tipo) {
+        case "success":
+            toastr.success(mensagem, titulo, {
+                progressBar: progrssBar,
+                closeButton: closeButtton,
+                timeOut: timeOut,
+                extendTimeOut: extendTimeOut
+            });
+            break;
+        case "info":
+            toastr.info(mensagem, titulo, {
+                progressBar: progrssBar,
+                closeButton: closeButtton,
+                timeOut: timeOut,
+                extendTimeOut: extendTimeOut
+            });
+            break;
+        case "error":
+            toastr.error(mensagem, titulo, {
+                progressBar: progrssBar,
+                closeButton: closeButtton,
+                timeOut: timeOut,
+                extendTimeOut: extendTimeOut
+            });
+            break;
+        case "warning":
+            toastr.warning(mensagem, titulo, {
+                progressBar: progrssBar,
+                closeButton: closeButtton,
+                timeOut: timeOut,
+                extendTimeOut: extendTimeOut
+            });
+            break;
 
-
+        default:
+            toastr.info(mensagem, titulo, {
+                progressBar: progrssBar,
+                closeButton: closeButtton,
+                timeOut: timeOut,
+                extendTimeOut: extendTimeOut
+            });
+            break;
+    }
+}

@@ -31,8 +31,7 @@ public class CurtidaService {
 
     @POST
     @Path(value = "/curtir")
-    //@PerfilAuth(Perfil.USUARIO)
-    @PermitAll
+    @PerfilAuth(Perfil.USUARIO)    
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response curtir(CurtidaCadastro curtida) {
@@ -55,7 +54,7 @@ public class CurtidaService {
 
     @GET
     @Path(value = "/curtidas")
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
         try {
@@ -84,10 +83,8 @@ public class CurtidaService {
 
         //Verifica se a entidade retornada não é nula
         if (model != null) {
-
             //Retorna um Status Code OK com o Assunto de leitura
             return Response.ok(new CurtidaLeitura(model)).build();
-
         }
 
         //Se a entity for nula retorna um Status Code Not Found

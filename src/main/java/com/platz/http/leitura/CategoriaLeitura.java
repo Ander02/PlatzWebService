@@ -23,14 +23,6 @@ public class CategoriaLeitura {
 
     }
 
-    public CategoriaLeitura(String id, String nome, String dataCadastro, String caminhoIcone, String deletado) {
-        setId(id);
-        setNome(nome);
-        setDataCadastro(dataCadastro);
-        setCaminhoIcone(caminhoIcone);
-        setDeletado(deletado);
-    }
-
     public CategoriaLeitura(CategoriaModel model) {
         setId(model.getId());
         setNome(model.getNome());

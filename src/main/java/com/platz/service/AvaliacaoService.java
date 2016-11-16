@@ -10,6 +10,7 @@ import com.platz.model.AvaliacaoModel;
 import com.platz.model.Perfil;
 import com.platz.util.PerfilAuth;
 import java.util.List;
+import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -33,8 +34,7 @@ public class AvaliacaoService {
 
     @POST
     @Path(value = "/avaliar")
-    //@PerfilAuth(Perfil.USUARIO)
-    @PermitAll
+    @PerfilAuth(Perfil.USUARIO)
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(AvaliacaoCadastro avaliacao) {
@@ -57,7 +57,7 @@ public class AvaliacaoService {
 
     @GET
     @Path(value = "/avaliacoes")
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
         try {
@@ -81,7 +81,6 @@ public class AvaliacaoService {
 
         //Verifica se a entidade retornada não é nula
         if (model != null) {
-
             //Retorna um Status Code OK com o Assunto de leitura
             return Response.ok(new AvaliacaoLeitura(model)).build();
 
@@ -110,6 +109,23 @@ public class AvaliacaoService {
     }
 
     @GET
+    @Path(value = "/avaliacao/usuario/{id}")
+    @PermitAll
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarPeloUsuario(@PathParam("id") String id) {
+        try {
+            List<AvaliacaoModel> models = avaliacaoController.buscarPeloUsuario(new UsuarioController().buscarPorId(id));
+
+            //Retorna a lista com um Status Code OK
+            return Response.ok(new AvaliacaoLeitura().converterLista(models)).build();
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar avaliações").build();
+        }
+    }
+
+    @GET
     @Path(value = "/avaliacao/evento/{idEvento}/usuario/{idUsuario}")
     @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
@@ -125,23 +141,6 @@ public class AvaliacaoService {
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar avaliações").build();
         }
 
-    }
-
-    @GET
-    @Path(value = "/avaliacao/usuario/{id}")
-    @PermitAll
-    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public Response buscarPeloUsuario(@PathParam("id") String id) {
-        try {
-            List<AvaliacaoModel> models = avaliacaoController.buscarPeloUsuario(new UsuarioController().buscarPorId(id));
-
-            //Retorna a lista com um Status Code OK
-            return Response.ok(new AvaliacaoLeitura().converterLista(models)).build();
-        } catch (Exception e) {
-            System.out.println("Erro: " + e.getMessage());
-            //Retorna uma BadRequest ao usuário
-            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar avaliações").build();
-        }
     }
 
     @GET
@@ -161,7 +160,7 @@ public class AvaliacaoService {
 
     @PUT
     @Path(value = "/avaliacao/{id}")
-    @PerfilAuth(Perfil.USUARIO)
+    @DenyAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     @Consumes(value = MediaType.APPLICATION_JSON)
     public Response alterar(@PathParam("id") String id, AvaliacaoEdicao avaliacao) {

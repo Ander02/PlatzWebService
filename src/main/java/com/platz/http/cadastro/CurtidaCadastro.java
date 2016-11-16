@@ -15,11 +15,6 @@ public class CurtidaCadastro {
     public CurtidaCadastro() {
     }
 
-    public CurtidaCadastro(String eventoId, String usuarioId) {
-        this.eventoId = eventoId;
-        this.usuarioId = usuarioId;
-    }
-
     public String getEventoId() {
         return eventoId;
     }
