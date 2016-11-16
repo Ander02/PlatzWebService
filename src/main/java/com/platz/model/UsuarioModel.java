@@ -53,13 +53,27 @@ public class UsuarioModel {
     }
 
     public UsuarioModel(UsuarioCadastro usuario) {
-        setConta(new ContaModel(usuario.getConta()));
-        setCpf(usuario.getCpf());
-        setDataNascimento(usuario.getDataNascimento());
-        setImagemPerfil(usuario.getImagemPerfil());
-        setTelefone(usuario.getTelefone());
-        setNome(usuario.getNome());
-        setEndereco(new EnderecoModel(usuario.getEndereco()));
+        if (usuario.getConta() != null) {
+            setConta(new ContaModel(usuario.getConta()));
+        }
+        if (usuario.getCpf() != null && !usuario.getCpf().equals("")) {
+            setCpf(usuario.getCpf());
+        }
+        if (usuario.getDataNascimento() != null && !usuario.getDataNascimento().equals("")) {
+            setDataNascimento(usuario.getDataNascimento());
+        }
+        if (usuario.getImagemPerfil() != null && !usuario.getImagemPerfil().equals("")) {
+            setImagemPerfil(usuario.getImagemPerfil());
+        }
+        if (usuario.getTelefone() != null && !usuario.getTelefone().equals("")) {
+            setTelefone(usuario.getTelefone());
+        }
+        if (usuario.getNome() != null && !usuario.getNome().equals("")) {
+            setNome(usuario.getNome());
+        }
+        if (usuario.getEndereco() != null) {
+            setEndereco(new EnderecoModel(usuario.getEndereco()));
+        }
     }
 
     public String getId() {
