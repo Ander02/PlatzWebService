@@ -40,18 +40,6 @@ public class EmpresaLeitura {
         setEndereco(new EnderecoLeitura(model.getEndereco()));
     }
 
-    public EmpresaLeitura(String id, String cnpj, String nomeFantasia, String razaoSocial, String telefone, String telefone2, String imagemPerfil, String dataCadastro, ContaLeitura conta) {
-        setId(id);
-        setCnpj(cnpj);
-        setNomeFantasia(nomeFantasia);
-        setRazaoSocial(razaoSocial);
-        setTelefone(telefone);
-        setTelefone2(telefone2);
-        setImagemPerfil(imagemPerfil);
-        setDataCadastro(dataCadastro);
-        setConta(conta);
-    }
-
     //Métodos
     public List<EmpresaLeitura> converterLista(List<EmpresaModel> modelList) {
 

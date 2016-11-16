@@ -72,7 +72,7 @@ Pagina de edição de eventos, onde sera possivel cancelar os eventos e editar s
                     <!--Card content-->
                     <div class="card-block text-xs-center">
                         <!--Title-->
-                        <h4 class="card-title"><i class="fa fa-spinner animated rotateIn"></i><strong> Evento</strong></h4>
+                        <h4 class="card-title"><i class="fa fa-calendar-check-o animated rotateIn"></i><strong> Evento</strong></h4>
 
                         <div class="col-md-5">
                             <div class="md-form">

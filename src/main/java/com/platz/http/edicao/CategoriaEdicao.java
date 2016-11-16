@@ -12,16 +12,9 @@ public class CategoriaEdicao {
 
     private String nome;
     private String caminhoIcone;
-    private Date deletado;
 
     //Construtores
     public CategoriaEdicao() {
-    }
-
-    public CategoriaEdicao(String nome, String caminhoIcone, Date deletado) {
-        setNome(nome);
-        setCaminhoIcone(caminhoIcone);
-        setDeletado(deletado);
     }
 
     //Getters and Setters
@@ -39,14 +32,6 @@ public class CategoriaEdicao {
 
     public void setCaminhoIcone(String caminhoIcone) {
         this.caminhoIcone = caminhoIcone;
-    }
-
-    public Date getDeletado() {
-        return deletado;
-    }
-
-    public void setDeletado(Date deletado) {
-        this.deletado = deletado;
     }
 
 }

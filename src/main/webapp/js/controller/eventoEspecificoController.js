@@ -28,13 +28,13 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
             });
 
         } else {
-            openLoginModal();
+            pedidoLogin();
         }
 
     };
 
-    var openLoginModal = function () {
-        console.log("usuario deslogado");
+    var pedidoLogin = function () {
+        generateToastr(toastr, "Por favor, realize o login como usuario para ter acesso a essa funcionalidade", "info", "Realize o login", true, true, 0, 2500);
     };
 
     $scope.listarPostagem = function () {

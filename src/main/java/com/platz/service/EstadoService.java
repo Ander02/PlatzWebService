@@ -27,8 +27,7 @@ public class EstadoService {
 
     @POST
     @Path(value = "/estado")
-    //@DenyAll
-    @PermitAll
+    @DenyAll
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(EstadoCadastro estado) {
@@ -120,7 +119,7 @@ public class EstadoService {
 
     @GET
     @Path(value = "/estados/{nome}")
-    @PermitAll
+    @DenyAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloNome(@PathParam("nome") String nome) {
 

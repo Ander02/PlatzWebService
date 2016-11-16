@@ -134,10 +134,10 @@ Perfil do usuario, onde ele pode alterar as coisas sobre sua conta
                                 <div class="tab-pane fade" id="panel6" role="tabpanel">
                                     <br>
                                     <ul class="list-group">
-                                        <li class="list-group-item"><i class="fa fa-map-pin"></i>CEP: {{usuario.endereco.cep}}</li>
-                                        <li class="list-group-item"><i class="fa fa-map-pin"></i>{{usuario.endereco.rua}}, {{usuario.endereco.numero}} - {{usuario.endereco.bairro}}</li>
+                                        <li class="list-group-item"><i class="fa fa-map-o"></i>CEP: {{usuario.endereco.cep}}</li>
+                                        <li class="list-group-item"><i class="fa fa-map-marker"></i>{{usuario.endereco.rua}}, {{usuario.endereco.numero}} - {{usuario.endereco.bairro}}</li>
                                         <li class="list-group-item" ng-if="usuario.endereco.complemento != null"><i class="fa fa-map-pin"></i>Complemento: {{usuario.endereco.complemento}}</li>
-                                        <li class="list-group-item"><i class="fa fa-map-pin"></i>Cidade: : {{usuario.endereco.cidade.nome}} - {{usuario.endereco.cidade.estado.uf}}</li> 
+                                        <li class="list-group-item"><i class="fa fa-map-marker"></i>Cidade: {{usuario.endereco.cidade.nome}} - {{usuario.endereco.cidade.estado.uf}}</li> 
                                     </ul>
                                 </div><!--/.Panel 2-->                                
                             </div><!-- /.Tab panels -->

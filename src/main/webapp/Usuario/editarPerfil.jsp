@@ -103,11 +103,12 @@ Pagina para a edição do perfil do usuario
                                     <label for="conta-usuario-email" class="label-form" > Email:  <strong>{{usuario.conta.email}}</strong> </label>
                                     <hr/>
                                 </div>
+                                
 
                                 <div class="md-form col-md-6">  
                                     <input type="password" id="conta-usuario-senha" class="form-control" required ng-model="usuarioEdicaoSenha.conta.senha"
                                            maxlength="20">
-                                    <label for="conta-usuario-senha" >Senha</label>
+                                    <label for="conta-usuario-senha"  >Senha</label>
                                 </div>
                                 <div class="md-form col-md-6">  
                                     <input  type="password" id="conta-usuario-confirma-senha" class="form-control" ng-model="usuarioEdicaoSenha.conta.confirmaSenha"
@@ -138,24 +139,24 @@ Pagina para a edição do perfil do usuario
                                 <div class="md-form col-md-6">                
                                     <input type="text" id="conta-usuario-nome" class="form-control" required ng-model="usuarioEdicaoInfo.nome"
                                            maxlength="35">
-                                    <label for="conta-usuario-nome">Nome</label>
+                                    <label for="conta-usuario-nome" class="label-perfil-usuario">Nome</label>
                                 </div>
                                 <div class="md-form col-md-6">  
                                     <input  type="text" id="conta-usuario-cpf" class="form-control" required ng-model="usuarioEdicaoInfo.cpf"
                                             maxlength="30">
-                                    <label for="conta-usuario-cpf">CPF</label>
+                                    <label for="conta-usuario-cpf" class="label-perfil-usuario">CPF</label>
                                 </div>
 
-                                <div class="md-form col-md-4">                
+                                <div class="md-form col-md-6">                
                                     <input type="text" id="conta-usuario-dataNacimento" class="form-control" required ng-model="usuarioEdicaoInfo.dataNascimento"
                                            maxlength="18">
-                                    <label for="conta-usuario-dataNacimento">Data de Nascimento</label>
+                                    <label for="conta-usuario-dataNacimento" class="label-perfil-usuario">Data de Nascimento</label>
                                 </div>
 
-                                <div class="md-form col-md-4">                
+                                <div class="md-form col-md-6">                
                                     <input type="text" id="conta-usuario-celular" class="form-control" required ng-model="usuarioEdicaoInfo.telefone"
                                            maxlength="12">
-                                    <label for="conta-usuario-celular">Celular</label>
+                                    <label for="conta-usuario-celular" class="label-perfil-usuario">Celular</label>
                                 </div>
                                 <div class="md-form col-md-2 btn-cadastro">  
                                     <input  type="submit" id="btn-cadastrar-pessoais" class="form-control btn btn-lg btn-warning-outline" ng-click="alterarInfoPessoais()">                               
@@ -172,25 +173,25 @@ Pagina para a edição do perfil do usuario
 
                                 <div class="md-form col-md-2">                
                                     <input type="text" id="usuario-cep" class="form-control" ng-blur="onblurCep()" ng-model="usuarioEdicaoEndereco.endereco.cep" autofocus>
-                                    <label for="usuario-cep">CEP</label>
+                                    <label for="usuario-cep" class="label-perfil-usuario">CEP</label>
                                 </div>
                                 <div class="col-md-2 link-cep">
                                     <a title="clique aqui e saiba seu cep" class="text-info"
                                        href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blank">Não Sei meu cep</a></div>
 
-                                <div class="md-form col-md-3">  
+                                <div class="md-form col-md-4">  
                                     <input  type="text" id="usuario-numero" class="form-control" ng-model="usuarioEdicaoEndereco.endereco.numero">
-                                    <label for="usuario-numero">Número</label>
+                                    <label for="usuario-numero" class="label-perfil-usuario">Número</label>
                                 </div>
 
-                                <div class="md-form col-md-3">                
+                                <div class="md-form col-md-4">                
                                     <input type="text" id="usuario-complemento" class="form-control" usuarioEdicaoEndereco.endereco.complemento>
-                                    <label for="usuario-complemento">Complemento</label>
+                                    <label for="usuario-complemento" class="label-perfil-usuario">Complemento</label>
                                 </div>
 
                                 <div class="md-form col-md-12">       
                                     <p ng-bind="usuarioEdicaoEndereco.endereco.rua"></p>
-                                    <label for="usuario-rua">Rua</label>
+                                    <label for="usuario-rua" >Rua</label>
                                     <hr>
                                 </div>
 

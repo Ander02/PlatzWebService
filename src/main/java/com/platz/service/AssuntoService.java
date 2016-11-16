@@ -7,7 +7,7 @@ import com.platz.http.leitura.AssuntoLeitura;
 import com.platz.model.AssuntoModel;
 import com.platz.model.Perfil;
 import com.platz.util.PerfilAuth;
-import java.util.List;
+import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -51,10 +51,10 @@ public class AssuntoService {
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao cadastrar assunto").build();
         }
     }
-   
+
     @GET
     @Path(value = "/assuntos")
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
         try {
@@ -119,7 +119,7 @@ public class AssuntoService {
 
     @GET
     @Path(value = "/assuntos/{nome}")
-    @PermitAll
+    @DenyAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloNome(@PathParam("nome") String nome) {
         try {
@@ -157,21 +157,6 @@ public class AssuntoService {
         }
     }
 
-    @DELETE
-    @Path(value = "/assunto/{id}")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
-    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public Response deletar(@PathParam("id") String id) {
-        try {
-            assuntoController.excluir(assuntoController.buscarPorId(id));
-            return Response.status(Response.Status.NO_CONTENT).build();
-
-        } catch (Exception e) {
-            System.out.println("Erro" + e.getMessage());
-            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar assunto").build();
-        }
-    }
-
     @PUT
     @Path(value = "/assunto/recuperar/{id}")
     @PerfilAuth(Perfil.ADMINISTRADOR)
@@ -180,8 +165,22 @@ public class AssuntoService {
         try {
 
             AssuntoModel model = assuntoController.recuperar(assuntoController.buscarPorId(id));
-
             return Response.ok(new AssuntoLeitura(model)).build();
+
+        } catch (Exception e) {
+            System.out.println("Erro" + e.getMessage());
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao recuperar assunto").build();
+        }
+    }
+
+    @DELETE
+    @Path(value = "/assunto/{id}")
+    @PerfilAuth(Perfil.ADMINISTRADOR)
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response deletar(@PathParam("id") String id) {
+        try {
+            assuntoController.excluir(assuntoController.buscarPorId(id));
+            return Response.status(Response.Status.NO_CONTENT).build();
 
         } catch (Exception e) {
             System.out.println("Erro" + e.getMessage());
