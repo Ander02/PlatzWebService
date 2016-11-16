@@ -20,13 +20,6 @@ public class EstadoLeitura {
     public EstadoLeitura() {
     }
 
-    public EstadoLeitura(String id, String nome, String uf, String dataCadastro) {
-        setId(id);
-        setNome(nome);
-        setUf(uf);
-        setDataCadastro(dataCadastro);
-    }
-
     public EstadoLeitura(EstadoModel model) {
         setId(model.getId());
         setNome(model.getNome());

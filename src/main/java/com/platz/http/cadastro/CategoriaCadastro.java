@@ -15,10 +15,6 @@ public class CategoriaCadastro {
     public CategoriaCadastro() {
     }
 
-    public CategoriaCadastro(String nome) {
-        setNome(nome);
-    }
-
     //Getters and Setters
     public String getNome() {
         return nome;

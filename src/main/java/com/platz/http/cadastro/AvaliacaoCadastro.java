@@ -16,12 +16,6 @@ public class AvaliacaoCadastro {
     public AvaliacaoCadastro() {
     }
 
-    public AvaliacaoCadastro(Integer nota, String eventoId, String usuarioId) {
-        setNota(nota);
-        setEventoId(eventoId);
-        setUsuarioId(usuarioId);
-    }
-
     public Integer getNota() {
         return nota;
     }

@@ -21,13 +21,6 @@ public class CurtidaLeitura {
     public CurtidaLeitura() {
     }
 
-    public CurtidaLeitura(String id, boolean curtido, UsuarioLeitura usuario, EventoLeitura evento, String dataCadastro) {
-        setId(id);
-        setCurtido(curtido);
-        setUsuario(usuario);
-        setDataCadastro(dataCadastro);
-    }
-
     public CurtidaLeitura(CurtidaModel model) {
         setId(model.getId());
         setCurtido(model.getCurtido());

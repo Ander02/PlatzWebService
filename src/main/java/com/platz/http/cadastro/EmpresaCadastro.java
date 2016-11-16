@@ -1,6 +1,5 @@
 package com.platz.http.cadastro;
 
-import com.platz.model.Perfil;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -20,16 +19,6 @@ public class EmpresaCadastro {
     private EnderecoCadastro endereco;
 
     public EmpresaCadastro() {
-    }
-
-    public EmpresaCadastro(String cnpj, String nomeFantasia, String razaoSocial, String telefone, String telefone2, String imagemPerfil, ContaCadastro conta) {
-        setCnpj(cnpj);
-        setNomeFantasia(nomeFantasia);
-        setRazaoSocial(razaoSocial);
-        setTelefone(telefone);
-        setTelefone2(telefone2);
-        setImagemPerfil(imagemPerfil);       
-        setConta(conta);
     }
 
     //Getters and Setters
