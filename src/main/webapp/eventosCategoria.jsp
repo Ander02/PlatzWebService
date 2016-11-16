@@ -162,6 +162,9 @@ pagina onde é retornada a busca de eventos por uma unica determinada categoria
 
         <script src="lib/angular/isteven-multi-select.js" type="text/javascript"></script>
 
+        <script src="js/outros/aside.js" type="text/javascript"></script>
+
+
         <!-- FIM SCRIPTS -->
     </div>
 </body>

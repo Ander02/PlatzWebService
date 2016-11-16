@@ -228,17 +228,17 @@
                                 </div>
 
                                 <div class="col-md-12">
-                                    <label for="conta-empresa-rua" class="label-form" ng-if="empresa.endereco.rua!= null">Rua</label>
+                                    <label for="conta-empresa-rua" class="label-form" ng-if="empresa.endereco.rua != null">Rua</label>
                                     <p>{{empresa.endereco.rua}}</p>
                                     <hr>
                                 </div>
-                                <div class="col-md-12" ng-if="empresa.endereco.bairro!= null">
+                                <div class="col-md-12" ng-if="empresa.endereco.bairro != null">
                                     <label for="conta-empresa-bairro" class="label-form">Bairro</label>
                                     <p>{{empresa.endereco.bairro}}</p>   
                                     <hr>
                                 </div>
 
-                                <div class="col-md-12 " ng-if="empresa.endereco.cidade!= null">
+                                <div class="col-md-12 " ng-if="empresa.endereco.cidade != null">
                                     <label for="conta-empresa-cidade" class="label-form">Cidade</label>
                                     <p>{{empresa.endereco.cidade}}</p>   
                                     <hr>
@@ -371,18 +371,18 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-12" ng-if="usuario.endereco.rua!= null">
+                                <div class="col-md-12" ng-if="usuario.endereco.rua != null">
                                     <label for="conta-usuario-rua" class="label-form">Rua</label>
                                     <p>{{usuario.endereco.rua}}</p>
                                     <hr>
                                 </div>
-                                <div class="col-md-12" ng-if="usuario.endereco.bairro!= null" > 
+                                <div class="col-md-12" ng-if="usuario.endereco.bairro != null" > 
                                     <label for="conta-usuario-bairro" class="label-form">Bairro</label>                                    
                                     <p>{{usuario.endereco.bairro}}</p>
                                     <hr>
                                 </div>
 
-                                <div class="col-md-12 " ng-if="usuario.endereco.cidade!= null" >
+                                <div class="col-md-12 " ng-if="usuario.endereco.cidade != null" >
                                     <label for="conta-usuario-cidade"class="label-form" >Cidade</label>
                                     <p>{{usuario.endereco.cidade}}</p>
                                     <hr>
@@ -470,6 +470,7 @@
 
         <script src="js/outros/validacoes.js" type="text/javascript"></script>
 
+        <script src="js/outros/aside.js" type="text/javascript"></script>
 
     </div>
 

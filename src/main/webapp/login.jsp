@@ -36,7 +36,7 @@ pagina de login, onde o usuario é redirecionado se errar o login pela nav
         <script src="js/util.js" type="text/javascript"></script>
 
         <script src="js/services/loginService.js" type="text/javascript"></script>
-        
+
         <!-- Controller -->
         <script src="js/controller/loginController.js" type="text/javascript"></script>
 
@@ -125,6 +125,9 @@ pagina de login, onde o usuario é redirecionado se errar o login pela nav
     <!-- link Angular -->
     <link href="css/angular-toastr.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="lib/angular/angular-toastr.tpls.js"></script>
+
+    <script src="js/outros/aside.js" type="text/javascript"></script>
+
 
 
 

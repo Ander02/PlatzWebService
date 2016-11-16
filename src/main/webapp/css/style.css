@@ -580,10 +580,8 @@ label.star:before {
     content: '\f006';
     font-family: FontAwesome;
 }
-.estrelas
-{
-    margin-top: -16px;
-}
+
+
 /*fim da estilização das estrelas*/
 /*mapa*/
 .mapa-especifico
@@ -860,7 +858,6 @@ label.star:before {
 {
     display: block;
     position: absolute;
-
     top: 50px;
     left: -80px;
     width: 300px;
@@ -883,7 +880,15 @@ label.star:before {
 }
 .ev-cancelado
 {
-     background-color: red;
+    background-color: red;
+}
+
+.curtir-ev a
+{
+    display: block;
+    position: absolute;
+    top: 80%;
+    left:90%;
 }
 
 /**PAGINA DE RANKING*/

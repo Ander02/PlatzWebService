@@ -92,6 +92,16 @@ Pagina de evento especifico
                 <div class="row">    
                     <!--Post data-->
                     <div class="jumbotron caixa-informacao-especifico">
+
+                        <div class="col-md-10" id="section-sem-evento">
+                            <div class="jumbotron animated fadeInUp">
+                                <h1> Este evento foi bloqueado</h1>
+                                <p>Por motivos de inapropriação, os administradores decidiram bloquear este evento. 
+                                    Para mais informações entre em contato com os administradores </p>
+                                <p><a class="btn btn-amber" href="/sobre.jsp">Clique aqui</a></p>
+                            </div>
+                        </div>
+
                         <!-- Imagem do evento -->
                         <div class="col-lg-12 col-md-4 col-sm-6 col-xs-12 imagem-evento-especifico">
                             <div class="hovereffect">
@@ -99,6 +109,14 @@ Pagina de evento especifico
                                 <div class="{{evento.cancelado === undefined? 'ev-normais':'ev-cancelado'}}">
                                     <p>{{evento.cancelado === undefined?evento.nome:'Cancelado'}}</p>
                                 </div>
+
+
+                                <div class="curtir-ev">
+                                    <a class="btn btn-pink">
+                                        <i class="fa fa-heart-o left animated bounceInUp fa-2x "></i> 
+                                    </a> 
+                                </div>
+
                                 <div class="overlay">
                                     <h2>Curta Nossos Eventos</h2>
                                     <p> 
@@ -122,10 +140,18 @@ Pagina de evento especifico
                         </div><!-- /.imagemEventoEspecifico -->
 
                         <div class="col-md-12 informacao-evento-especifico">
+                            <div class="col-md-12">
+                                <div class="col-md-5"></div>
+                                <div class="col-md-2">  <h1 ng-bind="evento.nome"></h1> </div>
+                                <div class="col-md-5"> 
 
-                            <div class="col-md-6">  <h1 ng-bind="evento.nome"></h1> </div>
-                            <div class="col-md-3 estrelas">
-
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="col-md-12 estrelas">
+                                <div class="col-md-6 media-ev">
+                                    <h3>Média: {{media}}</h3>
+                                </div>
                                 <div class="stars">
                                     <form action="">                                
                                         <input class="star star-5" id="star-5-2" type="radio" name="star" ng-click="avaliar(5)" ng-checked=" notaUsuario === 5"/>
@@ -140,9 +166,6 @@ Pagina de evento especifico
                                         <label class="star star-1" for="star-1-2"></label>
                                     </form>
                                 </div> 
-                            </div>
-                            <div class="col-md-3">
-                                <h1>Média: {{media}}</h1>
                             </div>
 
 
@@ -175,12 +198,16 @@ Pagina de evento especifico
                                             <span class="hidden-md-down ">fotos</span>
                                         </a></button>
 
+                                    <<<<<<< HEAD
                                     <button type="button" ng-if="conta.perfil === 'Empresa'">
-                                        <a class="btn btn-default" >
-                                            <i class="fa fa-edit left animated bounceInDown "></i>
-                                            <span class="hidden-md-down ">Editar Evento</span>
-                                        </a>
-                                    </button>
+                                        =======
+                                        <button type="button" >
+                                            >>>>>>> origin/master
+                                            <a class="btn btn-default" >
+                                                <i class="fa fa-edit left animated bounceInDown "></i>
+                                                <span class="hidden-md-down ">Editar Evento</span>
+                                            </a>
+                                        </button>
                                 </div>
                             </div>
                         </div>

@@ -75,13 +75,10 @@ Ira aparecer todos os eventos que o usuario curtiu
         <div class="head-pagina">
             <h1>Eventos</h1>
             <p>
-                pagina dedica aos eventos que foram curtidos ou pelo menos tiveram suas partipações como talvez
+                pagina dedica aos eventos que foram curtidos
             </p>
         </div>
 
-        <div class="head-pagina">
-            <h3>Eu vou</h3>
-        </div>
         <!--Carousel Wrapper-->
         <div class="col-md-1"></div>
         <div id="multi-item-example" class="carousel slide carousel-multi-item col-md-10" data-ride="carousel">

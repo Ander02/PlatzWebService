@@ -122,6 +122,10 @@ Pagina onde ira exibir os eventos, onde sera possivel filtrar os eventos
             <link href="css/bootstrap/isteven-multi-select.css" rel="stylesheet" type="text/css"/>
 
             <script src="lib/angular/isteven-multi-select.js" type="text/javascript"></script>
+            
+                <script src="js/outros/aside.js" type="text/javascript"></script>
+
+            
         </div>
 
     </body>

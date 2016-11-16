@@ -281,6 +281,7 @@ Pagina de edição de eventos, onde sera possivel cancelar os eventos e editar s
 
     <script src="../lib/angular/isteven-multi-select.js" type="text/javascript"></script>
 
+    <script src="../js/outros/aside.js" type="text/javascript"></script>
 
 </body>
 
