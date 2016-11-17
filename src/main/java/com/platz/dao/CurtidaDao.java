@@ -12,6 +12,17 @@ import javax.persistence.EntityManager;
  */
 public class CurtidaDao extends GenericDao<CurtidaModel> {
 
+    @Override
+    public void cadastrar(CurtidaModel curtida) {
+        CurtidaModel ct = this.buscarPorEventoEUsuario(curtida.getUsuario(), curtida.getEvento());
+        if (ct == null) {
+            super.cadastrar(curtida);
+        } else {
+            curtida.setId(ct.getId());
+            super.alterar(curtida);
+        }
+    }
+
     //buscar evento e usuario
     public List<CurtidaModel> buscarPorEvento(EventoModel evento) {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
@@ -28,10 +39,17 @@ public class CurtidaDao extends GenericDao<CurtidaModel> {
     }
 
     public CurtidaModel buscarPorEventoEUsuario(UsuarioModel usuario, EventoModel evento) {
-        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
-        CurtidaModel curtida = (CurtidaModel) entityManager.createQuery("from CurtidaModel where evento =:evento and usuario =:usuario").setParameter("evento", evento).setParameter("usuario", usuario).getSingleResult();
-        entityManager.close();
-        return curtida;      
+        try {
+            EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
+            CurtidaModel curtida = (CurtidaModel) entityManager.createQuery("from CurtidaModel where evento =:evento and usuario =:usuario")
+                    .setParameter("evento", evento).setParameter("usuario", usuario).getSingleResult();
+            entityManager.close();
+            return curtida;
+        } catch (Exception e) {
+            System.out.println("Erro ao buscar Curtida " + e.getMessage());
+            return null;
+        }
+
     }
 
 }

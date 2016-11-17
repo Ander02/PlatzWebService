@@ -20,11 +20,11 @@ import org.bson.types.ObjectId;
 @Entity
 @Table(name = "curtida")
 public class CurtidaModel {
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private ObjectId id;
-
+    
     private Boolean curtido = false;
     @ManyToOne
     @NotNull(message = "indique o evento que sera curtido")
@@ -32,54 +32,55 @@ public class CurtidaModel {
     @ManyToOne
     @NotNull(message = "indique o usuario que esta curtindo")
     private UsuarioModel usuario;
-
+    
     public CurtidaModel() {
     }
-
+    
     public CurtidaModel(CurtidaCadastro curtido) {
         setEvento(new EventoDao().buscarPorId(EventoModel.class, curtido.getEventoId()));
         setUsuario(new UsuarioDao().buscarPorId(UsuarioModel.class, curtido.getUsuarioId()));
+        setCurtido(curtido.isCurtida());
     }
 
     //getters and setters
     public String getId() {
         return id.toHexString();
     }
-
+    
     public void setId(String id) {
         this.id = new ObjectId(id);
     }
-
+    
     public ObjectId getObjectId() {
         return this.id;
     }
-
+    
     public EventoModel getEvento() {
         return evento;
     }
-
+    
     public void setEvento(EventoModel evento) {
         this.evento = evento;
     }
-
+    
     public UsuarioModel getUsuario() {
         return usuario;
     }
-
+    
     public void setUsuario(UsuarioModel usuario) {
         this.usuario = usuario;
     }
-
+    
     public String getDataCadastro() {
         return new DataUtil().converterData(id.getDate());
     }
-
+    
     public Boolean getCurtido() {
         return curtido;
     }
-
+    
     public void setCurtido(Boolean curtido) {
         this.curtido = curtido;
     }
-
+    
 }
