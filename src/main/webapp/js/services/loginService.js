@@ -45,7 +45,7 @@ angular.module("platz").service("loginService", function () {
                         }).then(function (response) {
 
                             conta = response.data;
-
+                                
                             if (local === "Livre" || local === conta.perfil) {
 
                                 permicao = true;
@@ -54,7 +54,7 @@ angular.module("platz").service("loginService", function () {
                                 logoff($http, toastr);
                             }
 
-                        }, function (response) {
+                        }, function (response) {                            
                             permicao = false;
                             logoff($http, toastr);
                             location.href = "/quebraSessao.jsp";
@@ -62,7 +62,6 @@ angular.module("platz").service("loginService", function () {
                     }
 
                 }, function (response) {
-
                     console.log("request failed");
 
                     permicao = false;

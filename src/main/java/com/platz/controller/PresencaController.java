@@ -5,6 +5,7 @@ import com.platz.http.edicao.PresencaEdicao;
 import com.platz.model.ContaModel;
 import com.platz.model.EventoModel;
 import com.platz.model.PresencaModel;
+import com.platz.model.TipoPresenca;
 import java.util.List;
 
 /**
@@ -41,5 +42,17 @@ public class PresencaController {
 
     public List<PresencaModel> buscarPeloConta(ContaModel conta) {
         return presencaDao.buscarPorConta(conta);
+    }
+
+    public PresencaModel buscarPeloEventoEConta(EventoModel evento, ContaModel conta) {
+        return presencaDao.buscarPorEventoEConta(evento, conta);
+    }
+    
+    public List<PresencaModel> buscartipoPresenca(TipoPresenca presenca ){
+        return presencaDao.buscarPorTipoPresenca(presenca);
+    }
+    
+    public List<PresencaModel> buscartipoPresenca(TipoPresenca presenca, EventoModel evento){
+        return presencaDao.buscarPorTipoPresenca(presenca, evento);
     }
 }

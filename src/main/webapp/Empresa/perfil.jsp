@@ -101,33 +101,7 @@
                         </div> <!--/.Card-->                       
                     </div>
 
-                    <!-- Nav tabs -->
-                    <ul class="nav nav-tabs md-pills pills-ins" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#panel11" role="tab"><i class=" fa fa-th-large"></i> Eventos</a>
-                        </li>
-                    </ul>
-                    <!-- Tab panels -->
-                    <div class="tab-content">
-
-                        <!--Panel 1-->
-                        <div class="tab-pane fade in active" id="panel11" role="tabpanel">
-                            <br>                            
-                            <div class="card-group col-md-12">
-                                <div class="col-md-4 evento-perfil-empresa" ng-repeat="evento in eventos">
-                                    <div class="card">                                        
-                                        <div class="img-card-perfil">
-                                            <img class=" img-responsive " ng-src="{{buscarImagemCapa(evento.id)}}" onerror = "this.src = '../img/placeholder.png'" alt="Imagem do Evento" >
-                                        </div><!-- /. div hovereffect  -->
-                                        <h4 class="card-title">{{evento.nome}}</h4>
-                                        <p><i class="fa fa-calendar animated bounceInDown"></i> {{evento.dataInicio}}</p>
-                                        <p><i class="fa fa-map-marker animated bounceInDown"></i> {{evento.endereco.bairro}}, {{evento.endereco.cidade.nome}} - {{evento.endereco.cidade.estado.uf}} </p>
-                                        <p><a class="btn btn-warning " href="../eventoEspecifico.jsp?evento={{evento.id}}" role="button">Ver Mais Detalhes &raquo;</a></p>
-                                    </div>
-                                </div>
-                            </div><!-- /.card group -->
-                        </div><!-- /.painel -->
-                    </div><!--/. tab-content-->                  
+                                
                 </div><!-- jumbtron -->
             </div><!--/First row-->
         </section>

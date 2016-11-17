@@ -33,7 +33,7 @@ public class PresencaService {
 
     @POST
     @Path(value = "/presenca")
-    @PerfilAuth(Perfil.USUARIO)
+    @PerfilAuth({Perfil.USUARIO, Perfil.EMPRESA})
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(PresencaCadastro presenca) {
@@ -134,6 +134,24 @@ public class PresencaService {
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar Presenças").build();
         }
+    }
+
+    @GET
+    @Path(value = "/presenca/evento/{idEvento}/conta/{idConta}")
+    @PermitAll
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarPeloEvento(@PathParam("idEvento") String idEvento,@PathParam("idConta") String idConta ) {
+        try {
+            PresencaModel model = presencaController.buscarPeloEventoEConta(new EventoController().buscarPorId(idEvento), new ContaController().buscarPorId(idConta));
+            
+            //Retorna a lista com um Status Code OK
+            return Response.ok(new PresencaLeitura(model)).build();
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar Presenças").build();
+        }
+
     }
 
     @PUT

@@ -124,10 +124,10 @@ app.controller("eventosController", function ($scope, $http, toastr, loginServic
     };
 
     $scope.listarEventos = function () {
-        $http.get(webService + "/eventos").then(function (response) {
+        $http.get(webService + "/eventos/naoCensurados").then(function (response) {
             $scope.eventos = response.data;
         }, function (response) {
-            //console.log(response.data);
+            console.log(response.data);
         });
     };
 

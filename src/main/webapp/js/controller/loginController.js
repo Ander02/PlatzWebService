@@ -27,7 +27,7 @@ angular.module("platz").controller("loginController", function ($scope, $http, t
         });
     };
 
-    $scope.deslogar = function () {
+    $scope.deslogar = function () {        
         $http.post(webService + "/logoff", null, loginService.getHeaders()).then(function (response) {
             info(toastr, "logoff efetuado");
             location.href = "/quebraSessao.jsp";
@@ -36,11 +36,15 @@ angular.module("platz").controller("loginController", function ($scope, $http, t
     };
 
 
-    $scope.getConta = function () {
-
+    $scope.getConta = function () {        
+        
         var token = document.getElementById("token").value;
         if (token !== null && token !== "") {
-            $http.get(webService + "/conta/token/" + token, loginService.getHeaders()).then(function (response) {
+            $http.get(webService + "/conta/token/" + token, {
+                    headers: {
+                        Authorization: "Bearer " + token
+                    }
+                }).then(function (response) {
                 $scope.conta = response.data;
                 console.log($scope.conta.perfil);
 
@@ -58,7 +62,8 @@ angular.module("platz").controller("loginController", function ($scope, $http, t
                     });
                 }
 
-            }, function () {
+            }, function (response) {
+                console.log(response);
                 $scope.conta = null;
             });
         }

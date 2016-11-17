@@ -133,7 +133,8 @@ public class EventoDao extends GenericDao<EventoModel> {
 
         Date dataProximaSemana = new DataUtil().adicionaDias(dia, new Date());
 
-        List<EventoModel> lista = entityManager.createQuery("from EventoModel where dataInicio between :dataAtual and :dataProximaSemana order by dataInicio").setParameter("dataAtual", new Date()).setParameter("dataProximaSemana", dataProximaSemana).getResultList();
+        List<EventoModel> lista = entityManager.createQuery("from EventoModel where cancelado=:cancelado and dataInicio between :dataAtual and :dataProximaSemana order by dataInicio")
+                .setParameter("dataAtual", new Date()).setParameter("dataProximaSemana", dataProximaSemana).setParameter("cancelado", null).getResultList();
         entityManager.close();
         return lista;
     }

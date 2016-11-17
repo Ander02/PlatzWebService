@@ -854,7 +854,7 @@ label.star:before {
     height: 300px;
     width: 100%;
 }
-.ev-cancelado
+.ev-cancelado , .ev-normais
 {
     display: block;
     position: absolute;
@@ -872,9 +872,17 @@ label.star:before {
     font-size: 24px;
     font-weight: 700;
     color: white;
-    background-color: red;
     border: 1px solid white;;
 }
+.ev-normais
+{
+    background-color: #1abc9c;
+}
+.ev-cancelado
+{
+    background-color: red;
+}
+
 .curtir-ev a
 {
     display: block;
@@ -882,6 +890,7 @@ label.star:before {
     top: 80%;
     left:90%;
 }
+
 /**PAGINA DE RANKING*/
 .section-ranking
 {
