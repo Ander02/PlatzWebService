@@ -31,7 +31,7 @@ public class CurtidaService {
 
     @POST
     @Path(value = "/curtir")
-    @PerfilAuth(Perfil.USUARIO)    
+    @PerfilAuth(Perfil.USUARIO)
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response curtir(CurtidaCadastro curtida) {
@@ -110,7 +110,7 @@ public class CurtidaService {
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar avaliações").build();
         }
     }
-    
+
     @GET
     @Path(value = "/curtidas/usuario/{id}")
     @PermitAll
@@ -130,7 +130,24 @@ public class CurtidaService {
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar avaliações").build();
         }
     }
-    
+
+    @GET
+    @Path(value = "/curtidas/evento/{idEvento}/usuario/{idUsuario}")
+    @PermitAll
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarPeloEventoEUsuario(@PathParam("idEvento") String idEvento, @PathParam("idUsuario") String idusuario) {
+        try {
+            CurtidaModel model = curtidaController.buscarPorEventoEUsuario(new UsuarioController().buscarPorId(idusuario), new EventoController().buscarPorId(idEvento));
+
+            //Retorna a curtida com um Status Code OK
+            return Response.ok(new CurtidaLeitura(model)).build();
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar avaliações").build();
+        }
+    }
+
     @DELETE
     @Path("/descurtir/{id}")
     @PerfilAuth(Perfil.USUARIO)
@@ -151,12 +168,12 @@ public class CurtidaService {
         }
 
     }
-    
+
     @DELETE
     @Path("/descurtir/{idUsuario}/{idEvento}")
     @PerfilAuth(Perfil.USUARIO)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public Response descurtir(@PathParam("idUsuario") String idUsuario,@PathParam("idEvento") String idEvento) {
+    public Response descurtir(@PathParam("idUsuario") String idUsuario, @PathParam("idEvento") String idEvento) {
 
         try {
 
@@ -172,6 +189,5 @@ public class CurtidaService {
         }
 
     }
-
 
 }

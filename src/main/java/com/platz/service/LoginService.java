@@ -104,8 +104,7 @@ public class LoginService {
     }
 
     @GET
-    //@PerfilAuth({Perfil.ADMINISTRADOR, Perfil.EMPRESA, Perfil.USUARIO})
-    @PermitAll
+    @PerfilAuth({Perfil.ADMINISTRADOR, Perfil.EMPRESA, Perfil.USUARIO})    
     @Path("/tokenIsValid/{token}")
     @Produces(MediaType.TEXT_PLAIN)
     public Response tokenIsValid(@PathParam("token") String token) {
@@ -121,8 +120,7 @@ public class LoginService {
     }
 
     @GET
-    //@PerfilAuth({Perfil.ADMINISTRADOR, Perfil.EMPRESA, Perfil.USUARIO})
-    @PermitAll
+    @PerfilAuth({Perfil.ADMINISTRADOR, Perfil.EMPRESA, Perfil.USUARIO})
     @Path("/tokenAndroidIsValid/{token}")
     @Produces(MediaType.TEXT_PLAIN)
     public Response tokenAndroidIsValid(@PathParam("token") String token) {

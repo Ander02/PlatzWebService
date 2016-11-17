@@ -1,4 +1,3 @@
-app.requires.push('ngMap');
 app.controller("eventosController", function ($scope, $http, toastr, loginService) {
 
     $scope.inicializarMapa = function () {

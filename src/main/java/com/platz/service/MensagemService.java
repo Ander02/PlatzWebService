@@ -10,6 +10,7 @@ import com.platz.model.Perfil;
 import com.platz.util.EmailUtil;
 import com.platz.util.PerfilAuth;
 import java.util.List;
+import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -118,7 +119,7 @@ public class MensagemService {
 
     @GET
     @Path(value = "/mensagens/{email}")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+    @DenyAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloEmail(@PathParam("email") String email) {
 
@@ -307,7 +308,7 @@ public class MensagemService {
 
     @GET
     @Path(value = "/mensagens/assunto/{id}")
-    @PerfilAuth(Perfil.ADMINISTRADOR)
+    @DenyAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloAssunto(@PathParam("id") String id) {
 

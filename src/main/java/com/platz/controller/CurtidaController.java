@@ -14,8 +14,7 @@ public class CurtidaController {
 
     private final CurtidaDao curtidosDao = new CurtidaDao();
 
-    public void curtir(CurtidaModel model) {
-        model.setCurtido(true);
+    public void curtir(CurtidaModel model) {        
         curtidosDao.cadastrar(model);
     }
 

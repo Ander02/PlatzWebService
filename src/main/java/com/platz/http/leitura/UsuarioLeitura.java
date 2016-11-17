@@ -1,7 +1,6 @@
 package com.platz.http.leitura;
 
 import com.platz.model.UsuarioModel;
-import com.platz.util.DataUtil;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
