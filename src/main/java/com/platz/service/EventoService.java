@@ -112,7 +112,7 @@ public class EventoService {
 
     @GET
     @Path(value = "/eventos/{nome}")
-    @DenyAll
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloNome(@PathParam("nome") String nome) {
         try {
