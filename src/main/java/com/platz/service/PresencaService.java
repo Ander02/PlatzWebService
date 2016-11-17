@@ -56,7 +56,7 @@ public class PresencaService {
 
     @GET
     @Path(value = "/presencas")
-    @PermitAll
+    @PerfilAuth(Perfil.ADMINISTRADOR)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
         try {
@@ -79,7 +79,6 @@ public class PresencaService {
     @GET
     @Path(value = "/presenca/{id}")
     @PermitAll
-
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloId(@PathParam("id") String id) {
         PresencaModel model = presencaController.buscarPorId(id);
@@ -140,10 +139,10 @@ public class PresencaService {
     @Path(value = "/presenca/evento/{idEvento}/conta/{idConta}")
     @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-    public Response buscarPeloEvento(@PathParam("idEvento") String idEvento,@PathParam("idConta") String idConta ) {
+    public Response buscarPeloEvento(@PathParam("idEvento") String idEvento, @PathParam("idConta") String idConta) {
         try {
             PresencaModel model = presencaController.buscarPeloEventoEConta(new EventoController().buscarPorId(idEvento), new ContaController().buscarPorId(idConta));
-            
+
             //Retorna a lista com um Status Code OK
             return Response.ok(new PresencaLeitura(model)).build();
         } catch (Exception e) {
@@ -173,7 +172,7 @@ public class PresencaService {
 
     @DELETE
     @Path(value = "/presenca/{id}")
-    @PerfilAuth(Perfil.USUARIO)
+    @PerfilAuth({Perfil.USUARIO, Perfil.EMPRESA})
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response excluir(@PathParam("id") String id) {
         try {

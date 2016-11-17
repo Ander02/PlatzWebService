@@ -80,6 +80,8 @@ public class AuthenticationFilter implements ContainerRequestFilter {
                 if (!verificarPermissao(token, perfilSet)) {
                     requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).entity("Acesso negado").build());
                 }
+            } else {
+                requestContext.abortWith(Response.status(Response.Status.NOT_IMPLEMENTED).entity("Acesso negado").build());
             }
         }
     }

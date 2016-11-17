@@ -4,7 +4,7 @@ import com.platz.controller.PerfilController;
 import com.platz.http.leitura.PerfilLeitura;
 import com.platz.model.Perfil;
 import java.util.List;
-import javax.annotation.security.PermitAll;
+import javax.annotation.security.DenyAll;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -22,7 +22,7 @@ public class PerfilService {
 
     @GET
     @Path(value = "/perfis")
-    @PermitAll
+    @DenyAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
         try {

@@ -33,8 +33,7 @@ public class PostagemService {
 
     @POST
     @Path(value = "/postagem")
-    @PermitAll
-    //@PerfilAuth({Perfil.USUARIO, Perfil.EMPRESA})
+    @PerfilAuth({Perfil.USUARIO, Perfil.EMPRESA})
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response cadastrar(PostagemCadastro postagem) {
@@ -58,7 +57,7 @@ public class PostagemService {
 
     @GET
     @Path(value = "/postagens")
-    @PermitAll
+    @PerfilAuth({Perfil.ADMINISTRADOR})
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
         try {
@@ -72,7 +71,7 @@ public class PostagemService {
             return Response.ok(listaDePresenca).build();
 
         } catch (Exception e) {
-            System.out.println("Erro: " + e.getMessage());            
+            System.out.println("Erro: " + e.getMessage());
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar postagem").build();
         }
@@ -118,7 +117,7 @@ public class PostagemService {
 
     @GET
     @Path(value = "/postagem/conta/{id}")
-    @PermitAll
+    @PerfilAuth({Perfil.USUARIO, Perfil.EMPRESA})
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPelaConta(@PathParam("id") String id) {
         try {
