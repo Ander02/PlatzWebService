@@ -127,7 +127,7 @@ app.controller("eventosController", function ($scope, $http, toastr, loginServic
         $http.get(webService + "/eventos/naoCensurados").then(function (response) {
             $scope.eventos = response.data;
         }, function (response) {
-            //console.log(response.data);
+            console.log(response.data);
         });
     };
 

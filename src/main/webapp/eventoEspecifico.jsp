@@ -198,11 +198,7 @@ Pagina de evento especifico
                                             <span class="hidden-md-down ">fotos</span>
                                         </a></button>
 
-                                    <<<<<<< HEAD
-                                    <button type="button" ng-if="conta.perfil === 'Empresa'">
-                                        =======
-                                        <button type="button" >
-                                            >>>>>>> origin/master
+                                    <button type="button" ng-if="conta.perfil === 'Empresa'">                                       
                                             <a class="btn btn-default" >
                                                 <i class="fa fa-edit left animated bounceInDown "></i>
                                                 <span class="hidden-md-down ">Editar Evento</span>
