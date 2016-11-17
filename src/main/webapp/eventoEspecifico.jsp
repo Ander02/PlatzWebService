@@ -92,7 +92,7 @@ Pagina de evento especifico
                     <!--Post data-->
                     <div class="jumbotron caixa-informacao-especifico">
 
-                        <div class="col-md-10" id="section-sem-evento">
+                        <div class="col-md-10" id="section-sem-evento" ng-if="evento.censurado != null">
                             <div class="jumbotron animated fadeInUp">
                                 <h1> Este evento foi bloqueado</h1>
                                 <p>Por motivos de inapropriação, os administradores decidiram bloquear este evento. 
@@ -100,158 +100,159 @@ Pagina de evento especifico
                                 <p><a class="btn btn-amber" href="/sobre.jsp">Clique aqui</a></p>
                             </div>
                         </div>
+                        <div ng-if="evento.censurado == null">
+                            <!-- Imagem do evento -->
+                            <div class="col-lg-12 col-md-4 col-sm-6 col-xs-12 imagem-evento-especifico">
+                                <div class="hovereffect">
+                                    <img class="img-responsive" ng-src="{{imagemCapa}}" onerror="this.src='img/placeholder.png'" >
+                                    <div class="{{evento.cancelado === undefined? 'ev-normais':'ev-cancelado'}}">
+                                        <p>{{evento.cancelado === undefined?evento.nome:'Cancelado'}}</p>
+                                    </div>
 
-                        <!-- Imagem do evento -->
-                        <div class="col-lg-12 col-md-4 col-sm-6 col-xs-12 imagem-evento-especifico">
-                            <div class="hovereffect">
-                                <img class="img-responsive" ng-src="{{imagemCapa}}" onerror="this.src='img/placeholder.png'" >
-                                <div class="{{evento.cancelado === undefined? 'ev-normais':'ev-cancelado'}}">
-                                    <p>{{evento.cancelado === undefined?evento.nome:'Cancelado'}}</p>
+
+                                    <div class="curtir-ev ">
+                                        <a class="btn btn-pink" ng-click="curtir()">
+                                            <i class="fa left animated bounceInUp fa-2x {{curtido?'fa-heart':'fa-heart-o'}}"></i> 
+                                        </a> 
+                                    </div>
+
+                                    <div class="overlay">
+                                        <h2>Curta Nossos Eventos</h2>
+                                        <p> 
+                                            <a class="btn btn-warning-outline {{participacao === 'Participarei'?'active':''}}" ng-click="participar(0)">
+                                                <i class="fa fa-check left animated bounceInUp "></i>
+                                                <span class="hidden-md-down ">Vou</span>
+                                            </a>         
+                                            <!--Opção de talvez ir-->
+                                            <a class="btn  {{participacao === 'Talvez participarei'?'btn-default':'btn-default-outline'}}" ng-click="participar(1)">
+                                                <i class="fa fa-minus left animated bounceInUp "></i>
+                                                <span class="hidden-md-down ">Talvez</span>
+                                            </a>
+                                            <!-- Opção de não vou -->
+                                            <a class="btn btn-warning-outline {{participacao === 'Não Participarei'?'active':''}}" ng-click="participar(2)">
+                                                <i class="fa fa-remove left animated bounceInUp "></i>
+                                                <span class="hidden-md-down ">Não vou</span>
+                                            </a>
+                                        </p> 
+                                    </div><!-- overlay -->
+                                </div><!-- hoverEffect-->
+                            </div><!-- /.imagemEventoEspecifico -->
+
+                            <div class="col-md-12 informacao-evento-especifico">
+                                <div class="col-md-12">
+                                    <div class="col-md-5"></div>
+                                    <div class="col-md-2">  <h1 ng-bind="evento.nome"></h1> </div>
+                                    <div class="col-md-5"> 
+
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="col-md-12 estrelas">
+                                    <div class="col-md-6 media-ev">
+                                        <h3>Média: {{media}}</h3>
+                                    </div>
+                                    <div class="stars">
+                                        <form action="">                                
+                                            <input class="star star-5" id="star-5-2" type="radio" name="star" ng-click="avaliar(5)" ng-checked=" notaUsuario === 5"/>
+                                            <label class="star star-5" for="star-5-2"></label>
+                                            <input class="star star-4" id="star-4-2" type="radio" name="star" ng-click="avaliar(4)" ng-checked=" notaUsuario === 4"/>
+                                            <label class="star star-4" for="star-4-2"></label>
+                                            <input class="star star-3" id="star-3-2" type="radio" name="star" ng-click="avaliar(3)" ng-checked=" notaUsuario === 3"/>
+                                            <label class="star star-3" for="star-3-2"></label>
+                                            <input class="star star-2" id="star-2-2" type="radio" name="star" ng-click="avaliar(2)" ng-checked=" notaUsuario === 2"/>
+                                            <label class="star star-2" for="star-2-2"></label>
+                                            <input class="star star-1" id="star-1-2" type="radio" name="star" ng-click="avaliar(1)" ng-checked=" notaUsuario === 1"/>
+                                            <label class="star star-1" for="star-1-2"></label>
+                                        </form>
+                                    </div> 
                                 </div>
 
 
-                                <div class="curtir-ev">
-                                    <a class="btn btn-pink">
-                                        <i class="fa fa-heart-o left animated bounceInUp fa-2x "></i> 
-                                    </a> 
-                                </div>
+                                <div class="col-md-12">    
 
-                                <div class="overlay">
-                                    <h2>Curta Nossos Eventos</h2>
-                                    <p> 
-                                        <a class="btn btn-warning-outline {{participacao === 'Participarei'?'active':''}}" ng-click="participar(0)">
-                                            <i class="fa fa-check left animated bounceInUp "></i>
-                                            <span class="hidden-md-down ">Vou</span>
-                                        </a>         
-                                        <!--Opção de talvez ir-->
-                                        <a class="btn  {{participacao === 'Talvez participarei'?'btn-default':'btn-default-outline'}}" ng-click="participar(1)">
-                                            <i class="fa fa-minus left animated bounceInUp "></i>
-                                            <span class="hidden-md-down ">Talvez</span>
-                                        </a>
-                                        <!-- Opção de não vou -->
-                                        <a class="btn btn-warning-outline {{participacao === 'Não Participarei'?'active':''}}" ng-click="participar(2)">
-                                            <i class="fa fa-remove left animated bounceInUp "></i>
-                                            <span class="hidden-md-down ">Não vou</span>
-                                        </a>
-                                    </p> 
-                                </div><!-- overlay -->
-                            </div><!-- hoverEffect-->
-                        </div><!-- /.imagemEventoEspecifico -->
+                                    <h3><i class="fa fa-building-o"></i><a href="perfilEmpresa.jsp?empresa={{evento.empresa.id}}" ng-bind="evento.empresa.nomeFantasia"></a></h3>
 
-                        <div class="col-md-12 informacao-evento-especifico">
-                            <div class="col-md-12">
-                                <div class="col-md-5"></div>
-                                <div class="col-md-2">  <h1 ng-bind="evento.nome"></h1> </div>
-                                <div class="col-md-5"> 
-
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="col-md-12 estrelas">
-                                <div class="col-md-6 media-ev">
-                                    <h3>Média: {{media}}</h3>
-                                </div>
-                                <div class="stars">
-                                    <form action="">                                
-                                        <input class="star star-5" id="star-5-2" type="radio" name="star" ng-click="avaliar(5)" ng-checked=" notaUsuario === 5"/>
-                                        <label class="star star-5" for="star-5-2"></label>
-                                        <input class="star star-4" id="star-4-2" type="radio" name="star" ng-click="avaliar(4)" ng-checked=" notaUsuario === 4"/>
-                                        <label class="star star-4" for="star-4-2"></label>
-                                        <input class="star star-3" id="star-3-2" type="radio" name="star" ng-click="avaliar(3)" ng-checked=" notaUsuario === 3"/>
-                                        <label class="star star-3" for="star-3-2"></label>
-                                        <input class="star star-2" id="star-2-2" type="radio" name="star" ng-click="avaliar(2)" ng-checked=" notaUsuario === 2"/>
-                                        <label class="star star-2" for="star-2-2"></label>
-                                        <input class="star star-1" id="star-1-2" type="radio" name="star" ng-click="avaliar(1)" ng-checked=" notaUsuario === 1"/>
-                                        <label class="star star-1" for="star-1-2"></label>
-                                    </form>
-                                </div> 
-                            </div>
+                                    <!--botoes para rota , galeria e comentarios-->
+                                    <div class="social-counters ">
 
 
-                            <div class="col-md-12">    
+                                        <!--calculo de rotas-->
+                                        <button type="button"  data-toggle="modal" data-target="#myModal">
+                                            <a class="btn btn-warning btn-rota ">
+                                                <i class="fa fa-map-marker left animated bounceInDown "></i>
+                                                <span class="hidden-md-down  ">Calcular Rota</span>
+                                            </a></button>              
 
-                                <h3><i class="fa fa-building-o"></i><a href="perfilEmpresa.jsp?empresa={{evento.empresa.id}}" ng-bind="evento.empresa.nomeFantasia"></a></h3>
+                                        <!--Comentarios-->
+                                        <button type="button"  data-toggle="modal" data-target="#myModal2">
+                                            <a class="btn btn-default ">
+                                                <i class="fa fa-comments-o left animated bounceInDown"></i>
+                                                <span class="hidden-md-down ">Comentarios</span>
+                                            </a></button>
 
-                                <!--botoes para rota , galeria e comentarios-->
-                                <div class="social-counters ">
+                                        <!-- galeria de imagens -->
+                                        <button type="button"  data-toggle="modal" data-target="#myModal3">
+                                            <a class="btn btn-warning btn-rota ">
+                                                <i class="fa fa-photo left animated bounceInDown "></i>
+                                                <span class="hidden-md-down ">fotos</span>
+                                            </a></button>
 
-
-                                    <!--calculo de rotas-->
-                                    <button type="button"  data-toggle="modal" data-target="#myModal">
-                                        <a class="btn btn-warning btn-rota ">
-                                            <i class="fa fa-map-marker left animated bounceInDown "></i>
-                                            <span class="hidden-md-down  ">Calcular Rota</span>
-                                        </a></button>              
-
-                                    <!--Comentarios-->
-                                    <button type="button"  data-toggle="modal" data-target="#myModal2">
-                                        <a class="btn btn-default ">
-                                            <i class="fa fa-comments-o left animated bounceInDown"></i>
-                                            <span class="hidden-md-down ">Comentarios</span>
-                                        </a></button>
-
-                                    <!-- galeria de imagens -->
-                                    <button type="button"  data-toggle="modal" data-target="#myModal3">
-                                        <a class="btn btn-warning btn-rota ">
-                                            <i class="fa fa-photo left animated bounceInDown "></i>
-                                            <span class="hidden-md-down ">fotos</span>
-                                        </a></button>
-
-                                    <button type="button" ng-if="conta.perfil === 'Empresa'">                                       
+                                        <button type="button" ng-if="conta.perfil === 'Empresa'">                                       
                                             <a class="btn btn-default" >
                                                 <i class="fa fa-edit left animated bounceInDown "></i>
                                                 <span class="hidden-md-down ">Editar Evento</span>
                                             </a>
                                         </button>
+                                    </div>
                                 </div>
                             </div>
+
+
+                            <!--/.botoes -->
+
+                            <div class="excerpt">
+                                <div class="info-especifico">
+                                    <div class="col-md-6">
+                                        <h3>Informações</h3>
+                                        <p>Data Inicio {{evento.dataInicio}} , Data Termino {{evento.dataFim}}</p>
+                                        <hr/> 
+                                        <p>Lotação Minima: {{evento.lotacaoMin}} , Lotação Maxima: {{evento.lotacaoMax}}</p>
+                                        <hr/>
+                                        <p>Preço: {{evento.preco}}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h3>Endereço</h3>
+                                        <p>Endereço: {{evento.endereco.rua}}, {{evento.endereco.numero}} </p>
+                                        <p ng-if="evento.endereco.cidade.nome == null"> Complemento: {{evento.endereco.complemento}} </p>
+                                        <hr/>
+                                        <p> Bairro: {{evento.endereco.bairro}}, Cidade: {{evento.endereco.cidade.nome}}  - {{evento.endereco.cidade.estado.uf}}  </p>
+                                        <hr/>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 descricao-especifico">
+                                    <h3>Descrição</h3>
+                                    <hr/>
+                                    <p ng-bind="evento.detalhes"></p>
+                                    <hr/>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <!-- mapa com os eventos -->
+                                    <div class="mapa-especifico">
+                                        <div id="map_canvas" ></div>
+                                    </div>
+                                    <!-- /. mapa -->
+
+                                    <div id="directionsPanel"></div>
+                                </div>
+
+
+                            </div>
+
+
                         </div>
-
-
-                        <!--/.botoes -->
-
-                        <div class="excerpt">
-                            <div class="info-especifico">
-                                <div class="col-md-6">
-                                    <h3>Informações</h3>
-                                    <p>Data Inicio {{evento.dataInicio}} , Data Termino {{evento.dataFim}}</p>
-                                    <hr/> 
-                                    <p>Lotação Minima: {{evento.lotacaoMin}} , Lotação Maxima: {{evento.lotacaoMax}}</p>
-                                    <hr/>
-                                    <p>Preço: {{evento.preco}}</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <h3>Endereço</h3>
-                                    <p>Endereço: {{evento.endereco.rua}}, {{evento.endereco.numero}} </p>
-                                    <p ng-if="evento.endereco.cidade.nome == null"> Complemento: {{evento.endereco.complemento}} </p>
-                                    <hr/>
-                                    <p> Bairro: {{evento.endereco.bairro}}, Cidade: {{evento.endereco.cidade.nome}}  - {{evento.endereco.cidade.estado.uf}}  </p>
-                                    <hr/>
-
-                                </div>
-                            </div>
-
-                            <div class="col-md-12 descricao-especifico">
-                                <h3>Descrição</h3>
-                                <hr/>
-                                <p ng-bind="evento.detalhes"></p>
-                                <hr/>
-                            </div>
-
-                            <div class="col-md-12">
-                                <!-- mapa com os eventos -->
-                                <div class="mapa-especifico">
-                                    <div id="map_canvas" ></div>
-                                </div>
-                                <!-- /. mapa -->
-                                
-                                <div id="directionsPanel"></div>
-                            </div>
-
-
-                        </div>
-
-
                     </div>
                     <!--/Post data-->
 

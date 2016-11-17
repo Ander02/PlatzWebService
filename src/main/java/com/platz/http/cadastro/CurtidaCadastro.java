@@ -11,6 +11,7 @@ public class CurtidaCadastro {
 
     private String eventoId;
     private String usuarioId;
+    private boolean curtida;
 
     public CurtidaCadastro() {
     }
@@ -29,6 +30,14 @@ public class CurtidaCadastro {
 
     public void setUsuarioId(String usuarioId) {
         this.usuarioId = usuarioId;
+    }
+
+    public boolean isCurtida() {
+        return curtida;
+    }
+
+    public void setCurtida(boolean curtida) {
+        this.curtida = curtida;
     }
 
 }

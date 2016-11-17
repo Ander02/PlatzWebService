@@ -76,7 +76,6 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
     };
 
     $scope.eventoEspecifico = function () {
-
         $http.get(webService + "/evento/" + id).then(function (response) {
             $scope.evento = response.data;
             $scope.imagemCapa = webService + "/evento/imagemCapa/" + id;
@@ -128,6 +127,27 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
 
     };
 
+    $scope.curtir = function () {
+
+        if ($scope.usuario !== null && $scope.usuario !== "" && typeof $scope.usuario !== 'undefined') {
+            $scope.curtido = !$scope.curtido;
+
+            curtida = {
+                eventoId: id,
+                usuarioId: $scope.usuario.id,
+                curtida: $scope.curtido
+            };
+            $http.post(webService + "/curtir", curtida, loginService.getHeaders()).then(function (response) {
+            }, function () {
+            });
+
+
+
+        } else {
+            pedidoLogin("Por favor, realize o login como usuario para ter acesso a essa funcionalidade");
+        }
+    };
+
     var pedidoLogin = function (mensagem) {
         toastr.clear();
         generateToastr(toastr, mensagem, "info", "Realize o login", true, true, 0, 2500);
@@ -142,11 +162,17 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
         });
     };
 
+
     $scope.buscaUsuario = function () {
         $http.get(webService + "/usuario/conta/" + $scope.conta.id, loginService.getHeaders()).then(function (response) {
             $scope.usuario = response.data;
             $http.get(webService + "/avaliacao/evento/" + id + "/usuario/" + $scope.usuario.id, loginService.getHeaders()).then(function (response) {
                 $scope.notaUsuario = response.data.nota;
+            }, function () {
+            });
+
+            $http.get(webService + "/curtidas/evento/" + id + "/usuario/" + $scope.usuario.id, loginService.getHeaders()).then(function (response) {
+                $scope.curtido = response.data.curtido;
             }, function () {
             });
             $scope.buscaParticipacao();
