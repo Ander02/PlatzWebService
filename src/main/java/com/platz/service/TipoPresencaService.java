@@ -4,7 +4,7 @@ import com.platz.controller.TipoPresencaController;
 import com.platz.http.leitura.TipoPresencaLeitura;
 import com.platz.model.TipoPresenca;
 import java.util.List;
-import javax.annotation.security.PermitAll;
+import javax.annotation.security.DenyAll;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -22,7 +22,7 @@ public class TipoPresencaService {
 
     @GET
     @Path(value = "/tipoPresencas")
-    @PermitAll
+    @DenyAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response listarTodos() {
         try {
