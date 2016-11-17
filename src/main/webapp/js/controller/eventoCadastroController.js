@@ -20,8 +20,8 @@ app.controller("eventoCadastroController", function ($scope, $http, toastr, logi
 
         console.log($scope.evento);
         $scope.evento.empresaId = $scope.empresa.id;
-        $scope.evento.dataInicio = document.getElementById("date-start").value;
-        $scope.evento.dataFim = document.getElementById("date-end").value;
+        $scope.evento.dataInicio = document.getElementById("datetimepicker-start").value;
+        $scope.evento.dataFim = document.getElementById("datetimepicker-end").value;
         $scope.evento.destaque = false;
 
         $http.post(webService + "/evento", $scope.evento, loginService.getHeaders()).then(function (response) {
@@ -108,9 +108,10 @@ app.controller("eventoCadastroController", function ($scope, $http, toastr, logi
     };
 
     window.onload = function () {
-        $scope.permicao = false;
+        $scope.permicao = true;
         atualizar();
         $scope.evento = new Object();
+        
     };
 
 });

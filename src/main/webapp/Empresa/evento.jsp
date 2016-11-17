@@ -19,6 +19,7 @@ Tela de cadastro de evento
 
         <!-- Material Design Bootstrap -->
         <link href="../css/bootstrap/mdb.min.css" rel="stylesheet">
+        <script type="text/javascript" src="../lib/jquery/jquery-2.2.3.min.js"></script>
 
         <!-- Your custom styles (optional) -->
         <link href="../css/style.css" rel="stylesheet">
@@ -46,11 +47,7 @@ Tela de cadastro de evento
         <link rel="icon" href="../img/logo.png">
 
         <!--links para o funcionamento do datetimepicker-->
-        <link href="../css/bootstrap/bootstrap-material-datetimepicker.css" rel="stylesheet" type="text/css"/>
 
-        <script src="../lib/jquery/jquery-1.12.3.min.js" type="text/javascript"></script>
-
-        <script src="../lib/bootstrap/moment-with-locales.js" type="text/javascript"></script>
 
     </head>
 
@@ -78,7 +75,7 @@ Tela de cadastro de evento
     </div>
     <!--Form de cadastro de evento-->
     <div>
-        <form ng-if="permicao">
+        <form >
 
             <div class="col-md-8 corpo-form-cadastro-evento card">
 
@@ -124,23 +121,19 @@ Tela de cadastro de evento
 
                             <div class="col-md-12">
                                 <div class="form-control-wrapper">
-                                    <input type="text" id="date-start" class="form-control floating-label" placeholder="Data de Inicio">
+                                    <input type="text" value="" id="datetimepicker-start" placeholder="YYYY-MM-DD HH:MM:SS" class="linecons-calendar"/>
+
                                 </div>
                             </div>
                         </div> 
                         <div class="col-md-6">                        
                             <div class="col-md-12">
                                 <div class="form-control-wrapper">
-                                    <input type="text" id="date-end" class="form-control floating-label" placeholder="Data de Termino">
+                                    <input type="text" value="" id="datetimepicker-end" placeholder="YYYY-MM-DD HH:MM:SS" class="linecons-calendar"/>
+                                    <p id="p-alerta" style="display: none;">Corrigir data, data de termino deve ser depois da data atual</p>
                                 </div>
                             </div>
                         </div>
-
-                        <!--<div class="col-md-12 ">-->
-                        <!--<label class="label-modificado" for="select-categoria">Selecione uma ou mais categoria</label>-->
-                        <!--                            <select class="form-control select-categoria"  multiple ng-model="evento.categoriasId" 
-                                                            ng-options="categoria.id as categoria.nome for categoria in categorias"  >                                
-                                                    </select>-->
 
                         <div     
                             isteven-multi-select
@@ -259,7 +252,7 @@ Tela de cadastro de evento
     <!-- SCRIPTS -->
 
     <!-- JQuery -->
-    <script type="text/javascript" src="../lib/jquery/jquery-2.2.3.min.js"></script>
+
 
     <!-- Bootstrap tooltips -->
     <script type="text/javascript" src="../lib/bootstrap/tether.min.js"></script>
@@ -282,17 +275,16 @@ Tela de cadastro de evento
     <!-- aside -->
     <script src="../js/outros/aside.js" type="text/javascript"></script>
 
-    <script src="../lib/bootstrap/dataehorario.js" type="text/javascript"></script>
-
     <link href="../css/bootstrap/isteven-multi-select.css" rel="stylesheet" type="text/css"/>
 
     <script src="../lib/angular/isteven-multi-select.js" type="text/javascript"></script>
+    
+    <link href="../lib/jquery/jquery.datetimepicker.min.css" rel="stylesheet" type="text/css"/>
 
-    <!-- Desabilitar o preço -->
-    <script src="../js/outros/desabilitarPreco.js" type="text/javascript"></script>
+    <script src="../lib/jquery/jquery.datetimepicker.full.js" type="text/javascript"></script>
+    
+    <script src="../js/outros/datetimepickerJS.js" type="text/javascript"></script>
 
-    <!--data e horario (iniciando) -->
-    <script src="../lib/bootstrap/bootstrap-material-datetimepicker.js" type="text/javascript"></script>
 
 </body>
 

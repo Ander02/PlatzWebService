@@ -37,6 +37,7 @@
     position: relative;
     text-align: center;    
     cursor: pointer;
+    margin: 50px;
     border: 1px solid #c6c6c6;    
     padding: 1px 8px 1px 8px;    
     font-size: 14px;
@@ -92,6 +93,9 @@
 /* the main checkboxes and helper layer */
 .multiSelect .checkboxLayer {
     background-color: #fff;
+    width: 90%;
+    margin-top: -40px;
+    margin-left: 2%;
     position: absolute;
     z-index: 999;
     border: 1px solid rgba(0, 0, 0, 0.15);
