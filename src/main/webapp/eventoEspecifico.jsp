@@ -52,7 +52,6 @@ Pagina de evento especifico
         <!-- script com o arquivo do mapa -->
         <script type="text/javascript"
         src="http://maps.google.com/maps/api/js?key=AIzaSyBdWHheIGYeuOEDTS4iYFI1lbIbq7-W7Hw"></script>
-        <script src="js/outros/mapa-index.js"></script>
 
     </head>
 
@@ -245,7 +244,8 @@ Pagina de evento especifico
                                     <div id="map_canvas" ></div>
                                 </div>
                                 <!-- /. mapa -->
-
+                                
+                                <div id="directionsPanel"></div>
                             </div>
 
 
@@ -289,14 +289,15 @@ Pagina de evento especifico
                                 <div class="form-group row">
                                     <label for="inputText3" class="col-sm-4 col-form-label">Ponto de Partida</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control input-contato" id="inputText3" placeholder="Rua , Av." required maxlength="50" />
+                                        <input type="text" class="form-control input-contato" id="pontoInicial" placeholder="Rua , Av." required maxlength="50" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputTransporte3" class="col-sm-4 col-form-label">Selecione Um Tipo de Transporte</label>
                                     <div class="col-sm-8">
-                                        <select class="form-control input-contato">
-                                            <option> -- Selecione um Tipo de Transporte --</option>
+                                        <select id="tipoViagemSelect" class="form-control input-contato">
+                                            <option value="DRIVING">Carro</option>
+                                            <option value="TRANSIT">Transporte Público</option>
                                         </select>
                                     </div>
                                 </div>
@@ -307,7 +308,7 @@ Pagina de evento especifico
                         <!--Footer-->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
-                            <button type="button" class="btn btn-default">Calcular Rota</button>
+                            <button type="button" class="btn btn-default" ng-click="calcularRota()" data-dismiss="modal">Calcular Rota</button>
                         </div>
                     </div>
                     <!--/.Content-->
