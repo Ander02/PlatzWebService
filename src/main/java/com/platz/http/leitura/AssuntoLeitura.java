@@ -21,13 +21,6 @@ public class AssuntoLeitura {
     public AssuntoLeitura() {
     }
 
-    public AssuntoLeitura(String id, String nome, String dataCadastro, String deletado) {
-        setId(id);
-        setNome(nome);
-        setDataCadastro(dataCadastro);
-        setDeletado(deletado);
-    }
-
     public AssuntoLeitura(AssuntoModel model) {
         setId(model.getId());
         setNome(model.getNome());
