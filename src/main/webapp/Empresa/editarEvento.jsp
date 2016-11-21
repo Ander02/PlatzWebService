@@ -38,15 +38,31 @@ Pagina de edição de eventos, onde sera possivel cancelar os eventos e editar s
         <!-- link util -->
         <script src="../js/util.js" type="text/javascript"></script>
         <!-- Link Controller -->
-
+        <script src="../js/controller/editarEventoController.js" type="text/javascript"></script>
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="../img/logo.png">
 
     </head>
 
-    <body>
+    <body ng-controller="editarEventoController">
         <!-- inicio do projeto aqui-->
+        <%
+            try {
+                String token = session.getAttribute("token").toString();
+                if (token == null) {
+                    response.sendRedirect("../login.jsp");
+                } else {
+                    out.print("<input type='hidden' id='token' name='token' value ='" + token + "' >");
+                }
+            } catch (Exception e) {
+                System.out.println("Erro ao buscar sessão " + e.getMessage());
+                response.sendRedirect("../login.jsp");
+            }
 
+            String evento = request.getParameter("evento");
+
+            out.print("<input type='hidden' id='idEvento' name='idEvento' value ='" + evento + "' >");
+        %>
 
     <ng-include src="'../View/nav-empresa.html'"></ng-include>
     <div class="espaco"></div>
@@ -67,104 +83,97 @@ Pagina de edição de eventos, onde sera possivel cancelar os eventos e editar s
                         <!--Title-->
                         <h4 class="card-title"><i class="fa fa-calendar-check-o animated rotateIn"></i><strong> Evento</strong></h4>
 
-                        <div class="col-md-5">
+                        <div class="col-md-12">
                             <div class="md-form">
-                                <section title=".squaredFour">
-                                    <!-- .squaredFour -->
-                                    <div class="squaredFour">
-                                        <input type="checkbox" value="None" id="evento-cancelar" name="check"  />
-
-                                    </div>
-                                    <!-- end .squaredFour -->
-                                </section>
-
-                                <label for="evento-cancelar">Cancelar Evento</label>
+                                <p ng-if="evento.cancelado !== undefined"> Evento Cancelado, para editar sua informações Ative-o </p>
+                                <button class="btn btn-amber" ng-click="cancelar_Ativar()"><i class="fa fa-check-square-o"></i>{{evento.cancelado !== undefined?'Reativar o Evento':'Cancelar o Evento'}}</button>
                             </div>
                         </div>
 
-                        <div class="col-md-12">
-                            <label for="cadastro-evento-img" class="label-modificado-imagens">Imagem de Capa</label>
-                            <div class="md-form">                
-                                <input id="cadastro-evento-img-capa" type="file" >
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="md-form">  
-                                <input  type="text" id="evento-nome" class="form-control" required ng-model="evento.nome"
-                                        maxlength="75">
-                                <label for="evento-nome">Nome do Evento</label>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="md-form">                
-                                <textarea id="evento-descricao" class="md-textarea" ng-model="evento.detalhes"></textarea>
-                                <label for="evento-descricao">Descrição</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="md-form">                
-                                <input type="text" id="evento-lotacao-minima" class="form-control" ng-model="evento.lotacaoMin">
-                                <label for="evento-lotacao-minima">Lotação Minima</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="md-form">  
-                                <input type="text" id="evento-lotacao-maxima" class="form-control" ng-model="evento.lotacaoMax">
-                                <label for="evento-lotacao-maxima">Lotação Maxima</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-
+                        <div ng-show="evento.cancelado === undefined">
                             <div class="col-md-12">
-                                <div class="form-control-wrapper">
-                                    <input type="text" value="" id="datetimepicker-start-edit" placeholder="YYYY-MM-DD HH:MM:SS" class="linecons-calendar"/>
-
+                                <label for="cadastro-evento-img" class="label-modificado-imagens">Imagem de Capa</label>
+                                <div class="md-form">                
+                                    <input id="cadastro-evento-img-capa" type="file" >
                                 </div>
                             </div>
-                        </div> 
-                        <div class="col-md-6">                        
                             <div class="col-md-12">
-                                <div class="form-control-wrapper">
-                                    <input type="text" value="" id="datetimepicker-end-edit" placeholder="YYYY-MM-DD HH:MM:SS" class="linecons-calendar"/>
-                                    <p id="p-alerta-edit" style="display: none;">Corrigir data, data de termino deve ser depois da data atual</p>
+                                <div class="md-form">  
+                                    <input  type="text" id="evento-nome" class="form-control" required ng-model="eventoEdicao.nome"
+                                            maxlength="75">
+                                    <label for="evento-nome">Nome do Evento</label>
                                 </div>
                             </div>
-                        </div>
-                     
-                        <div class="col-md-4">
-                            <div class="md-form">                        
-                                <input type="text" id="evento-idade-minima" class="form-control" ng-model="evento.idade">
-                                <label for="evento-idade-minima">Idade Minima</label>
+
+                            <div class="col-md-12">
+                                <div class="md-form">                
+                                    <textarea id="evento-descricao" class="md-textarea" ng-model="eventoEdicao.detalhes"></textarea>
+                                    <label for="evento-descricao">Descrição</label>
+                                </div>
                             </div>
-                        </div>
+                            <div class="col-md-6">
+                                <div class="md-form">                
+                                    <input type="text" id="evento-lotacao-minima" class="form-control" ng-model="eventoEdicao.lotacaoMin">
+                                    <label for="evento-lotacao-minima">Lotação Minima</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="md-form">  
+                                    <input type="text" id="evento-lotacao-maxima" class="form-control" ng-model="eventoEdicao.lotacaoMax">
+                                    <label for="evento-lotacao-maxima">Lotação Maxima</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
 
-                        <div class="col-md-4">
-                            <div class="md-form">   
-                                <section title=".squaredFour">
-                                    <!-- .squaredFour -->
-                                    <div class="squaredFour">
-                                        <input type="checkbox" value="None" id="evento-gratuito" name="check"  />
-
+                                <div class="col-md-12">
+                                    <div class="form-control-wrapper">
+                                        <input type="text" id="datetimepicker-start-edit" placeholder="YYYY-MM-DD HH:MM:SS" class="linecons-calendar" ng-value='eventoEdicao.dataInicio'/>
                                     </div>
-                                    <!-- end .squaredFour -->
-                                </section>
+                                </div>
+                            </div> 
+                            <div class="col-md-6">                        
+                                <div class="col-md-12">
+                                    <div class="form-control-wrapper">
+                                        <input type="text" id="datetimepicker-end-edit" placeholder="YYYY-MM-DD HH:MM:SS" class="linecons-calendar"  ng-value='eventoEdicao.dataFim'/>
+                                        <p id="p-alerta-edit" style="display: none;">Corrigir data, data de termino deve ser depois da data atual</p>
+                                    </div>
+                                </div>
+                            </div>
 
-                                <label for="evento-gratuito">Evento Gratuito</label>
+                            <div class="col-md-4">
+                                <div class="md-form">                        
+                                    <input type="text" id="evento-idade-minima" class="form-control" ng-model="eventoEdicao.idade">
+                                    <label for="evento-idade-minima">Idade Minima</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="md-form">                        
-                                <input type="text"  id="evento-preco" class="form-control" ng-model="evento.preco">
-                                <label for="evento-preco">Preço</label>
-                            </div>
-                        </div>
 
-                        <div class="col-md-12">
-                            <label for="cadastro-evento-imagem-galeria" class="label-modificado-imagens"> Galeria de Imagens sobre o evento, local ..</label>
-                            <div class="md-form">                
-                                <input id="cadastro-evento-imagem-galeria" type="file" multiple >
+                            <div class="col-md-4">
+                                <div class="md-form">   
+                                    <section title=".squaredFour">
+                                        <!-- .squaredFour -->
+                                        <div class="squaredFour">
+                                            <input type="checkbox" value="None" id="evento-gratuito" name="check"  />
+
+                                        </div>
+                                        <!-- end .squaredFour -->
+                                    </section>
+
+                                    <label for="evento-gratuito">Evento Gratuito</label>
+                                </div>
                             </div>
+                            <div class="col-md-4">
+                                <div class="md-form">                        
+                                    <input type="text"  id="evento-preco" class="form-control" ng-model="eventoEdicao.preco">
+                                    <label for="evento-preco">Preço</label>
+                                </div>
+                            </div>
+<!--
+                            <div class="col-md-12">
+                                <label for="cadastro-evento-imagem-galeria" class="label-modificado-imagens"> Galeria de Imagens sobre o evento, local ..</label>
+                                <div class="md-form">                
+                                    <input id="cadastro-evento-imagem-galeria" type="file" multiple >
+                                </div>
+                            </div>-->
                         </div>
                     </div>
                     <!--/.Card content-->
@@ -172,58 +181,60 @@ Pagina de edição de eventos, onde sera possivel cancelar os eventos e editar s
                 </div>
 
                 <div class="col-md-12">
+                    <div ng-show="evento.cancelado === undefined">
 
-                    <!--Card content-->
-                    <div class="card-block text-xs-center">
-                        <!--Title-->
-                        <h4 class="card-title"><i class="fa fa-map-marker animated rotateIn"></i><strong> Endereço</strong></h4>
-                        <div class="col-md-4">
-                            <div class="md-form col-md-8">                
-                                <input type="text" id="evento-cep" class="form-control"  ng-model="evento.endereco.cep" ng-blur="onblurCepEvento()">
-                                <label for="evento-cep">CEP</label>
+                        <!--Card content-->
+                        <div class="card-block text-xs-center">
+                            <!--Title-->
+                            <h4 class="card-title"><i class="fa fa-map-marker animated rotateIn"></i><strong> Endereço</strong></h4>
+                            <div class="col-md-4">
+                                <div class="md-form col-md-8">                
+                                    <input type="text" id="evento-cep" class="form-control"  ng-model="eventoEdicao.endereco.cep" ng-blur="onblurCepEvento()">
+                                    <label for="evento-cep">CEP</label>
+                                </div>
+                                <div class="col-md-4 link-cep"><a title="clique aqui e saiba seu cep" class="text-info">Não Sei meu cep</a></div>
                             </div>
-                            <div class="col-md-4 link-cep"><a title="clique aqui e saiba seu cep" class="text-info">Não Sei meu cep</a></div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="md-form">  
-                                <input  type="text" id="evento-numero" class="form-control">
-                                <label for="evento-numero"   ng-model="evento.endereco.numero">Número</label>
+                            <div class="col-md-4">
+                                <div class="md-form">  
+                                    <input  type="text" id="evento-numero" class="form-control" ng-model="eventoEdicao.endereco.numero">
+                                    <label for="evento-numero">Número</label>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-md-4">
-                            <div class="md-form">                
-                                <input type="text" id="evento-complemento" class="form-control" ng-model="evento.endereco.complemento">
-                                <label for="evento-complemento">Complemento</label>
+                            <div class="col-md-4">
+                                <div class="md-form">                
+                                    <input type="text" id="evento-complemento" class="form-control" ng-model="eventoEdicao.endereco.complemento">
+                                    <label for="evento-complemento">Complemento</label>
+                                </div>
                             </div>
+
+                            <div class="col-md-12">
+                                <label for="evento-rua" class="label-form">Rua</label>
+                                <p>{{eventoEdicao.endereco.rua}}</p>
+                                <hr>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="evento-bairro" class="label-form">Bairro</label>
+                                <p>{{eventoEdicao.endereco.bairro}}</p>   
+                                <hr>
+                            </div>
+
+                            <div class="col-md-12 ">
+                                <label for="evento-cidade" class="label-form">Cidade</label>
+                                <p>{{ eventoEdicao.endereco.cidade}}</p>   
+                                <hr>
+                            </div> 
+
+
+                            <div class="col-md-12">
+                                <button class="btn btn-lg btn-warning" ng-click="editar(eventoEdicao)"><i class="fa fa-check"></i> Editar </button>
+                            </div>
+
                         </div>
-
-                        <div class="col-md-12">
-                            <label for="evento-rua" class="label-form">Rua</label>
-                            <p>{{evento.endereco.rua}}</p>
-                            <hr>
-                        </div>
-
-                        <div class="col-md-12">
-                            <label for="evento-bairro" class="label-form">Bairro</label>
-                            <p>{{evento.endereco.bairro}}</p>   
-                            <hr>
-                        </div>
-
-                        <div class="col-md-12 ">
-                            <label for="evento-cidade" class="label-form">Cidade</label>
-                            <p>{{evento.endereco.cidade}}</p>   
-                            <hr>
-                        </div> 
-
-
-                        <div class="col-md-12">
-                            <button class="btn btn-lg btn-warning" ng-click="cadastrar(evento)"><i class="fa fa-check"></i> Cadastrar</button>
-                        </div>
+                        <!--/.Card content-->
 
                     </div>
-                    <!--/.Card content-->
-
                 </div>
 
 
@@ -264,19 +275,19 @@ Pagina de edição de eventos, onde sera possivel cancelar os eventos e editar s
 
     <!-- Desabilitar o preço -->
     <script src="../js/outros/desabilitarPreco.js" type="text/javascript"></script>
-    
+
     <script src="../lib/jquery/jquery.mask.min.js" type="text/javascript"></script>
-    
+
     <link href="../css/bootstrap/isteven-multi-select.css" rel="stylesheet" type="text/css"/>
 
     <script src="../lib/angular/isteven-multi-select.js" type="text/javascript"></script>
 
     <script src="../js/outros/aside.js" type="text/javascript"></script>
-    
+
     <link href="../lib/jquery/jquery.datetimepicker.min.css" rel="stylesheet" type="text/css"/>
 
     <script src="../lib/jquery/jquery.datetimepicker.full.js" type="text/javascript"></script>
-    
+
     <script src="../js/outros/datetimepickerJS.js" type="text/javascript"></script>
 
 

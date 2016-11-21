@@ -189,6 +189,7 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
     };
 
     $scope.buscaParticipacao = function () {
+
         $http.get(webService + "/presenca/evento/" + id + "/conta/" + $scope.conta.id, loginService.getHeaders()).then(function (response) {
             $scope.participacao = response.data.tipoPresenca;
         }, function () {
@@ -217,7 +218,7 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
         });
         $scope.eventoEspecifico();
         $scope.getMedia();
-        $scope.listarPostagem();
+        // $scope.listarPostagem();
     }
 
     window.onload = function () {

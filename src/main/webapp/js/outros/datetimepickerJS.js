@@ -79,4 +79,5 @@ $("#datetimepicker-end-edit").datetimepicker({
         }
     }
 });
+console.log("oi");
 

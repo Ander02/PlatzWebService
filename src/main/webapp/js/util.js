@@ -1,9 +1,3 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 //função que gerar um delay no codigo
 function sleep(milliseconds) {
     var start = new Date().getTime();

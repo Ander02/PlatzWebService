@@ -36,9 +36,9 @@ public class EventoLeitura {
     private EnderecoLeitura endereco;
     private double media = 0.0;
     private double mediaArredondada = 0.0;
-    private int ParticiparcaoSim = 0;
-    private int ParticiparcaoTalvez = 0;
-    private int ParticiparcaoNao = 0;
+    private int participarcaoSim = 0;
+    private int participarcaoTalvez = 0;
+    private int participarcaoNao = 0;
     private int curtidas = 0;
 
     public EventoLeitura() {
@@ -247,27 +247,27 @@ public class EventoLeitura {
     }
 
     public int getParticiparcaoSim() {
-        return ParticiparcaoSim;
+        return participarcaoSim;
     }
 
     public void setParticiparcaoSim(int ParticiparcaoSim) {
-        this.ParticiparcaoSim = ParticiparcaoSim;
+        this.participarcaoSim = ParticiparcaoSim;
     }
 
     public int getParticiparcaoTalvez() {
-        return ParticiparcaoTalvez;
+        return participarcaoTalvez;
     }
 
     public void setParticiparcaoTalvez(int ParticiparcaoTalvez) {
-        this.ParticiparcaoTalvez = ParticiparcaoTalvez;
+        this.participarcaoTalvez = ParticiparcaoTalvez;
     }
 
     public int getParticiparcaoNao() {
-        return ParticiparcaoNao;
+        return participarcaoNao;
     }
 
     public void setParticiparcaoNao(int ParticiparcaoNão) {
-        this.ParticiparcaoNao = ParticiparcaoNão;
+        this.participarcaoNao = ParticiparcaoNão;
     }
 
     public int getCurtidas() {
