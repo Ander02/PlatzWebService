@@ -85,7 +85,7 @@
                             <!--Caption-->
                             <div class="carousel-caption">
                                 <div class="animated fadeInDown">
-                                    <a class="info-color" href="eventoEspecifico.jsp?evento={{evento3.id}}">
+                                    <a class="info-color-dark" href="eventoEspecifico.jsp?evento={{evento3.id}}">
                                         <h3 class="h3-responsive" ng-bind="evento3.nome"></h3>
                                     </a>
                                     <p ng-bind="evento3.detalhes"></p>
@@ -142,7 +142,7 @@
                                 <div class="card img-mini-slide" ng-if="evento != null">
                                     <img class="img-fluid " ng-src="{{buscarImagemCapa(evento.id)}}" onerror="this.src='img/logo.png'" alt="Card image cap">                                    
                                     <div class="card-block">
-                                        <h4 class="card-title">{{evento.nome}}</h4>
+                                        <h4 class="card-title">{{evento.nome| limitTo:25 }} {{evento.nome.length >= 25 ? '...' : ''}}</h4>
                                         <h5><i class="fa fa-building-o animated bounceInDown"></i> {{evento.empresa.nomeFantasia}}</h5>
                                         <p><i class="fa fa-calendar animated bounceInDown"></i> {{evento.dataInicio}} </p>
                                         <p><i class="fa fa-map-marker animated bounceInDown"></i>{{evento.endereco.cidade.nome}} - {{evento.endereco.cidade.estado.uf}}</p>
