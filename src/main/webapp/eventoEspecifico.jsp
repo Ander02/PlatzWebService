@@ -196,11 +196,10 @@ Pagina de evento especifico
                                                 <i class="fa fa-photo left animated bounceInDown "></i>
                                                 <span class="hidden-md-down ">fotos</span>
                                             </a></button>
-
-                                        <button type="button" ng-if="conta.perfil === 'Empresa'">                                       
-                                            <a class="btn btn-default" >
+                                        <button type="button" ng-if="conta.id === evento.empresa.conta.id">                                       
+                                            <a class="btn btn-default" href="/Empresa/editarEvento.jsp?evento={{evento.id}}">
                                                 <i class="fa fa-edit left animated bounceInDown "></i>
-                                                <span class="hidden-md-down ">Editar Evento</span>
+                                                <span class="hidden-md-down">Editar Evento</span>
                                             </a>
                                         </button>
                                     </div>

@@ -113,7 +113,7 @@ considerada pagina de eventos que a empresa postou
                 <p><i class="fa fa-calendar animated bounceInDown"></i> {{evento.dataInicio}} </p>
                 <p><i class="fa fa-map-marker animated bounceInDown"></i> {{evento.endereco.bairro}}, {{evento.endereco.cidade.nome}} - {{evento.endereco.cidade.estado.uf}} </p>
                 <p><a class="btn btn-warning " href="../eventoEspecifico.jsp?evento={{evento.id}}" role="button">Ver Mais Detalhes &raquo;</a></p>
-                <p><a class="btn btn-default " href="../Empresa/editarEvento.jsp" role="button">Editar Evento</a></p>
+                <p><a class="btn btn-default " href="../Empresa/editarEvento.jsp?evento={{evento.id}}" role="button">Editar Evento</a></p>
             </div>
         </div> <!-- /. div col-md-3 evento -->       
     </div><!-- /. div content -->

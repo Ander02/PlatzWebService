@@ -69,7 +69,7 @@ angular.module("platz").controller("perfilEmpresaController", function ($scope, 
 
     $scope.alterarEndereco = function () {
         console.log($scope.empresaEdicaoEndereco);
-        $http.put(webService + "/empresa/" + $scope.empresaEdicaoEndereco.id, $scope.empresaEdicaoEndereco,loginService.getHeaders()).then(function (response) {
+        $http.put(webService + "/empresa/" + $scope.empresaEdicaoEndereco.id, $scope.empresaEdicaoEndereco, loginService.getHeaders()).then(function (response) {
             sucesso(toastr, "endereço editado com sucesso");
         }, function (response) {
             aviso(toastr, "falha ao editar endereço, por favor tente novamente mais tarde");
@@ -110,7 +110,7 @@ angular.module("platz").controller("perfilEmpresaController", function ($scope, 
             $scope.token = loginService.getToken();
             $scope.buscaEmpresa();
         });
-    };
+    }    
 
     window.onload = function () {
         $scope.permicao = false;

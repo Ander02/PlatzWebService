@@ -53,7 +53,23 @@ Pagina de edição de eventos, onde sera possivel cancelar os eventos e editar s
 
     <body>
         <!-- inicio do projeto aqui-->
+        <%
+            try {
+                String token = session.getAttribute("token").toString();
+                if (token == null) {
+                    response.sendRedirect("../login.jsp");
+                } else {
+                    out.print("<input type='hidden' id='token' name='token' value ='" + token + "' >");
+                }
+            } catch (Exception e) {
+                System.out.println("Erro ao buscar sessão " + e.getMessage());
+                response.sendRedirect("../login.jsp");
+            }
 
+            String evento = request.getParameter("evento");
+
+            out.print("<input type='hidden' id='idEvento' name='idEvento' value ='" + evento + "' >");
+        %>
 
     <ng-include src="'../View/nav-empresa.html'"></ng-include>
     <div class="espaco"></div>
@@ -136,7 +152,7 @@ Pagina de edição de eventos, onde sera possivel cancelar os eventos e editar s
                                 </div>
                             </div>
                         </div>
-                     
+
                         <div class="col-md-4">
                             <div class="md-form">                        
                                 <input type="text" id="evento-idade-minima" class="form-control" ng-model="evento.idade">
@@ -270,13 +286,13 @@ Pagina de edição de eventos, onde sera possivel cancelar os eventos e editar s
     <!-- Desabilitar o preço -->
     <script src="../js/outros/desabilitarPreco.js" type="text/javascript"></script>
 
-     <!--data e horario (iniciando) -->
+    <!--data e horario (iniciando) -->
     <script src="../lib/bootstrap/bootstrap-material-datetimepicker.js" type="text/javascript"></script>
 
     <script src="../lib/bootstrap/dataehorario.js" type="text/javascript"></script>
-    
+
     <script src="../lib/jquery/jquery.mask.min.js" type="text/javascript"></script>
-    
+
     <link href="../css/bootstrap/isteven-multi-select.css" rel="stylesheet" type="text/css"/>
 
     <script src="../lib/angular/isteven-multi-select.js" type="text/javascript"></script>
