@@ -22,6 +22,7 @@ public class EventoEdicao {
     private List<String> categoriasId;
     private List<String> imagensId;
     private Boolean destaque;
+    private EnderecoEdicao endereco;
 
     public EventoEdicao() {
     }
@@ -120,6 +121,14 @@ public class EventoEdicao {
 
     public void setIdade(Integer idade) {
         this.idade = idade;
+    }
+
+    public EnderecoEdicao getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(EnderecoEdicao endereco) {
+        this.endereco = endereco;
     }
 
 }
