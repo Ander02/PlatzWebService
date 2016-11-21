@@ -111,7 +111,7 @@ considerada pagina de eventos que a empresa postou
 
                 <h4 class="card-title">{{evento.nome}}</h4>
                 <p><i class="fa fa-calendar animated bounceInDown"></i> {{evento.dataInicio}} </p>
-                <p><i class="fa fa-map-marker animated bounceInDown"></i> {{evento.endereco.bairro}}, {{evento.endereco.cidade.nome}} - {{evento.endereco.cidade.estado.uf}} </p>
+                <p><i class="fa fa-map-marker animated bounceInDown"></i> {{evento.endereco.bairro|limitTo:10}}{{evento.endereco.bairro.length >=10? '...':''}}, {{evento.endereco.cidade.nome}} - {{evento.endereco.cidade.estado.uf}} </p>
                 <p><a class="btn btn-warning " href="../eventoEspecifico.jsp?evento={{evento.id}}" role="button">Ver Mais Detalhes &raquo;</a></p>
                 <p><a class="btn btn-default " href="../Empresa/editarEvento.jsp?evento={{evento.id}}" role="button">Editar Evento</a></p>
             </div>
