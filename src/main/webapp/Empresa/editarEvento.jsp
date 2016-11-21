@@ -42,13 +42,6 @@ Pagina de edição de eventos, onde sera possivel cancelar os eventos e editar s
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="../img/logo.png">
 
-        <!--links para o funcionamento do datetimepicker-->
-        <link href="../css/bootstrap/bootstrap-material-datetimepicker.css" rel="stylesheet" type="text/css"/>
-
-        <script src="../lib/jquery/jquery-1.12.3.min.js" type="text/javascript"></script>
-
-        <script src="../lib/bootstrap/moment-with-locales.js" type="text/javascript"></script>
-
     </head>
 
     <body>
@@ -125,14 +118,16 @@ Pagina de edição de eventos, onde sera possivel cancelar os eventos e editar s
 
                             <div class="col-md-12">
                                 <div class="form-control-wrapper">
-                                    <input type="text" id="date-start" class="form-control floating-label" placeholder="Data de Inicio">
+                                    <input type="text" value="" id="datetimepicker-start-edit" placeholder="YYYY-MM-DD HH:MM:SS" class="linecons-calendar"/>
+
                                 </div>
                             </div>
                         </div> 
                         <div class="col-md-6">                        
                             <div class="col-md-12">
                                 <div class="form-control-wrapper">
-                                    <input type="text" id="date-end" class="form-control floating-label" placeholder="Data de Termino">
+                                    <input type="text" value="" id="datetimepicker-end-edit" placeholder="YYYY-MM-DD HH:MM:SS" class="linecons-calendar"/>
+                                    <p id="p-alerta-edit" style="display: none;">Corrigir data, data de termino deve ser depois da data atual</p>
                                 </div>
                             </div>
                         </div>
@@ -269,11 +264,6 @@ Pagina de edição de eventos, onde sera possivel cancelar os eventos e editar s
 
     <!-- Desabilitar o preço -->
     <script src="../js/outros/desabilitarPreco.js" type="text/javascript"></script>
-
-     <!--data e horario (iniciando) -->
-    <script src="../lib/bootstrap/bootstrap-material-datetimepicker.js" type="text/javascript"></script>
-
-    <script src="../lib/bootstrap/dataehorario.js" type="text/javascript"></script>
     
     <script src="../lib/jquery/jquery.mask.min.js" type="text/javascript"></script>
     
@@ -282,6 +272,13 @@ Pagina de edição de eventos, onde sera possivel cancelar os eventos e editar s
     <script src="../lib/angular/isteven-multi-select.js" type="text/javascript"></script>
 
     <script src="../js/outros/aside.js" type="text/javascript"></script>
+    
+    <link href="../lib/jquery/jquery.datetimepicker.min.css" rel="stylesheet" type="text/css"/>
+
+    <script src="../lib/jquery/jquery.datetimepicker.full.js" type="text/javascript"></script>
+    
+    <script src="../js/outros/datetimepickerJS.js" type="text/javascript"></script>
+
 
 </body>
 
