@@ -144,7 +144,6 @@ public class AssuntoService {
         try {
 
             AssuntoModel model = assuntoController.buscarPorId(id);
-
             //Alterar registro
             assuntoController.alterar(model, assunto);
 

@@ -51,6 +51,7 @@ public class AssuntoController {
         model.setDeletado(new Date());
         assuntoDao.alterar(model);
     }
+
     public AssuntoModel recuperar(AssuntoModel model) {
         model.setDeletado(null);
         assuntoDao.alterar(model);
