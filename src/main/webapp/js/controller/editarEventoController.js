@@ -24,6 +24,12 @@ angular.module("platz").controller("editarEventoController", function ($scope, $
         console.log(evento);
         $http.put(webService + "/evento/" + id, evento, loginService.getHeaders()).then(function (response) {
             sucesso(toastr, "Evento Alterado com sucesso");
+
+            var inputCapa = document.getElementById("edicao-evento-img-capa");
+            if (!(!inputCapa.files[0].type.match('image.*'))) {
+                enviarArquivo($http, inputCapa.files[0], 'imagemCapa', webService + "/evento/imagem/" + response.data.id, $scope.token);
+            }
+
             location.href = "/eventoEspecifico.jsp?evento=" + id;
         }, function (response) {
             aviso(toastr, "Erro ao alterar evento, por favor verifique as informações e tente novamente");

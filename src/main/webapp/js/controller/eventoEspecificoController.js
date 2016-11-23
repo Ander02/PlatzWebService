@@ -196,6 +196,47 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
         });
     };
 
+    $scope.comentar = function (comentario) {
+        if ($scope.conta !== null && $scope.conta !== "" && typeof $scope.conta !== 'undefined' && $scope.conta.perfil !== "Administrador") {
+            postagem = {
+              contaId: $scope.conta.id,
+              eventoId: id, 
+              conteudo : comentario
+            };
+            console.log(postagem);
+            $http.post(webService + "/postagem", postagem, loginService.getHeaders()).then(function (){
+                sucesso(toastr, "Cometario realizado");
+                $scope.comentario = '';
+                atualizar();
+            }, function (){
+                aviso(toastr, "falhar ao comentar, tente novamente mais tarde");                
+            });
+            
+
+        } else {
+            pedidoLogin("Por favor, realize o login como usuario ou empresa para ter acesso a essa funcionalidade");
+        }
+    };
+
+    $scope.listarPostagem = function () {
+        $http.get(webService + "/postagem/evento/" + id, loginService.getHeaders()).then(function (response) {
+            $scope.postagens = response.data;
+        }, function () {
+
+        });
+    };
+
+    $scope.baixarImagem = function (postagem) {
+        if (postagem.usuario !== null) {
+            return webService + "/usuario/imagem/" + postagem.usuario.id;
+        } else if (postagem.empresa !== null) {
+            return webService + "/empresa/imagem/" + postagem.empresa.id;
+        } else {
+            return "/img/outras/teste-perfil.jpg";
+        }
+
+    };
+
     $scope.getMedia = function () {
         $http.get(webService + "/avaliacao/evento/media/" + id).then(function (response) {
             $scope.media = parseFloat(response.data);
@@ -218,7 +259,8 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
         });
         $scope.eventoEspecifico();
         $scope.getMedia();
-        // $scope.listarPostagem();
+        $scope.listarPostagem();
+
     }
 
     window.onload = function () {

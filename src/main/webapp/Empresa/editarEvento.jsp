@@ -94,7 +94,7 @@ Pagina de edição de eventos, onde sera possivel cancelar os eventos e editar s
                             <div class="col-md-12">
                                 <label for="cadastro-evento-img" class="label-modificado-imagens">Imagem de Capa</label>
                                 <div class="md-form">                
-                                    <input id="cadastro-evento-img-capa" type="file" >
+                                    <input id="edicao-evento-img-capa" type="file" >
                                 </div>
                             </div>
                             <div class="col-md-12">
