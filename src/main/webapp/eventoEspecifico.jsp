@@ -39,7 +39,9 @@ Pagina de evento especifico
         <script src="js/util.js" type="text/javascript"></script>
 
         <script src="js/services/loginService.js" type="text/javascript"></script>
-
+        
+        <script src="js/services/validacaoService.js" type="text/javascript"></script>
+        
         <!-- angular app CONTROLLER LOGIN -->
         <script src="js/controller/loginController.js" type="text/javascript"></script>
 
@@ -339,7 +341,7 @@ Pagina de evento especifico
                                 <div class="section-description">
                                     <form>
                                         <div class="md-form">                                 
-                                            <textarea id="form8" class="md-textarea" placeholder="comentario" maxlength="510" ng-model="comentario"></textarea>
+                                            <textarea id="form8" class="md-textarea" placeholder="comentario" maxlength="4096" ng-model="comentario"></textarea>
 
                                             <button type="submit" class="btn btn-warning btn-comentar" ng-click="comentar(comentario)">Comentar</button>
                                         </div>

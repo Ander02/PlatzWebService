@@ -1,4 +1,4 @@
-angular.module("platz").controller("eventoEspecificoController", function ($scope, $http, toastr, loginService) {
+angular.module("platz").controller("eventoEspecificoController", function ($scope, $http, toastr, loginService, validacaoService) {
     id = document.getElementById("idEvento").value;
     var enderecoCompletoEvento;
 
@@ -81,8 +81,8 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
             $scope.imagemCapa = webService + "/evento/imagemCapa/" + id;
             enderecoCompletoEvento = $scope.evento.endereco.cep + " " + $scope.evento.endereco.rua;
             $scope.iniciarMapa();
-        }, function (response) {
-            console.log(response.data);
+        }, function () {
+            aviso(toastr, "código de evento invalido");
         });
     };
 
@@ -197,24 +197,27 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
     };
 
     $scope.comentar = function (comentario) {
-        if ($scope.conta !== null && $scope.conta !== "" && typeof $scope.conta !== 'undefined' && $scope.conta.perfil !== "Administrador") {
-            postagem = {
-              contaId: $scope.conta.id,
-              eventoId: id, 
-              conteudo : comentario
-            };
-            console.log(postagem);
-            $http.post(webService + "/postagem", postagem, loginService.getHeaders()).then(function (){
-                sucesso(toastr, "Cometario realizado");
-                $scope.comentario = '';
-                atualizar();
-            }, function (){
-                aviso(toastr, "falhar ao comentar, tente novamente mais tarde");                
-            });
-            
+        if (validacaoService.comprimento(comentario, 8, 4096) && validacaoService.conteudo(comentario)) {
 
+            if ($scope.conta !== null && $scope.conta !== "" && typeof $scope.conta !== 'undefined' && $scope.conta.perfil !== "Administrador") {
+                postagem = {
+                    contaId: $scope.conta.id,
+                    eventoId: id,
+                    conteudo: comentario
+                };
+                $http.post(webService + "/postagem", postagem, loginService.getHeaders()).then(function () {
+                    sucesso(toastr, "Cometario realizado");
+                    $scope.comentario = '';
+                    atualizar();
+                }, function () {
+                    aviso(toastr, "falhar ao comentar, tente novamente mais tarde");
+                });
+
+            } else {
+                pedidoLogin("Por favor, realize o login como usuario ou empresa para ter acesso a essa funcionalidade");
+            }
         } else {
-            pedidoLogin("Por favor, realize o login como usuario ou empresa para ter acesso a essa funcionalidade");
+            aviso(toastr, " O comentário deve ter entre 8 há 4096 digitos");
         }
     };
 
