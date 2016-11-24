@@ -74,7 +74,7 @@ Pagina de edição de eventos, onde sera possivel cancelar os eventos e editar s
     <div>
         <form>
 
-            <div class="col-md-8 corpo-form-cadastro-evento card">
+            <div class="col-md-8 corpo-form-cadastro-evento edicao-evento card">
 
                 <div class="col-md-12">
 
@@ -138,8 +138,7 @@ Pagina de edição de eventos, onde sera possivel cancelar os eventos e editar s
                                         <p id="p-alerta-edit" style="display: none;">Corrigir data, data de termino deve ser depois da data atual</p>
                                     </div>
                                 </div>
-                            </div>
-
+                            </div>                  
                             <div class="col-md-4">
                                 <div class="md-form">                        
                                     <input type="text" id="evento-idade-minima" class="form-control" ng-model="eventoEdicao.idade">
