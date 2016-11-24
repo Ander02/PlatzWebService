@@ -14,7 +14,7 @@ angular.module("platz").controller("assuntoController", function ($scope, $http,
     };
 
     $scope.alterar = function (assuntoEditado) {
-        if (validacaoService.comprimento($scope.assuntoEdicao.nome, 0, 35) && validacaoService.conteudo($scope.assuntoEdicao.nome)) {
+        if (validacaoService.comprimento(toastr, $scope.assuntoEdicao.nome, 0, 35, "nome") && validacaoService.conteudo(toastr, $scope.assuntoEdicao.nome, "nome")) {
             $http.put(webService + "/assunto/" + $scope.assuntoEdicao.id, assuntoEditado, loginService.getHeaders()).then(function () {
 
                 atualizar();
@@ -23,14 +23,12 @@ angular.module("platz").controller("assuntoController", function ($scope, $http,
             }, function () {
                 erro(toastr, "Erro ao alterar assunto, tente novamente mais tarde");
             });
-        } else {
-            aviso(toastr, "o nome do assunto deve ter no maximo 35 digitos");
         }
 
     };
 
     $scope.cadastrar = function (assuntoCadastro) {
-        if (validacaoService.comprimento(assuntoCadastro.nome, 0, 35) && validacaoService.conteudo(assuntoCadastro.nome)) {
+        if (validacaoService.comprimento(toastr, assuntoCadastro.nome, 0, 35, "nome") && validacaoService.conteudo(toastr, assuntoCadastro.nome, "nome")) {
             $http.post(webService + "/assunto", assuntoCadastro, loginService.getHeaders()).then(function () {
                 atualizar();
                 $scope.assuntoCadastro = "";
@@ -38,8 +36,6 @@ angular.module("platz").controller("assuntoController", function ($scope, $http,
             }, function () {
                 erro(toastr, "Erro ao cadastrar assunto, tente novamente mais tarde");
             });
-        } else {
-            aviso(toastr, "o nome do assunto deve ter no maximo 35 digitos");
         }
     };
 
@@ -51,7 +47,7 @@ angular.module("platz").controller("assuntoController", function ($scope, $http,
             erro(toastr, "Erro deletar assunto, tente novamente mais tarde");
         });
     };
-    
+
     $scope.recuperar = function () {
         $http.put(webService + "/assunto/recuperar/" + $scope.assuntoRecuperacaoId, null, loginService.getHeaders()).then(function (response) {
             atualizar();

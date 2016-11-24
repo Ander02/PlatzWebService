@@ -102,7 +102,7 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
     };
 
     $scope.responder = function (id, resposta) {
-        if (validacaoService.comprimento(toastr, resposta, 10, 4096, "Resposta") && validacaoService.conteudo(toastr, resposta, "resposta")) {
+        if (validacaoService.comprimento(toastr, resposta, 10, 4096, "resposta") && validacaoService.conteudo(toastr, resposta, "resposta")) {
 
             espere(toastr, "Enviando e-mail, por favor aguarde...");
             $http.post(webService + "/mensagem/" + id, resposta, loginService.getHeaders()).then(function () {

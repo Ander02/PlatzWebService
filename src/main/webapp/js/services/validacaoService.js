@@ -2,7 +2,7 @@ angular.module("platz").service("validacaoService", function () {
 
     this.conteudo = function (toastr, string, nomeCampo) {
         //expressao regular
-        aviso(toastr, "o campo " + nomeCampo + " não deve ter os caracteres ABC");
+        // aviso(toastr, "o campo " + nomeCampo + " não deve ter os caracteres $<>{}\\\"'");
         return true;
     };
 
@@ -12,19 +12,33 @@ angular.module("platz").service("validacaoService", function () {
             return false;
         }
         return true;
-
     };
 
-    this.valorMinimo = function (int, min) {
-        return int >= min;
+    this.valorMinimo = function (toastr, int, min, nomeCampo) {
+
+        if (int < min) {
+            aviso(toastr, "o campo " + nomeCampo + " deve ser maior ou igual ha " + min);
+            return false;
+        }
+        return true;
     };
 
-    this.valorMaximo = function (int, max) {
-        return int <= max;
+    this.valorMaximo = function (toastr, int, max, nomeCampo) {
+
+        if (int > max) {
+            aviso(toastr, "o campo " + nomeCampo + " deve ser menor ou igual ha" + max);
+            return false;
+        }
+        return true;
     };
 
-    this.valor = function (int, min, max) {
-        return int <= max && int >= min;
+    this.valor = function (toastr, int, min, max, nomeCampo) {
+
+        if (int > max || int < min) {
+            aviso(toastr, "o campo " + nomeCampo + " deve ser um valor entre " + min + " e " + max);
+            return false;
+        }
+        return true;
     };
 
 
