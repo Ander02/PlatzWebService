@@ -39,7 +39,9 @@ Pagina de evento especifico
         <script src="js/util.js" type="text/javascript"></script>
 
         <script src="js/services/loginService.js" type="text/javascript"></script>
-
+        
+        <script src="js/services/validacaoService.js" type="text/javascript"></script>
+        
         <!-- angular app CONTROLLER LOGIN -->
         <script src="js/controller/loginController.js" type="text/javascript"></script>
 
@@ -106,7 +108,7 @@ Pagina de evento especifico
                                 <div class="hovereffect">
                                     <img class="img-responsive" ng-src="{{imagemCapa}}" onerror="this.src='img/placeholder.png'" >
                                     <div class="{{evento.cancelado === undefined? 'ev-normais':'ev-cancelado'}}">
-                                        <p>{{evento.cancelado === undefined?evento.nome:'Cancelado'}}</p>
+                                        <p>{{evento.cancelado === undefined ? evento.nome : 'Cancelado'| limitTo:20}}{{evento.nome.lenght>=20 ? '...':''}}</p>
                                     </div>
 
 
@@ -140,9 +142,9 @@ Pagina de evento especifico
 
                             <div class="col-md-12 informacao-evento-especifico">
                                 <div class="col-md-12">
-                                    <div class="col-md-5"></div>
-                                    <div class="col-md-2">  <h1 ng-bind="evento.nome"></h1> </div>
-                                    <div class="col-md-5"> 
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-8">  <h1 ng-bind="evento.nome"></h1> </div>
+                                    <div class="col-md-2"> 
 
                                     </div>
                                 </div>
@@ -339,9 +341,9 @@ Pagina de evento especifico
                                 <div class="section-description">
                                     <form>
                                         <div class="md-form">                                 
-                                            <textarea id="form8" class="md-textarea" placeholder="comentario"></textarea>
+                                            <textarea id="form8" class="md-textarea" placeholder="comentario" maxlength="4096" ng-model="comentario"></textarea>
 
-                                            <button type="submit" class="btn btn-warning btn-comentar">Comentar</button>
+                                            <button type="submit" class="btn btn-warning btn-comentar" ng-click="comentar(comentario)">Comentar</button>
                                         </div>
                                     </form>
                                 </div> 
@@ -350,11 +352,11 @@ Pagina de evento especifico
                                 <div class="col-md-12 m-b-r" ng-repeat="postagem in postagens">
 
                                     <div class="col-md-3">
-                                        <img onerror='this.src = "/img/outras/teste-perfil.jpg"' class="img-circle img-responsive">
+                                        <img ng-src="{{baixarImagem(postagem)}}" class="img-circle img-responsive">
                                     </div>
 
                                     <div class="col-md-9">
-                                        <h4>Nome usuario</h4>
+                                        <h4>{{postagem.empresa.nomeFantasia || postagem.usuario.nome}}</h4>
                                         <p>{{postagem.conteudo}}</p>                                          
                                     </div>
 

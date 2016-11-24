@@ -97,14 +97,15 @@ pagina onde é retornada a busca de eventos por uma unica determinada categoria
                             </a>
                         </div>
                         <div class="{{evento.cancelado === null?'ev-normais':'ev-cancelado'}}">
-                            <p>{{evento.cancelado === null? evento.nome.length < 20? evento.nome:evento.nome :'Cancelado'}}</p>
+                            <p>{{evento.cancelado === null ? evento.nome.length < 20 ? evento.nome : evento.nome : 'Cancelado' | limitTo:15 }} {{evento.nome.length >= 20 ? '...' : ''}}</p>
+
                         </div>
                         <!--/.Card image-->
 
                         <!--Card content-->
                         <div class="card-block text-xs-center">
                             <!--Categoria & nome da empresa e do evento-->                  
-                            <h4 class="card-title"><strong ng-bind="evento.nome"></strong></h4> 
+                            <h4 class="card-title"><strong>{{evento.nome | limitTo:25 }} {{evento.nome.length >= 25?'...':''}}</h4> 
                             <h4 class="card-title"><i class="fa fa-building-o"></i><strong ><a href="perfilEmpresa.jsp?empresa={{evento.empresa.id}}" ng-bind="evento.empresa.nomeFantasia"> </a></strong></h4> 
                             <!--Description-->
                             <p class="card-text" ><i class="fa fa-calendar"></i>{{evento.dataInicio}}</p>

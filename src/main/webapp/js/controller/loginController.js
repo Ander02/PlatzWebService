@@ -9,7 +9,7 @@ angular.module("platz").controller("loginController", function ($scope, $http, t
             $scope.contaLogin = response.data;
             location.href = "sessao.jsp?token=" + $scope.contaLogin.token + "&perfil=" + $scope.contaLogin.perfil;
         }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "Erro ao logar, usuario ou senha incorreto"));
+            erro(toastr, "usuario ou senha incorreto");
         });
     };
 
@@ -23,11 +23,11 @@ angular.module("platz").controller("loginController", function ($scope, $http, t
             $scope.contaLogin = response.data;
             location.href = "sessao.jsp?token=" + $scope.contaLogin.token + "&perfil=" + $scope.contaLogin.perfil;
         }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "Erro ao logar, usuario ou senha incorreto"));
+            erro(toastr, "usuario ou senha incorreto");
         });
     };
 
-    $scope.deslogar = function () {        
+    $scope.deslogar = function () {
         $http.post(webService + "/logoff", null, loginService.getHeaders()).then(function (response) {
             info(toastr, "logoff efetuado");
             location.href = "/quebraSessao.jsp";
@@ -36,15 +36,15 @@ angular.module("platz").controller("loginController", function ($scope, $http, t
     };
 
 
-    $scope.getConta = function () {        
-        
+    $scope.getConta = function () {
+
         var token = document.getElementById("token").value;
         if (token !== null && token !== "") {
             $http.get(webService + "/conta/token/" + token, {
-                    headers: {
-                        Authorization: "Bearer " + token
-                    }
-                }).then(function (response) {
+                headers: {
+                    Authorization: "Bearer " + token
+                }
+            }).then(function (response) {
                 $scope.conta = response.data;
                 console.log($scope.conta.perfil);
 

@@ -1,4 +1,4 @@
- ng-bind=""<%@page contentType="text/html" pageEncoding="UTF-8"%>
+ng-bind=""<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
 Pagina index do administrador, quando ele se logar vem direto para esta pagina
@@ -14,7 +14,7 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
 
         <title>Platz - Suas rotas, Seus Eventos</title>
 
-         <!-- Font Awesome -->
+        <!-- Font Awesome -->
         <link href="../css/font/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 
         <!-- Bootstrap core CSS -->
@@ -37,14 +37,16 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
 
         <!-- angular util -->
         <script src="../js/util.js" type="text/javascript"></script>
-        
+
         <script src="../js/services/loginService.js" type="text/javascript"></script>
-        
+
+        <script src="../js/services/validacaoService.js" type="text/javascript"></script>
+
         <!-- angular controller  -->
         <script src="../js/controller/loginController.js" type="text/javascript"></script>
 
         <script src="../js/controller/mensagemController.js" type="text/javascript"></script>
-    
+
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="../img/logo.png">
 
@@ -368,7 +370,7 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
                             <div class="col-md-12" >
                                 <div class="form-group">                        
                                     <label for="message-text" class="form-control-label label-modal-mensagem">Envie um e-mail de resposta:</label>
-                                    <textarea class="form-control" id="message-text" ng-model="resposta" required> 
+                                    <textarea class="form-control" id="message-text" ng-model="resposta" maxlength="4096" required> 
                                     </textarea>
                                 </div>
                             </div>

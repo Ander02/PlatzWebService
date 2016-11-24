@@ -15,7 +15,7 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
 
     $scope.onblurCepUsuario = function () {
         cep = document.getElementById("usuario-cep").value;
-        $http.get("https://viacep.com.br/ws/" + cep + "/json/").then(function (response) {            
+        $http.get("https://viacep.com.br/ws/" + cep + "/json/").then(function (response) {
             $scope.usuario.endereco.cep = response.data.cep;
             $scope.usuario.endereco.rua = response.data.logradouro;
             $scope.usuario.endereco.bairro = response.data.bairro;
@@ -106,12 +106,11 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
             senha: $scope.conta.senha
         };
 
-        console.log(login);
         $http.post(webService + "/login", login).then(function (response) {
             $scope.contaLogin = response.data;
             location.href = "sessao.jsp?token=" + $scope.contaLogin.token + "&perfil=" + $scope.contaLogin.perfil;
         }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "Erro ao logar, usuario ou senha incorreto"));
+            erro(toastr, "usuario ou senha incorreto");
         });
     };
 

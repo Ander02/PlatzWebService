@@ -1,4 +1,4 @@
-angular.module("platz").controller("eventoEspecificoController", function ($scope, $http, toastr, loginService) {
+angular.module("platz").controller("eventoEspecificoController", function ($scope, $http, toastr, loginService, validacaoService) {
     id = document.getElementById("idEvento").value;
     var enderecoCompletoEvento;
 
@@ -55,7 +55,6 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
             travelModeSelected = google.maps.DirectionsTravelMode.DRIVING;
         }
 
-        var start = "";
         var directionsService = new google.maps.DirectionsService();
         var request = new Object();
 
@@ -65,14 +64,30 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
 
-                    console.log("" + position.coords.latitude + "," + position.coords.longitude + "");
+                    //
+                    var geocoder = new google.maps.Geocoder();
 
-                    request = {
-                        origin: "" + position.coords.latitude + "," + position.coords.longitude + "",
-                        destination: enderecoCompletoEvento,
-                        travelMode: travelModeSelected,
-                        optimizeWaypoints: true
-                    };
+                    geocoder.geocode({
+                        'location': new google.maps.LatLng(parseFloat(position.coords.latitude), parseFloat(position.coords.longitude))
+                    }, function (results, status) {
+
+                        request = {
+                            origin: results[0].formatted_address,
+                            destination: enderecoCompletoEvento,
+                            travelMode: travelModeSelected,
+                            optimizeWaypoints: true
+                        };
+
+                        directionsService.route(request, function (response, status) {
+                            if (status == google.maps.DirectionsStatus.OK) {
+                                for (var i = 0; i < response.routes.length; i++) {
+                                    $scope.directionsDisplay.setDirections(response);
+                                    $scope.directionsDisplay.setRouteIndex(i);
+                                    console.log($scope.directionsDisplay);
+                                }
+                            }
+                        });
+                    });
                 });
             }
         } else {
@@ -82,16 +97,19 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
                 travelMode: travelModeSelected,
                 optimizeWaypoints: true
             };
-        }
-        directionsService.route(request, function (response, status) {
-            if (status == google.maps.DirectionsStatus.OK) {
-                for (var i = 0; i < response.routes.length; i++) {
-                    $scope.directionsDisplay.setDirections(response);
-                    $scope.directionsDisplay.setRouteIndex(i);
-                    console.log($scope.directionsDisplay);
+
+            directionsService.route(request, function (response, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    for (var i = 0; i < response.routes.length; i++) {
+                        $scope.directionsDisplay.setDirections(response);
+                        $scope.directionsDisplay.setRouteIndex(i);
+                        console.log($scope.directionsDisplay);
+                    }
                 }
-            }
-        });
+            });
+
+        }
+
     };
 
     $scope.eventoEspecifico = function () {
@@ -100,8 +118,8 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
             $scope.imagemCapa = webService + "/evento/imagemCapa/" + id;
             enderecoCompletoEvento = $scope.evento.endereco.cep + " " + $scope.evento.endereco.rua;
             $scope.iniciarMapa();
-        }, function (response) {
-            console.log(response.data);
+        }, function () {
+            aviso(toastr, "código de evento invalido");
         });
     };
 
@@ -215,6 +233,50 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
         });
     };
 
+    $scope.comentar = function (comentario) {
+        if (validacaoService.comprimento(comentario, 8, 4096) && validacaoService.conteudo(comentario)) {
+
+            if ($scope.conta !== null && $scope.conta !== "" && typeof $scope.conta !== 'undefined' && $scope.conta.perfil !== "Administrador") {
+                postagem = {
+                    contaId: $scope.conta.id,
+                    eventoId: id,
+                    conteudo: comentario
+                };
+                $http.post(webService + "/postagem", postagem, loginService.getHeaders()).then(function () {
+                    sucesso(toastr, "Cometario realizado");
+                    $scope.comentario = '';
+                    atualizar();
+                }, function () {
+                    aviso(toastr, "falhar ao comentar, tente novamente mais tarde");
+                });
+
+            } else {
+                pedidoLogin("Por favor, realize o login como usuario ou empresa para ter acesso a essa funcionalidade");
+            }
+        } else {
+            aviso(toastr, " O comentário deve ter entre 8 há 4096 digitos");
+        }
+    };
+
+    $scope.listarPostagem = function () {
+        $http.get(webService + "/postagem/evento/" + id, loginService.getHeaders()).then(function (response) {
+            $scope.postagens = response.data;
+        }, function () {
+
+        });
+    };
+
+    $scope.baixarImagem = function (postagem) {
+        if (postagem.usuario !== null) {
+            return webService + "/usuario/imagem/" + postagem.usuario.id;
+        } else if (postagem.empresa !== null) {
+            return webService + "/empresa/imagem/" + postagem.empresa.id;
+        } else {
+            return "/img/outras/teste-perfil.jpg";
+        }
+
+    };
+
     $scope.getMedia = function () {
         $http.get(webService + "/avaliacao/evento/media/" + id).then(function (response) {
             $scope.media = parseFloat(response.data);
@@ -237,7 +299,8 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
         });
         $scope.eventoEspecifico();
         $scope.getMedia();
-        // $scope.listarPostagem();
+        $scope.listarPostagem();
+
     }
 
     window.onload = function () {
