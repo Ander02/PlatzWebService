@@ -82,7 +82,7 @@ considerada pagina de eventos que a empresa postou
                 <div class="hovereffect">
                     <img class=" img-responsive " ng-src="{{buscarImagemCapa(evento.id)}}" onerror = "this.src = '../img/placeholder.png'"  alt="Imagem do Evento" >
                     <div class="{{evento.cancelado === null?'ev-normais':'ev-cancelado'}}">
-                        <p>{{evento.cancelado === null? evento.nome.length < 20? evento.nome:evento.nome :'Cancelado'}}</p>
+                        <p>{{evento.cancelado === null? evento.nome.length < 20? evento.nome:evento.nome :'Cancelado' |limitTo:17}}{{evento.nome.length>=15?'...' :''}}</p>
                     </div>
                     <!--<img class=" img-responsive " src="../img/outras/plano-fundo.jpg" alt="Imagem do Evento" >-->
                     <div class="overlay">
@@ -109,7 +109,7 @@ considerada pagina de eventos que a empresa postou
 
                 </div><!-- /. div hovereffect  -->
 
-                <h4 class="card-title">{{evento.nome}}</h4>
+                <h4 class="card-title">{{evento.nome|limitTo:28}}{{evento.nome.length>=28?'...':''}}</h4>
                 <p><i class="fa fa-calendar animated bounceInDown"></i> {{evento.dataInicio}} </p>
                 <p><i class="fa fa-map-marker animated bounceInDown"></i> {{evento.endereco.bairro|limitTo:10}}{{evento.endereco.bairro.length >=10? '...':''}}, {{evento.endereco.cidade.nome}} - {{evento.endereco.cidade.estado.uf}} </p>
                 <p><a class="btn btn-warning " href="../eventoEspecifico.jsp?evento={{evento.id}}" role="button">Ver Mais Detalhes &raquo;</a></p>

@@ -201,3 +201,11 @@ and open the template in the editor.
     margin-bottom: 100px;
     margin-top: 50px;
 }
+.edicao-evento label
+{
+    margin-top: -15px;
+}
+ .edicao-evento .form-control-wrapper
+{
+    padding: 20px 0px 80px 0px;
+}

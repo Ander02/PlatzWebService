@@ -17,6 +17,10 @@ $('#datetimepicker-start').datetimepicker({
     roundTime: 'ceil',
     onChangeDateTime: function (dp, $input) {
         startDate = $("#datetimepicker-start").val();
+    },
+    onClose: function(current_time, $input)
+    {
+        
     }
 
 });
