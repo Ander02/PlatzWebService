@@ -42,6 +42,7 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
 
     // Calcula Rota
     $scope.calcularRota = function () {
+
         var travelModeSelected;
 
         var tipoViagemSelect = document.getElementById("tipoViagemSelect").value;
@@ -54,25 +55,61 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
             travelModeSelected = google.maps.DirectionsTravelMode.DRIVING;
         }
 
-        var start = document.getElementById("pontoInicial").value;
         var directionsService = new google.maps.DirectionsService();
+        var request = new Object();
 
-        var request = {
-            origin: start,
-            destination: enderecoCompletoEvento,
-            travelMode: travelModeSelected,
-            optimizeWaypoints: true
-        };
+        if (document.getElementById("checkboxLocalizacaoAtual").checked) {
+            console.log(document.getElementById("checkboxLocalizacaoAtual").checked);
 
-        directionsService.route(request, function (response, status) {
-            if (status == google.maps.DirectionsStatus.OK) {
-                for (var i = 0; i < response.routes.length; i++) {
-                    $scope.directionsDisplay.setDirections(response);
-                    $scope.directionsDisplay.setRouteIndex(i);
-                    console.log($scope.directionsDisplay);
-                }
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+
+                    //
+                    var geocoder = new google.maps.Geocoder();
+
+                    geocoder.geocode({
+                        'location': new google.maps.LatLng(parseFloat(position.coords.latitude), parseFloat(position.coords.longitude))
+                    }, function (results, status) {
+
+                        request = {
+                            origin: results[0].formatted_address,
+                            destination: enderecoCompletoEvento,
+                            travelMode: travelModeSelected,
+                            optimizeWaypoints: true
+                        };
+
+                        directionsService.route(request, function (response, status) {
+                            if (status == google.maps.DirectionsStatus.OK) {
+                                for (var i = 0; i < response.routes.length; i++) {
+                                    $scope.directionsDisplay.setDirections(response);
+                                    $scope.directionsDisplay.setRouteIndex(i);
+                                    console.log($scope.directionsDisplay);
+                                }
+                            }
+                        });
+                    });
+                });
             }
-        });
+        } else {
+            request = {
+                origin: document.getElementById("pontoInicial").value,
+                destination: enderecoCompletoEvento,
+                travelMode: travelModeSelected,
+                optimizeWaypoints: true
+            };
+
+            directionsService.route(request, function (response, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    for (var i = 0; i < response.routes.length; i++) {
+                        $scope.directionsDisplay.setDirections(response);
+                        $scope.directionsDisplay.setRouteIndex(i);
+                        console.log($scope.directionsDisplay);
+                    }
+                }
+            });
+
+        }
+
     };
 
     $scope.eventoEspecifico = function () {
