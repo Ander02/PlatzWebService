@@ -1,4 +1,4 @@
-angular.module("platz").controller("mensagemController", function ($scope, $http, toastr, loginService) {
+angular.module("platz").controller("mensagemController", function ($scope, $http, toastr, loginService, validacaoService) {
 
     $scope.listarFavoritas = function () {
         $http.get(webService + "/mensagens/marcadasNaoExcluidas", loginService.getHeaders()).then(function (response) {
@@ -112,14 +112,20 @@ angular.module("platz").controller("mensagemController", function ($scope, $http
         atualizar();
     };
 
-    $scope.responder = function (id, resposta) {        
-        espere(toastr, "Enviando e-mail, por favor aguarde...");
-        $http.post(webService + "/mensagem/" + id, resposta, loginService.getHeaders()).then(function (response) {
-            sucesso(toastr, "mensagem respondida");
-            $scope.resposta = null;
-        }, function (response) {
-            aviso(toastr, "falha ao reponder mensagem");
-        });
+    $scope.responder = function (id, resposta) {
+        if (validacaoService.comprimento(resposta, 10, 4096) && validacaoService.conteudo(resposta)) {
+
+            espere(toastr, "Enviando e-mail, por favor aguarde...");
+            $http.post(webService + "/mensagem/" + id, resposta, loginService.getHeaders()).then(function () {
+                sucesso(toastr, "mensagem respondida");
+                $scope.resposta = null;
+            }, function () {
+                aviso(toastr, "falha ao reponder mensagem");
+            });
+
+        } else {
+            aviso(toastr, "A resposta deve ter de 10 há 4096 caracteres");
+        }
     };
 
     $scope.prepararExclusaoDefinitiva = function (id) {

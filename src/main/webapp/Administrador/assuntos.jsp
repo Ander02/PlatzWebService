@@ -37,6 +37,8 @@ Pagina de cadastro , consulta, atualização e exclusão de assunto de mensagem
         <script src="../js/util.js" type="text/javascript"></script>
         
         <script src="../js/services/loginService.js" type="text/javascript"></script>
+        
+        <script src="../js/services/validacaoService.js" type="text/javascript"></script>
         <!-- link CONTROLLER -->
         <script src="../js/controller/loginController.js" type="text/javascript"></script>
 
@@ -216,7 +218,7 @@ Pagina de cadastro , consulta, atualização e exclusão de assunto de mensagem
 
 
                                 <div class="text-xs-center">
-                                    <button type="submit" class="btn btn-warning" data-dismiss="modal" ng-click="alterar()"> Editar </button>
+                                    <button type="submit" class="btn btn-warning" data-dismiss="modal" ng-click="alterar(assuntoEditado)"> Editar </button>
                                     <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click="cancelarEdicao()"> Fechar </button>
                                 </div>
                             </form>

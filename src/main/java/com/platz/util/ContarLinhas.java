@@ -31,7 +31,7 @@ public class ContarLinhas {
                             || file.getName().endsWith(".xml")
                             || file.getName().endsWith(".css")
                             || file.getName().endsWith(".js")
-                            || file.getName().endsWith(".html")) {
+                            || file.getName().endsWith(".jsp")) {
                         long lineCount = 0;
                         final Scanner scanner = new Scanner(file);
                         while (scanner.hasNextLine()) {

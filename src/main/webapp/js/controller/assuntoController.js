@@ -1,4 +1,4 @@
-angular.module("platz").controller("assuntoController", function ($scope, $http, toastr, loginService) {
+angular.module("platz").controller("assuntoController", function ($scope, $http, toastr, loginService, validacaoService) {
 
     $scope.listarDeletados = function () {
         $http.get(webService + "/assuntos/deletados", loginService.getHeaders()).then(function (response) {
@@ -15,29 +15,38 @@ angular.module("platz").controller("assuntoController", function ($scope, $http,
         });
     };
 
-    $scope.alterar = function () {
-        $http.put(webService + "/assunto/" + $scope.assuntoEdicao.id, $scope.assuntoEditado, loginService.getHeaders()).then(function (response) {
+    $scope.alterar = function (assuntoEditado) {
+        if (validacaoService.comprimento($scope.assuntoEdicao.nome, 0, 35) && validacaoService.conteudo($scope.assuntoEdicao.nome)) {
+            $http.put(webService + "/assunto/" + $scope.assuntoEdicao.id, assuntoEditado, loginService.getHeaders()).then(function () {
 
-            atualizar();
-            $scope.assuntoEdicao = null;
-            alterado(toastr, "Assunto editado com sucesso");
-            sleep(1000);
-            location.reload();
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "Erro ao alterar assunto"));
-        });
+                atualizar();
+                $scope.assuntoEdicao = new Object();
+                alterado(toastr, "Assunto editado com sucesso");
+                sleep(1000);
+                //location.reload();
+            }, function (response) {
+                erro(toastr, errorManager(response.config.url, response.status, "Erro ao alterar assunto"));
+            });
+        } else {
+            aviso(toastr, "o nome do assunto deve ter no maximo 35 digitos");
+        }
+
     };
 
     $scope.cadastrar = function (assuntoCadastro) {
-
-        $http.post(webService + "/assunto", assuntoCadastro, loginService.getHeaders()).then(function (response) {
-            atualizar();
-            $scope.assuntoCadastro = "";
-            sucesso(toastr, "Assunto cadastrado com sucesso");
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "Erro ao cadastrar assunto"));
-        });
+        if (validacaoService.comprimento(assuntoCadastro.nome, 0, 35) && validacaoService.conteudo(assuntoCadastro.nome)) {
+            $http.post(webService + "/assunto", assuntoCadastro, loginService.getHeaders()).then(function () {
+                atualizar();
+                $scope.assuntoCadastro = "";
+                sucesso(toastr, "Assunto cadastrado com sucesso");
+            }, function (response) {
+                erro(toastr, errorManager(response.config.url, response.status, "Erro ao cadastrar assunto"));
+            });
+        } else {
+            aviso(toastr, "o nome do assunto deve ter no maximo 35 digitos");
+        }
     };
+    
     $scope.deletar = function () {
         $http.delete(webService + "/assunto/" + $scope.assuntoExclusaoId, loginService.getHeaders()).then(function (response) {
             atualizar();
