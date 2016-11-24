@@ -180,7 +180,6 @@ angular.module("platz").controller("contaController", function ($scope, $http, t
         $scope.listarEmpresasInativos();
     }
     window.onload = function () {
-        console.log("onload");
         $scope.permicao = false;
         atualizar();
     };
