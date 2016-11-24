@@ -1,4 +1,4 @@
-ng-bind=""<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
 Pagina index do administrador, quando ele se logar vem direto para esta pagina
@@ -54,7 +54,7 @@ porem quando ele tiver navegando pelas paginas , ela vai ter como "nome" pagina 
 
     </head>
 
-    <body >
+    <body>
         <!-- inicio do projeto aqui-->
         <%
             try {
