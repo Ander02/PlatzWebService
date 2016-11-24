@@ -40,7 +40,8 @@ angular.module("platz").controller("editarEventoController", function ($scope, $
             //cancelar
             $http.put(webService + "/evento/cancelar/" + id, null, loginService.getHeaders()).then(function (response) {
                 info(toastr, "Evento cancelado com sucesso");
-            }, function (response) {
+                location.reload();
+            }, function () {
                 aviso(toastr, "falha ao cancelar o evento, atualize a pagina e tente novamente mais tarde");
 
             });
@@ -48,7 +49,8 @@ angular.module("platz").controller("editarEventoController", function ($scope, $
             //reativar
             $http.put(webService + "/evento/descancelar/" + id, null, loginService.getHeaders()).then(function (response) {
                 info(toastr, "Evento Ativado com sucesso");
-            }, function (response) {
+                location.reload();
+            }, function () {
                 aviso(toastr, "falha ao ativar o evento, atualize a pagina e tente novamente mais tarde");
             });
         }

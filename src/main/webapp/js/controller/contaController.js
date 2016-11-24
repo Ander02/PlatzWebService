@@ -1,97 +1,89 @@
-angular.module("platz").controller("contaController", function ($scope, $http, toastr, loginService) {
+angular.module("platz").controller("contaController", function ($scope, $http, toastr, loginService, validacaoService) {
 
     $scope.listarAdministradores = function () {
         $http.get(webService + "/contas/administradores", loginService.getHeaders()).then(function (response) {
             $scope.admintradores = response.data;
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "erro ao listar Admintradores"));
+        }, function () {
         });
     };
     $scope.listarAdministradoresInativos = function () {
         $http.get(webService + "/contas/administradores/inativas", loginService.getHeaders()).then(function (response) {
             $scope.admintradoresInativos = response.data;
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "erro ao listar Admintradores"));
+        }, function () {
         });
     };
     $scope.listarAdministradoresBloqueados = function () {
         $http.get(webService + "/contas/administradores/bloqueadas", loginService.getHeaders()).then(function (response) {
 
             $scope.admintradoresBloqueados = response.data;
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "erro ao listar Admintradores"));
+        }, function () {
         });
     };
 
     $scope.listarUsuarios = function () {
         $http.get(webService + "/contas/usuarios", loginService.getHeaders()).then(function (response) {
             $scope.usuarios = response.data;
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "erro ao listar Usuarios"));
+        }, function () {
         });
     };
     $scope.listarUsuariosInativos = function () {
         $http.get(webService + "/contas/usuarios/inativas", loginService.getHeaders()).then(function (response) {
             $scope.usuariosInativos = response.data;
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "erro ao listar Usuarios"));
+        }, function () {
         });
     };
     $scope.listarUsuariosBloqueados = function () {
         $http.get(webService + "/contas/usuarios/bloqueadas", loginService.getHeaders()).then(function (response) {
             $scope.usuariosBloqueados = response.data;
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "erro ao listar Usuarios"));
+        }, function () {
         });
     };
+
     $scope.listarEmpresas = function () {
         $http.get(webService + "/contas/empresas", loginService.getHeaders()).then(function (response) {
             $scope.empresas = response.data;
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "erro ao listar empresas"));
+        }, function () {
         });
     };
     $scope.listarEmpresasInativos = function () {
         $http.get(webService + "/contas/empresas/inativas", loginService.getHeaders()).then(function (response) {
             $scope.empresasInativos = response.data;
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "erro ao listar empresas"));
+        }, function () {
         });
     };
     $scope.listarEmpresasBloqueados = function () {
         $http.get(webService + "/contas/empresas/bloqueadas", loginService.getHeaders()).then(function (response) {
             $scope.empresasBloqueados = response.data;
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "erro ao listar empresas"));
+        }, function () {
         });
     };
 
     $scope.bloquear = function () {
-        $http.put(webService + "/conta/bloquear/" + $scope.contaBloquearId, null, loginService.getHeaders()).then(function (response) {
+        $http.put(webService + "/conta/bloquear/" + $scope.contaBloquearId, null, loginService.getHeaders()).then(function () {
             atualizar();
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "falha ao bloquear conta"));
+        }, function () {
+            erro(toastr, "falha ao bloquear conta, tente novamente mais tarde");
         });
     };
     $scope.inativar = function () {
-        $http.put(webService + "/conta/inativar/" + $scope.contaInativarId, null, loginService.getHeaders()).then(function (response) {
+        $http.put(webService + "/conta/inativar/" + $scope.contaInativarId, null, loginService.getHeaders()).then(function () {
             atualizar();
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "falha ao inativar conta"));
+        }, function () {
+            erro(toastr, "falha ao inativar conta, tente novamente mais tarde");
         });
     };
     $scope.desbloquear = function () {
-        $http.put(webService + "/conta/desbloquear/" + $scope.contaDesloquearId, null, loginService.getHeaders()).then(function (response) {
+        $http.put(webService + "/conta/desbloquear/" + $scope.contaDesloquearId, null, loginService.getHeaders()).then(function () {
             atualizar();
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "falha ao desbloquear conta"));
+        }, function () {
+            erro(toastr, "falha ao desbloquear conta, tente novamente mais tarde");
         });
     };
     $scope.ativar = function () {
-        $http.put(webService + "/conta/ativar/" + $scope.contaAtivarId, null, loginService.getHeaders()).then(function (response) {
+        $http.put(webService + "/conta/ativar/" + $scope.contaAtivarId, null, loginService.getHeaders()).then(function () {
             atualizar();
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "falha ao desativar conta"));
+        }, function () {
+            erro(toastr, "falha ao desativar conta, tente novamente mais tarde");
         });
     };
 
@@ -99,7 +91,7 @@ angular.module("platz").controller("contaController", function ($scope, $http, t
         $http.get(webService + "/usuario/conta/" + contaId, loginService.getHeaders()).then(function (response) {
             $scope.usuarioDetalhe = response.data;
             $scope.imagemUsuario = webService + "/usuario/imagem/" + $scope.usuarioDetalhe.id;
-        }, function (response) {
+        }, function () {
             aviso(toastr, "falha ao buscar informações do Usuario");
         });
     };
@@ -108,7 +100,7 @@ angular.module("platz").controller("contaController", function ($scope, $http, t
         $http.get(webService + "/empresa/conta/" + contaId, loginService.getHeaders()).then(function (response) {
             $scope.empresaDetalhe = response.data;
             $scope.imagemEmpresa = webService + "/empresa/imagem/" + $scope.empresaDetalhe.id;
-        }, function (response) {
+        }, function () {
             aviso(toastr, "falha ao buscar informações da Empresa");
         });
     };
@@ -147,18 +139,25 @@ angular.module("platz").controller("contaController", function ($scope, $http, t
     };
 
     $scope.cadastrar = function (contaCadastro) {
-        if (contaCadastro.senha === contaCadastro.senha2) {
-            $http.post(webService + "/conta", contaCadastro, loginService.getHeaders()).then(function (response) {
-                atualizar();
-                $scope.contaCadastro = null;
-                sucesso(toastr, "Administrador cadastrado com sucesso");
-            }, function (response) {
-                erro(toastr, errorManager(response.config.url, response.status, "Erro ao cadastrar administrador"));
-            });
-        } else {
-            $scope.contaCadastro.senha = null;
-            $scope.contaCadastro.senha2 = null;
-            aviso(toastr, "A senha não são iguais, por favor digite-as novamente");
+
+
+        if (!validacaoService.vazio(toastr, contaCadastro, "Conta")) {
+            if (contaCadastro.senha === contaCadastro.senha2 && !validacaoService.vazio(toastr, contaCadastro.senha, "Senha")) {
+                if (validacaoService.comprimento(toastr, contaCadastro.email, 1, 50, "email") && validacaoService.conteudo(toastr, contaCadastro.email, "email")) {
+
+                    $http.post(webService + "/conta", contaCadastro, loginService.getHeaders()).then(function () {
+                        atualizar();
+                        $scope.contaCadastro = null;
+                        sucesso(toastr, "Administrador cadastrado com sucesso");
+                    }, function () {
+                        erro(toastr, "Erro ao cadastrar administrador, tente novamente mais tarde");
+                    });
+                }
+            } else {
+                $scope.contaCadastro.senha = null;
+                $scope.contaCadastro.senha2 = null;
+                aviso(toastr, "A senha não são iguais, por favor digite-as novamente");
+            }
         }
     };
 
@@ -181,7 +180,6 @@ angular.module("platz").controller("contaController", function ($scope, $http, t
         $scope.listarEmpresasInativos();
     }
     window.onload = function () {
-        console.log("onload");
         $scope.permicao = false;
         atualizar();
     };

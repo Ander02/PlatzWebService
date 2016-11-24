@@ -36,6 +36,8 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
         
         <script src="../js/services/loginService.js" type="text/javascript"></script>
         
+        <script src="../js/services/validacaoService.js" type="text/javascript"></script>
+        
         <script src="../js/controller/loginController.js" type="text/javascript"></script>
 
         <script src="../js/controller/contaController.js" type="text/javascript"></script>     
@@ -478,7 +480,7 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
                                         <div class="col-md-12">
                                             <div class="md-form">  
                                                 <input  type="email" id="conta-email" class="form-control" required=""
-                                                        maxlength="75" ng-model="contaCadastro.email">
+                                                        maxlength="50" ng-model="contaCadastro.email">
                                                 <label for="conta-email">Email</label>
                                             </div>
                                         </div>
