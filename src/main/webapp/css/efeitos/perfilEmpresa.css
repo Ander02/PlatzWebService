@@ -46,7 +46,8 @@ and open the template in the editor.
 .hovereffect img {
     display: block;
     position: relative;
-
+    height: 100%;
+    width: 100%;
 }
 
 .hovereffect h2 {

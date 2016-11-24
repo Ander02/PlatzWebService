@@ -182,7 +182,7 @@
                     <hr>
                     <button class="btn btn-amber btn-lg">Baixe aqui</button>
                 </div>
-                
+
                 <!--Section sescription-->
                 <p class="section-description lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit
                     , error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum quisquam eum 
@@ -192,100 +192,100 @@
                 <div class="row features-small">
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
-                    <!--First column-->
-                    <div class="col-md-4">
-                        <!--First row-->
-                        <div class="row">
-                            <div class="col-lg-2">
-                                <i class="fa fa-flag-checkered indigo-text fa-3x"></i>
+                        <!--First column-->
+                        <div class="col-md-4">
+                            <!--First row-->
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <i class="fa fa-flag-checkered indigo-text fa-3x"></i>
+                                </div>
+                                <div class="col-xs-10">
+                                    <h4 class="feature-title">Nacional</h4>
+                                    <p class="grey-text">Com eventos de todo o país, é possivel ficar antenado nos eventos mais badalados da sua cidade .</p>
+                                    <div style="height:30px"></div>
+                                </div>
                             </div>
-                            <div class="col-xs-10">
-                                <h4 class="feature-title">Nacional</h4>
-                                <p class="grey-text">Com eventos de todo o país, é possivel ficar antenado nos eventos mais badalados da sua cidade .</p>
-                                <div style="height:30px"></div>
-                            </div>
-                        </div>
-                        <!--/First row-->
+                            <!--/First row-->
 
-                        <!--Second row-->
-                        <div class="row">
-                            <div class="col-xs-2">
-                                <i class="fa fa-flask blue-text fa-3x"></i>
+                            <!--Second row-->
+                            <div class="row">
+                                <div class="col-xs-2">
+                                    <i class="fa fa-flask blue-text fa-3x"></i>
+                                </div>
+                                <div class="col-lg-10">
+                                    <h4 class="feature-title">Atual</h4>
+                                    <p class="grey-text">Eventos de todas as categorias possiveis. </p>
+                                    <div style="height:30px"></div>
+                                </div>
                             </div>
-                            <div class="col-lg-10">
-                                <h4 class="feature-title">Atual</h4>
-                                <p class="grey-text">Eventos de todas as categorias possiveis. </p>
-                                <div style="height:30px"></div>
-                            </div>
-                        </div>
-                        <!--/Second row-->
+                            <!--/Second row-->
 
-                        <!--Third row-->
-                        <div class="row">
-                            <div class="col-xs-2">
-                                <i class="fa fa-glass cyan-text fa-3x"></i>
+                            <!--Third row-->
+                            <div class="row">
+                                <div class="col-xs-2">
+                                    <i class="fa fa-glass cyan-text fa-3x"></i>
+                                </div>
+                                <div class="col-xs-10">
+                                    <h4 class="feature-title">Clean</h4>
+                                    <p class="grey-text">Com design simples, o app é moderno e muito facil de usar.</p>
+                                    <div style="height:30px"></div>
+                                </div>
                             </div>
-                            <div class="col-xs-10">
-                                <h4 class="feature-title">Clean</h4>
-                                <p class="grey-text">Com design simples, o app é moderno e muito facil de usar.</p>
-                                <div style="height:30px"></div>
-                            </div>
+                            <!--/Third row-->
                         </div>
-                        <!--/Third row-->
+                        <!--/First column-->
+
+                        <!--Second column-->
+                        <div class="col-md-4 mb-r center-on-small-only">
+                            <img src="http://mdbootstrap.com/images/mockups/header-iphone.png" alt="" class="z-depth-0">
+                        </div>
+                        <!--/Second column-->
+
+                        <!--Third column-->
+                        <div class="col-md-4">
+                            <!--First row-->
+                            <div class="row">
+                                <div class="col-xs-2">
+                                    <i class="fa fa-heart red-text fa-3x"></i>
+                                </div>
+                                <div class="col-md-10">
+                                    <h4 class="feature-title">Curta Eventos</h4>
+                                    <p class="grey-text">É possivel curtir todos os eventos. </p>
+                                    <div style="height:30px"></div>
+                                </div>
+                            </div>
+                            <!--/First row-->
+
+                            <!--Second row-->
+                            <div class="row">
+                                <div class="col-xs-2">
+                                    <i class="fa fa-flash orange-text fa-3x"></i>
+                                </div>
+                                <div class="col-xs-10">
+                                    <h4 class="feature-title">Rapido</h4>
+                                    <p class="grey-text">App muito rapido, sem problemas de travamento no seu celular.</p>
+                                    <div style="height:30px"></div>
+                                </div>
+                            </div>
+                            <!--/Second row-->
+
+                            <!--Third row-->
+                            <div class="row">
+                                <div class="col-xs-2">
+                                    <i class="fa fa-android lime-text fa-3x"></i>
+                                </div>
+                                <div class="col-xs-10">
+                                    <h4 class="feature-title">Android</h4>
+                                    <p class="grey-text">Compativel com versoes do android 1.0, baixe e se divirta .</p>
+                                    <div style="height:30px"></div>
+                                </div>
+                            </div>
+                            <!--/Third row-->
+                        </div>
+                        <!--/Third column-->
+
                     </div>
-                    <!--/First column-->
-
-                    <!--Second column-->
-                    <div class="col-md-4 mb-r center-on-small-only">
-                        <img src="http://mdbootstrap.com/images/mockups/header-iphone.png" alt="" class="z-depth-0">
-                    </div>
-                    <!--/Second column-->
-
-                    <!--Third column-->
-                    <div class="col-md-4">
-                        <!--First row-->
-                        <div class="row">
-                            <div class="col-xs-2">
-                                <i class="fa fa-heart red-text fa-3x"></i>
-                            </div>
-                            <div class="col-md-10">
-                                <h4 class="feature-title">Curta Eventos</h4>
-                                <p class="grey-text">É possivel curtir todos os eventos. </p>
-                                <div style="height:30px"></div>
-                            </div>
-                        </div>
-                        <!--/First row-->
-
-                        <!--Second row-->
-                        <div class="row">
-                            <div class="col-xs-2">
-                                <i class="fa fa-flash orange-text fa-3x"></i>
-                            </div>
-                            <div class="col-xs-10">
-                                <h4 class="feature-title">Rapido</h4>
-                                <p class="grey-text">App muito rapido, sem problemas de travamento no seu celular.</p>
-                                <div style="height:30px"></div>
-                            </div>
-                        </div>
-                        <!--/Second row-->
-
-                        <!--Third row-->
-                        <div class="row">
-                            <div class="col-xs-2">
-                                <i class="fa fa-android lime-text fa-3x"></i>
-                            </div>
-                            <div class="col-xs-10">
-                                <h4 class="feature-title">Android</h4>
-                                <p class="grey-text">Compativel com versoes do android 1.0, baixe e se divirta .</p>
-                                <div style="height:30px"></div>
-                            </div>
-                        </div>
-                        <!--/Third row-->
-                    </div>
-                    <!--/Third column-->
-                  
-                </div>
-                <!--/First row-->
+                    <!--/First row-->
                 </div>
 
             </section>

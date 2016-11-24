@@ -101,11 +101,11 @@ Ira aparecer todos os eventos que o usuario curtiu
                             <div class="hovereffect">
                                 <img class="img-fluid imagem-evento" ng-src="{{buscarImagemCapa(evento.id)}}" onerror='this.src = "../img/outras/plano-fundo.jpg"' alt="">
                                 <div class="{{evento.cancelado === null?'ev-normais':'ev-cancelado'}}">
-                                    <p>{{evento.cancelado === null? evento.nome.length < 20? evento.nome:evento.nome :'Cancelado'}}</p>
+                                    <p>{{evento.cancelado === null ? evento.nome.length < 20 ? evento.nome : evento.nome : 'Cancelado'|limitTo:15}}{{evento.nome.length>=15?'...' :''}}</p>
                                 </div>
                                 <div class="overlay">
                                     <h2 ng-bind="evento.nome">Nome do Evento</h2>
-                                    <p>
+                                    <p class="p-efeito">
                                         <a href="/eventoEspecifico.jsp?evento={{evento.id}}" data-toggle="tooltip" data-placement="bottom" title="Ver Detalhes">
                                             <i class="fa fa-eye"></i>
                                         </a>
@@ -117,7 +117,7 @@ Ira aparecer todos os eventos que o usuario curtiu
 
                             </div>                        
                             <div class="card-block info-evento-curtido">                          
-                                <h4 class="card-title"><a>{{evento.nome}} <i class="fa fa-angle-right"></i></a></h4>
+                                <h4 class="card-title"><a>{{evento.nome|limitTo:28}}{{evento.nome.length>=28?'...':''}}</a></h4>
                                 <p class="card-text">
                                     <a> <i class="fa fa-building-o"></i> {{evento.empresa.nomeFantasia}}</a>
                                 <p><strong><i class="fa fa-clock-o"></i> {{evento.dataInicio}}</strong></p>                                

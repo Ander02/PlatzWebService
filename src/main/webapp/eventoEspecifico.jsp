@@ -29,6 +29,8 @@ Pagina de evento especifico
         <!-- Your custom styles (efeito) -->
         <link href="css/efeitos/eventoEspecifico.css" rel="stylesheet">
 
+        <link href="css/efeitos/dropComentario.css" rel="stylesheet" type="text/css"/>
+
         <!-- link Angular -->
         <script type="text/javascript" src="lib/angular/angular.js"></script>
 
@@ -39,9 +41,9 @@ Pagina de evento especifico
         <script src="js/util.js" type="text/javascript"></script>
 
         <script src="js/services/loginService.js" type="text/javascript"></script>
-        
+
         <script src="js/services/validacaoService.js" type="text/javascript"></script>
-        
+
         <!-- angular app CONTROLLER LOGIN -->
         <script src="js/controller/loginController.js" type="text/javascript"></script>
 
@@ -104,6 +106,8 @@ Pagina de evento especifico
                         </div>
                         <div ng-if="evento.censurado == null">
                             <!-- Imagem do evento -->
+
+
                             <div class="col-lg-12 col-md-4 col-sm-6 col-xs-12 imagem-evento-especifico">
                                 <div class="hovereffect">
                                     <img class="img-responsive" ng-src="{{imagemCapa}}" onerror="this.src='img/placeholder.png'" >
@@ -176,7 +180,16 @@ Pagina de evento especifico
 
                                     <!--botoes para rota , galeria e comentarios-->
                                     <div class="social-counters ">
-
+                                        
+                                        <div class="btn-group">
+                                            <button type="button" class="btn dropdown-toggle grey lighten-1" data-toggle="dropdown">
+                                                <i class="fa fa-ellipsis-v"></i><span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li><i class="fa fa-warning"></i><a href="#">Denunciar</a></li>
+                                                <li><i class="fa fa-ban"></i><a href="#">Bloquear</a></li>
+                                            </ul>
+                                        </div>
 
                                         <!--calculo de rotas-->
                                         <button type="button"  data-toggle="modal" data-target="#myModal">
@@ -204,6 +217,7 @@ Pagina de evento especifico
                                                 <span class="hidden-md-down">Editar Evento</span>
                                             </a>
                                         </button>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -349,17 +363,28 @@ Pagina de evento especifico
                                 </div> 
 
                                 <!--First column-->
-                                <div class="col-md-12 m-b-r" ng-repeat="postagem in postagens">
 
-                                    <div class="col-md-3">
-                                        <img ng-src="{{baixarImagem(postagem)}}" class="img-circle img-responsive">
+
+                                <div class="col-md-12 m-b-r card" ng-repeat="postagem in postagens">
+
+                                    <div class="col-md-3 imagem-comentario">
+                                        <img ng-src="{{baixarImagem(postagem)}}" class=" img-responsive">
+                                    </div>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn dropdown-toggle grey darken-3" data-toggle="dropdown">
+                                            <i class="fa fa-ellipsis-v"></i><span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><i class="fa fa-warning"></i><a href="#">Denuncia</a></li>
+                                            <li><i class="fa fa-ban"></i><a href="#">Bloquear</a></li>
+                                            <li><i class="fa fa-edit"></i><a href="#">Editar</a></li>
+                                        </ul>
                                     </div>
 
                                     <div class="col-md-9">
-                                        <h4>{{postagem.empresa.nomeFantasia || postagem.usuario.nome}}</h4>
+                                        <h4>{{postagem.empresa.nomeFantasia|| postagem.usuario.nome}}</h4>
                                         <p>{{postagem.conteudo}}</p>                                          
                                     </div>
-
                                 </div>
                                 <!--/First column-->
 
