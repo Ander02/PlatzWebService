@@ -33,7 +33,6 @@ angular.module("platz").service("validacaoService", function () {
     };
 
     this.valor = function (toastr, int, min, max, nomeCampo) {
-
         if (int > max || int < min) {
             aviso(toastr, "o campo " + nomeCampo + " deve ser um valor entre " + min + " e " + max);
             return false;
@@ -43,7 +42,7 @@ angular.module("platz").service("validacaoService", function () {
 
     this.vazio = function (toastr, object, nomeObjeto) {
         if (object === null || typeof object === "undefined" || object === undefined || object === "" || object === '' || object === []) {
-            erro(toastr, "Não foi idenfiticado nenhum valor ao tentar cadastrar/editar " + nomeObjeto);
+            erro(toastr, "Não foi idenfiticado nenhum valor ao tentar cadastrar/editar/ler " + nomeObjeto);
             return true;
         }
         return false;
@@ -56,5 +55,6 @@ angular.module("platz").service("validacaoService", function () {
         }
         return true;
     };
+
 
 });
