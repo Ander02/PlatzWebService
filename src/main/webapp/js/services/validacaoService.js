@@ -41,5 +41,20 @@ angular.module("platz").service("validacaoService", function () {
         return true;
     };
 
+    this.vazio = function (toastr, object, nomeObjeto) {
+        if (object === null || typeof object === "undefined" || object === undefined || object === "" || object === '' || object === []) {
+            erro(toastr, "Não foi idenfiticado nenhum valor ao tentar cadastrar/editar " + nomeObjeto);
+            return true;
+        }
+        return false;
+    };
+
+    this.contemImagem = function (toastr, file) {
+        if (file.length === 0 || file === null || file === undefined) {
+            aviso(toastr, "Selecione uma imagem");
+            return false;
+        }
+        return true;
+    };
 
 });

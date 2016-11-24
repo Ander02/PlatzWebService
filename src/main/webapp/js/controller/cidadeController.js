@@ -4,8 +4,8 @@ angular.module("platz").controller("cidadeController", function ($scope, $http, 
     $scope.listarTodos = function () {
         $http.get(webService + "/cidades", loginService.getHeaders()).then(function (response) {
             $scope.cidades = response.data;
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "Erro ao listar cidades"));
+        }, function () {
+            info(toastr, "falha ao caregar imagem, tente novamente mais tarde");
         });
     };
 
@@ -20,8 +20,6 @@ angular.module("platz").controller("cidadeController", function ($scope, $http, 
     }
 
     window.onload = function () {
-
-        console.log("onload");
         $scope.permicao = false;
         atualizar();
     };
