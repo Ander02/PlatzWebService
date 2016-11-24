@@ -35,9 +35,9 @@ Pagina de cadastro , consulta, atualização e exclusão de assunto de mensagem
 
         <!-- link Angular UTIL -->
         <script src="../js/util.js" type="text/javascript"></script>
-        
+
         <script src="../js/services/loginService.js" type="text/javascript"></script>
-        
+
         <script src="../js/services/validacaoService.js" type="text/javascript"></script>
         <!-- link CONTROLLER -->
         <script src="../js/controller/loginController.js" type="text/javascript"></script>
@@ -65,9 +65,9 @@ Pagina de cadastro , consulta, atualização e exclusão de assunto de mensagem
         %>
         <!-- inicio do projeto aqui-->
     <ng-include src="'../View/nav-adm.html'"  ng-controller="loginController"></ng-include>
-    
+
     <div class="espaco"></div>
-    
+
     <div ng-controller="assuntoController">
         <div ng-if="permicao">
 

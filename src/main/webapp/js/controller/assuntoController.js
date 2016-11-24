@@ -3,15 +3,13 @@ angular.module("platz").controller("assuntoController", function ($scope, $http,
     $scope.listarDeletados = function () {
         $http.get(webService + "/assuntos/deletados", loginService.getHeaders()).then(function (response) {
             $scope.assuntosDeletados = response.data;
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "Erro ao listar assuntos excluidos"));
+        }, function () {
         });
     };
     $scope.listarNaoDeletados = function () {
         $http.get(webService + "/assuntos/naoDeletados", loginService.getHeaders()).then(function (response) {
             $scope.assuntos = response.data;
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "Erro ao listar assuntos"));
+        }, function () {
         });
     };
 
@@ -22,10 +20,8 @@ angular.module("platz").controller("assuntoController", function ($scope, $http,
                 atualizar();
                 $scope.assuntoEdicao = new Object();
                 alterado(toastr, "Assunto editado com sucesso");
-                sleep(1000);
-                //location.reload();
-            }, function (response) {
-                erro(toastr, errorManager(response.config.url, response.status, "Erro ao alterar assunto"));
+            }, function () {
+                erro(toastr, "Erro ao alterar assunto, tente novamente mais tarde");
             });
         } else {
             aviso(toastr, "o nome do assunto deve ter no maximo 35 digitos");
@@ -39,28 +35,29 @@ angular.module("platz").controller("assuntoController", function ($scope, $http,
                 atualizar();
                 $scope.assuntoCadastro = "";
                 sucesso(toastr, "Assunto cadastrado com sucesso");
-            }, function (response) {
-                erro(toastr, errorManager(response.config.url, response.status, "Erro ao cadastrar assunto"));
+            }, function () {
+                erro(toastr, "Erro ao cadastrar assunto, tente novamente mais tarde");
             });
         } else {
             aviso(toastr, "o nome do assunto deve ter no maximo 35 digitos");
         }
     };
-    
+
     $scope.deletar = function () {
         $http.delete(webService + "/assunto/" + $scope.assuntoExclusaoId, loginService.getHeaders()).then(function (response) {
             atualizar();
             excluido(toastr, "Assunto deletado com sucesso");
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "Erro deletar assunto"));
+        }, function () {
+            erro(toastr, "Erro deletar assunto, tente novamente mais tarde");
         });
     };
+    
     $scope.recuperar = function () {
         $http.put(webService + "/assunto/recuperar/" + $scope.assuntoRecuperacaoId, null, loginService.getHeaders()).then(function (response) {
             atualizar();
             sucesso(toastr, "Assunto restaurado com sucesso");
-        }, function (reponse) {
-            erro(toastr, errorManager(response.config.url, response.status, "Erro ao recuperar assunto"));
+        }, function () {
+            erro(toastr, "Erro ao recuperar assunto, tente novamente mais tarde");
         });
     };
 
@@ -100,7 +97,6 @@ angular.module("platz").controller("assuntoController", function ($scope, $http,
 
     }
     window.onload = function () {
-        console.log("onload");
         $scope.permicao = false;
         atualizar();
     };
