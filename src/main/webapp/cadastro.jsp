@@ -79,11 +79,11 @@
             <div class="col-md-1"></div>
             <div class="col-md-10">
                 <p>Escolha uma maneira de cadastro</p>
-                <p>Ao escolher se cadastrar como empresa vocÃª tera os beneficios de  poder 
-                    postar eventos e ver avaliaÃ§Ãµes de seus visitantes, alem de ter um perfil publico, vocÃª tera mais interaÃ§Ã£o 
+                <p>Ao escolher se cadastrar como empresa você tera os beneficios de  poder 
+                    postar eventos e ver avaliações de seus visitantes, alem de ter um perfil publico, você tera mais interação
                     com quem acompanha seus eventos </p>
-                <p>Ao escolher se cadastrar como usuario , vocÃª tera mais facilidade a encontrar o caminho certo
-                    para os eventos que vocÃª marcou presenÃ§Ã£, alem de poder avaliar e entrar em contato direto com a empresa
+                <p>Ao escolher se cadastrar como usuario , você tera mais facilidade a encontrar o caminho certo
+                    para os eventos que você marcou presença, alem de poder avaliar e entrar em contato direto com a empresa
                     organizadora do evento</p>
 
             </div>
