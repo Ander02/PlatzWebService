@@ -42,6 +42,7 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
 
     // Calcula Rota
     $scope.calcularRota = function () {
+
         var travelModeSelected;
 
         var tipoViagemSelect = document.getElementById("tipoViagemSelect").value;
@@ -54,16 +55,34 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
             travelModeSelected = google.maps.DirectionsTravelMode.DRIVING;
         }
 
-        var start = document.getElementById("pontoInicial").value;
+        var start = "";
         var directionsService = new google.maps.DirectionsService();
+        var request = new Object();
 
-        var request = {
-            origin: start,
-            destination: enderecoCompletoEvento,
-            travelMode: travelModeSelected,
-            optimizeWaypoints: true
-        };
+        if (document.getElementById("checkboxLocalizacaoAtual").checked) {
+            console.log(document.getElementById("checkboxLocalizacaoAtual").checked);
 
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+
+                    console.log("" + position.coords.latitude + "," + position.coords.longitude + "");
+
+                    request = {
+                        origin: "" + position.coords.latitude + "," + position.coords.longitude + "",
+                        destination: enderecoCompletoEvento,
+                        travelMode: travelModeSelected,
+                        optimizeWaypoints: true
+                    };
+                });
+            }
+        } else {
+            request = {
+                origin: document.getElementById("pontoInicial").value,
+                destination: enderecoCompletoEvento,
+                travelMode: travelModeSelected,
+                optimizeWaypoints: true
+            };
+        }
         directionsService.route(request, function (response, status) {
             if (status == google.maps.DirectionsStatus.OK) {
                 for (var i = 0; i < response.routes.length; i++) {

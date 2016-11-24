@@ -281,9 +281,9 @@ Pagina de evento especifico
                         <div class="modal-body">
                             <form>
                                 <div class="form-group row">
-                                    <label for="inputCheck3" class="col-sm-4 col-form-label">Calcular pela minha localização</label>
-                                    <div class="col-sm-4">
-                                        <input type="checkbox" class="form-control input-contato" id="inputCheck3" />
+                                    <label for="checkboxLocalizacaoAtual" class="col-sm-4 col-form-label">Calcular pela minha localização</label>
+                                    <div class="col-sm-4" >
+                                        <input type="checkbox" class="form-control input-contato" id="checkboxLocalizacaoAtual" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
