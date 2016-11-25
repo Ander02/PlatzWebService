@@ -1,9 +1,5 @@
 angular.module("platz").service("validacaoService", function () {
 
-    this.emailExiste = function ($http, toastr, email, heareds) {
-
-    };
-
     this.conteudo = function (toastr, string, nomeCampo) {
         //expressao regular
         // aviso(toastr, "o campo " + nomeCampo + " não deve ter os caracteres $<>{}\\\"'");
