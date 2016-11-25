@@ -36,9 +36,9 @@ public class EventoLeitura {
     private EnderecoLeitura endereco;
     private double media = 0.0;
     private double mediaArredondada = 0.0;
-    private int participarcaoSim = 0;
-    private int participarcaoTalvez = 0;
-    private int participarcaoNao = 0;
+    private int participacaoSim = 0;
+    private int participacaoTalvez = 0;
+    private int participacaoNao = 0;
     private int curtidas = 0;
 
     public EventoLeitura() {
@@ -65,9 +65,9 @@ public class EventoLeitura {
         setEndereco(new EnderecoLeitura(model.getEndereco()));
         setMedia(new AvaliacaoController().mediaPorEvento(model));
         setMediaArredondada(Math.round(getMedia()));
-        setParticiparcaoSim(new PresencaController().buscartipoPresenca(TipoPresenca.SIM, model).size());
-        setParticiparcaoNao(new PresencaController().buscartipoPresenca(TipoPresenca.NAO, model).size());
-        setParticiparcaoTalvez(new PresencaController().buscartipoPresenca(TipoPresenca.TALVEZ, model).size());
+        setParticipacaoSim(new PresencaController().buscartipoPresenca(TipoPresenca.SIM, model).size());
+        setParticipacaoNao(new PresencaController().buscartipoPresenca(TipoPresenca.NAO, model).size());
+        setParticipacaoTalvez(new PresencaController().buscartipoPresenca(TipoPresenca.TALVEZ, model).size());
         setCurtidas(new CurtidaController().buscarPeloEvento(model).size());
     }
 
@@ -246,28 +246,28 @@ public class EventoLeitura {
         this.mediaArredondada = mediaArredondada;
     }
 
-    public int getParticiparcaoSim() {
-        return participarcaoSim;
+    public int getParticipacaoSim() {
+        return participacaoSim;
     }
 
-    public void setParticiparcaoSim(int ParticiparcaoSim) {
-        this.participarcaoSim = ParticiparcaoSim;
+    public void setParticipacaoSim(int participacaoSim) {
+        this.participacaoSim = participacaoSim;
     }
 
-    public int getParticiparcaoTalvez() {
-        return participarcaoTalvez;
+    public int getParticipacaoTalvez() {
+        return participacaoTalvez;
     }
 
-    public void setParticiparcaoTalvez(int ParticiparcaoTalvez) {
-        this.participarcaoTalvez = ParticiparcaoTalvez;
+    public void setParticipacaoTalvez(int participacaoTalvez) {
+        this.participacaoTalvez = participacaoTalvez;
     }
 
-    public int getParticiparcaoNao() {
-        return participarcaoNao;
+    public int getParticipacaoNao() {
+        return participacaoNao;
     }
 
-    public void setParticiparcaoNao(int ParticiparcaoNão) {
-        this.participarcaoNao = ParticiparcaoNão;
+    public void setParticipacaoNao(int participacaoNao) {
+        this.participacaoNao = participacaoNao;
     }
 
     public int getCurtidas() {

@@ -115,6 +115,7 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
     $scope.eventoEspecifico = function () {
         $http.get(webService + "/evento/" + id).then(function (response) {
             $scope.evento = response.data;
+            console.log($scope.evento);
             $scope.imagemCapa = webService + "/evento/imagemCapa/" + id;
             enderecoCompletoEvento = $scope.evento.endereco.cep + " " + $scope.evento.endereco.rua;
             $scope.iniciarMapa();
@@ -191,15 +192,6 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
         atualizar();
     };
 
-    $scope.listarPostagem = function () {
-        $http.get(webService + "/postagens", loginService.getHeaders()).then(function (response) {
-            $scope.postagens = response.data;
-        }, function () {
-
-        });
-    };
-
-
     $scope.buscaUsuario = function () {
         $http.get(webService + "/usuario/conta/" + $scope.conta.id, loginService.getHeaders()).then(function (response) {
             $scope.usuario = response.data;
@@ -261,8 +253,14 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
     $scope.listarPostagem = function () {
         $http.get(webService + "/postagem/evento/" + id, loginService.getHeaders()).then(function (response) {
             $scope.postagens = response.data;
+            for (var i = 0; i < $scope.postagens.length; i++) {
+                if ($scope.postagens[i].usuario === null) {
+                    $scope.postagens[i].conta = $scope.postagens[i].empresa.conta;
+                } else if ($scope.postagens[i].empresa === null) {
+                    $scope.postagens[i].conta = $scope.postagens[i].usuario.conta;
+                }
+            }
         }, function () {
-
         });
     };
 
@@ -286,6 +284,50 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
         });
     };
 
+    $scope.bloquearEvento = function () {
+
+    };
+    $scope.bloquearPostagem = function () {
+
+    };
+    $scope.denuciarEvento = function () {
+
+    };
+    $scope.denuciarPostagem = function () {
+
+    };
+    $scope.ExcluirPostagem = function () {
+
+    };
+    $scope.editarPostagem = function (novoComentario) {
+
+    };
+    $scope.prepararDenunciaPostagem = function (postagem) {
+
+    };
+    $scope.prepararBloqueamentoPostagem = function (postagem) {
+
+    };
+    $scope.prepararEdicaoPostagem = function (postagem) {
+
+    };
+    $scope.prepararExclusaoPostagem = function (postagem) {
+
+    };
+    $scope.cancelarDenunciaPostagem = function (postagem) {
+
+    };
+    $scope.cancelarBloqueamentoPostagem = function (postagem) {
+
+    };
+    $scope.cancelarEdicaoPostagem = function (postagem) {
+
+    };
+    $scope.cancelarExclusaoPostagem = function (postagem) {
+
+    };
+
+
     function atualizar() {
         loginService.verificarToken($http, toastr, "Livre", function () {
             $scope.permicao = loginService.getPermicao();
@@ -300,8 +342,9 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
         $scope.eventoEspecifico();
         $scope.getMedia();
         $scope.listarPostagem();
-
     }
+
+
 
     window.onload = function () {
         $scope.usuario = "";
