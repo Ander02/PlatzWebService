@@ -1,5 +1,9 @@
 angular.module("platz").service("validacaoService", function () {
 
+    this.emailExiste = function ($http, toastr, email, heareds) {
+
+    };
+
     this.conteudo = function (toastr, string, nomeCampo) {
         //expressao regular
         // aviso(toastr, "o campo " + nomeCampo + " não deve ter os caracteres $<>{}\\\"'");
@@ -41,7 +45,7 @@ angular.module("platz").service("validacaoService", function () {
     };
 
     this.vazio = function (toastr, object, nomeObjeto) {
-        if (object === null || typeof object === "undefined" || object === undefined || object === "" || object === '' || object === []) {
+        if (object === null || typeof object === "undefined" || object === undefined || object === "" || object === '' || object === [] || object === {}) {
             erro(toastr, "Não foi idenfiticado nenhum valor ao tentar cadastrar/editar/ler " + nomeObjeto);
             return true;
         }
