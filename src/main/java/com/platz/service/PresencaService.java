@@ -137,7 +137,7 @@ public class PresencaService {
     }
 
     @GET
-    @Path(value = "/presenca/conta/{idUConta}/presenca/{presenca}")
+    @Path(value = "/presenca/conta/{idConta}/presenca/{presenca}")
     @PerfilAuth(Perfil.USUARIO)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloTipoPresenca(@PathParam("idConta") String idConta, @PathParam("presenca") int presenca) {
