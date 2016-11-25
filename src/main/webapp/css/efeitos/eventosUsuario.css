@@ -54,7 +54,7 @@
 }
 
 .hovereffect h2,
-.hovereffect p {
+.hovereffect .p-efeito{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -89,19 +89,19 @@
     transform-origin: 50%;
 }
 
-.hovereffect p {
+.hovereffect .p-efeito {
     width: 25%;
     text-transform: none;
     font-size: 25px;
     line-height: 2;
 }
 
-.hovereffect p a {
+.hovereffect .p-efeito a {
     color: #fff;
 }
 
-.hovereffect p a:hover,
-.hovereffect p a:focus {
+.hovereffect .p-efeito a:hover,
+.hovereffect .p-efeito a:focus {
     opacity: 0.6;
     filter: alpha(opacity=60);
 }
@@ -114,12 +114,12 @@
     padding: 0px 5px;
 }
 
-.hovereffect p a:first-child i {
+.hovereffect .p-efeito a:first-child i {
     -webkit-transform: translate3d(-60px,-60px,0);
     transform: translate3d(-60px,-60px,0);
 }
 
-.hovereffect p a:nth-child(2) i {
+.hovereffect .p-efeito a:nth-child(2) i {
     -webkit-transform: translate3d(60px,-60px,0);
     transform: translate3d(60px,-60px,0);
 }
@@ -134,7 +134,7 @@
     transform: translate3d(-50%,-50%,0) rotate3d(0,0,1,-135deg) scale3d(1,1,1);
 }
 
-.hovereffect:hover p i:empty {
+.hovereffect:hover .p-efeito i:empty {
     -webkit-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
     opacity: 1;
