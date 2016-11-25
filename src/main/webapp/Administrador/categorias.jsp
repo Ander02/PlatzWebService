@@ -37,7 +37,7 @@ Pagina de Cadastro, consulta , atualização e exclusão de Categorias dos event
         <script src="../js/util.js" type="text/javascript"></script> 
 
         <script src="../js/services/loginService.js" type="text/javascript"></script>
-        
+        <script src="../js/services/validacaoService.js" type="text/javascript"></script>
         <!-- angular controller script -->
         <script src="../js/controller/loginController.js" type="text/javascript"></script>
 

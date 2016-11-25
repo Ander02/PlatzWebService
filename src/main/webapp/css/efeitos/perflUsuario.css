@@ -40,6 +40,7 @@ and open the template in the editor.
 .hovereffect img {
     display: block;
     position: relative;
+    height: 450px;
     -webkit-transition: all 0.2s ease-in;
     transition: all 0.2s ease-in;
 }

@@ -37,9 +37,24 @@ angular.module("platz").service("validacaoService", function () {
     };
 
     this.valor = function (toastr, int, min, max, nomeCampo) {
-
         if (int > max || int < min) {
             aviso(toastr, "o campo " + nomeCampo + " deve ser um valor entre " + min + " e " + max);
+            return false;
+        }
+        return true;
+    };
+
+    this.vazio = function (toastr, object, nomeObjeto) {
+        if (object === null || typeof object === "undefined" || object === undefined || object === "" || object === '' || object === []) {
+            erro(toastr, "Não foi idenfiticado nenhum valor ao tentar cadastrar/editar/ler " + nomeObjeto);
+            return true;
+        }
+        return false;
+    };
+
+    this.contemImagem = function (toastr, file) {
+        if (file.length === 0 || file === null || file === undefined) {
+            aviso(toastr, "Selecione uma imagem");
             return false;
         }
         return true;

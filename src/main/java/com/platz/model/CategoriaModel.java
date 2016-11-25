@@ -30,7 +30,7 @@ public class CategoriaModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private ObjectId id;
 
-    @Length(max = 30, message = "O nome deve ter no máximo 30 caracteres")
+    @Length(max = 35, message = "O nome deve ter no máximo 35 caracteres")
     @NotNull(message = "O nome não pode ser nulo")
     private String nome;
     

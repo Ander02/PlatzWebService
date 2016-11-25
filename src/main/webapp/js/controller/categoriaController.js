@@ -1,82 +1,87 @@
-angular.module("platz").controller("categoriaController", function ($scope, $http, toastr, loginService) {
+angular.module("platz").controller("categoriaController", function ($scope, $http, toastr, loginService, validacaoService) {
 
     //funções que realizam consulta no webService    
     $scope.listarExcluidas = function () {
         $http.get(webService + "/categorias/excluidas", loginService.getHeaders()).then(function (response) {
             $scope.categoriasExcluidas = response.data;
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "Erro ao listar categorias excluidas"));
+        }, function () {
         });
     };
     $scope.listarNaoExcluidas = function () {
         $http.get(webService + "/categorias/naoExcluidas", loginService.getHeaders()).then(function (response) {
             $scope.categorias = response.data;
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "Erro ao listar categorias"));
+        }, function () {
         });
     };
 
     $scope.alterar = function (categoriaEditada) {
-        console.log(categoriaEditada);
-        $http.put(webService + "/categoria/" + $scope.categoriaEdicao.id, categoriaEditada, loginService.getHeaders()).then(function (response) {
-            atualizar();
-            alterado(toastr, "Categoria editar com sucesso");
-            sleep(1000);
-            location.reload();
-        }, function (response) {
-            console.log(response);
-            erro(toastr, errorManager(response.config.url, response.status, "Erro ao alterar categoria"));
-        });
+        if (validacaoService.comprimento(toastr, categoriaEditada.nome, 0, 35, "nome") && validacaoService.conteudo(toastr, categoriaEditada.nome, "nome")) {
+            $http.put(webService + "/categoria/" + $scope.categoriaEdicao.id, categoriaEditada, loginService.getHeaders()).then(function () {
+                atualizar();
+                alterado(toastr, "Categoria editar com sucesso");
+            }, function () {
+                erro(toastr, "Erro ao alterar categoria, tente novamente mais tarde");
+            });
+        }
     };
 
     $scope.alterarImagem = function () {
 
         var input = document.getElementById("InputIconeCategoriaEdicao");
-        var icone = input.files[0];
+        if (validacaoService.contemImagem(toastr, input.files)) {
 
-        if (!(!icone.type.match('image.*'))) {
-            enviarArquivo($http, icone, 'icone', webService + "/categoria/imagem/" + $scope.categoriaImagemEdicaoId, $scope.token);
+            var icone = input.files[0];
+
+            if (!(!icone.type.match('image.*'))) {
+                enviarArquivo($http, icone, 'icone', webService + "/categoria/imagem/" + $scope.categoriaImagemEdicaoId, $scope.token);
+            }
+            input.value = null;
+            atualizar();
         }
-        input.value = null;
-        atualizar();
     };
 
 
     $scope.cadastrar = function (cadastroCategoria) {
+        var input = document.getElementById("InputIconeCategoriaCadastro");
+        if (!validacaoService.vazio(toastr, cadastroCategoria, "Categoria")) {
+            if (validacaoService.comprimento(toastr, cadastroCategoria.nome, 1, 35, "nome")
+                    && validacaoService.conteudo(toastr, cadastroCategoria.nome, "nome")
+                    && validacaoService.contemImagem(toastr, input.files)) {
 
-        $http.post(webService + "/categoria", cadastroCategoria, loginService.getHeaders()).then(function (response) {
+                $http.post(webService + "/categoria", cadastroCategoria, loginService.getHeaders()).then(function (response) {
 
-            var input = document.getElementById("InputIconeCategoriaCadastro");
-            var icone = input.files[0];
 
-            if (!(!icone.type.match('image.*'))) {
-                enviarArquivo($http, icone, 'icone', webService + "/categoria/imagem/" + response.data.id, $scope.token);
+                    var icone = input.files[0];
+
+                    if (!(!icone.type.match('image.*'))) {
+                        enviarArquivo($http, icone, 'icone', webService + "/categoria/imagem/" + response.data.id, $scope.token);
+                    }
+                    input.value = null;
+
+                    atualizar();
+                    sucesso(toastr, "Categoria cadastrada com sucesso");
+                }, function () {
+                    erro(toastr, "Erro ao cadastrar categoria, por favor tente novamente mais tarde");
+                });
             }
-            input.value = null;
-
-            atualizar();
-            sucesso(toastr, "Categoria cadastrada com sucesso");
-        }, function (response) {
-            console.log(response);
-            erro(toastr, errorManager(response.config.url, response.status, "Erro ao cadastrar categoria"));
-        });
+        }
     };
 
     $scope.recuperar = function () {
-        $http.put(webService + "/categoria/recuperar/" + $scope.categoriaRecuperacaoId, loginService.getHeaders()).then(function (response) {
+        $http.put(webService + "/categoria/recuperar/" + $scope.categoriaRecuperacaoId, loginService.getHeaders()).then(function () {
             atualizar();
             sucesso(toastr, "Categoria recuperada com sucesso");
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "Erro ao recuperar categoria"));
+        }, function () {
+            erro(toastr, "Erro ao recuperar categoria, por favor tente novamente mais tarde");
         });
     };
 
     $scope.deletar = function () {
-        $http.delete(webService + "/categoria/" + $scope.categoriaExclusaoId, loginService.getHeaders()).then(function (response) {
+        $http.delete(webService + "/categoria/" + $scope.categoriaExclusaoId, loginService.getHeaders()).then(function () {
             atualizar();
             excluido(toastr, "Categoria deletada com sucesso");
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "Erro deletar categoria"));
+        }, function () {
+            erro(toastr, "Erro ao deletar categoria, por favor tente novamente mais tarde");
         });
     };
 
@@ -131,7 +136,6 @@ angular.module("platz").controller("categoriaController", function ($scope, $htt
     }
 
     window.onload = function () {
-        console.log("onload");
         $scope.permicao = false;
         atualizar();
     };
