@@ -47,12 +47,16 @@ public class PresencaController {
     public PresencaModel buscarPeloEventoEConta(EventoModel evento, ContaModel conta) {
         return presencaDao.buscarPorEventoEConta(evento, conta);
     }
-    
-    public List<PresencaModel> buscartipoPresenca(TipoPresenca presenca ){
+
+    public List<PresencaModel> buscartipoPresenca(TipoPresenca presenca) {
         return presencaDao.buscarPorTipoPresenca(presenca);
     }
-    
-    public List<PresencaModel> buscartipoPresenca(TipoPresenca presenca, EventoModel evento){
+
+    public List<PresencaModel> buscartipoPresenca(TipoPresenca presenca, EventoModel evento) {
         return presencaDao.buscarPorTipoPresenca(presenca, evento);
+    }
+
+    public List<PresencaModel> buscartipoPresenca(TipoPresenca presenca, ContaModel conta) {
+        return presencaDao.buscarPorTipoPresenca(presenca, conta);
     }
 }
