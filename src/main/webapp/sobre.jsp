@@ -16,7 +16,6 @@
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
 
-
         <!-- Material Design Bootstrap -->
         <link href="css/bootstrap/mdb.min.css" rel="stylesheet">
 
@@ -32,6 +31,8 @@
         <script src="js/util.js" type="text/javascript"></script>
 
         <script src="js/services/loginService.js" type="text/javascript"></script>
+        
+        <script src="js/services/validacaoService.js" type="text/javascript"></script>
 
         <script src="js/controller/loginController.js" type="text/javascript"></script>
 

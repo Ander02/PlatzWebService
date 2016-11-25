@@ -37,6 +37,8 @@ pagina de login, onde o usuario é redirecionado se errar o login pela nav
 
         <script src="js/services/loginService.js" type="text/javascript"></script>
 
+        <script src="js/services/validacaoService.js" type="text/javascript"></script>
+
         <!-- Controller -->
         <script src="js/controller/loginController.js" type="text/javascript"></script>
 

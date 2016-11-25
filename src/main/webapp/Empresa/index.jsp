@@ -35,11 +35,15 @@ considerada pagina de eventos que a empresa postou
         <script type="text/javascript" src="../js/app.js"></script>
 
         <script src="../js/services/loginService.js" type="text/javascript"></script>
+        
+        <script src="../js/services/validacaoService.js" type="text/javascript"></script>
 
         <!-- link util -->
         <script src="../js/util.js" type="text/javascript"></script>
+        
         <!-- Link Controller -->
         <script src="../js/controller/perfilEmpresaController.js" type="text/javascript"></script>
+        
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="../img/logo.png">
 

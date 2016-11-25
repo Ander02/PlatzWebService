@@ -34,6 +34,8 @@ Pagina de edição de eventos, onde sera possivel cancelar os eventos e editar s
         <script type="text/javascript" src="../js/app.js"></script>
 
         <script src="../js/services/loginService.js" type="text/javascript"></script>
+        
+        <script src="../js/services/validacaoService.js" type="text/javascript"></script>
 
         <!-- link util -->
         <script src="../js/util.js" type="text/javascript"></script>

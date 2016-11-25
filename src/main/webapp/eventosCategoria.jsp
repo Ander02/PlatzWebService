@@ -36,6 +36,8 @@ pagina onde é retornada a busca de eventos por uma unica determinada categoria
         <script src="js/util.js" type="text/javascript"></script>
 
         <script src="js/services/loginService.js" type="text/javascript"></script>
+        
+        <script src="js/services/validacaoService.js" type="text/javascript"></script>
 
         <script src="js/controller/loginController.js" type="text/javascript"></script>
 

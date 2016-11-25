@@ -37,6 +37,9 @@
         <script src="../js/util.js" type="text/javascript"></script>
         
         <script src="../js/services/loginService.js" type="text/javascript"></script>
+        
+        <script src="../js/services/validacaoService.js" type="text/javascript"></script>
+        
         <!-- Link Controller -->
         <script src="../js/controller/perfilEmpresaController.js" type="text/javascript"></script>
 

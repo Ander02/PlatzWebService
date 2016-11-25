@@ -42,6 +42,8 @@ Ira aparecer todos os eventos que o usuario marcou participação
 
         <!-- service -->
         <script src="../js/services/loginService.js" type="text/javascript"></script>
+        
+        <script src="../js/services/validacaoService.js" type="text/javascript"></script>
 
         <!-- angular controller  -->
 

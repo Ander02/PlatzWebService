@@ -36,6 +36,8 @@ Pagina onde ira exibir os eventos, onde sera possivel filtrar os eventos
         <script src="js/util.js" type="text/javascript"></script>
 
         <script src="js/services/loginService.js" type="text/javascript"></script>
+        
+        <script src="js/services/validacaoService.js" type="text/javascript"></script>
 
         <script src="js/controller/loginController.js" type="text/javascript"></script>
 
