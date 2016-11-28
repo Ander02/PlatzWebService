@@ -175,7 +175,8 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
                 usuarioId: $scope.usuario.id,
                 curtida: $scope.curtido
             };
-            $http.post(webService + "/curtir", curtida, loginService.getHeaders()).then(function (response) {
+            $http.post(webService + "/curtir", curtida, loginService.getHeaders()).then(function () {
+                atualizar();
             }, function () {
             });
 
@@ -294,9 +295,15 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
         });
     };
     $scope.bloquearPostagem = function () {
-
+        $http.put(webService + "/postagem/censurar/" + $scope.bloqueamentoPostagem.id, null, loginService.getHeaders()).then(function (response) {
+            console.log(response.data);
+            sucesso(toastr, "Comentário censurado");
+            atualizar();
+        }, function () {
+            aviso(toastr, "falha ao censurar comentário, tente novamente mais tarde");
+        });
     };
-    $scope.denuciarEvento = function (mensagem) {
+    $scope.denunciarEvento = function (mensagem) {
         var email;
         if ($scope.conta !== undefined) {
             email = $scope.conta.email;
@@ -315,6 +322,9 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
 
             $http.post(webService + "/mensagem", $scope.denunciaEvento, loginService.getHeaders()).then(function () {
                 sucesso(toastr, "Denúncia realizada");
+                $scope.mensagemDenunciaEvento = new String();
+                atualizar();
+
             }, function () {
                 aviso(toastr, "falha ao realizar denúncia tente novamente mais tarde");
             });
@@ -322,40 +332,96 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
             aviso(toastr, "falha ao realizar denúncia tente novamente mais tarde");
         });
     };
-    $scope.denuciarPostagem = function () {
+
+    $scope.desbloquearEvento = function () {
+        $http.put(webService + "/evento/descensurar/" + id, null, loginService.getHeaders()).then(function (response) {
+            sucesso(toastr, "Evento desbloqueado");
+            atualizar();
+        }, function () {
+            aviso(toastr, "falha ao desbloquear evento");
+        });
+    };
+
+    $scope.denunciarPostagem = function (mensagem) {
+        var email;
+        if ($scope.conta !== undefined) {
+            email = $scope.conta.email;
+        } else {
+            email = $scope.emailDenunciaComentario;
+        }
+
+        $http.get(webService + "/assuntos/Denúncia", loginService.getHeaders()).then(function (response) {
+
+            $scope.denunciaComentario = {
+                conteudo: "Denúncia no comentário de conteudo: '" + $scope.denunciaPostagem.conteudo + "' no evento: " + location.href + "  Mensagem do usuário:" + mensagem,
+                assuntoId: response.data[0].id,
+                email: email
+            };
+
+            $http.post(webService + "/mensagem", $scope.denunciaComentario, loginService.getHeaders()).then(function () {
+                $scope.mensagemDenunciaComentario = new String();
+                sucesso(toastr, "Denúncia realizada");
+                atualizar();
+            }, function () {
+                aviso(toastr, "falha ao realizar denúncia tente novamente mais tarde");
+            });
+        }, function () {
+            aviso(toastr, "falha ao realizar denúncia tente novamente mais tarde");
+        });
 
     };
-    $scope.ExcluirPostagem = function () {
 
+    $scope.ExcluirPostagem = function () {
+        $http.delete(webService + "/postagem/" + $scope.exclusaoPostagem.id, loginService.getHeaders()).then(function () {
+            excluido(toastr, "Comentário excluído");
+            atualizar();
+        }, function () {
+            aviso(toastr, "Falha ao excluir comentário, tente novamente mais tarde");
+            atualizar();
+        });
     };
     $scope.editarPostagem = function (novoComentario) {
+        $http.put(webService + "/postagem/" + $scope.edicaoPostagem.id, {conteudo: novoComentario}, loginService.getHeaders()).then(function () {
+            sucesso(toastr, "postagem editada");
+            atualizar();
+        }, function () {
+            aviso(toastr, "falha ao editar postagem");
+        });
 
     };
     $scope.prepararDenunciaPostagem = function (postagem) {
+        console.log(postagem);
+        $scope.denunciaPostagem = postagem;
 
     };
     $scope.prepararBloqueamentoPostagem = function (postagem) {
+        console.log(postagem);
+        $scope.bloqueamentoPostagem = postagem;
 
     };
     $scope.prepararEdicaoPostagem = function (postagem) {
-
+        $scope.novoComentario = postagem.conteudo;
+        $scope.edicaoPostagem = postagem;
     };
     $scope.prepararExclusaoPostagem = function (postagem) {
+        console.log(postagem);
+        $scope.exclusaoPostagem = postagem;
+    };
+    $scope.cancelarDenunciaPostagem = function () {
+        $scope.denunciaPostagem = new Object();
 
     };
-    $scope.cancelarDenunciaPostagem = function (postagem) {
+    $scope.cancelarBloqueamentoPostagem = function () {
+        $scope.bloqueamentoPostagem = new Object();
 
     };
-    $scope.cancelarBloqueamentoPostagem = function (postagem) {
+    $scope.cancelarEdicaoPostagem = function () {
+        $scope.edicaoPostagem = new Object();
+    };
+    $scope.cancelarExclusaoPostagem = function () {
+        $scope.exclusaoPostagem = new Object();
 
     };
-    $scope.cancelarEdicaoPostagem = function (postagem) {
-
-    };
-    $scope.cancelarExclusaoPostagem = function (postagem) {
-
-    };
-
 
     function atualizar() {
         loginService.verificarToken($http, toastr, "Livre", function () {
@@ -371,9 +437,11 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
         $scope.eventoEspecifico();
         $scope.getMedia();
         $scope.listarPostagem();
+        $scope.cancelarExclusaoPostagem();
+        $scope.cancelarBloqueamentoPostagem();
+        $scope.cancelarDenunciaPostagem();
+        $scope.cancelarEdicaoPostagem();
     }
-
-
 
     window.onload = function () {
         $scope.usuario = "";
