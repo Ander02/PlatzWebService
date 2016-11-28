@@ -117,7 +117,7 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
             $scope.evento = response.data;
             console.log($scope.evento);
             $scope.imagemCapa = webService + "/evento/imagemCapa/" + id;
-            enderecoCompletoEvento = $scope.evento.endereco.cep + " " + $scope.evento.endereco.rua;
+            enderecoCompletoEvento = $scope.evento.endereco.cep + " " + $scope.evento.endereco.rua + " " + $scope.evento.endereco.cidade.nome + " " + $scope.evento.endereco.cidade.estado.uf;
             $scope.iniciarMapa();
         }, function () {
             aviso(toastr, "código de evento invalido");
@@ -285,13 +285,42 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
     };
 
     $scope.bloquearEvento = function () {
-
+        $http.put(webService + "/evento/censurar/" + id, null, loginService.getHeaders()).then(function (response) {
+            console.log(response.data);
+            sucesso(toastr, "Evento censurado");
+            atualizar();
+        }, function () {
+            aviso(toastr, "falha ao censurar evento, tente novamente mais tarde");
+        });
     };
     $scope.bloquearPostagem = function () {
 
     };
-    $scope.denuciarEvento = function () {
+    $scope.denuciarEvento = function (mensagem) {
+        var email;
+        if ($scope.conta !== undefined) {
+            email = $scope.conta.email;
+        } else {
+            email = $scope.emailDenunciaEvento;
+        }
 
+        $http.get(webService + "/assuntos/Denúncia", loginService.getHeaders()).then(function (response) {
+            console.log(response.data);
+
+            $scope.denunciaEvento = {
+                conteudo: "Denúncia no evento: " + location.href + "  Mensagem do usuário:" + mensagem,
+                assuntoId: response.data[0].id,
+                email: email
+            };
+
+            $http.post(webService + "/mensagem", $scope.denunciaEvento, loginService.getHeaders()).then(function () {
+                sucesso(toastr, "Denúncia realizada");
+            }, function () {
+                aviso(toastr, "falha ao realizar denúncia tente novamente mais tarde");
+            });
+        }, function () {
+            aviso(toastr, "falha ao realizar denúncia tente novamente mais tarde");
+        });
     };
     $scope.denuciarPostagem = function () {
 

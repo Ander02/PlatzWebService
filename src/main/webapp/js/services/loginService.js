@@ -54,7 +54,7 @@ angular.module("platz").service("loginService", function () {
                                 logoff($http, toastr);
                             }
 
-                        }, function (response) {                            
+                        }, function (response) { 
                             permicao = false;
                             logoff($http, toastr);
                             location.href = "/quebraSessao.jsp";

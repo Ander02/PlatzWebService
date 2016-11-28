@@ -119,7 +119,7 @@ public class AssuntoService {
 
     @GET
     @Path(value = "/assuntos/{nome}")
-    @DenyAll
+    @PermitAll
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response buscarPeloNome(@PathParam("nome") String nome) {
         try {
