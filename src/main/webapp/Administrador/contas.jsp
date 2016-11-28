@@ -38,9 +38,9 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
         
         <script src="../js/services/validacaoService.js" type="text/javascript"></script>
         
-        <script src="../js/controller/loginController.js" type="text/javascript"></script>
+<!--        <script src="../js/controller/loginController.js" type="text/javascript"></script>-->
 
-        <script src="../js/controller/contaController.js" type="text/javascript"></script>     
+        <!--<script src="../js/controller/contaController.js" type="text/javascript"></script>-->     
 
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="../img/logo.png">
@@ -48,26 +48,14 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
     </head>
 
     <body>
-        <%
-            try {
-                String token = session.getAttribute("token").toString();
-                if (token == null) {
-                    response.sendRedirect("../login.jsp");
-                } else {
-                    out.print("<input type='hidden' id='token' name='token' value ='" + token + "' >");
-                }
-            } catch (Exception e) {
-                System.out.println("Erro ao buscar sessão " + e.getMessage());
-                response.sendRedirect("../login.jsp");
-            }
-        %>
+      
 
 
         <!-- inicio do projeto aqui-->
 
-    <ng-include src="'../View/nav-adm.html'" ng-controller="loginController"></ng-include>
+    <ng-include src="'../View/nav-adm.html'" ></ng-include>
     <div ng-controller="contaController">
-        <div ng-if="permicao">
+        <div >
 
             <div class="espaco"></div>
 
