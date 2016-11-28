@@ -137,6 +137,42 @@ public class PostagemService {
     }
 
     @PUT
+    @Path(value = "/postagem/censurar/{id}")
+    @PerfilAuth(Perfil.ADMINISTRADOR)
+    @Consumes(value = MediaType.APPLICATION_JSON)
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response censurar(@PathParam("id") String id) {
+        try {
+            PostagemModel model = postagemController.buscarPorId(id);
+            postagemController.bloquear(model);
+
+            return Response.ok(new PostagemLeitura(model)).build();
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar Postagem").build();
+        }
+    }
+
+    @PUT
+    @Path(value = "/postagem/descensurar/{id}")
+    @PerfilAuth(Perfil.ADMINISTRADOR)
+    @Consumes(value = MediaType.APPLICATION_JSON)
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response descensurar(@PathParam("id") String id) {
+        try {
+            PostagemModel model = postagemController.buscarPorId(id);
+            postagemController.desbloquear(model);
+
+            return Response.ok(new PostagemLeitura(model)).build();
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar Postagem").build();
+        }
+    }
+
+    @PUT
     @Path(value = "/postagem/{id}")
     @PerfilAuth({Perfil.USUARIO, Perfil.EMPRESA})
     @Consumes(value = MediaType.APPLICATION_JSON)
@@ -147,7 +183,7 @@ public class PostagemService {
             postagemController.alterar(model, postagem);
             return Response.ok(new PostagemLeitura(model)).build();
         } catch (Exception e) {
-            System.out.println("Erro: " + e.getMessage());
+            e.printStackTrace();
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar Postagem").build();
         }
