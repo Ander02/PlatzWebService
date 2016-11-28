@@ -393,7 +393,7 @@
                             </div>
                             <!--/.Card content-->
                             <div>
-                                <button class="btn btn-lg btn-warning " data-toggle="modal" data-target="#modalLogar" ng-click="cadastrarUsuario()"><i class="fa fa-check"></i> Cadastrar </button>
+                                <button class="btn btn-lg btn-warning " data-toggle="modal" data-target="#modalLogar" ng-click="cadastrarUsuario(usuario)"><i class="fa fa-check"></i> Cadastrar </button>
                             </div>
                         </div>
 

@@ -62,8 +62,8 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
         }
     };
 
-    $scope.cadastrarUsuario = function () {
-
+    $scope.cadastrarUsuario = function (usuario) {
+        $scope.usuario = usuario;
         if ($scope.usuario.conta.senha === $scope.usuario.conta.confirmaSenha) {
             //$scope.usuario.endereco.uf = "SP";
             $scope.usuario.perfil = 2;
@@ -89,8 +89,8 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
                 input.value = null;
 
                 sucesso(toastr, "Usuario cadastrado com sucesso");
-            }, function (response) {
-                erro(toastr, errorManager(response.config.url, response.status, "Falha ao cadastrar usuario, verifique os campos e tente novamente"));
+            }, function () {
+                erro(toastr, "Falha ao cadastrar usuario, verifique os campos e tente novamente mais tarde");
             });
 
         } else {
