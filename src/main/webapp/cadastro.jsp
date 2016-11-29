@@ -31,7 +31,7 @@
         <script src="js/util.js" type="text/javascript"></script>
 
         <script src="js/services/loginService.js" type="text/javascript"></script>
-        
+
         <script src="js/services/validacaoService.js" type="text/javascript"></script>
 
         <!-- link controller -->
@@ -126,7 +126,7 @@
                                 <div class="col-md-12">
                                     <div class="md-form">  
                                         <input  type="email" id="conta-empresa-email" class="form-control" required ng-model="empresa.conta.email"
-                                                maxlength="75">
+                                                maxlength="50">
                                         <label for="conta-empresa-email">Email</label>
                                     </div>
                                 </div>
@@ -134,14 +134,14 @@
                                 <div class="col-md-12">
                                     <div class="md-form">                
                                         <input type="password" id="conta-empresa-senha" class="form-control" required ng-model="empresa.conta.senha"
-                                               maxlength="20">
+                                               maxlength="40">
                                         <label for="conta-empresa-senha">Senha</label>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="md-form">  
                                         <input  type="password" id="conta-empresa-confirma-senha" class="form-control" ng-model="empresa.conta.confirmaSenha"
-                                                required maxlength="20"> 
+                                                required maxlength="40"> 
                                         <label for="conta-empresa-confirma-senha">Confirmar a Senha </label>
                                     </div>
                                 </div>                      
@@ -393,7 +393,7 @@
                             </div>
                             <!--/.Card content-->
                             <div>
-                                <button class="btn btn-lg btn-warning " data-toggle="modal" data-target="#modalLogar" ng-click="cadastrarUsuario(usuario)"><i class="fa fa-check"></i> Cadastrar </button>
+                                <button class="btn btn-lg btn-warning " data-toggle="modal" data-target="#modalLogar" ng-click="cadastrarUsuario()"><i class="fa fa-check"></i> Cadastrar </button>
                             </div>
                         </div>
 

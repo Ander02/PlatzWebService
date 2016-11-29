@@ -15,15 +15,15 @@ angular.module("platz").controller("usuarioController", function ($scope, $http,
 
     $scope.buscarEventosPresenca = function () {
         $http.get(webService + "/presenca/conta/" + $scope.conta.id + "/presenca/0", loginService.getHeaders()).then(function (response) {
-            $scope.eventoVou = response.data;
+            $scope.presencaVou = response.data;
         }, function () {
         });
         $http.get(webService + "/presenca/conta/" + $scope.conta.id + "/presenca/1", loginService.getHeaders()).then(function (response) {
-            $scope.eventoTalvezVou = response.data;
+            $scope.presencaTalvezVou = response.data;
         }, function () {
         });
         $http.get(webService + "/presenca/conta/" + $scope.conta.id + "/presenca/2", loginService.getHeaders()).then(function (response) {
-            $scope.eventoNaoVou = response.data;
+            $scope.presencaNaoVou = response.data;
         }, function () {
         });
     };

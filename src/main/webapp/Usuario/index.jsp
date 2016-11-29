@@ -108,21 +108,21 @@ index do usuario onde mostra algumas sugestões de eventos
                 <!--Panel 1-->
                 <div class="tab-pane fade in active" id="panel11" role="tabpanel">
                     <br>
-                    <div class="col-lg-4 col-md-12">
+                    <div class="col-lg-4 col-md-12" ng-repeat="presenca in presencaVou">
 
                         <!--Evento maior-->
                         <div class="single-news">
 
                             <div>
                                 <div class="hovereffect">
-                                    <img class="img-responsive img-eventoProximo" src="../img/outras/plano-fundo.jpg" alt="">
-                                    <div class="ev-cancelado">
-                                        <p>Cancelado</p>
+                                    <img class="img-responsive img-eventoProximo" ng-src="{{buscarImagemCapa(presenca.evento.id)}}" onerror="this.src='../img/outras/plano-fundo.jpg'" alt="">
+
+                                    <div class="{{presenca.evento.cancelado === null?'ev-normais':'ev-cancelado'}}">
+                                        <p>{{presenca.evento.cancelado === null ? presenca.evento.nome.length < 20 ? presenca.evento.nome : presenca.evento.nome : 'Cancelado'|limitTo:15}}{{presenca.evento.nome.length>=15?'...' :''}}</p>
                                     </div>
                                     <div class="overlay">
-                                        <h2>Nome do Evento</h2>
                                         <p> 
-                                            <a href="#">Clique aqui e veja o evento</a>
+                                            <a href="/eventoEspecifico.jsp?evento={{presenca.evento.id}}">Clique aqui e veja o evento</a>
                                         </p> 
                                     </div>
                                 </div>
@@ -131,16 +131,18 @@ index do usuario onde mostra algumas sugestões de eventos
 
                             <!--Informações-->
                             <div class="news-data">
-                                <h5><i class="fa fa-car"></i> Local do evento</h5>
-                                <p><strong><i class="fa fa-clock-o"></i> 27/02/2016</strong></p>
+                                <h2>{{presenca.evento.nome|limitTo:20}}{{presenca.evento.nome.length>=20?'...' :''}}</h2>
+
+                                <h5><i class="fa fa-car"></i>{{presenca.evento.endereco.cidade.nome}} - {{presenca.evento.endereco.cidade.estado.uf}}</h5>
+                                <p><strong><i class="fa fa-clock-o"></i> {{presenca.evento.dataInicio}}</strong></p>
                             </div>
 
-                            <h5><i class="fa fa-building-o"></i> <a>Nome da Empresa</a></h5>
+                            <h5><i class="fa fa-building-o"></i> <a>{{presenca.evento.empresa.nomeFantasia}}</a></h5>
 
-                            <p> parte da descrição com no maximo 30 caracteres
+                            <p> {{presenca.evento.detalhes|limitTo:30}} {{presenca.evento.detalhes.length>=30?'...':''}}
                             </p>
 
-                            <a class="btn btn-default-outline"> Ver Detalhes </a>
+                            <a class="btn btn-default-outline" href="/eventoEspecifico.jsp?evento={{presenca.evento.id}}"> Ver Detalhes </a>
 
                         </div><!--/evento proximo (maior)-->
                     </div><!--/First column-->
@@ -151,21 +153,21 @@ index do usuario onde mostra algumas sugestões de eventos
                 <!--Panel 2-->
                 <div class="tab-pane fade" id="panel12" role="tabpanel">
                     <br>
-                    <div class="col-lg-4 col-md-12">
+                    <div class="col-lg-4 col-md-12" ng-repeat="presenca in presencaTalvezVou">
 
                         <!--Evento maior-->
                         <div class="single-news">
 
                             <div>
                                 <div class="hovereffect">
-                                    <img class="img-responsive img-eventoProximo" src="../img/outras/plano-fundo.jpg" alt="">
-                                    <div class="ev-cancelado">
-                                        <p>Cancelado</p>
+                                    <img class="img-responsive img-eventoProximo" ng-src="{{buscarImagemCapa(presenca.evento.id)}}" onerror="this.src='../img/outras/plano-fundo.jpg'" alt="">
+
+                                    <div class="{{presenca.evento.cancelado === null?'ev-normais':'ev-cancelado'}}">
+                                        <p>{{presenca.evento.cancelado === null ? presenca.evento.nome.length < 20 ? presenca.evento.nome : presenca.evento.nome : 'Cancelado'|limitTo:15}}{{presenca.evento.nome.length>=15?'...' :''}}</p>
                                     </div>
                                     <div class="overlay">
-                                        <h2>Nome do Evento</h2>
                                         <p> 
-                                            <a href="#">Clique aqui e veja o evento</a>
+                                            <a href="/eventoEspecifico.jsp?evento={{presenca.evento.id}}">Clique aqui e veja o evento</a>
                                         </p> 
                                     </div>
                                 </div>
@@ -174,16 +176,18 @@ index do usuario onde mostra algumas sugestões de eventos
 
                             <!--Informações-->
                             <div class="news-data">
-                                <h5><i class="fa fa-car"></i> Local do evento</h5>
-                                <p><strong><i class="fa fa-clock-o"></i> 27/02/2016</strong></p>
+                                <h2>{{presenca.evento.nome|limitTo:20}}{{presenca.evento.nome.length>=20?'...' :''}}</h2>
+
+                                <h5><i class="fa fa-car"></i>{{presenca.evento.endereco.cidade.nome}} - {{presenca.evento.endereco.cidade.estado.uf}}</h5>
+                                <p><strong><i class="fa fa-clock-o"></i> {{presenca.evento.dataInicio}}</strong></p>
                             </div>
 
-                            <h5><i class="fa fa-building-o"></i> <a>Nome da Empresa</a></h5>
+                            <h5><i class="fa fa-building-o"></i> <a>{{presenca.evento.empresa.nomeFantasia}}</a></h5>
 
-                            <p> parte da descrição com no maximo 30 caracteres
+                            <p> {{presenca.evento.detalhes|limitTo:30}} {{presenca.evento.detalhes.length>=30?'...':''}}
                             </p>
 
-                            <a class="btn btn-default-outline"> Ver Detalhes </a>
+                            <a class="btn btn-default-outline" href="/eventoEspecifico.jsp?evento={{presenca.evento.id}}"> Ver Detalhes </a>
 
                         </div><!--/evento proximo (maior)-->
                     </div><!--/First column-->
@@ -194,21 +198,21 @@ index do usuario onde mostra algumas sugestões de eventos
                 <!--Panel 3-->
                 <div class="tab-pane fade" id="panel13" role="tabpanel">
                     <br>
-                    <div class="col-lg-4 col-md-12">
+                    <div class="col-lg-4 col-md-12" ng-repeat="presenca in presencaNaoVou">
 
                         <!--Evento maior-->
                         <div class="single-news">
 
                             <div>
                                 <div class="hovereffect">
-                                    <img class="img-responsive img-eventoProximo" src="../img/outras/plano-fundo.jpg" alt="">
-                                    <div class="ev-cancelado">
-                                        <p>Cancelado</p>
+                                    <img class="img-responsive img-eventoProximo" ng-src="{{buscarImagemCapa(presenca.evento.id)}}" onerror="this.src='../img/outras/plano-fundo.jpg'" alt="">
+
+                                    <div class="{{presenca.evento.cancelado === null?'ev-normais':'ev-cancelado'}}">
+                                        <p>{{presenca.evento.cancelado === null ? presenca.evento.nome.length < 20 ? presenca.evento.nome : presenca.evento.nome : 'Cancelado'|limitTo:15}}{{presenca.evento.nome.length>=15?'...' :''}}</p>
                                     </div>
                                     <div class="overlay">
-                                        <h2>Nome do Evento</h2>
                                         <p> 
-                                            <a href="#">Clique aqui e veja o evento</a>
+                                            <a href="/eventoEspecifico.jsp?evento={{presenca.evento.id}}">Clique aqui e veja o evento</a>
                                         </p> 
                                     </div>
                                 </div>
@@ -217,20 +221,21 @@ index do usuario onde mostra algumas sugestões de eventos
 
                             <!--Informações-->
                             <div class="news-data">
-                                <h5><i class="fa fa-car"></i> Local do evento</h5>
-                                <p><strong><i class="fa fa-clock-o"></i> 27/02/2016</strong></p>
+                                <h2>{{presenca.evento.nome|limitTo:20}}{{presenca.evento.nome.length>=20?'...' :''}}</h2>
+
+                                <h5><i class="fa fa-car"></i>{{presenca.evento.endereco.cidade.nome}} - {{presenca.evento.endereco.cidade.estado.uf}}</h5>
+                                <p><strong><i class="fa fa-clock-o"></i> {{presenca.evento.dataInicio}}</strong></p>
                             </div>
 
-                            <h5><i class="fa fa-building-o"></i> <a>Nome da Empresa</a></h5>
+                            <h5><i class="fa fa-building-o"></i> <a>{{presenca.evento.empresa.nomeFantasia}}</a></h5>
 
-                            <p> parte da descrição com no maximo 30 caracteres
+                            <p> {{presenca.evento.detalhes|limitTo:30}} {{presenca.evento.detalhes.length>=30?'...':''}}
                             </p>
 
-                            <a class="btn btn-default-outline"> Ver Detalhes </a>
+                            <a class="btn btn-default-outline" href="/eventoEspecifico.jsp?evento={{presenca.evento.id}}"> Ver Detalhes </a>
 
                         </div><!--/evento proximo (maior)-->
                     </div><!--/First column-->
-
                 </div>
                 <!--/.Panel 3-->
 
