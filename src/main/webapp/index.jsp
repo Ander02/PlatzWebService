@@ -183,7 +183,7 @@
                     <h1>Baixe o app Platz!</h1>
                     <br>
                     <hr>
-                    <button class="btn btn-amber btn-lg">Baixe aqui</button>
+                    <a class="btn btn-amber btn-lg" href="#" target="_blank">Baixe aqui</a>
                 </div>
 
                 <!--Section sescription-->
