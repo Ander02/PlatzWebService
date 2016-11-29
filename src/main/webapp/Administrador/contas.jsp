@@ -30,7 +30,7 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
         <!-- link Angular -->
         <script type="text/javascript" src="../lib/angular/angular.js"></script>
 
-        <script type="text/javascript" src="../js/app.js"></script>
+       <script type="text/javascript" src="../js/app.js"></script>
 
         <script src="../js/util.js" type="text/javascript"></script>
         

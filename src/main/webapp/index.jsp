@@ -240,7 +240,7 @@
 
                         <!--Second column-->
                         <div class="col-md-4 mb-r center-on-small-only">
-                            <img src="http://mdbootstrap.com/images/mockups/header-iphone.png" alt="" class="z-depth-0">
+                            <img src="img/outras/cel2.png" alt="imagem de um celular, contendo nosso aplicativo" class="z-depth-0">
                         </div>
                         <!--/Second column-->
 
