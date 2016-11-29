@@ -41,14 +41,14 @@ index do usuario onde mostra algumas sugestões de eventos
 
         <!-- service -->
         <script src="../js/services/loginService.js" type="text/javascript"></script>
-        
+
         <script src="../js/services/validacaoService.js" type="text/javascript"></script>
 
         <script src="../js/controller/usuarioController.js" type="text/javascript"></script>
 
         <!-- angular controller  -->
         <script src="../js/controller/loginController.js" type="text/javascript"></script>
-        
+
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="../img/logo.png">
 
@@ -79,8 +79,8 @@ index do usuario onde mostra algumas sugestões de eventos
     <div class="espaco"></div>
 
     <div class="head-pagina">
-        <h1 >Eventos Proximos </h1>
-        <p>Eventos que você curtiu e estão proximos de acontecer! Não se esqueça e participe, sua diversão é nossa prioridade</p>
+        <h1 >Eventos Por participação </h1>
+        <p>Eventos que você marcou algum tipo de participação, sua diversão é nossa prioridade</p>
     </div>
 
 
@@ -88,78 +88,159 @@ index do usuario onde mostra algumas sugestões de eventos
     <div ng-controller="usuarioController">
         <section class="section magazine-section section-eventos-proximos">
 
-            <!--First row-->
-            <div class="row text-xs-left ">
 
-                <!--coluna com o evento grande-->
-                <div class="col-lg-6 col-md-12">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs md-pills pills-ins" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#panel11" role="tab"><i class="fa fa-smile-o fa-2x"></i> Vou </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#panel12" role="tab"><i class="fa fa-meh-o fa-2x"></i> Talvez </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#panel13" role="tab"><i class="fa fa-frown-o fa-2x"></i> Não vou</a>
+                </li>
+            </ul>
 
-                    <!--Evento maior-->
-                    <div class="single-news">
+            <!-- Tab panels -->
+            <div class="tab-content">
 
-                        <div>
-                            <div class="hovereffect">
-                                <img class="img-responsive img-eventoProximo" src="../img/outras/plano-fundo.jpg" alt="">
-                                <div class="ev-cancelado">
+                <!--Panel 1-->
+                <div class="tab-pane fade in active" id="panel11" role="tabpanel">
+                    <br>
+                    <div class="col-lg-4 col-md-12">
+
+                        <!--Evento maior-->
+                        <div class="single-news">
+
+                            <div>
+                                <div class="hovereffect">
+                                    <img class="img-responsive img-eventoProximo" src="../img/outras/plano-fundo.jpg" alt="">
+                                    <div class="ev-cancelado">
                                         <p>Cancelado</p>
                                     </div>
-                                <div class="overlay">
-                                    <h2>Nome do Evento</h2>
-                                    <p> 
-                                        <a href="#">Clique aqui e veja o evento</a>
-                                    </p> 
+                                    <div class="overlay">
+                                        <h2>Nome do Evento</h2>
+                                        <p> 
+                                            <a href="#">Clique aqui e veja o evento</a>
+                                        </p> 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <br>
+                            <br>
 
-                        <!--Informações-->
-                        <div class="news-data">
-                            <h5><i class="fa fa-car"></i> Local do evento</h5>
-                            <p><strong><i class="fa fa-clock-o"></i> 27/02/2016</strong></p>
-                        </div>
+                            <!--Informações-->
+                            <div class="news-data">
+                                <h5><i class="fa fa-car"></i> Local do evento</h5>
+                                <p><strong><i class="fa fa-clock-o"></i> 27/02/2016</strong></p>
+                            </div>
 
-                        <h5><i class="fa fa-building-o"></i> <a>Nome da Empresa</a></h5>
+                            <h5><i class="fa fa-building-o"></i> <a>Nome da Empresa</a></h5>
 
-                        <p> parte da descrição com no maximo 30 caracteres
-                        </p>
+                            <p> parte da descrição com no maximo 30 caracteres
+                            </p>
 
-                        <a class="btn btn-default-outline"> Ver Detalhes </a>
+                            <a class="btn btn-default-outline"> Ver Detalhes </a>
 
-                    </div><!--/evento proximo (maior)-->
-                </div><!--/First column-->
+                        </div><!--/evento proximo (maior)-->
+                    </div><!--/First column-->
 
-                <!--Segunda coluna com os eventos menores-->
-                <div class="col-lg-6 col-md-12 coluna-dois">
+                </div>
+                <!--/.Panel 1-->
 
+                <!--Panel 2-->
+                <div class="tab-pane fade" id="panel12" role="tabpanel">
+                    <br>
+                    <div class="col-lg-4 col-md-12">
 
-                    <!--evento menor-->
-                    <div class="col-md-6">
-                        <div class="col-md-10">
-                            <!--Imagem do evento-->
-                            <div class="view overlay hm-white-slight">
-                                <img class="animated pulse" src="http://mdbootstrap.com/images/regular/nature/img%20(75).jpg">
-                                <div class="ev-cancelado">
+                        <!--Evento maior-->
+                        <div class="single-news">
+
+                            <div>
+                                <div class="hovereffect">
+                                    <img class="img-responsive img-eventoProximo" src="../img/outras/plano-fundo.jpg" alt="">
+                                    <div class="ev-cancelado">
                                         <p>Cancelado</p>
                                     </div>
-                                <a>
-                                    <div class="mask"></div>
-                                </a>
+                                    <div class="overlay">
+                                        <h2>Nome do Evento</h2>
+                                        <p> 
+                                            <a href="#">Clique aqui e veja o evento</a>
+                                        </p> 
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                            <br>
 
-                        <!--Informações-->
-                        <div class="col-md-9">                           
-                            <h4> <a> Nome do Evento <i class="fa fa-angle-right"></i> </a> </h4>
-                            <a>Nome da Empresa</a>
-                            <p><strong><i class="fa fa-clock-o"></i> 27/02/2016</strong></p>
+                            <!--Informações-->
+                            <div class="news-data">
+                                <h5><i class="fa fa-car"></i> Local do evento</h5>
+                                <p><strong><i class="fa fa-clock-o"></i> 27/02/2016</strong></p>
+                            </div>
 
-                            <a class="btn btn-sm btn-default-outline"> Ver Detalhes </a>
-                        </div>
+                            <h5><i class="fa fa-building-o"></i> <a>Nome da Empresa</a></h5>
 
-                    </div><!--/eventos menor-->
-                </div> <!--/Segunda coluna, com os quatro quadrados de eventos-->           
-            </div> <!--/First row-->
+                            <p> parte da descrição com no maximo 30 caracteres
+                            </p>
+
+                            <a class="btn btn-default-outline"> Ver Detalhes </a>
+
+                        </div><!--/evento proximo (maior)-->
+                    </div><!--/First column-->
+
+                </div>
+                <!--/.Panel 2-->
+
+                <!--Panel 3-->
+                <div class="tab-pane fade" id="panel13" role="tabpanel">
+                    <br>
+                    <div class="col-lg-4 col-md-12">
+
+                        <!--Evento maior-->
+                        <div class="single-news">
+
+                            <div>
+                                <div class="hovereffect">
+                                    <img class="img-responsive img-eventoProximo" src="../img/outras/plano-fundo.jpg" alt="">
+                                    <div class="ev-cancelado">
+                                        <p>Cancelado</p>
+                                    </div>
+                                    <div class="overlay">
+                                        <h2>Nome do Evento</h2>
+                                        <p> 
+                                            <a href="#">Clique aqui e veja o evento</a>
+                                        </p> 
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+
+                            <!--Informações-->
+                            <div class="news-data">
+                                <h5><i class="fa fa-car"></i> Local do evento</h5>
+                                <p><strong><i class="fa fa-clock-o"></i> 27/02/2016</strong></p>
+                            </div>
+
+                            <h5><i class="fa fa-building-o"></i> <a>Nome da Empresa</a></h5>
+
+                            <p> parte da descrição com no maximo 30 caracteres
+                            </p>
+
+                            <a class="btn btn-default-outline"> Ver Detalhes </a>
+
+                        </div><!--/evento proximo (maior)-->
+                    </div><!--/First column-->
+
+                </div>
+                <!--/.Panel 3-->
+
+
+            </div>
+
+
+
+
+
         </section><!--/Section: eventos-->
     </div>
     <ng-include src="'../View/footer.html'"></ng-include>    <!-- /.fim do projeto-->

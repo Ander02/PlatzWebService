@@ -30,7 +30,7 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
         <!-- link Angular -->
         <script type="text/javascript" src="../lib/angular/angular.js"></script>
 
-        <script type="text/javascript" src="../js/app.js"></script>
+       <script type="text/javascript" src="../js/app.js"></script>
 
         <script src="../js/util.js" type="text/javascript"></script>
         
@@ -38,9 +38,9 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
         
         <script src="../js/services/validacaoService.js" type="text/javascript"></script>
         
-<!--        <script src="../js/controller/loginController.js" type="text/javascript"></script>-->
+        <script src="../js/controller/loginController.js" type="text/javascript"></script>
 
-        <!--<script src="../js/controller/contaController.js" type="text/javascript"></script>-->     
+        <script src="../js/controller/contaController.js" type="text/javascript"></script>     
 
         <!-- link com o icone que fica no inicio do navegador -->
         <link rel="icon" href="../img/logo.png">
@@ -48,14 +48,26 @@ Pagina de cadastro , consulta, atualização e exclusão de conta, que seria con
     </head>
 
     <body>
-      
+        <%
+            try {
+                String token = session.getAttribute("token").toString();
+                if (token == null) {
+                    response.sendRedirect("../login.jsp");
+                } else {
+                    out.print("<input type='hidden' id='token' name='token' value ='" + token + "' >");
+                }
+            } catch (Exception e) {
+                System.out.println("Erro ao buscar sessão " + e.getMessage());
+                response.sendRedirect("../login.jsp");
+            }
+        %>
 
 
         <!-- inicio do projeto aqui-->
 
-    <ng-include src="'../View/nav-adm.html'" ></ng-include>
+    <ng-include src="'../View/nav-adm.html'" ng-controller="loginController"></ng-include>
     <div ng-controller="contaController">
-        <div >
+        <div ng-if="permicao">
 
             <div class="espaco"></div>
 
