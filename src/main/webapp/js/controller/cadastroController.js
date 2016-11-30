@@ -102,7 +102,10 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
 
                                                     $scope.usuario = null;
                                                     input.value = null;
+
                                                     sucesso(toastr, "Usuario cadastrado com sucesso");
+                                                     $scope.openModal();
+
                                                 }, function () {
                                                     erro(toastr, "Falha ao cadastrar usuario, verifique os campos e tente novamente mais tarde");
                                                 });
@@ -122,6 +125,14 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
         }
 
 
+    };
+    $scope.openModal = function ()
+    {
+        $(document).ready( function (){
+          $("#btn-cadastrar-usuario").click(function () {
+            $("#modalLogar").modal();
+        });  
+        });
     };
     $scope.logar = function () {
         login = {
