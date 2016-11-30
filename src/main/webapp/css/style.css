@@ -846,6 +846,19 @@ label.star:before {
     color: white;
     border-radius: 20px 55px;
 }
+#section-sem-evento-empresa
+{
+    text-align: center;
+    margin-left: 8%;
+    margin-bottom: 5%;
+    margin-top: -20%;
+}
+#section-sem-evento-empresa .jumbotron
+{
+     background: rgba(44, 62, 80,0.6);
+    color: white;
+    border-radius: 20px 55px;
+}
 .img-mini-slide
 {
     height: 600px;

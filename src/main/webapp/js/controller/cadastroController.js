@@ -32,10 +32,10 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
                         if (!validacaoService.vazio(toastr, $scope.empresa.conta.senha, "Senha") && validacaoService.comprimento(toastr, $scope.empresa.conta.senha, 4, 40, "Senha")) {
                             if (validacaoService.comprimento(toastr, $scope.empresa.razaoSocial, 1, 70, "Razão Social") && validacaoService.conteudo(toastr, $scope.empresa.razaoSocial, "Razão Social")) {
                                 if (validacaoService.comprimento(toastr, $scope.empresa.nomeFantasia, 1, 50, "nome fantasia") && validacaoService.conteudo(toastr, $scope.empresa.nomeFantasia, "nome fantasia")) {
-                                    if (validacaoService.conteudo(toastr, $scope.empresa.cnpj, "CNPJ") && validacaoService.comprimento(toastr, $scope.empresa.cnpj, 14, 14, "CNPJ")) {
+                                    if (validacaoService.conteudo(toastr, $scope.empresa.cnpj, "CNPJ") && validacaoService.comprimento(toastr, $scope.empresa.cnpj, 18, 18, "CNPJ")) {
                                         if (validacaoService.conteudo(toastr, $scope.empresa.telefone, "Telefone") && validacaoService.comprimento(toastr, $scope.empresa.telefone, 1, 15, "Telefone")) {
                                             if (validacaoService.comprimento(toastr, $scope.empresa.endereco.cep, 8, 9, "Cep")) {
-                                                if ($scope.empresa.conta.senha === $scope.empresa.conta.confirmaSenha && false) {
+                                                if ($scope.empresa.conta.senha === $scope.empresa.conta.confirmaSenha) {
                                                     $scope.empresa.perfil = 1;
                                                     $http.post(webService + "/empresa", $scope.empresa).then(function (response) {
 
@@ -79,9 +79,9 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
                         if (!validacaoService.vazio(toastr, $scope.usuario.conta.senha, "Senha") && validacaoService.comprimento(toastr, $scope.usuario.conta.senha, 4, 40, "Senha")) {
 
                             if (validacaoService.comprimento(toastr, $scope.usuario.nome, 3, 64, "nome") && validacaoService.conteudo(toastr, $scope.usuario.nome, "nome")) {
-                                if (validacaoService.conteudo(toastr, $scope.usuario.cnpj, "CPF") && validacaoService.comprimento(toastr, $scope.usuario.cnpj, 11, 11, "CPF")) {
+                                if (validacaoService.conteudo(toastr, $scope.usuario.cpf, "CPF") && validacaoService.comprimento(toastr, $scope.usuario.cpf, 14, 14, "CPF")) {
                                     if (validacaoService.conteudo(toastr, $scope.usuario.telefone, "Telefone") && validacaoService.comprimento(toastr, $scope.usuario.telefone, 1, 15, "Telefone")) {
-                                        if (validacaoService.comprimento(toastr, $scope.empresa.endereco.cep, 8, 9, "Cep")) {
+                                        if (validacaoService.comprimento(toastr, $scope.usuario.endereco.cep, 8, 9, "Cep")) {
 
                                             if ($scope.usuario.conta.senha === $scope.usuario.conta.confirmaSenha) {
                                                 //$scope.usuario.endereco.uf = "SP";

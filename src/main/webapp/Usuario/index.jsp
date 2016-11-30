@@ -147,6 +147,14 @@ index do usuario onde mostra algumas sugestões de eventos
                         </div><!--/evento proximo (maior)-->
                     </div><!--/First column-->
 
+                    <div class="col-md-10" id="section-sem-evento" ng-if="presencaVou.length === 0">
+                        <div class="jumbotron animated fadeInUp">
+                            <h1> Você não marcou nenhum "vou <i class="fa fa-smile-o"></i>" evento ainda</h1>
+                            <p>Porem você pode navegar e descobrir otimos eventos, escolha sua categoria favorita e divirta-se </p>
+                            <p><a class="btn btn-amber" href="/eventos.jsp">Eventos</a></p>
+                        </div>
+                    </div>
+
                 </div>
                 <!--/.Panel 1-->
 
@@ -191,6 +199,14 @@ index do usuario onde mostra algumas sugestões de eventos
 
                         </div><!--/evento proximo (maior)-->
                     </div><!--/First column-->
+                    
+                     <div class="col-md-10" id="section-sem-evento" ng-if="presencaTalvezVou.length === 0">
+                        <div class="jumbotron animated fadeInUp">
+                            <h1> Você não marcou nenhum "Talvez vou <i class="fa fa-meh-o"></i>" evento ainda</h1>
+                            <p>Porem você pode navegar e descobrir otimos eventos, escolha sua categoria favorita e divirta-se </p>
+                            <p><a class="btn btn-amber" href="/eventos.jsp">Eventos</a></p>
+                        </div>
+                    </div>
 
                 </div>
                 <!--/.Panel 2-->
@@ -236,6 +252,16 @@ index do usuario onde mostra algumas sugestões de eventos
 
                         </div><!--/evento proximo (maior)-->
                     </div><!--/First column-->
+                    
+                     <div class="col-md-10" id="section-sem-evento" ng-if="presencaNaoVou.length === 0">
+                        <div class="jumbotron animated fadeInUp">
+                            <h1> Você não marcou nenhum "não vou <i class="fa fa-frown-o"></i>" evento ainda</h1>
+                            <p>Porem você pode navegar e descobrir otimos eventos, escolha sua categoria favorita e divirta-se </p>
+                            <p><a class="btn btn-amber" href="/eventos.jsp">Eventos</a></p>
+                        </div>
+                    </div>
+                    
+                    
                 </div>
                 <!--/.Panel 3-->
 
