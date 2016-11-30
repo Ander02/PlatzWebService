@@ -8,7 +8,7 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
             $scope.empresa.endereco.bairro = response.data.bairro;
             $scope.empresa.endereco.cidade = response.data.localidade;
             $scope.empresa.endereco.uf = response.data.uf;
-        }, function (response) {
+        }, function () {
             aviso(toastr, "CEP inexistente, por favor verifique-o");
         });
     };
@@ -20,7 +20,7 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
             $scope.usuario.endereco.bairro = response.data.bairro;
             $scope.usuario.endereco.cidade = response.data.localidade;
             $scope.usuario.endereco.uf = response.data.uf;
-        }, function (response) {
+        }, function () {
             aviso(toastr, "CEP inexistente, por favor verifique-o");
         });
     };
@@ -49,8 +49,10 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
 
                                                         $scope.empresa = null;
                                                         input.value = null;
-//
+
                                                         sucesso(toastr, "Empresa cadastrada com sucesso");
+                                                        $("#modalLogar").modal();
+
                                                     }, function (response) {
                                                         erro(toastr, errorManager(response.config.url, response.status, "Falha ao cadastrar empresa, verifique os campos e tente novamente"));
                                                     });
@@ -104,7 +106,8 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
                                                     input.value = null;
 
                                                     sucesso(toastr, "Usuario cadastrado com sucesso");
-                                                     $scope.openModal();
+
+                                                    $("#modalLogar").modal();
 
                                                 }, function () {
                                                     erro(toastr, "Falha ao cadastrar usuario, verifique os campos e tente novamente mais tarde");
@@ -123,16 +126,6 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
                 }
             }
         }
-
-
-    };
-    $scope.openModal = function ()
-    {
-        $(document).ready( function (){
-          $("#btn-cadastrar-usuario").click(function () {
-            $("#modalLogar").modal();
-        });  
-        });
     };
     $scope.logar = function () {
         login = {
@@ -142,7 +135,7 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
         $http.post(webService + "/login", login).then(function (response) {
             $scope.contaLogin = response.data;
             location.href = "sessao.jsp?token=" + $scope.contaLogin.token + "&perfil=" + $scope.contaLogin.perfil;
-        }, function (response) {
+        }, function () {
             erro(toastr, "usuario ou senha incorreto");
         });
     };

@@ -34,6 +34,8 @@
 
         <script src="js/services/validacaoService.js" type="text/javascript"></script>
 
+        <script src="lib/jquery/jquery-1.12.3.min.js"></script>
+        
         <!-- link controller -->
         <script src="js/controller/cadastroController.js" type="text/javascript"></script>
 
@@ -43,9 +45,7 @@
         <link rel="icon" href="img/logo.png">
 
         <!--links para o funcionamento do datetimepicker-->
-        <link href="css/bootstrap/bootstrap-material-datetimepicker.css" rel="stylesheet" type="text/css"/>
-
-        <script src="lib/jquery/jquery-1.12.3.min.js"></script>
+        <link href="css/bootstrap/bootstrap-material-datetimepicker.css" rel="stylesheet" type="text/css"/>    
 
         <script type="text/javascript" src="lib/bootstrap/moment-with-locales.js"></script>
     </head>
@@ -250,7 +250,7 @@
                             <!--/.Card content-->
 
                             <div>
-                                <button class="btn btn-lg btn-warning" data-toggle="modal" data-target="#modalLogar"  ng-click="cadastrarEmpresa()"><i class="fa fa-check"></i> Cadastrar</button>                                
+                                <button class="btn btn-lg btn-warning" ng-click="cadastrarEmpresa()"><i class="fa fa-check"></i> Cadastrar</button>                                
                             </div>
                         </div>
                     </div>
@@ -394,6 +394,7 @@
                             <!--/.Card content-->
                             <div>
                                 <button class="btn btn-lg btn-warning " id="btn-cadastrar-usuario" ng-click="cadastrarUsuario()"><i class="fa fa-check"></i> Cadastrar </button>
+
                             </div>
                         </div>
 

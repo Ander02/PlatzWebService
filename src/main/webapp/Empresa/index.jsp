@@ -133,7 +133,7 @@ considerada pagina de eventos que a empresa postou
         <div class="jumbotron animated fadeInUp">
             <h1> Você não possui eventos ainda</h1>
             <p>Porem você pode cadastrar novos eventos a todo momento e seguir vendo sua avaliação,
-              alem de navegar e descobrir otimos eventos, apenas escolha sua categoria favorita e divirta-se </p>
+                alem de navegar e descobrir otimos eventos, apenas escolha sua categoria favorita e divirta-se </p>
             <p><a class="btn btn-amber" href="evento.jsp">Cadastrar Evento</a></p>
         </div>
     </div>
