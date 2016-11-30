@@ -115,7 +115,6 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
     $scope.eventoEspecifico = function () {
         $http.get(webService + "/evento/" + id).then(function (response) {
             $scope.evento = response.data;
-            console.log($scope.evento);
             $scope.imagemCapa = webService + "/evento/imagemCapa/" + id;
             enderecoCompletoEvento = $scope.evento.endereco.cep + " " + $scope.evento.endereco.rua + " " + $scope.evento.endereco.cidade.nome + " " + $scope.evento.endereco.cidade.estado.uf;
             $scope.iniciarMapa();
@@ -287,7 +286,6 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
 
     $scope.bloquearEvento = function () {
         $http.put(webService + "/evento/censurar/" + id, null, loginService.getHeaders()).then(function (response) {
-            console.log(response.data);
             sucesso(toastr, "Evento censurado");
             atualizar();
         }, function () {
@@ -296,7 +294,6 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
     };
     $scope.bloquearPostagem = function () {
         $http.put(webService + "/postagem/censurar/" + $scope.bloqueamentoPostagem.id, null, loginService.getHeaders()).then(function (response) {
-            console.log(response.data);
             sucesso(toastr, "Comentário censurado");
             atualizar();
         }, function () {
@@ -390,12 +387,10 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
 
     };
     $scope.prepararDenunciaPostagem = function (postagem) {
-        console.log(postagem);
         $scope.denunciaPostagem = postagem;
 
     };
     $scope.prepararBloqueamentoPostagem = function (postagem) {
-        console.log(postagem);
         $scope.bloqueamentoPostagem = postagem;
 
     };
@@ -404,7 +399,6 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
         $scope.edicaoPostagem = postagem;
     };
     $scope.prepararExclusaoPostagem = function (postagem) {
-        console.log(postagem);
         $scope.exclusaoPostagem = postagem;
     };
     $scope.cancelarDenunciaPostagem = function () {
