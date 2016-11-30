@@ -94,7 +94,6 @@ pagina de login, onde o usuario é redirecionado se errar o login pela nav
         <div class="modal-footer">
             <div class="options">
                 <p>Não possui uma conta? <a href="cadastro.jsp">Cadastre-se</a></p>
-                <p>Esqueceu a <a href="#"> senha?</a></p>
             </div>
         </div>
 
