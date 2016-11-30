@@ -42,6 +42,8 @@ Perfil do usuario, onde ele pode alterar as coisas sobre sua conta
 
         <!-- service -->
         <script src="../js/services/loginService.js" type="text/javascript"></script>
+        
+        <script src="../js/services/validacaoService.js" type="text/javascript"></script>
 
         <!-- angular controller  -->
         <script src="../js/controller/loginController.js" type="text/javascript"></script>

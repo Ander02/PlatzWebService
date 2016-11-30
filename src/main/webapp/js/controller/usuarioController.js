@@ -8,6 +8,22 @@ angular.module("platz").controller("usuarioController", function ($scope, $http,
             $scope.usuarioEdicaoEndereco = $scope.usuario;
             $scope.imagemPerfil = webService + "/usuario/imagem/" + $scope.usuario.id;
             $scope.buscaEventosCurtidos();
+            $scope.buscarEventosPresenca();
+        }, function () {
+        });
+    };
+
+    $scope.buscarEventosPresenca = function () {
+        $http.get(webService + "/presenca/conta/" + $scope.conta.id + "/presenca/0", loginService.getHeaders()).then(function (response) {
+            $scope.presencaVou = response.data;
+        }, function () {
+        });
+        $http.get(webService + "/presenca/conta/" + $scope.conta.id + "/presenca/1", loginService.getHeaders()).then(function (response) {
+            $scope.presencaTalvezVou = response.data;
+        }, function () {
+        });
+        $http.get(webService + "/presenca/conta/" + $scope.conta.id + "/presenca/2", loginService.getHeaders()).then(function (response) {
+            $scope.presencaNaoVou = response.data;
         }, function () {
         });
     };

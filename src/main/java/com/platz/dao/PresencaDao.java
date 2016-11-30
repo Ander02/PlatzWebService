@@ -67,4 +67,11 @@ public class PresencaDao extends GenericDao<PresencaModel> {
         entityManager.close();
         return lista;
     }
+
+    public List<PresencaModel> buscarPorTipoPresenca(TipoPresenca tipoPresenca, ContaModel conta) {
+        EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
+        List<PresencaModel> lista = entityManager.createQuery("from PresencaModel where tipoPresenca =:tipoPresenca and conta =:conta").setParameter("conta", conta).setParameter("tipoPresenca", tipoPresenca).getResultList();
+        entityManager.close();
+        return lista;
+    }
 }

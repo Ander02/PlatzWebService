@@ -16,10 +16,11 @@ public class EventoDao extends GenericDao<EventoModel> {
 
     @Override
     public void alterar(EventoModel model) {
+
         if (new Date().before(model.getDataInicioDate())) {
             super.alterar(model);
         } else {
-            System.out.println("Não foi possível alterar o evento");
+            System.out.println("data do evento já passou");
         }
     }
 

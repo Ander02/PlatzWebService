@@ -30,7 +30,6 @@ and open the template in the editor.
         <!-- Your custom styles (optional) -->
         <link href="../css/styleEmpresa.css" rel="stylesheet">
 
-
         <!-- link Angular -->
         <script type="text/javascript" src="../lib/angular/angular.js"></script>
 
@@ -41,6 +40,9 @@ and open the template in the editor.
         <script src="../js/util.js" type="text/javascript"></script>
 
         <script src="../js/services/loginService.js" type="text/javascript"></script>
+        
+        <script src="../js/services/validacaoService.js" type="text/javascript"></script>
+        
         <!-- Link Controller -->
         <script src="../js/controller/loginController.js" type="text/javascript"></script>
 

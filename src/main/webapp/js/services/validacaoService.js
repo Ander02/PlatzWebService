@@ -46,7 +46,7 @@ angular.module("platz").service("validacaoService", function () {
     };
 
     this.vazio = function (toastr, object, nomeObjeto) {
-        if (object === null || typeof object === "undefined" || object === undefined || object === "" || object === '' || object === []) {
+        if (object === null || typeof object === "undefined" || object === undefined || object === "" || object === '' || object === [] || object === {}) {
             erro(toastr, "Não foi idenfiticado nenhum valor ao tentar cadastrar/editar/ler " + nomeObjeto);
             return true;
         }

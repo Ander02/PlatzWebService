@@ -140,25 +140,39 @@ angular.module("platz").controller("contaController", function ($scope, $http, t
 
     $scope.cadastrar = function (contaCadastro) {
 
-
         if (!validacaoService.vazio(toastr, contaCadastro, "Conta")) {
-            if (contaCadastro.senha === contaCadastro.senha2 && !validacaoService.vazio(toastr, contaCadastro.senha, "Senha")) {
+            if (contaCadastro.senha === contaCadastro.senha2 && !validacaoService.vazio(toastr, contaCadastro.senha, "Senha") && validacaoService.comprimento(toastr, contaCadastro.senha, 4, 40, "Senha")) {
                 if (validacaoService.comprimento(toastr, contaCadastro.email, 1, 50, "email") && validacaoService.conteudo(toastr, contaCadastro.email, "email")) {
 
-                    $http.post(webService + "/conta", contaCadastro, loginService.getHeaders()).then(function () {
-                        atualizar();
-                        $scope.contaCadastro = null;
-                        sucesso(toastr, "Administrador cadastrado com sucesso");
+                    $http.get(webService + "/conta/email/" + contaCadastro.email, loginService.getHeaders()).then(function (response) {
+                        if (response.data !== null || response.data !== undefined || typeof response.data !== "undefined") {
+                            aviso(toastr, "email já cadastrado no sistema, use outro email");
+                        } else {
+                            $http.post(webService + "/conta", contaCadastro, loginService.getHeaders()).then(function () {
+                                atualizar();
+                                $scope.contaCadastro = null;
+                                sucesso(toastr, "Administrador cadastrado com sucesso");
+                            }, function () {
+                                erro(toastr, "Erro ao cadastrar administrador, tente novamente mais tarde");
+                            });
+                        }
                     }, function () {
-                        erro(toastr, "Erro ao cadastrar administrador, tente novamente mais tarde");
+                        $http.post(webService + "/conta", contaCadastro, loginService.getHeaders()).then(function () {
+                            atualizar();
+                            $scope.contaCadastro = null;
+                            sucesso(toastr, "Administrador cadastrado com sucesso");
+                        }, function () {
+                            erro(toastr, "Erro ao cadastrar administrador, tente novamente mais tarde");
+                        });
                     });
                 }
-            } else {
+            } else if (contaCadastro.senha !== contaCadastro.senha2) {
+                aviso(toastr, "A senha não são iguais, por favor digite-as novamente");
                 $scope.contaCadastro.senha = null;
                 $scope.contaCadastro.senha2 = null;
-                aviso(toastr, "A senha não são iguais, por favor digite-as novamente");
             }
         }
+
     };
 
     function atualizar() {

@@ -8,6 +8,7 @@ import com.platz.http.edicao.PresencaEdicao;
 import com.platz.http.leitura.PresencaLeitura;
 import com.platz.model.Perfil;
 import com.platz.model.PresencaModel;
+import com.platz.model.TipoPresenca;
 import com.platz.util.PerfilAuth;
 import java.util.List;
 import javax.annotation.security.PermitAll;
@@ -128,6 +129,33 @@ public class PresencaService {
 
             //Retorna a lista com um Status Code OK
             return Response.ok(listaDeLeitura).build();
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            //Retorna uma BadRequest ao usuário
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar Presenças").build();
+        }
+    }
+
+    @GET
+    @Path(value = "/presenca/conta/{idConta}/presenca/{presenca}")
+    @PerfilAuth(Perfil.USUARIO)
+    @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
+    public Response buscarPeloTipoPresenca(@PathParam("idConta") String idConta, @PathParam("presenca") int presenca) {
+        try {
+            List<PresencaModel> models;
+            switch (presenca) {
+                case 0:
+                    models = presencaController.buscartipoPresenca(TipoPresenca.SIM, new ContaController().buscarPorId(idConta));
+                    break;
+                case 1:
+                    models = presencaController.buscartipoPresenca(TipoPresenca.TALVEZ, new ContaController().buscarPorId(idConta));
+                    break;
+                default:
+                    models = presencaController.buscartipoPresenca(TipoPresenca.NAO, new ContaController().buscarPorId(idConta));
+                    break;
+            }
+            return Response.ok(new PresencaLeitura().converterLista(models)).build();
+
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
             //Retorna uma BadRequest ao usuário

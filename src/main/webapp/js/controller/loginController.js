@@ -1,4 +1,4 @@
-angular.module("platz").controller("loginController", function ($scope, $http, toastr, loginService) {
+angular.module("platz").controller("loginController", function ($scope, $http, toastr, loginService, validacaoService) {
 
     $scope.logar = function () {
         login = {
@@ -72,12 +72,14 @@ angular.module("platz").controller("loginController", function ($scope, $http, t
 
     $scope.alterarSenha = function (contaEditada) {
         if (contaEditada.senha === contaEditada.confirmaSenha) {
-            $http.put(webService + "/conta/senha/" + $scope.conta.id, contaEditada).then(function (response) {
-                $scope.conta = response.data;
-                sucesso(toastr, "senha editada com sucesso");
-            }, function (response) {
-                aviso(toastr, "Erro ao editar senha, tente novamente mais tarde");
-            });
+            if (!validacaoService.vazio(toastr, contaEditada.senha, "Senha") && validacaoService.comprimento(toastr, contaEditada.senha, 4, 40, "Senha")) {
+                $http.put(webService + "/conta/senha/" + $scope.conta.id, contaEditada, loginService.getHeaders()).then(function (response) {
+                    $scope.conta = response.data;
+                    sucesso(toastr, "senha editada com sucesso");
+                }, function () {
+                    aviso(toastr, "Erro ao editar senha, tente novamente mais tarde");
+                });
+            }
         } else {
             contaEditada.senha = "";
             contaEditada.confirmaSenha = "";

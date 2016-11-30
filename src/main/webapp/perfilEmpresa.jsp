@@ -37,6 +37,8 @@
 
         <script src="js/controller/loginController.js" type="text/javascript"></script>
 
+        <script src="js/services/validacaoService.js" type="text/javascript"></script>
+
         <script src="js/controller/empresaEspecificaController.js" type="text/javascript"></script>        
 
 

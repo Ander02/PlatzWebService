@@ -36,8 +36,11 @@
         <script src="js/util.js" type="text/javascript"></script>
 
         <script src="js/services/loginService.js" type="text/javascript"></script>
+        
+        <script src="js/services/validacaoService.js" type="text/javascript"></script>
 
         <script src="js/controller/loginController.js" type="text/javascript"></script>
+        
         <script src="lib/angular/ng-map.min.js" type="text/javascript"></script>
 
         <script src="js/controller/eventosController.js" type="text/javascript"></script>
@@ -180,7 +183,7 @@
                     <h1>Baixe o app Platz!</h1>
                     <br>
                     <hr>
-                    <button class="btn btn-amber btn-lg">Baixe aqui</button>
+                    <a class="btn btn-amber btn-lg" href="#" target="_blank">Baixe aqui</a>
                 </div>
 
                 <!--Section sescription-->
@@ -237,7 +240,7 @@
 
                         <!--Second column-->
                         <div class="col-md-4 mb-r center-on-small-only">
-                            <img src="http://mdbootstrap.com/images/mockups/header-iphone.png" alt="" class="z-depth-0">
+                            <img src="img/outras/cel2.png" alt="imagem de um celular, contendo nosso aplicativo" class="z-depth-0">
                         </div>
                         <!--/Second column-->
 
