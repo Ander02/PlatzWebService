@@ -1,6 +1,7 @@
 angular.module("platz").controller("eventoEspecificoController", function ($scope, $http, toastr, loginService, validacaoService) {
     id = document.getElementById("idEvento").value;
     var enderecoCompletoEvento;
+    
 
     $scope.iniciarMapa = function () {
 

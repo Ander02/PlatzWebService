@@ -143,7 +143,7 @@
 
                             <div class="col-md-4" ng-repeat="evento in eventosMiniSlide track by $index">
                                 <div class="card img-mini-slide" ng-if="evento != null">
-                                    <img class="img-fluid " ng-src="{{buscarImagemCapa(evento.id)}}" onerror="this.src='img/logo.png'" alt="Card image cap">                                    
+                                    <img class="img-fluid " ng-src="{{buscarImagemCapa(evento.id)}}" onerror="this.src='img/placeholder.png'" alt="Card image cap">                                    
                                     <div class="card-block">
                                         <h4 class="card-title">{{evento.nome| limitTo:25 }} {{evento.nome.length >= 25 ? '...' : ''}}</h4>
                                         <h5><i class="fa fa-building-o animated bounceInDown"></i> {{evento.empresa.nomeFantasia}}</h5>

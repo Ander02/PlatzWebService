@@ -49,8 +49,7 @@ app.controller("eventosController", function ($scope, $http, toastr, loginServic
         var geocoder = new google.maps.Geocoder();
         $http.get(webService + "/eventos/top/" + 100).then(function (response) {
             $scope.adicionarEventoNoMapa(0, response.data, geocoder, map);
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "erro ao listar top 100"));
+        }, function () {
         });
 
     };
