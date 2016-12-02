@@ -91,7 +91,7 @@ public class EventoDao extends GenericDao<EventoModel> {
     @SuppressWarnings("unchecked")
     public List<EventoModel> buscarNaoCanceladosENaoCensurados() {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
-        List<EventoModel> lista = entityManager.createQuery("from EventoModel where cancelado = :cancelado and censurado = :censurado").setParameter("cancelado", null).setParameter("censurado", null).getResultList();
+        List<EventoModel> lista = entityManager.createQuery("from EventoModel where cancelado = :cancelado and censurado = :censurado order by dataInicio").setParameter("cancelado", null).setParameter("censurado", null).getResultList();
         entityManager.close();
         return lista;
     }

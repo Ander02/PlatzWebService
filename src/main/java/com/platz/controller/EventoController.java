@@ -107,16 +107,18 @@ public class EventoController {
     }
     
     public List<EventoModel> TopNEventos(int max) {
-        List<EventoModel> eventosSemana = this.buscarEventosDaSemana();
-        List<EventoModel> eventoSemanaMarcados = new ArrayList<>();
         
-        for (EventoModel evento : eventosSemana) {
+        List<EventoModel> eventos = this.buscarNaoCanceladosENaoCensurados();
+        List<EventoModel> eventoSemanaMarcados = new ArrayList<>();
+        List<EventoModel> topN = new ArrayList<>();
+        
+        for (EventoModel evento : eventos) {
             
             if (evento.getDestaque() == true) {
                 eventoSemanaMarcados.add(evento);
             }
         }
-        List<EventoModel> topN = new ArrayList<>();
+        
         if (max > eventoSemanaMarcados.size()) {
             max = eventoSemanaMarcados.size();
         }
@@ -124,7 +126,6 @@ public class EventoController {
         for (int i = 0; i < max; i++) {
             topN.add(eventoSemanaMarcados.get(i));
         }
-        System.out.println(Arrays.toString(topN.toArray()));
         return topN;
     }
     
