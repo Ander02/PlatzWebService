@@ -542,6 +542,10 @@ hr.small {
 {
     margin-bottom: 20px;
 }
+.label-modal-comentario
+{
+    margin-top: -13px;
+}
 
 /*estilização das estrelas na pagina de evento especifico*/
 div.stars {

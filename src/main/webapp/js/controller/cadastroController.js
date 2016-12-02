@@ -104,6 +104,7 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
 
                                                     $scope.usuario = null;
                                                     input.value = null;
+
                                                     sucesso(toastr, "Usuario cadastrado com sucesso");
 
                                                     $("#modalLogar").modal();
@@ -126,8 +127,6 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
             }
         }
     };
-
-
     $scope.logar = function () {
         login = {
             email: $scope.conta.email,
