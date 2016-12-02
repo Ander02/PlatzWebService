@@ -3,9 +3,7 @@ angular.module("platz").service("validacaoService", function () {
     this.conteudo = function (toastr, string, nomeCampo) {
         //expressao regular
         
-        var regExp = "";
-        
-        
+        var regExp = "";               
         // aviso(toastr, "o campo " + nomeCampo + " não deve ter os caracteres $<>{}\\\"'");
         return true;
     };

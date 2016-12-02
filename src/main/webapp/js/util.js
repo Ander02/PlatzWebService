@@ -12,18 +12,14 @@ function sleep(milliseconds) {
 function enviarArquivo($http, arquivo, name, url, token) {
     var formData = new FormData();
     formData.append(name, arquivo);
-    console.log(formData);
     $http.put(url, formData, {
         transformRequest: angular.identity,
         headers: {
             'Content-Type': undefined,
             Authorization: "Bearer " + token
         }
-    }).success(function (response) {
-        console.log("Arquivo Enviado para " + url);
-    }).error(function (response) {
-        console.log("Erro ao enviar para " + url);
-        console.log(response);
+    }).success(function () {
+    }).error(function () {
     });
 }
 
