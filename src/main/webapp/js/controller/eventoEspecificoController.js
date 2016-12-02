@@ -59,7 +59,6 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
         var request = new Object();
 
         if (document.getElementById("checkboxLocalizacaoAtual").checked) {
-            console.log(document.getElementById("checkboxLocalizacaoAtual").checked);
 
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
@@ -83,7 +82,6 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
                                 for (var i = 0; i < response.routes.length; i++) {
                                     $scope.directionsDisplay.setDirections(response);
                                     $scope.directionsDisplay.setRouteIndex(i);
-                                    console.log($scope.directionsDisplay);
                                 }
                             }
                         });
@@ -103,7 +101,6 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
                     for (var i = 0; i < response.routes.length; i++) {
                         $scope.directionsDisplay.setDirections(response);
                         $scope.directionsDisplay.setRouteIndex(i);
-                        console.log($scope.directionsDisplay);
                     }
                 }
             });
@@ -279,8 +276,7 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
         $http.get(webService + "/avaliacao/evento/media/" + id).then(function (response) {
             $scope.media = parseFloat(response.data);
             $scope.mediaArredondada = Math.round($scope.media);
-        }, function (response) {
-            console.log(response.data);
+        }, function () {
         });
     };
 
@@ -309,7 +305,6 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
         }
 
         $http.get(webService + "/assuntos/Denúncia", loginService.getHeaders()).then(function (response) {
-            console.log(response.data);
 
             $scope.denunciaEvento = {
                 conteudo: "Denúncia no evento: " + location.href + "  Mensagem do usuário:" + mensagem,

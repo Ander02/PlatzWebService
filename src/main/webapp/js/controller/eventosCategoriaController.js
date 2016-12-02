@@ -5,14 +5,14 @@ angular.module("platz").controller("eventosCategoriaController", function ($scop
     $scope.eventosPorCategoria = function () {
         $http.get(webService + "/eventos/categoria/" + idCategoria).then(function (response) {
             $scope.eventos = response.data;
-        }, function (response) {
+        }, function () {
         });
     };
 
     $scope.categoriaId = function () {
         $http.get(webService + "/categoria/" + idCategoria).then(function (response) {
             $scope.categoria = response.data;
-        }, function (response) {
+        }, function () {
             info(toastr, "falha ao carrregar categoria");
         });
     };

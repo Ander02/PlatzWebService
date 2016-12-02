@@ -10,7 +10,7 @@ angular.module("platz").controller("editarEventoController", function ($scope, $
                 location.href = "/Empresa/index.jsp";
             }
 
-        }, function (response) {
+        }, function () {
             location.href = "/Empresa/index.jsp";
         });
     };
@@ -21,7 +21,6 @@ angular.module("platz").controller("editarEventoController", function ($scope, $
         if (document.getElementById("evento-gratuito").checked) {
             evento.preco = 0;
         }
-        console.log(evento);
         $http.put(webService + "/evento/" + id, evento, loginService.getHeaders()).then(function (response) {
             sucesso(toastr, "Evento Alterado com sucesso");
 
@@ -31,14 +30,14 @@ angular.module("platz").controller("editarEventoController", function ($scope, $
             }
 
             location.href = "/eventoEspecifico.jsp?evento=" + id;
-        }, function (response) {
+        }, function () {
             aviso(toastr, "Erro ao alterar evento, por favor verifique as informações e tente novamente");
         });
     };
     $scope.cancelar_Ativar = function () {
         if ($scope.evento.cancelado === undefined) {
             //cancelar
-            $http.put(webService + "/evento/cancelar/" + id, null, loginService.getHeaders()).then(function (response) {
+            $http.put(webService + "/evento/cancelar/" + id, null, loginService.getHeaders()).then(function () {
                 info(toastr, "Evento cancelado com sucesso");
                 location.reload();
             }, function () {
@@ -47,7 +46,7 @@ angular.module("platz").controller("editarEventoController", function ($scope, $
             });
         } else {
             //reativar
-            $http.put(webService + "/evento/descancelar/" + id, null, loginService.getHeaders()).then(function (response) {
+            $http.put(webService + "/evento/descancelar/" + id, null, loginService.getHeaders()).then(function () {
                 info(toastr, "Evento Ativado com sucesso");
                 location.reload();
             }, function () {
@@ -85,7 +84,7 @@ angular.module("platz").controller("editarEventoController", function ($scope, $
             $scope.eventoEdicao.endereco.cidade = response.data.localidade;
             $scope.eventoEdicao.endereco.uf = response.data.uf;
 
-        }, function (response) {
+        }, function () {
             aviso(toastr, "CEP inexistente, por favor verifique-o");
         });
     };
@@ -97,14 +96,14 @@ angular.module("platz").controller("editarEventoController", function ($scope, $
             $scope.empresa = response.data;
             $scope.imagemPerfil = webService + "/empresa/imagem/" + $scope.empresa.id;
             $scope.eventoEspecifico();
-        }, function (response) {
+        }, function () {
         });
     };
     $scope.deslogar = function () {
         $http.post(webService + "/logoff", null, loginService.getHeaders()).then(function (response) {
             info(toastr, "logoff efetuado");
             location.href = "../index.jsp";
-        }, function (response) {
+        }, function () {
 
         });
     };

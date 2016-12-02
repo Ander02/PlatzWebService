@@ -54,11 +54,9 @@ angular.module("platz").controller("usuarioController", function ($scope, $http,
     };
 
     $scope.descurtir = function (eventoId) {
-        console.log($scope.usuario.id);
-        console.log(eventoId);
         $http.delete(webService + "/descurtir/" + $scope.usuario.id + "/" + eventoId, loginService.getHeaders()).then(function (response) {
             atualizar();
-        }, function (response) {
+        }, function () {
             info(toastr, "Falha ao discurtir");
         });
     };
@@ -68,7 +66,6 @@ angular.module("platz").controller("usuarioController", function ($scope, $http,
     };
 
     $scope.alterarSenha = function () {
-        console.log($scope.usuarioEdicaoSenha);
         if ($scope.usuarioEdicaoSenha.conta.senha === $scope.usuarioEdicaoSenha.conta.confirmaSenha) {
             $http.put(webService + "/conta/senha/" + $scope.usuarioEdicaoSenha.conta.id, $scope.usuarioEdicaoSenha.conta, loginService.getHeaders()).then(function (response) {
                 sucesso(toastr, "Senha editada com sucesso");
@@ -88,11 +85,10 @@ angular.module("platz").controller("usuarioController", function ($scope, $http,
 
     $scope.alterarInfoPessoais = function () {
 
-        console.log($scope.usuarioEdicaoInfo);
         $scope.usuarioEdicaoInfo.endereco = null;
         $http.put(webService + "/usuario/" + $scope.usuarioEdicaoInfo.id, $scope.usuarioEdicaoInfo, loginService.getHeaders()).then(function (response) {
             sucesso(toastr, "informações editada com sucesso");
-        }, function (response) {
+        }, function () {
             aviso(toastr, "falha ao editar informações, por favor tente novamente mais tarde");
 
         });
@@ -111,11 +107,9 @@ angular.module("platz").controller("usuarioController", function ($scope, $http,
     };
 
     $scope.alterarEndereco = function () {
-        console.log($scope.usuarioEdicaoEndereco);
         $http.put(webService + "/usuario/" + $scope.usuarioEdicaoEndereco.id, $scope.usuarioEdicaoEndereco, loginService.getHeaders()).then(function (response) {
-            console.log(response.data);
             sucesso(toastr, "endereço editado com sucesso");
-        }, function (response) {
+        }, function () {
             aviso(toastr, "falha ao editar endereço, por favor tente novamente mais tarde");
 
         });
@@ -125,7 +119,6 @@ angular.module("platz").controller("usuarioController", function ($scope, $http,
     $scope.onblurCep = function () {
         cep = document.getElementById("usuario-cep").value;
         $http.get("https://viacep.com.br/ws/" + cep + "/json/").then(function (response) {
-            //console.log(response.data);
             $scope.usuarioEdicaoEndereco.endereco.numero = "";
             $scope.usuarioEdicaoEndereco.endereco.complemento = "";
             $scope.usuarioEdicaoEndereco.endereco.cep = response.data.cep;
@@ -133,7 +126,7 @@ angular.module("platz").controller("usuarioController", function ($scope, $http,
             $scope.usuarioEdicaoEndereco.endereco.bairro = response.data.bairro;
             $scope.usuarioEdicaoEndereco.endereco.cidade = response.data.localidade;
             $scope.usuarioEdicaoEndereco.endereco.uf = response.data.uf;
-        }, function (response) {
+        }, function () {
             aviso(toastr, "CEP inexistente, por favor verifique-o");
         });
 

@@ -1,24 +1,14 @@
 app.requires.push('isteven-multi-select');
 app.controller("eventoCadastroController", function ($scope, $http, toastr, loginService) {
 
-//    $scope.categoriasId = [];
 
     $scope.cadastrar = function () {
         $scope.evento.categoriasId = new Array();
-//
-//        for (var i = 0; i < categorias.length; i++) {
-//            if (categorias[i].checked === true) {
-//                $scope.evento.categoriasId.push(categorias[i].value);
-//            }
-//        }
 
         for (var i = 0; i < this.categoriasSelecionadas.length; i++) {
             $scope.evento.categoriasId.push(this.categoriasSelecionadas[i].id);
-            console.log($scope.evento.categoriasId);
         }
 
-
-        console.log($scope.evento);
         $scope.evento.empresaId = $scope.empresa.id;
         $scope.evento.dataInicio = document.getElementById("datetimepicker-start").value;
         $scope.evento.dataFim = document.getElementById("datetimepicker-end").value;
@@ -45,8 +35,8 @@ app.controller("eventoCadastroController", function ($scope, $http, toastr, logi
             //$scope.evento = null;
             sucesso(toastr, "Evento Cadastrado com sucesso");
 
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "falha ao cadastra eventos"));
+        }, function () {
+            erro(toastr, "falha ao cadastra eventos");
         });
     };
 
@@ -54,23 +44,21 @@ app.controller("eventoCadastroController", function ($scope, $http, toastr, logi
         $http.get(webService + "/categorias/naoExcluidas", loginService.getHeaders()).then(function (response) {
             $scope.categorias = response.data;
 
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "Erro ao listar categorias"));
+        }, function () {
+            erro(toastr, "Erro ao listar categorias");
         });
     };
 
     $scope.onblurCepEvento = function () {
         cep = document.getElementById("evento-cep").value;
         $http.get("https://viacep.com.br/ws/" + cep + "/json/").then(function (response) {
-            console.log($scope.evento);
 
             $scope.evento.endereco.rua = response.data.logradouro;
             $scope.evento.endereco.bairro = response.data.bairro;
             $scope.evento.endereco.cidade = response.data.localidade;
             $scope.evento.endereco.uf = response.data.uf;
 
-            console.log($scope.evento);
-        }, function (response) {
+        }, function () {
             aviso(toastr, "CEP inexistente, por favor verifique-o");
         });
     };
@@ -89,8 +77,6 @@ app.controller("eventoCadastroController", function ($scope, $http, toastr, logi
     $scope.alterarPreco = function () {
         var checkboxGratuito = document.getElementById("evento-gratuito");
         var inputPreco = document.getElementById("evento-preco");
-        console.log(inputPreco);
-        console.log(checkboxGratuito);
 
         if (checkboxGratuito.checked) {
             inputPreco.disabled = true;
@@ -103,15 +89,13 @@ app.controller("eventoCadastroController", function ($scope, $http, toastr, logi
         $http.get(webService + "/empresa/conta/" + $scope.conta.id).then(function (response) {
             $scope.empresa = response.data;
             $scope.imagemPerfil = webService + "/empresa/imagem/" + $scope.empresa.id;
-        }, function (response) {
+        }, function () {
         });
     };
 
     window.onload = function () {
         $scope.permicao = true;
         atualizar();
-        $scope.evento = new Object();
-        
+        $scope.evento = new Object();       
     };
-
 });

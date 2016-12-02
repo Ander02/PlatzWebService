@@ -97,27 +97,22 @@ app.controller("eventosController", function ($scope, $http, toastr, loginServic
     $scope.listarCategoriasNaoExcluidas = function () {
         $http.get(webService + "/categorias/naoExcluidas").then(function (response) {
             $scope.categorias = response.data;
-
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "Erro ao listar categorias"));
+        }, function () {
         });
     };
 
     $scope.listarEventos = function () {
         $http.get(webService + "/eventos/naoCensurados").then(function (response) {
             $scope.eventos = response.data;
-        }, function (response) {
-            //console.log(response.data);
+        }, function () {
         });
     };
 
 
     $scope.listarTop3Eventos = function () {
         $http.get(webService + "/eventos/top/" + 3).then(function (response) {
-            // console.log(response.data);
             $scope.top3Eventos = response.data;
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "erro ao listar top 3"));
+        }, function () {
         });
     };
 
@@ -137,16 +132,14 @@ app.controller("eventosController", function ($scope, $http, toastr, loginServic
             } while (index <= response.data.length);
             $scope.top15Eventos = eventoTop15;
 
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "erro ao listar top 15"));
+        }, function () {
         });
     };
 
     $scope.listarTop10Eventos = function () {
         $http.get(webService + "/eventos/top/" + 10).then(function (response) {
             $scope.top10Eventos = response.data;
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "erro ao listar top 10"));
+        }, function () {
         });
     };
 

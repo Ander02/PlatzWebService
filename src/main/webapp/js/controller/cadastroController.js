@@ -3,7 +3,6 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
     $scope.onblurCepEmpresa = function () {
         cep = document.getElementById("empresa-cep").value;
         $http.get("https://viacep.com.br/ws/" + cep + "/json/").then(function (response) {
-            console.log(response.data);
             $scope.empresa.endereco.rua = response.data.logradouro;
             $scope.empresa.endereco.bairro = response.data.bairro;
             $scope.empresa.endereco.cidade = response.data.localidade;
@@ -73,7 +72,6 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
         }
     };
     $scope.cadastrarUsuario = function () {
-        console.log($scope.usuario);
         if (!validacaoService.vazio(toastr, $scope.usuario, "Usuário")) {
             if (!validacaoService.vazio(toastr, $scope.usuario.conta, "Usuário - conta")) {
                 if (!validacaoService.vazio(toastr, $scope.usuario.endereco, "Usuário - endereço")) {
@@ -90,14 +88,12 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
                                                 $scope.usuario.perfil = 2;
                                                 $scope.usuario.dataNascimento = document.getElementById("date").value;
                                                 $scope.usuario.cpf = document.getElementById("conta-usuario-cpf").value;
-                                                console.log($scope.usuario);
                                                 $http.post(webService + "/usuario", $scope.usuario).then(function (response) {
 
                                                     $scope.conta = response.data.conta;
                                                     $scope.conta.senha = $scope.usuario.conta.senha;
                                                     var input = document.getElementById("conta-usuario-img");
                                                     var imagemPerfil = input.files[0];
-                                                    console.log(imagemPerfil);
                                                     if (!(!imagemPerfil.type.match('image.*'))) {
                                                         enviarArquivo($http, imagemPerfil, 'imgPerfil', webService + "/usuario/imagem/" + response.data.id);
                                                     }
