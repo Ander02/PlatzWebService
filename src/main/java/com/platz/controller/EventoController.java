@@ -106,6 +106,7 @@ public class EventoController {
         return eventoDao.buscarEventosPorDia(7);
     }
     
+    
     public List<EventoModel> TopNEventos(int max) {
         
         List<EventoModel> eventos = this.buscarNaoCanceladosENaoCensurados();
