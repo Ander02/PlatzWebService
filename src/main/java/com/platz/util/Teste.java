@@ -2,11 +2,16 @@ package com.platz.util;
 
 import com.platz.controller.AvaliacaoController;
 import com.platz.controller.CurtidaController;
+import com.platz.controller.EventoController;
 import com.platz.controller.PresencaController;
 import com.platz.dao.EventoDao;
+import com.platz.http.leitura.EventoLeitura;
 import com.platz.model.EventoModel;
 import com.platz.model.TipoPresenca;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Teste {
@@ -19,9 +24,12 @@ public class Teste {
         int a = 3;
         int b = a - (a % 3);        
         System.out.println(b);*/
-        
-        
+
         //desenvolvimento de buscar eventos por curtidos, avaliação e participação
+       
+        
+        
+        /*
         int max = 3;
         int terco = max / 3;
         int resto = max % 3;
@@ -66,8 +74,8 @@ public class Teste {
             }
             
         }
-
-        /*
+         */
+ /*
         HashMap<Integer, Integer> teste = new HashMap<>();
         teste.put(1, 404);
         
@@ -78,6 +86,7 @@ public class Teste {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
-         */
+         */  
+
     }
 }
