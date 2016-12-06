@@ -8,8 +8,8 @@
 }
 .section-comentarios .card
 {
-   overflow: visible;
-   padding: 20px;
+    overflow: visible;
+    padding: 20px;
 }
 .section-comentarios .card .imagem-comentario img
 {
@@ -21,13 +21,13 @@
     left: 65%;
 }
 input[type="checkbox"]{
-cursor: pointer;
-border-radius: 1px;
-box-sizing: border-box;
-position: relative;
-box-sizing: content-box ;
-width: 30px;
-height: 30px;
-border-width: 0;
-transition: all .3s linear;
+    cursor: pointer;
+    border-radius: 1px;
+    box-sizing: border-box;
+    position: relative;
+    box-sizing: content-box ;
+    width: 30px;
+    height: 30px;
+    border-width: 0;
+    transition: all .3s linear;
 }
