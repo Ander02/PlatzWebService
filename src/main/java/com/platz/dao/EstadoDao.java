@@ -12,6 +12,7 @@ public class EstadoDao extends GenericDao<EstadoModel> {
 
     @SuppressWarnings("unchecked")
     public EstadoModel buscarPelaUf(String uf) {
+        uf = uf.toUpperCase();
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
         EstadoModel model = (EstadoModel) entityManager.createQuery("from EstadoModel where uf = :uf").setParameter("uf", uf).getSingleResult();
         entityManager.close();

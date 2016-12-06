@@ -26,9 +26,9 @@ public class Teste {
         System.out.println(b);*/
 
         //desenvolvimento de buscar eventos por curtidos, avaliação e participação
-       
         
         
+
         /*
         int max = 3;
         int terco = max / 3;
@@ -86,7 +86,6 @@ public class Teste {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
-         */  
-
+         */
     }
 }
