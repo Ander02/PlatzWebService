@@ -36,11 +36,11 @@
         <script src="js/util.js" type="text/javascript"></script>
 
         <script src="js/services/loginService.js" type="text/javascript"></script>
-        
+
         <script src="js/services/validacaoService.js" type="text/javascript"></script>
 
         <script src="js/controller/loginController.js" type="text/javascript"></script>
-        
+
         <script src="lib/angular/ng-map.min.js" type="text/javascript"></script>
 
         <script src="js/controller/eventosController.js" type="text/javascript"></script>
@@ -183,7 +183,7 @@
                     <h1>Baixe o app Platz!</h1>
                     <br>
                     <hr>
-                    <a class="btn btn-amber btn-lg" href="#" target="_blank">Baixe aqui</a>
+                    <a class="btn btn-amber btn-lg" href="/download/Platz 1.0.apk" target="_blank">Baixe aqui</a>                    
                 </div>
 
                 <!--Section sescription-->
