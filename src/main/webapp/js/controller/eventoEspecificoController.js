@@ -1,7 +1,7 @@
 angular.module("platz").controller("eventoEspecificoController", function ($scope, $http, toastr, loginService, validacaoService) {
     id = document.getElementById("idEvento").value;
     var enderecoCompletoEvento;
-    
+
 
     $scope.iniciarMapa = function () {
 
@@ -276,6 +276,7 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
     $scope.getMedia = function () {
         $http.get(webService + "/avaliacao/evento/media/" + id).then(function (response) {
             $scope.media = parseFloat(response.data);
+            $scope.media = parseFloat($scope.media.toFixed(2));
             $scope.mediaArredondada = Math.round($scope.media);
         }, function () {
         });

@@ -77,7 +77,7 @@
         <div ng-controller="empresaEspecificaController">
             <div class="espaco"></div>
 
-            <section class="section section-blog-fw">
+            <section class="section section-blog-fw section-perfil-empresa">
 
                 <!--First row-->
                 <div class="row">
@@ -90,7 +90,7 @@
                                 <div class="col-md-12">
                                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 imagem-perfil-empresa-efeito">
                                         <div class="hovereffect">
-                                            <img class="img-responsive" src="img/outras/plano-fundo.jpg" alt="">
+                                            <img class="img-responsive" ng-src="{{imagemPerfil}}" onerror="src='img/outras/plano-fundo.jpg'" alt="">
                                             <div class="overlay">
                                                 <h2 ng-bind="empresa.nomeFantasia"></h2>
                                                 <a class="info" href="#">Curta Nossos Eventos</a>
@@ -133,7 +133,7 @@
                                     <div class="card card-cascade narrower">
                                         <!--Card image-->
                                         <div class="view overlay hm-white-slight">
-                                            <img src="img/outras/plano-fundo.jpg" class="img-fluid" alt="">
+                                            <img ng-src="{{buscarImagemCapa(evento.id)}}" onerror="src='img/outras/plano-fundo.jpg'" class="img-fluid" alt="">
                                             <a>
                                                 <div class="mask"></div>
                                             </a>
@@ -143,7 +143,7 @@
                                         <!--Card content-->
                                         <div class="card-block text-xs-center">
                                             <!--Categoria & nome da empresa e do evento-->                  
-                                            <h4 class="card-title"><strong ng-bind="evento.nome"></strong></h4> 
+                                            <h4 class="card-title"><strong>{{evento.nome|limitTo:20}}{{evento.nome.length>=20?'...':''}}</strong></h4> 
 
                                             <!--Description-->
                                             <p class="card-text" ><i class="fa fa-calendar"></i>{{evento.dataInicio}}</p>
