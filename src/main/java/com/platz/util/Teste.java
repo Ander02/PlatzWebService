@@ -26,9 +26,6 @@ public class Teste {
         System.out.println(b);*/
 
         //desenvolvimento de buscar eventos por curtidos, avaliação e participação
-        
-        
-
         /*
         int max = 3;
         int terco = max / 3;

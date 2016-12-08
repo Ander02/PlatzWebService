@@ -129,7 +129,14 @@ public class EventoController {
             public int compare(EventoLeitura ev1, EventoLeitura ev2) {
 
                 if (ev2.getMedia() != ev1.getMedia()) {
-                    return (int) (ev2.getMedia() - ev1.getMedia());
+
+                    if (ev2.getMedia() < ev1.getMedia()) {
+                        return -1;
+                    } else if (ev2.getMedia() > ev1.getMedia()) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
                 } else if (ev2.getCurtidas() != ev1.getCurtidas()) {
                     return ev2.getCurtidas() - ev1.getCurtidas();
                 } else if (ev2.getParticipacaoSim() != ev1.getParticipacaoSim()) {
