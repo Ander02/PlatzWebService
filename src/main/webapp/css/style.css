@@ -542,6 +542,10 @@ hr.small {
 {
     margin-bottom: 20px;
 }
+.label-modal-comentario
+{
+    margin-top: -13px;
+}
 
 /*estilização das estrelas na pagina de evento especifico*/
 div.stars {
@@ -592,6 +596,11 @@ label.star:before {
 
 .section .view, .section img, .z-depth-2 {
     box-shadow: none;
+}
+
+.section-perfil-empresa .view, .section-perfil-empresa img{
+    box-shadow: none;
+    height: 350px;
 }
 
 .md-form
@@ -930,4 +939,12 @@ label.star:before {
 .ev-segundo-lugar img , .ev-terceiro-lugar img
 {
     height: 350px;
+}
+
+
+.adp, .adp table {
+    font-family: Roboto,Arial,sans-serif;
+    font-weight: 300;
+    color: #2C2C2C;
+    width: 100%;
 }

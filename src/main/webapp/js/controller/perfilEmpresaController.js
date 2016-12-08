@@ -10,7 +10,7 @@ angular.module("platz").controller("perfilEmpresaController", function ($scope, 
             $scope.empresaEdicaoInfo = $scope.empresa;
             $scope.imagemPerfil = webService + "/empresa/imagem/" + $scope.empresa.id;
             $scope.eventosEmpresa();
-        }, function (response) {
+        }, function () {
         });
     };
 
@@ -21,8 +21,7 @@ angular.module("platz").controller("perfilEmpresaController", function ($scope, 
     $scope.eventosEmpresa = function () {
         $http.get(webService + "/eventos/empresa/" + $scope.empresa.id, loginService.getHeaders()).then(function (response) {
             $scope.eventos = response.data;
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "erro ao buscar eventos da empresa"));
+        }, function () {
         });
     };
 
@@ -48,10 +47,9 @@ angular.module("platz").controller("perfilEmpresaController", function ($scope, 
 
     $scope.alterarInfoEmpresariais = function () {
         $scope.empresaEdicaoInfo.endereco = null;
-        console.log($scope.empresaEdicaoInfo);
         $http.put(webService + "/empresa/" + $scope.empresaEdicaoInfo.id, $scope.empresaEdicaoInfo, loginService.getHeaders()).then(function (response) {
             sucesso(toastr, "informações editada com sucesso");
-        }, function (response) {
+        }, function () {
             aviso(toastr, "falha ao editar informações, por favor tente novamente mais tarde");
 
         });
@@ -68,10 +66,9 @@ angular.module("platz").controller("perfilEmpresaController", function ($scope, 
     };
 
     $scope.alterarEndereco = function () {
-        console.log($scope.empresaEdicaoEndereco);
         $http.put(webService + "/empresa/" + $scope.empresaEdicaoEndereco.id, $scope.empresaEdicaoEndereco, loginService.getHeaders()).then(function (response) {
             sucesso(toastr, "endereço editado com sucesso");
-        }, function (response) {
+        }, function () {
             aviso(toastr, "falha ao editar endereço, por favor tente novamente mais tarde");
 
         });
@@ -80,7 +77,6 @@ angular.module("platz").controller("perfilEmpresaController", function ($scope, 
     $scope.onblurCep = function () {
         cep = document.getElementById("conta-empresa-cep").value;
         $http.get("https://viacep.com.br/ws/" + cep + "/json/").then(function (response) {
-            //console.log(response.data);
             $scope.empresaEdicaoEndereco.endereco.numero = "";
             $scope.empresaEdicaoEndereco.endereco.complemento = "";
             $scope.empresaEdicaoEndereco.endereco.cep = response.data.cep;
@@ -88,7 +84,7 @@ angular.module("platz").controller("perfilEmpresaController", function ($scope, 
             $scope.empresaEdicaoEndereco.endereco.bairro = response.data.bairro;
             $scope.empresaEdicaoEndereco.endereco.cidade = response.data.localidade;
             $scope.empresaEdicaoEndereco.endereco.uf = response.data.uf;
-        }, function (response) {
+        }, function () {
             aviso(toastr, "CEP inexistente, por favor verifique-o");
         });
 
@@ -98,7 +94,7 @@ angular.module("platz").controller("perfilEmpresaController", function ($scope, 
         $http.post(webService + "/logoff", null, loginService.getHeaders()).then(function (response) {
             info(toastr, "logoff efetuado");
             location.href = "../index.jsp";
-        }, function (response) {
+        }, function () {
 
         });
     };

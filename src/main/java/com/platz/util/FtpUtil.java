@@ -86,6 +86,9 @@ public class FtpUtil {
     // Method to upload the File on the FTP Server
     public void uploadArquivoFTP(String caminhoLocalDoArquivo, String diretorioDoUpload, String nomeDoArquivo) throws Exception {
         try {
+
+            System.out.println(diretorioDoUpload);
+
             this.criarDiretorios(diretorioDoUpload);
 
             InputStream arquivo = new FileInputStream(new File(caminhoLocalDoArquivo));

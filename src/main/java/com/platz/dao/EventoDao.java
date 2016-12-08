@@ -2,6 +2,7 @@ package com.platz.dao;
 
 import com.platz.model.CidadeModel;
 import com.platz.model.EmpresaModel;
+import com.platz.model.EstadoModel;
 import com.platz.model.EventoModel;
 import com.platz.util.DataUtil;
 import java.util.Date;
@@ -91,7 +92,7 @@ public class EventoDao extends GenericDao<EventoModel> {
     @SuppressWarnings("unchecked")
     public List<EventoModel> buscarNaoCanceladosENaoCensurados() {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
-        List<EventoModel> lista = entityManager.createQuery("from EventoModel where cancelado = :cancelado and censurado = :censurado").setParameter("cancelado", null).setParameter("censurado", null).getResultList();
+        List<EventoModel> lista = entityManager.createQuery("from EventoModel where cancelado = :cancelado and censurado = :censurado order by dataInicio").setParameter("cancelado", null).setParameter("censurado", null).getResultList();
         entityManager.close();
         return lista;
     }
@@ -159,7 +160,7 @@ public class EventoDao extends GenericDao<EventoModel> {
     @SuppressWarnings("unchecked")
     public List<EventoModel> buscarPorCidade(CidadeModel cidade) {
         EntityManager entityManager = JPAUtil.getInstance().getEntityManager();
-        List<EventoModel> lista = entityManager.createQuery("from EventoModel where endereco.cidade = :cidade").setParameter("cidade", cidade).getResultList();
+        List<EventoModel> lista = entityManager.createQuery("from EventoModel where endereco.cidade =:cidade").setParameter("cidade", cidade).getResultList();
         entityManager.close();
         return lista;
     }

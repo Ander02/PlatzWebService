@@ -8,7 +8,7 @@ angular.module("platz").controller("loginController", function ($scope, $http, t
         $http.post(webService + "/login", login).then(function (response) {
             $scope.contaLogin = response.data;
             location.href = "sessao.jsp?token=" + $scope.contaLogin.token + "&perfil=" + $scope.contaLogin.perfil;
-        }, function (response) {
+        }, function () {
             erro(toastr, "usuario ou senha incorreto");
         });
     };
@@ -22,13 +22,13 @@ angular.module("platz").controller("loginController", function ($scope, $http, t
         $http.post(webService + "/login", login).then(function (response) {
             $scope.contaLogin = response.data;
             location.href = "sessao.jsp?token=" + $scope.contaLogin.token + "&perfil=" + $scope.contaLogin.perfil;
-        }, function (response) {
+        }, function () {
             erro(toastr, "usuario ou senha incorreto");
         });
     };
 
     $scope.deslogar = function () {
-        $http.post(webService + "/logoff", null, loginService.getHeaders()).then(function (response) {
+        $http.post(webService + "/logoff", null, loginService.getHeaders()).then(function () {
             info(toastr, "logoff efetuado");
             location.href = "/quebraSessao.jsp";
         }, function () {
@@ -46,7 +46,6 @@ angular.module("platz").controller("loginController", function ($scope, $http, t
                 }
             }).then(function (response) {
                 $scope.conta = response.data;
-                console.log($scope.conta.perfil);
 
                 if ($scope.conta.perfil === "Empresa") {
                     $http.get(webService + "/empresa/conta/" + $scope.conta.id, loginService.getHeaders()).then(function (response) {
@@ -62,8 +61,7 @@ angular.module("platz").controller("loginController", function ($scope, $http, t
                     });
                 }
 
-            }, function (response) {
-                console.log(response);
+            }, function () {
                 $scope.conta = null;
             });
         }

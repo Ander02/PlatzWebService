@@ -1,12 +1,10 @@
 angular.module("platz").controller("sobreController", function ($scope, $http, toastr, loginService) {
 
-
     //métodos que envolvem outros tipos de objetos
     $scope.listarAssuntosNaoDeletados = function () {
         $http.get(webService + "/assuntos/naoDeletados").then(function (response) {
             $scope.assuntos = response.data;
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "Erro ao listar assuntos"));
+        }, function () {
         });
     };
     $scope.cadastrar = function () {
@@ -14,12 +12,10 @@ angular.module("platz").controller("sobreController", function ($scope, $http, t
             atualizar();
             $scope.mensagemCadastro = null;
             sucesso(toastr, "Mensagem Enviada com sucesso");
-        }, function (response) {
-            erro(toastr, errorManager(response.config.url, response.status, "Erro ao enviar Mensagem "));
+        }, function () {
+            erro(toastr, "Erro ao enviar Mensagem ");
         });
     };
-
-//funções de atualizações
 
     function atualizar() {
         loginService.verificarToken($http, toastr, "Livre", function () {
@@ -34,6 +30,4 @@ angular.module("platz").controller("sobreController", function ($scope, $http, t
         $scope.permicao = false;
         atualizar();
     };
-
-
 });

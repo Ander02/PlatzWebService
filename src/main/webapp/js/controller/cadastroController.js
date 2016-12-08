@@ -3,12 +3,11 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
     $scope.onblurCepEmpresa = function () {
         cep = document.getElementById("empresa-cep").value;
         $http.get("https://viacep.com.br/ws/" + cep + "/json/").then(function (response) {
-            console.log(response.data);
             $scope.empresa.endereco.rua = response.data.logradouro;
             $scope.empresa.endereco.bairro = response.data.bairro;
             $scope.empresa.endereco.cidade = response.data.localidade;
             $scope.empresa.endereco.uf = response.data.uf;
-        }, function (response) {
+        }, function () {
             aviso(toastr, "CEP inexistente, por favor verifique-o");
         });
     };
@@ -20,7 +19,7 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
             $scope.usuario.endereco.bairro = response.data.bairro;
             $scope.usuario.endereco.cidade = response.data.localidade;
             $scope.usuario.endereco.uf = response.data.uf;
-        }, function (response) {
+        }, function () {
             aviso(toastr, "CEP inexistente, por favor verifique-o");
         });
     };
@@ -49,8 +48,10 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
 
                                                         $scope.empresa = null;
                                                         input.value = null;
-//
+
                                                         sucesso(toastr, "Empresa cadastrada com sucesso");
+                                                        $("#modalLogar").modal();
+
                                                     }, function (response) {
                                                         erro(toastr, errorManager(response.config.url, response.status, "Falha ao cadastrar empresa, verifique os campos e tente novamente"));
                                                     });
@@ -71,7 +72,6 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
         }
     };
     $scope.cadastrarUsuario = function () {
-        console.log($scope.usuario);
         if (!validacaoService.vazio(toastr, $scope.usuario, "Usuário")) {
             if (!validacaoService.vazio(toastr, $scope.usuario.conta, "Usuário - conta")) {
                 if (!validacaoService.vazio(toastr, $scope.usuario.endereco, "Usuário - endereço")) {
@@ -88,21 +88,23 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
                                                 $scope.usuario.perfil = 2;
                                                 $scope.usuario.dataNascimento = document.getElementById("date").value;
                                                 $scope.usuario.cpf = document.getElementById("conta-usuario-cpf").value;
-                                                console.log($scope.usuario);
                                                 $http.post(webService + "/usuario", $scope.usuario).then(function (response) {
 
                                                     $scope.conta = response.data.conta;
                                                     $scope.conta.senha = $scope.usuario.conta.senha;
                                                     var input = document.getElementById("conta-usuario-img");
                                                     var imagemPerfil = input.files[0];
-                                                    console.log(imagemPerfil);
                                                     if (!(!imagemPerfil.type.match('image.*'))) {
                                                         enviarArquivo($http, imagemPerfil, 'imgPerfil', webService + "/usuario/imagem/" + response.data.id);
                                                     }
 
                                                     $scope.usuario = null;
                                                     input.value = null;
+
                                                     sucesso(toastr, "Usuario cadastrado com sucesso");
+
+                                                    $("#modalLogar").modal();
+
                                                 }, function () {
                                                     erro(toastr, "Falha ao cadastrar usuario, verifique os campos e tente novamente mais tarde");
                                                 });
@@ -120,8 +122,6 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
                 }
             }
         }
-
-
     };
     $scope.logar = function () {
         login = {
@@ -131,7 +131,7 @@ angular.module("platz").controller("cadastroController", function ($scope, $http
         $http.post(webService + "/login", login).then(function (response) {
             $scope.contaLogin = response.data;
             location.href = "sessao.jsp?token=" + $scope.contaLogin.token + "&perfil=" + $scope.contaLogin.perfil;
-        }, function (response) {
+        }, function () {
             erro(toastr, "usuario ou senha incorreto");
         });
     };

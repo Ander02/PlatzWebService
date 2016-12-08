@@ -2,6 +2,7 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
     id = document.getElementById("idEvento").value;
     var enderecoCompletoEvento;
 
+
     $scope.iniciarMapa = function () {
 
         var myOptions = {
@@ -59,7 +60,6 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
         var request = new Object();
 
         if (document.getElementById("checkboxLocalizacaoAtual").checked) {
-            console.log(document.getElementById("checkboxLocalizacaoAtual").checked);
 
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
@@ -83,7 +83,6 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
                                 for (var i = 0; i < response.routes.length; i++) {
                                     $scope.directionsDisplay.setDirections(response);
                                     $scope.directionsDisplay.setRouteIndex(i);
-                                    console.log($scope.directionsDisplay);
                                 }
                             }
                         });
@@ -103,7 +102,6 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
                     for (var i = 0; i < response.routes.length; i++) {
                         $scope.directionsDisplay.setDirections(response);
                         $scope.directionsDisplay.setRouteIndex(i);
-                        console.log($scope.directionsDisplay);
                     }
                 }
             });
@@ -115,7 +113,6 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
     $scope.eventoEspecifico = function () {
         $http.get(webService + "/evento/" + id).then(function (response) {
             $scope.evento = response.data;
-            console.log($scope.evento);
             $scope.imagemCapa = webService + "/evento/imagemCapa/" + id;
             enderecoCompletoEvento = $scope.evento.endereco.cep + " " + $scope.evento.endereco.rua + " " + $scope.evento.endereco.cidade.nome + " " + $scope.evento.endereco.cidade.estado.uf;
             $scope.iniciarMapa();
@@ -277,15 +274,14 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
     $scope.getMedia = function () {
         $http.get(webService + "/avaliacao/evento/media/" + id).then(function (response) {
             $scope.media = parseFloat(response.data);
+            $scope.media = parseFloat($scope.media.toFixed(2));
             $scope.mediaArredondada = Math.round($scope.media);
-        }, function (response) {
-            console.log(response.data);
+        }, function () {
         });
     };
 
     $scope.bloquearEvento = function () {
         $http.put(webService + "/evento/censurar/" + id, null, loginService.getHeaders()).then(function (response) {
-            console.log(response.data);
             sucesso(toastr, "Evento censurado");
             atualizar();
         }, function () {
@@ -294,7 +290,6 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
     };
     $scope.bloquearPostagem = function () {
         $http.put(webService + "/postagem/censurar/" + $scope.bloqueamentoPostagem.id, null, loginService.getHeaders()).then(function (response) {
-            console.log(response.data);
             sucesso(toastr, "Comentário censurado");
             atualizar();
         }, function () {
@@ -310,7 +305,6 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
         }
 
         $http.get(webService + "/assuntos/Denúncia", loginService.getHeaders()).then(function (response) {
-            console.log(response.data);
 
             $scope.denunciaEvento = {
                 conteudo: "Denúncia no evento: " + location.href + "  Mensagem do usuário:" + mensagem,
@@ -388,12 +382,10 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
 
     };
     $scope.prepararDenunciaPostagem = function (postagem) {
-        console.log(postagem);
         $scope.denunciaPostagem = postagem;
 
     };
     $scope.prepararBloqueamentoPostagem = function (postagem) {
-        console.log(postagem);
         $scope.bloqueamentoPostagem = postagem;
 
     };
@@ -402,7 +394,6 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
         $scope.edicaoPostagem = postagem;
     };
     $scope.prepararExclusaoPostagem = function (postagem) {
-        console.log(postagem);
         $scope.exclusaoPostagem = postagem;
     };
     $scope.cancelarDenunciaPostagem = function () {

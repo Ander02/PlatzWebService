@@ -21,7 +21,6 @@ angular.module("platz").service("loginService", function () {
 
             token = document.getElementById("token").value;
             if (token !== null && token !== "" && local !== "Livre") {
-                console.log(token);
                 $http.get(webService + "/tokenIsValid/" + token, {
                     headers: {
                         Authorization: "Bearer " + token
@@ -31,12 +30,10 @@ angular.module("platz").service("loginService", function () {
 
                     if (valido == "false") {
 
-                        console.log("t isn't valid");
                         permicao = false;
                         logoff($http, toastr);
                         location.href = "/quebraSessao.jsp";
                     } else {
-                        console.log("t is valid ");
 
                         $http.get(webService + "/conta/token/" + token, {
                             headers: {
@@ -54,15 +51,14 @@ angular.module("platz").service("loginService", function () {
                                 logoff($http, toastr);
                             }
 
-                        }, function (response) { 
+                        }, function () { 
                             permicao = false;
                             logoff($http, toastr);
                             location.href = "/quebraSessao.jsp";
                         });
                     }
 
-                }, function (response) {
-                    console.log("request failed");
+                }, function () {
 
                     permicao = false;
                     logoff($http, toastr);

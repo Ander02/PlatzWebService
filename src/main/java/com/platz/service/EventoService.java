@@ -200,10 +200,10 @@ public class EventoService {
     @Produces
     public Response buscarTopN(@PathParam("max") int max) {
         try {
-            return Response.ok(new EventoLeitura().converterLista(eventoController.TopNEventos(max))).build();
+            return Response.ok(eventoController.TopNEventos(max)).build();
 
         } catch (Exception e) {
-            System.out.println("Erro: " + e.getMessage());
+            e.printStackTrace();
             //Retorna uma BadRequest ao usuário
             return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao listar eventos").build();
         }
