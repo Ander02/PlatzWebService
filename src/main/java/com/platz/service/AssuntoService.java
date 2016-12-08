@@ -7,7 +7,6 @@ import com.platz.http.leitura.AssuntoLeitura;
 import com.platz.model.AssuntoModel;
 import com.platz.model.Perfil;
 import com.platz.util.PerfilAuth;
-import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;

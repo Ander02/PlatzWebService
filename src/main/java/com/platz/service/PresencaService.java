@@ -11,6 +11,7 @@ import com.platz.model.PresencaModel;
 import com.platz.model.TipoPresenca;
 import com.platz.util.PerfilAuth;
 import java.util.List;
+import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -183,7 +184,7 @@ public class PresencaService {
 
     @PUT
     @Path(value = "/presenca/{id}")
-    @PerfilAuth(Perfil.USUARIO)
+    @DenyAll
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response alterar(@PathParam("id") String id, PresencaEdicao presenca) {

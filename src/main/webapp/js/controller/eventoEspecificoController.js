@@ -227,7 +227,7 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
     };
 
     $scope.comentar = function (comentario) {
-        if (validacaoService.comprimento(comentario, 8, 4096) && validacaoService.conteudo(comentario)) {
+        if (validacaoService.comprimento(toastr, comentario, 8, 4096, "Comentário") && validacaoService.conteudo(toastr,comentario, "Comentário")) {
 
             if ($scope.conta !== null && $scope.conta !== "" && typeof $scope.conta !== 'undefined' && $scope.conta.perfil !== "Administrador") {
                 postagem = {
@@ -246,8 +246,6 @@ angular.module("platz").controller("eventoEspecificoController", function ($scop
             } else {
                 pedidoLogin("Por favor, realize o login como usuario ou empresa para ter acesso a essa funcionalidade");
             }
-        } else {
-            aviso(toastr, " O comentário deve ter entre 8 há 4096 digitos");
         }
     };
 

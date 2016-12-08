@@ -35,9 +35,6 @@ public class CurtidaService {
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response curtir(CurtidaCadastro curtida) {
-        System.out.println("-----------");
-        System.out.println(curtida.getEventoId());
-        System.out.println(curtida.getUsuarioId());
 
         CurtidaModel model = new CurtidaModel(curtida);
         try {
