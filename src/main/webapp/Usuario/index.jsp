@@ -131,7 +131,7 @@ index do usuario onde mostra algumas sugestões de eventos
 
                             <!--Informações-->
                             <div class="news-data">
-                                <h2>{{presenca.evento.nome|limitTo:20}}{{presenca.evento.nome.length>=20?'...' :''}}</h2>
+                                <h2>{{presenca.evento.nome|limitTo:15}}{{presenca.evento.nome.length>=15?'...' :''}}</h2>
 
                                 <h5><i class="fa fa-car"></i>{{presenca.evento.endereco.cidade.nome}} - {{presenca.evento.endereco.cidade.estado.uf}}</h5>
                                 <p><strong><i class="fa fa-clock-o"></i> {{presenca.evento.dataInicio}}</strong></p>
