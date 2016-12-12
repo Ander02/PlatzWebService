@@ -9,7 +9,7 @@ import java.io.InputStream;
 public class ImagemUtil {
 
     public final String RAIZ = "C:/platzImg/";
-    public static final String URL_FTP = "ftp://localhost/";
+    public static final String URL_FTP = "ftp://192.168.100.3/";
 
     //Método de salvar arquivo que recebe o caminho e o arquivo como inputStream
     public boolean salvarArquivo(String diretorio, String nomeDoArquivo, InputStream inputStream) {

@@ -187,9 +187,7 @@
                 </div>
 
                 <!--Section sescription-->
-                <p class="section-description lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit
-                    , error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum quisquam eum 
-                    porro a pariatur accusamus veniam. Quia, minima?</p>
+                <p class="section-description lead">Baixe o aplicativo do Platz, onde você poderá acessar os eventos de maneira mais dinâmica!!</p>
 
                 <!--First row-->
                 <div class="row features-small">
@@ -279,7 +277,7 @@
                                 </div>
                                 <div class="col-xs-10">
                                     <h4 class="feature-title">Android</h4>
-                                    <p class="grey-text">Compativel com versoes do android 1.0, baixe e se divirta .</p>
+                                    <p class="grey-text">Compativel com versoes do android 4.0, baixe e se divirta .</p>
                                     <div style="height:30px"></div>
                                 </div>
                             </div>

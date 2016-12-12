@@ -44,7 +44,7 @@ public class FtpUtil {
         ftp = new FTPClient();
         //ftp.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(System.out)));
         int reply;
-        ftp.connect("localhost", 21);
+        ftp.connect("192.168.100.3", 21);
 
         //System.out.println("FTP URL:" + ftp.getDefaultPort());
         reply = ftp.getReplyCode();
@@ -54,7 +54,7 @@ public class FtpUtil {
             throw new Exception("Exception in connecting to FTP Server");
         }
 
-        ftp.login("admin", "");
+        ftp.login("anderson.pessoa", "Senai115");
         ftp.setFileType(FTP.BINARY_FILE_TYPE);
         ftp.enterLocalPassiveMode();
     }
